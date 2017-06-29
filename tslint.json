@@ -14,7 +14,7 @@
     "eofline": true,
     "forin": true,
     "import-blacklist": [
-      true,
+      false,
       "rxjs"
     ],
     "import-spacing": true,
@@ -108,15 +108,17 @@
       "check-type"
     ],
     "directive-selector": [
-      true,
+      false,
       "attribute",
       "app",
+      "hmt",
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
+      "hmt-navigator",
       "kebab-case"
     ],
     "use-input-property-decorator": true,

@@ -19,9 +19,23 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap-theme.min.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/leaflet-measure/dist/leaflet-measure.css",
+        "../node_modules/leaflet/dist/leaflet.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/leaflet/dist/leaflet.js",
+        "../node_modules/leaflet.vectorgrid/dist/Leaflet.VectorGrid.js",
+        "../node_modules/leaflet-measure/dist/leaflet-measure.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/hammerjs/hammer.js"
+
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -51,7 +65,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": ["css"],
     "component": {}
   }
 }

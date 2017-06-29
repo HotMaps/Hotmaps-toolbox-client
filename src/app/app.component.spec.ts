@@ -1,32 +1,58 @@
-import { TestBed, async } from '@angular/core/testing';
-
+/**
+ * Created by lesly on 28.06.17.
+ */
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed , async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import { MockLoaderService } from './shared/services/mock/loader.service';
+import { LoaderService } from './shared/services/loader.service'
+
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let mockLoaderService: MockLoaderService;
+  let loaderServiceStub: LoaderService;
+  let de: DebugElement[];
+  let el_register;
+  let el_login;
+
   beforeEach(async(() => {
+
+    mockLoaderService = new MockLoaderService();
+    loaderServiceStub = new LoaderService();
+
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
+      declarations: [AppComponent],
+      providers: [
+        {provide: LoaderService, useValue: loaderServiceStub },
       ],
+      imports: [RouterTestingModule, ]
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
 
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    de = fixture.debugElement.queryAll(By.css('a'));
+    el_register = de[0].nativeElement.getAttribute('routerLink');
+    el_login = de[1].nativeElement.getAttribute('routerLink');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!!');
-  }));
+  });
+  it('should have login root set to /login root', () => {
+
+    fixture.detectChanges();
+    expect(el_login).toEqual('/login');
+
+  });
+
+  it('should have register root set to /register root', () => {
+
+    fixture.detectChanges();
+    expect(el_register).toEqual('/register');
+
+  });
 });

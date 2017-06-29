@@ -1,0 +1,11 @@
+<ul class="modules-service">
+  <li *ngFor="let service of services"
+      [class.selected]="service === selectedModulesService"
+      (click)="onSelect(service)">
+    <span class="badge">{{service.id}}</span> {{service.name}}
+  </li>
+</ul>
+<div *ngIf="selectedModulesService">
+
+  <button (click)="gotoDetail()">View Details</button>
+</div>

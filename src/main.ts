@@ -1,3 +1,6 @@
+///<reference path="app/typings/leaflet-measure.d.ts"/>
+/// <reference path="app/typings/leaflet.vectorgrid.d.ts"/>
+/// <reference path="typings.d.ts"/>
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -8,4 +11,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule).then(success => console.log(`Bootstrap success`))
+  .catch(err => console.error(err));
+
