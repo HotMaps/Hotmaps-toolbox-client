@@ -10,11 +10,11 @@ import {Map} from 'leaflet';
 
 @Component({
   selector: 'hmt-navigator',
-  template: require<any>('./navigator.component.html'),
-  styles: [ require<any>('./navigator.component.scss') ],
+  templateUrl: './searchbar.component.html',
+  styles: [ require<any>('./searchbar.component.scss') ],
   providers: []
 })
-export class NavigatorComponent implements OnInit {
+export class SearchBarComponent implements OnInit {
   address: string;
 
   private map: Map;

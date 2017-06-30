@@ -12,11 +12,6 @@ h1 {
   z-index: 1000;
 }
 
-.map-button {
-  width: 35px;
-  height: 35px;
-  text-align: center;
-}
 
 
 .leaflet-clickable {
@@ -46,16 +41,6 @@ body, input[text], button {
 /* preloader*/
 
 
-
-.spinner {
-  width: 100px;
-  height: 100px;
-  background-color: #333;
-
-  margin: 100px auto;
-  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-  animation: sk-rotateplane 1.2s infinite ease-in-out;
-}
 
 @-webkit-keyframes sk-rotateplane {
   0% { -webkit-transform: perspective(120px) }

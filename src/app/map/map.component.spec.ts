@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { basemap } from './basemap';
 
-import { NavigatorComponent } from '../navigator/navigator.component';
+import { SearchBarComponent } from '../searchbar/searchbar.component';
 import { GeocodingService } from './services/geocoding.service';
 import { MockGeocodeService } from './services/mock/geocoding.service';
 import { LoaderService } from '../shared/services/loader.service';
@@ -30,7 +30,7 @@ describe('MapComponent', () => {
     mockLoggerService = new MockLoggerService();
     mockGeocodeService = new MockGeocodeService();
     TestBed.configureTestingModule({
-      declarations: [MapComponent, ModuleServiceListComponent, ToolbarComponent, NavigatorComponent],
+      declarations: [MapComponent, ModuleServiceListComponent, ToolbarComponent, SearchBarComponent],
       providers: [
         {provide: MapService, useValue: mockSearchService},
         {provide: GeocodingService, useValue: mockGeocodeService },
@@ -48,9 +48,9 @@ describe('MapComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should createMap()', () => {
+  it('should have a map created', () => {
 
-    expect(component.createMap(basemap.OpenStreetMap)).toBeDefined();
-  });*/
+    expect(component.getMap()).toBeDefined();
+  });
 
 });

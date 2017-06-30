@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit, AfterContentInit ,OnDestroy} from '@angular/core';
 import {ToolbarComponent} from '../toolbar/toolbar.component';
-import {NavigatorComponent} from '../navigator/navigator.component';
+import {SearchBarComponent} from '../searchbar/searchbar.component';
 import {isDevMode} from '@angular/core';
 
 import {GeocodingService} from './services/geocoding.service';
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
 
   map: Map;
   @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
-  @ViewChild(NavigatorComponent) navigatorComponent: NavigatorComponent;
+  @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   constructor(private mapService: MapService, private geocoder: GeocodingService,
               private logger: Logger, private modulesService: ModulesServiceService, private loaderService: LoaderService,
@@ -66,14 +66,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
       };
     }
     this.logger.log('MapComponent/AfterViewInit/this.geocoder val:: ' + this.geocoder);
-    this.geocoder.getCurrentLocation()
-      .subscribe(
-        location => {
-          this.logger.log('MapComponent/AfterViewInit/this.geocoder.getCurrentLocation()/ location val:: ' + location);
-          this.map.panTo([location.latitude, location.longitude]); },
-        err => {console.error(err);
-        }
-      );
+    // this.loaderService.display(true);
+
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
@@ -84,19 +78,20 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
     this.logger.log('MapComponent/ngOnInit');
     // setup  the map from leaflet
     this.mapService.map = this.createMap(basemap.Esri);
-
-    const districtLayer = L.tileLayer.wms('http://osgis.astun.co.uk/geoserver/gwc/service/wms?', {
-      layers: 'osgb:district_borough_unitary_region',
-      tiled: true,
-      format: 'image/png',
-      transparent: true,
-      maxZoom: 14,
-      minZoom: 0,
-      continuousWorld: true
-    }).addTo(this.map);
+   /* this.geocoder.getCurrentLocation()
+      .subscribe(
+        location => {
+          this.logger.log('MapComponent/AfterViewInit/this.geocoder.getCurrentLocation()/ location val:: ' + location);
+          this.map.panTo([location.latitude, location.longitude]); },
+        err => {
+          // this.loaderService.display(false)
+        }
+      );*/
     this.logger.log('MapComponent/ngOnInit/mapService val: ' + this.mapService.map);
     this.initializeToolbar();
     this.initializeNavigator();
+
+    this.mapService.addWmsLayer();
 
 
   }
@@ -104,7 +99,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
     this.toolbarComponent.Initialize();
   }
   initializeNavigator(): void {
-    this.navigatorComponent.Initialize();
+    this.searchBarComponent.Initialize();
 
   }
   createMap(basemap: any): Map {
@@ -118,8 +113,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
       layers: [basemap]
     }
     this.map = L.map('map', option);
-    L.control.zoom({ position: 'topleft' }).addTo(this.map);
-    const measureOption = { localization: 'en', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
+    L.control.zoom({ position: 'topright' }).addTo(this.map);
+    const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
     L.control.layers(this.mapService.baseMaps).addTo(this.map);

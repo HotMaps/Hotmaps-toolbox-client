@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var toolbar_component_1 = require("../toolbar/toolbar.component");
-var navigator_component_1 = require("../navigator/navigator.component");
+var navigator_component_1 = require("../searchbar/searchbar.component");
 var core_2 = require("@angular/core");
 var MapComponent = (function () {
     function MapComponent(mapService, geocoder, logger, modulesService, loaderService) {

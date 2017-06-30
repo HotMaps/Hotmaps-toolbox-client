@@ -17,7 +17,7 @@ import {MaterialModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigatorComponent } from './navigator/navigator.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MapService } from './map/services/map.service';
 import { GeocodingService } from './map/services/geocoding.service';
@@ -36,7 +36,7 @@ import { ModuleServiceListComponent } from './map/modules-service/modules-servic
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    NavigatorComponent,
+    SearchBarComponent,
     ToolbarComponent,
     LoginComponent,
     MapComponent,

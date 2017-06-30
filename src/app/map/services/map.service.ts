@@ -66,13 +66,40 @@ export class MapService implements OnInit, OnDestroy {
 
   addWmsLayer() {
     if (this.vtLayer) {
+      this.logger.log('MapService/removeLayer()');
       this.map.removeLayer(this.vtLayer);
       delete this.vtLayer;
     } else {
       this.logger.log('MapService/addWmsLayer()');
-      this.vtLayer = L.tileLayer.wms('http://geoserver.riddes.plateforme-meu.ch/geoserver/meu/wms?service=WMS&version=1.1.0&request=GetMap&layers=meu:test_ld_mc_2017_02_10&styles=&bbox=6.89381612200003,46.978993808,6.97521270600004,47.0414113160001&width=768&height=588&srs=EPSG:4326&format=image%2Fpng', {
-        layers: 'ne:ne'
-      }).addTo(this.map);
+      this.vtLayer = this.createWMSLayer().addTo(this.map);
     }
   }
+  createWMSLayer() {
+  const url =  'https://geoserver.crem-dev.plateforme-meu.ch/geoserver/meu/wms';
+  const layerName = 'meu:Cadastre_Neuchatel';
+  const style = '';
+
+  // See http://leafletjs.com/reference.html#tilelayer-wms
+  const wms = L.tileLayer.wms(url, {
+    layers: layerName,
+    styles: style,
+    format: 'image/png',
+    transparent: true,
+    version: '1.3.0',
+  });
+
+  // Update the legend control
+  // See http://docs.geoserver.org/latest/en/user/services/wms/get_legend_graphic/legendgraphic.html
+  const legendGraphicOptions = {
+    request: 'GetLegendGraphic',
+    version: '1.3.0',
+    format: 'image/png',
+    layer: layerName,
+    style: style,
+    legend_options: 'forceLabels:on'
+  };
+  return wms;
+}
+
+
 }

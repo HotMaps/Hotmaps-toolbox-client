@@ -45,9 +45,9 @@ var NavigatorComponent = (function () {
 NavigatorComponent = __decorate([
     core_1.Component({
         selector: 'hmt-navigator',
-        templateUrl: './navigator.component.html',
+        templateUrl: './searchbar.component.html',
         styleUrls: [
-            './navigator.component.scss',
+            './searchbar.component.scss',
             '../../../styles.css'
         ],
         providers: []

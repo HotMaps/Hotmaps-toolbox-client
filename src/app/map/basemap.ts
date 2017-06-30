@@ -16,4 +16,7 @@ export const basemap: any = {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy;' +
     ' <a href="http://cartodb.com/attributions">CartoDB</a>'
   }),
+
 };
+
+
