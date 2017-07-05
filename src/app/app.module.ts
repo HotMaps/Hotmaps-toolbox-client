@@ -14,7 +14,7 @@ import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {MaterialModule} from '@angular/material';
 
-
+import { SidebarModule } from 'ng-sidebar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
@@ -32,7 +32,7 @@ import { ModuleServiceListComponent } from './map/modules-service/modules-servic
 
 
 @NgModule({
-  imports: [HttpModule, FormsModule, BrowserModule,  AppRoutingModule, MaterialModule],
+  imports: [HttpModule, FormsModule, BrowserModule,  AppRoutingModule, MaterialModule, SidebarModule.forRoot()],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,

@@ -11,11 +11,13 @@ import { LoaderService } from './shared/services/loader.service';
 
 export class AppComponent implements OnInit , AfterContentInit {
   showLoader: boolean;
-
+  private _opened: boolean = false;
   constructor(
     private loaderService: LoaderService) {
   }
-
+  private _toggleSidebar() {
+    this._opened = !this._opened;
+  }
   ngAfterContentInit(): void {
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
