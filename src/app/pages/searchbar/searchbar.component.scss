@@ -1,0 +1,28 @@
+
+@import '../../../styles.css';
+
+
+
+input {
+  margin: 15px 0 0 75px;
+  width: 285px;
+  height: 35px;
+  z-index: 1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  vertical-align: middle;
+  font: rgb(142, 142, 142);
+  padding-left: 20px;
+}
+
+#goto {
+  margin: 16px 0 0 367px;
+  outline: none;
+  opacity: 1;
+  background: white;
+
+
+}
+

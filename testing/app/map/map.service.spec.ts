@@ -7,7 +7,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 
 import { Logger } from '../../../src/app/shared/services/logger.service';
-import { MapService } from '../../../src/app/map/services/map.service';
+import { MapService } from '../../../src/app/pages/map/services/map.service';
 import { HttpModule, Http, BaseRequestOptions, XHRBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 describe('Service:  MapServiceTest', () => {

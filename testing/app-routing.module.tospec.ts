@@ -7,9 +7,9 @@ import {Router} from '@angular/router';
 import { AppComponent }  from '../src/app/app.component';
 import { routes } from '../src/app/routes';
 
-import { RegisterComponent }  from '../src/app/register/register.component';
-import { LoginComponent }  from '../src/app/login/login.component';
-import { MapComponent }  from '../src/app/map/map.component';
+import { RegisterComponent }  from '../src/app/pages/register/register.component';
+import { LoginComponent }  from '../src/app/pages/login/login.component';
+import { MapComponent }  from '../src/app/pages/map/map.component';
 
 
 

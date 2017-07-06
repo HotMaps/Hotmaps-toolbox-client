@@ -5,21 +5,20 @@
 .navbar {
 
   background-color: #333;
-  overflow: hidden;
+
   height: 65px;
   transition: width 0.4s ease-in-out;
-
-
   font-family:Arial;
   font-size:12px;
-  text-decoration: none;
+
 
   padding:10px;
   background-color: #333333;
   color:#ffffff;
-  border-bottom:1px;
+  border-radius: 0px;
+
   border-bottom-color:#000000;
-  border-bottom-style:solid;
+
 
 }
 
@@ -32,7 +31,8 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 18px;
+  font-family: Helvetica Neue;
 }
 
 /* Change the color of links on hover */

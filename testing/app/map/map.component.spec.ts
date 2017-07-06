@@ -6,14 +6,14 @@ import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import {FormsModule}   from '@angular/forms';
 
-import { ModuleServiceListComponent } from '../../../src/app/map/modules-service/modules-service-list.component';
-import { MapComponent } from '../../../src/app/map/map.component';
-import { ToolbarComponent } from '../../../src/app/toolbar/toolbar.component';
+import { ModuleServiceListComponent } from '../../../src/app/pages/map/modules-service/modules-service-list.component';
+import { MapComponent } from '../../../src/app/pages/map/map.component';
+import { ToolbarComponent } from '../../../src/app/pages/toolbar/toolbar.component';
 import { Logger } from '../../../src/app/shared/services/logger.service';
-import { GeocodingService } from '../../../src/app/map/services/geocoding.service';
-import { MapService } from '../../../src/app/map/services/map.service';
-import { ModulesServiceService } from '../../../src/app/map/modules-service/modules-service.service';
-import { basemap} from '../../../src/app/map/basemap';
+import { GeocodingService } from '../../../src/app/pages/map/services/geocoding.service';
+import { MapService } from '../../../src/app/pages/map/services/map.service';
+import { ModulesServiceService } from '../../../src/app/pages/map/modules-service/modules-service.service';
+import { basemap} from '../../../src/app/pages/map/basemap';
 import {Map} from 'leaflet';
 import {Http} from '@angular/http';
 

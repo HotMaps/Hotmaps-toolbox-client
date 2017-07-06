@@ -17,17 +17,17 @@ import {MaterialModule} from '@angular/material';
 import { SidebarModule } from 'ng-sidebar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchBarComponent } from './searchbar/searchbar.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MapService } from './map/services/map.service';
-import { GeocodingService } from './map/services/geocoding.service';
-import { LoginComponent } from './login/login.component';
-import { MapComponent } from './map/map.component';
-import { RegisterComponent } from './register/register.component';
+import { SearchBarComponent } from './pages/searchbar/searchbar.component';
+import { ToolbarComponent } from './pages/toolbar/toolbar.component';
+import { MapService } from './pages/map/services/map.service';
+import { GeocodingService } from './pages/map/services/geocoding.service';
+import { LoginComponent } from './pages/login/login.component';
+import { MapComponent } from './pages/map/map.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
 import { LoaderService } from './shared/services/loader.service';
-import { ModulesServiceService } from './map/modules-service/modules-service.service';
-import { ModuleServiceListComponent } from './map/modules-service/modules-service-list.component';
+import { ModulesServiceService } from './pages/map/modules-service/modules-service.service';
+import { ModuleServiceListComponent } from './pages/map/modules-service/modules-service-list.component';
 
 
 
