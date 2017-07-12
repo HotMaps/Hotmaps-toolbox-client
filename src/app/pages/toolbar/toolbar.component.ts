@@ -2,7 +2,7 @@
  * Created by lesly on 27.05.17.
  */
 import {Component, OnInit} from '@angular/core';
-import {MapService} from '../map/services/map.service';
+import {MapService} from '../../shared/services/map.service';
 import { MouseEvent} from 'leaflet';
 
 import { Logger} from '../../shared/services/logger.service';

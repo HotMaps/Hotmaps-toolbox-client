@@ -10,8 +10,8 @@ import { ModuleServiceListComponent } from '../../../src/app/pages/map/modules-s
 import { MapComponent } from '../../../src/app/pages/map/map.component';
 import { ToolbarComponent } from '../../../src/app/pages/toolbar/toolbar.component';
 import { Logger } from '../../../src/app/shared/services/logger.service';
-import { GeocodingService } from '../../../src/app/pages/map/services/geocoding.service';
-import { MapService } from '../../../src/app/pages/map/services/map.service';
+import { GeocodingService } from '../../../src/app/shared/services/geocoding.service';
+import { MapService } from '../../../src/app/shared/services/map.service';
 import { ModulesServiceService } from '../../../src/app/pages/map/modules-service/modules-service.service';
 import { basemap} from '../../../src/app/pages/map/basemap';
 import {Map} from 'leaflet';

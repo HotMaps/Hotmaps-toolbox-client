@@ -19,13 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
-import { MapService } from './pages/map/services/map.service';
-import { GeocodingService } from './pages/map/services/geocoding.service';
+import { MapService } from './shared/services/map.service';
+import { GeocodingService } from './shared/services/geocoding.service';
 import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
 import { LoaderService } from './shared/services/loader.service';
+import { PopulationService } from './features/population/services/population.service';
 import { ModulesServiceService } from './pages/map/modules-service/modules-service.service';
 import { ModuleServiceListComponent } from './pages/map/modules-service/modules-service-list.component';
 
@@ -46,6 +47,7 @@ import { ModuleServiceListComponent } from './pages/map/modules-service/modules-
 
   ],
   providers: [
+    PopulationService,
     GeocodingService,
     MapService,
     ModulesServiceService,

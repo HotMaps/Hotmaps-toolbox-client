@@ -1,16 +1,24 @@
-import {Component, ViewChild, OnInit, AfterContentInit ,OnDestroy} from '@angular/core';
-import {ToolbarComponent} from '../toolbar/toolbar.component';
-import {SearchBarComponent} from '../searchbar/searchbar.component';
+import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import {isDevMode} from '@angular/core';
 
-import {GeocodingService} from './services/geocoding.service';
-import {MapService} from './services/map.service';
-import { LoaderService } from '../../shared/services/loader.service';
-import {Logger} from '../../shared/services/logger.service';
-import {ModulesServiceService} from './modules-service/modules-service.service';
-import { ModulesService } from './modules-service/modules-service';
-import { basemap} from './basemap'
+
+
+import {ToolbarComponent} from '../toolbar/toolbar.component';
+import {SearchBarComponent} from '../searchbar/searchbar.component';
+
+import {basemap} from './basemap'
+import {GeocodingService} from '../../shared/services/geocoding.service';
 import {Map} from 'leaflet';
+import {MapService} from '../../shared/services/map.service';
+import {ModulesServiceService} from './modules-service/modules-service.service';
+import { Location } from '../../features/population/location';
+import {LoaderService} from '../../shared/services/loader.service';
+import {Logger} from '../../shared/services/logger.service';
+import { Payload } from '../../features/population/payload.class';
+import { Population } from '../../features/population/population.class';
+import { PopulationService } from '../../features/population/services/population.service';
+
+
 
 
 @Component({
@@ -20,105 +28,87 @@ import {Map} from 'leaflet';
   providers: []
 })
 
-export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
-
+export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
+  population: Population;
   map: Map;
   @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   constructor(private mapService: MapService, private geocoder: GeocodingService,
               private logger: Logger, private modulesService: ModulesServiceService, private loaderService: LoaderService,
-  ) {
+ private populationService: PopulationService) {
 
 
   }
   ngAfterContentInit(): void {
-   this.logger.log('MapComponent/AfterViewInit');
+    let self = this;
+    //for unit test
+    this.populationService.getPopulation();
+    this.logger.log('MapComponent/AfterViewInit');
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.map);
-    this.map.on('measurestart', function () {
-      if (isDevMode() === true) {
-        console.log('MapComponent/measurestart');
-      }
+    this.map.on ('measurestart', function () {
+      self.logger.log('MapComponent/measurestart');
     });
     this.map.on('measurefinish', function (evt) {
-      if (isDevMode() === true) {
-        console.log('MapComponent/measurefinish');
-      }
-      writeResults(evt, this.modulesService);
+      writeResults(evt);
     });
-    function writeResults (results: any, modulesService: ModulesServiceService) {
-      // let service: ModulesService = {id: 99, name: 'get Population'};
-      // modulesService.getModulesServicesWithNewService(service);
-      if (isDevMode() === true) {
-        console.log(JSON.stringify({
-          area: results.area,
-          areaDisplay: results.areaDisplay,
-          lastCoord: results.lastCoord,
-          length: results.length,
-          lengthDisplay: results.lengthDisplay,
-          pointCount: results.pointCount,
-          points: results.points
-        }, null, 2));
-        alert(JSON.stringify({
-          pointCount: results.pointCount,
-          points: results.points
-        }, null, 2));
-      };
+    function writeResults (results: any) {
+      self.logger.log('MapComponent/ngAfterContentInit/writeResults');
+      let locations =  [];
+      for (let _i = 0; _i < results.points.length; _i++) {
+        const lat = results.points[_i].lat;
+        const lng = results.points[_i].lng;
+        const loc: Location = {
+          lat: lat,
+          lng: lng
+        };
+        locations.push(loc);
+      }
+      self.logger.log('locations ' +  JSON.stringify(locations) );
+      self.logger.log('MapComponent/ngAfterContentInit/writeResults/results.points= ' + results.points);
+     if (locations.length === 0) {
+       self.logger.log('locations empty' );
+       return;
+     }
+      self.getPopulation(locations);
     }
-    this.logger.log('MapComponent/AfterViewInit/this.geocoder val:: ' + this.geocoder);
-    // this.loaderService.display(true);
-
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
-
   ngOnInit() {
     this.logger.log('MapComponent/ngOnInit');
-    // setup  the map from leaflet
-    this.mapService.map = this.createMap(basemap.Esri);
-   /* this.geocoder.getCurrentLocation()
-      .subscribe(
-        location => {
-          this.logger.log('MapComponent/AfterViewInit/this.geocoder.getCurrentLocation()/ location val:: ' + location);
-          this.map.panTo([location.latitude, location.longitude]); },
-        err => {
-          // this.loaderService.display(false)
-        }
-      );*/
+    this.mapService.map = this.createMap(basemap);
     this.logger.log('MapComponent/ngOnInit/mapService val: ' + this.mapService.map);
     this.initializeToolbar();
     this.initializeNavigator();
-
-    /*var geojsonFeature = {
-      "type": "Feature",
-      "properties": {
-        "name": "Coors Field",
-        "amenity": "Baseball Stadium",
-        "popupContent": "This is where the Rockies play!"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-104.99404, 39.75621]
-      }
-    };
-
-
-    L.geoJSON(geojsonFeature).addTo(this.map);*/
-    this.mapService.toggleAirPortLayer();
-
-
-
+  }
+  getPopulation(locations: Location[]) {
+    this.loaderService.display(true);
+    this.logger.log('MapComponent/getPopulation');
+    const payload: Payload = {
+      nuts_level: 3,
+      year: 2015,
+      points: locations,
+    }
+    this.logger.log('payload ' +  JSON.stringify(payload) );
+    this.populationService.getPopulationWithPayloads(payload).then(population  => this.addlayer(population));
   }
   initializeToolbar(): void {
     this.toolbarComponent.Initialize();
   }
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();
-
+  }
+  addlayer(population: Population) {
+    this.logger.log('addlayer/Population' + JSON.stringify(JSON.parse(population.geometries)));
+    this.mapService.addlayer(JSON.parse(population.geometries));
+    this.loaderService.display(false);
+    alert('population: ' + population.sum_density);
   }
   createMap(basemap: any): Map {
+    // setup  the map from leaflet
     this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.map);
     const option =  {
       zoomControl: false,
@@ -126,14 +116,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy{
       zoom: 15,
       minZoom: 4,
       maxZoom: 17,
-      layers: [basemap]
+      layers: [basemap.Esri, basemap.Hybrid]
     }
     this.map = L.map('map', option);
     L.control.zoom({ position: 'topright' }).addTo(this.map);
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
-      popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
-    L.control.layers(this.mapService.baseMaps).addTo(this.map);
+      popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] },}
+   // L.control.layers(this.mapService.baseMaps).addTo(this.map);
     L.control.scale().addTo(this.map);
     L.control.measure(measureOption).addTo(this.map);
       return this.map;
