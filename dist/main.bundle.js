@@ -70,7 +70,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"navbar\" id=\"navigationBar\">\n<nav>\n <!-- <a routerLink=\"/map\">Map</a>-->\n  <a routerLink=\"/register\">Register</a>\n  <a routerLink=\"/login\">Login</a>\n</nav>\n  <img style=\"max-width:80px; margin-top: -16px;\" src=\"../assets/logo.png\">\n</div>\n<router-outlet>\n  <span *ngIf=\"showLoader\" class=\"loading\"></span>\n</router-outlet>\n"
+module.exports = "\n<div class=\"navbar\" id=\"navigationBar\">\n<nav>\n <!-- <a routerLink=\"/map\">Map</a>-->\n  <a routerLink=\"/register\">Register</a>\n  <a routerLink=\"/login\">Login</a>\n</nav>\n  <!--  <img style=\"max-width:80px; margin-top: -16px;\" src=\"../assets/logo.png\">-->\n </div>\n <router-outlet>\n   <span *ngIf=\"showLoader\" class=\"loading\"></span>\n </router-outlet>\n"
 
 /***/ }),
 
