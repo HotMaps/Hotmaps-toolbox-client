@@ -27,14 +27,20 @@ export class ToolbarComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.logger.log('ToolbarComponent/ngOnInit');
     this.mapService.disableMouseEvent('add-marker');
     this.mapService.disableMouseEvent('remove-marker');
     this.mapService.disableMouseEvent('toggle-layer');
   }
 
   Initialize() {
+    this.logger.log('ToolbarComponent/Initialize');
+
+
     this.mapService.map.on('click', (e: MouseEvent) => {
+
       if (this.editing) {
+        this.logger.log('ToolbarComponent/click');
         let marker = L.marker(e.latlng, {
           icon: L.icon({
             iconUrl: '../../../node_modules/leaflet/dist/images/marker-icon.png',

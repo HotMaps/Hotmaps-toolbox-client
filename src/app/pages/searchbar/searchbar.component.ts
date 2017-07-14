@@ -9,7 +9,7 @@ import {LoaderService} from '../../shared/services/loader.service';
 import {Map} from 'leaflet';
 
 @Component({
-  selector: 'hmt-navigator',
+  selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
   styles: [ require<any>('./searchbar.component.scss') ],
   providers: []

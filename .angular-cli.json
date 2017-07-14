@@ -27,6 +27,7 @@
         "styles.css"
       ],
       "scripts": [
+        "../node_modules/stacktrace-js/dist/stacktrace.js",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
         "../node_modules/leaflet/dist/leaflet.js",

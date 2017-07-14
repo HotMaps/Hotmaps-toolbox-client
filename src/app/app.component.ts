@@ -3,7 +3,7 @@ import {Component, AfterContentInit, OnInit} from '@angular/core';
 import { LoaderService } from './shared/services/loader.service';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styles: [ require<any>('./app.component.css')],
 

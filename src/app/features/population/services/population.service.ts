@@ -7,6 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 
 
 import {apiUrl} from '../../../shared/data.service'
+import {GlobalErrorHandler} from '../../../shared/services/error-handler';
 import {LoaderService } from '../../../shared/services/loader.service';
 import {Location} from '../location';
 
@@ -14,14 +15,14 @@ import {Logger} from '../../../shared/services/logger.service';
 import {Payload} from '../payload.class'
 import {Population} from '../population.class';
 import {postPopulationDensityInArea} from '../../../shared/data.service';
-
+import {ToasterService} from '../../../shared/services/toaster.service';
 
 
 @Injectable()
 export class PopulationService {
   http: Http;
   private headers = new Headers({'Content-Type': 'application/json'});
-  constructor(http: Http, private logger: Logger, private loaderService: LoaderService) {
+  constructor(http: Http, private logger: Logger, private loaderService: LoaderService, private toasterService: ToasterService, private errorHandler: GlobalErrorHandler) {
     this.http = http;
     this.logger = logger;
   }
@@ -55,7 +56,10 @@ export class PopulationService {
   logPopulation(population: Population) {
     this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(population))
   }
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any) {
+    this.errorHandler.handleError(error);
+    // this.toasterService.showToaster('An error occurred: ' + error);
+    // this.logger.log('PopulationServices/handleError');
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
