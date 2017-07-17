@@ -82,9 +82,4 @@ export class ToolbarComponent implements OnInit{
     }
   }
 
-  toggleAirPortLayer() {
-    this.logger.log('ToolBarComponent/toggleAirPortLayer');
-    this.airportLayerAdded = !this.airportLayerAdded;
-    this.mapService.addWmsLayer();
-  }
 }

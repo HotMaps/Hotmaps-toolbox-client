@@ -5,10 +5,15 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Map} from 'leaflet';
 import {Logger} from './logger.service';
-import {  OnInit, OnDestroy } from '@angular/core';
+import {OnInit, OnDestroy} from '@angular/core';
 
-import { basemap} from '../../pages/map/basemap';
-import { LoaderService } from './loader.service';
+import {basemap} from '../../pages/map/basemap';
+import {Payload} from '../../features/population/payload.class';
+import {Population} from '../../features/population/population.class';
+import {PopulationService} from '../../features/population/services/population.service';
+import {LoaderService} from './loader.service';
+import {Location} from '../../features/population/location';
+
 
 @Injectable()
 export class MapService implements OnInit, OnDestroy {
@@ -16,7 +21,8 @@ export class MapService implements OnInit, OnDestroy {
   public baseMaps: any;
   private vtLayer: any;
 
-  constructor(private http: Http, private logger: Logger, private loaderService: LoaderService) {
+  constructor(private http: Http, private logger: Logger, private loaderService: LoaderService,
+              private populationService: PopulationService) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
 
@@ -63,11 +69,54 @@ export class MapService implements OnInit, OnDestroy {
         });
     }
   }
+  setupMapservice(map: Map) {
+    this.logger.log('MapService/setupMapservice');
 
-  addlayer(geometrie: any) {
+    this.map = map;
+    this.retriveMapEvent();
+  }
+  retriveMapEvent(): void {
+    this.logger.log('MapService/retriveMapEvent');
+    let self = this;
+    this.map.on('zoomend', function() {
+      self.logger.log('MapService/zoomend');
+    });
+    this.map.on ('measurestart', function () {
+      self.logger.log('MapComponent/measurestart');
+    });
+    this.map.on('measurefinish', function (evt) {
+
+      writeResults(evt);
+    });
+    this.map.on('zMapService/oomend', function() {
+      self.logger.log('MapComponent/zoomend');
+    });
+    function writeResults (results: any) {
+      self.logger.log('MapService/ngAfterContentInit/writeResults');
+      let locations =  [];
+      for (let _i = 0; _i < results.points.length; _i++) {
+        const lat = results.points[_i].lat;
+        const lng = results.points[_i].lng;
+        const loc: Location = {
+          lat: lat,
+          lng: lng
+        };
+        locations.push(loc);
+      }
+      self.logger.log('locations ' +  JSON.stringify(locations) );
+      self.logger.log('MapComponent/ngAfterContentInit/writeResults/results.points= ' + results.points);
+      if (locations.length === 0) {
+        self.logger.log('locations empty' );
+        return;
+      }
+      self.getPopulation(locations);
+    }
+  }
+
+  showlayer(geometrie: any) {
 
     // todo track when the layer has been added and stop the loader
-    this.logger.log('MapService/addlayer');
+    this.logger.log('MapService/showlayer');
     if (this.vtLayer) {
       this.map.removeLayer(this.vtLayer);
       delete this.vtLayer;
@@ -76,43 +125,28 @@ export class MapService implements OnInit, OnDestroy {
     this.vtLayer.addTo(this.map);
   }
 
+  // population feature
 
-  addWmsLayer() {
-    if (this.vtLayer) {
-      this.logger.log('MapService/removeLayer()');
-      this.map.removeLayer(this.vtLayer);
-      delete this.vtLayer;
-    } else {
-      this.logger.log('MapService/addWmsLayer()');
-      this.vtLayer = this.createWMSLayer().addTo(this.map);
+  getPopulation(locations: Location[]) {
+    this.loaderService.display(true);
+    this.logger.log('MapService/getPopulation');
+
+
+    const payload: Payload = {
+      nuts_level: 3,
+      year: 2015,
+      points: locations,
     }
+    this.logger.log('MapService/payload ' +  JSON.stringify(payload) );
+    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population));
   }
-  createWMSLayer() {
-  const url =  'https://geoserver.crem-dev.plateforme-meu.ch/geoserver/meu/wms';
-  const layerName = 'meu:Cadastre_Neuchatel';
-  const style = '';
 
-  // See http://leafletjs.com/reference.html#tilelayer-wms
-  const wms = L.tileLayer.wms(url, {
-    layers: layerName,
-    styles: style,
-    format: 'image/png',
-    transparent: true,
-    version: '1.3.0',
-  });
-
-  // Update the legend control
-  // See http://docs.geoserver.org/latest/en/user/services/wms/get_legend_graphic/legendgraphic.html
-  const legendGraphicOptions = {
-    request: 'GetLegendGraphic',
-    version: '1.3.0',
-    format: 'image/png',
-    layer: layerName,
-    style: style,
-    legend_options: 'forceLabels:on'
-  };
-  return wms;
-}
+  retriveAndAddLayer(population: Population) {
+    this.logger.log('MapService/retriveAndAddLayer/Population' + JSON.stringify(JSON.parse(population.geometries)));
+    this.showlayer(JSON.parse(population.geometries));
+    this.loaderService.display(false);
+    alert('population: ' + population.sum_density);
+  }
 
 
 }

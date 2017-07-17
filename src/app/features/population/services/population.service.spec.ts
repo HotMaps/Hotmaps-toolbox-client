@@ -11,7 +11,7 @@ import {Payload} from '../payload.class'
 import {PopulationService } from './population.service';
 import {Population } from '../population.class';
 import {postPopulationDensityInArea } from '../../../shared/data.service';
-
+import {ToasterService} from '../../../shared/services/toaster.service';
 describe('PopulationService', () => {
 
   let loaderServiceStub: LoaderService;
@@ -26,6 +26,7 @@ describe('PopulationService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        {provide: ToasterService},
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: PopulationService, useClass: PopulationService},
         {provide: MockBackend, useClass: MockBackend},

@@ -22,7 +22,7 @@ import {ToasterService} from '../../../shared/services/toaster.service';
 export class PopulationService {
   http: Http;
   private headers = new Headers({'Content-Type': 'application/json'});
-  constructor(http: Http, private logger: Logger, private loaderService: LoaderService, private toasterService: ToasterService, private errorHandler: GlobalErrorHandler) {
+  constructor(http: Http, private logger: Logger, private loaderService: LoaderService, private toasterService: ToasterService) {
     this.http = http;
     this.logger = logger;
   }
@@ -57,7 +57,7 @@ export class PopulationService {
     this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(population))
   }
   private handleError(error: any) {
-    this.errorHandler.handleError(error);
+
     // this.toasterService.showToaster('An error occurred: ' + error);
     // this.logger.log('PopulationServices/handleError');
     console.error('An error occurred', error); // for demo purposes only
