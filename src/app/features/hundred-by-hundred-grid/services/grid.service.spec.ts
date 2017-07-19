@@ -8,7 +8,7 @@ import {Location} from '../../population/location';
 import {Logger } from '../../../shared/services/logger.service';
 import {LoaderService } from '../../../shared/services/loader.service';
 import {MockGrid } from './mock/grid.data.mock';
-
+import {Payload} from '../../population/payload.class'
 
 
 import {postPopulationDensityInArea } from '../../../shared/data.service';
@@ -42,7 +42,20 @@ describe('GridService', () => {
   }));
 
   it('should return the exact good response for this request', inject([GridService], (service: GridService) => {
-    return service.getGrid().then( data => {
+    const locations: Location[] =   [
+      { lat: 46.90524554642923, lng: 5.701904296875 },
+      { lat: 46.98025235521883, lng: 11.436767578125002 },
+      { lat: 45.359865333959746, lng: 11.195068359375002 },
+      { lat: 44.68427737181225, lng: 5.833740234375001 },
+      { lat:  44.68427737181225, lng: 5.822753906250001 },
+    ];
+    const payload: Payload = {
+      nuts_level: 3,
+      year: 2015,
+      points: locations,
+    }
+
+    return service.getGridWithPayloads(payload).then( data => {
       expect(data).toEqual(MockGrid);
     });
   }));
