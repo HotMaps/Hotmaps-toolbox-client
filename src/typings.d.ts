@@ -15,6 +15,21 @@ declare namespace L {
     export function slicer(data: any, options?: any): any;
   }
 }
+
+declare namespace  L {
+  namespace  vectorGrid {
+    export function protobuf(url: string, options?: any): any;
+  }
+}
+
+declare namespace  L {
+    export function virtualGrid({ }): any;
+}
+
+declare namespace  VirtualGrid {
+  export function extend({ }): any;
+}
+
 declare var require: NodeRequire;
 interface NodeRequire {
   <T>(path: string): T;

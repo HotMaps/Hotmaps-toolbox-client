@@ -34,13 +34,21 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
+  setupGridWithCellSize(cellsize: number, map: Map) {
+
+    // make a new VirtualGrid
+
+  }
+
   ngOnInit() {
     this.logger.log('MapComponent/ngOnInit');
+    // mapService get an instance of the maps and ca work on it
     this.mapService.setupMapservice(this.createMap(basemap));
-    this.logger.log('MapComponent/ngOnInit/mapService val: ' + this.mapService.map);
-     // toolbar is not needed
-    // this.initializeToolbar();
+    this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.map);
     this.initializeNavigator();
+
+
+
   }
 
   initializeToolbar(): void {
@@ -49,7 +57,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();
   }
-
+  // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.map);
@@ -69,6 +77,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // L.control.layers(this.mapService.baseMaps).addTo(this.map);
     L.control.scale().addTo(this.map);
     L.control.measure(measureOption).addTo(this.map);
+    this.setupGridWithCellSize(100, this.map)
       return this.map;
   }
 

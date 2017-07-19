@@ -45,7 +45,6 @@ export class MapService implements OnInit, OnDestroy {
 
   }
 
-
   disableMouseEvent(elementId: string) {
      /*let element = <HTMLElement>document.getElementById(elementId);
 
@@ -88,9 +87,23 @@ export class MapService implements OnInit, OnDestroy {
 
       writeResults(evt);
     });
-    this.map.on('zMapService/oomend', function() {
-      self.logger.log('MapComponent/zoomend');
+    this.map.on('LayersControlEvent', function() {
+      self.logger.log('LayersControlEvent');
     });
+
+    this.map.on('layeradd', function() {
+      self.logger.log('MapService/layeradd-----');
+
+    });
+
+
+
+
+    this.map.on('overlayadd', onOverlayAdd);
+    function onOverlayAdd(e) {
+      self.logger.log('overlayadd');
+
+    }
     function writeResults (results: any) {
       self.logger.log('MapService/ngAfterContentInit/writeResults');
       let locations =  [];
@@ -112,21 +125,21 @@ export class MapService implements OnInit, OnDestroy {
       self.getPopulation(locations);
     }
   }
-
   showlayer(geometrie: any) {
 
     // todo track when the layer has been added and stop the loader
+
     this.logger.log('MapService/showlayer');
     if (this.vtLayer) {
       this.map.removeLayer(this.vtLayer);
       delete this.vtLayer;
     }
+    this.logger.log('MapService/showlayer/layerWilladde');
     this.vtLayer = L.vectorGrid.slicer(geometrie);
     this.vtLayer.addTo(this.map);
+    this.loaderService.display(false);
   }
-
   // population feature
-
   getPopulation(locations: Location[]) {
     this.loaderService.display(true);
     this.logger.log('MapService/getPopulation');
@@ -142,10 +155,14 @@ export class MapService implements OnInit, OnDestroy {
   }
 
   retriveAndAddLayer(population: Population) {
-    this.logger.log('MapService/retriveAndAddLayer/Population' + JSON.stringify(JSON.parse(population.geometries)));
+    this.logger.log('MapService/retriveAndAddLayer');
     this.showlayer(JSON.parse(population.geometries));
-    this.loaderService.display(false);
-    alert('population: ' + population.sum_density);
+    // this.loaderService.display(false);
+    // const x = document.getElementsByClassName('heading');
+
+   // document.getElementsByClassName('heading').innerHTML = 'New text!';
+    // this.logger.log('leaflet-measure-resultpopup= ' +  JSON.stringify(x));
+    // alert('population: ' + population.sum_density);
   }
 
 

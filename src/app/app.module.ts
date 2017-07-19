@@ -33,6 +33,7 @@ import { ModulesServiceService } from './pages/map/modules-service/modules-servi
 import { ModuleServiceListComponent } from './pages/map/modules-service/modules-service-list.component';
 import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
+import { ServiceComponent } from './feature/hundred-by-hundred-grid/service/service.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { GlobalErrorHandler } from './shared/services/error-handler';
     LoginComponent,
     MapComponent,
     RegisterComponent,
-    ModuleServiceListComponent
+    ModuleServiceListComponent,
+    ServiceComponent
 
 
   ],

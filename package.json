@@ -34,6 +34,7 @@
     "leaflet": "^1.0.3",
     "leaflet-map": "0.2.1",
     "leaflet-measure": "2.1.7",
+    "leaflet-virtual-grid": "^1.0.4",
     "leaflet.vectorgrid": "^1.2.0",
     "ng-sidebar": "^6.0.1",
     "ngx-bootstrap": "^1.7.1",

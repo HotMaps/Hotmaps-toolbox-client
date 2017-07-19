@@ -17,9 +17,9 @@ import {Population} from '../population.class';
 import {postPopulationDensityInArea} from '../../../shared/data.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
 
-
+import {APIService} from '../../../shared/services/api.service';
 @Injectable()
-export class PopulationService {
+export class PopulationService  {
   http: Http;
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor(http: Http, private logger: Logger, private loaderService: LoaderService, private toasterService: ToasterService) {
