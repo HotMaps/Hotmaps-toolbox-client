@@ -53,7 +53,7 @@ import { GridService } from './features/hundred-by-hundred-grid/services/grid.se
     MapComponent,
     RegisterComponent,
     ModuleServiceListComponent,
-    GridService
+
 
 
   ],
@@ -66,10 +66,7 @@ import { GridService } from './features/hundred-by-hundred-grid/services/grid.se
     LoaderService,
     ToasterService,
     GlobalErrorHandler,
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler
-    }
+    GridService,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

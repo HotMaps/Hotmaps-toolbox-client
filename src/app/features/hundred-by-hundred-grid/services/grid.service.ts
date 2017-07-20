@@ -11,15 +11,12 @@ import {Grid} from '../grid.class'
 import {Payload} from '../../population/payload.class'
 import {Location} from '../../population/location';
 import {ToasterService} from '../../../shared/services/toaster.service';
-
+import {APIService} from '../../../shared/services/api.service';
 @Injectable()
-export class GridService {
+export class GridService extends APIService {
 
-  http: Http;
-  private headers = new Headers({'Content-Type': 'application/json'});
-  constructor(http: Http, private logger: Logger, private loaderService: LoaderService, private toasterService: ToasterService) {
-    this.http = http;
-    this.logger = logger;
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+    super(http, logger, loaderService, toasterService);
   }
   getGrid() {
     const locations: Location[] =   [
@@ -51,12 +48,6 @@ export class GridService {
   logGrid(grid: Grid) {
     this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(grid))
   }
-  private handleError(error: any) {
 
-    // this.toasterService.showToaster('An error occurred: ' + error);
-    // this.logger.log('PopulationServices/handleError');
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
 
 }
