@@ -13,12 +13,12 @@ import {Logger} from '../../shared/services/logger.service';
   selector: 'htm-map',
   templateUrl: './map.component.html',
   styles: [ require<any>('./map.component.less') ],
-  providers: []
+
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
-  map: Map;
+  private map: Map;
   @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
@@ -28,23 +28,19 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   ngAfterContentInit(): void {
     this.logger.log('MapComponent/AfterViewInit');
-    this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.map);
+    this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
-  setupGridWithCellSize(cellsize: number, map: Map) {
 
-    // make a new VirtualGrid
-
-  }
 
   ngOnInit() {
     this.logger.log('MapComponent/ngOnInit');
     // mapService get an instance of the maps and ca work on it
     this.mapService.setupMapservice(this.createMap(basemap));
-    this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.map);
+    this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.getMap());
     this.initializeNavigator();
 
 
@@ -60,7 +56,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
     // setup  the map from leaflet
-    this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.map);
+    let self = this;
+
+    this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.getMap());
     const option =  {
       zoomControl: false,
       center: L.latLng(47.1, 7.0833),
@@ -75,9 +73,20 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
     // L.control.layers(this.mapService.baseMaps).addTo(this.map);
+
+    L.Map = L.Map.extend({
+      openPopup: function(popup) {
+        this.closePopup();
+        this._popup = popup;
+        self.logger.log('MapComponent/popup ' + popup);
+        return this.addLayer(popup).fire('popupopen', {
+          popup: this._popup
+        });
+      }
+    });
+
     L.control.scale().addTo(this.map);
     L.control.measure(measureOption).addTo(this.map);
-    this.setupGridWithCellSize(100, this.map)
       return this.map;
   }
 

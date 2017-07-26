@@ -4,6 +4,7 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Map} from 'leaflet';
+import {Popup} from 'leaflet';
 import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
@@ -17,8 +18,9 @@ import {Location} from '../../features/population/location';
 
 @Injectable()
 export class MapService implements OnInit, OnDestroy {
-  public map: Map;
-  public baseMaps: any;
+  private map: Map;
+  private currentPopup: Popup;
+  private baseMaps: any;
   private vtLayer: any;
 
   constructor(private http: Http, private logger: Logger, private loaderService: LoaderService,
@@ -80,6 +82,17 @@ export class MapService implements OnInit, OnDestroy {
     this.map.on('zoomend', function() {
       self.logger.log('MapService/zoomend');
     });
+    this.map.on('zoomstart', function(event)
+    {
+
+      self.logger.log('MapService/zoomstart');
+      if (event.target._animateToZoom) {
+
+        self.logger.log('MapService/zoomstart val +' + event.target);
+        self.logger.log('MapService/zoomstart val -' + event.target._animateToZoom );
+      }
+
+    });
     this.map.on ('measurestart', function () {
       self.logger.log('MapComponent/measurestart');
     });
@@ -95,6 +108,22 @@ export class MapService implements OnInit, OnDestroy {
       self.logger.log('MapService/layeradd-----');
 
     });
+    this.map.on('popupopen', function(e) {
+      const html: HTMLDivElement =  e.target._popup.getContent();
+
+      self.currentPopup = e.target._popup;
+
+
+      self.logger.log('html id dd ' +  html.align);
+      self.logger.log('firstElementChild  ' + html.firstElementChild);
+      self.logger.log('lastChild  ' + html.lastChild);
+
+
+      e.target._popup.setContent(html);
+      self.logger.log('popupopen  ' +  e.target._popup);
+    });
+
+
 
 
 
@@ -159,10 +188,15 @@ export class MapService implements OnInit, OnDestroy {
     this.showlayer(JSON.parse(population.geometries));
     // this.loaderService.display(false);
     // const x = document.getElementsByClassName('heading');
+    const populationValue = population.sum_density;
 
-   // document.getElementsByClassName('heading').innerHTML = 'New text!';
+    const html: HTMLDivElement = <HTMLDivElement> this.currentPopup.getContent();
+    this.logger.log('html content ' +  html);
+    this.logger.log('html content innerHTML' +  html.innerHTML);
+    this.currentPopup.setContent(html);
+   // document.getEleme ntsByClassName('heading').innerHTML = 'New text!';
     // this.logger.log('leaflet-measure-resultpopup= ' +  JSON.stringify(x));
-    // alert('population: ' + population.sum_density);
+     alert('population: ' + population.sum_density);
   }
 
 

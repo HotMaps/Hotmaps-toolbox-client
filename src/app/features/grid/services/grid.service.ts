@@ -27,8 +27,6 @@ export class GridService extends APIService {
       { lat:  44.68427737181225, lng: 5.822753906250001 },
     ];
     const payload: Payload = {
-      nuts_level: 3,
-      year: 2015,
       points: locations,
     }
 

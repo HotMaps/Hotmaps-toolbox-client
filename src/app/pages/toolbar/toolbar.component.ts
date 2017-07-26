@@ -37,7 +37,7 @@ export class ToolbarComponent implements OnInit{
     this.logger.log('ToolbarComponent/Initialize');
 
 
-    this.mapService.map.on('click', (e: MouseEvent) => {
+  /*  this.mapService.map.on('click', (e: MouseEvent) => {
 
       if (this.editing) {
         this.logger.log('ToolbarComponent/click');
@@ -63,7 +63,7 @@ export class ToolbarComponent implements OnInit{
           }
         });
       }
-    });
+    });*/
   }
 
   toggleEditing() {

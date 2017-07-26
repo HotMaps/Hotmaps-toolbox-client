@@ -5,11 +5,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 
-
 import {apiUrl, postPopulationDensityInArea} from '../../../shared/data.service'
-import {GlobalErrorHandler} from '../../../shared/services/error-handler';
+
 import {LoaderService } from '../../../shared/services/loader.service';
-import {Location} from '../location';
+
 
 import {Logger} from '../../../shared/services/logger.service';
 import {Payload} from '../payload.class'

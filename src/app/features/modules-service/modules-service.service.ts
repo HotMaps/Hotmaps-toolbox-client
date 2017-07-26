@@ -6,7 +6,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { ModulesService } from './modules-service';
 import { MODULESERVICE } from './fake-module-service-data.service';
-import { LoaderService } from '../../../shared/services/loader.service';
+import { LoaderService } from '../../shared/services/loader.service';
 @Injectable()
 export class ModulesServiceService {
 

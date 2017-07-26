@@ -12,6 +12,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import { BrowserXhr } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '@angular/material';
 
@@ -29,11 +30,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
 import { LoaderService } from './shared/services/loader.service';
 import { PopulationService } from './features/population/services/population.service';
-import { ModulesServiceService } from './pages/map/modules-service/modules-service.service';
-import { ModuleServiceListComponent } from './pages/map/modules-service/modules-service-list.component';
+import { ModulesServiceService } from './features/modules-service/modules-service.service';
+import { ModuleServiceListComponent } from './features/modules-service/modules-service-list.component';
 import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
-import { GridService } from './features/hundred-by-hundred-grid/services/grid.service';
+import { GridService } from './features/grid/services/grid.service';
 
 
 @NgModule({
@@ -67,6 +68,8 @@ import { GridService } from './features/hundred-by-hundred-grid/services/grid.se
     ToasterService,
     GlobalErrorHandler,
     GridService,
+
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

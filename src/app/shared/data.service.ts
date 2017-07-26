@@ -10,5 +10,5 @@ export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
 export const postPopulationDensityInArea    = '/population/density/area/';
-export const getGrid    = '/population/density/area/';
+export const getGrid    = '/grids/1km/area/';
 export const set404url   = 'set404url';

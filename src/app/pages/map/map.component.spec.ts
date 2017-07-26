@@ -14,8 +14,8 @@ import { Logger } from '../../shared/services/logger.service';
 import { MockLoggerService } from '../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../shared/services/mock/loader.service';
 
-import { ModulesServiceService } from './modules-service/modules-service.service';
-import { ModuleServiceListComponent } from './modules-service/modules-service-list.component';
+import { ModulesServiceService } from '../../features/modules-service/modules-service.service';
+import { ModuleServiceListComponent } from '../../features/modules-service/modules-service-list.component';
 
 
 describe('MapComponent', () => {

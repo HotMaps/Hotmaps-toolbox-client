@@ -5,7 +5,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
-import { ModuleServiceListComponent } from './pages/map/modules-service/modules-service-list.component';
+import { ModuleServiceListComponent } from './features/modules-service/modules-service-list.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
