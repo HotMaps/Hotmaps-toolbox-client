@@ -38,6 +38,7 @@
         "../node_modules/hammerjs/hammer.js"
 
 
+
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

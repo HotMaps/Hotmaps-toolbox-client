@@ -8,7 +8,7 @@ import {Map} from 'leaflet';
 import {MapService} from '../../shared/services/map.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {Logger} from '../../shared/services/logger.service';
-
+import {Control} from 'leaflet-measure'
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -29,6 +29,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   ngAfterContentInit(): void {
     this.logger.log('MapComponent/AfterViewInit');
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
+
+    // this.mapService.getGridTest();
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
@@ -84,7 +86,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
-
+    L.Control = L.Control.extend({
+      delete: function(popup) {
+        this._popup = popup;
+        return this.addLayer(popup).fire('popupDelete', {
+          popup: this._popup
+        });
+      }
+    })
     L.control.scale().addTo(this.map);
     L.control.measure(measureOption).addTo(this.map);
       return this.map;

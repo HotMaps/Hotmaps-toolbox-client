@@ -1,6 +1,7 @@
-///<reference path="app/typings/leaflet-measure.d.ts"/>
-/// <reference path="app/typings/leaflet.vectorgrid.d.ts"/>
+
 /// <reference path="typings.d.ts"/>
+
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
