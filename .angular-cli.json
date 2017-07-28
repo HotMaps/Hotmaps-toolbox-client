@@ -27,13 +27,16 @@
         "styles.css"
       ],
       "scripts": [
+        "../node_modules/stacktrace-js/dist/stacktrace.js",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
         "../node_modules/leaflet/dist/leaflet.js",
         "../node_modules/leaflet.vectorgrid/dist/Leaflet.VectorGrid.js",
+        "../node_modules/leaflet-virtual-grid/dist/virtual-grid.js",
         "../node_modules/leaflet-measure/dist/leaflet-measure.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/hammerjs/hammer.js"
+
 
 
       ],

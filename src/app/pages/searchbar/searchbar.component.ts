@@ -9,7 +9,7 @@ import {LoaderService} from '../../shared/services/loader.service';
 import {Map} from 'leaflet';
 
 @Component({
-  selector: 'hmt-navigator',
+  selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
   styles: [ require<any>('./searchbar.component.scss') ],
   providers: []
@@ -30,7 +30,7 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
     this.mapService.disableMouseEvent('goto');
     this.mapService.disableMouseEvent('place-input');
-    this.map = this.mapService.map;
+    this.map = this.mapService.getMap();
   }
 
   goto() {

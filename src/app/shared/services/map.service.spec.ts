@@ -6,15 +6,17 @@ import { MockBackend } from '@angular/http/testing';
 import { MapService } from './map.service';
 import {Logger} from './logger.service';
 import { LoaderService } from './loader.service'
-
+import { PopulationService } from '../../features/population/services/population.service';
+import { MockPopulationService } from '../../features/population/services/mock/population.service';
 
 import {Map} from 'leaflet';
 
 describe('mapService', () => {
-
+  let populationService: MockPopulationService;
   let loaderServiceStub: LoaderService;
   let loggerStub: Logger;
   beforeEach(() => {
+    populationService = new MockPopulationService();
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger;
     TestBed.configureTestingModule({
@@ -24,6 +26,7 @@ describe('mapService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        {provide: PopulationService, useValue: populationService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
         {provide: MockBackend, useClass: MockBackend},
         {provide: MapService, useClass: MapService},

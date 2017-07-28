@@ -13,10 +13,9 @@ import { LoaderService } from '../../shared/services/loader.service';
 import { Logger } from '../../shared/services/logger.service';
 import { MockLoggerService } from '../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../shared/services/mock/loader.service';
-import { PopulationService } from '../../features/population/services/population.service';
-import { MockPopulationService } from '../../features/population/services/mock/population.service';
-import { ModulesServiceService } from './modules-service/modules-service.service';
-import { ModuleServiceListComponent } from './modules-service/modules-service-list.component';
+
+import { ModulesServiceService } from '../../features/modules-service/modules-service.service';
+import { ModuleServiceListComponent } from '../../features/modules-service/modules-service-list.component';
 
 
 describe('MapComponent', () => {
@@ -27,20 +26,19 @@ describe('MapComponent', () => {
   let mockGeocodeService: MockGeocodeService;
   let modulesServiceStub: ModulesServiceService;
   let mockLoaderService: MockLoaderService;
-  let populationService: MockPopulationService;
+
 
 
   beforeEach(() => {
     mockMapService = new MockMapService();
-    populationService = new MockPopulationService();
+
     mockLoggerService = new MockLoggerService();
     mockGeocodeService = new MockGeocodeService();
     mockLoaderService = new MockLoaderService();
-    populationService = new MockPopulationService();
+
     TestBed.configureTestingModule({
       declarations: [MapComponent, ModuleServiceListComponent, ToolbarComponent, SearchBarComponent],
       providers: [
-        {provide: PopulationService, useValue: populationService},
         {provide: MapService, useValue: mockMapService},
         {provide: GeocodingService, useValue: mockGeocodeService },
         {provide: Logger, useValue: mockLoggerService },

@@ -5,27 +5,26 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 
+import {apiUrl, postPopulationDensityInArea} from '../../../shared/data.service'
 
-import {apiUrl} from '../../../shared/data.service'
 import {LoaderService } from '../../../shared/services/loader.service';
-import {Location} from '../location';
 
+import {Location} from '../../../shared/location/location';
 import {Logger} from '../../../shared/services/logger.service';
 import {Payload} from '../payload.class'
 import {Population} from '../population.class';
-import {postPopulationDensityInArea} from '../../../shared/data.service';
 
+import {ToasterService} from '../../../shared/services/toaster.service';
 
-
+import {APIService} from '../../../shared/services/api.service';
 @Injectable()
-export class PopulationService {
-  http: Http;
-  private headers = new Headers({'Content-Type': 'application/json'});
-  constructor(http: Http, private logger: Logger, private loaderService: LoaderService) {
-    this.http = http;
-    this.logger = logger;
+export class PopulationService extends APIService {
+
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+    super(http, logger, loaderService, toasterService);
   }
-  getPopulation() {
+
+  getPopulationTest() {
     const locations: Location[] =   [
       { lat: 46.90524554642923, lng: 5.701904296875 },
       { lat: 46.98025235521883, lng: 11.436767578125002 },
@@ -39,24 +38,22 @@ export class PopulationService {
       points: locations,
     }
 
-    this.logger.log('getPopulationWithPayloads/payload' + JSON.stringify(payload));
-    this.getPopulationWithPayloads(payload).then(population  => this.logPopulation(population))
-
+    this.logger.log('getGridWithPayloads/payload' + JSON.stringify(payload));
+    this.getPopulationWithPayloads(payload).then(grid  => this.logPopulation(grid))
   }
+
   getPopulationWithPayloads(payload: Payload): Promise<Population> {
     const url = apiUrl + postPopulationDensityInArea;
+    this.logger.log('PopulationServices/apiUrl-postPopulationDensityInArea = ' + url)
     return this.http
       .post(url, JSON.stringify(payload), {headers: this.headers})
       .toPromise()
       .then( response => response.json() as Population)
-      .catch(this.handleError);
+      .catch(this.handleError.bind(this));
   }
 
   logPopulation(population: Population) {
     this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(population))
   }
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
+
 }

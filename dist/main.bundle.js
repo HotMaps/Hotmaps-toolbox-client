@@ -112,7 +112,7 @@ var AppComponent = (function () {
 }());
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'my-app',
+        selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")],
     }),
@@ -144,23 +144,27 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng_sidebar__ = __webpack_require__("../../../../ng-sidebar/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng_sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_ng_sidebar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_searchbar_searchbar_component__ = __webpack_require__("../../../../../src/app/pages/searchbar/searchbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_toolbar_toolbar_component__ = __webpack_require__("../../../../../src/app/pages/toolbar/toolbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_services_map_service__ = __webpack_require__("../../../../../src/app/shared/services/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_services_geocoding_service__ = __webpack_require__("../../../../../src/app/shared/services/geocoding.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_login_login_component__ = __webpack_require__("../../../../../src/app/pages/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_map_map_component__ = __webpack_require__("../../../../../src/app/pages/map/map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_register_register_component__ = __webpack_require__("../../../../../src/app/pages/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__features_population_services_population_service__ = __webpack_require__("../../../../../src/app/features/population/services/population.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_map_modules_service_modules_service_service__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_map_modules_service_modules_service_list_component__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ng_sidebar__ = __webpack_require__("../../../../ng-sidebar/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ng_sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_ng_sidebar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_toolbar_toolbar_component__ = __webpack_require__("../../../../../src/app/pages/toolbar/toolbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_services_map_service__ = __webpack_require__("../../../../../src/app/shared/services/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_services_geocoding_service__ = __webpack_require__("../../../../../src/app/shared/services/geocoding.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login_component__ = __webpack_require__("../../../../../src/app/pages/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_map_map_component__ = __webpack_require__("../../../../../src/app/pages/map/map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_register_register_component__ = __webpack_require__("../../../../../src/app/pages/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__features_population_services_population_service__ = __webpack_require__("../../../../../src/app/features/population/services/population.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__features_modules_service_modules_service_service__ = __webpack_require__("../../../../../src/app/features/modules-service/modules-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__features_modules_service_modules_service_list_component__ = __webpack_require__("../../../../../src/app/features/modules-service/modules-service-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__shared_services_error_handler__ = __webpack_require__("../../../../../src/app/shared/services/error-handler.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__features_grid_services_grid_service__ = __webpack_require__("../../../../../src/app/features/grid/services/grid.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -194,6 +198,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -201,24 +209,33 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_core__["NgModule"])({
-        imports: [__WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_12__app_routing_module__["a" /* AppRoutingModule */], __WEBPACK_IMPORTED_MODULE_10__angular_material__["a" /* MaterialModule */], __WEBPACK_IMPORTED_MODULE_11_ng_sidebar__["SidebarModule"].forRoot()],
+        imports: [__WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_12__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_11__angular_material__["a" /* MaterialModule */],
+            __WEBPACK_IMPORTED_MODULE_15_ng_sidebar__["SidebarModule"].forRoot()],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */]],
         declarations: [
             __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_14__pages_searchbar_searchbar_component__["a" /* SearchBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_toolbar_toolbar_component__["a" /* ToolbarComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_login_login_component__["a" /* LoginComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_map_map_component__["a" /* MapComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_register_register_component__["a" /* RegisterComponent */],
-            __WEBPACK_IMPORTED_MODULE_25__pages_map_modules_service_modules_service_list_component__["a" /* ModuleServiceListComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__pages_toolbar_toolbar_component__["a" /* ToolbarComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_login_login_component__["a" /* LoginComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_map_map_component__["a" /* MapComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_register_register_component__["a" /* RegisterComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__features_modules_service_modules_service_list_component__["a" /* ModuleServiceListComponent */],
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_23__features_population_services_population_service__["a" /* PopulationService */],
-            __WEBPACK_IMPORTED_MODULE_17__shared_services_geocoding_service__["a" /* GeocodingService */],
-            __WEBPACK_IMPORTED_MODULE_16__shared_services_map_service__["a" /* MapService */],
-            __WEBPACK_IMPORTED_MODULE_24__pages_map_modules_service_modules_service_service__["a" /* ModulesServiceService */],
-            __WEBPACK_IMPORTED_MODULE_21__shared_services_logger_service__["a" /* Logger */],
-            __WEBPACK_IMPORTED_MODULE_22__shared_services_loader_service__["a" /* LoaderService */]
+            __WEBPACK_IMPORTED_MODULE_24__features_population_services_population_service__["a" /* PopulationService */],
+            __WEBPACK_IMPORTED_MODULE_18__shared_services_geocoding_service__["a" /* GeocodingService */],
+            __WEBPACK_IMPORTED_MODULE_17__shared_services_map_service__["a" /* MapService */],
+            __WEBPACK_IMPORTED_MODULE_25__features_modules_service_modules_service_service__["a" /* ModulesServiceService */],
+            __WEBPACK_IMPORTED_MODULE_22__shared_services_logger_service__["a" /* Logger */],
+            __WEBPACK_IMPORTED_MODULE_23__shared_services_loader_service__["a" /* LoaderService */],
+            __WEBPACK_IMPORTED_MODULE_27__shared_services_toaster_service__["a" /* ToasterService */],
+            __WEBPACK_IMPORTED_MODULE_28__shared_services_error_handler__["a" /* GlobalErrorHandler */],
+            __WEBPACK_IMPORTED_MODULE_29__features_grid_services_grid_service__["a" /* GridService */],
         ],
         schemas: [
             __WEBPACK_IMPORTED_MODULE_6__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]
@@ -230,7 +247,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/population/services/population.service.ts":
+/***/ "../../../../../src/app/features/grid/services/grid.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -243,7 +260,19 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopulationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GridService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -261,15 +290,280 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PopulationService = (function () {
-    function PopulationService(http, logger, loaderService) {
-        this.logger = logger;
-        this.loaderService = loaderService;
-        this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
-        this.http = http;
-        this.logger = logger;
+
+var GridService = (function (_super) {
+    __extends(GridService, _super);
+    function GridService(http, logger, loaderService, toasterService) {
+        return _super.call(this, http, logger, loaderService, toasterService) || this;
     }
-    PopulationService.prototype.getPopulation = function () {
+    GridService.prototype.getGridTest = function () {
+        var _this = this;
+        var locations = [
+            { lat: 46.3287, lng: 6.9225 },
+            { lat: 46.3287, lng: 7.0554 },
+            { lat: 46.2447, lng: 7.0554 },
+            { lat: 46.2447, lng: 6.9225 },
+        ];
+        var payload = {
+            points: locations,
+        };
+        this.logger.log('getGridWithPayloads/payload' + JSON.stringify(payload));
+        this.getGridWithPayloads(payload).then(function (grid) { return _this.logGrid(grid); });
+    };
+    GridService.prototype.getGridWithPayloads = function (payload) {
+        var url = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["b" /* getGrid */];
+        return this.http
+            .post(url, JSON.stringify(payload), { headers: this.headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    GridService.prototype.logGrid = function (grid) {
+        this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(grid));
+    };
+    return GridService;
+}(__WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__["a" /* APIService */]));
+GridService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
+], GridService);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=grid.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/modules-service/fake-module-service-data.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MODULESERVICE; });
+var MODULESERVICE = [
+    { id: 11, name: 'Service module 1' },
+    { id: 12, name: 'Service module 2' },
+    { id: 13, name: 'Service module 3' },
+    { id: 14, name: 'Service module 4' },
+    { id: 15, name: 'Service module 5' },
+    { id: 16, name: 'Service module 6' },
+    { id: 17, name: 'Service module 7' },
+    { id: 18, name: 'Service module 8' },
+    { id: 19, name: 'Service module 9' },
+    { id: 20, name: 'Service module 10' }
+];
+//# sourceMappingURL=fake-module-service-data.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/modules-service/modules-service-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".selected {\n  background-color: #CFD8DC !important;\n  color: white;\n}\n.modules-service {\n  margin: 0 0 2em 0;\n  list-style-type: none;\n  padding: 0;\n  width: 15em;\n}\n.modules-service li {\n  cursor: pointer;\n  position: relative;\n  left: 0;\n  background-color: #EEE;\n  margin: .5em;\n  padding: .3em 0;\n  height: 2em;\n  border-radius: 4px;\n}\n.modules-service li:hover {\n  color: #607D8B;\n  background-color: #DDD;\n  left: .1em;\n}\n.modules-service li.selected:hover {\n  background-color: #BBD8DC !important;\n  color: white;\n}\n.modules-service .text {\n  position: relative;\n  top: -3px;\n}\n.modules-service .badge {\n  display: inline-block;\n  font-size: small;\n  color: white;\n  padding: 0.8em 0.7em 0 0.7em;\n  background-color: #607D8B;\n  line-height: 1em;\n  position: relative;\n  left: -1px;\n  top: -4px;\n  height: 1.8em;\n  margin-right: .8em;\n  border-radius: 4px 0 0 4px;\n}\nbutton {\n  font-family: Arial;\n  background-color: #eee;\n  border: none;\n  padding: 5px 10px;\n  border-radius: 4px;\n  cursor: pointer;\n  cursor: hand;\n}\nbutton:hover {\n  background-color: #cfd8dc;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/modules-service/modules-service-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"modules-service\">\n  <li *ngFor=\"let service of services\"\n      [class.selected]=\"service === selectedModulesService\"\n      (click)=\"onSelect(service)\">\n    <span class=\"badge\">{{service.id}}</span> {{service.name}}\n  </li>\n</ul>\n<div *ngIf=\"selectedModulesService\">\n\n  <button (click)=\"gotoDetail()\">View Details</button>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/modules-service/modules-service-list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_service_service__ = __webpack_require__("../../../../../src/app/features/modules-service/modules-service.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModuleServiceListComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * Created by lesly on 09.06.17.
+ */
+
+
+var ModuleServiceListComponent = (function () {
+    function ModuleServiceListComponent(modulesServiceService) {
+        this.modulesServiceService = modulesServiceService;
+    }
+    ModuleServiceListComponent.prototype.getmodulesServices = function () {
+        var _this = this;
+        this.modulesServiceService.getModulesServices().then(function (services) { return _this.services = services; });
+    };
+    ModuleServiceListComponent.prototype.ngOnInit = function () {
+        this.getmodulesServices();
+    };
+    ModuleServiceListComponent.prototype.onSelect = function (service) {
+        this.selectedModulesService = service;
+    };
+    ModuleServiceListComponent.prototype.gotoDetail = function () {
+    };
+    return ModuleServiceListComponent;
+}());
+ModuleServiceListComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-modules-service-list',
+        animations: [
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('enterAnimation', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(':enter', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(100%)', opacity: 0 }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('500ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(0)', opacity: 1 }))
+                ]),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(':leave', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(0)', opacity: 1 }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('500ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(100%)', opacity: 0 }))
+                ])
+            ])
+        ],
+        template: __webpack_require__("../../../../../src/app/features/modules-service/modules-service-list.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/modules-service/modules-service-list.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__modules_service_service__["a" /* ModulesServiceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__modules_service_service__["a" /* ModulesServiceService */]) === "function" && _a || Object])
+], ModuleServiceListComponent);
+
+var _a;
+//# sourceMappingURL=modules-service-list.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/modules-service/modules-service.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__ = __webpack_require__("../../../../../src/app/features/modules-service/fake-module-service-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulesServiceService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * Created by lesly on 09.06.17.
+ */
+
+
+
+
+
+var ModulesServiceService = (function () {
+    function ModulesServiceService(http, loaderService) {
+        this.http = http;
+        this.loaderService = loaderService;
+    }
+    /* getModulesServices(): Promise<ModulesService[]> {
+      return this.http.get(this.servicesUrl)
+        .toPromise()
+        .then(response => response.json().data as ModulesService[])
+        .catch(this.handleError);
+    }*/
+    ModulesServiceService.prototype.getModulesServices = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__["a" /* MODULESERVICE */]);
+    };
+    ModulesServiceService.prototype.getModulesServicesWithNewService = function (newService) {
+        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__["a" /* MODULESERVICE */];
+        servicesArray.push(newService);
+        return Promise.resolve(servicesArray);
+    };
+    ModulesServiceService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    };
+    ModulesServiceService.prototype.getModulesServicesSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            // Simulate server latency with 2 second delay
+            setTimeout(function () { return resolve(_this.getModulesServices()); }, 2000);
+        });
+    };
+    return ModulesServiceService;
+}());
+ModulesServiceService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _b || Object])
+], ModulesServiceService);
+
+var _a, _b;
+//# sourceMappingURL=modules-service.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/population/services/population.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_mergeMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopulationService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var PopulationService = (function (_super) {
+    __extends(PopulationService, _super);
+    function PopulationService(http, logger, loaderService, toasterService) {
+        return _super.call(this, http, logger, loaderService, toasterService) || this;
+    }
+    PopulationService.prototype.getPopulationTest = function () {
         var _this = this;
         var locations = [
             { lat: 46.90524554642923, lng: 5.701904296875 },
@@ -283,32 +577,29 @@ var PopulationService = (function () {
             year: 2015,
             points: locations,
         };
-        this.logger.log('getPopulationWithPayloads/payload' + JSON.stringify(payload));
-        this.getPopulationWithPayloads(payload).then(function (population) { return _this.logPopulation(population); });
+        this.logger.log('getGridWithPayloads/payload' + JSON.stringify(payload));
+        this.getPopulationWithPayloads(payload).then(function (grid) { return _this.logPopulation(grid); });
     };
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        var url = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["d" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["e" /* postPopulationDensityInArea */];
+        var url = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["f" /* postPopulationDensityInArea */];
+        this.logger.log('PopulationServices/apiUrl-postPopulationDensityInArea = ' + url);
         return this.http
             .post(url, JSON.stringify(payload), { headers: this.headers })
             .toPromise()
             .then(function (response) { return response.json(); })
-            .catch(this.handleError);
+            .catch(this.handleError.bind(this));
     };
     PopulationService.prototype.logPopulation = function (population) {
         this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(population));
     };
-    PopulationService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    };
     return PopulationService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__["a" /* APIService */]));
 PopulationService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
 ], PopulationService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=population.service.js.map
 
 /***/ }),
@@ -424,7 +715,7 @@ var _a, _b;
 /***/ "../../../../../src/app/pages/map/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div id=\"modules-service\">\n  <htm-modules-service-list></htm-modules-service-list>\n</div>-->\n<div id=\"map\">\n  <hmt-navigator></hmt-navigator>\n  <hmt-toolbar></hmt-toolbar>\n</div>\n"
+module.exports = "<!--<div id=\"modules-service\">\n  <htm-modules-service-list></htm-modules-service-list>\n</div>-->\n<div id=\"map\">\n  <hmt-search-bar></hmt-search-bar>\n  <!--<hmt-toolbar></hmt-toolbar>-->\n</div>\n"
 
 /***/ }),
 
@@ -456,10 +747,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_geocoding_service__ = __webpack_require__("../../../../../src/app/shared/services/geocoding.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_map_service__ = __webpack_require__("../../../../../src/app/shared/services/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_service_modules_service_service__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__features_population_services_population_service__ = __webpack_require__("../../../../../src/app/features/population/services/population.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -478,49 +767,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var MapComponent = (function () {
-    function MapComponent(mapService, geocoder, logger, modulesService, loaderService, populationService) {
+    function MapComponent(mapService, geocoder, logger, loaderService) {
         this.mapService = mapService;
         this.geocoder = geocoder;
         this.logger = logger;
-        this.modulesService = modulesService;
         this.loaderService = loaderService;
-        this.populationService = populationService;
     }
     MapComponent.prototype.ngAfterContentInit = function () {
-        var self = this;
-        //for unit test
-        this.populationService.getPopulation();
         this.logger.log('MapComponent/AfterViewInit');
-        this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.map);
-        this.map.on('measurestart', function () {
-            self.logger.log('MapComponent/measurestart');
-        });
-        this.map.on('measurefinish', function (evt) {
-            writeResults(evt);
-        });
-        function writeResults(results) {
-            self.logger.log('MapComponent/ngAfterContentInit/writeResults');
-            var locations = [];
-            for (var _i = 0; _i < results.points.length; _i++) {
-                var lat = results.points[_i].lat;
-                var lng = results.points[_i].lng;
-                var loc = {
-                    lat: lat,
-                    lng: lng
-                };
-                locations.push(loc);
-            }
-            self.logger.log('locations ' + JSON.stringify(locations));
-            self.logger.log('MapComponent/ngAfterContentInit/writeResults/results.points= ' + results.points);
-            if (locations.length === 0) {
-                self.logger.log('locations empty');
-                return;
-            }
-            self.getPopulation(locations);
-        }
+        this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
+        // this.mapService.getGridTest();
     };
     MapComponent.prototype.ngOnDestroy = function () {
         this.logger.log('MapComponent/ngOnDestroy');
@@ -528,22 +785,10 @@ var MapComponent = (function () {
     };
     MapComponent.prototype.ngOnInit = function () {
         this.logger.log('MapComponent/ngOnInit');
-        this.mapService.map = this.createMap(__WEBPACK_IMPORTED_MODULE_3__basemap__["a" /* basemap */]);
-        this.logger.log('MapComponent/ngOnInit/mapService val: ' + this.mapService.map);
-        this.initializeToolbar();
+        // mapService get an instance of the maps and ca work on it
+        this.mapService.setupMapservice(this.createMap(__WEBPACK_IMPORTED_MODULE_3__basemap__["a" /* basemap */]));
+        this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.getMap());
         this.initializeNavigator();
-    };
-    MapComponent.prototype.getPopulation = function (locations) {
-        var _this = this;
-        this.loaderService.display(true);
-        this.logger.log('MapComponent/getPopulation');
-        var payload = {
-            nuts_level: 3,
-            year: 2015,
-            points: locations,
-        };
-        this.logger.log('payload ' + JSON.stringify(payload));
-        this.populationService.getPopulationWithPayloads(payload).then(function (population) { return _this.addlayer(population); });
     };
     MapComponent.prototype.initializeToolbar = function () {
         this.toolbarComponent.Initialize();
@@ -551,19 +796,15 @@ var MapComponent = (function () {
     MapComponent.prototype.initializeNavigator = function () {
         this.searchBarComponent.Initialize();
     };
-    MapComponent.prototype.addlayer = function (population) {
-        this.logger.log('addlayer/Population' + JSON.stringify(JSON.parse(population.geometries)));
-        this.mapService.addlayer(JSON.parse(population.geometries));
-        this.loaderService.display(false);
-        alert('population: ' + population.sum_density);
-    };
+    // main method create and display map (main purpose of this component)
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
-        this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.map);
+        var self = this;
+        this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.getMap());
         var option = {
             zoomControl: false,
             center: L.latLng(47.1, 7.0833),
-            zoom: 15,
+            zoom: 5,
             minZoom: 4,
             maxZoom: 17,
             layers: [basemap.Esri, basemap.Hybrid]
@@ -572,14 +813,32 @@ var MapComponent = (function () {
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
-            popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }, };
+            popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] } };
         // L.control.layers(this.mapService.baseMaps).addTo(this.map);
+        L.Map = L.Map.extend({
+            openPopup: function (popup) {
+                this.closePopup();
+                this._popup = popup;
+                self.logger.log('MapComponent/popup ' + popup);
+                return this.addLayer(popup).fire('popupopen', {
+                    popup: this._popup
+                });
+            }
+        });
+        L.Control = L.Control.extend({
+            delete: function (popup) {
+                this._popup = popup;
+                return this.addLayer(popup).fire('popupDelete', {
+                    popup: this._popup
+                });
+            }
+        });
         L.control.scale().addTo(this.map);
         L.control.measure(measureOption).addTo(this.map);
         return this.map;
     };
     MapComponent.prototype.getMap = function () {
-        return this.mapService.map;
+        return this.map;
     };
     return MapComponent;
 }());
@@ -596,194 +855,12 @@ MapComponent = __decorate([
         selector: 'htm-map',
         template: __webpack_require__("../../../../../src/app/pages/map/map.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/map/map.component.less")],
-        providers: []
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_map_service__["a" /* MapService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_geocoding_service__["a" /* GeocodingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_geocoding_service__["a" /* GeocodingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_logger_service__["a" /* Logger */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__modules_service_modules_service_service__["a" /* ModulesServiceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__modules_service_modules_service_service__["a" /* ModulesServiceService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9__features_population_services_population_service__["a" /* PopulationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__features_population_services_population_service__["a" /* PopulationService */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_map_service__["a" /* MapService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_geocoding_service__["a" /* GeocodingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_geocoding_service__["a" /* GeocodingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__["a" /* Logger */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _f || Object])
 ], MapComponent);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=map.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/pages/map/modules-service/fake-module-service-data.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MODULESERVICE; });
-var MODULESERVICE = [
-    { id: 11, name: 'Service module 1' },
-    { id: 12, name: 'Service module 2' },
-    { id: 13, name: 'Service module 3' },
-    { id: 14, name: 'Service module 4' },
-    { id: 15, name: 'Service module 5' },
-    { id: 16, name: 'Service module 6' },
-    { id: 17, name: 'Service module 7' },
-    { id: 18, name: 'Service module 8' },
-    { id: 19, name: 'Service module 9' },
-    { id: 20, name: 'Service module 10' }
-];
-//# sourceMappingURL=fake-module-service-data.service.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/pages/map/modules-service/modules-service-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".selected {\n  background-color: #CFD8DC !important;\n  color: white;\n}\n.modules-service {\n  margin: 0 0 2em 0;\n  list-style-type: none;\n  padding: 0;\n  width: 15em;\n}\n.modules-service li {\n  cursor: pointer;\n  position: relative;\n  left: 0;\n  background-color: #EEE;\n  margin: .5em;\n  padding: .3em 0;\n  height: 2em;\n  border-radius: 4px;\n}\n.modules-service li:hover {\n  color: #607D8B;\n  background-color: #DDD;\n  left: .1em;\n}\n.modules-service li.selected:hover {\n  background-color: #BBD8DC !important;\n  color: white;\n}\n.modules-service .text {\n  position: relative;\n  top: -3px;\n}\n.modules-service .badge {\n  display: inline-block;\n  font-size: small;\n  color: white;\n  padding: 0.8em 0.7em 0 0.7em;\n  background-color: #607D8B;\n  line-height: 1em;\n  position: relative;\n  left: -1px;\n  top: -4px;\n  height: 1.8em;\n  margin-right: .8em;\n  border-radius: 4px 0 0 4px;\n}\nbutton {\n  font-family: Arial;\n  background-color: #eee;\n  border: none;\n  padding: 5px 10px;\n  border-radius: 4px;\n  cursor: pointer;\n  cursor: hand;\n}\nbutton:hover {\n  background-color: #cfd8dc;\n}\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/pages/map/modules-service/modules-service-list.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<ul class=\"modules-service\">\n  <li *ngFor=\"let service of services\"\n      [class.selected]=\"service === selectedModulesService\"\n      (click)=\"onSelect(service)\">\n    <span class=\"badge\">{{service.id}}</span> {{service.name}}\n  </li>\n</ul>\n<div *ngIf=\"selectedModulesService\">\n\n  <button (click)=\"gotoDetail()\">View Details</button>\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/pages/map/modules-service/modules-service-list.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_service_service__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModuleServiceListComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
- * Created by lesly on 09.06.17.
- */
-
-
-var ModuleServiceListComponent = (function () {
-    function ModuleServiceListComponent(modulesServiceService) {
-        this.modulesServiceService = modulesServiceService;
-    }
-    ModuleServiceListComponent.prototype.getmodulesServices = function () {
-        var _this = this;
-        this.modulesServiceService.getModulesServices().then(function (services) { return _this.services = services; });
-    };
-    ModuleServiceListComponent.prototype.ngOnInit = function () {
-        this.getmodulesServices();
-    };
-    ModuleServiceListComponent.prototype.onSelect = function (service) {
-        this.selectedModulesService = service;
-    };
-    ModuleServiceListComponent.prototype.gotoDetail = function () {
-    };
-    return ModuleServiceListComponent;
-}());
-ModuleServiceListComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'htm-modules-service-list',
-        animations: [
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('enterAnimation', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(':enter', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(100%)', opacity: 0 }),
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('500ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(0)', opacity: 1 }))
-                ]),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(':leave', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(0)', opacity: 1 }),
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('500ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ transform: 'translateX(100%)', opacity: 0 }))
-                ])
-            ])
-        ],
-        template: __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service-list.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service-list.component.css")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__modules_service_service__["a" /* ModulesServiceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__modules_service_service__["a" /* ModulesServiceService */]) === "function" && _a || Object])
-], ModuleServiceListComponent);
-
-var _a;
-//# sourceMappingURL=modules-service-list.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/pages/map/modules-service/modules-service.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/fake-module-service-data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulesServiceService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
- * Created by lesly on 09.06.17.
- */
-
-
-
-
-
-var ModulesServiceService = (function () {
-    function ModulesServiceService(http, loaderService) {
-        this.http = http;
-        this.loaderService = loaderService;
-    }
-    /* getModulesServices(): Promise<ModulesService[]> {
-      return this.http.get(this.servicesUrl)
-        .toPromise()
-        .then(response => response.json().data as ModulesService[])
-        .catch(this.handleError);
-    }*/
-    ModulesServiceService.prototype.getModulesServices = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__["a" /* MODULESERVICE */]);
-    };
-    ModulesServiceService.prototype.getModulesServicesWithNewService = function (newService) {
-        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__fake_module_service_data_service__["a" /* MODULESERVICE */];
-        servicesArray.push(newService);
-        return Promise.resolve(servicesArray);
-    };
-    ModulesServiceService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    };
-    ModulesServiceService.prototype.getModulesServicesSlowly = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            // Simulate server latency with 2 second delay
-            setTimeout(function () { return resolve(_this.getModulesServices()); }, 2000);
-        });
-    };
-    return ModulesServiceService;
-}());
-ModulesServiceService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _b || Object])
-], ModulesServiceService);
-
-var _a, _b;
-//# sourceMappingURL=modules-service.service.js.map
 
 /***/ }),
 
@@ -928,7 +1005,7 @@ var SearchBarComponent = (function () {
     SearchBarComponent.prototype.ngOnInit = function () {
         this.mapService.disableMouseEvent('goto');
         this.mapService.disableMouseEvent('place-input');
-        this.map = this.mapService.map;
+        this.map = this.mapService.getMap();
     };
     SearchBarComponent.prototype.goto = function () {
         var _this = this;
@@ -949,7 +1026,7 @@ var SearchBarComponent = (function () {
 }());
 SearchBarComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'hmt-navigator',
+        selector: 'hmt-search-bar',
         template: __webpack_require__("../../../../../src/app/pages/searchbar/searchbar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/searchbar/searchbar.component.scss")],
         providers: []
@@ -1020,35 +1097,40 @@ var ToolbarComponent = (function () {
         this.markerCount = 0;
     }
     ToolbarComponent.prototype.ngOnInit = function () {
+        this.logger.log('ToolbarComponent/ngOnInit');
         this.mapService.disableMouseEvent('add-marker');
         this.mapService.disableMouseEvent('remove-marker');
         this.mapService.disableMouseEvent('toggle-layer');
     };
     ToolbarComponent.prototype.Initialize = function () {
-        var _this = this;
-        this.mapService.map.on('click', function (e) {
-            if (_this.editing) {
-                var marker_1 = L.marker(e.latlng, {
-                    icon: L.icon({
-                        iconUrl: '../../../node_modules/leaflet/dist/images/marker-icon.png',
-                        shadowUrl: '../../../node_modules/leaflet/dist/images/marker-shadow.png'
-                    }),
-                    draggable: true
+        this.logger.log('ToolbarComponent/Initialize');
+        /*  this.mapService.map.on('click', (e: MouseEvent) => {
+      
+            if (this.editing) {
+              this.logger.log('ToolbarComponent/click');
+              let marker = L.marker(e.latlng, {
+                icon: L.icon({
+                  iconUrl: '../../../node_modules/leaflet/dist/images/marker-icon.png',
+                  shadowUrl: '../../../node_modules/leaflet/dist/images/marker-shadow.png'
+                }),
+                draggable: true
+              })
+                .bindPopup('Marker #' + (this.markerCount + 1).toString(), {
+                  offset: L.point(12, 6)
                 })
-                    .bindPopup('Marker #' + (_this.markerCount + 1).toString(), {
-                    offset: L.point(12, 6)
-                })
-                    .addTo(_this.mapService.map)
-                    .openPopup();
-                _this.markerCount += 1;
-                marker_1.on('click', function (event) {
-                    if (_this.removing) {
-                        _this.mapService.map.removeLayer(marker_1);
-                        _this.markerCount -= 1;
-                    }
-                });
+                .addTo(this.mapService.map)
+                .openPopup();
+      
+              this.markerCount += 1;
+      
+              marker.on('click', (event: MouseEvent) => {
+                if (this.removing) {
+                  this.mapService.map.removeLayer(marker);
+                  this.markerCount -= 1;
+                }
+              });
             }
-        });
+          });*/
     };
     ToolbarComponent.prototype.toggleEditing = function () {
         this.editing = !this.editing;
@@ -1061,11 +1143,6 @@ var ToolbarComponent = (function () {
         if (this.editing && this.removing) {
             this.editing = false;
         }
-    };
-    ToolbarComponent.prototype.toggleAirPortLayer = function () {
-        this.logger.log('ToolBarComponent/toggleAirPortLayer');
-        this.airportLayerAdded = !this.airportLayerAdded;
-        this.mapService.addWmsLayer();
     };
     return ToolbarComponent;
 }());
@@ -1090,7 +1167,7 @@ var _a, _b;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_login_login_component__ = __webpack_require__("../../../../../src/app/pages/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_component__ = __webpack_require__("../../../../../src/app/pages/map/map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_map_modules_service_modules_service_list_component__ = __webpack_require__("../../../../../src/app/pages/map/modules-service/modules-service-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__features_modules_service_modules_service_list_component__ = __webpack_require__("../../../../../src/app/features/modules-service/modules-service-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_register_register_component__ = __webpack_require__("../../../../../src/app/pages/register/register.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
 /**
@@ -1105,7 +1182,7 @@ var routes = [
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_0__pages_login_login_component__["a" /* LoginComponent */] },
     { path: 'map', component: __WEBPACK_IMPORTED_MODULE_1__pages_map_map_component__["a" /* MapComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__pages_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'modules', component: __WEBPACK_IMPORTED_MODULE_2__pages_map_modules_service_modules_service_list_component__["a" /* ModuleServiceListComponent */] },
+    { path: 'modules', component: __WEBPACK_IMPORTED_MODULE_2__features_modules_service_modules_service_list_component__["a" /* ModuleServiceListComponent */] },
 ];
 //# sourceMappingURL=routes.js.map
 
@@ -1115,11 +1192,13 @@ var routes = [
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getLocationFromIp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getGrid; });
+/* unused harmony export set404url */
 /**
  * Created by lesly on 07.07.17.
  */
@@ -1132,6 +1211,8 @@ var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
 var apiUrl = devUrl;
 var postPopulationDensityInArea = '/population/density/area/';
+var getGrid = '/grids/1km/area/';
+var set404url = 'set404url';
 //# sourceMappingURL=data.service.js.map
 
 /***/ }),
@@ -1148,6 +1229,93 @@ var Location = (function () {
 }());
 
 //# sourceMappingURL=location.class.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/api.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_mergeMap__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return APIService; });
+/**
+ * Created by lesly on 19.07.17.
+ */
+
+
+
+var APIService = (function () {
+    function APIService(http, logger, loaderService, toasterService) {
+        this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.http = http;
+        this.logger = logger;
+        this.loaderService = loaderService;
+        this.toasterService = toasterService;
+    }
+    APIService.prototype.handleError = function (error) {
+        this.loaderService.display(false);
+        this.toasterService.showToaster('An error occurred: please try again later');
+        this.logger.log('PopulationServices/handleError');
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    };
+    return APIService;
+}());
+
+//# sourceMappingURL=api.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/error-handler.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalErrorHandler; });
+/**
+ * Created by lesly on 13.07.17.
+ */
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var GlobalErrorHandler = (function () {
+    function GlobalErrorHandler(injector) {
+        this.injector = injector;
+    }
+    GlobalErrorHandler.prototype.handleError = function (error) {
+        var loaderService = this.injector.get(__WEBPACK_IMPORTED_MODULE_2__loader_service__["a" /* LoaderService */]);
+        loaderService.display(false);
+        var message = error.message ? error.message : error.toString();
+        var toasterService = this.injector.get(__WEBPACK_IMPORTED_MODULE_1__toaster_service__["a" /* ToasterService */]);
+        toasterService.showToaster(message);
+        console.log('flerwajgoerjgpergperwjgpoerjgerpogjerpgjererierjeworqj2pr');
+        // IMPORTANT: Rethrow the error otherwise it gets swallowed
+        throw error;
+    };
+    return GlobalErrorHandler;
+}());
+GlobalErrorHandler = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injector"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injector"]) === "function" && _a || Object])
+], GlobalErrorHandler);
+
+var _a;
+//# sourceMappingURL=error-handler.js.map
 
 /***/ }),
 
@@ -1200,7 +1368,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["a" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["c" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -1228,9 +1396,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["b" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["d" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["c" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["e" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__location_location_class__["a" /* Location */]();
@@ -1345,7 +1513,9 @@ Logger = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_map_basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_grid_services_grid_service__ = __webpack_require__("../../../../../src/app/features/grid/services/grid.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__features_population_services_population_service__ = __webpack_require__("../../../../../src/app/features/population/services/population.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1364,19 +1534,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var MapService = (function () {
-    function MapService(http, logger, loaderService) {
+    function MapService(http, logger, loaderService, populationService, gridService) {
         this.http = http;
         this.logger = logger;
         this.loaderService = loaderService;
+        this.populationService = populationService;
+        this.gridService = gridService;
+        this.layers = [];
         logger.log('MapService/constructor()');
         this.baseMaps = __WEBPACK_IMPORTED_MODULE_3__pages_map_basemap__["a" /* basemap */];
-        logger.log('MapService/constructor()/_map ' + this.map);
-        logger.log('MapService/constructor()/_baseMaps ' + this.baseMaps);
     }
     MapService.prototype.ngOnInit = function () {
         this.logger.log('MapService/ngOnInit()');
-        this.logger.log('MapService/constructor()/_map ' + this.map);
     };
     MapService.prototype.getMap = function () {
         return this.map;
@@ -1385,10 +1557,6 @@ var MapService = (function () {
         this.logger.log('MapService/ngOnDestroy()');
     };
     MapService.prototype.disableMouseEvent = function (elementId) {
-        /*let element = <HTMLElement>document.getElementById(elementId);
-   
-        L.DomEvent.disableClickPropagation(element);
-       L.DomEvent.disableScrollPropagation(element);*/
     };
     MapService.prototype.toggleAirPortLayer = function () {
         var _this = this;
@@ -1408,60 +1576,258 @@ var MapService = (function () {
             });
         }
     };
-    MapService.prototype.addlayer = function (geometrie) {
-        // todo track when the layer has been added and stop the loader
-        this.logger.log('MapService/addlayer');
-        if (this.vtLayer) {
-            this.map.removeLayer(this.vtLayer);
-            delete this.vtLayer;
+    MapService.prototype.setupMapservice = function (map) {
+        this.logger.log('MapService/setupMapservice');
+        this.map = map;
+        this.retriveMapEvent();
+    };
+    MapService.prototype.retriveMapEvent = function () {
+        this.logger.log('MapService/retriveMapEvent');
+        var self = this;
+        this.map.on('zoomend', function () {
+            self.logger.log('MapService/zoomend');
+        });
+        this.map.on('zoomstart', function (event) {
+            self.logger.log('MapService/zoomstart');
+            /* if (event.target._animateToZoom) {
+               //add grid
+               self.logger.log('MapService/zoomstart val' + self.map.getZoom());
+       
+               const zoomValue: number = <number>self.map.getZoom();
+               const maxValue = 10;
+               self.logger.log('MapService/zoomValue)  zoomstart val' + zoomValue );
+               if (zoomValue > maxValue) {
+                 self.logger.log('MapService/zoomValue)  zoomstart val ' + zoomValue );
+                 self.logger.log('MapService/this.map.getEast() ' + self.map.getBounds().getNorthEast());
+                 self.logger.log('MapService/this.map.getNorth() ' + self.map.getBounds().getNorthWest());
+                 self.logger.log('MapService/this.map.getSouth() ' + self.map.getBounds().getSouthEast());
+                 self.logger.log('MapService/this.map.getWest() ' + self.map.getBounds().getSouthWest());
+       
+                 const locations: Location [] = [{
+                   lat: self.map.getBounds().getNorthEast().lat,
+                   lng: self.map.getBounds().getNorthEast().lng
+                 }, {
+                   lat: self.map.getBounds().getNorthWest().lat,
+                   lng: self.map.getBounds().getNorthWest().lng
+                 }, {
+                   lat: self.map.getBounds().getSouthEast().lat,
+                   lng: self.map.getBounds().getSouthEast().lng
+                 }, {
+                   lat: self.map.getBounds().getSouthWest().lat,
+                   lng: self.map.getBounds().getSouthWest().lng
+                 }];
+       
+                 self.logger.log('locations ' +  JSON.stringify(locations) );
+       
+                 if (locations.length === 0) {
+                   self.logger.log('locations empty' );
+                   return;
+                 }
+                 self.getGrid(locations);
+                 // 4 coordinate bound of the screen
+               }
+             } else {
+               // remove grid
+               self.removeGridLayer();
+             }*/
+        });
+        this.map.on('measurestart', function () {
+            self.logger.log('MapComponent/measurestart' + self.layers.length);
+            self.removeVtlayer();
+            /* self.map.eachLayer(function (layer) {
+               self.map.removeLayer(layer);
+             });*/
+            /*   for ( let i = 0; i < self.layers.length; i++) {
+                 self.logger.log('MapComponent/measurestart' + self.layers[i]);
+                 self.map.removeLayer(self.layers[i])
+               }*/
+        });
+        this.map.on('measurefinish', function (evt) {
+            writeResults(evt);
+        });
+        this.map.on('LayersControlEvent', function () {
+            self.logger.log('LayersControlEvent');
+        });
+        this.map.on('layeradd', function (e) {
+            self.logger.log('MapService/layeradd-----' + e);
+            // self.layers.push(e.target.layers);
+        });
+        this.map.on('popupclose', function (e) {
+            /* self.logger.log('MapService/popupclose-----' + e);
+             if (!self.currentPopup) {
+               self.removeVtlayer();
+             }*/
+            ///self.removeVtlayer();
+        });
+        this.map.on('popupopen', function (e) {
+            var html = e.target._popup.getContent();
+            self.currentPopup = e.target._popup;
+            self.logger.log('html id dd ' + html.align);
+            self.logger.log('firstElementChild  ' + html.firstElementChild);
+            self.logger.log('lastChild  ' + html.lastChild);
+            e.target._popup.setContent(html);
+            self.logger.log('popupopen  ' + e.target._popup);
+        });
+        this.map.on('popupDelete', function (e) {
+            self.logger.log('popupDelete  ');
+        });
+        this.map.on('overlayadd', onOverlayAdd);
+        function onOverlayAdd(e) {
+            self.logger.log('overlayadd');
         }
+        function writeResults(results) {
+            self.logger.log('MapService/ngAfterContentInit/writeResults');
+            var locations = [];
+            for (var _i = 0; _i < results.points.length; _i++) {
+                var lat = results.points[_i].lat;
+                var lng = results.points[_i].lng;
+                var loc = {
+                    lat: lat,
+                    lng: lng
+                };
+                locations.push(loc);
+            }
+            self.logger.log('locations ' + JSON.stringify(locations));
+            self.logger.log('MapComponent/ngAfterContentInit/writeResults/results.points= ' + results.points);
+            if (locations.length === 0) {
+                self.logger.log('locations empty');
+                return;
+            }
+            self.getPopulation(locations);
+        }
+    };
+    // population feature
+    MapService.prototype.getPopulation = function (locations) {
+        var _this = this;
+        this.loaderService.display(true);
+        this.logger.log('MapService/getPopulation');
+        var payload = {
+            nuts_level: 3,
+            year: 2015,
+            points: locations,
+        };
+        this.logger.log('MapService/payload ' + JSON.stringify(payload));
+        this.populationService.getPopulationWithPayloads(payload).then(function (population) { return _this.retriveAndAddLayer(population); });
+    };
+    MapService.prototype.retriveAndAddLayer = function (population) {
+        this.logger.log('MapService/retriveAndAddLayer');
+        this.showlayer(JSON.parse(population.geometries));
+        var populationValue = population.sum_density;
+        var html = this.currentPopup.getContent();
+        this.logger.log('html content ' + html);
+        this.logger.log('html content innerHTML' + html.innerHTML);
+        this.currentPopup.setContent(html);
+        alert('population: ' + population.sum_density);
+    };
+    MapService.prototype.showlayer = function (geometrie) {
+        this.logger.log('MapService/showlayer');
+        this.removeVtlayer();
+        this.logger.log('MapService/showlayer/layerWilladde');
         this.vtLayer = L.vectorGrid.slicer(geometrie);
         this.vtLayer.addTo(this.map);
+        this.loaderService.display(false);
     };
-    MapService.prototype.addWmsLayer = function () {
+    MapService.prototype.removeVtlayer = function () {
         if (this.vtLayer) {
-            this.logger.log('MapService/removeLayer()');
+            this.logger.log('MapService/removelayer');
             this.map.removeLayer(this.vtLayer);
             delete this.vtLayer;
         }
-        else {
-            this.logger.log('MapService/addWmsLayer()');
-            this.vtLayer = this.createWMSLayer().addTo(this.map);
+    };
+    // grid feature
+    MapService.prototype.getGridTest = function () {
+        this.logger.log('MapService/getGridTest');
+        this.gridService.getGridTest();
+    };
+    MapService.prototype.proj84To3035 = function (grid) {
+        // proj4.defs('urn:ogc:def:crs:EPSG::26915', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
+        this.gridLayer = L.geoJSON(grid);
+    };
+    MapService.prototype.getGrid = function (locations) {
+        var _this = this;
+        this.loaderService.display(true);
+        this.logger.log('MapService/getGrid');
+        var payload = {
+            points: locations,
+        };
+        this.logger.log('MapService/payload ' + JSON.stringify(payload));
+        this.gridService.getGridWithPayloads(payload).then(function (grid) { return _this.retriveAndAddGridLayer(grid); });
+    };
+    MapService.prototype.removeGridLayer = function () {
+        if (this.gridLayer) {
+            this.logger.log('MapService/removelayer');
+            this.map.removeLayer(this.gridLayer);
+            delete this.gridLayer;
         }
     };
-    MapService.prototype.createWMSLayer = function () {
-        var url = 'https://geoserver.crem-dev.plateforme-meu.ch/geoserver/meu/wms';
-        var layerName = 'meu:Cadastre_Neuchatel';
-        var style = '';
-        // See http://leafletjs.com/reference.html#tilelayer-wms
-        var wms = L.tileLayer.wms(url, {
-            layers: layerName,
-            styles: style,
-            format: 'image/png',
-            transparent: true,
-            version: '1.3.0',
-        });
-        // Update the legend control
-        // See http://docs.geoserver.org/latest/en/user/services/wms/get_legend_graphic/legendgraphic.html
-        var legendGraphicOptions = {
-            request: 'GetLegendGraphic',
-            version: '1.3.0',
-            format: 'image/png',
-            layer: layerName,
-            style: style,
-            legend_options: 'forceLabels:on'
-        };
-        return wms;
+    MapService.prototype.retriveAndAddGridLayer = function (grid) {
+        this.logger.log('MapService/retriveAndAddLayer');
+        this.showGridlayer(grid);
+        this.loaderService.display(false);
+    };
+    MapService.prototype.showGridlayer = function (grid) {
+        this.logger.log('MapService/showlayer');
+        this.removeGridLayer();
+        // or
+        // var weirdProjgeojson = TransformGeojson.from(wgs84geojson,sr);
+        //  proj4.defs('urn:ogc:def:crs:EPSG::3035', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
+        // this.logger.log('MapService/showGridlayer/Proj val' + Proj);
+        // this.gridLayer = L.Proj.geoJson(grid);
+        // this.gridLayer = L
+        this.gridLayer.addTo(this.map);
+        this.loaderService.display(false);
     };
     return MapService;
 }());
 MapService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__loader_service__["a" /* LoaderService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__features_population_services_population_service__["a" /* PopulationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_population_services_population_service__["a" /* PopulationService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__features_grid_services_grid_service__["a" /* GridService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_grid_services_grid_service__["a" /* GridService */]) === "function" && _e || Object])
 ], MapService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=map.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/toaster.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToasterService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * Created by lesly on 14.07.17.
+ */
+
+
+var ToasterService = (function () {
+    function ToasterService(snackBar) {
+        this.snackBar = snackBar;
+    }
+    ToasterService.prototype.showToaster = function (msg) {
+        this.snackBar.open(msg, null, {
+            duration: 3000,
+        });
+    };
+    return ToasterService;
+}());
+ToasterService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MdSnackBar */]) === "function" && _a || Object])
+], ToasterService);
+
+var _a;
+//# sourceMappingURL=toaster.service.js.map
 
 /***/ }),
 
@@ -1476,7 +1842,7 @@ var _a, _b, _c;
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 // The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true
+    production: false
 };
 //# sourceMappingURL=environment.js.map
 
@@ -1491,8 +1857,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("../../../../../src/app/app.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
-///<reference path="app/typings/leaflet-measure.d.ts"/>
-/// <reference path="app/typings/leaflet.vectorgrid.d.ts"/>
 /// <reference path="typings.d.ts"/>
 
 
