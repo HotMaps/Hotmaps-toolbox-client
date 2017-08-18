@@ -175,11 +175,26 @@ export class MapService implements OnInit, OnDestroy {
       console.log(layer.openPopup());
     });
     this.map.on(L.Draw.Event.EDITED , function (e) {
-      let self = this;
       const event: Edited = <Edited>e;
 
+      event.layers.eachLayer(function (layer: Layer) {
+        const lay: Layer = layer;
+        self.logger.log('layer ' + layer);
+        if (layer instanceof L.Marker) {
+          self.logger.log('Marker ');
+        }else if (layer instanceof L.Polygon) {
+          self.logger.log('Polygon ');
+          const polygon: Polygon = <Polygon>layer;
+          const latlng = polygon.getLatLngs()[0];
+          const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+          self.logger.logJson(locations);
+          self.getPopulation(locations, layer);
+        };
+      });
       const type = event.layers[0].type,
         layer = event.layers[0].layer;
+      self.logger.log(event.layers[0].type);
+      self.logger.log(event.layers[0].layer);
       if (type === 'rectangle') {
         self.logger.log('rectangle');
         const rectangle: Rectangle = <Rectangle>event.layers[0].layer;
