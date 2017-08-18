@@ -6,16 +6,27 @@ import {isDevMode} from '@angular/core';
 @Injectable()
 export class Logger {
   logs: string[] = []; // capture logs for testing
-  str: string= '';
+  str = '';
   log(message: string) {
     if (isDevMode() === true) {
       this.logs.push(message);
       console.log(message);
     }
   }
-  logObj(obj: any , message: string) {
+  logObj(obj: any) {
+    let output = '';
+    console.log(output);
+    for (let property in obj) {
+      console.log(output);
+      output += property + ': ' + obj[property] + '; ';
+    }
+    this.logs.push(output);
+    console.log(output);
+  }
+  logJson(obj: any) {
     if (isDevMode() === true) {
-      // this.log(message + ' ' + obj.values());
+      this.logs.push('JSON representation: ' + JSON.stringify(obj));
+      console.log('JSON representation: ' + JSON.stringify(obj));
     }
   }
 

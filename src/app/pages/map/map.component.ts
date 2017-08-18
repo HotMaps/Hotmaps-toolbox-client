@@ -9,6 +9,13 @@ import {MapService} from '../../shared/services/map.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {Logger} from '../../shared/services/logger.service';
 import {Control} from 'leaflet-measure'
+
+import 'leaflet-draw'
+
+import Polyline = L.Polyline;
+import Created = L.DrawEvents.Created;
+
+
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -93,12 +100,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
           popup: this._popup
         });
       }
-    })
-    L.control.scale().addTo(this.map);
-    L.control.measure(measureOption).addTo(this.map);
-      return this.map;
-  }
+    });
 
+    L.control.scale().addTo(this.map);
+    // L.control.measure(measureOption).addTo(this.map);
+    this.mapService.addDrawerControl(this.map);
+    return this.map;
+  }
   getMap(): Map {
     return this.map;
   }

@@ -28,6 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
+import { Helper } from './shared/helper';
 import { LoaderService } from './shared/services/loader.service';
 import { PopulationService } from './features/population/services/population.service';
 import { ModulesServiceService } from './features/modules-service/modules-service.service';
@@ -68,6 +69,7 @@ import { GridService } from './features/grid/services/grid.service';
     ToasterService,
     GlobalErrorHandler,
     GridService,
+    Helper,
 
 
   ],
