@@ -6,7 +6,8 @@ import {Http} from '@angular/http';
 import {Map} from 'leaflet';
 import {Popup} from 'leaflet';
 
-
+import 'proj4leaflet';
+import 'proj4'
 import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
@@ -27,6 +28,8 @@ import Circle = L.Circle;
 import Rectangle = L.Rectangle;
 import Layer = L.Layer;
 import Edited = L.DrawEvents.Edited;
+
+
 
 
 
@@ -74,7 +77,7 @@ export class MapService implements OnInit, OnDestroy {
     {
 
       self.logger.log('MapService/zoomstart');
-     /* if (event.target._animateToZoom) {
+     if (event.target._animateToZoom) {
         //add grid
         self.logger.log('MapService/zoomstart val' + self.map.getZoom());
 
@@ -111,10 +114,10 @@ export class MapService implements OnInit, OnDestroy {
           self.getGrid(locations);
           // 4 coordinate bound of the screen
         }
-      } else {
+      }else {
         // remove grid
         self.removeGridLayer();
-      }*/
+      }
 
     });
     this.map.on ('measurestart', function () {
@@ -312,20 +315,47 @@ export class MapService implements OnInit, OnDestroy {
   }
   retriveAndAddGridLayer(grid: any) {
     this.logger.log('MapService/retriveAndAddLayer');
+
+    // test
+
+
     this.showGridlayer(grid);
     this.loaderService.display(false);
   }
-  showGridlayer(grid: GeoJSONGeoJsonObject) {
+  showGridlayer(grid: any) {
     this.logger.log('MapService/showlayer');
     this.removeGridLayer();
+    // GeoJSON layer (UTM15)
+    proj4.defs('EPSG:26915', '+proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs');
 
+    const geojson = {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [481650, 4980105],
+      },
+      'properties': {
+        'name': 'University of Minnesota'
+      },
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'urn:ogc:def:crs:EPSG::26915'
+        }
+      }
+    };
 
-
+    L.Proj.geoJson(geojson, {
+      'pointToLayer': function(feature, latlng) {
+        return L.marker(latlng).bindPopup('hello');
+      }
+    }).addTo(this.map);
 // or
     // var weirdProjgeojson = TransformGeojson.from(wgs84geojson,sr);
-    //  proj4.defs('urn:ogc:def:crs:EPSG::3035', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
-    // this.logger.log('MapService/showGridlayer/Proj val' + Proj);
-    // this.gridLayer = L.Proj.geoJson(grid);
+    this.logger.logJson(grid);
+   // proj4.defs('urn:ogc:def:crs:EPSG::3035', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
+     this.logger.log('MapService/showGridlayer/Proj val');
+   //  this.gridLayer = L.Proj.geoJson(grid);
     // this.gridLayer = L
 
     this.gridLayer.addTo(this.map);
@@ -348,12 +378,12 @@ export class MapService implements OnInit, OnDestroy {
             color: '#bada55'
           }
         },
-        circle: false, // Turns off this drawing tool
-        /*rectangle: {
+        circle: false,  // Turns off this drawing tool
+        rectangle: {
           shapeOptions: {
             clickable: false
           }
-        },*/
+        },
         marker: false,
       },
       edit: {
