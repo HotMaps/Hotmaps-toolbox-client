@@ -46,7 +46,7 @@ export class MapService implements OnInit, OnDestroy {
   private editableLayers = new L.FeatureGroup();
 
   constructor(private http: Http, private logger: Logger, private loaderService: LoaderService,
-              private populationService: PopulationService, private gridService: GridService, private helper: Helper) {
+              private populationService: PopulationService/*, private gridService: GridService*/, private helper: Helper) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
@@ -77,7 +77,7 @@ export class MapService implements OnInit, OnDestroy {
     {
 
       self.logger.log('MapService/zoomstart');
-     if (event.target._animateToZoom) {
+     /* if (event.target._animateToZoom) {
         //add grid
         self.logger.log('MapService/zoomstart val' + self.map.getZoom());
 
@@ -117,7 +117,7 @@ export class MapService implements OnInit, OnDestroy {
       }else {
         // remove grid
         self.removeGridLayer();
-      }
+      } */
 
     });
     this.map.on ('measurestart', function () {
@@ -290,21 +290,21 @@ export class MapService implements OnInit, OnDestroy {
   }
 // grid feature
   getGridTest() {
-    this.logger.log('MapService/getGridTest');
-    this.gridService.getGridTest();
+  /*  this.logger.log('MapService/getGridTest');
+    this.gridService.getGridTest();*/
   }
   proj84To3035(grid: any) {
    // proj4.defs('urn:ogc:def:crs:EPSG::26915', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
     this.gridLayer = L.geoJSON(grid);
   }
   getGrid(locations: Location[]) {
-    this.loaderService.display(true);
+  /*  this.loaderService.display(true);
     this.logger.log('MapService/getGrid');
     const payload: PayloadGrid = {
       points: locations,
     }
     this.logger.log('MapService/payload ' +  JSON.stringify(payload) );
-    this.gridService.getGridWithPayloads(payload).then(grid  => this.retriveAndAddGridLayer(grid) );
+    this.gridService.getGridWithPayloads(payload).then(grid  => this.retriveAndAddGridLayer(grid) );*/
   }
   removeGridLayer() {
     if (this.gridLayer) {

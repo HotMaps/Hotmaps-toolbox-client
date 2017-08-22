@@ -1,13 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, inject, fakeAsync , ComponentFixture} from '@angular/core/testing';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
+import { Helper } from '../helper';
 import { MockBackend } from '@angular/http/testing';
-
 import { MapService } from './map.service';
 import {Logger} from './logger.service';
 import { LoaderService } from './loader.service'
+
 import { PopulationService } from '../../features/population/services/population.service';
-import { GridService } from '../../features/grid/services/grid.service';
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 
 import {Map} from 'leaflet';
@@ -27,11 +27,11 @@ describe('mapService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
         {provide: MockBackend, useClass: MockBackend},
         {provide: MapService, useClass: MapService},
-        {provide: GridService, useClass: GridService},
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: Logger, useValue: loggerStub},
 
