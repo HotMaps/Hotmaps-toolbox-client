@@ -7,6 +7,7 @@ import { MapService } from './map.service';
 import {Logger} from './logger.service';
 import { LoaderService } from './loader.service'
 import { PopulationService } from '../../features/population/services/population.service';
+import { GridService } from '../../features/grid/services/grid.service';
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 
 import {Map} from 'leaflet';
@@ -30,6 +31,7 @@ describe('mapService', () => {
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
         {provide: MockBackend, useClass: MockBackend},
         {provide: MapService, useClass: MapService},
+        {provide: GridService, useClass: GridService},
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: Logger, useValue: loggerStub},
 

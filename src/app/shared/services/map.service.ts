@@ -6,7 +6,8 @@ import {Http} from '@angular/http';
 import {Map} from 'leaflet';
 import {Popup} from 'leaflet';
 
-
+import 'proj4leaflet';
+import 'proj4'
 import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
@@ -18,7 +19,18 @@ import {Population} from '../../features/population/population.class';
 import {PopulationService} from '../../features/population/services/population.service';
 import {LoaderService} from './loader.service';
 import {Location} from '../location/location';
-import {forEach} from "@angular/router/src/utils/collection";
+import {Helper} from '../helper'
+import Created = L.DrawEvents.Created;
+
+import Polygon = L.Polygon;
+import LatLng = L.LatLng;
+import Circle = L.Circle;
+import Rectangle = L.Rectangle;
+import Layer = L.Layer;
+import Edited = L.DrawEvents.Edited;
+
+
+
 
 
 
@@ -31,9 +43,10 @@ export class MapService implements OnInit, OnDestroy {
   private vtLayer: any;
   private gridLayer: any;
   private layers: any = [];
+  private editableLayers = new L.FeatureGroup();
 
   constructor(private http: Http, private logger: Logger, private loaderService: LoaderService,
-              private populationService: PopulationService, private gridService: GridService) {
+              private populationService: PopulationService, private gridService: GridService, private helper: Helper) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
@@ -49,23 +62,6 @@ export class MapService implements OnInit, OnDestroy {
   }
   disableMouseEvent(elementId: string) {
   }
-
-  toggleAirPortLayer() {
-    this.logger.log('MapService/toggleAirPortLayer');
-   if (this.vtLayer) {
-     this.logger.log('MapService/toggleAirPortLayer/remove vtLayer');
-      this.map.removeLayer(this.vtLayer);
-      delete this.vtLayer;
-    } else {
-     this.logger.log('MapService/toggleAirPortLayer/add vtLayer');
-      this.http.get('https://rawgit.com/haoliangyu/angular2-leaflet-starter/master/public/data/airports.geojson')
-        .map(res => res.json())
-        .subscribe(result => {
-          this.vtLayer = L.vectorGrid.slicer(result);
-          this.vtLayer.addTo(this.map);
-        });
-    }
-  }
   setupMapservice(map: Map) {
     this.logger.log('MapService/setupMapservice');
     this.map = map;
@@ -73,7 +69,7 @@ export class MapService implements OnInit, OnDestroy {
   }
   retriveMapEvent(): void {
     this.logger.log('MapService/retriveMapEvent');
-    let self = this;
+    const self = this;
     this.map.on('zoomend', function() {
       self.logger.log('MapService/zoomend');
     });
@@ -81,7 +77,7 @@ export class MapService implements OnInit, OnDestroy {
     {
 
       self.logger.log('MapService/zoomstart');
-     /* if (event.target._animateToZoom) {
+     if (event.target._animateToZoom) {
         //add grid
         self.logger.log('MapService/zoomstart val' + self.map.getZoom());
 
@@ -118,58 +114,28 @@ export class MapService implements OnInit, OnDestroy {
           self.getGrid(locations);
           // 4 coordinate bound of the screen
         }
-      } else {
+      }else {
         // remove grid
         self.removeGridLayer();
-      }*/
+      }
 
     });
     this.map.on ('measurestart', function () {
-      self.logger.log('MapComponent/measurestart' + self.layers.length);
-      self.removeVtlayer();
-     /* self.map.eachLayer(function (layer) {
-        self.map.removeLayer(layer);
-      });*/
-
-
-   /*   for ( let i = 0; i < self.layers.length; i++) {
-        self.logger.log('MapComponent/measurestart' + self.layers[i]);
-        self.map.removeLayer(self.layers[i])
-      }*/
 
     });
     this.map.on('measurefinish', function (evt) {
-
-      writeResults(evt);
     });
     this.map.on('LayersControlEvent', function() {
       self.logger.log('LayersControlEvent');
     });
 
     this.map.on('layeradd', function(e) {
-      self.logger.log('MapService/layeradd-----' + e);
+      // self.logger.log('MapService/layeradd-----' + e);
 
-     // self.layers.push(e.target.layers);
     });
     this.map.on('popupclose', function(e) {
-     /* self.logger.log('MapService/popupclose-----' + e);
-      if (!self.currentPopup) {
-        self.removeVtlayer();
-      }*/
-      ///self.removeVtlayer();
     });
     this.map.on('popupopen', function(e) {
-      const html: HTMLDivElement =  e.target._popup.getContent();
-
-      self.currentPopup = e.target._popup;
-
-
-      self.logger.log('html id dd ' +  html.align);
-      self.logger.log('firstElementChild  ' + html.firstElementChild);
-      self.logger.log('lastChild  ' + html.lastChild);
-
-
-      e.target._popup.setContent(html);
       self.logger.log('popupopen  ' +  e.target._popup);
     });
 
@@ -179,33 +145,105 @@ export class MapService implements OnInit, OnDestroy {
 
     });
     this.map.on('overlayadd', onOverlayAdd);
+    this.map.on(L.Draw.Event.CREATED , function (e) {
+      const event: Created = <Created>e;
+      self.editableLayers.clearLayers();
+      self.removeVtlayer();
+      const type = event.layerType,
+        layer = event.layer;
+      if (type === 'rectangle') {
+        self.logger.log('rectangle');
+        const rectangle: Rectangle = <Rectangle>event.layer;
+        const latlng = rectangle.getLatLngs()[0];
+        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+        self.logger.logJson(locations);
+        self.getPopulation(locations, layer);
+      } else if (type === 'polygon') {
+       const polygon: Polygon = <Polygon>event.layer;
+       const latlng = polygon.getLatLngs()[0];
+       const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+        self.logger.logJson(locations);
+       self.getPopulation(locations, layer);
+
+      } else if (type === 'circle') {
+        self.logger.log('circle')
+        const circle: Circle = <Circle>event.layer;
+        self.logger.log('circle getLatLng' + circle.getLatLng());
+        // self.logger.log('circle getBounds' + circle.getBounds());
+        self.logger.log('circle getBounds' + circle.getRadius());
+        layer.bindPopup('A popup!');
+      }
+
+      self.editableLayers.addLayer(layer);
+      console.log(layer.openPopup());
+    });
+    this.map.on(L.Draw.Event.EDITED , function (e) {
+      const event: Edited = <Edited>e;
+
+      event.layers.eachLayer(function (layer: Layer) {
+        const lay: Layer = layer;
+        self.logger.log('layer ' + layer);
+        if (layer instanceof L.Marker) {
+          self.logger.log('Marker ');
+        }else if (layer instanceof L.Polygon) {
+          self.logger.log('Polygon ');
+          const polygon: Polygon = <Polygon>layer;
+          const latlng = polygon.getLatLngs()[0];
+          const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+          self.logger.logJson(locations);
+          self.getPopulation(locations, layer);
+        };
+      });
+      const type = event.layers[0].type,
+        layer = event.layers[0].layer;
+      self.logger.log(event.layers[0].type);
+      self.logger.log(event.layers[0].layer);
+      if (type === 'rectangle') {
+        self.logger.log('rectangle');
+        const rectangle: Rectangle = <Rectangle>event.layers[0].layer;
+        const latlng = rectangle.getLatLngs()[0];
+        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+        self.logger.logJson(locations);
+        self.getPopulation(locations, layer);
+      } else if (type === 'polygon') {
+        const polygon: Polygon = <Polygon>event.layers[0].layer;
+        const latlng = polygon.getLatLngs()[0];
+        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
+        self.logger.logJson(locations);
+        self.getPopulation(locations, layer);
+
+      } else if (type === 'circle') {
+        self.logger.log('circle')
+        const circle: Circle = <Circle>event.layers[0].layer;
+        self.logger.log('circle getLatLng' + circle.getLatLng());
+        // self.logger.log('circle getBounds' + circle.getBounds());
+        self.logger.log('circle getBounds' + circle.getRadius());
+        layer.bindPopup('A popup!');
+      }
+
+      self.editableLayers.addLayer(layer);
+      console.log(layer.openPopup());
+    });
+
     function onOverlayAdd(e) {
       self.logger.log('overlayadd');
 
     }
-    function writeResults (results: any) {
-      self.logger.log('MapService/ngAfterContentInit/writeResults');
-      let locations =  [];
-      for (let _i = 0; _i < results.points.length; _i++) {
-        const lat = results.points[_i].lat;
-        const lng = results.points[_i].lng;
-        const loc: Location = {
-          lat: lat,
-          lng: lng
-        };
-        locations.push(loc);
-      }
-      self.logger.log('locations ' +  JSON.stringify(locations) );
-      self.logger.log('MapComponent/ngAfterContentInit/writeResults/results.points= ' + results.points);
-      if (locations.length === 0) {
-        self.logger.log('locations empty' );
-        return;
-      }
-      self.getPopulation(locations);
-    }
+  }
+
+  latLngsToCoords(arrLatlng) {
+    const self = this;
+    const coords = [];
+    arrLatlng.forEach(function(latlng) {
+        self.logger.log(' Lat =' + latlng.lat);
+        self.logger.log(' Lngs =' + latlng.lng);
+        coords.push( [latlng.lng, latlng.lat]);
+      },
+      this);
+    return coords;
   }
   // population feature
-  getPopulation(locations: Location[]) {
+  getPopulation(locations: Location[], layer: Layer) {
     this.loaderService.display(true);
     this.logger.log('MapService/getPopulation');
     const payload: Payload = {
@@ -214,18 +252,27 @@ export class MapService implements OnInit, OnDestroy {
       points: locations,
     }
     this.logger.log('MapService/payload ' +  JSON.stringify(payload) );
-    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population));
+    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer));
   }
-  retriveAndAddLayer(population: Population) {
+  retriveAndAddLayer(population: Population, layer: Layer) {
     this.logger.log('MapService/retriveAndAddLayer');
     this.showlayer(JSON.parse(population.geometries));
     const populationValue = population.sum_density;
-    const html: HTMLDivElement = <HTMLDivElement> this.currentPopup.getContent();
-    this.logger.log('html content ' +  html);
-    this.logger.log('html content innerHTML' +  html.innerHTML);
-    this.currentPopup.setContent(html);
-    alert('population: ' + population.sum_density);
+    function foo() {
+      alert('foo');
+    }
+    layer.bindPopup('<h3>Area selected</h3><p>This is	information	about	the	area </p> <ul>' +
+      '<li>Population: ' + populationValue + '</li><li>Nuts: ' + population.nuts_level + '</li><li>Year: ' + population.year + '</li>' +
+      '<li>Area: </li><br><button id="btnDelete">Delete</button></ul>').openPopup();
+
+    document.getElementById ('btnDelete').addEventListener ('click', deleteSelectedArea, false);
+    const self = this;
+    function deleteSelectedArea(zEvent) {
+      self.removeVtlayer();
+      self.editableLayers.clearLayers();
+    }
   }
+
   showlayer(geometrie: any) {
     this.logger.log('MapService/showlayer');
     this.removeVtlayer();
@@ -268,26 +315,84 @@ export class MapService implements OnInit, OnDestroy {
   }
   retriveAndAddGridLayer(grid: any) {
     this.logger.log('MapService/retriveAndAddLayer');
+
+    // test
+
+
     this.showGridlayer(grid);
     this.loaderService.display(false);
   }
-  showGridlayer(grid: GeoJSONGeoJsonObject) {
+  showGridlayer(grid: any) {
     this.logger.log('MapService/showlayer');
     this.removeGridLayer();
+    // GeoJSON layer (UTM15)
+    proj4.defs('EPSG:26915', '+proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs');
 
+    const geojson = {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [481650, 4980105],
+      },
+      'properties': {
+        'name': 'University of Minnesota'
+      },
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'urn:ogc:def:crs:EPSG::26915'
+        }
+      }
+    };
 
-
+    L.Proj.geoJson(geojson, {
+      'pointToLayer': function(feature, latlng) {
+        return L.marker(latlng).bindPopup('hello');
+      }
+    }).addTo(this.map);
 // or
     // var weirdProjgeojson = TransformGeojson.from(wgs84geojson,sr);
-    //  proj4.defs('urn:ogc:def:crs:EPSG::3035', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
-    // this.logger.log('MapService/showGridlayer/Proj val' + Proj);
-    // this.gridLayer = L.Proj.geoJson(grid);
+    this.logger.logJson(grid);
+   // proj4.defs('urn:ogc:def:crs:EPSG::3035', '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs');
+     this.logger.log('MapService/showGridlayer/Proj val');
+   //  this.gridLayer = L.Proj.geoJson(grid);
     // this.gridLayer = L
 
     this.gridLayer.addTo(this.map);
     this.loaderService.display(false);
   }
 
-
+  addDrawerControl(map: Map) {
+    map.addLayer(this.editableLayers);
+    const options = {
+      position: 'topleft',
+      draw: {
+        polyline: false,
+        polygon: {
+          allowIntersection: false, // Restricts shapes to simple polygons
+          drawError: {
+            color: '#e1e100', // Color the shape will turn when intersects
+            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+          },
+          shapeOptions: {
+            color: '#bada55'
+          }
+        },
+        circle: false,  // Turns off this drawing tool
+        rectangle: {
+          shapeOptions: {
+            clickable: false
+          }
+        },
+        marker: false,
+      },
+      edit: {
+        featureGroup: this.editableLayers, // REQUIRED!!
+        remove: true
+      }
+    };
+    const drawControl = new L.Control.Draw(options);
+    map.addControl(drawControl);
+  }
 
 }
