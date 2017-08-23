@@ -35,7 +35,9 @@ declare namespace  L {
 declare namespace  L {
     export function virtualGrid({ }): any;
 }
-
+declare namespace  L.Circle {
+  export function toPolygon(vertices: Number, map: Map): any;
+}
 declare namespace  VirtualGrid {
   export function extend({ }): any;
 }

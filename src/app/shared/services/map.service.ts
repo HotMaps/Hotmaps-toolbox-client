@@ -168,10 +168,19 @@ export class MapService implements OnInit, OnDestroy {
       } else if (type === 'circle') {
         self.logger.log('circle')
         const circle: Circle = <Circle>event.layer;
-        self.logger.log('circle getLatLng' + circle.getLatLng());
-        // self.logger.log('circle getBounds' + circle.getBounds());
-        self.logger.log('circle getBounds' + circle.getRadius());
-        layer.bindPopup('A popup!');
+        const origin = circle.getLatLng(); // center of drawn circle
+        const radius = circle.getRadius(); // radius of drawn circle
+        const polys = self.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
+        const locations = [];
+        for (let i = 0; i < polys.length; i++) {
+          const loc: Location = {
+            lat: polys[i].lat,
+            lng: polys[i].lng
+          };
+          locations.push(loc);
+        }
+        self.logger.logJson(locations);
+        self.getPopulation(locations, layer);
       }
 
       self.editableLayers.addLayer(layer);
@@ -192,37 +201,31 @@ export class MapService implements OnInit, OnDestroy {
           const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
           self.logger.logJson(locations);
           self.getPopulation(locations, layer);
+        }else if (layer instanceof L.Circle) {
+          self.logger.log('Circle ');
+          const circle: Circle = <Circle>layer;
+          self.logger.log('circle getLatLng' + circle.getLatLng());
+          // self.logger.log('circle getBounds' + circle.getBounds());
+          self.logger.log('circle getBounds' + circle.getRadius());
+          const origin = circle.getLatLng(); // center of drawn circle
+          const radius = circle.getRadius(); // radius of drawn circle
+          const polys = self.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
+          const locations = [];
+          for (let i = 0; i < polys.length; i++) {
+            const loc: Location = {
+              lat: polys[i].lat,
+              lng: polys[i].lng
+            };
+            locations.push(loc);
+          }
+          self.logger.logJson(locations);
+          self.getPopulation(locations, layer);
         };
+        self.editableLayers.addLayer(layer);
+        console.log(layer.openPopup());
       });
-      const type = event.layers[0].type,
-        layer = event.layers[0].layer;
-      self.logger.log(event.layers[0].type);
-      self.logger.log(event.layers[0].layer);
-      if (type === 'rectangle') {
-        self.logger.log('rectangle');
-        const rectangle: Rectangle = <Rectangle>event.layers[0].layer;
-        const latlng = rectangle.getLatLngs()[0];
-        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
-        self.logger.logJson(locations);
-        self.getPopulation(locations, layer);
-      } else if (type === 'polygon') {
-        const polygon: Polygon = <Polygon>event.layers[0].layer;
-        const latlng = polygon.getLatLngs()[0];
-        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
-        self.logger.logJson(locations);
-        self.getPopulation(locations, layer);
 
-      } else if (type === 'circle') {
-        self.logger.log('circle')
-        const circle: Circle = <Circle>event.layers[0].layer;
-        self.logger.log('circle getLatLng' + circle.getLatLng());
-        // self.logger.log('circle getBounds' + circle.getBounds());
-        self.logger.log('circle getBounds' + circle.getRadius());
-        layer.bindPopup('A popup!');
-      }
 
-      self.editableLayers.addLayer(layer);
-      console.log(layer.openPopup());
     });
 
     function onOverlayAdd(e) {
@@ -263,7 +266,7 @@ export class MapService implements OnInit, OnDestroy {
     }
     layer.bindPopup('<h3>Area selected</h3><p>This is	information	about	the	area </p> <ul>' +
       '<li>Population: ' + populationValue + '</li><li>Nuts: ' + population.nuts_level + '</li><li>Year: ' + population.year + '</li>' +
-      '<li>Area: </li><br><button id="btnDelete">Delete</button></ul>').openPopup();
+      '<li>Area: </li><br><button id="btnDelete">Clear All</button></ul>').openPopup();
 
     document.getElementById ('btnDelete').addEventListener ('click', deleteSelectedArea, false);
     const self = this;
@@ -378,8 +381,11 @@ export class MapService implements OnInit, OnDestroy {
             color: '#bada55'
           }
         },
-        circle: false,  // Turns off this drawing tool
+        circle: true,  // Turns off this drawing tool
         rectangle: {
+          tooltip : {
+            start : 'dede',
+          },
           shapeOptions: {
             clickable: false
           }
@@ -387,6 +393,14 @@ export class MapService implements OnInit, OnDestroy {
         marker: false,
       },
       edit: {
+        toolbar: {
+          actions: {
+            save: {
+              title: 'Validate__',
+              text: 'Validate__'
+            },
+          },
+        },
         featureGroup: this.editableLayers, // REQUIRED!!
         remove: true
       }
