@@ -1,7 +1,18 @@
-<!--<div id="modules-service">
-  <htm-modules-service-list></htm-modules-service-list>
-</div>-->
-<div id="map">
+<div class="title-map">
   <hmt-search-bar></hmt-search-bar>
-  <!--<hmt-toolbar></hmt-toolbar>-->
+  <input class="button-navbar" type="image" height="35" width="35" src="assets/leaflet-images/layers.png" (click)="toggleLeftExpandedState()" />
+
+</div>
+
+<div class="container-map">
+  <htm-left-side-panel></htm-left-side-panel>
+
+    <div id="map">
+
+      <!--<hmt-toolbar></hmt-toolbar>-->
+    </div>
+
+
+  <htm-right-side-panel></htm-right-side-panel>
+
 </div>

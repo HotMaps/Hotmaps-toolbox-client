@@ -12,7 +12,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import { BrowserXhr } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '@angular/material';
 
@@ -36,7 +35,10 @@ import { ModuleServiceListComponent } from './features/modules-service/modules-s
 import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
 import { GridService } from './features/grid/services/grid.service';
-
+import { SidePanelService} from './features/side-panel/side-panel.service';
+import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
+import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 @NgModule({
   imports: [HttpModule,
@@ -45,7 +47,8 @@ import { GridService } from './features/grid/services/grid.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    SidebarModule.forRoot()],
+    SidebarModule.forRoot(),
+    Angular2FontawesomeModule],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
@@ -55,10 +58,12 @@ import { GridService } from './features/grid/services/grid.service';
     MapComponent,
     RegisterComponent,
     ModuleServiceListComponent,
-
+    RightSideComponent,
+    LeftSideComponent
 
 
   ],
+
   providers: [
     PopulationService,
     GeocodingService,
@@ -70,6 +75,7 @@ import { GridService } from './features/grid/services/grid.service';
     GlobalErrorHandler,
     GridService,
     Helper,
+    SidePanelService,
 
 
   ],
