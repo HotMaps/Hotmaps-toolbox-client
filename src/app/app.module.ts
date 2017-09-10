@@ -28,6 +28,7 @@ import { MapComponent } from './pages/map/map.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
 import { Helper } from './shared/helper';
+import { LayersService } from './features/layers/layers.service';
 import { LoaderService } from './shared/services/loader.service';
 import { PopulationService } from './features/population/services/population.service';
 import { ModulesServiceService } from './features/modules-service/modules-service.service';
@@ -39,6 +40,8 @@ import { SidePanelService} from './features/side-panel/side-panel.service';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
+
 
 @NgModule({
   imports: [HttpModule,
@@ -59,6 +62,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     RegisterComponent,
     ModuleServiceListComponent,
     RightSideComponent,
+    DataInteractionCellComponent,
     LeftSideComponent
 
 
@@ -76,6 +80,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     GridService,
     Helper,
     SidePanelService,
+    LayersService
 
 
   ],

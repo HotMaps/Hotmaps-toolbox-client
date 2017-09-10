@@ -1,16 +1,20 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, inject, fakeAsync , ComponentFixture} from '@angular/core/testing';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
-import { Helper } from '../helper';
 import { MockBackend } from '@angular/http/testing';
+import { Map} from 'leaflet';
+
+import { Helper } from '../helper';
 import { MapService } from './map.service';
-import {Logger} from './logger.service';
+import { Logger} from './logger.service';
 import { LoaderService } from './loader.service'
 
 import { PopulationService } from '../../features/population/services/population.service';
+import { LayersService } from '../../features/layers/layers.service';
+
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 
-import {Map} from 'leaflet';
+
 
 describe('mapService', () => {
   let populationService: MockPopulationService;

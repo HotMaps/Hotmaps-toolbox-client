@@ -14,9 +14,9 @@ import {
 
 })
 export class SideComponent implements OnInit, OnDestroy {
-    expanded = false;
-    private title = 'SideComponent title';
-    expandedState = 'collapsed';
+    protected expanded = false;
+    protected title = 'SideComponent title';
+    protected expandedState = 'collapsed';
     constructor() {
     }
 

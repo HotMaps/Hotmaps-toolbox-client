@@ -42,6 +42,7 @@ export class PopulationService extends APIService {
     this.getPopulationWithPayloads(payload).then(grid  => this.logPopulation(grid))
   }
 
+
   getPopulationWithPayloads(payload: Payload): Promise<Population> {
     const url = apiUrl + postPopulationDensityInArea;
     this.logger.log('PopulationServices/apiUrl-postPopulationDensityInArea = ' + url)

@@ -2,7 +2,7 @@ import {Component, AfterContentInit, OnInit, ViewChild} from '@angular/core';
 
 import { LoaderService } from './shared/services/loader.service';
 
-import { SidePanelService} from './features/side-panel/side-panel.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,31 +19,19 @@ export class AppComponent implements OnInit , AfterContentInit {
   showLoader: boolean;
 
   constructor(
-    private loaderService: LoaderService, private panelService: SidePanelService) {
+    private loaderService: LoaderService) {
   }
 
   ngAfterContentInit(): void {
    this.notifyLoaderService();
 
   }
-
   notifyLoaderService() {
 
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
     });
   }
-
-  // manage the click or sidebar
-  toggleRightExpandedState() {
-    this.panelService.rightPanelexpandedCollapsed();
-  }
-
-  toggleLeftExpandedState() {
-    this.panelService.leftPanelexpandedCollapsed();
-  }
-
-
   ngOnInit() {
   }
 

@@ -5,6 +5,9 @@ import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 
@@ -36,5 +39,23 @@ export class APIService {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
+  POST(payload, url): Promise<any> {
+    return this.http
+      .post(url, JSON.stringify(payload), {headers: this.headers})
+      .toPromise()
+      .then( response => response.json() as any)
+      .catch(this.handleError.bind(this));
+  }
+  GET(url): any {
+    return this.http.get(url).map((res: Response) => res.json()).subscribe(res => console.log(JSON.stringify(res)));
+  }
+
+  public async getJSONFromFille(url: string): Promise<any> {
+    return this.http.get(url)
+      .toPromise()
+      .then( response => response.json() as any)
+
+  }
+
 
 }

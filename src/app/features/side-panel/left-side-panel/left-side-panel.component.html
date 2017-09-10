@@ -6,5 +6,9 @@
         </a>
     </div>
 
-
+  <div class="notifications">
+    <data-interaction-cell *ngFor="let n of layers"
+                           [dataInteraction]="n"
+                           [expanded]="expanded"></data-interaction-cell>
+  </div>
 </div>

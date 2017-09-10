@@ -1,21 +1,15 @@
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
-
-import {ToolbarComponent} from '../toolbar/toolbar.component';
-import {SearchBarComponent} from '../searchbar/searchbar.component';
-import {basemap} from './basemap'
-import {GeocodingService} from '../../shared/services/geocoding.service';
-import {Map} from 'leaflet';
-import {MapService} from '../../shared/services/map.service';
-import {LoaderService} from '../../shared/services/loader.service';
-import {Logger} from '../../shared/services/logger.service';
+import { Map} from 'leaflet';
 import {Control} from 'leaflet-measure'
-import {RightSideComponent} from '../../features/side-panel/right-side-panel/index';
-import {LeftSideComponent} from '../../features/side-panel/left-side-panel/index';
-import { SidePanelService} from '../../features/side-panel/side-panel.service';
 import 'leaflet-draw'
 
-import Polyline = L.Polyline;
-import Created = L.DrawEvents.Created;
+import { basemap } from './basemap'
+import { LeftSideComponent } from '../../features/side-panel/left-side-panel/index';
+import { Logger } from '../../shared/services/logger.service';
+import { MapService } from '../../shared/services/map.service';
+import { SearchBarComponent } from '../searchbar/searchbar.component';
+import { SidePanelService} from '../../features/side-panel/side-panel.service';
+import { RightSideComponent } from '../../features/side-panel/right-side-panel/index';
 
 
 @Component({
@@ -28,7 +22,6 @@ import Created = L.DrawEvents.Created;
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   private map: Map;
-  @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
   openRightSidebar = false;
@@ -36,7 +29,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 
-  constructor(private mapService: MapService, private geocoder: GeocodingService,
+  constructor(private mapService: MapService,
               private logger: Logger,  private panelService: SidePanelService,
 ) {}
 
@@ -44,8 +37,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/AfterViewInit');
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
     this.notifySidePanelComponent();
-    this.leftPanelComponent.setTitle('DATA INTERACTIONS');
-    // this.mapService.getGridTest();
+    this.leftPanelComponent.setTitle('Layers');
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
@@ -89,13 +81,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.getMap());
     this.initializeNavigator();
     this.map.invalidateSize();
-
-
-
-  }
-
-  initializeToolbar(): void {
-    this.toolbarComponent.Initialize();
   }
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();
@@ -104,7 +89,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     let self = this;
-
     this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.getMap());
     const option =  {
       zoomControl: false,
@@ -139,9 +123,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
-
     L.control.scale().addTo(this.map);
-    // L.control.measure(measureOption).addTo(this.map);
     this.mapService.addDrawerControl(this.map);
     return this.map;
   }

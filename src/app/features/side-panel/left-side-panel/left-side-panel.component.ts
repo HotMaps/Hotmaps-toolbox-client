@@ -10,6 +10,10 @@ import {
 } from '@angular/core';
 
 import {SideComponent} from '../side-panel.component';
+
+import {DataInteractionService} from '../../data-interaction/data-interaction.service';
+import {DataInteractionClass} from '../../data-interaction/data-interaction.class';
+
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -80,19 +84,30 @@ import {SideComponent} from '../side-panel.component';
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
         ])
-    ]
+    ],
+  providers: [DataInteractionService],
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
+  expanded = false;
+  expandedState = 'collapsed';
 
-    constructor() {
+  layers: DataInteractionClass[];
+
+  constructor(private dataInteractionService: DataInteractionService) {
         super();
     }
 
     ngOnInit() {
-     }
-    ngOnDestroy() {
 
+      this.dataInteractionService.getDataInteractionServices().then(layers => this.layers = layers);
+     }
+
+    ngOnDestroy() {
     }
 
+   /* toggleExpandedState() {
+      this.expandedState = this.expanded ? 'collapsed' : 'expanded';
+      this.expanded = !this.expanded;
+    }*/
 
 }

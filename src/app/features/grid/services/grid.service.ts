@@ -41,6 +41,15 @@ export class GridService extends APIService {
       .then( response => response.json() as any)
       .catch(this.handleError);
   }
+  getLayerwpt(): Promise<any> {
+
+    const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=hotmaps:wwtp&maxFeatures=50&srsName=EPSG:4326&outputFormat=application%2Fjson'
+    return this.http
+      .post(url, {headers: this.headers})
+      .toPromise()
+      .then( response => response.json() as any)
+      .catch(this.handleError);
+  }
 
   logGrid(grid: Grid) {
     this.logger.log('PopulationServices/logPopulation/population = ' + JSON.stringify(grid))
