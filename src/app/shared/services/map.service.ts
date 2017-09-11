@@ -12,9 +12,9 @@ import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
 import {basemap} from '../../pages/map/basemap';
-import {GridService} from '../../features/grid/services/grid.service';
+
 import {Payload} from '../../features/population/payload.class';
-import {PayloadGrid} from '../../features/grid/payload.grid.class';
+
 import {Population} from '../../features/population/population.class';
 
 import {LayersService} from '../../features/layers/layers.service';
@@ -50,7 +50,7 @@ export class MapService implements OnInit, OnDestroy {
   private layers: any = [];
   private editableLayers = new L.FeatureGroup();
 
-  constructor(private http: Http, private logger: Logger, private loaderService: LoaderService,
+  constructor(private logger: Logger, private loaderService: LoaderService,
               private populationService: PopulationService, private layersService: LayersService, private helper: Helper) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
@@ -156,6 +156,7 @@ export class MapService implements OnInit, OnDestroy {
       self.editableLayers.addLayer(layer);
       console.log(layer.openPopup());
     });
+
     this.map.on(L.Draw.Event.EDITED , function (e) {
       const event: Edited = <Edited>e;
 
@@ -228,15 +229,12 @@ export class MapService implements OnInit, OnDestroy {
     this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer));
   }
 
-  getTestWWTP() {
-    this.logger.log('MapService/getTestWWTP');
-    this.logger.log('MapService/getTestWWTP');
-  }
 
   addLayerWithAction(action: string) {
     this.layersService.addLayerWithAction(action, this.map);
 
   }
+
 
 
   retriveAndAddLayer(population: Population, layer: Layer) {
@@ -246,9 +244,9 @@ export class MapService implements OnInit, OnDestroy {
     function foo() {
       alert('foo');
     }
-    layer.bindPopup('<h3>Area selected</h3><p>This is	information	about	the	area </p> <ul>' +
+    layer.bindPopup('<h3>Area selected</h3><ul>' +
       '<li>Population: ' + populationValue + '</li><li>Nuts: ' + population.nuts_level + '</li><li>Year: ' + population.year + '</li>' +
-      '<li>Area: </li><br><button id="btnDelete">Clear All</button></ul>').openPopup();
+      '<br><button id="btnDelete">Clear All</button></ul>').openPopup();
 
     document.getElementById ('btnDelete').addEventListener ('click', deleteSelectedArea, false);
     const self = this;
@@ -296,14 +294,6 @@ export class MapService implements OnInit, OnDestroy {
     })
     this.wwtpPoints.addTo(this.map);
     this.loaderService.display(false);
-  }
-
-  removeGridLayer() {
-    if (this.gridLayer) {
-      this.logger.log('MapService/removelayer');
-      this.map.removeLayer(this.gridLayer);
-      delete this.gridLayer;
-    }
   }
 
   addDrawerControl(map: Map) {

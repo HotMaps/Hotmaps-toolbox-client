@@ -33,29 +33,31 @@ export class LayersService extends APIService {
 
   getDetailLayerPoint(action: string , latlng: LatLng, map): any {
     if (this.wwtpPoints) {
-
       const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
       const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
         '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
-        + action + '&STYLES&LAYERS=hotmaps:wwtp&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+        + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
         '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-      console.log('url ' + url)
-      return this.http.get(url).map((res: Response) => res.json() as GeojsonClass).subscribe(res => this.addPopup(map, res, latlng), err => this.handleError.bind(this));
+      console.log('url ' + url);
+      return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+        .subscribe(res => this.addPopup(map, res, latlng), err => this.handleError.bind(this));
     }
   }
   addLayerWithAction(action: string, map: any ) {
     if (this.wwtpPoints) {
       this.removeWWTPlayer(map)
-    } else {this.wwtpPoints = L.tileLayer.wms(geoserverUrl, {
+    } else {
+      this.loaderService.display(true);
+      this.wwtpPoints = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
     }).addTo(map);
+      this.loaderService.display(false);
     }
   }
   removeWWTPlayer(map: any ) {
-
     if (this.wwtpPoints) {
       this.logger.log('LayersService/removeWWTPlayer');
       map.removeLayer(this.popup);
@@ -65,8 +67,6 @@ export class LayersService extends APIService {
     }
   }
   addPopup(map, res: GeojsonClass, latlng: LatLng) {
-
-
     const gid = res.features[0].properties.gid;
     const capacity = res.features[0].properties.capacity;
     const power = res.features[0].properties.power;

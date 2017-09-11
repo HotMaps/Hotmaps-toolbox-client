@@ -21,12 +21,9 @@ import {Logger} from './logger.service';
 
 import {ToasterService} from './toaster.service';
 export class APIService {
-  http: Http;
-  logger: Logger;
-  loaderService: LoaderService;
-  toasterService: ToasterService;
   public headers = new Headers({'Content-Type': 'application/json'});
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(protected http: Http, protected logger: Logger, protected  loaderService: LoaderService,
+              protected  toasterService: ToasterService) {
     this.http = http;
     this.logger = logger;
     this.loaderService = loaderService;

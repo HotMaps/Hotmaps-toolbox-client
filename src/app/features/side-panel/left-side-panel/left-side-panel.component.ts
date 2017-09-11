@@ -13,7 +13,6 @@ import {SideComponent} from '../side-panel.component';
 
 import {DataInteractionService} from '../../data-interaction/data-interaction.service';
 import {DataInteractionClass} from '../../data-interaction/data-interaction.class';
-
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -92,6 +91,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   expandedState = 'collapsed';
 
   layers: DataInteractionClass[];
+  category: DataInteractionClass[];
 
   constructor(private dataInteractionService: DataInteractionService) {
         super();
@@ -99,7 +99,14 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
     ngOnInit() {
 
-      this.dataInteractionService.getDataInteractionServices().then(layers => this.layers = layers);
+      this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
+     }
+     getLayerAndCategory(layers: any) {
+       this.layers = layers
+       this.category = layers.map(item => item.category)
+         .filter((value, index, self) => self.indexOf(value) === index);
+
+       console.log(this.category);
      }
 
     ngOnDestroy() {

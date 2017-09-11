@@ -2,7 +2,7 @@
 <div *ngIf="expanded" [@visibleTrigger]="'visible'" class="details">
 
     <div class="message">
-      <input type="checkbox" name={{dataInteraction.name}} value="Bike" (change)="showRemoveLayer($event,dataInteraction.name)"> <span>{{dataInteraction.name}}</span>
+      <input type="checkbox" name={{dataInteraction.name}} [checked]="dataInteraction.isSelected" (change)="showRemoveLayer($event,dataInteraction.name)"> <span>{{dataInteraction.name}}</span>
     </div>
 
 </div>

@@ -7,8 +7,14 @@
     </div>
 
   <div class="notifications">
-    <data-interaction-cell *ngFor="let n of layers"
-                           [dataInteraction]="n"
-                           [expanded]="expanded"></data-interaction-cell>
+    <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+    <span  *ngFor="let i of category"><b>{{i}}</b>
+      <ng-container *ngFor="let n of layers" >
+        <span *ngIf="i === n.category">
+      <data-interaction-cell [dataInteraction]="n" [expanded]="expanded"></data-interaction-cell>
+        </span>
+    </ng-container>
+  </span>
+    </span>
   </div>
 </div>

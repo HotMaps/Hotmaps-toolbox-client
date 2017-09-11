@@ -1,3 +1,6 @@
+import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+
 import { MockMapService } from '../../shared/services/mock/map.service';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -12,12 +15,14 @@ import { MapService} from '../../shared/services/map.service';
 import { MapComponent} from './map.component'
 import { MockLoggerService } from '../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../shared/services/mock/loader.service';
-
+import { GeocodingService } from '../../shared/services/geocoding.service';
+import { MockGeocodeService } from '../../shared/services/mock/geocoding.service';
 import { LeftSideComponent } from '../../features/side-panel/left-side-panel/left-side-panel.component';
 import { SidePanelService } from '../../features/side-panel/side-panel.service';
 import { RightSideComponent } from '../../features/side-panel/right-side-panel/right-side-panel.component';
+import { MdSnackBar } from '@angular/material';
+import { ToasterService } from '../../shared/services/toaster.service';
 
-import { ModuleServiceListComponent } from '../../features/modules-service/modules-service-list.component';
 
 
 describe('MapComponent', () => {
@@ -27,17 +32,31 @@ describe('MapComponent', () => {
   let sidePanelService: SidePanelService;
   let mockLoggerService: MockLoggerService;
   let mockLoaderService: MockLoaderService;
+  let mockGeocodeService: MockGeocodeService;
+
   beforeEach(() => {
     mockMapService = new MockMapService();
     sidePanelService = new SidePanelService();
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
+    mockGeocodeService = new MockGeocodeService();
     TestBed.configureTestingModule({
-      declarations: [MapComponent, ModuleServiceListComponent, LeftSideComponent, RightSideComponent,
+      declarations: [MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent],
       providers: [
+        {
+          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+          return new Http(backend, defaultOptions);
+        }, deps: [MockBackend, BaseRequestOptions]
+        },
+
+        {provide: MdSnackBar, useClass: MdSnackBar},
+        {provide: ToasterService, useClass: ToasterService},
         {provide: MapService, useValue: mockMapService},
         {provide: Logger, useValue: mockLoggerService },
+        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
+        {provide: MockBackend, useClass: MockBackend},
+        {provide: GeocodingService, useValue: mockGeocodeService },
         {provide: LoaderService, useValue: mockLoaderService },
         {provide: SidePanelService, useValue: mockLoaderService },
       ],
@@ -49,11 +68,6 @@ describe('MapComponent', () => {
     fixture = TestBed.createComponent(MapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should have a map created', () => {
-
-    expect(component.getMap()).toBeDefined();
   });
 
 });

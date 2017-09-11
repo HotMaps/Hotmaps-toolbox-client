@@ -31,11 +31,8 @@ import { Helper } from './shared/helper';
 import { LayersService } from './features/layers/layers.service';
 import { LoaderService } from './shared/services/loader.service';
 import { PopulationService } from './features/population/services/population.service';
-import { ModulesServiceService } from './features/modules-service/modules-service.service';
-import { ModuleServiceListComponent } from './features/modules-service/modules-service-list.component';
 import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
-import { GridService } from './features/grid/services/grid.service';
 import { SidePanelService} from './features/side-panel/side-panel.service';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
@@ -60,10 +57,9 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     LoginComponent,
     MapComponent,
     RegisterComponent,
-    ModuleServiceListComponent,
     RightSideComponent,
     DataInteractionCellComponent,
-    LeftSideComponent
+    LeftSideComponent,
 
 
   ],
@@ -72,12 +68,10 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     PopulationService,
     GeocodingService,
     MapService,
-    ModulesServiceService,
     Logger,
     LoaderService,
     ToasterService,
     GlobalErrorHandler,
-    GridService,
     Helper,
     SidePanelService,
     LayersService
