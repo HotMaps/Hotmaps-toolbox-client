@@ -8,8 +8,6 @@ import {
     transition,
     animate
 } from '@angular/core';
-import { NavigationButton } from './../../pages/nav/navigation.class';
-import { navigationButtons } from './../../pages/nav/nav-buttons.data';
 
 
 @Component({
@@ -50,15 +48,5 @@ export class SideComponent implements OnInit, OnDestroy {
             this.expandedState = 'collapsed';
         }
         this.expanded = !this.expanded;
-    }
-
-
-    // A check par Lesly
-    changeOpenState(side: string) {
-        navigationButtons.forEach(button => {
-            if (button.buttonFunction === side) {
-                button.stateOpen = false;
-            }
-        });
     }
 }

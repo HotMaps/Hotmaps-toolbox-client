@@ -40,6 +40,8 @@ import { SidePanelService} from './features/side-panel/side-panel.service';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
+import { NavigationBarService } from './pages/nav/navigation-bar.service';
 
 @NgModule({
   imports: [
@@ -62,7 +64,8 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     RegisterComponent,
     ModuleServiceListComponent,
     RightSideComponent,
-    LeftSideComponent
+    LeftSideComponent,
+    NavigationBarComponent
 
 
   ],
@@ -79,6 +82,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     GridService,
     Helper,
     SidePanelService,
+    NavigationBarService
 
 
   ],

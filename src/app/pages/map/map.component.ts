@@ -2,6 +2,7 @@ import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angul
 
 import {ToolbarComponent} from '../toolbar/toolbar.component';
 import {SearchBarComponent} from '../searchbar/searchbar.component';
+import { NavigationBarComponent } from './../nav/navigation-bar.component';
 import {basemap} from './basemap'
 import {GeocodingService} from '../../shared/services/geocoding.service';
 import {Map} from 'leaflet';
@@ -15,8 +16,6 @@ import { SidePanelService} from '../../features/side-panel/side-panel.service';
 import 'leaflet-draw';
 import Polyline = L.Polyline;
 import Created = L.DrawEvents.Created;
-import { navigationButtons } from '../nav/nav-buttons.data';
-import { NavigationButton } from '../nav/navigation.class';
 
 @Component({
   selector: 'htm-map',
@@ -26,7 +25,6 @@ import { NavigationButton } from '../nav/navigation.class';
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
-  private navButtons: NavigationButton[] = navigationButtons;
   private map: Map;
   @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
@@ -53,7 +51,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove()
   }
 
-  toggleExpandedState(buttonClicked: NavigationButton) {
+  /* toggleExpandedState(buttonClicked: NavigationButton) {
 
     console.log('left:' + this.panelService.leftPanelStatus.getValue() + ',button:' + buttonClicked.stateOpen);
     buttonClicked.stateOpen = !buttonClicked.stateOpen;
@@ -66,7 +64,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     }else if (buttonClicked.buttonFunction  === 'selection') {
       this.toggleControls();
     }
-  }
+  } */
   // manage the click or sidebar
   /* toggleRightExpandedState(title: any) {
     this.panelService.rightPanelexpandedCollapsed();
@@ -161,9 +159,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // L.control.measure(measureOption).addTo(this.map);
     //this.mapService.addDrawerControl(this.map);
     return this.map;
-  }
-  toggleControls() {
-    this.mapService.toggleControl(this.map);
   }
   showControls() {
     this.mapService.addDrawerControl(this.map);

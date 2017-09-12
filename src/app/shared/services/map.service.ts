@@ -412,10 +412,10 @@ export class MapService implements OnInit, OnDestroy {
     map.addControl(this.drawControl);
     
   }
-  toggleControl(map: Map) {
-    console.log(this.isDrawControl)
+
+  toggleControl() {
     if (this.isDrawControl) {
-      map.removeControl(this.drawControl)
+      this.map.removeControl(this.drawControl)
       this.isDrawControl = false;
     }else {
       this.addDrawerControl(this.map);

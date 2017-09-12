@@ -1,4 +1,4 @@
-import { NavigationButton } from './navigation.class';
+import { NavigationButton } from './navigation-bar.class';
 
 export const navigationButtons: NavigationButton[] = [
     {title: 'Layers', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false},

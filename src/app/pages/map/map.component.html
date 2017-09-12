@@ -1,11 +1,6 @@
 <div class="title-map">
   <hmt-search-bar></hmt-search-bar>
-  <div>
-    <i *ngFor="let button of navButtons" class="icon-nav {{button.iconClass}}" 
-      [class.disabledButton]="!button.enable"
-      [class.clickedButton]="button.stateOpen"
-      (click)="button.enable ? toggleExpandedState(button) : null"></i>
-  </div>
+  <nav-bar [leftPanel]="leftPanelComponent" [rightPanel]="rightPanelComponent"></nav-bar>
   <!-- <i  (click)="toggleLeftExpandedState('Layers')"></i>
   <i class="icon-nav flaticon-vector"></i>
   <i class="icon-nav flaticon-folder-2"></i>
