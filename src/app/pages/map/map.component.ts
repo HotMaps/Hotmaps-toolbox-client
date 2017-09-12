@@ -12,11 +12,11 @@ import {Control} from 'leaflet-measure'
 import {RightSideComponent} from '../../features/side-panel/right-side-panel/index';
 import {LeftSideComponent} from '../../features/side-panel/left-side-panel/index';
 import { SidePanelService} from '../../features/side-panel/side-panel.service';
-import 'leaflet-draw'
-
+import 'leaflet-draw';
 import Polyline = L.Polyline;
 import Created = L.DrawEvents.Created;
-
+import { navigationButtons } from '../nav/nav-buttons.data';
+import { NavigationButton } from '../nav/navigation.class';
 
 @Component({
   selector: 'htm-map',
@@ -26,13 +26,14 @@ import Created = L.DrawEvents.Created;
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
-
+  private navButtons: NavigationButton[] = navigationButtons;
   private map: Map;
   @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
   openRightSidebar = false;
   openLeftSidebar = false;
+
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 
@@ -52,14 +53,30 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove()
   }
 
+  toggleExpandedState(buttonClicked: NavigationButton) {
+
+    console.log('left:' + this.panelService.leftPanelStatus.getValue() + ',button:' + buttonClicked.stateOpen);
+    buttonClicked.stateOpen = !buttonClicked.stateOpen;
+    if (buttonClicked.buttonFunction === 'left') {
+      this.leftPanelComponent.toggleExpandedState();
+      this.leftPanelComponent.setTitle(buttonClicked.title);
+    }else if (buttonClicked.buttonFunction  === 'right') {
+      this.panelService.rightPanelexpandedCollapsed();
+      this.rightPanelComponent.setTitle(buttonClicked.title);
+    }else if (buttonClicked.buttonFunction  === 'selection') {
+      this.toggleControls();
+    }
+  }
   // manage the click or sidebar
-  toggleRightExpandedState() {
+  /* toggleRightExpandedState(title: any) {
     this.panelService.rightPanelexpandedCollapsed();
+    this.rightPanelComponent.setTitle(title);
   }
 
-  toggleLeftExpandedState() {
+  toggleLeftExpandedState(title: any) {
     this.panelService.leftPanelexpandedCollapsed();
-  }
+    this.leftPanelComponent.setTitle(title);
+  } */
 
   notifySidePanelComponent() {
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
@@ -142,8 +159,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     L.control.scale().addTo(this.map);
     // L.control.measure(measureOption).addTo(this.map);
-    this.mapService.addDrawerControl(this.map);
+    //this.mapService.addDrawerControl(this.map);
     return this.map;
+  }
+  toggleControls() {
+    this.mapService.toggleControl(this.map);
+  }
+  showControls() {
+    this.mapService.addDrawerControl(this.map);
   }
   getMap(): Map {
     return this.map;

@@ -3,6 +3,7 @@
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
+
 import 'jquery';
 import 'hammerjs/hammer.js';
 
@@ -41,14 +42,16 @@ import { LeftSideComponent} from './features/side-panel/left-side-panel/left-sid
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 @NgModule({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     SidebarModule.forRoot(),
-    Angular2FontawesomeModule],
+    Angular2FontawesomeModule
+  ],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,

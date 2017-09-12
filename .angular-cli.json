@@ -25,6 +25,7 @@
         "../node_modules/leaflet-draw/dist/leaflet.draw.css",
         "../node_modules/leaflet/dist/leaflet.css",
         "../node_modules/ionicons/dist/css/ionicons.css",
+        "../src/assets/fonts/flaticon.css",
         "styles.css"
       ],
       "scripts": [

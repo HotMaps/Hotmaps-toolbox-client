@@ -42,8 +42,7 @@ export class AppComponent implements OnInit , AfterContentInit {
   toggleLeftExpandedState() {
     this.panelService.leftPanelexpandedCollapsed();
   }
-
-
+  
   ngOnInit() {
   }
 

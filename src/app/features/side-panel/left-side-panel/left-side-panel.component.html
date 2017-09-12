@@ -2,7 +2,7 @@
     <div class="title-panel-left" [@titleColorTrigger]="expandedState">
         <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
         <a class="link" (click)="toggleExpandedState()">
-            <i [@iconTrigger]="expandedState" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+            <i [@iconTrigger]="expandedState" class="fa fa-arrow-circle-left" aria-hidden="true" (click)="changeOpenState('left')"></i>
         </a>
     </div>
 

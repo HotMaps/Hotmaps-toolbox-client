@@ -1,6 +1,6 @@
 import { MockMapService } from '../../shared/services/mock/map.service';
-import {MapService} from '../../shared/services/map.service';
-import {MapComponent} from './map.component'
+import { MapService } from '../../shared/services/map.service';
+import { MapComponent } from './map.component'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -17,6 +17,10 @@ import { MockLoaderService } from '../../shared/services/mock/loader.service';
 import { ModulesServiceService } from '../../features/modules-service/modules-service.service';
 import { ModuleServiceListComponent } from '../../features/modules-service/modules-service-list.component';
 
+import { LeftSideComponent } from '../../features/side-panel/left-side-panel/left-side-panel.component';
+import { RightSideComponent } from '../../features/side-panel/right-side-panel/right-side-panel.component';
+import { SidePanelService } from '../../features/side-panel/side-panel.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -31,21 +35,21 @@ describe('MapComponent', () => {
 
   beforeEach(() => {
     mockMapService = new MockMapService();
-
     mockLoggerService = new MockLoggerService();
     mockGeocodeService = new MockGeocodeService();
     mockLoaderService = new MockLoaderService();
 
     TestBed.configureTestingModule({
-      declarations: [MapComponent, ModuleServiceListComponent, ToolbarComponent, SearchBarComponent],
+      declarations: [MapComponent, ModuleServiceListComponent, ToolbarComponent, SearchBarComponent, LeftSideComponent, RightSideComponent],
       providers: [
+        {provide: SidePanelService, useClass: SidePanelService},
         {provide: MapService, useValue: mockMapService},
         {provide: GeocodingService, useValue: mockGeocodeService },
         {provide: Logger, useValue: mockLoggerService },
         {provide: LoaderService, useValue: mockLoaderService },
         {provide: ModulesServiceService, useValue: modulesServiceStub }
       ],
-      imports: [FormsModule]
+      imports: [FormsModule, BrowserAnimationsModule]
     }).compileComponents();
   });
 

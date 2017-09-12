@@ -8,6 +8,9 @@ import {
     transition,
     animate
 } from '@angular/core';
+import { NavigationButton } from './../../pages/nav/navigation.class';
+import { navigationButtons } from './../../pages/nav/nav-buttons.data';
+
 
 @Component({
     moduleId: module.id,
@@ -21,6 +24,7 @@ export class SideComponent implements OnInit, OnDestroy {
     }
 
 
+
     setTitle(title: string) {
         this.title = title
     }
@@ -32,6 +36,7 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
 
     }
+
     toggleExpandedState() {
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
         console.log('this.expandedState ' + this.expandedState);
@@ -48,5 +53,12 @@ export class SideComponent implements OnInit, OnDestroy {
     }
 
 
-
+    // A check par Lesly
+    changeOpenState(side: string) {
+        navigationButtons.forEach(button => {
+            if (button.buttonFunction === side) {
+                button.stateOpen = false;
+            }
+        });
+    }
 }

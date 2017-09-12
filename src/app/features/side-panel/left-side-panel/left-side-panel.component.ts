@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import {SideComponent} from '../side-panel.component';
+
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -89,7 +90,8 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     }
 
     ngOnInit() {
-     }
+
+    }
     ngOnDestroy() {
 
     }
