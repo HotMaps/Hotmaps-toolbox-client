@@ -86,7 +86,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     constructor() {
         super();
     }
-
+    
     ngOnInit() {
      }
     ngOnDestroy() {

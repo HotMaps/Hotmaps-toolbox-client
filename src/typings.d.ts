@@ -1,3 +1,4 @@
+
 /* SystemJS module definition */
 declare var module: NodeModule;
 interface NodeModule {
@@ -44,7 +45,7 @@ declare namespace L {
 
 }
 declare namespace L {
-  namespace  vectorGrid {
+    namespace  vectorGrid {
     export function slicer(data: any, options?: any): any;
   }
 }
@@ -59,18 +60,16 @@ declare namespace L {
 
 
 // leaflet.vectorGrid typings
-declare namespace  L {
+ declare namespace  L {
   namespace vectorGrid {
     export function protobuf(url: string, options?: any): any;
   }
 }
 
-declare namespace  L {
+declare namespace L {
     export function virtualGrid({ }): any;
 }
-declare namespace  L.Circle {
-  export function toPolygon(vertices: Number, map: Map): any;
-}
+
 declare namespace  VirtualGrid {
   export function extend({ }): any;
 }
@@ -83,11 +82,11 @@ interface NodeRequire {
 }
 
 
-declare type Point = { x: number, y: number }
+declare interface Point { x: number, y: number }
 declare type XYArray = [number, number];
 declare type PointObj = Point | XYArray;
 
-declare type PredefinedDefName = "EPSG:4326" | "WGS84" | 'EPSG:4269' | 'EPSG:3857' | 'EPSG:3785' | 'GOOGLE' | 'EPSG:900913' | 'EPSG:102113'
+declare type PredefinedDefName = 'EPSG:4326' | 'WGS84' | 'EPSG:4269' | 'EPSG:3857' | 'EPSG:3785' | 'GOOGLE' | 'EPSG:900913' | 'EPSG:102113'
 
 
 

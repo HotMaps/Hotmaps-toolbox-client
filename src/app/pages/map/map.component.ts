@@ -38,6 +38,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
+    // this.mapService.getGridTest();
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
@@ -89,6 +90,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     let self = this;
+
     this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.getMap());
     const option =  {
       zoomControl: false,
@@ -123,9 +125,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
+
     L.control.scale().addTo(this.map);
-    this.mapService.addDrawerControl(this.map);
+    // L.control.measure(measureOption).addTo(this.map);
+    //this.mapService.addDrawerControl(this.map);
     return this.map;
+  }
+  showControls() {
+    this.mapService.addDrawerControl(this.map);
   }
   getMap(): Map {
     return this.map;

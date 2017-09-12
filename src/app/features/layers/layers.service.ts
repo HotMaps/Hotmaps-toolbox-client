@@ -47,14 +47,12 @@ export class LayersService extends APIService {
     if (this.wwtpPoints) {
       this.removeWWTPlayer(map)
     } else {
-      this.loaderService.display(true);
       this.wwtpPoints = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
     }).addTo(map);
-      this.loaderService.display(false);
     }
   }
   removeWWTPlayer(map: any ) {

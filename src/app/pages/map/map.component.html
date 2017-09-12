@@ -1,18 +1,20 @@
 <div class="title-map">
   <hmt-search-bar></hmt-search-bar>
-  <input class="button-navbar" type="image" height="35" width="35" src="assets/leaflet-images/layers.png" (click)="toggleLeftExpandedState()" />
-
+  <nav-bar [leftPanel]="leftPanelComponent" [rightPanel]="rightPanelComponent"></nav-bar>
+  <!-- <i  (click)="toggleLeftExpandedState('Layers')"></i>
+  <i class="icon-nav flaticon-vector"></i>
+  <i class="icon-nav flaticon-folder-2"></i>
+  <i class="icon-nav flaticon-pie-chart-1" (click)="toggleRightExpandedState('Load result')"></i>
+  <i class="icon-nav flaticon-cloud-computing"></i>
+  <i class="icon-nav flaticon-interface-1" (click)="toggleLeftExpandedState('Calculation modules')"></i>
+  <i class="icon-nav flaticon-technology-2"></i>
+  <i class="icon-nav flaticon-comparison-1"></i>
+  <i class="icon-nav flaticon-database-7"></i> -->
 </div>
-
 <div class="container-map">
   <htm-left-side-panel></htm-left-side-panel>
-
-    <div id="map">
-
-      <!--<hmt-toolbar></hmt-toolbar>-->
-    </div>
-
-
+  <div id="map">
+    <!--<hmt-toolbar></hmt-toolbar> -->
+  </div>
   <htm-right-side-panel></htm-right-side-panel>
-
 </div>

@@ -49,6 +49,9 @@ export class MapService implements OnInit, OnDestroy {
   private gridLayer: any;
   private layers: any = [];
   private editableLayers = new L.FeatureGroup();
+  private options;
+  private drawControl;
+  private isDrawControl = false;
 
   constructor(private logger: Logger, private loaderService: LoaderService,
               private populationService: PopulationService, private layersService: LayersService, private helper: Helper) {
@@ -298,7 +301,7 @@ export class MapService implements OnInit, OnDestroy {
 
   addDrawerControl(map: Map) {
     map.addLayer(this.editableLayers);
-    const options = {
+    this.options = {
       position: 'topleft',
       draw: {
         polyline: false,
@@ -336,8 +339,18 @@ export class MapService implements OnInit, OnDestroy {
         remove: true
       }
     };
-    const drawControl = new L.Control.Draw(options);
-    map.addControl(drawControl);
+    this.drawControl = new L.Control.Draw(this.options);
+    map.addControl(this.drawControl);
+    
   }
 
+  toggleControl() {
+    if (this.isDrawControl) {
+      this.map.removeControl(this.drawControl)
+      this.isDrawControl = false;
+    }else {
+      this.addDrawerControl(this.map);
+      this.isDrawControl = true;
+    }
+  }
 }

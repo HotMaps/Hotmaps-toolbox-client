@@ -1,0 +1,16 @@
+<div *ngFor="let button of navButtons" class="icon-nav">
+        <i *ngIf="button.buttonFunction=='left'" class="{{button.iconClass}}"
+        [class.disabledButton]="!button.enable"
+        [class.clickedButton]="leftPanel.expanded && button.enable"
+        (click)="button.enable ? toggleExpandedState(button) : null"></i>
+
+        <i *ngIf="button.buttonFunction == 'right'" class="icon-nav {{button.iconClass}}"
+        [class.disabledButton]="!button.enable"
+        [class.clickedButton]="rightPanel.expanded && button.enable"
+        (click)="button.enable ? toggleExpandedState(button) : null"></i>
+
+        <i *ngIf="button.buttonFunction != 'right' && button.buttonFunction != 'left'" class="{{button.iconClass}}"
+        [class.disabledButton]="!button.enable"
+        [class.clickedButton]="button.stateOpen && button.enable"
+        (click)="button.enable ? toggleExpandedState(button) : null"></i>
+</div>

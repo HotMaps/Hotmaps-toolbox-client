@@ -3,6 +3,7 @@
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
+
 import 'jquery';
 import 'hammerjs/hammer.js';
 
@@ -37,6 +38,8 @@ import { SidePanelService} from './features/side-panel/side-panel.service';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
+import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
 
 
@@ -48,7 +51,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     AppRoutingModule,
     MaterialModule,
     SidebarModule.forRoot(),
-    Angular2FontawesomeModule],
+    Angular2FontawesomeModule
+  ],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
@@ -58,6 +62,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     MapComponent,
     RegisterComponent,
     RightSideComponent,
+    LeftSideComponent,
+    NavigationBarComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
 
@@ -74,6 +80,7 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     GlobalErrorHandler,
     Helper,
     SidePanelService,
+    NavigationBarService,
     LayersService
 
 

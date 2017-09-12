@@ -9,6 +9,7 @@ import {
     animate
 } from '@angular/core';
 
+
 @Component({
     moduleId: module.id,
 
@@ -19,6 +20,7 @@ export class SideComponent implements OnInit, OnDestroy {
     protected expandedState = 'collapsed';
     constructor() {
     }
+
 
 
     setTitle(title: string) {
@@ -32,6 +34,7 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
 
     }
+
     toggleExpandedState() {
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
         console.log('this.expandedState ' + this.expandedState);
@@ -46,7 +49,4 @@ export class SideComponent implements OnInit, OnDestroy {
         }
         this.expanded = !this.expanded;
     }
-
-
-
 }

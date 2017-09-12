@@ -26,12 +26,15 @@ export class AppComponent implements OnInit , AfterContentInit {
    this.notifyLoaderService();
 
   }
+
   notifyLoaderService() {
 
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
     });
   }
+
+
   ngOnInit() {
   }
 

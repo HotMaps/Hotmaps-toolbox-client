@@ -110,11 +110,8 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
      }
 
     ngOnDestroy() {
+
     }
 
-   /* toggleExpandedState() {
-      this.expandedState = this.expanded ? 'collapsed' : 'expanded';
-      this.expanded = !this.expanded;
-    }*/
 
 }
