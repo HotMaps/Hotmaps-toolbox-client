@@ -45,4 +45,18 @@ export class SearchBarComponent implements OnInit {
         this.loaderService.display(false);
       }, error => this.loaderService.display(false));
   }
+
+
+  searchDestinationFrom(address: string) {
+    this.logger.log('NavigatorComponent/goto()');
+    if (!address) { return; }
+    this.loaderService.display(true);
+    this.logger.log('NavigatorComponent/goto()/this.address!=null' + this.address);
+    this.geocoder.geocode(address)
+      .subscribe(location => {
+        this.map.fitBounds(location.viewBounds, {});
+        this.address = location.address;
+        this.loaderService.display(false);
+      }, error => this.loaderService.display(false));
+  }
 }

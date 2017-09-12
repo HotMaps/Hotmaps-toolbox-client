@@ -8,11 +8,9 @@ h1 {
   font-size: 250%;
 }
 .on-map {
-  position: absolute;
-  z-index: 1000;
+
+
 }
-
-
 
 .leaflet-clickable {
   cursor: crosshair !important;

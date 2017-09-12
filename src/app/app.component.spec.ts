@@ -42,17 +42,4 @@ describe('AppComponent', () => {
     el_login = de[1].nativeElement.getAttribute('routerLink');
     fixture.detectChanges();
   });
-  it('should have login root set to /login root', () => {
-
-    fixture.detectChanges();
-    expect(el_login).toEqual('/login');
-
-  });
-
-  it('should have register root set to /register root', () => {
-
-    fixture.detectChanges();
-    expect(el_register).toEqual('/register');
-
-  });
 });

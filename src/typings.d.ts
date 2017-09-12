@@ -1,7 +1,33 @@
+
 /* SystemJS module definition */
 declare var module: NodeModule;
 interface NodeModule {
   id: string;
+}
+
+declare namespace L {
+  export class CanvasGeojsonLayer extends L.Class{
+    /**
+     * Sets the given path options to each layer of the group that has a setStyle method.
+     */
+    constructor(options?: any);
+    addCanvasFeatures( feature: any): this;
+
+    /**
+     * Brings the layer group to the top of all other layers
+     */
+    render( e?: any): this;
+
+    /**
+     * Brings the layer group to the top [sic] of all other layers
+     */
+    addTo( map: Map): this;
+
+    /**
+     * Returns the LatLngBounds of the Feature Group (created from
+     * bounds and coordinates of its children).
+     */
+  }
 }
 
 // proj4leaflet typings
@@ -13,31 +39,37 @@ declare namespace L {
 
 }
 declare namespace L {
-  namespace control {
-    export function measure( options?: any): any;
-  }
+
+    export function geoJson(data: any, options?: any): any;
+
 
 }
 declare namespace L {
-  namespace  vectorGrid {
+    namespace  vectorGrid {
     export function slicer(data: any, options?: any): any;
   }
 }
 
 
+declare namespace L {
+
+  export function CanvasFeatureFactory(data: any, options?: any): any;
+
+
+}
+
+
 // leaflet.vectorGrid typings
-declare namespace  L {
+ declare namespace  L {
   namespace vectorGrid {
     export function protobuf(url: string, options?: any): any;
   }
 }
 
-declare namespace  L {
+declare namespace L {
     export function virtualGrid({ }): any;
 }
-declare namespace  L.Circle {
-  export function toPolygon(vertices: Number, map: Map): any;
-}
+
 declare namespace  VirtualGrid {
   export function extend({ }): any;
 }
@@ -50,11 +82,11 @@ interface NodeRequire {
 }
 
 
-declare type Point = { x: number, y: number }
+declare interface Point { x: number, y: number }
 declare type XYArray = [number, number];
 declare type PointObj = Point | XYArray;
 
-declare type PredefinedDefName = "EPSG:4326" | "WGS84" | 'EPSG:4269' | 'EPSG:3857' | 'EPSG:3785' | 'GOOGLE' | 'EPSG:900913' | 'EPSG:102113'
+declare type PredefinedDefName = 'EPSG:4326' | 'WGS84' | 'EPSG:4269' | 'EPSG:3857' | 'EPSG:3785' | 'GOOGLE' | 'EPSG:900913' | 'EPSG:102113'
 
 
 

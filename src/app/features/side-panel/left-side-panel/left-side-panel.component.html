@@ -1,0 +1,20 @@
+<div class="container-panel-left" [@panelWidthTrigger]="expandedState">
+    <div class="title-panel-left" [@titleColorTrigger]="expandedState">
+        <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
+        <a class="link" (click)="toggleExpandedState()">
+            <i [@iconTrigger]="expandedState" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </a>
+    </div>
+
+  <div class="notifications">
+    <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+    <span  *ngFor="let i of category"><b>{{i}}</b>
+      <ng-container *ngFor="let n of layers" >
+        <span *ngIf="i === n.category">
+      <data-interaction-cell [dataInteraction]="n" [expanded]="expanded"></data-interaction-cell>
+        </span>
+    </ng-container>
+  </span>
+    </span>
+  </div>
+</div>

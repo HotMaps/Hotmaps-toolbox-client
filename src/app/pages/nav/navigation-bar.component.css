@@ -1,0 +1,27 @@
+.disabledButton{
+color:grey;
+cursor: initial;
+}
+
+.icon-nav>i:before {
+font-size: 30px;
+margin: 10px;
+}
+
+.icon-nav>i:hover{
+color:#2889DF;
+cursor: pointer;
+}
+
+.disabledButton:hover{
+color:grey !important;
+cursor: initial !important;
+}
+
+.clickedButton{
+color:#2889DF !important;
+}
+
+.icon-nav{
+    float: left;
+}

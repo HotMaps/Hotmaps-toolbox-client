@@ -1,6 +1,7 @@
-import {Component, AfterContentInit, OnInit} from '@angular/core';
+import {Component, AfterContentInit, OnInit, ViewChild} from '@angular/core';
 
 import { LoaderService } from './shared/services/loader.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,19 +11,29 @@ import { LoaderService } from './shared/services/loader.service';
 })
 
 export class AppComponent implements OnInit , AfterContentInit {
+
+
+
+
+  // management of initial status of general loading
   showLoader: boolean;
-  private _opened: boolean = false;
+
   constructor(
     private loaderService: LoaderService) {
   }
-  private _toggleSidebar() {
-    this._opened = !this._opened;
-  }
+
   ngAfterContentInit(): void {
+   this.notifyLoaderService();
+
+  }
+
+  notifyLoaderService() {
+
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
     });
   }
+
 
   ngOnInit() {
   }

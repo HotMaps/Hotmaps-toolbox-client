@@ -1,19 +1,15 @@
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
-
-import {ToolbarComponent} from '../toolbar/toolbar.component';
-import {SearchBarComponent} from '../searchbar/searchbar.component';
-import {basemap} from './basemap'
-import {GeocodingService} from '../../shared/services/geocoding.service';
-import {Map} from 'leaflet';
-import {MapService} from '../../shared/services/map.service';
-import {LoaderService} from '../../shared/services/loader.service';
-import {Logger} from '../../shared/services/logger.service';
+import { Map} from 'leaflet';
 import {Control} from 'leaflet-measure'
-
 import 'leaflet-draw'
 
-import Polyline = L.Polyline;
-import Created = L.DrawEvents.Created;
+import { basemap } from './basemap'
+import { LeftSideComponent } from '../../features/side-panel/left-side-panel/index';
+import { Logger } from '../../shared/services/logger.service';
+import { MapService } from '../../shared/services/map.service';
+import { SearchBarComponent } from '../searchbar/searchbar.component';
+import { SidePanelService} from '../../features/side-panel/side-panel.service';
+import { RightSideComponent } from '../../features/side-panel/right-side-panel/index';
 
 
 @Component({
@@ -26,17 +22,22 @@ import Created = L.DrawEvents.Created;
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   private map: Map;
-  @ViewChild(ToolbarComponent) toolbarComponent: ToolbarComponent;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
+  // management of initial status of sidebar
+  openRightSidebar = false;
+  openLeftSidebar = false;
+  @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
+  @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 
-  constructor(private mapService: MapService, private geocoder: GeocodingService,
-              private logger: Logger, private loaderService: LoaderService,
+  constructor(private mapService: MapService,
+              private logger: Logger,  private panelService: SidePanelService,
 ) {}
 
   ngAfterContentInit(): void {
     this.logger.log('MapComponent/AfterViewInit');
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
-
+    this.notifySidePanelComponent();
+    this.leftPanelComponent.setTitle('Layers');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
@@ -44,20 +45,43 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove()
   }
 
+  // manage the click or sidebar
+  toggleRightExpandedState() {
+    this.panelService.rightPanelexpandedCollapsed();
+  }
 
+  toggleLeftExpandedState() {
+    this.panelService.leftPanelexpandedCollapsed();
+  }
+
+  notifySidePanelComponent() {
+    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
+      if (this.openRightSidebar === false) {
+        this.openRightSidebar = true;
+      } else {
+        this.rightPanelComponent.toggleExpandedState();
+        this.openRightSidebar = val;
+
+      }
+    });
+
+    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
+      if (this.openLeftSidebar === false) {
+        this.openLeftSidebar = true;
+      } else {
+        this.leftPanelComponent.toggleExpandedState();
+        this.openLeftSidebar = val;
+
+      }
+    });
+  }
   ngOnInit() {
     this.logger.log('MapComponent/ngOnInit');
     // mapService get an instance of the maps and ca work on it
     this.mapService.setupMapservice(this.createMap(basemap));
     this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.getMap());
     this.initializeNavigator();
-
-
-
-  }
-
-  initializeToolbar(): void {
-    this.toolbarComponent.Initialize();
+    this.map.invalidateSize();
   }
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();
@@ -104,8 +128,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     L.control.scale().addTo(this.map);
     // L.control.measure(measureOption).addTo(this.map);
-    this.mapService.addDrawerControl(this.map);
+    //this.mapService.addDrawerControl(this.map);
     return this.map;
+  }
+  showControls() {
+    this.mapService.addDrawerControl(this.map);
   }
   getMap(): Map {
     return this.map;

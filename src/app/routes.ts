@@ -5,7 +5,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
-import { ModuleServiceListComponent } from './features/modules-service/modules-service-list.component';
+
 import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
@@ -13,5 +13,5 @@ export const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {path: 'map' , component: MapComponent},
   {path: 'register' , component: RegisterComponent},
-  {path: 'modules' , component: ModuleServiceListComponent},
+
 ];

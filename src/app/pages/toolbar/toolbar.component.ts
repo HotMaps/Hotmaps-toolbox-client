@@ -13,7 +13,7 @@ import { Logger} from '../../shared/services/logger.service';
   styles: [ require<any>('./toolbar.component.scss')],
   providers: []
 })
-export class ToolbarComponent implements OnInit{
+export class ToolbarComponent implements OnInit {
   editing: boolean;
   removing: boolean;
   airportLayerAdded: boolean;
