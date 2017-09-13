@@ -40,9 +40,13 @@ export class DataInteractionCellComponent implements OnInit {
     constructor(private mapService: MapService) { }
 
   showRemoveLayer(e, action) {
-
     this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-    this.mapService.addLayerWithAction(action);
+    if (this.dataInteraction.isSelected) {
+      console.log(' dataInteraction true');
+    }else {
+      console.log(' dataInteraction false');
+    }
+    this.mapService.showOrRemoveLayer(action);
   }
     ngOnInit() {
     }
