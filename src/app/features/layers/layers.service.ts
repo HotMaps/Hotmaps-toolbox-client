@@ -4,8 +4,8 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-
-import {geoserverUrl, clickAccuracy} from '../../shared/data.service'
+import {Dictionary} from '../../shared/class/dictionary.class'
+import {geoserverUrl, clickAccuracy, defaultLayer} from '../../shared/data.service'
 
 import {LoaderService } from '../../shared/services/loader.service';
 
@@ -25,14 +25,21 @@ import LatLng = L.LatLng;
 @Injectable()
 export class LayersService extends APIService {
 
-  private wwtpPoints: any;
+
+  private layersArray: Dictionary = new Dictionary([
+    { key: defaultLayer, value: L.tileLayer.wms(geoserverUrl,
+      {layers: 'hotmaps:' + defaultLayer,
+        format: 'image/png', transparent: true, version: '1.3.0', } )},
+
+  ]) ;
   private popup = L.popup();
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 
   getDetailLayerPoint(action: string , latlng: LatLng, map): any {
-    if (this.wwtpPoints) {
+    if (this.layersArray.containsKey(action)) {
+      this.loaderService.display(true);
       const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
       const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
         '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
@@ -40,31 +47,59 @@ export class LayersService extends APIService {
         '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
       console.log('url ' + url);
       return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-        .subscribe(res => this.addPopup(map, res, latlng), err => this.handleError.bind(this));
+        .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));
+    }
+  }
+  refreshLayersOnMap( map: any) {
+    const layers = this.layersArray.keys();
+    for (let i = 0; i < layers.length; i++) {
+      const layer: Layer  = <Layer> this.layersArray.value(layers[i]);
+      layer.addTo(map);
+    }
+  }
+  showOrRemoveLayer(action: string, map: any ) {
+    this.logger.log('LayersService/this.layersArray. ' + this.layersArray.keys());
+    this.logger.log('LayersService/action. ' + action);
+    if (!this.layersArray.containsKey(action)) {
+      this.logger.log('LayersService/addLayerWithAction');
+      this.addLayerWithAction(action, map);
+    } else {
+      this.logger.log('LayersService/removelayer');
+      this.removelayer(action, map);
     }
   }
   addLayerWithAction(action: string, map: any ) {
-    if (this.wwtpPoints) {
-      this.removeWWTPlayer(map)
-    } else {
-      this.wwtpPoints = L.tileLayer.wms(geoserverUrl, {
+    const layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
-    }).addTo(map);
-    }
+    })
+    this.layersArray.add(action, layer)
+    this.refreshLayersOnMap(map);
   }
-  removeWWTPlayer(map: any ) {
-    if (this.wwtpPoints) {
-      this.logger.log('LayersService/removeWWTPlayer');
-      map.removeLayer(this.popup);
-      map.removeLayer(this.wwtpPoints);
-      delete this.wwtpPoints;
-      this.logger.log('this.wwtpPoints =' + this.wwtpPoints);
-    }
+
+  removelayer(action: string, map: any ) {
+    // we get the layer we want to remove
+    const layer = this.layersArray.value(action);
+    // we remove this layer from map
+    map.removeLayer(layer);
+    // we destroy the layer
+    this.layersArray.remove(action);
+    this.refreshLayersOnMap(map);
+
+
+  }
+  erroxFix(error) {
+    this.handleError.bind(this)
+    this.loaderService.display(false);
+    this.toasterService.showToaster('An error occurred: please try again later');
+    this.logger.log('PopulationServices/handleError');
+    console.error('An error occurred', error); // for demo purposes only
+
   }
   addPopup(map, res: GeojsonClass, latlng: LatLng) {
+    this.loaderService.display(false);
     const gid = res.features[0].properties.gid;
     const capacity = res.features[0].properties.capacity;
     const power = res.features[0].properties.power;

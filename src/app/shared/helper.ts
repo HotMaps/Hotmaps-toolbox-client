@@ -113,6 +113,18 @@ export class Helper {
 
   }
 
+  latLngsToCoords(arrLatlng) {
+    const self = this;
+    const coords = [];
+    arrLatlng.forEach(function(latlng) {
+        self.logger.log(' Lat =' + latlng.lat);
+        self.logger.log(' Lngs =' + latlng.lng);
+        coords.push( [latlng.lng, latlng.lat]);
+      },
+      this);
+    return coords;
+  }
+
 }
 
 

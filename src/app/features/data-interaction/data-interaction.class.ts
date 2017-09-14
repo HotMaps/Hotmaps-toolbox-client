@@ -3,4 +3,5 @@ export class DataInteractionClass {
   name: string;
   category: string;
   isSelected: boolean;
+  workspaceName: string;
 }
