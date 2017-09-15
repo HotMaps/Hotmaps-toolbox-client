@@ -29,7 +29,7 @@ import { MapComponent } from './pages/map/map.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Logger } from './shared/services/logger.service';
 import { Helper } from './shared/helper';
-import { LayersService } from './features/layers/layers.service';
+import { LayersService } from './features/layers/services/layers.service';
 import { LoaderService } from './shared/services/loader.service';
 import { PopulationService } from './features/population/services/population.service';
 import { ToasterService } from './shared/services/toaster.service'

@@ -21,7 +21,6 @@ i {
 }
 
 .title-panel-left {
-    margin-top: 16px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -29,15 +28,7 @@ i {
     padding: 0 8px 0 8px;
     height: 38px;
 }
-.category{
 
-  border-right: 20px solid #000000;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-}
 .title-panel-left span {
     flex: 1;
     font-family: 'Hind', sans-serif;
@@ -60,4 +51,10 @@ a {
 
 a:hover {
     cursor: pointer;
+}
+
+b {
+  text-decoration: none;
+  font-family: 'Hind', sans-serif;
+  margin-left: 20px;
 }

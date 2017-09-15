@@ -17,7 +17,7 @@ import {Payload} from '../../features/population/payload.class';
 
 import {Population} from '../../features/population/population.class';
 
-import {LayersService} from '../../features/layers/layers.service';
+import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
 import {LoaderService} from './loader.service';
 import {Location} from '../location/location';

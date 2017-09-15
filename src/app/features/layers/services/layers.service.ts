@@ -4,20 +4,20 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import {Dictionary} from '../../shared/class/dictionary.class'
-import {geoserverUrl, clickAccuracy, defaultLayer} from '../../shared/data.service'
+import {Dictionary} from '../../../shared/class/dictionary.class'
+import {geoserverUrl, clickAccuracy, defaultLayer} from '../../../shared/data.service'
 
-import {LoaderService } from '../../shared/services/loader.service';
+import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../shared/location/location';
-import {Logger} from '../../shared/services/logger.service';
-import {Properties} from './geojson.class';
-import {Feature} from './geojson.class'
+import {Location} from '../../../shared/location/location';
+import {Logger} from '../../../shared/services/logger.service';
+import {Properties} from '../class/geojson.class';
+import {Feature} from '../class/geojson.class'
 
-import {GeojsonClass} from './geojson.class'
-import {ToasterService} from '../../shared/services/toaster.service';
+import {GeojsonClass} from '../class/geojson.class'
+import {ToasterService} from '../../../shared/services/toaster.service';
 
-import {APIService} from '../../shared/services/api.service';
+import {APIService} from '../../../shared/services/api.service';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
@@ -38,8 +38,8 @@ export class LayersService extends APIService {
   }
 
   getDetailLayerPoint(action: string , latlng: LatLng, map): any {
-    if (this.layersArray.containsKey(action)) {
-      this.loaderService.display(true);
+    if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer}
+
       const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
       const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
         '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
@@ -48,7 +48,7 @@ export class LayersService extends APIService {
       console.log('url ' + url);
       return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
         .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));
-    }
+
   }
   refreshLayersOnMap( map: any) {
     const layers = this.layersArray.keys();
@@ -91,14 +91,31 @@ export class LayersService extends APIService {
 
   }
   erroxFix(error) {
-    this.handleError.bind(this)
+    this.handleError.bind(this);
     this.loaderService.display(false);
-    this.toasterService.showToaster('An error occurred: please try again later');
-    this.logger.log('PopulationServices/handleError');
+    this.toasterService.showToaster(error);
+    this.logger.log('LayerServices/handleError');
     console.error('An error occurred', error); // for demo purposes only
 
   }
   addPopup(map, res: GeojsonClass, latlng: LatLng) {
+    this.loaderService.display(false);
+    const gid = res.features[0].properties.gid;
+    const capacity = res.features[0].properties.capacity;
+    const power = res.features[0].properties.power;
+    const date = res.features[0].properties.date;
+    const unit = res.features[0].properties.unit;
+    this.popup.setLatLng(latlng)
+      .setContent('<h3>WWTP selected</h3><ul>' +
+        '<li>gid: ' + gid + '</li><li>Date: ' + date + '</li><li>Capacity: ' + capacity + '</li>' +
+        '<li>power: ' + power + ' ' + unit + '</li>' +
+        '</ul>')
+      .openOn(map);
+    this.logger.log('LayersService/addPopup/popup/added');
+
+  }
+
+  addPopupHeatmap(map, res: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
     const gid = res.features[0].properties.gid;
     const capacity = res.features[0].properties.capacity;
