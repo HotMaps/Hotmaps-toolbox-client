@@ -51,7 +51,6 @@ export class APIService {
     return this.http.get(url)
       .toPromise()
       .then( response => response.json() as any)
-
   }
 
 

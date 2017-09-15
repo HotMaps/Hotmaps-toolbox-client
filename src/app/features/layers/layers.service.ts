@@ -48,13 +48,14 @@ export class LayersService extends APIService {
       this.removeWWTPlayer(map)
     } else {
       this.wwtpPoints = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action,
-      format: 'image/png',
-      transparent: true,
-      version: '1.3.0',
-    }).addTo(map);
+        layers: 'hotmaps:' + action,
+        format: 'image/png',
+        transparent: true,
+        version: '1.3.0',
+      }).addTo(map);
     }
   }
+
   removeWWTPlayer(map: any ) {
     if (this.wwtpPoints) {
       this.logger.log('LayersService/removeWWTPlayer');
@@ -64,6 +65,7 @@ export class LayersService extends APIService {
       this.logger.log('this.wwtpPoints =' + this.wwtpPoints);
     }
   }
+
   addPopup(map, res: GeojsonClass, latlng: LatLng) {
     const gid = res.features[0].properties.gid;
     const capacity = res.features[0].properties.capacity;
@@ -77,6 +79,5 @@ export class LayersService extends APIService {
         '</ul>')
       .openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
-
   }
 }

@@ -32,7 +32,6 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnInit() {
     }
     ngOnDestroy() {
-
     }
 
     toggleExpandedState() {
