@@ -1,6 +1,5 @@
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map} from 'leaflet';
-import {Control} from 'leaflet-measure'
 import 'leaflet-draw'
 
 import { basemap } from './basemap'

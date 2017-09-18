@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
-import {geoserverUrl, clickAccuracy, defaultLayer} from '../../../shared/data.service'
+import {geoserverUrl, clickAccuracy, defaultLayer, layer_wwtp, unit_capacity} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
@@ -16,7 +16,7 @@ import {Feature} from '../class/geojson.class'
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
-
+import {Helper} from '../../../shared/helper';
 import {APIService} from '../../../shared/services/api.service';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
@@ -33,12 +33,12 @@ export class LayersService extends APIService {
 
   ]) ;
   private popup = L.popup();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 
   getDetailLayerPoint(action: string , latlng: LatLng, map): any {
-    if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer}
+   if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer}
 
       const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
       const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
@@ -98,20 +98,46 @@ export class LayersService extends APIService {
     console.error('An error occurred', error); // for demo purposes only
 
   }
-  addPopup(map, res: GeojsonClass, latlng: LatLng) {
-    this.loaderService.display(false);
-    const gid = res.features[0].properties.gid;
-    const capacity = res.features[0].properties.capacity;
-    const power = res.features[0].properties.power;
-    const date = res.features[0].properties.date;
-    const unit = res.features[0].properties.unit;
+
+
+  addPopupHardCode(map, latlng: LatLng) {
+    const resWWTP = JSON.parse('{"type":"FeatureCollection","totalFeatures":"unknown","features":' +
+      '[{"type":"Feature","id":"wwtp.26731","geometry":{"type":"Point","coordinates":' +
+      '[-0.056,45.6072]},"geometry_name":"geom","properties":{"gid":26731,"capacity":3000,"power":193.333333299999993,' +
+      '"unit":"kW","date":"2015-01-01Z","bbox":[-0.056,45.6072,-0.056,45.6072]}}],' +
+      '"crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"bbox":[-0.056,45.6072,-0.056,45.6072]}');
+
+    const gid = resWWTP.features[0].properties.gid;
+    const capacity = resWWTP.features[0].properties.capacity;
+    const power = resWWTP.features[0].properties.power;
+    const date = resWWTP.features[0].properties.date;
+    const unit = resWWTP.features[0].properties.unit;
     this.popup.setLatLng(latlng)
       .setContent('<h3>WWTP selected</h3><ul>' +
-        '<li>gid: ' + gid + '</li><li>Date: ' + date + '</li><li>Capacity: ' + capacity + '</li>' +
-        '<li>power: ' + power + ' ' + unit + '</li>' +
+        '<li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + ' ' + unit_capacity + '</li>' +
+        '<li>power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
         '</ul>')
       .openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
+  }
+
+  addPopup(map, res: GeojsonClass, latlng: LatLng) {
+
+    if (this.layersArray.containsKey(layer_wwtp)) {
+        this.loaderService.display(false);
+      const gid = res.features[0].properties.gid;
+      const capacity = res.features[0].properties.capacity;
+      const power = res.features[0].properties.power;
+      const date = res.features[0].properties.date;
+      const unit = res.features[0].properties.unit;
+      this.popup.setLatLng(latlng)
+        .setContent('<h3>WWTP selected</h3><ul>' +
+          '<li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + ' ' + unit_capacity + '</li>' +
+          '<li>power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+          '</ul>')
+        .openOn(map);
+      this.logger.log('LayersService/addPopup/popup/added');
+      }
 
   }
 
@@ -124,7 +150,7 @@ export class LayersService extends APIService {
     const unit = res.features[0].properties.unit;
     this.popup.setLatLng(latlng)
       .setContent('<h3>WWTP selected</h3><ul>' +
-        '<li>gid: ' + gid + '</li><li>Date: ' + date + '</li><li>Capacity: ' + capacity + '</li>' +
+        '<li>gid: ' + gid + '</li><li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + '</li>' +
         '<li>power: ' + power + ' ' + unit + '</li>' +
         '</ul>')
       .openOn(map);

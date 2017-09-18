@@ -125,6 +125,10 @@ export class Helper {
     return coords;
   }
 
+  round(num: number): number {
+    return parseFloat( num.toFixed(2) )
+  }
+
 }
 
 

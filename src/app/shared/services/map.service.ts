@@ -6,8 +6,6 @@ import {Http} from '@angular/http';
 import {Map} from 'leaflet';
 import {Popup} from 'leaflet';
 
-import 'proj4leaflet';
-import 'proj4'
 import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 

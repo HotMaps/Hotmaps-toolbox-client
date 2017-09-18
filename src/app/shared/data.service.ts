@@ -15,4 +15,10 @@ export const defaultLayer = 'heat-density-map';
 export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const set404url   = 'set404url';
-export const clickAccuracy   = 100000;
+
+
+//layers constant
+export const clickAccuracy   = 100;
+export const layer_wwtp   = 'wwtp';
+export const unit_capacity   = 'Person Equivalent';
+
