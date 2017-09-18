@@ -21,7 +21,8 @@ import {Logger} from './logger.service';
 
 import {ToasterService} from './toaster.service';
 export class APIService {
-  public headers = new Headers({'Content-Type': 'application/json'});
+  public headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+
   constructor(protected http: Http, protected logger: Logger, protected  loaderService: LoaderService,
               protected  toasterService: ToasterService) {
     this.http = http;
@@ -44,7 +45,7 @@ export class APIService {
       .catch(this.handleError.bind(this));
   }
   GET(url): any {
-    return this.http.get(url).map((res: Response) => res.json()).subscribe(res => console.log(JSON.stringify(res)));
+    return this.http.get(url, this.headers).map((res: Response) => res.json().data as any);
   }
 
   public async getJSONFromFille(url: string): Promise<any> {

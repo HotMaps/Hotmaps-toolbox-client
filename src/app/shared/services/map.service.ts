@@ -17,7 +17,7 @@ import {Payload} from '../../features/population/payload.class';
 
 import {Population} from '../../features/population/population.class';
 
-import {LayersService} from '../../features/layers/layers.service';
+import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
 import {LoaderService} from './loader.service';
 import {Location} from '../location/location';
@@ -74,6 +74,8 @@ export class MapService implements OnInit, OnDestroy {
     this.logger.log('MapService/setupMapservice');
     this.map = map;
     this.retriveMapEvent();
+
+    this.layersService.refreshLayersOnMap(map)
   }
   retriveMapEvent(): void {
     this.logger.log('MapService/retriveMapEvent');
@@ -208,17 +210,7 @@ export class MapService implements OnInit, OnDestroy {
     }
   }
 
-  latLngsToCoords(arrLatlng) {
-    const self = this;
-    const coords = [];
-    arrLatlng.forEach(function(latlng) {
-        self.logger.log(' Lat =' + latlng.lat);
-        self.logger.log(' Lngs =' + latlng.lng);
-        coords.push( [latlng.lng, latlng.lat]);
-      },
-      this);
-    return coords;
-  }
+
   // population feature
   getPopulation(locations: Location[], layer: Layer) {
     this.loaderService.display(true);
@@ -233,12 +225,9 @@ export class MapService implements OnInit, OnDestroy {
   }
 
 
-  addLayerWithAction(action: string) {
-    this.layersService.addLayerWithAction(action, this.map);
-
+  showOrRemoveLayer(action: string) {
+    this.layersService.showOrRemoveLayer(action, this.map);
   }
-
-
 
   retriveAndAddLayer(population: Population, layer: Layer) {
     this.logger.log('MapService/retriveAndAddLayer');
@@ -274,29 +263,6 @@ export class MapService implements OnInit, OnDestroy {
       this.map.removeLayer(this.vtLayer);
       delete this.vtLayer;
     }
-  }
-  showWWTp(geometrie) {
-
-    this.logger.log('MapService/showWWTp');
-    this.removeVtlayer();
-    this.logger.log('MapService/showWWTp/layerWilladde');
-   // this.map.removeLayer(this.wwtpPoints);
-    this.wwtpPoints = L.geoJson(geometrie, {
-      'pointToLayer': function(feature, latlng) {
-        return L.marker(latlng, {
-          icon: L.icon({
-            iconUrl: './assets/leaflet-images/marker-icon.png',
-            shadowUrl: './assets/leaflet-images/marker-shadow.png'
-          }),
-
-            draggable: true
-        }).bindPopup('<h3>Area selected</h3><p>This is	information	about	the	area </p> <ul>' +
-          '<li>gid: ' + '' + '</li><li>Capacity: ' + '' + '</li><li>Year: ' + 'power' + '</li>' +
-          '<li>Area: </li><br><button id="btnDelete">Clear All</button></ul>')
-      }
-    })
-    this.wwtpPoints.addTo(this.map);
-    this.loaderService.display(false);
   }
 
   addDrawerControl(map: Map) {
@@ -341,7 +307,7 @@ export class MapService implements OnInit, OnDestroy {
     };
     this.drawControl = new L.Control.Draw(this.options);
     map.addControl(this.drawControl);
-    
+
   }
 
   toggleControl() {
