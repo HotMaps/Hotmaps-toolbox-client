@@ -37,6 +37,3 @@
     crs: Crs;
     bbox: number[];
   }
-
-
-

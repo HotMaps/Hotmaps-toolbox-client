@@ -41,10 +41,13 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
+import { PopupService } from './features/popup/popup.service';
+import { PopupComponent } from './features/popup/popup.component';
 
 
 @NgModule({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -66,8 +69,7 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     NavigationBarComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
-
-
+    PopupComponent
   ],
 
   providers: [
@@ -81,7 +83,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     Helper,
     SidePanelService,
     NavigationBarService,
-    LayersService
+    LayersService,
+    PopupService
 
 
   ],

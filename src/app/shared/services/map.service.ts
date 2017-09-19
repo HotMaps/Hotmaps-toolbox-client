@@ -6,8 +6,7 @@ import {Http} from '@angular/http';
 import {Map} from 'leaflet';
 import {Popup} from 'leaflet';
 
-import 'proj4leaflet';
-import 'proj4'
+
 import {Logger} from './logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
@@ -34,6 +33,7 @@ import Point = L.Point;
 import { MouseEvent} from 'leaflet';
 import CanvasGeojsonLayer = L.CanvasGeojsonLayer;
 import Evented = L.Evented;
+import { PopupService } from './../../features/popup/popup.service';
 
 
 
@@ -54,7 +54,8 @@ export class MapService implements OnInit, OnDestroy {
   private isDrawControl = false;
 
   constructor(private logger: Logger, private loaderService: LoaderService,
-              private populationService: PopulationService, private layersService: LayersService, private helper: Helper) {
+              private populationService: PopulationService, private layersService: LayersService, private helper: Helper,
+              private popupService: PopupService) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
@@ -127,6 +128,7 @@ export class MapService implements OnInit, OnDestroy {
       const type = event.layerType,
         layer = event.layer;
       if (type === 'rectangle') {
+        self.popupService.showPopupValidation()
         self.logger.log('rectangle');
         const rectangle: Rectangle = <Rectangle>event.layer;
         const latlng = rectangle.getLatLngs()[0];

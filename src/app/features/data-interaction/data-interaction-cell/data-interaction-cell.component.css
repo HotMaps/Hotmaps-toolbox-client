@@ -18,7 +18,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 8px;
+    margin-left: 2px;
 }
 .notifications {
   flex: 1;
@@ -41,5 +41,14 @@
 }
 button{
     padding: 0 5px;
+    text-align: left;
     /* font-size: 0.675rem; */
+}
+
+input:checked{
+    border-color: green !important;
+}
+
+input{
+    margin-right: 5px;
 }

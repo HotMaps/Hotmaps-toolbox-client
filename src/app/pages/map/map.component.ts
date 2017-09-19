@@ -128,7 +128,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     L.control.scale().addTo(this.map);
     // L.control.measure(measureOption).addTo(this.map);
-    //this.mapService.addDrawerControl(this.map);
+    // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
   showControls() {
