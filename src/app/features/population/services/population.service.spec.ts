@@ -3,7 +3,7 @@ import { MockBackend } from '@angular/http/testing';
 import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 
 import {apiUrl} from '../../../shared/data.service';
-import {Location} from '../../../shared/location/location';
+import {Location} from '../../../shared/class/location/location';
 import {Logger } from '../../../shared/services/logger.service';
 import {LoaderService } from '../../../shared/services/loader.service';
 import {MockPopulation } from './mock/population.data.mock';

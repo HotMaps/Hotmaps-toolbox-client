@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Logger} from './services/logger.service';
-import {Location} from './location/location';
+import {Location} from './class/location/location';
 
 
 @Injectable()

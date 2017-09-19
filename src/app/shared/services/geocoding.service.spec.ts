@@ -3,7 +3,7 @@ import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 import { GeocodingService } from './geocoding.service';
 import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import {Location} from '../location/location.class';
+import {Location} from '../class/location/location.class';
 import {Logger} from './logger.service';
 import { LoaderService } from './loader.service'
 import {geocodeUrl} from '../data.service'

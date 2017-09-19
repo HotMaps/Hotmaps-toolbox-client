@@ -9,7 +9,7 @@ import {geoserverUrl, clickAccuracy, defaultLayer, layer_wwtp, unit_capacity} fr
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/location/location';
+import {Location} from '../../../shared/class/location/location';
 import {Logger} from '../../../shared/services/logger.service';
 import {Properties} from '../class/geojson.class';
 import {Feature} from '../class/geojson.class'

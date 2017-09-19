@@ -35,6 +35,8 @@ import { PopulationService } from './features/population/services/population.ser
 import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
 import { SidePanelService} from './features/side-panel/side-panel.service';
+import { SelectionToolService} from './features/selection-tools/selection-tool.service';
+
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
@@ -81,7 +83,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     Helper,
     SidePanelService,
     NavigationBarService,
-    LayersService
+    LayersService,
+    SelectionToolService
 
 
   ],

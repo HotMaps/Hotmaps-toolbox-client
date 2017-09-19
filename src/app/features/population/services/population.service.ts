@@ -9,7 +9,7 @@ import {apiUrl, postPopulationDensityInArea} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/location/location';
+import {Location} from '../../../shared/class/location/location';
 import {Logger} from '../../../shared/services/logger.service';
 import {Payload} from '../payload.class'
 import {Population} from '../population.class';

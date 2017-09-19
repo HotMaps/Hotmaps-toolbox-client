@@ -2,7 +2,7 @@
  * Created by lesly on 27.05.17.
  */
 import {Http, Headers, Response} from '@angular/http';
-import {Location} from '../location/location.class';
+import {Location} from '../class/location/location.class';
 import {Injectable} from '@angular/core';
 
 import 'rxjs/add/operator/map';
