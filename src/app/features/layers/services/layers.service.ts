@@ -50,6 +50,14 @@ export class LayersService extends APIService {
         .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));
 
   }
+
+  getIsReadyToShowFeatureInfo(): boolean {
+    let readyToShow = false;
+    if (this.layersArray.keys().length > 0) {readyToShow = true}
+      this.logger.log('layer length = ' + this.layersArray.keys().length );
+      this.logger.log('readyToShow = ' + readyToShow )
+    return readyToShow ;
+  }
   refreshLayersOnMap( map: any) {
     const layers = this.layersArray.keys();
     for (let i = 0; i < layers.length; i++) {

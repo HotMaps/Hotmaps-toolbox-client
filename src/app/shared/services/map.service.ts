@@ -31,10 +31,9 @@ import {SelectionToolService} from '../../features/selection-tools/selection-too
 export class MapService implements OnInit, OnDestroy {
   private map: Map;
   private baseMaps: any;
-  private vtLayer: any;
-  private editableLayers = new L.FeatureGroup();
+
   constructor(private logger: Logger, private loaderService: LoaderService, private selectionToolService: SelectionToolService,
-              private populationService: PopulationService, private layersService: LayersService, private helper: Helper) {
+              private layersService: LayersService, private helper: Helper) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
@@ -63,11 +62,12 @@ export class MapService implements OnInit, OnDestroy {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
     this.map.on('click', function(e: MouseEvent) {
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-
-        self.layersService.getDetailLayerPoint('wwtp', e.latlng, self.map);
-
+      // check if the selection toul is activate
+      if (self.selectionToolService.getIsActivate() === false
+        // check if there are layers to show in the layer service
+        && self.layersService.getIsReadyToShowFeatureInfo() === true) {
+          self.layersService.getDetailLayerPoint('wwtp', e.latlng, self.map);
+      }
     });
     this.map.on('zoomend', function() {
       self.logger.log('MapService/zoomend');
@@ -107,59 +107,12 @@ export class MapService implements OnInit, OnDestroy {
 
     }
   }
-  // population feature
-  getPopulation(locations: Location[], layer: Layer) {
-    this.loaderService.display(true);
-    this.logger.log('MapService/getPopulation');
-    const payload: Payload = {
-      nuts_level: 3,
-      year: 2015,
-      points: locations,
-    }
-    this.logger.log('MapService/payload ' +  JSON.stringify(payload) );
-    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer));
-  }
-
 
   showOrRemoveLayer(action: string) {
     this.layersService.showOrRemoveLayer(action, this.map);
   }
 
-  retriveAndAddLayer(population: Population, layer: Layer) {
-    this.logger.log('MapService/retriveAndAddLayer');
-    this.showlayer(JSON.parse(population.geometries));
-    const populationValue = population.sum_density;
-    function foo() {
-      alert('foo');
-    }
-    layer.bindPopup('<h3>Area selected</h3><ul>' +
-      '<li>Population: ' + populationValue + '</li><li>Nuts: ' + population.nuts_level + '</li><li>Year: ' + population.year + '</li>' +
-      '<br><button id="btnDelete">Clear All</button></ul>').openPopup();
 
-    document.getElementById ('btnDelete').addEventListener ('click', deleteSelectedArea, false);
-    const self = this;
-    function deleteSelectedArea(zEvent) {
-      self.removeVtlayer();
-      self.editableLayers.clearLayers();
-    }
-  }
-
-  showlayer(geometrie: any) {
-
-    this.logger.log('MapService/showlayer');
-    this.removeVtlayer();
-    this.logger.log('MapService/showlayer/layerWilladde');
-    this.vtLayer = L.vectorGrid.slicer(geometrie);
-    this.vtLayer.addTo(this.map);
-    this.loaderService.display(false);
-  }
-  removeVtlayer() {
-    if (this.vtLayer) {
-      this.logger.log('MapService/removelayer');
-      this.map.removeLayer(this.vtLayer);
-      delete this.vtLayer;
-    }
-  }
 
   addDrawerControl(map: Map) {
     this.selectionToolService.addDrawerControl(map)
@@ -167,6 +120,6 @@ export class MapService implements OnInit, OnDestroy {
   }
 
   toggleControl() {
-    this.selectionToolService.toggleControl();
+    this.selectionToolService.toggleControl(this.map);
   }
 }

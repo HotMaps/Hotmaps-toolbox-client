@@ -37,22 +37,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
+    this.rightPanelComponent.setTitle('Load Result');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
-
-  // manage the click or sidebar
-  toggleRightExpandedState() {
-    this.panelService.rightPanelexpandedCollapsed();
-  }
-
-  toggleLeftExpandedState() {
-    this.panelService.leftPanelexpandedCollapsed();
-  }
-
   notifySidePanelComponent() {
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
       if (this.openRightSidebar === false) {

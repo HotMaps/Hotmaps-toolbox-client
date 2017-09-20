@@ -26,7 +26,7 @@ import {SideComponent} from '../side-panel.component';
         //  shrinking the panel down.
         //
         trigger('panelWidthTrigger', [
-            state('expanded', style({ width: '380px' })),
+            state('expanded', style({ width: '480px' })),
             state('collapsed', style({ width: '0px' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
@@ -38,8 +38,8 @@ import {SideComponent} from '../side-panel.component';
         //  transitions happen at the same time
         //
         trigger('titleColorTrigger', [
-            state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#E74C3C' })),
-            state('expanded', style({ backgroundColor: '#E74C3C', color: '#FFFFFF' })),
+            state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
+            state('expanded', style({ backgroundColor: '#d3d3d3', color: '#FFFFFF' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),
@@ -86,7 +86,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     constructor() {
         super();
     }
-    
     ngOnInit() {
      }
     ngOnDestroy() {

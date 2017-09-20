@@ -1,0 +1,32 @@
+
+<!--  <div class="notifications">
+
+      <ul uk-accordion *ngFor="let i of summaryResults">
+            <ng-container  >
+                <htm-summary-result-cell [summaryResult]="i" [expanded]="expanded"></htm-summary-result-cell>
+            </ng-container>
+      </ul>
+
+  </div>-->
+
+<span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
+<div class="uk-card uk-card-body">
+<div [ngBusy]="busy"></div>
+  <table class="uk-table uk-table-divider">
+    <thead>
+    <tr class="header-summary">
+      <th class="uk-table-shrink">Information</th>
+      <th class="uk-table-shrink">Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of summaryResults" >
+      <td>{{i.information}}</td>
+      <td>{{i.value}} {{i.unit}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+</span>

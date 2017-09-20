@@ -26,6 +26,7 @@
         "../node_modules/leaflet/dist/leaflet.css",
         "../node_modules/ionicons/dist/css/ionicons.css",
         "../node_modules/uikit/dist/css/uikit.css",
+        "../node_modules/angular2-busy/build/style/busy.css",
         "../src/assets/fonts/flaticon.css",
         "../src/assets/fonts/Roboto.css",
         "styles.css"

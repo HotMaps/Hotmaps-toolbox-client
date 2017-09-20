@@ -9,7 +9,7 @@ import {Popup} from 'leaflet';
 import {Logger} from '../../shared/services/logger.service';
 import {OnInit, OnDestroy} from '@angular/core';
 
-import {basemap} from '../../pages/map/basemap';
+
 
 import {Payload} from '../../features/population/payload.class';
 
@@ -17,6 +17,7 @@ import {Population} from '../../features/population/population.class';
 
 import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
+import {SidePanelService} from '../../features/side-panel/side-panel.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {MapService} from '../../shared/services/map.service';
 import {Location} from '../../shared/class/location/location';
@@ -32,133 +33,146 @@ import Edited = L.DrawEvents.Edited;
 
 
 
-
-
 @Injectable()
-export class SelectionToolService implements OnInit, OnDestroy {
+export class SelectionToolService {
 
 
   private baseMaps: any;
-  private map: any;
+  private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private options;
   private drawControl;
   private isDrawControl = false;
-
+  private selectionTooLayer: any;
   constructor(private logger: Logger, private loaderService: LoaderService,
-                private helper: Helper) {
-    logger.log('MapService/constructor()');
-    this.baseMaps = basemap;
+                private helper: Helper, private populationService: PopulationService , private sidePanelService: SidePanelService ) {
+    logger.log('SelectionToolService/constructor()');
   }
 
-  ngOnInit(): void {
-    this.logger.log('MapService/ngOnInit()');
-    this.retriveMapEvent();
+
+  getIsActivate(): boolean {
+    return this.isActivate;
   }
   setMap(map: any) {
-    this.map = map;
+    this.logger.log('SelectionToolService/setMap()');
+    this.retriveMapEvent(map);
   }
-  getMap(): Map {
-    return this.map;
-  }
-  ngOnDestroy(): void {
-    this.logger.log('MapService/ngOnDestroy()');
-  }
-
-  retriveMapEvent(): void {
+  retriveMapEvent(map: any): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
-    this.map.on(L.Draw.Event.CREATED , function (e) {
+    map.on(L.Draw.Event.CREATED , function (e) {
       const event: Created = <Created>e;
+      // Clear the map before to show the new selection
       self.editableLayers.clearLayers();
-      //self.mapService.removeVtlayer();
+      self.removeVtlayer(map);
       const type = event.layerType,
         layer = event.layer;
-      if (type === 'rectangle') {
-        self.logger.log('rectangle');
-        const rectangle: Rectangle = <Rectangle>event.layer;
-        const latlng = rectangle.getLatLngs()[0];
-        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
-        self.logger.logJson(locations);
-        self.getPopulation(locations, layer);
-      } else if (type === 'polygon') {
-        const polygon: Polygon = <Polygon>event.layer;
-        const latlng = polygon.getLatLngs()[0];
-        const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
-        self.logger.logJson(locations);
-        self.getPopulation(locations, layer);
-
-      } else if (type === 'circle') {
-        self.logger.log('circle')
-        const circle: Circle = <Circle>event.layer;
-        const origin = circle.getLatLng(); // center of drawn circle
-        const radius = circle.getRadius(); // radius of drawn circle
-        const polys = self.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
-        const locations = [];
-        for (let i = 0; i < polys.length; i++) {
-          const loc: Location = {
-            lat: polys[i].lat,
-            lng: polys[i].lng
-          };
-          locations.push(loc);
-        }
-        self.logger.logJson(locations);
-        self.getPopulation(locations, layer);
-      }
-
-      self.editableLayers.addLayer(layer);
-      console.log(layer.openPopup());
+      self.manageEditOrCreateLayer(layer, map);
     });
 
-    this.map.on(L.Draw.Event.EDITED , function (e) {
+    map.on(L.Draw.Event.EDITED , function (e) {
       const event: Edited = <Edited>e;
-
       event.layers.eachLayer(function (layer: Layer) {
         const lay: Layer = layer;
-        self.logger.log('layer ' + layer);
-        if (layer instanceof L.Marker) {
-          self.logger.log('Marker ');
-        }else if (layer instanceof L.Polygon) {
-          self.logger.log('Polygon ');
-          const polygon: Polygon = <Polygon>layer;
-          const latlng = polygon.getLatLngs()[0];
-          const locations: Location[] = self.helper.convertLatLongToLocation(latlng);
-          self.logger.logJson(locations);
-          self.getPopulation(locations, layer);
-        }else if (layer instanceof L.Circle) {
-          self.logger.log('Circle ');
-          const circle: Circle = <Circle>layer;
-          self.logger.log('circle getLatLng' + circle.getLatLng());
-          // self.logger.log('circle getBounds' + circle.getBounds());
-          self.logger.log('circle getBounds' + circle.getRadius());
-          const origin = circle.getLatLng(); // center of drawn circle
-          const radius = circle.getRadius(); // radius of drawn circle
-          const polys = self.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
-          const locations = [];
-          for (let i = 0; i < polys.length; i++) {
-            const loc: Location = {
-              lat: polys[i].lat,
-              lng: polys[i].lng
-            };
-            locations.push(loc);
-          }
-          self.logger.logJson(locations);
-          self.getPopulation(locations, layer);
-        };
-        self.editableLayers.addLayer(layer);
-        console.log(layer.openPopup());
+        self.manageEditOrCreateLayer(layer, map);
       });
+    });
 
+    map.on(L.Draw.Event.DRAWSTART , function (e) {
+      self.isActivate = true;
+      self.logger.log('SelectionToolService/DRAWSTART');
 
     });
 
-    function onOverlayAdd(e) {
-      self.logger.log('overlayadd');
+    map.on(L.Draw.Event.DRAWSTOP , function (e) {
+      self.isActivate = false;
+      self.logger.log('SelectionToolService/DRAWSTOP');
 
+    });
+
+    map.on(L.Draw.Event.EDITSTART , function (e) {
+      self.logger.log('SelectionToolService/EDITSTART');
+      self.isActivate = true;
+
+    });
+
+    map.on(L.Draw.Event.EDITSTOP , function (e) {
+      self.isActivate = false;
+      self.logger.log('SelectionToolService/EDITSTOP');
+    });
+  }
+  manageEditOrCreateLayer(layer: Layer, map: any) {
+    if (layer instanceof L.Circle) {
+      this.getPopulation(this.getLocationsFromCicle(layer), layer, map);
+    } else  {
+      this.getPopulation(this.getLocationsFromPolygon(layer), layer, map);
+    };
+    this.editableLayers.addLayer(layer);
+  };
+  getLocationsFromPolygon(layer): Location[] {
+    const rectangle: any = <any>layer;
+    const latlng = rectangle.getLatLngs()[0];
+    const locations: Location[] = this.helper.convertLatLongToLocation(latlng);
+    return locations
+  }
+
+  getLocationsFromCicle(layer): Location[] {
+    const circle: any = <any>layer;
+    const origin = circle.getLatLng(); // center of drawn circle
+    const radius = circle.getRadius(); // radius of drawn circle
+    const polys = this.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
+    const locations = [];
+    for (let i = 0; i < polys.length; i++) {
+      const loc: Location = {
+        lat: polys[i].lat,
+        lng: polys[i].lng
+      };
+      locations.push(loc);
+    }
+    return locations
+  }
+  retriveAndAddLayer(population: Population, layer: Layer, map: any) {
+    this.logger.log('MapService/retriveAndAddLayer');
+    this.showlayer(JSON.parse(population.geometries), map);
+    const populationValue = population.sum_density;
+    function foo() {
+      alert('foo');
+    }
+    layer.bindPopup('<h3>Area selected</h3><ul>' +
+      '<li>Population: ' + populationValue + '</li><li>Nuts: ' + population.nuts_level + '</li><li>Year: ' + population.year + '</li>' +
+      '<br><button id="btnDelete">Clear All</button><button id="btnValidate">Validate</button></ul>').openPopup();
+
+    document.getElementById ('btnDelete').addEventListener ('click', deleteSelectedArea, false);
+    document.getElementById ('btnValidate').addEventListener ('click', validateSelectedArea, false);
+    const self = this;
+    function deleteSelectedArea(zEvent) {
+      self.removeVtlayer(map);
+      self.editableLayers.clearLayers();
+    }
+    function validateSelectedArea(zEvent) {
+      self.sidePanelService.rightPanelexpandedCollapsed();
+    }
+  }
+
+  showlayer(geometrie: any, map: any) {
+
+    this.logger.log('MapService/showlayer');
+    this.removeVtlayer(map);
+    this.logger.log('MapService/showlayer/layerWilladde');
+    this.selectionTooLayer = L.vectorGrid.slicer(geometrie);
+    this.selectionTooLayer.addTo(map);
+    this.loaderService.display(false);
+  }
+  removeVtlayer(map: any) {
+    if (this.selectionTooLayer) {
+      this.logger.log('MapService/removelayer');
+      map.removeLayer(this.selectionTooLayer);
+      delete this.selectionTooLayer;
     }
   }
   // population feature
-  getPopulation(locations: Location[], layer: Layer) {
+  // population feature
+  getPopulation(locations: Location[], layer: Layer, map: any) {
     this.loaderService.display(true);
     this.logger.log('MapService/getPopulation');
     const payload: Payload = {
@@ -167,8 +181,9 @@ export class SelectionToolService implements OnInit, OnDestroy {
       points: locations,
     }
     this.logger.log('MapService/payload ' +  JSON.stringify(payload) );
-    //this.mapService.getPopulation(locations, layer);
+    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer, map));
   }
+
   addDrawerControl(map: Map) {
     map.addLayer(this.editableLayers);
     this.options = {
@@ -213,13 +228,12 @@ export class SelectionToolService implements OnInit, OnDestroy {
     map.addControl(this.drawControl);
 
   }
-
-  toggleControl() {
+  toggleControl(map: any) {
     if (this.isDrawControl) {
-      this.map.removeControl(this.drawControl)
+      map.removeControl(this.drawControl)
       this.isDrawControl = false;
     }else {
-      this.addDrawerControl(this.map);
+      this.addDrawerControl(map);
       this.isDrawControl = true;
     }
   }

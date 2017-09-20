@@ -1,8 +1,15 @@
 <div class="container-panel-right " [@panelWidthTrigger]="expandedState">
+
     <div class="title-panel-right " [@titleColorTrigger]="expandedState">
+      <a class="link" (click)="toggleExpandedState()">
+        <i [@iconTrigger]="expandedState" class="fa fa-arrow-left" aria-hidden="true"></i>
+      </a>
         <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
-        <a class="link" (click)="toggleExpandedState()">
-            <i [@iconTrigger]="expandedState" class="fa fa-arrow-left" aria-hidden="true"></i>
-        </a>
+
     </div>
+
+
+  <htm-summary-result  [expanded]="expanded"></htm-summary-result>
+
+
 </div>

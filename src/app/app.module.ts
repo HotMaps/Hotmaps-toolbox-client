@@ -14,6 +14,7 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BusyModule} from 'angular2-busy';
 import {MaterialModule} from '@angular/material';
 
 
@@ -36,7 +37,8 @@ import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
 import { SidePanelService} from './features/side-panel/side-panel.service';
 import { SelectionToolService} from './features/selection-tools/selection-tool.service';
-
+import { SummaryResultComponent} from './features/summary-result/summary-result.component';
+import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
@@ -48,6 +50,7 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
 @NgModule({
   imports: [HttpModule,
     FormsModule,
+    BusyModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -66,6 +69,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     RightSideComponent,
     LeftSideComponent,
     NavigationBarComponent,
+    SummaryResultComponent,
+    SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
 
