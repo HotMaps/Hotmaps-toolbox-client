@@ -1,3 +1,5 @@
+
+import { PopupValidationService } from './../../features/popup/validation/popup-validation.service';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -9,6 +11,10 @@ import Edited = L.DrawEvents.Edited;
 import {Injectable} from '@angular/core';
 import Layer = L.Layer;
 import {Map} from 'leaflet';
+import {Popup} from 'leaflet';
+
+
+import {Logger} from './logger.service';
 import { MouseEvent} from 'leaflet';
 import {OnInit, OnDestroy} from '@angular/core';
 import {Popup} from 'leaflet';
@@ -24,6 +30,24 @@ import {Location} from '../class/location/location';
 import {Payload} from '../../features/population/payload.class';
 import {Population} from '../../features/population/population.class';
 import {PopulationService} from '../../features/population/services/population.service';
+import {LoaderService} from './loader.service';
+import {Location} from '../location/location';
+import {Helper} from '../helper'
+import Created = L.DrawEvents.Created;
+
+import Polygon = L.Polygon;
+import LatLng = L.LatLng;
+import Circle = L.Circle;
+import Rectangle = L.Rectangle;
+import Layer = L.Layer;
+import Edited = L.DrawEvents.Edited;
+import Point = L.Point;
+import { MouseEvent} from 'leaflet';
+import CanvasGeojsonLayer = L.CanvasGeojsonLayer;
+import Evented = L.Evented;
+import { PopupFactory } from './../../features/popup/popup.class';
+
+
 import {SelectionToolService} from '../../features/selection-tools/selection-tool.service';
 
 
@@ -32,6 +56,9 @@ export class MapService implements OnInit, OnDestroy {
   private map: Map;
   private baseMaps: any;
 
+  constructor(private logger: Logger, private loaderService: LoaderService,
+              private populationService: PopulationService, private layersService: LayersService, private helper: Helper,
+              private popupFactory: PopupFactory) {
   constructor(private logger: Logger, private loaderService: LoaderService, private selectionToolService: SelectionToolService,
               private layersService: LayersService, private helper: Helper) {
     logger.log('MapService/constructor()');

@@ -1,0 +1,10 @@
+<div #popupval>
+    <div *ngIf="visible">
+        <h5>{{title}}</h5>
+        <ul class="uk-list uk-list-divider"></ul>
+        <div>
+            <div (click)="removePopup()" class="uk-button uk-button-danger uk-button-small uk-width-2-2">cancel</div>
+            <div class="uk-button uk-button-primary uk-button-small uk-width-2-2">Valid selection</div>
+        </div>
+    </div>
+</div>

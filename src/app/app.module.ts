@@ -1,5 +1,3 @@
-
-
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -45,10 +43,19 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
+import { PopupValidationComponent } from './features/popup/validation/popup-validation.component';
+import { PopupValidationService } from './features/popup/validation/popup-validation.service';
+import { PopupWWTPService } from './features/popup/wwtp/popup-wwtp.service';
+import { PopupFactory } from './features/popup/popup.class';
+import { PopupWWTPComponent } from './features/popup/wwtp/popup-wwtp.component';
+import { PopupHeatService } from './features/popup/heat-density/popup-heat.service';
+import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.component';
+
 
 
 @NgModule({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     FormsModule,
     BusyModule,
     BrowserModule,
@@ -73,8 +80,9 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
-
-
+    PopupValidationComponent,
+    PopupWWTPComponent,
+    PopupHeatComponent
   ],
 
   providers: [
@@ -88,6 +96,11 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
     Helper,
     SidePanelService,
     NavigationBarService,
+    LayersService,
+    PopupValidationService,
+    PopupWWTPService,
+    PopupFactory,
+    PopupHeatService
     LayersService,
     SelectionToolService
 

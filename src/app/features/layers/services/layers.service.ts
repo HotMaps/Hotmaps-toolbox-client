@@ -5,22 +5,27 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
-import {geoserverUrl, clickAccuracy, defaultLayer, layer_wwtp, unit_capacity} from '../../../shared/data.service'
+import {geoserverUrl, clickAccuracy, defaultLayer} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/class/location/location';
+import {Location} from '../../../shared/location/location';
 import {Logger} from '../../../shared/services/logger.service';
 import {Properties} from '../class/geojson.class';
 import {Feature} from '../class/geojson.class'
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
-import {Helper} from '../../../shared/helper';
+
 import {APIService} from '../../../shared/services/api.service';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
+import { PopupService } from './../../popup/popup.service';
+import { DataLayerRequest } from './../../../shared/services/mock/mock-layer.data';
+import { PopupFactory } from './../../popup/popup.class';
+import { PopupValidationService } from './../../popup/validation/popup-validation.service';
+import { DataHeatDemand } from './../../../shared/services/mock/data-heat-demand';
 
 @Injectable()
 export class LayersService extends APIService {
@@ -33,30 +38,21 @@ export class LayersService extends APIService {
 
   ]) ;
   private popup = L.popup();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 
-  getDetailLayerPoint(action: string , latlng: LatLng, map): any {
-   if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer}
-
-      const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-      const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
-        '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
-        + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
-        '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-      console.log('url ' + url);
-      return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
-        .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));
-
-  }
-
-  getIsReadyToShowFeatureInfo(): boolean {
-    let readyToShow = false;
-    if (this.layersArray.keys().length > 0) {readyToShow = true}
-      this.logger.log('layer length = ' + this.layersArray.keys().length );
-      this.logger.log('readyToShow = ' + readyToShow )
-    return readyToShow ;
+  getDetailLayerPoint(action: string, latlng: LatLng, map): any {
+    if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer }
+    /* const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+    const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
+      '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
+      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+    console.log('url ' + url);
+    return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
+      .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));*/
+    this.addPopup(map, DataHeatDemand, latlng, action);
   }
   refreshLayersOnMap( map: any) {
     const layers = this.layersArray.keys();
@@ -76,7 +72,7 @@ export class LayersService extends APIService {
       this.removelayer(action, map);
     }
   }
-  addLayerWithAction(action: string, map: any ) {
+  addLayerWithAction(action: string, map: any) {
     const layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
@@ -87,7 +83,7 @@ export class LayersService extends APIService {
     this.refreshLayersOnMap(map);
   }
 
-  removelayer(action: string, map: any ) {
+  removelayer(action: string, map: any) {
     // we get the layer we want to remove
     const layer = this.layersArray.value(action);
     // we remove this layer from map
@@ -147,9 +143,11 @@ export class LayersService extends APIService {
       this.logger.log('LayersService/addPopup/popup/added');
       }
 
+  addPopup(map, res: GeojsonClass, latlng: LatLng, action) {
+    this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
   }
 
-  addPopupHeatmap(map, res: GeojsonClass, latlng: LatLng) {
+  /*addPopupHeatmap(map, res: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
     const gid = res.features[0].properties.gid;
     const capacity = res.features[0].properties.capacity;
@@ -158,7 +156,7 @@ export class LayersService extends APIService {
     const unit = res.features[0].properties.unit;
     this.popup.setLatLng(latlng)
       .setContent('<h3>WWTP selected</h3><ul>' +
-        '<li>gid: ' + gid + '</li><li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + '</li>' +
+        '<li>gid: ' + gid + '</li><li>Date: ' + date + '</li><li>Capacity: ' + capacity + '</li>' +
         '<li>power: ' + power + ' ' + unit + '</li>' +
         '</ul>')
       .openOn(map);
