@@ -1,0 +1,11 @@
+<div #popupwwtp>
+    <div *ngIf="visible">
+        <h5>{{title}}</h5>
+        <ul class="uk-list uk-list-divider">
+            <li>GID: {{data.features[0].properties.gid}}</li>
+            <li>Capacity: {{data.features[0].properties.capacity}} {{data.features[0].properties.unit}}</li>
+            <li>Power: {{data.features[0].properties.power}} {{data.features[0].properties.unit}}</li>        
+            <li>Reference date: {{data.features[0].properties.date}}</li> 
+        </ul>
+    </div>
+</div>

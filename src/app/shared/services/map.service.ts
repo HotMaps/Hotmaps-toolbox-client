@@ -1,3 +1,5 @@
+
+import { PopupValidationService } from './../../features/popup/validation/popup-validation.service';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -33,8 +35,7 @@ import Point = L.Point;
 import { MouseEvent} from 'leaflet';
 import CanvasGeojsonLayer = L.CanvasGeojsonLayer;
 import Evented = L.Evented;
-import { PopupService } from './../../features/popup/popup.service';
-
+import { PopupFactory } from './../../features/popup/popup.class';
 
 
 
@@ -55,7 +56,7 @@ export class MapService implements OnInit, OnDestroy {
 
   constructor(private logger: Logger, private loaderService: LoaderService,
               private populationService: PopulationService, private layersService: LayersService, private helper: Helper,
-              private popupService: PopupService) {
+              private popupFactory: PopupFactory) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
@@ -128,7 +129,6 @@ export class MapService implements OnInit, OnDestroy {
       const type = event.layerType,
         layer = event.layer;
       if (type === 'rectangle') {
-        self.popupService.showPopupValidation()
         self.logger.log('rectangle');
         const rectangle: Rectangle = <Rectangle>event.layer;
         const latlng = rectangle.getLatLngs()[0];

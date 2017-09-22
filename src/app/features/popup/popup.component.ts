@@ -4,27 +4,23 @@ import { MapService } from './../../shared/services/map.service';
 import { PopupService } from './popup.service';
 
 @Component({
-  selector: 'htm-popup',
-  templateUrl: './popup.component.html',
-  styleUrls: ['./popup.component.css']
+ moduleId: module.id
 })
 
 
 export class PopupComponent extends L.Popup implements OnInit  {
-  private popup: any;
-  private title: string;
-  private data: any;
-  private keysData: string[];
-  private validation = false;
-
-  @ViewChild('popup') el: ElementRef;
-
-  constructor(private mapService: MapService, private popupService: PopupService) {
+  protected title: string;
+  protected data: any;
+  protected latlng: any;
+  protected visible = false;
+  constructor(protected popupService: PopupService, protected mapService: MapService) {
     super({minWidth: 200});
   }
-  ngOnInit() {
-    this.popupService.validation.subscribe((validation) => {
-      this.validation = validation;
+
+  ngOnInit() {}
+  subscribeData() {
+    this.popupService.visible.subscribe((visible) => {
+        this.visible = visible;
     });
 
     this.popupService.data.subscribe((data) => {
@@ -32,29 +28,16 @@ export class PopupComponent extends L.Popup implements OnInit  {
     });
 
     this.popupService.latlng.subscribe((latlng) => {
-        this.showPopup(latlng);
+        this.latlng = latlng
     });
 
-    this.popupService.titlePopup.subscribe((title) => {
+    this.popupService.title.subscribe((title) => {
         this.title = title;
     });
-
-    this.popupService.keysData.subscribe((keysData) => {
-        this.keysData = keysData;
-    });
-}
-
-  setTitle(title: string) {
-    this.title = title;
   }
-
-  showPopup(latlng: any) {
-    if (latlng) {
-      this.setContent(this.el.nativeElement).setLatLng(latlng).openOn(this.mapService.getMap());
-    }
-  }
-
-  removePopup() {
-    console.log(this.popup.isPopupOpen());
+  showPopup(el) {
+      if (this.latlng) {
+        this.setContent(el.nativeElement).setLatLng(this.latlng).openOn(this.mapService.getMap());
+      }
   }
 }

@@ -24,10 +24,12 @@ import LatLng = L.LatLng;
 
 import { PopupService } from './../../popup/popup.service';
 import { DataLayerRequest } from './../../../shared/services/mock/mock-layer.data';
+import { PopupFactory } from './../../popup/popup.class';
+import { PopupValidationService } from './../../popup/validation/popup-validation.service';
+import { DataHeatDemand } from './../../../shared/services/mock/data-heat-demand';
 
 @Injectable()
 export class LayersService extends APIService {
-  private keys: any[];
   private layersArray: Dictionary = new Dictionary([
     {
       key: defaultLayer, value: L.tileLayer.wms(geoserverUrl,
@@ -43,7 +45,7 @@ export class LayersService extends APIService {
     logger: Logger,
     loaderService: LoaderService,
     toasterService: ToasterService,
-    private popupService: PopupService) {
+    private popupFactory: PopupFactory) {
     super(http, logger, loaderService, toasterService);
 
   }
@@ -58,8 +60,7 @@ export class LayersService extends APIService {
     console.log('url ' + url);
     return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));*/
-    this.addPopup(map, DataLayerRequest, latlng, action);
-    console.log('bino');
+    this.addPopup(map, DataHeatDemand, latlng, action);
   }
   refreshLayersOnMap(map: any) {
     const layers = this.layersArray.keys();
@@ -111,11 +112,7 @@ export class LayersService extends APIService {
   }
 
   addPopup(map, res: GeojsonClass, latlng: LatLng, action) {
-    console.log(this.keys, res, latlng, this.keys);
-    this.popupService.setTitle(action);
-    this.popupService.setData(res);
-    this.popupService.setLatLng(latlng);
-    this.popupService.setKeys(Object.keys(res.features[0].properties));
+    this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
   }
 
   /*addPopupHeatmap(map, res: GeojsonClass, latlng: LatLng) {
