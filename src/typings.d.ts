@@ -29,7 +29,12 @@ declare namespace L {
      */
   }
 }
+declare namespace L {
+  export class EditToolbar {
 
+  }
+
+}
 // proj4leaflet typings
 
 declare namespace L {

@@ -118,8 +118,4 @@ export class MapService implements OnInit, OnDestroy {
     this.selectionToolService.addDrawerControl(map)
 
   }
-
-  toggleControl() {
-    this.selectionToolService.toggleControl(this.map);
-  }
 }

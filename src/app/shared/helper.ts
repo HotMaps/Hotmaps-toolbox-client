@@ -29,17 +29,12 @@ export class Helper {
     let n = 0;
     const locations = [];
     do {
-      this.logger.log(' boucle');
-      this.logger.log(' Lat =' + latlng[n].lat);
-      this.logger.log(' Lng =' + latlng[n].lng);
-      this.logger.log(' before n++ latlng =' + latlng[n]);
       const loc: Location = {
         lat: latlng[n].lat,
         lng: latlng[n].lng
       };
       locations.push(loc);
       n++;
-      this.logger.log(' after n++ latlng =' + latlng[n]);
     } while (!this.isNullOrUndefined(latlng[n]));
 
     return locations;
@@ -117,8 +112,6 @@ export class Helper {
     const self = this;
     const coords = [];
     arrLatlng.forEach(function(latlng) {
-        self.logger.log(' Lat =' + latlng.lat);
-        self.logger.log(' Lngs =' + latlng.lng);
         coords.push( [latlng.lng, latlng.lat]);
       },
       this);
