@@ -16,3 +16,4 @@ export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const set404url   = 'set404url';
 export const clickAccuracy   = 100000;
+export const unitCapacity   = 'Person Equivalent';
