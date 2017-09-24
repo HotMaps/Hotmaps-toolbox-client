@@ -19,6 +19,11 @@ export class SummaryResultService extends APIService {
     return Promise.resolve(SummaryResultArray);
   }
 
+  getAreaSelectedSummayResultService(): Promise<SummaryResultClass[]> {
+    console.log('getSummaryResultService');
+    return Promise.resolve(SummaryResultArray);
+  }
+
   getModulesServicesWithNewService(newService: SummaryResultClass): Promise<SummaryResultClass[]> {
     const servicesArray: SummaryResultClass[] = SummaryResultArray;
     servicesArray.push(newService);

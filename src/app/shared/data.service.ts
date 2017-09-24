@@ -21,4 +21,6 @@ export const set404url   = 'set404url';
 export const clickAccuracy   = 100;
 export const layer_wwtp   = 'wwtp';
 export const unit_capacity   = 'Person Equivalent';
+export const unit_heat_density   = 'GWh/km2';
+
 

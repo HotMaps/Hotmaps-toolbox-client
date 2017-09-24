@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
-import {geoserverUrl, clickAccuracy, defaultLayer, unit_capacity} from '../../../shared/data.service'
+import {geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
@@ -142,7 +142,7 @@ export class LayersService extends APIService {
     this.popup.setLatLng(latlng)
       .setContent(
         '<h5>heat map</h5> <ul class="uk-list uk-list-divider">' +
-        ' <li>Heat demand: ' + this.helper.round(heat_density)  + '</li> </ul>')
+        ' <li>Heat demand: ' + this.helper.round(heat_density)  + ' ' + unit_heat_density + '</li> </ul>')
       .openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
   }
