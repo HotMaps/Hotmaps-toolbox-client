@@ -18,6 +18,7 @@ export class NavigationBarComponent implements OnInit {
     constructor(private navService: NavigationBarService) { }
 
     ngOnInit() {
+        // you must allow the change of states
         this.navButtons = this.navService.getButtons();
     }
     toggleExpandedState(button: any) {

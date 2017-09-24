@@ -12,7 +12,7 @@ export class PopupValidationService implements PopupService {
     latlng: BehaviorSubject<LatLng> = new BehaviorSubject<LatLng>(null);
     title: BehaviorSubject<string> = new BehaviorSubject<string>(null);
     visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+    // TODO: Replicate is not permited ;)
     constructor() { }
 
     setVisibleStatus(visible) {

@@ -24,6 +24,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
   openRightSidebar = false;
+  openRightToggleExpanded = false;
   openLeftSidebar = false;
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
@@ -49,16 +50,27 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       if (this.openRightSidebar === false) {
         this.openRightSidebar = true;
       } else {
+        this.rightPanelComponent.display(val);
+        //this.openRightSidebar = val;
+
+      }
+    });
+    this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
+      if (this.openRightToggleExpanded === false) {
+        this.openRightToggleExpanded = true;
+      } else {
         this.rightPanelComponent.toggleExpandedState();
         this.openRightSidebar = val;
 
       }
     });
 
+
     this.panelService.leftPanelStatus.subscribe((val: boolean) => {
       if (this.openLeftSidebar === false) {
         this.openLeftSidebar = true;
       } else {
+
         this.leftPanelComponent.toggleExpandedState();
         this.openLeftSidebar = val;
 

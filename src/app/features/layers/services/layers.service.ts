@@ -9,7 +9,7 @@ import {geoserverUrl, clickAccuracy, defaultLayer} from '../../../shared/data.se
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/location/location';
+import {Location} from '../../../shared/class/location/location.class';
 import {Logger} from '../../../shared/services/logger.service';
 import {Properties} from '../class/geojson.class';
 import {Feature} from '../class/geojson.class'
@@ -38,21 +38,30 @@ export class LayersService extends APIService {
 
   ]) ;
   private popup = L.popup();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private popupFactory: PopupFactory ) {
     super(http, logger, loaderService, toasterService);
   }
 
-  getDetailLayerPoint(action: string, latlng: LatLng, map): any {
-    if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer }
-    /* const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-    const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
-      '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
-      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
-      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    console.log('url ' + url);
-    return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.addPopup(map, res, latlng), err => this.erroxFix(err));*/
-    this.addPopup(map, DataHeatDemand, latlng, action);
+  getDetailLayerPoint(action: string , latlng: LatLng, map): any {
+   if (this.layersArray.containsKey(defaultLayer)) { action = defaultLayer}
+
+      const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+      const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
+        '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
+        + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+        '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+      console.log('url ' + url);
+      return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
+        .subscribe(res => this.addPopup(map, res, latlng, action), err => this.erroxFix(err));
+
+  }
+
+  getIsReadyToShowFeatureInfo(): boolean {
+    let readyToShow = false;
+    if (this.layersArray.keys().length > 0) {readyToShow = true}
+      this.logger.log('layer length = ' + this.layersArray.keys().length );
+      this.logger.log('readyToShow = ' + readyToShow )
+    return readyToShow ;
   }
   refreshLayersOnMap( map: any) {
     const layers = this.layersArray.keys();
@@ -72,7 +81,7 @@ export class LayersService extends APIService {
       this.removelayer(action, map);
     }
   }
-  addLayerWithAction(action: string, map: any) {
+  addLayerWithAction(action: string, map: any ) {
     const layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
@@ -83,7 +92,7 @@ export class LayersService extends APIService {
     this.refreshLayersOnMap(map);
   }
 
-  removelayer(action: string, map: any) {
+  removelayer(action: string, map: any ) {
     // we get the layer we want to remove
     const layer = this.layersArray.value(action);
     // we remove this layer from map
@@ -104,63 +113,9 @@ export class LayersService extends APIService {
   }
 
 
-  addPopupHardCode(map, latlng: LatLng) {
-    const resWWTP = JSON.parse('{"type":"FeatureCollection","totalFeatures":"unknown","features":' +
-      '[{"type":"Feature","id":"wwtp.26731","geometry":{"type":"Point","coordinates":' +
-      '[-0.056,45.6072]},"geometry_name":"geom","properties":{"gid":26731,"capacity":3000,"power":193.333333299999993,' +
-      '"unit":"kW","date":"2015-01-01Z","bbox":[-0.056,45.6072,-0.056,45.6072]}}],' +
-      '"crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"bbox":[-0.056,45.6072,-0.056,45.6072]}');
 
-    const gid = resWWTP.features[0].properties.gid;
-    const capacity = resWWTP.features[0].properties.capacity;
-    const power = resWWTP.features[0].properties.power;
-    const date = resWWTP.features[0].properties.date;
-    const unit = resWWTP.features[0].properties.unit;
-    this.popup.setLatLng(latlng)
-      .setContent('<h3>WWTP selected</h3><ul>' +
-        '<li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + ' ' + unit_capacity + '</li>' +
-        '<li>power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
-        '</ul>')
-      .openOn(map);
-    this.logger.log('LayersService/addPopup/popup/added');
-  }
-
-  addPopup(map, res: GeojsonClass, latlng: LatLng) {
-
-    if (this.layersArray.containsKey(layer_wwtp)) {
-        this.loaderService.display(false);
-      const gid = res.features[0].properties.gid;
-      const capacity = res.features[0].properties.capacity;
-      const power = res.features[0].properties.power;
-      const date = res.features[0].properties.date;
-      const unit = res.features[0].properties.unit;
-      this.popup.setLatLng(latlng)
-        .setContent('<h3>WWTP selected</h3><ul>' +
-          '<li>Date: ' + date.split('Z')[0] + '</li><li>Capacity: ' + capacity + ' ' + unit_capacity + '</li>' +
-          '<li>power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
-          '</ul>')
-        .openOn(map);
-      this.logger.log('LayersService/addPopup/popup/added');
-      }
 
   addPopup(map, res: GeojsonClass, latlng: LatLng, action) {
     this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
-  }
-
-  /*addPopupHeatmap(map, res: GeojsonClass, latlng: LatLng) {
-    this.loaderService.display(false);
-    const gid = res.features[0].properties.gid;
-    const capacity = res.features[0].properties.capacity;
-    const power = res.features[0].properties.power;
-    const date = res.features[0].properties.date;
-    const unit = res.features[0].properties.unit;
-    this.popup.setLatLng(latlng)
-      .setContent('<h3>WWTP selected</h3><ul>' +
-        '<li>gid: ' + gid + '</li><li>Date: ' + date + '</li><li>Capacity: ' + capacity + '</li>' +
-        '<li>power: ' + power + ' ' + unit + '</li>' +
-        '</ul>')
-      .openOn(map);
-    this.logger.log('LayersService/addPopup/popup/added');
-
   }
 }

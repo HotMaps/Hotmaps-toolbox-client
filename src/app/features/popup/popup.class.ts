@@ -6,6 +6,8 @@ import { PopupWWTPService } from './wwtp/popup-wwtp.service';
 
 @Injectable()
 export class PopupFactory {
+  //TODO: this property must be private
+
     popupValService: PopupValidationService;
     popupWWTPService: PopupWWTPService;
     popHeatService: PopupHeatService

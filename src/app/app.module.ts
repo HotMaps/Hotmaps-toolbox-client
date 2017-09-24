@@ -1,3 +1,5 @@
+
+
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -35,6 +37,7 @@ import { ToasterService } from './shared/services/toaster.service'
 import { GlobalErrorHandler } from './shared/services/error-handler';
 import { SidePanelService} from './features/side-panel/side-panel.service';
 import { SelectionToolService} from './features/selection-tools/selection-tool.service';
+import { SelectionToolButtonStateService} from './features/selection-tools/selection-tool-button-state.service';
 import { SummaryResultComponent} from './features/summary-result/summary-result.component';
 import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
@@ -54,8 +57,7 @@ import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.com
 
 
 @NgModule({
-  imports: [
-    HttpModule,
+  imports: [HttpModule,
     FormsModule,
     BusyModule,
     BrowserModule,
@@ -97,12 +99,12 @@ import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.com
     SidePanelService,
     NavigationBarService,
     LayersService,
+    SelectionToolService,
+    SelectionToolButtonStateService,
     PopupValidationService,
     PopupWWTPService,
     PopupFactory,
-    PopupHeatService
-    LayersService,
-    SelectionToolService
+    PopupHeatService,
 
 
   ],

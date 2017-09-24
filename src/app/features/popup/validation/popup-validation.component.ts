@@ -20,4 +20,6 @@ export class PopupValidationComponent extends PopupComponent implements OnInit {
             super.showPopup(this.el);
         });
     }
+
+
 }
