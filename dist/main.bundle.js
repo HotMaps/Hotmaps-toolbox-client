@@ -663,7 +663,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["d" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
         this.logger.log('LayersService/addPopup/popup/added');
     };
@@ -674,7 +674,7 @@ var LayersService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
         this.popup.setLatLng(latlng).setContent('<h5>waste water treatment plants</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["d" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["e" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('LayersService/addPopup/popup/added');
     };
@@ -740,7 +740,7 @@ var PopulationService = (function (_super) {
         return _super.call(this, http, logger, loaderService, toasterService) || this;
     }
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["h" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["i" /* postPopulationDensityInArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["i" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["j" /* postPopulationDensityInArea */]);
     };
     return PopulationService;
 }(__WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__["a" /* APIService */]));
@@ -1230,7 +1230,7 @@ var PopupWWTPComponent = (function (_super) {
     function PopupWWTPComponent(mapService, popupWWTPService) {
         var _this = _super.call(this, popupWWTPService, mapService) || this;
         _this.popupWWTPService = popupWWTPService;
-        _this.unitCapacity = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["d" /* unit_capacity */];
+        _this.unitCapacity = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["e" /* unit_capacity */];
         return _this;
     }
     PopupWWTPComponent.prototype.ngOnInit = function () {
@@ -2295,6 +2295,10 @@ var SummaryResultService = (function (_super) {
         console.log('getSummaryResultService');
         return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__summary_result_data__["a" /* SummaryResultArray */]);
     };
+    SummaryResultService.prototype.getAreaSelectedSummayResultService = function () {
+        console.log('getSummaryResultService');
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__summary_result_data__["a" /* SummaryResultArray */]);
+    };
     SummaryResultService.prototype.getModulesServicesWithNewService = function (newService) {
         var servicesArray = __WEBPACK_IMPORTED_MODULE_3__summary_result_data__["a" /* SummaryResultArray */];
         servicesArray.push(newService);
@@ -3193,19 +3197,20 @@ var Location = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return geoserverUrl; });
 /* unused harmony export geoserverGetFeatureInfoUrl */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getLocationFromIp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return apiUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return apiUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return defaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postPopulationDensityInArea; });
 /* unused harmony export getGrid */
 /* unused harmony export set404url */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return clickAccuracy; });
 /* unused harmony export layer_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return unit_heat_density; });
 /**
  * Created by lesly on 07.07.17.
  */
@@ -3227,6 +3232,7 @@ var set404url = 'set404url';
 var clickAccuracy = 100;
 var layer_wwtp = 'wwtp';
 var unit_capacity = 'Person Equivalent';
+var unit_heat_density = 'GWh/km2';
 //# sourceMappingURL=data.service.js.map
 
 /***/ }),
@@ -3560,7 +3566,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["e" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["f" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -3588,9 +3594,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["f" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["g" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["g" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["h" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* Location */]();
