@@ -9,6 +9,7 @@
     capacity: number;
     power: number;
     unit: string;
+    heat_density: number;
     date: string;
     bbox: number[];
   }

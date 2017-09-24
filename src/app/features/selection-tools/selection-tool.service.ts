@@ -246,7 +246,7 @@ export class SelectionToolService {
       edit: {
       featureGroup: this.editableLayers, // allow editing/deleting of features in this group
         edit: false, // disable the edit tool (since we are doing editing ourselves)
-        remove: true
+        remove: false
     },
     };
     this.drawControl = new L.Control.Draw(this.options);

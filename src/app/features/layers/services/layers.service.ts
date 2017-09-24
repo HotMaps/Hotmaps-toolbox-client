@@ -18,6 +18,7 @@ import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
 
 import {APIService} from '../../../shared/services/api.service';
+import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
@@ -43,15 +44,13 @@ export class LayersService extends APIService {
   ]);
   private popup = L.popup();
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private popupFactory: PopupFactory) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private popupFactory: PopupFactory, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer
-    }
-
+      action = defaultLayer}
     const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
       '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
@@ -139,26 +138,26 @@ export class LayersService extends APIService {
   }
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
+    const heat_density = data.features[0].properties.heat_density;
     this.popup.setLatLng(latlng)
-      .setContent('<div #popupheat> ' +
-        '<div *ngIf="visible"><h5>heat map</h5> <ul class="uk-list uk-list-divider">' +
-        ' <li>Heat demand: {{data.features[0].properties.heat_density}}</li> </ul> </div> ' +
-        '</div>')
+      .setContent(
+        '<h5>heat map</h5> <ul class="uk-list uk-list-divider">' +
+        ' <li>Heat demand: ' + this.helper.round(heat_density)  + '</li> </ul>')
       .openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
   }
 
-  addPopupWWTP(map, data: GeojsonClass, latlng: LatLng) {
+  addPopupWWTP(map, data: any, latlng: LatLng) {
     this.loaderService.display(false);
-    this.popup.setLatLng(latlng)
-      .setContent('<div #popupwwtp> ' +
-        ' <h5>waste water treatment plants</h5> ' +
-        '<ul class="uk-list uk-list-divider"> ' +
-        '<li>Capacity: {{data.features[0].properties.capacity}} {{unit_capacity}}</li>' +
-        ' <li>Power: {{data.features[0].properties.power}} ' +
-        '{{data.features[0].properties.unit}}</li>' +
-        ' <li>Reference date: {{data.features[0].properties.date}}</li> </ul> </div>')
-      .openOn(map);
+    const capacity = data.features[0].properties.capacity;
+    const power = data.features[0].properties.power;
+    const date = data.features[0].properties.date.split('Z')[0];
+    const unit = data.features[0].properties.unit;
+    this.popup.setLatLng(latlng).setContent('<h5>waste water treatment plants</h5> <ul class="uk-list uk-list-divider">' +
+      '<li>Capacity: ' + capacity + ' ' + unit_capacity + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+         '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
   }
+
+
 }

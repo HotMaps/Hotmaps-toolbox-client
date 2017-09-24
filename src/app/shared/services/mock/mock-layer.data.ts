@@ -1,7 +1,7 @@
 import { GeojsonClass } from './../../../features/layers/class/geojson.class';
 
 
-export const DataLayerRequest: GeojsonClass = {
+export const DataLayerRequest: any = {
     type: 'FeatureCollection',
     totalFeatures: 'unknown',
     features: [

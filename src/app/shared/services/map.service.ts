@@ -62,10 +62,11 @@ export class MapService implements OnInit, OnDestroy {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
     this.map.on('click', function(e: MouseEvent) {
+      self.logger.log('MapService/click');
       // check if the selection toul is activate
-      if (self.selectionToolService.getIsActivate() === false
+      if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
-        && self.layersService.getIsReadyToShowFeatureInfo() === true) {
+         self.layersService.getIsReadyToShowFeatureInfo() === true) {
           self.layersService.getDetailLayerPoint('wwtp', e.latlng, self.map);
       }
     });
