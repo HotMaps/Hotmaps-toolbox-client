@@ -57,7 +57,7 @@ export class LayersService extends APIService {
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     console.log('url ' + url);
-    return this.GET(url).map((res: Response) => res.json() as GeojsonClass)
+    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
 
   }
