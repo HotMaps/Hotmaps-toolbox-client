@@ -25,6 +25,7 @@ import {Payload} from '../../features/population/payload.class';
 import {Population} from '../../features/population/population.class';
 import {PopulationService} from '../../features/population/services/population.service';
 import {SelectionToolService} from '../../features/selection-tools/selection-tool.service';
+import {wwtpLayerName} from '../data.service';
 
 
 @Injectable()
@@ -67,7 +68,7 @@ export class MapService implements OnInit, OnDestroy {
       if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
          self.layersService.getIsReadyToShowFeatureInfo() === true) {
-          self.layersService.getDetailLayerPoint('wwtp', e.latlng, self.map);
+          self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
       }
     });
     this.map.on('zoomend', function() {
@@ -108,4 +109,6 @@ export class MapService implements OnInit, OnDestroy {
     this.selectionToolService.addDrawerControl(map)
 
   }
+
+
 }
