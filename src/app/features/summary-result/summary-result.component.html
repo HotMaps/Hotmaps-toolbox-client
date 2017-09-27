@@ -8,21 +8,20 @@
       </ul>
 
   </div>-->
-
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
-<div class="uk-card uk-card-body">
+<div class="uk-card uk-card-body htm-card">
 <div [ngBusy]="busy"></div>
-  <table class="uk-table uk-table-divider">
+  <table class="uk-table uk-table-divider uk-table-small">
     <thead>
-    <tr class="header-summary">
-      <th class="uk-table-shrink">Information</th>
-      <th class="uk-table-shrink">Value</th>
-    </tr>
+      <tr class="header-summary">
+        <th class="uk-table-shrink">Information</th>
+        <th class="uk-table-shrink">Value</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let i of summaryResults" >
-      <td>{{i.information}}</td>
-      <td>{{i.value}} {{i.unit}}</td>
+    <tr *ngFor="let i of summaryResult.layers" >
+      <td>{{i.name}}</td>
+      <td>{{i.values[0].name}}: {{i.values[0].value}} {{i.values[0].unit}}</td>
     </tr>
 
     </tbody>

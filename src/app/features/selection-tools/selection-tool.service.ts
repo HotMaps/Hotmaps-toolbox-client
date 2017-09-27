@@ -1,3 +1,4 @@
+
 /**
  * Created by lesly on 27.05.17.
  */
@@ -37,6 +38,11 @@ import Layer = L.Layer;
 import Edited = L.DrawEvents.Edited;
 
 
+import { Dictionary } from './../../shared/class/dictionary.class';
+import { PayloadStat } from './../summary-result/mock/payload.class';
+import { PayloadStatData } from './../summary-result/mock/test.data';
+import { SummaryResultService } from './../summary-result/summary-result.service';
+
 
 @Injectable()
 export class SelectionToolService {
@@ -51,11 +57,13 @@ export class SelectionToolService {
   private drawControl;
   private isDrawControl = false;
   private selectionTooLayer: any;
+  private layerArray: Dictionary;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
               private populationService: PopulationService , private sidePanelService: SidePanelService,
               private navigationBarService: NavigationBarService,
               private selectionToolButtonStateService: SelectionToolButtonStateService ,
-              private popupFactory: PopupFactory ) {
+              private summaryResultService: SummaryResultService,
+              private layerService: LayersService) {
 
   }
 
@@ -76,6 +84,9 @@ export class SelectionToolService {
   setMap(map: any) {
     this.notifyLoaderService(map);
     this.retriveMapEvent(map);
+    /* this.summaryResultService.getSummaryResultWithPayload(PayloadStatData).then(result => {
+      console.log(result);
+    }); */
     //
   }
 
@@ -89,14 +100,17 @@ export class SelectionToolService {
       '</div> </div>').openPopup();
 
     document.getElementById('btnDelete').addEventListener ('click', () => {
-
       this.clearAll();
     });
+
     document.getElementById ('btnValidate').addEventListener ('click',  () => {
+ 
       if (this.currentLayer instanceof L.Circle) {
-        this.getPopulation(this.getLocationsFromCicle(this.currentLayer), this.currentLayer, map);
+        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        // this.getPopulation(this.getLocationsFromCicle(this.currentLayer), this.currentLayer, map);
       } else  {
-        this.getPopulation(this.getLocationsFromPolygon(this.currentLayer), this.currentLayer, map);
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        // this.getPopulation(this.getLocationsFromPolygon(this.currentLayer), this.currentLayer, map);
       }
     })
   }
@@ -195,7 +209,6 @@ export class SelectionToolService {
     this.currentLayer.editing.disable();
     this.editableLayers.clearLayers();
     this.sidePanelService.closeRightPanel();
-
   }
   removeVtlayer(map: any) {
     if (this.selectionTooLayer) {
@@ -204,7 +217,7 @@ export class SelectionToolService {
       delete this.selectionTooLayer;
     }
   }
-  // population feature
+
   // population feature
   getPopulation(locations: Location[], layer: Layer, map: any) {
     this.loaderService.display(true);
@@ -216,6 +229,20 @@ export class SelectionToolService {
     this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer, map));
   }
 
+  getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
+    this.loaderService.display(true);
+    const payload: PayloadStat = {layers: layers, year: 2015, points: locations}
+    this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
+      this.displaySummaryResult(result);
+    });
+  }
+  displaySummaryResult(result) {
+    console.log('resultat stat:' + result);
+    this.sidePanelService.setSummaryResultData(result);
+    this.navigationBarService.enableButton('load_result');
+    this.sidePanelService.openRightPanel();
+    this.loaderService.display(false);
+  }
   addDrawerControl(map: Map) {
     map.addLayer(this.editableLayers);
     this.options = {

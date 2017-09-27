@@ -8,6 +8,8 @@ export class SidePanelService {
     // status for right panel
     public rightPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public rightToggleExpandedStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public summaryResultDataStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
 
     leftPanelexpandedCollapsed() {
         this.leftPanelStatus.next(true);
@@ -25,6 +27,13 @@ export class SidePanelService {
       if (this.rightPanelStatus.value === true) {
         this.rightPanelStatus.next(false);
       }
+    }
+
+    setSummaryResultData(data: any) {
+      this.summaryResultDataStatus.next(data);
+    }
+    addDataToRightPanel(data) {
+
     }
 }
 

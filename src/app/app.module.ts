@@ -53,6 +53,7 @@ import { PopupFactory } from './features/popup/popup.class';
 import { PopupWWTPComponent } from './features/popup/wwtp/popup-wwtp.component';
 import { PopupHeatService } from './features/popup/heat-density/popup-heat.service';
 import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.component';
+import { SummaryResultService } from './features/summary-result/summary-result.service';
 
 
 
@@ -85,6 +86,7 @@ import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.com
     PopupValidationComponent,
     PopupWWTPComponent,
     PopupHeatComponent
+
   ],
 
   providers: [
@@ -105,6 +107,7 @@ import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.com
     PopupWWTPService,
     PopupFactory,
     PopupHeatService,
+    SummaryResultService
 
 
   ],

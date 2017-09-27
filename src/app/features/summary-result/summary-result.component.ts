@@ -34,19 +34,16 @@ import {SummaryResultClass} from './summary-result.class';
 })
 export class SummaryResultComponent  implements OnInit, OnDestroy {
   @Input() expanded: boolean;
+  @Input('summaryResult') summaryResult: SummaryResultClass;
   expandedState = 'collapsed';
   busy: Promise<any>;
-  summaryResults: SummaryResultClass[];
 
 
   constructor(private summaryResultService: SummaryResultService) {
 
   }
 
-  ngOnInit() {
-    console.log('SummaryResultComponent/ ngOnInit ');
-    this.busy = this.summaryResultService.getSummaryResultSlowly().then(data => this.getData(data));
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
 
@@ -54,8 +51,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy {
 
   getData(data: any) {
     console.log('summary result ' + data);
-    this.summaryResults = data
-
+    this.summaryResult = data;
   }
 
 }

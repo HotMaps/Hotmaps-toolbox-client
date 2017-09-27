@@ -32,7 +32,7 @@ export class APIService {
   }
   handleError(error: any) {
     this.loaderService.display(false);
-    this.toasterService.showToaster('An error occurred: please try again later');
+    // this.toasterService.showToaster('An error occurred: please try again later');
     this.logger.log('PopulationServices/handleError');
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
@@ -44,6 +44,8 @@ export class APIService {
       .then( response => response.json() as any)
       .catch(this.handleError.bind(this));
   }
+
+
   GET(url): any {
     return this.http.get(url, this.headers).map((res: Response) => res.json().data as any);
   }

@@ -42,8 +42,11 @@ i {
 }
 .header-summary{
   color: #d3d3d3;
-  background:#d2d2d2 ;
+  background:#333333;
 
+}
+.header-summary > th{
+  color:white;
 }
 .notifications {
   flex: 1;
@@ -65,4 +68,8 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+.htm-card{
+  padding: 10px;
 }

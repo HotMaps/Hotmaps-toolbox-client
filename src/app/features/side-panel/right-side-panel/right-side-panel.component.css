@@ -28,13 +28,16 @@ i {
     color: #d3d3d3;;
     padding: 0 8px 0 8px;
     height: 50px;
+    background-color: #333333;
 }
 
 .title-panel-right  span {
     flex: 1;
-    font-family: 'Hind', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
-    padding: 0 8px 0 8px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 50px;
 }
 
 .title-panel-right --collapsed {
@@ -50,7 +53,10 @@ i {
 }
 a {
     text-decoration: none;
-    margin-top: 6px;
+    
+}
+.title-panel-right>a{
+    line-height: 50px;
 }
 
 a:hover {

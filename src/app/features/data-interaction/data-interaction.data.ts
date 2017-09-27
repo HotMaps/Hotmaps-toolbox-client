@@ -2,7 +2,7 @@ import { DataInteractionClass } from './data-interaction.class';
 export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
-  {id: 17, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: 'heat-density-map'},
+  {id: 17, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: 'heat_density_map'},
   {id: 12, name: 'Water Waste treatment plants', category: 'Ressources', isSelected: false, workspaceName: 'wwtp'},
   /*{id: 14, name: 'DH extension potential', category: 'Energy district network', isSelected: false, workspaceName: 'workspaceName'},
   {id: 15, name: 'Industrial thermal waste', category: 'Ressources', isSelected: false, workspaceName: 'workspaceName'},

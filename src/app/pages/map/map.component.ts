@@ -19,7 +19,6 @@ import { RightSideComponent } from '../../features/side-panel/right-side-panel/i
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
-
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
@@ -46,13 +45,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove()
   }
   notifySidePanelComponent() {
+    this.panelService.summaryResultDataStatus.subscribe((data) => {
+      this.rightPanelComponent.setSummaryResult(data);
+    });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
       if (this.openRightSidebar === false) {
         this.openRightSidebar = true;
       } else {
         this.rightPanelComponent.display(val);
-        //this.openRightSidebar = val;
-
+        // this.openRightSidebar = val;
       }
     });
     this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {

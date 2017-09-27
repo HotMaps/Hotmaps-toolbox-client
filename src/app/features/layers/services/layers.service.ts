@@ -47,7 +47,9 @@ export class LayersService extends APIService {
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private popupFactory: PopupFactory, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
-
+  getLayerArray(): Dictionary {
+    return this.layersArray;
+  }
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     if (this.layersArray.containsKey(defaultLayer)) {
       action = defaultLayer}

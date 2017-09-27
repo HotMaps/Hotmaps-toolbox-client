@@ -12,6 +12,7 @@ import {PopulationService } from './population.service';
 import {Population } from '../population.class';
 import {postPopulationDensityInArea } from '../../../shared/data.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
+
 describe('PopulationService', () => {
 
   let loaderServiceStub: LoaderService;
@@ -45,7 +46,7 @@ describe('PopulationService', () => {
       let population = new Population();
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(apiUrl + postPopulationDensityInArea);
-        const response = new ResponseOptions({body: MockPopulation });
+        const response = new ResponseOptions({ body: MockPopulation });
         c.mockRespond(new Response(response));
       });
       const locations: Location[] =   [

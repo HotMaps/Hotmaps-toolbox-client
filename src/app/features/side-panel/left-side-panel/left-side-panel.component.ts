@@ -30,7 +30,7 @@ import {DataInteractionClass} from '../../data-interaction/data-interaction.clas
         //  shrinking the panel down.
         //
         trigger('panelWidthTrigger', [
-            state('expanded', style({ width: '300px' })),
+            state('expanded', style({ width: '350px' })),
             state('collapsed', style({ width: '0px' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
@@ -43,7 +43,7 @@ import {DataInteractionClass} from '../../data-interaction/data-interaction.clas
         //
         trigger('titleColorTrigger', [
             state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
-            state('expanded', style({ backgroundColor: '#d3d3d3', color: '#FFFFFF' })),
+            state('expanded', style({ backgroundColor: '#333333', color: '#FFFFFF' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),

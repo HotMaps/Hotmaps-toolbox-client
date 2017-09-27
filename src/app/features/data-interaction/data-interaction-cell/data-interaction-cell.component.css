@@ -50,5 +50,8 @@ input:checked{
 }
 
 input{
-    margin-right: 5px;
+    margin: 0px 5px;
+}
+.uk-button-secondary{
+    background-color: #333333;
 }

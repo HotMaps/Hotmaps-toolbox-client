@@ -9,6 +9,7 @@ import {
     animate
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
+import { SummaryResultClass } from './../../summary-result/summary-result.class';
 @Component({
     moduleId: module.id,
     selector: 'htm-right-side-panel',
@@ -39,7 +40,7 @@ import {SideComponent} from '../side-panel.component';
         //
         trigger('titleColorTrigger', [
             state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
-            state('expanded', style({ backgroundColor: '#d3d3d3', color: '#FFFFFF' })),
+            state('expanded', style({ backgroundColor: '#333333', color: '#FFFFFF' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),
@@ -82,7 +83,7 @@ import {SideComponent} from '../side-panel.component';
     ]
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
-
+    private summaryResult: SummaryResultClass;
     constructor() {
         super();
     }
@@ -91,6 +92,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     ngOnDestroy() {
 
     }
-
-
+    setSummaryResult(summaryResult: SummaryResultClass) {
+        this.summaryResult = summaryResult;
+    }
 }
