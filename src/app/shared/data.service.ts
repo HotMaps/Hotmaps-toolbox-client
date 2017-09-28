@@ -17,7 +17,7 @@ export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const set404url   = 'set404url';
 
-
+export const timeOut   = 2000;
 // layers constant
 export const clickAccuracy   = 100;
 export const layer_wwtp   = 'wwtp';

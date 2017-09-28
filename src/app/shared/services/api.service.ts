@@ -9,9 +9,10 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import 'rxjs/add/operator/timeout'
 
 
-import {apiUrl} from '../data.service'
+import {apiUrl, timeOut} from '../data.service'
 import {GlobalErrorHandler} from './error-handler';
 import {LoaderService } from './loader.service';
 
@@ -32,14 +33,20 @@ export class APIService {
   }
   handleError(error: any) {
     this.loaderService.display(false);
-    // this.toasterService.showToaster('An error occurred: please try again later');
-    this.logger.log('PopulationServices/handleError');
+    let message = 'An error occurred';
+    if (error.name === 'TimeoutError') {
+       message = 'Timeout has occurred';
+    }
+    this.toasterService.showToaster(message + ', please try again later');
+    this.logger.log('APIService/handleError');
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {
     return this.http
+
       .post(url, JSON.stringify(payload), {headers: this.headers})
+      .timeout(timeOut)
       .toPromise()
       .then( response => response.json() as any)
       .catch(this.handleError.bind(this));
@@ -47,7 +54,8 @@ export class APIService {
 
 
   GET(url): any {
-    return this.http.get(url, this.headers).map((res: Response) => res.json().data as any);
+    return this.http.get(url, this.headers)
+      .map((res: Response) => res.json().data as any);
   }
 
   public async getJSONFromFille(url: string): Promise<any> {

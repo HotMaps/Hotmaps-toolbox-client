@@ -119,6 +119,7 @@ export class Helper {
   }
 
   round(num: number): number {
+    if (this.isNullOrUndefined(num) === true) { return 0};
     return parseFloat( num.toFixed(2) )
   }
 

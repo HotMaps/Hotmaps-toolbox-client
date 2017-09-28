@@ -38,7 +38,7 @@ import Layer = L.Layer;
 import Edited = L.DrawEvents.Edited;
 
 
-import { Dictionary } from './../../shared/class/dictionary.class';
+
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { PayloadStatData } from './../summary-result/mock/test.data';
 import { SummaryResultService } from './../summary-result/summary-result.service';
@@ -48,7 +48,7 @@ import { SummaryResultService } from './../summary-result/summary-result.service
 export class SelectionToolService {
 
 
-  private baseMaps: any;
+
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private currentLayer;
@@ -57,9 +57,7 @@ export class SelectionToolService {
   private drawControl;
   private isDrawControl = false;
   private selectionTooLayer: any;
-  private layerArray: Dictionary;
-  constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
-              private populationService: PopulationService , private sidePanelService: SidePanelService,
+  constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper, private sidePanelService: SidePanelService,
               private navigationBarService: NavigationBarService,
               private selectionToolButtonStateService: SelectionToolButtonStateService ,
               private summaryResultService: SummaryResultService,
@@ -104,7 +102,7 @@ export class SelectionToolService {
     });
 
     document.getElementById ('btnValidate').addEventListener ('click',  () => {
- 
+
       if (this.currentLayer instanceof L.Circle) {
         this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
         // this.getPopulation(this.getLocationsFromCicle(this.currentLayer), this.currentLayer, map);
@@ -217,22 +215,10 @@ export class SelectionToolService {
       delete this.selectionTooLayer;
     }
   }
-
-  // population feature
-  getPopulation(locations: Location[], layer: Layer, map: any) {
-    this.loaderService.display(true);
-    const payload: Payload = {
-      nuts_level: 3,
-      year: 2015,
-      points: locations,
-    }
-    this.populationService.getPopulationWithPayloads(payload).then(population  => this.retriveAndAddLayer(population, layer, map));
-  }
-
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
     this.loaderService.display(true);
     const payload: PayloadStat = {layers: layers, year: 2015, points: locations}
-    this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
+    this.summaryResultService.getSummaryResultWithPayloadAndResult(payload).then(result => {
       this.displaySummaryResult(result);
     });
   }

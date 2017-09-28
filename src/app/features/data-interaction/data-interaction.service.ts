@@ -7,10 +7,11 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
+import {Helper} from '../../shared/helper';
 @Injectable()
 export class DataInteractionService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   /* getModulesServices(): Promise<ModulesService[]> {
@@ -24,6 +25,17 @@ export class DataInteractionService extends APIService {
     return Promise.resolve(DataInteractionArray);
   }
 
+  getDataArrayServices(): DataInteractionClass[] {
+    return DataInteractionArray;
+  }
+  getReadableName(layerName: string): string {
+
+    this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
+    const layer  =  this.getDataArrayServices().filter(x => x.workspaceName === layerName)[0];
+    if (this.helper.isNullOrUndefined(layer)) {return layerName}
+    return layer.name;
+
+  }
   getModulesServicesWithNewService(newService: DataInteractionClass): Promise<DataInteractionClass[]> {
     const servicesArray: DataInteractionClass[] = DataInteractionArray;
     servicesArray.push(newService);

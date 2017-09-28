@@ -16,10 +16,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BusyModule} from 'angular2-busy';
 import {MaterialModule} from '@angular/material';
-
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { SidebarModule } from 'ng-sidebar';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -42,7 +43,7 @@ import { SummaryResultComponent} from './features/summary-result/summary-result.
 import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+
 import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
@@ -54,6 +55,7 @@ import { PopupWWTPComponent } from './features/popup/wwtp/popup-wwtp.component';
 import { PopupHeatService } from './features/popup/heat-density/popup-heat.service';
 import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.component';
 import { SummaryResultService } from './features/summary-result/summary-result.service';
+import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 
 
 
@@ -90,6 +92,8 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
   ],
 
   providers: [
+
+    DataInteractionService,
     PopulationService,
     GeocodingService,
     MapService,

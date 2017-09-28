@@ -1,5 +1,4 @@
-export const SummaryResponseData = { "layers": [{ "name": "population", "values": [{ "name": "density", "value": 1033080, "unit": "citizens" }] }] };
-
+export const SummaryResponseData = { "layers": [ { "name": "wwtp", "values": [ { "name": "power", "value": 22018.5400004, "unit": "kW" }, { "name": "capacity", "value": 341667, "unit": "Person equivalent" } ] }, { "name": "population", "values": [ { "name": "density", "value": null, "unit": "citizens" } ] }, { "name": "heat_density_map", "values": [ { "name": "heat_density", "value": 539982.524853652, "unit": "GWh/km2" } ] } ] }
 export const PayloadStatData = {
   "layers": [
     "population"

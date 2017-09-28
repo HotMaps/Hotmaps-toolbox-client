@@ -6,6 +6,7 @@ import {
   state,
   style,
   transition,
+  AfterViewInit,
   animate, Input
 } from '@angular/core';
 
@@ -13,6 +14,7 @@ import {
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
+import {Helper} from '../../shared/helper';
 @Component({
 
   selector: 'htm-summary-result',
@@ -32,23 +34,35 @@ import {SummaryResultClass} from './summary-result.class';
     ]),
   ]
 })
-export class SummaryResultComponent  implements OnInit, OnDestroy {
+export class SummaryResultComponent  implements OnInit, OnDestroy, AfterViewInit {
   @Input() expanded: boolean;
   @Input('summaryResult') summaryResult: SummaryResultClass;
   expandedState = 'collapsed';
   busy: Promise<any>;
 
 
-  constructor(private summaryResultService: SummaryResultService) {
+  constructor(private helper: Helper, private summaryResultService: SummaryResultService ) {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
 
+
+  }
+  ngAfterViewInit() {
+    if (this.summaryResult){
+      this.busy =  this.summaryResultService.getSummaryResultToClass(this.summaryResult).then(data => this.getData(data));
+
+    }
+
+
+  }
   ngOnDestroy() {
 
   }
-
+  roundValue(value): number {
+    return this.helper.round(value)
+  };
   getData(data: any) {
     console.log('summary result ' + data);
     this.summaryResult = data;
