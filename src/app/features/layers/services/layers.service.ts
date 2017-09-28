@@ -59,7 +59,7 @@ export class LayersService extends APIService {
       action = defaultLayer}else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName;
       bbox = bbox + '&CQL_FILTER=stat_levl_=' + nuts_level;
-      this.handlePopulation(map,  MockPopulation , latlng)
+      // this.handlePopulation(map,  MockPopulation , latlng)
 
     }
 

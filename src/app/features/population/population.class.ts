@@ -9,6 +9,9 @@ export interface Geometry {
 }
 
 export interface Properties {
+  id: number;
+  date: string;
+  value: number;
   gid: number;
   nuts_id: string;
   name: string;
