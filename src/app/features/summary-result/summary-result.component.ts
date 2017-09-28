@@ -13,12 +13,12 @@ import {
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
+
 @Component({
 
   selector: 'htm-summary-result',
   templateUrl: 'summary-result.component.html',
   styleUrls: ['summary-result.component.css'],
-
   providers: [SummaryResultService],
   animations: [
     trigger('tableOpacityTrigger', [

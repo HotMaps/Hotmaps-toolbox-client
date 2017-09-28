@@ -2,7 +2,7 @@
 /**
  * Created by lesly on 27.05.17.
  */
-import {Injectable} from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 
 import {Map} from 'leaflet';
 
@@ -20,8 +20,6 @@ import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
 import { PopupService } from '../../features/popup/popup.service';
 
-import { PopupFactory } from '../../features/popup/popup.class';
-import { PopupValidationService } from '../../features/popup/validation/popup-validation.service';
 import { DataHeatDemand } from '../../shared/services/mock/data-heat-demand';
 import {SidePanelService} from '../../features/side-panel/side-panel.service';
 import {SelectionToolButtonStateService} from './selection-tool-button-state.service';
@@ -42,7 +40,7 @@ import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { PayloadStatData } from './../summary-result/mock/test.data';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-
+import { PopupComponent } from './../popup/popup.component';
 
 @Injectable()
 export class SelectionToolService {
@@ -63,7 +61,8 @@ export class SelectionToolService {
               private navigationBarService: NavigationBarService,
               private selectionToolButtonStateService: SelectionToolButtonStateService ,
               private summaryResultService: SummaryResultService,
-              private layerService: LayersService) {
+              private layerService: LayersService,
+              private popupService: PopupService) {
 
   }
 
@@ -89,22 +88,35 @@ export class SelectionToolService {
     }); */
     //
   }
-
-  loadPopup(map: any, layer: any) {
+  /* removeEventOnButtons() {
+    document.getElementById('btnDelete').removeEventListener ('click');
+    document.getElementById('btnValidate').removeEventListener ('click');
+  } */
+  createButtons() {
+    
+  }
+  loadPopup(map: any, layer: Layer) {
     this.logger.log('SelectionToolService/loadPopup');
-   // this.popupFactory.popupValService.showPopup( true, 'data', layer.getCenter(), 'area selected'  );
-    this.currentLayer.bindPopup('<div #popupval>  <h5>Area Selected</h5>' +
-      '<ul class="uk-list uk-list-divider"></ul> ' +
-      '<div> <div id="btnDelete" class="uk-button uk-button-danger uk-button-small uk-width-2-2">cancel</div>' +
-      ' <div id="btnValidate" class="uk-button uk-button-primary uk-button-small uk-width-2-2">Valid selection</div> ' +
-      '</div> </div>').openPopup();
 
-    document.getElementById('btnDelete').addEventListener ('click', () => {
+    const container = L.DomUtil.create('div');
+    let choicePopUp = L.popup();
+    const title =  L.DomUtil.create('h5');
+    title.innerHTML = 'Area Selected';
+    const cancelBtn = L.DomUtil.create('button', 'uk-button uk-button-danger uk-button-small uk-width-2-2', container);
+    cancelBtn.innerHTML = 'Cancel';
+    const validationBtn = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', container);
+    validationBtn.innerHTML = 'Validation';
+    container.appendChild<any>(title);
+    container.appendChild<any>(cancelBtn);
+    container.appendChild<any>(validationBtn);
+    this.currentLayer.bindPopup('test').openPopup();
+    choicePopUp = this.currentLayer.getPopup();
+    choicePopUp.setContent(container).openOn(map);
+
+    L.DomEvent.on(cancelBtn, 'click', () => {
       this.clearAll();
     });
-
-    document.getElementById ('btnValidate').addEventListener ('click',  () => {
- 
+    L.DomEvent.on(validationBtn, 'click', () => {
       if (this.currentLayer instanceof L.Circle) {
         this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
         // this.getPopulation(this.getLocationsFromCicle(this.currentLayer), this.currentLayer, map);
@@ -112,7 +124,27 @@ export class SelectionToolService {
         this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
         // this.getPopulation(this.getLocationsFromPolygon(this.currentLayer), this.currentLayer, map);
       }
-    })
+    });
+    // this.popupService.openPopup(this.currentLayer);
+    /* this.currentLayer.bindPopup('<div #popupval>  <h5>Area Selected</h5>' +
+      '<ul class="uk-list uk-list-divider"></ul> ' +
+      '<div> <div id="btnDelete" class="uk-button uk-button-danger uk-button-small uk-width-2-2">cancel</div>' +
+      ' <div id="btnValidate" class="uk-button uk-button-primary uk-button-small uk-width-2-2">Valid selection</div> ' +
+      '</div> </div>').openPopup();
+    document.getElementById('btnDelete').addEventListener ('click', () => {
+      this.clearAll();
+      this.removeEventOnButtons();
+    });
+
+    document.getElementById ('btnValidate').addEventListener ('click',  () => {
+      if (this.currentLayer instanceof L.Circle) {
+        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        // this.getPopulation(this.getLocationsFromCicle(this.currentLayer), this.currentLayer, map);
+      } else  {
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        // this.getPopulation(this.getLocationsFromPolygon(this.currentLayer), this.currentLayer, map);
+      } 
+    });*/
   }
 
 
@@ -236,10 +268,14 @@ export class SelectionToolService {
       this.displaySummaryResult(result);
     });
   }
+
   displaySummaryResult(result) {
-    console.log('resultat stat:' + result);
+    console.log('displaySummaryResult' + result);
     this.sidePanelService.setSummaryResultData(result);
     this.navigationBarService.enableButton('load_result');
+    this.currentLayer.editing.disable();
+    // this.removeEventOnButtons();
+    this.currentLayer.closePopup();
     this.sidePanelService.openRightPanel();
     this.loaderService.display(false);
   }

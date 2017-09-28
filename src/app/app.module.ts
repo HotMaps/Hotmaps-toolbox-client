@@ -1,5 +1,4 @@
 
-
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -46,15 +45,11 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
-import { PopupValidationComponent } from './features/popup/validation/popup-validation.component';
-import { PopupValidationService } from './features/popup/validation/popup-validation.service';
-import { PopupWWTPService } from './features/popup/wwtp/popup-wwtp.service';
-import { PopupFactory } from './features/popup/popup.class';
-import { PopupWWTPComponent } from './features/popup/wwtp/popup-wwtp.component';
-import { PopupHeatService } from './features/popup/heat-density/popup-heat.service';
-import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.component';
 import { SummaryResultService } from './features/summary-result/summary-result.service';
-
+import { UppercaseFirstLetterPipe } from './shared/pipes/uppercase-first-letter.pipe';
+import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
+import { PopupComponent } from './features/popup/popup.component';
+import { PopupService } from './features/popup/popup.service';
 
 
 @NgModule({
@@ -83,10 +78,9 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
     SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
-    PopupValidationComponent,
-    PopupWWTPComponent,
-    PopupHeatComponent
-
+    UppercaseFirstLetterPipe,
+    NumberFormatPipe,
+    PopupComponent
   ],
 
   providers: [
@@ -103,11 +97,8 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
     LayersService,
     SelectionToolService,
     SelectionToolButtonStateService,
-    PopupValidationService,
-    PopupWWTPService,
-    PopupFactory,
-    PopupHeatService,
-    SummaryResultService
+    SummaryResultService,
+    PopupService
 
 
   ],

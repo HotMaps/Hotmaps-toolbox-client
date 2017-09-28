@@ -42,6 +42,7 @@
     "leaflet-draw": "0.4.10",
     "leaflet-map": "0.2.1",
     "leaflet-measure": "2.1.7",
+    "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
     "leaflet.vectorgrid": "1.2.0",
     "ng-sidebar": "6.0.1",

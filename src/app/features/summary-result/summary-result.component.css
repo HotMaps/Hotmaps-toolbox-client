@@ -47,6 +47,7 @@ i {
 }
 .header-summary > th{
   color:white;
+  border-right: 1px solid #f5f5f5;
 }
 .notifications {
   flex: 1;
@@ -72,4 +73,14 @@ a:hover {
 
 .htm-card{
   padding: 10px;
+}
+
+.table-level-one>th{
+  text-align: center;
+}
+.table-level-one{
+  background-color: #f5f5f5;
+}
+.table-level-two>td{
+  border-right: 1px solid #f5f5f5;
 }
