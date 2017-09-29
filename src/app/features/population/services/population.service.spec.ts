@@ -6,6 +6,7 @@ import {apiUrl} from '../../../shared/data.service';
 import {Location} from '../../../shared/class/location/location';
 import {Logger } from '../../../shared/services/logger.service';
 import {LoaderService } from '../../../shared/services/loader.service';
+import {Helper } from '../../../shared/helper';
 import {MockPopulation } from './mock/population.data.mock';
 import {Payload} from '../payload.class'
 import {PopulationService } from './population.service';
@@ -26,6 +27,7 @@ describe('PopulationService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        {provide: Helper},
         {provide: ToasterService},
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: PopulationService, useClass: PopulationService},

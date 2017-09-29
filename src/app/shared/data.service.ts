@@ -31,7 +31,7 @@ export const unit_population   = 'M';
 //layers constant
 export const timeOut   = 200000;
 // layers constant
-export const clickAccuracy   = 100;
+export const clickAccuracy   = 1000;
 export const layer_wwtp   = 'wwtp';
 export const unit_capacity   = 'Person Equivalent';
 export const unit_heat_density   = 'GWh/km2';
