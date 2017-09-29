@@ -33,16 +33,18 @@ export class APIService {
   }
   handleError(error: any) {
     this.loaderService.display(false);
-    let message = 'An error occurred';
+    let message = error.message;
     if (error.name === 'TimeoutError') {
        message = 'Timeout has occurred';
     }
+
     this.toasterService.showToaster(message + ', please try again later');
     this.logger.log('APIService/handleError');
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {
+    console.log('payload ' + JSON.stringify(payload));
     return this.http
 
       .post(url, JSON.stringify(payload), {headers: this.headers})

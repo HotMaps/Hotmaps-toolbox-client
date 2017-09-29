@@ -218,13 +218,19 @@ export class SelectionToolService {
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
     this.loaderService.display(true);
     const payload: PayloadStat = {layers: layers, year: 2015, points: locations}
-    this.summaryResultService.getSummaryResultWithPayloadAndResult(payload).then(result => {
+    this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
       this.displaySummaryResult(result);
     });
   }
   displaySummaryResult(result) {
-    console.log('resultat stat:' + result);
+    console.log('resultat stat: raw' +  JSON.stringify(result));
+    JSON.stringify(result);
+    // format the data
+    const data = this.summaryResultService.getSummaryResultToClass(result);
+    console.log('resultat stat: modify' +  JSON.stringify(data));
     this.sidePanelService.setSummaryResultData(result);
+
+    // enable the sidebar button to
     this.navigationBarService.enableButton('load_result');
     this.sidePanelService.openRightPanel();
     this.loaderService.display(false);

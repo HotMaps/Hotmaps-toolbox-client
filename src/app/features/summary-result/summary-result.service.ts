@@ -18,7 +18,8 @@ export class SummaryResultService extends APIService {
 
   public summaryResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper, private dataInteractionService: DataInteractionService ) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+              private helper: Helper, private dataInteractionService: DataInteractionService ) {
     super(http, logger, loaderService, toasterService);
   }
 
