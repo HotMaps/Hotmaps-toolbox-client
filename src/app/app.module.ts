@@ -20,7 +20,6 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { SidebarModule } from 'ng-sidebar';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -43,20 +42,17 @@ import { SummaryResultComponent} from './features/summary-result/summary-result.
 import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
-
 import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
-import { PopupValidationComponent } from './features/popup/validation/popup-validation.component';
-import { PopupValidationService } from './features/popup/validation/popup-validation.service';
-import { PopupWWTPService } from './features/popup/wwtp/popup-wwtp.service';
-import { PopupFactory } from './features/popup/popup.class';
-import { PopupWWTPComponent } from './features/popup/wwtp/popup-wwtp.component';
-import { PopupHeatService } from './features/popup/heat-density/popup-heat.service';
-import { PopupHeatComponent } from './features/popup/heat-density/popup-heat.component';
 import { SummaryResultService } from './features/summary-result/summary-result.service';
-import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+import { UppercaseFirstLetterPipe } from './shared/pipes/uppercase-first-letter.pipe';
+import { LayerNamePipe } from './shared/pipes/layer-name.pipe';
 
+import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
+import { PopupComponent } from './features/popup/popup.component';
+import { PopupService } from './features/popup/popup.service';
+import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 
 
 @NgModule({
@@ -85,10 +81,10 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
-    PopupValidationComponent,
-    PopupWWTPComponent,
-    PopupHeatComponent
-
+    UppercaseFirstLetterPipe,
+    NumberFormatPipe,
+    LayerNamePipe,
+    PopupComponent
   ],
 
   providers: [
@@ -107,11 +103,8 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     LayersService,
     SelectionToolService,
     SelectionToolButtonStateService,
-    PopupValidationService,
-    PopupWWTPService,
-    PopupFactory,
-    PopupHeatService,
-    SummaryResultService
+    SummaryResultService,
+    PopupService
 
 
   ],

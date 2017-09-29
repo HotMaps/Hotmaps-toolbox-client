@@ -15,30 +15,17 @@
     <thead>
       <tr class="header-summary">
         <th class="uk-table-shrink">Information</th>
-
+        <th class="uk-table-shrink">Value</th>
       </tr>
     </thead>
-    <tbody>
-
-    <ul uk-accordion *ngFor="let i of summaryResult.layers" >
-        <li class="uk-open">
-          <h4 class="uk-accordion-title">
-            {{i.name}}
-          </h4>
-          <div class="uk-accordion-content">
-            <tr *ngFor="let n of i.values " >
-              <!--<span *ngIf="i === n.category">
-                <data-interaction-cell [dataInteraction]="n" [expanded]="expanded"></data-interaction-cell>
-              </span>-->
-               <td>{{ n.name}}</td>
-               <td>{{n.value }} {{n.unit}}</td>
-
-            </tr>
-          </div>
-
-        </li>
-      </ul>
-
+    <tbody *ngFor="let i of summaryResult.layers">
+        <tr class="table-level-one">
+            <th colspan="2">{{i.name | layername}}</th>
+        </tr>
+        <tr *ngFor="let value of i.values" class="table-level-two">
+          <td>{{value.name | uppercaseFirstLetter}}</td>
+          <td>{{value.value | number:'1.0-3'}} {{value.unit}}</td>
+        </tr>
     </tbody>
   </table>
 

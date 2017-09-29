@@ -24,8 +24,6 @@ import LatLng = L.LatLng;
 
 import { PopupService } from './../../popup/popup.service';
 import { DataLayerRequest } from './../../../shared/services/mock/mock-layer.data';
-import { PopupFactory } from './../../popup/popup.class';
-import { PopupValidationService } from './../../popup/validation/popup-validation.service';
 import { DataHeatDemand } from './../../../shared/services/mock/data-heat-demand';
 
 @Injectable()
@@ -44,7 +42,7 @@ export class LayersService extends APIService {
   ]);
   private popup = L.popup();
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private popupFactory: PopupFactory, private helper: Helper) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -136,7 +134,7 @@ export class LayersService extends APIService {
   }
 
   addPopup(map, res: GeojsonClass, latlng: LatLng, action) {
-    this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
+    // this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
   }
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);

@@ -1,43 +1,35 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { SelectionToolService } from './../selection-tools/selection-tool.service';
+import { Component, OnInit, ViewChild, ElementRef, AfterContentInit, ApplicationRef } from '@angular/core';
 import { Popup } from 'leaflet';
 import { MapService } from './../../shared/services/map.service';
 import { PopupService } from './popup.service';
 
 @Component({
- moduleId: module.id
+    selector: 'htm-popup',
+    templateUrl: 'popup.component.html',
+    styleUrls: ['./popup.component.css'],
+    providers: []
 })
 
-
-export class PopupComponent extends L.Popup implements OnInit  {
-  protected title: string;
-  protected data: any;
-  protected latlng: any;
-  protected visible = false;
-  constructor(protected popupService: PopupService, protected mapService: MapService) {
-    super({minWidth: 200});
-  }
-
-  ngOnInit() {}
-  subscribeData() {
-    this.popupService.visible.subscribe((visible) => {
-        this.visible = visible;
-    });
-
-    this.popupService.data.subscribe((data) => {
-        this.data = data;
-    });
-
-    this.popupService.latlng.subscribe((latlng) => {
-        this.latlng = latlng
-    });
-
-    this.popupService.title.subscribe((title) => {
+export class PopupComponent extends L.Popup implements AfterContentInit, OnInit {
+    @ViewChild('popupval') el: ElementRef;
+    title = 'Area selected';
+    private visible: boolean;
+    constructor(private mapService: MapService, private popupService: PopupService) {
+        super({ minWidth: 250 });
+    }
+    removePopup() {
+        this.popupService.closePopup();
+    }
+    ngOnInit() { }
+    ngAfterContentInit(): void {
+        this.popupService.showPopupStatus.subscribe(visibleStatus => {
+            console.log()
+            this.visible = visibleStatus;
+            this.popupService.showPopup(this.el);
+        });
+    }
+    setTitle(title) {
         this.title = title;
-    });
-  }
-  showPopup(el) {
-      if (this.latlng) {
-        this.setContent(el.nativeElement).setLatLng(this.latlng).openOn(this.mapService.getMap());
-      }
-  }
+    }
 }

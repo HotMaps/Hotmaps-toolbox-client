@@ -29,12 +29,7 @@ export class SummaryResultService extends APIService {
     return super.POST(payload, apiUrl + postStatsLayersArea);
   }
 
-  getSummaryResultWithPayloadAndResult(payload: any): Promise<SummaryResultClass> {
-    // return super.POST(payload, apiUrl + postStatsLayersArea);
-    return new Promise(resolve => {
-      setTimeout(() => resolve(this.getSummaryResultToClass(SummaryResponseData)), 1000);
-    });
-  }
+
 
   getSummaryResultToClass(summaryResultData: any): Promise<SummaryResultClass> {
     for (let i = 0; i < summaryResultData.layers.length; i++) {
@@ -51,12 +46,5 @@ export class SummaryResultService extends APIService {
     });
   }
 
-  setSummaryResult(summaryResult) {
-    this.summaryResult.next(summaryResult);
-  }
 
-  getSummaryResult(): any {
-    // return this.summaryResult;
-    return this.summaryResult;
-  }
 }
