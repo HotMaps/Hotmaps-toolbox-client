@@ -6,7 +6,7 @@ import {
   state,
   style,
   transition,
-  animate, Input
+  animate, Input, AfterViewInit
 } from '@angular/core';
 
 
@@ -32,18 +32,15 @@ import {SummaryResultClass} from './summary-result.class';
     ]),
   ]
 })
-export class SummaryResultComponent  implements OnInit, OnDestroy {
+export class SummaryResultComponent  implements OnInit, OnDestroy  {
   @Input() expanded: boolean;
   @Input('summaryResult') summaryResult: SummaryResultClass;
   expandedState = 'collapsed';
   busy: Promise<any>;
+  constructor(private summaryResultService: SummaryResultService) {}
 
-
-  constructor(private summaryResultService: SummaryResultService) {
-
+  ngOnInit() {
   }
-
-  ngOnInit() {}
 
   ngOnDestroy() {
 
