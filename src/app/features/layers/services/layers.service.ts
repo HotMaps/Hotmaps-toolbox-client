@@ -5,14 +5,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
-import {geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density} from '../../../shared/data.service'
+import {
+  geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName
+} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/class/location/location.class';
+
 import {Logger} from '../../../shared/services/logger.service';
-import {Properties} from '../class/geojson.class';
-import {Feature} from '../class/geojson.class'
+
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
@@ -22,9 +24,9 @@ import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
-import { PopupService } from './../../popup/popup.service';
-import { DataLayerRequest } from './../../../shared/services/mock/mock-layer.data';
-import { DataHeatDemand } from './../../../shared/services/mock/data-heat-demand';
+
+
+import {PopulationService} from '../../population/services/population.service';
 
 @Injectable()
 export class LayersService extends APIService {
@@ -41,19 +43,23 @@ export class LayersService extends APIService {
 
   ]);
   private popup = L.popup();
-
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private populationService: PopulationService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
     return this.layersArray;
   }
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
+    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer}
-    const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-    const url = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?SERVICE=WMS&VERSION=1.1.1' +
-      '&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
+      action = defaultLayer}else if (this.layersArray.containsKey(populationLayerName)) {
+      action = populationLayerName;
+      bbox = bbox + '&CQL_FILTER=stat_levl_=' + nuts_level;
+      // this.handlePopulation(map,  MockPopulation , latlng)
+
+    }
+
+    const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     console.log('url ' + url);
@@ -93,12 +99,25 @@ export class LayersService extends APIService {
   }
 
   addLayerWithAction(action: string, map: any) {
-    const layer = L.tileLayer.wms(geoserverUrl, {
+    this.logger.log('LayersService/ action = ' + action);
+    let layer;
+    if (action === populationLayerName) {
+      layer = L.tileLayer.wms(geoserverUrl, {
+        layers: 'hotmaps:' + action,
+        format: 'image/png',
+        transparent: true,
+        version: '1.3.0',
+        cql_filter : 'stat_levl_ = ' + nuts_level + '',
+        srs: 'EPSG:4326',
+      })
+    }else {
+     layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
-    })
+       srs: 'EPSG:4326',
+    })};
     this.layersArray.add(action, layer)
     this.refreshLayersOnMap(map);
   }
@@ -128,13 +147,21 @@ export class LayersService extends APIService {
   choosePopup(map, res: GeojsonClass, latlng: LatLng, action) {
     if (this.layersArray.containsKey(defaultLayer)) {
       this.addPopupHeatmap(map, res, latlng);
-    } else {
+    } else if (action === wwtpLayerName) {
       this.addPopupWWTP(map, res, latlng);
+    } else if (action === populationLayerName) {
+
+      this.handlePopulation(map, res, latlng);
     }
   }
+  handlePopulation(map, data: any, latlng: LatLng) {
 
-  addPopup(map, res: GeojsonClass, latlng: LatLng, action) {
-    // this.popupFactory.popHeatService.showPopup(true, res, latlng, action);
+
+    const populationSelected = data;
+
+    this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
+    this.loaderService.display(false);
+
   }
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
