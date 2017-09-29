@@ -52,7 +52,7 @@ export class PopulationService extends APIService {
     const value = data.features[0].properties.value
     const shape_len = data.features[0].properties.shape_len;
     popup.setLatLng(latlng).setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-      '<li>nuts id: ' + nuts_id  + '</li><li>nuts level:' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
+      '<li>nuts id: ' + nuts_id  + '</li><li>nuts level: ' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
       '<li>Population: ' + value.toLocaleString() +  ' habitants'  + '</li></ul>').openOn(map);
     this.logger.log('PopulationService/addPopup/popup/added');
 
