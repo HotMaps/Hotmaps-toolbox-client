@@ -808,9 +808,8 @@ var PopulationService = (function (_super) {
         var value = data.features[0].properties.value;
         var shape_len = data.features[0].properties.shape_len;
         popup.setLatLng(latlng).setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>nuts id: ' + nuts_id + '</li><li>nuts level:' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + value.toLocaleString() + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["q" /* unit_shape_area */] + '</li><li>Population: ' + shape_len + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["r" /* unit_population */]
-            + '</li></ul>').openOn(map);
+            '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
+            '<li>Population: ' + value.toLocaleString() + ' habitants' + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     PopulationService.prototype.removePopulationSelectedlayer = function (map) {
@@ -2919,8 +2918,8 @@ var Location = (function () {
 /* unused harmony export getGrid */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postStatsLayersArea; });
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return unit_shape_area; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return unit_population; });
+/* unused harmony export unit_shape_area */
+/* unused harmony export unit_population */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return timeOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return clickAccuracy; });
 /* unused harmony export layer_wwtp */
