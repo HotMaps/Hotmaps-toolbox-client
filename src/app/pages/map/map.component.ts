@@ -1,6 +1,5 @@
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map} from 'leaflet';
-import {Control} from 'leaflet-measure'
 import 'leaflet-draw'
 
 import { basemap } from './basemap'
@@ -20,11 +19,11 @@ import { RightSideComponent } from '../../features/side-panel/right-side-panel/i
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
-
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
   openRightSidebar = false;
+  openRightToggleExpanded = false;
   openLeftSidebar = false;
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
@@ -38,26 +37,28 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
+    this.rightPanelComponent.setTitle('Load Result');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
     this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
-
-  // manage the click or sidebar
-  toggleRightExpandedState() {
-    this.panelService.rightPanelexpandedCollapsed();
-  }
-
-  toggleLeftExpandedState() {
-    this.panelService.leftPanelexpandedCollapsed();
-  }
-
   notifySidePanelComponent() {
+    this.panelService.summaryResultDataStatus.subscribe((data) => {
+      this.rightPanelComponent.setSummaryResult(data);
+    });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
       if (this.openRightSidebar === false) {
         this.openRightSidebar = true;
+      } else {
+        this.rightPanelComponent.display(val);
+        // this.openRightSidebar = val;
+      }
+    });
+    this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
+      if (this.openRightToggleExpanded === false) {
+        this.openRightToggleExpanded = true;
       } else {
         this.rightPanelComponent.toggleExpandedState();
         this.openRightSidebar = val;
@@ -65,10 +66,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       }
     });
 
+
     this.panelService.leftPanelStatus.subscribe((val: boolean) => {
       if (this.openLeftSidebar === false) {
         this.openLeftSidebar = true;
       } else {
+
         this.leftPanelComponent.toggleExpandedState();
         this.openLeftSidebar = val;
 
@@ -128,7 +131,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     L.control.scale().addTo(this.map);
     // L.control.measure(measureOption).addTo(this.map);
-    //this.mapService.addDrawerControl(this.map);
+    // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
   showControls() {

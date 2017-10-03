@@ -10,7 +10,7 @@ import { Logger} from './logger.service';
 import { LoaderService } from './loader.service'
 
 import { PopulationService } from '../../features/population/services/population.service';
-import { LayersService } from '../../features/layers/layers.service';
+import { LayersService } from '../../features/layers/services/layers.service';
 
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 

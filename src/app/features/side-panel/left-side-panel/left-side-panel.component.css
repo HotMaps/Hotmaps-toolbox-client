@@ -26,13 +26,17 @@ i {
     justify-content: flex-end;
     color: #d3d3d3;
     padding: 0 8px 0 8px;
-    height: 38px;
+    height: 50px;
+    background-color: #333333;
 }
 
 .title-panel-left span {
-    flex: 1;
-    font-family: 'Hind', sans-serif;
-    font-size: 1.5em;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 50px;
 }
 
 .title-panel-left--collapsed {
@@ -42,13 +46,19 @@ i {
 .notifications {
     flex: 1;
     overflow-y: auto;
+    padding: 10px;
 }
 
 a {
     text-decoration: none;
-    margin-top: 6px;
 }
-
+.title-panel-left>a{
+    line-height: 50px;
+}
 a:hover {
     cursor: pointer;
+}
+
+.uk-accordion-content{
+    margin-top:10px;
 }

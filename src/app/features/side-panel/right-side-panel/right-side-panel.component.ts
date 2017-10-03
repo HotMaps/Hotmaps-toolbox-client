@@ -9,6 +9,7 @@ import {
     animate
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
+import { SummaryResultClass } from './../../summary-result/summary-result.class';
 @Component({
     moduleId: module.id,
     selector: 'htm-right-side-panel',
@@ -26,7 +27,7 @@ import {SideComponent} from '../side-panel.component';
         //  shrinking the panel down.
         //
         trigger('panelWidthTrigger', [
-            state('expanded', style({ width: '380px' })),
+            state('expanded', style({ width: '480px' })),
             state('collapsed', style({ width: '0px' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
@@ -38,8 +39,8 @@ import {SideComponent} from '../side-panel.component';
         //  transitions happen at the same time
         //
         trigger('titleColorTrigger', [
-            state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#E74C3C' })),
-            state('expanded', style({ backgroundColor: '#E74C3C', color: '#FFFFFF' })),
+            state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
+            state('expanded', style({ backgroundColor: '#333333', color: '#FFFFFF' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),
@@ -82,16 +83,16 @@ import {SideComponent} from '../side-panel.component';
     ]
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
-
+    private summaryResult: SummaryResultClass;
     constructor() {
         super();
     }
-    
     ngOnInit() {
      }
     ngOnDestroy() {
 
     }
-
-
+    setSummaryResult(summaryResult: SummaryResultClass) {
+        this.summaryResult = summaryResult;
+    }
 }

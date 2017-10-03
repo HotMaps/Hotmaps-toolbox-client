@@ -9,9 +9,10 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import 'rxjs/add/operator/timeout'
 
 
-import {apiUrl} from '../data.service'
+import {apiUrl, timeOut} from '../data.service'
 import {GlobalErrorHandler} from './error-handler';
 import {LoaderService } from './loader.service';
 
@@ -21,7 +22,8 @@ import {Logger} from './logger.service';
 
 import {ToasterService} from './toaster.service';
 export class APIService {
-  public headers = new Headers({'Content-Type': 'application/json'});
+  public headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+
   constructor(protected http: Http, protected logger: Logger, protected  loaderService: LoaderService,
               protected  toasterService: ToasterService) {
     this.http = http;
@@ -31,27 +33,37 @@ export class APIService {
   }
   handleError(error: any) {
     this.loaderService.display(false);
-    this.toasterService.showToaster('An error occurred: please try again later');
-    this.logger.log('PopulationServices/handleError');
+    let message = error.message;
+    if (error.name === 'TimeoutError') {
+       message = 'Timeout has occurred';
+    }
+
+    this.toasterService.showToaster(message + ', please try again later');
+    this.logger.log('APIService/handleError');
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {
+    console.log('payload ' + JSON.stringify(payload));
     return this.http
+
       .post(url, JSON.stringify(payload), {headers: this.headers})
+      .timeout(timeOut)
       .toPromise()
       .then( response => response.json() as any)
       .catch(this.handleError.bind(this));
   }
+
+
   GET(url): any {
-    return this.http.get(url).map((res: Response) => res.json()).subscribe(res => console.log(JSON.stringify(res)));
+    return this.http.get(url, this.headers)
+      .map((res: Response) => res.json().data as any);
   }
 
   public async getJSONFromFille(url: string): Promise<any> {
     return this.http.get(url)
       .toPromise()
       .then( response => response.json() as any)
-
   }
 
 

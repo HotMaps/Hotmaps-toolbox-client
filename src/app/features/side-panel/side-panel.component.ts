@@ -32,10 +32,10 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnInit() {
     }
     ngOnDestroy() {
-
     }
 
     toggleExpandedState() {
+      console.log('SideComponent/toggleExpandedState');
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
         console.log('this.expandedState ' + this.expandedState);
         this.expanded = !this.expanded;
@@ -44,9 +44,11 @@ export class SideComponent implements OnInit, OnDestroy {
     display(val: boolean) {
         if (val) {
             this.expandedState =  'expanded';
+            this.expanded = true;
         } else {
             this.expandedState = 'collapsed';
+            this.expanded = false;
         }
-        this.expanded = !this.expanded;
+      console.log('this.expandedState ' + this.expandedState);
     }
 }

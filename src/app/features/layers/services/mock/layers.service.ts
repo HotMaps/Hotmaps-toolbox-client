@@ -1,4 +1,4 @@
-import { SpyObject } from '../../../shared/services/mock/helper';
+import { SpyObject } from '../../../../shared/services/mock/helper';
 import { LayersService } from '../layers.service';
 import Spy = jasmine.Spy;
 

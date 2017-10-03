@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Logger} from './services/logger.service';
-import {Location} from './location/location';
-
+import {Location} from './class/location/location';
+import {NumberFormatPipe} from './pipes/number-format.pipe';
+import { DecimalPipe } from '@angular/common';
 
 @Injectable()
 export class Helper {
-  constructor(private logger: Logger) {
+  constructor(private logger: Logger, private decimalPipe: DecimalPipe) {
   }
 
   // check if unfined or not
@@ -29,17 +30,12 @@ export class Helper {
     let n = 0;
     const locations = [];
     do {
-      this.logger.log(' boucle');
-      this.logger.log(' Lat =' + latlng[n].lat);
-      this.logger.log(' Lng =' + latlng[n].lng);
-      this.logger.log(' before n++ latlng =' + latlng[n]);
       const loc: Location = {
         lat: latlng[n].lat,
         lng: latlng[n].lng
       };
       locations.push(loc);
       n++;
-      this.logger.log(' after n++ latlng =' + latlng[n]);
     } while (!this.isNullOrUndefined(latlng[n]));
 
     return locations;
@@ -117,12 +113,15 @@ export class Helper {
     const self = this;
     const coords = [];
     arrLatlng.forEach(function(latlng) {
-        self.logger.log(' Lat =' + latlng.lat);
-        self.logger.log(' Lngs =' + latlng.lng);
         coords.push( [latlng.lng, latlng.lat]);
       },
       this);
     return coords;
+  }
+
+  round(num: string): string {
+    if (this.isNullOrUndefined(num) === true) { return num};
+    return this.decimalPipe.transform(num, '1.0-3' );
   }
 
 }

@@ -1,11 +1,22 @@
+/*
+Author: Albain Dufils
+Date: 28.09.2017
+Description:
+This pipe is used to format number with the correct format
+
+*/
+
+import { DecimalPipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'selector-name'
+    name: 'numberformat'
 })
 
-export class NamePipe implements PipeTransform {
-    transform(value: any, ...args: any[]): any {
-        
+export class NumberFormatPipe  implements PipeTransform {
+
+    transform(value: number, args: any[]): any {
+        // return value.toString().replace(',', "'");
+        return value.toLocaleString();
     }
 }

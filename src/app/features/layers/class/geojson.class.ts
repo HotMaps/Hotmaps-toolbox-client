@@ -6,12 +6,15 @@
 
   export interface Properties {
     gid: number;
-    capacity: number;
-    power: number;
+    capacity: string;
+    power: string;
     unit: string;
+    heat_density: string;
     date: string;
     bbox: number[];
   }
+
+
 
   export interface Feature {
     type: string;
@@ -37,6 +40,3 @@
     crs: Crs;
     bbox: number[];
   }
-
-
-

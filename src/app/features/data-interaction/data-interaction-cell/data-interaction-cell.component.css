@@ -6,16 +6,19 @@
     min-height: 0;
     min-width: 0;
     max-height: 48px;
-    padding: 8px;
+    padding: 3px;
     font-family: 'Hind', sans-serif;
 
 }
-
+.isSelected{
+    color:white;
+    background-color: #2889DF;
+}
 .details {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 8px;
+    margin-left: 2px;
 }
 .notifications {
   flex: 1;
@@ -35,4 +38,20 @@
     justify-content: flex-end;
     font-size: 0.6em;
     color: #444444;
+}
+button{
+    padding: 0 5px;
+    text-align: left;
+    /* font-size: 0.675rem; */
+}
+
+input:checked{
+    border-color: green !important;
+}
+
+input{
+    margin: 0px 5px;
+}
+.uk-button-secondary{
+    background-color: #333333;
 }

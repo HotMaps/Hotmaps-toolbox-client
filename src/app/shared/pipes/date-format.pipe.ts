@@ -4,8 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'date-format'
 })
 
-export class DatePipe implements PipeTransform {
-    transform(value: any, ...args: any[]): any {
-        
+export class DateFormatPipe implements PipeTransform {
+    transform(date: any): any {
+
     }
 }
