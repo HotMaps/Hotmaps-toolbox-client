@@ -3,7 +3,7 @@ import {Helper} from '../../shared/helper';
 export class Value {
    name: string;
    unit: string;
-   value: number;
+   value: string;
   constructor( private helper: Helper ) {
     console.log('SummaryResultClass');
     this.value = this.helper.round(this.value)

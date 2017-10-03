@@ -23,8 +23,9 @@
             <th colspan="2">{{i.name | layername}}</th>
         </tr>
         <tr *ngFor="let value of i.values" class="table-level-two">
-          <td>{{value.name | uppercaseFirstLetter}}</td>
-          <td>{{value.value | number:'1.0-3'}} {{value.unit}}</td>
+          <td>{{value.name | businessname}}</td>
+          <td *ngIf="value.value" [@tableOpacityTrigger]="'in'">{{value.value | number:'1.0-3'}} {{ value.unit}}</td>
+          <td *ngIf="!value.value" [@tableOpacityTrigger]="'in'">Not available</td>
         </tr>
     </tbody>
   </table>

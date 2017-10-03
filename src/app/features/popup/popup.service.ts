@@ -1,13 +1,9 @@
-import { RegisterComponent } from './../../pages/register/register.component';
-import { PopupComponent } from './popup.component';
-import { MapService } from './../../shared/services/map.service';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Injectable, ComponentFactoryResolver, Injector, ApplicationRef, ComponentRef, NgZone } from '@angular/core';
+import { Injectable} from '@angular/core';
 
 @Injectable()
 export class PopupService {
-    private btnValidation = true;
-    private btnCancel: boolean;
     private currentLayer: any;
     showPopupStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 

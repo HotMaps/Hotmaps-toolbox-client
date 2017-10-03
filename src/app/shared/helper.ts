@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Logger} from './services/logger.service';
 import {Location} from './class/location/location';
-
+import {NumberFormatPipe} from './pipes/number-format.pipe';
+import { DecimalPipe } from '@angular/common';
 
 @Injectable()
 export class Helper {
-  constructor(private logger: Logger) {
+  constructor(private logger: Logger, private decimalPipe: DecimalPipe) {
   }
 
   // check if unfined or not
@@ -118,9 +119,9 @@ export class Helper {
     return coords;
   }
 
-  round(num: number): number {
-    if (this.isNullOrUndefined(num) === true) { return 0};
-    return parseFloat( num.toFixed(2) )
+  round(num: string): string {
+    if (this.isNullOrUndefined(num) === true) { return num};
+    return this.decimalPipe.transform(num, '1.0-3' );
   }
 
 }

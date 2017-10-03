@@ -20,6 +20,8 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BusinessNamePipe } from './shared/pipes/business-name.pipe';
+import { BusinessInterfaceRenderService } from './shared/business/business.service';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { SidebarModule } from 'ng-sidebar';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -48,6 +50,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
 import { SummaryResultService } from './features/summary-result/summary-result.service';
 import { UppercaseFirstLetterPipe } from './shared/pipes/uppercase-first-letter.pipe';
 import { LayerNamePipe } from './shared/pipes/layer-name.pipe';
+import { DecimalPipe } from '@angular/common';
+
 
 import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
 import { PopupComponent } from './features/popup/popup.component';
@@ -84,6 +88,7 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
+    BusinessNamePipe,
     PopupComponent
   ],
 
@@ -103,8 +108,10 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     LayersService,
     SelectionToolService,
     SelectionToolButtonStateService,
+    BusinessInterfaceRenderService,
     SummaryResultService,
-    PopupService
+    PopupService,
+    DecimalPipe
 
 
   ],

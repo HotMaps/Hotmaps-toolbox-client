@@ -5,7 +5,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 
-import {apiUrl, postPopulationDensityInArea, unit_population, unit_shape_area} from '../../../shared/data.service'
+import {
+  apiUrl, business_name_population, postPopulationDensityInArea, unit_population,
+  unit_shape_area
+} from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
@@ -50,10 +53,10 @@ export class PopulationService extends APIService {
     const nuts_id = data.features[0].properties.nuts_id;
     const name = data.features[0].properties.name;
     const value = data.features[0].properties.value
-    const shape_len = data.features[0].properties.shape_len;
-    popup.setLatLng(latlng).setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
+    const date = data.features[0].properties.date.split('Z')[0];
+    popup.setLatLng(latlng).setContent('<h5>' + business_name_population + '</h5> <ul class="uk-list uk-list-divider">' +
       '<li>nuts id: ' + nuts_id  + '</li><li>nuts level: ' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
-      '<li>Population: ' + value.toLocaleString() +  ' habitants'  + '</li></ul>').openOn(map);
+      '<li>Population: ' + value.toLocaleString() +  unit_population  + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
     this.logger.log('PopulationService/addPopup/popup/added');
 
 }

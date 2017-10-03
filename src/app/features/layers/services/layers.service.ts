@@ -7,7 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -30,6 +30,7 @@ import {PopulationService} from '../../population/services/population.service';
 
 @Injectable()
 export class LayersService extends APIService {
+  private layersGroup;
 
 
   private layersArray: Dictionary = new Dictionary([
@@ -43,7 +44,8 @@ export class LayersService extends APIService {
 
   ]);
   private popup = L.popup();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private populationService: PopulationService, private helper: Helper) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+              private populationService: PopulationService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -54,7 +56,7 @@ export class LayersService extends APIService {
     if (this.layersArray.containsKey(defaultLayer)) {
       action = defaultLayer}else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName;
-      bbox = bbox + '&CQL_FILTER=stat_levl_=' + nuts_level;
+      bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
       // this.handlePopulation(map,  MockPopulation , latlng)
 
     }
@@ -168,7 +170,7 @@ export class LayersService extends APIService {
     const heat_density = data.features[0].properties.heat_density;
     this.popup.setLatLng(latlng)
       .setContent(
-        '<h5>heat map</h5> <ul class="uk-list uk-list-divider">' +
+        '<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
         ' <li>Heat demand: ' + this.helper.round(heat_density)  + ' ' + unit_heat_density + '</li> </ul>')
       .openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');
@@ -180,7 +182,7 @@ export class LayersService extends APIService {
     const power = data.features[0].properties.power;
     const date = data.features[0].properties.date.split('Z')[0];
     const unit = data.features[0].properties.unit;
-    this.popup.setLatLng(latlng).setContent('<h5>waste water treatment plants</h5> <ul class="uk-list uk-list-divider">' +
+    this.popup.setLatLng(latlng).setContent('<h5>' + business_name_wwtp + '</h5> <ul class="uk-list uk-list-divider">' +
       '<li>Capacity: ' + capacity + ' ' + unit_capacity + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
          '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     this.logger.log('LayersService/addPopup/popup/added');

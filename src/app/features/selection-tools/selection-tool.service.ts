@@ -31,6 +31,7 @@ import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { PayloadStatData } from './../summary-result/mock/test.data';
 import { SummaryResultService } from './../summary-result/summary-result.service';
+import {constant_year} from "../../shared/data.service";
 
 
 @Injectable()
@@ -224,21 +225,10 @@ export class SelectionToolService {
     }
   }
 
-  // population feature
-  getPopulation(locations: Location[], layer: Layer, map: any) {
-    this.loaderService.display(true);
-    const payload: Payload = {
-      nuts_level: 3,
-      year: 2015,
-      points: locations,
-    }
-    this.populationService.getPopulationWithPayloads(payload).then(population => this.retriveAndAddLayer(population, layer, map));
-  }
-
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
     this.loaderService.display(true);
-    const payload: PayloadStat = { layers: layers, year: 2015, points: locations }
+    const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
     this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
       this.displaySummaryResult(result);
     });
