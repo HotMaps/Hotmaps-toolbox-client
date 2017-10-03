@@ -22,11 +22,12 @@ import {ToasterService} from '../../../shared/services/toaster.service';
 import {APIService} from '../../../shared/services/api.service';
 import LatLng = L.LatLng;
 import Popup = L.Popup;
+import {Helper} from "../../../shared/helper";
 
 @Injectable()
 export class PopulationService extends APIService {
   private populationSelectedLayer: any;
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   getPopulationWithPayloads(payload: Payload): Promise<Population> {
@@ -56,7 +57,7 @@ export class PopulationService extends APIService {
     const date = data.features[0].properties.date.split('Z')[0];
     popup.setLatLng(latlng).setContent('<h5>' + business_name_population + '</h5> <ul class="uk-list uk-list-divider">' +
       '<li>nuts id: ' + nuts_id  + '</li><li>nuts level: ' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
-      '<li>Population: ' + value.toLocaleString() +  unit_population  + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+      '<li>Population: ' +  this.helper.round(value)  + ' ' +  unit_population  + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
     this.logger.log('PopulationService/addPopup/popup/added');
 
 }
