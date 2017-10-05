@@ -2848,8 +2848,8 @@ var routes = [
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessInterfaceRenderArray; });
 var BusinessInterfaceRenderArray = [
-    { id: 17, api_name: 'heat_density', business_name: 'Heat density(average)' },
-    { id: 12, api_name: 'heat_comsuption', business_name: 'Heat comsuption' },
+    { id: 17, api_name: 'heat_density', business_name: 'Heat density (average)' },
+    { id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption' },
     { id: 13, api_name: 'density', business_name: 'Total population' },
 ];
 //# sourceMappingURL=business.data.js.map
