@@ -103,7 +103,7 @@ export class SelectionToolService {
 
     // Create elements with leaflet utility - validation & Cancel buttons + title
     this.createButtons();
-    this.currentLayer.bindPopup(this.containerPopup).openPopup();
+    this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
 
     // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
@@ -122,41 +122,44 @@ export class SelectionToolService {
   retriveMapEvent(map: any): void {
     const self = this;
     map.on(L.Draw.Event.CREATED, function (e) {
+      console.log('created', e.type);
+
       const event: Created = <Created>e;
+      const type = event.layerType,
+      layer: any = event.layer;
+      self.currentLayer = layer
+      self.isActivate = false;
       // Clear the map before to show the new selection
       self.editableLayers.clearLayers();
       self.removeVtlayer(map);
-      const type = event.layerType,
-        layer: any = event.layer;
-      self.currentLayer = layer
-
       self.manageEditOrCreateLayer(self.currentLayer, map);
     });
-
+    
     map.on(L.Draw.Event.EDITED, function (e) {
+      console.log('EDITED', e.type);
       const event: Edited = <Edited>e;
       event.layers.eachLayer(function (layer: Layer) {
         const lay: Layer = layer;
-        self.manageEditOrCreateLayer(layer, map);
+        //  self.manageEditOrCreateLayer(layer, map);
       });
     });
-
+    
     map.on(L.Draw.Event.DRAWSTART, function (e) {
+      console.log('DRAWSTART', e.type);
       self.isActivate = true;
-
     });
-
+    
     map.on(L.Draw.Event.DRAWSTOP, function (e) {
-      self.isActivate = false;
-
+      console.log('DRAWSTOP', e.type);
     });
 
     map.on(L.Draw.Event.EDITSTART, function (e) {
+      console.log('EDITSTART', e.type);
       self.isActivate = true;
-
     });
 
     map.on(L.Draw.Event.EDITSTOP, function (e) {
+      console.log('EDITSTOP', e.type);
       self.isActivate = false;
     });
   }

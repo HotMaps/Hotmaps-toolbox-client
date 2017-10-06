@@ -2,31 +2,6 @@ export const SummaryResponseData =
 {
   "layers": [
     {
-      "name": "heat_density_map",
-      "values": [
-        {
-          "name": "heat_density",
-          "value": 3358269.18307148,
-          "unit": "GWh/km2"
-        }
-      ]
-    },
-    {
-      "name": "wwtp",
-      "values": [
-        {
-          "name": "power",
-          "value": 286737.43556192,
-          "unit": "kW"
-        },
-        {
-          "name": "capacity",
-          "value": 4449374,
-          "unit": "Person equivalent"
-        }
-      ]
-    },
-    {
       "name": "population",
       "values": [
         {

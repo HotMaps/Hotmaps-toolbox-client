@@ -24,8 +24,7 @@ export class SummaryResultService extends APIService {
   }
 
   getSummaryResultWithPayload(payload: any): Promise<any> {
-    const url = apiUrl + postStatsLayersArea;
-    this.logger.log('getSummaryResultWithPayload/url = ' + url);
+    // console.log('getSummaryResultWithPayload/payload = ', JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsLayersArea);
   }
 

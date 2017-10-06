@@ -56,18 +56,18 @@ export class MapService implements OnInit, OnDestroy {
     this.map = map;
     this.selectionToolService.setMap(map);
     this.retriveMapEvent();
-
     this.layersService.refreshLayersOnMap(map)
   }
+
   retriveMapEvent(): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
     this.map.on('click', function(e: MouseEvent) {
       self.logger.log('MapService/click');
       // check if the selection toul is activate
-      if (// self.selectionToolService.getIsActivate() === false &&
+     if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
-         self.layersService.getIsReadyToShowFeatureInfo() === true) {
+        self.layersService.getIsReadyToShowFeatureInfo() === true) {
           self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
       }
     });
@@ -90,7 +90,6 @@ export class MapService implements OnInit, OnDestroy {
 
     this.map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
-
     });
     this.map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {
