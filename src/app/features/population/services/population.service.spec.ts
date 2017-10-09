@@ -59,5 +59,4 @@ describe('PopulationService', () => {
       expect(data).toEqual(MockPopulation);
     });
   }));
-
 });

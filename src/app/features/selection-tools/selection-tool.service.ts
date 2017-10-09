@@ -29,7 +29,6 @@ import Edited = L.DrawEvents.Edited;
 
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
-import { PayloadStatData } from './../summary-result/mock/test.data';
 import { SummaryResultService } from './../summary-result/summary-result.service';
 
 
@@ -78,10 +77,6 @@ export class SelectionToolService {
   setMap(map: any) {
     this.notifyLoaderService(map);
     this.retriveMapEvent(map);
-    /* this.summaryResultService.getSummaryResultWithPayload(PayloadStatData).then(result => {
-      console.log(result);
-    }); */
-    //
   }
 
   setHTMLContent(el, str): any {
@@ -134,7 +129,7 @@ export class SelectionToolService {
       self.removeVtlayer(map);
       self.manageEditOrCreateLayer(self.currentLayer, map);
     });
-    
+
     map.on(L.Draw.Event.EDITED, function (e) {
       console.log('EDITED', e.type);
       const event: Edited = <Edited>e;
@@ -275,6 +270,7 @@ export class SelectionToolService {
         },
         circle: true,  // Turns off this drawing tool
         rectangle: {
+
           tooltip : {
             start : 'dede',
           },

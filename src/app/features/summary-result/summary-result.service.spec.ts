@@ -1,12 +1,12 @@
-import { Http, ConnectionBackend, BaseRequestOptions, ResponseOptions } from '@angular/http';
+import { Http, ConnectionBackend, BaseRequestOptions, ResponseOptions, Headers } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { TestBed, fakeAsync, inject, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';
 
 import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { SummaryResultService } from './summary-result.service';
-import { PayloadStatData, SummaryResponseData } from './mock/test.data';
+import { PayloadStatData, SummaryResultDataPopu } from './mock/summary-result.data';
 import { postStatsLayersArea, apiUrl } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { PayloadStat } from './mock/payload.class';
@@ -37,40 +37,30 @@ describe('SummaryResultService', () => {
                 {provide: BaseRequestOptions, useClass: BaseRequestOptions}
             ]
         });
-
     });
+
     it('should be created', inject([SummaryResultService], (service: SummaryResultService) => {
         expect(service).toBeTruthy();
     }));
 
-   it('should get statistics for population layer',
-        inject([SummaryResultService], (summaryResultService: SummaryResultService) => {
-            // mockBackend.connections.subscribe(c => {
-                // console.log(c.request.url);
-                /* expect(c.request.url).toBe('http://hotmaps.hevs.ch:9005/api/stats/layers/area/');
-                const response = new ResponseOptions({ body: SummaryResponseData }); */
-                // console.log(JSON.stringify(response));
-                // c.mockRespond(new Response(response));
-            // });
+    it('should get statistics for population layer',
+        inject([SummaryResultService, MockBackend], fakeAsync((summaryResultService: SummaryResultService, mockBackend: MockBackend) => {
+            /* mockBackend.connections.subscribe(c => {
+                console.log(c.request.url);
+                expect(c.request.url).toBe('http://hotmaps.hevs.ch:9005/api/stats/layers/area/');
+                c.mockRespond(new Response({
+                    body: SummaryResultDataPopu
+                }));
+            }); */
             const payload: PayloadStat = PayloadStatData;
-            // console.log(JSON.stringify(payload));
-            let name;
-            let unit;
-            let value;
-            summaryResultService.getSummaryResultWithPayload(payload).then(result => {
-                /* console.log(result);
-                console.log(result.layers[0].values[0].unit);
-                console.log(result.layers[0].values[0].value); */
-                name = result.layers[0].values[0].name;
-                unit = result.layers[0].values[0].unit;
-                value = result.layers[0].values[0].value;
-                /* expect(result.layers[0].values[0].name).toBe('density');
-                expect(result.layers[0].values[0].value).toBe(1033080);
-                expect(result.layers[0].values[0].unit).toBe('citizens'); */
+            payload.layers.push('population');
+            console.log(JSON.stringify(payload));
+            let result;
+            summaryResultService.getSummaryResultWithPayload(payload).then((data) => {
+                console.log('data getSummary: ', JSON.stringify(data));
+                result = data;
             });
-            tick();
-            expect(name).toBe('density');
-            expect(value).toBe(1033080);
-            expect(unit).toBe('citizens');
-        }));
+            tick(100)
+            expect(result).toBe(SummaryResultDataPopu);
+    })));
 })

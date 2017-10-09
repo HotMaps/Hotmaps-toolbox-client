@@ -40,18 +40,16 @@ export class APIService {
 
     // this.toasterService.showToaster(message + ', please try again later');
     this.logger.log('APIService/handleError');
-    console.error('An error occurred', error); // for demo purposes only
+    console.log('An error occurred', error.message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {
+
     return this.http
       .post(url, JSON.stringify(payload), {headers: this.headers})
       .timeout(timeOut)
       .toPromise()
-      .then( response => {
-        console.log(JSON.stringify(response));
-        return response.json() as any;
-      })
+      .then( response => response.json() as any)
       .catch(this.handleError.bind(this));
   }
   GET(url): any {
