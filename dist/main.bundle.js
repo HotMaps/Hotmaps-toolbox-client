@@ -1101,10 +1101,6 @@ var SelectionToolService = (function () {
     SelectionToolService.prototype.setMap = function (map) {
         this.notifyLoaderService(map);
         this.retriveMapEvent(map);
-        /* this.summaryResultService.getSummaryResultWithPayload(PayloadStatData).then(result => {
-          console.log(result);
-        }); */
-        //
     };
     SelectionToolService.prototype.setHTMLContent = function (el, str) {
         el.innerHTML = str;
@@ -1123,7 +1119,7 @@ var SelectionToolService = (function () {
         this.logger.log('SelectionToolService/loadPopup');
         // Create elements with leaflet utility - validation & Cancel buttons + title
         this.createButtons();
-        this.currentLayer.bindPopup(this.containerPopup).openPopup();
+        this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
         // Set event bind on popup's buttons
         L.DomEvent.on(this.cancelBtn, 'click', function () {
             _this.clearAll();
@@ -1141,31 +1137,37 @@ var SelectionToolService = (function () {
     SelectionToolService.prototype.retriveMapEvent = function (map) {
         var self = this;
         map.on(L.Draw.Event.CREATED, function (e) {
+            console.log('created', e.type);
             var event = e;
+            var type = event.layerType, layer = event.layer;
+            self.currentLayer = layer;
+            self.isActivate = false;
             // Clear the map before to show the new selection
             self.editableLayers.clearLayers();
             self.removeVtlayer(map);
-            var type = event.layerType, layer = event.layer;
-            self.currentLayer = layer;
             self.manageEditOrCreateLayer(self.currentLayer, map);
         });
         map.on(L.Draw.Event.EDITED, function (e) {
+            console.log('EDITED', e.type);
             var event = e;
             event.layers.eachLayer(function (layer) {
                 var lay = layer;
-                self.manageEditOrCreateLayer(layer, map);
+                //  self.manageEditOrCreateLayer(layer, map);
             });
         });
         map.on(L.Draw.Event.DRAWSTART, function (e) {
+            console.log('DRAWSTART', e.type);
             self.isActivate = true;
         });
         map.on(L.Draw.Event.DRAWSTOP, function (e) {
-            self.isActivate = false;
+            console.log('DRAWSTOP', e.type);
         });
         map.on(L.Draw.Event.EDITSTART, function (e) {
+            console.log('EDITSTART', e.type);
             self.isActivate = true;
         });
         map.on(L.Draw.Event.EDITSTOP, function (e) {
+            console.log('EDITSTOP', e.type);
             self.isActivate = false;
         });
     };
@@ -2015,8 +2017,7 @@ var SummaryResultService = (function (_super) {
         return _this;
     }
     SummaryResultService.prototype.getSummaryResultWithPayload = function (payload) {
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postStatsLayersArea */];
-        this.logger.log('getSummaryResultWithPayload/url = ' + url);
+        console.log('getSummaryResultWithPayload/payload = ', JSON.stringify(payload));
         return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postStatsLayersArea */]);
     };
     return SummaryResultService;
@@ -3411,13 +3412,12 @@ var APIService = (function () {
         if (error.name === 'TimeoutError') {
             message = 'Timeout has occurred';
         }
-        this.toasterService.showToaster(message + ', please try again later');
+        // this.toasterService.showToaster(message + ', please try again later');
         this.logger.log('APIService/handleError');
-        console.error('An error occurred', error); // for demo purposes only
+        console.log('An error occurred', error.message); // for demo purposes only
         return Promise.reject(error.message || error);
     };
     APIService.prototype.POST = function (payload, url) {
-        console.log('payload ' + JSON.stringify(payload));
         return this.http
             .post(url, JSON.stringify(payload), { headers: this.headers })
             .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["c" /* timeOut */])

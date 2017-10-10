@@ -38,23 +38,20 @@ export class APIService {
        message = 'Timeout has occurred';
     }
 
-    this.toasterService.showToaster(message + ', please try again later');
+    // this.toasterService.showToaster(message + ', please try again later');
     this.logger.log('APIService/handleError');
-    console.error('An error occurred', error); // for demo purposes only
+    console.log('An error occurred', error.message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {
-    console.log('payload ' + JSON.stringify(payload));
-    return this.http
 
+    return this.http
       .post(url, JSON.stringify(payload), {headers: this.headers})
       .timeout(timeOut)
       .toPromise()
       .then( response => response.json() as any)
       .catch(this.handleError.bind(this));
   }
-
-
   GET(url): any {
     return this.http.get(url, this.headers)
       .map((res: Response) => res.json().data as any);

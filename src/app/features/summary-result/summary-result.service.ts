@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { SummaryResponseData } from './mock/test.data';
 import { PayloadStat } from './mock/payload.class';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -24,8 +23,7 @@ export class SummaryResultService extends APIService {
   }
 
   getSummaryResultWithPayload(payload: any): Promise<any> {
-    const url = apiUrl + postStatsLayersArea;
-    this.logger.log('getSummaryResultWithPayload/url = ' + url);
+    console.log('getSummaryResultWithPayload/payload = ', JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsLayersArea);
   }
 

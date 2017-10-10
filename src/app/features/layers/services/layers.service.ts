@@ -54,7 +54,8 @@ export class LayersService extends APIService {
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer}else if (this.layersArray.containsKey(populationLayerName)) {
+      action = defaultLayer
+    }else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName;
       bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
       // this.handlePopulation(map,  MockPopulation , latlng)
@@ -152,7 +153,6 @@ export class LayersService extends APIService {
     } else if (action === wwtpLayerName) {
       this.addPopupWWTP(map, res, latlng);
     } else if (action === populationLayerName) {
-
       this.handlePopulation(map, res, latlng);
     }
   }
