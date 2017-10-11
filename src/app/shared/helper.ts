@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Logger} from './services/logger.service';
 import {Location} from './class/location/location';
-import {NumberFormatPipe} from './pipes/number-format.pipe';
 import { DecimalPipe } from '@angular/common';
+import {round_value} from './data.service';
 
 @Injectable()
 export class Helper {
@@ -121,7 +121,7 @@ export class Helper {
 
   round(num: string): string {
     if (this.isNullOrUndefined(num) === true) { return num};
-    return this.decimalPipe.transform(num, '1.0-3' );
+    return this.decimalPipe.transform(num, round_value );
   }
 
 }

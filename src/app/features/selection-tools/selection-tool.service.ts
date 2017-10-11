@@ -139,16 +139,13 @@ export class SelectionToolService {
         //  self.manageEditOrCreateLayer(layer, map);
       });
     });
-    
     map.on(L.Draw.Event.DRAWSTART, function (e) {
       console.log('DRAWSTART', e.type);
       self.isActivate = true;
     });
-    
     map.on(L.Draw.Event.DRAWSTOP, function (e) {
       console.log('DRAWSTOP', e.type);
     });
-
     map.on(L.Draw.Event.EDITSTART, function (e) {
       console.log('EDITSTART', e.type);
       self.isActivate = true;
@@ -225,6 +222,7 @@ export class SelectionToolService {
 
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
+    // this.sidePanelService.closeRightPanel();
     this.loaderService.display(true);
     const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
     this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {

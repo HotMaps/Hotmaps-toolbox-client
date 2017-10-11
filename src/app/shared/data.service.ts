@@ -39,4 +39,4 @@ export const unit_capacity   = 'Person Equivalent';
 export const unit_heat_density   = 'GWh/km2';
 export const unit_shape_area   = 'm2';
 export const unit_population   = 'citizens';
-
+export const round_value   = '1.0-2';
