@@ -30,7 +30,7 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year} from "../../shared/data.service";
+import {constant_year} from '../../shared/data.service';
 
 
 @Injectable()
@@ -52,12 +52,11 @@ export class SelectionToolService {
   private cancelBtn: any;
   private validationBtn: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
-    private populationService: PopulationService, private sidePanelService: SidePanelService,
+     private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService,
-    private layerService: LayersService,
-    private popupService: PopupService) {
+    private layerService: LayersService) {
 
   }
 

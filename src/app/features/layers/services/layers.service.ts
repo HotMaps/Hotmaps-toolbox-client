@@ -57,7 +57,7 @@ export class LayersService extends APIService {
       action = defaultLayer
     }else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName;
-      bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
+     // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
       // this.handlePopulation(map,  MockPopulation , latlng)
 
     }
@@ -106,11 +106,11 @@ export class LayersService extends APIService {
     let layer;
     if (action === populationLayerName) {
       layer = L.tileLayer.wms(geoserverUrl, {
-        layers: 'hotmaps:' + action,
+        layers: 'hotmaps:' + 'population-1ha-pyronly',
         format: 'image/png',
         transparent: true,
         version: '1.3.0',
-        cql_filter : 'stat_levl_ = ' + nuts_level + '',
+       // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
       })
     }else {
