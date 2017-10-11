@@ -45,6 +45,7 @@
     "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
     "leaflet.vectorgrid": "1.2.0",
+    "mdn-polyfills": "^5.2.0",
     "ng-sidebar": "6.0.1",
     "ngx-bootstrap": "1.7.1",
     "normalize.css": "6.0.0",
