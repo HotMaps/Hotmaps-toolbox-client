@@ -30,7 +30,7 @@ import {PopulationService} from '../../population/services/population.service';
 
 @Injectable()
 export class LayersService extends APIService {
-  private layersGroup;
+  private layers = new L.FeatureGroup();
 
 
   private layersArray: Dictionary = new Dictionary([
@@ -44,6 +44,10 @@ export class LayersService extends APIService {
 
   ]);
   private popup = L.popup();
+  public getLayers(): any {
+    return this.layers;
+  }
+
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               private populationService: PopulationService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
@@ -82,10 +86,17 @@ export class LayersService extends APIService {
   }
 
   refreshLayersOnMap(map: any) {
+    this.layers.clearLayers();
     const layers = this.layersArray.keys();
+    if  (this.layersArray.containsKey(defaultLayer)) {
+      const layer: Layer = <Layer> this.layersArray.value(defaultLayer);
+      this.layers.addLayer(layer);
+    }
     for (let i = 0; i < layers.length; i++) {
-      const layer: Layer = <Layer> this.layersArray.value(layers[i]);
-      layer.addTo(map);
+      if ( layers[i] !== defaultLayer) {
+        const layer: Layer = <Layer> this.layersArray.value(layers[i]);
+        this.layers.addLayer(layer);
+      }
     }
   }
 
@@ -129,7 +140,7 @@ export class LayersService extends APIService {
     // we get the layer we want to remove
     const layer = this.layersArray.value(action);
     // we remove this layer from map
-    map.removeLayer(layer);
+    this.layers.removeLayer(layer);
     // we destroy the layer
     this.layersArray.remove(action);
     this.refreshLayersOnMap(map);

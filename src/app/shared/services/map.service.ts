@@ -56,6 +56,8 @@ export class MapService implements OnInit, OnDestroy {
     this.map = map;
     this.selectionToolService.setMap(map);
     this.retriveMapEvent();
+
+    this.layersService.getLayers().addTo(map);
     this.layersService.refreshLayersOnMap(map)
   }
 
