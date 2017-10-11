@@ -106,7 +106,7 @@ export class LayersService extends APIService {
     let layer;
     if (action === populationLayerName) {
       layer = L.tileLayer.wms(geoserverUrl, {
-        layers: 'hotmaps:' + 'population-1ha-pyronly',
+        layers: 'hotmaps:' + populationLayerName,
         format: 'image/png',
         transparent: true,
         version: '1.3.0',

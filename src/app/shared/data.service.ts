@@ -18,7 +18,7 @@ export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 
 export const nuts_level   = '3';
-export const populationLayerName = 'population-1ha-pyronly'
+export const populationLayerName = 'population1ha'
 export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
