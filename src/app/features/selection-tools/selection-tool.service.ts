@@ -11,7 +11,6 @@ import {Payload} from '../../features/population/payload.class';
 import {Population} from '../../features/population/population.class';
 import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
-import { PopupService } from '../../features/popup/popup.service';
 import {SidePanelService} from '../../features/side-panel/side-panel.service';
 import {SelectionToolButtonStateService} from './selection-tool-button-state.service';
 import {LoaderService} from '../../shared/services/loader.service';
@@ -30,7 +29,7 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year} from "../../shared/data.service";
+import {constant_year} from '../../shared/data.service';
 
 
 @Injectable()
@@ -56,8 +55,7 @@ export class SelectionToolService {
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService,
-    private layerService: LayersService,
-    private popupService: PopupService) {
+    private layerService: LayersService) {
 
   }
 
