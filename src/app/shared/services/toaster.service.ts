@@ -2,17 +2,17 @@
  * Created by lesly on 14.07.17.
  */
 import { Injectable } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
-
+import * as uikit from 'uikit'
+/* import { MdSnackBar } from '@angular/material';
+ */
 @Injectable()
 export class ToasterService {
 
-  constructor(private snackBar: MdSnackBar) {
+  constructor() {
   }
 
   showToaster(msg: string) {
-    this.snackBar.open(msg, null, {
-      duration: 3000,
-    });
+    uikit.notification.closeAll();
+    uikit.notification({message: msg, pos: 'bottom-center', timeout: 2000 })
   }
 }

@@ -15,7 +15,9 @@
 
 -->
     <router-outlet>
-      <span *ngIf="showLoader" class="loading"></span>
+      <span *ngIf="showLoader" class="loader-app"> 
+          <div uk-spinner="ratio:4"></div> 
+        </span> 
     </router-outlet>
 
 
