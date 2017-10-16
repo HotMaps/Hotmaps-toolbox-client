@@ -58,9 +58,9 @@ export class LayersService extends APIService {
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer
+      action = defaultLayer + '_' + constant_year;
     }else if (this.layersArray.containsKey(populationLayerName)) {
-      action = populationLayerName;
+      action = populationLayerName + '_' + constant_year;
      // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
       // this.handlePopulation(map,  MockPopulation , latlng)
 
