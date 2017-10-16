@@ -84,9 +84,9 @@ export class MapService implements OnInit, OnDestroy {
     this.map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
     });
-    this.map.on('didUpdateLayer', function(e) {
+    /*this.map.on('didUpdateLayer', function(e) {
        self.logger.log('MapService/didUpdateLayer-----' + e);
-    });
+    });*/
     this.map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {
       self.logger.log('overlayadd');
