@@ -3,7 +3,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {GeocodingService} from '../../shared/services/geocoding.service';
-import {MapService} from '../../shared/services/map.service';
+import {MapService} from '../map/map.service';
 import {Logger} from '../../shared/services/logger.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {Map} from 'leaflet';

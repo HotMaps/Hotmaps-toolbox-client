@@ -3,29 +3,20 @@
  */
 
 
-import Circle = L.Circle;
-import Created = L.DrawEvents.Created;
-import Edited = L.DrawEvents.Edited;
+
 import {Injectable} from '@angular/core';
-import Layer = L.Layer;
+
 import {Map} from 'leaflet';
 import { MouseEvent} from 'leaflet';
 import {OnInit, OnDestroy} from '@angular/core';
-import {Popup} from 'leaflet';
-import Polygon = L.Polygon;
-import Rectangle = L.Rectangle;
 
-import {basemap} from '../../pages/map/basemap';
-import {Helper} from '../helper'
+import {basemap} from './basemap';
+import {Helper} from '../../shared/helper'
 import {LayersService} from '../../features/layers/services/layers.service';
-import {Logger} from './logger.service';
-import {LoaderService} from './loader.service';
-import {Location} from '../class/location/location';
-import {Payload} from '../../features/population/payload.class';
-import {Population} from '../../features/population/population.class';
-import {PopulationService} from '../../features/population/services/population.service';
+import {Logger} from '../../shared/services/logger.service';
+import {LoaderService} from '../../shared/services/loader.service';
 import {SelectionToolService} from '../../features/selection-tools/selection-tool.service';
-import {wwtpLayerName} from '../data.service';
+import {wwtpLayerName} from '../../shared/data.service';
 
 
 @Injectable()
@@ -92,6 +83,9 @@ export class MapService implements OnInit, OnDestroy {
 
     this.map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
+    });
+    this.map.on('didUpdateLayer', function(e) {
+       self.logger.log('MapService/didUpdateLayer-----' + e);
     });
     this.map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {

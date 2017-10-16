@@ -4,10 +4,10 @@ import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { Map} from 'leaflet';
 
-import { Helper } from '../helper';
+import { Helper } from '../../shared/helper';
 import { MapService } from './map.service';
-import { Logger} from './logger.service';
-import { LoaderService } from './loader.service'
+import { Logger} from '../../shared/services/logger.service';
+import { LoaderService } from '../../shared/services/loader.service'
 
 import { PopulationService } from '../../features/population/services/population.service';
 import { LayersService } from '../../features/layers/services/layers.service';

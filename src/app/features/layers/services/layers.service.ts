@@ -37,7 +37,7 @@ export class LayersService extends APIService {
     {
       key: defaultLayer, value: L.tileLayer.wms(geoserverUrl,
       {
-        layers: 'hotmaps:' + defaultLayer,
+        layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
       })
     },
@@ -98,6 +98,7 @@ export class LayersService extends APIService {
         this.layers.addLayer(layer);
       }
     }
+    map.fireEvent('didUpdateLayer', this.layersArray.keys());
   }
 
   showOrRemoveLayer(action: string, map: any) {
@@ -115,18 +116,19 @@ export class LayersService extends APIService {
   addLayerWithAction(action: string, map: any) {
     this.logger.log('LayersService/ action = ' + action);
     let layer;
-    if (action === populationLayerName) {
+    if (action === wwtpLayerName) {
       layer = L.tileLayer.wms(geoserverUrl, {
-        layers: 'hotmaps:' + populationLayerName,
+        layers: 'hotmaps:' + action ,
         format: 'image/png',
         transparent: true,
         version: '1.3.0',
        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
       })
-    }else {
+    }else  {
+      // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action,
+      layers: 'hotmaps:' + action + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',

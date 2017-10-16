@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { NavigationButton } from './navigation-bar.class';
 import { navigationButtons } from './navigation-buttons.data';
-import { MapService } from './../../shared/services/map.service';
+import { MapService } from '../map/map.service';
 import { SelectionToolButtonStateService } from './../../features/selection-tools/selection-tool-button-state.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
 

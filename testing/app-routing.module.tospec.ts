@@ -9,7 +9,7 @@ import { routes } from '../src/app/routes';
 
 import { RegisterComponent }  from '../src/app/pages/register/register.component';
 import { LoginComponent }  from '../src/app/pages/login/login.component';
-import { MapComponent }  from '../src/app/pages/map/map.component';
+import { MapComponent }  from '../src/app/pages/map/component/map.component';
 
 
 

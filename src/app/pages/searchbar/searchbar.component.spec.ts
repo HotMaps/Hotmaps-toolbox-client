@@ -8,7 +8,7 @@ import { GeocodingService } from '../../shared/services/geocoding.service';
 import { MockGeocodeService } from '../../shared/services/mock/geocoding.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import { Logger } from '../../shared/services/logger.service';
-import { MapService} from '../../shared/services/map.service';
+import { MapService} from '../map/map.service';
 import { MockLoggerService } from '../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../shared/services/mock/loader.service';
 import { SidePanelService } from '../../features/side-panel/side-panel.service';

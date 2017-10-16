@@ -9,7 +9,7 @@ import {
     animate
 } from '@angular/core';
 
-import {MapService} from '../../../shared/services/map.service'
+import {MapService} from '../../../pages/map/map.service'
 import { DataInteractionClass } from '../data-interaction.class';
 @Component({
     moduleId: module.id,

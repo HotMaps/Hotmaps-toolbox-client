@@ -2,13 +2,13 @@ import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angul
 import { Map} from 'leaflet';
 import 'leaflet-draw'
 
-import { basemap } from './basemap'
-import { LeftSideComponent } from '../../features/side-panel/left-side-panel/index';
-import { Logger } from '../../shared/services/logger.service';
-import { MapService } from '../../shared/services/map.service';
-import { SearchBarComponent } from '../searchbar/searchbar.component';
-import { SidePanelService} from '../../features/side-panel/side-panel.service';
-import { RightSideComponent } from '../../features/side-panel/right-side-panel/index';
+import { basemap } from '../basemap'
+import { LeftSideComponent } from '../../../features/side-panel/left-side-panel/index';
+import { Logger } from '../../../shared/services/logger.service';
+import { MapService } from '../map.service';
+import { SearchBarComponent } from '../../searchbar/searchbar.component';
+import { SidePanelService} from '../../../features/side-panel/side-panel.service';
+import { RightSideComponent } from '../../../features/side-panel/right-side-panel/index';
 
 
 @Component({

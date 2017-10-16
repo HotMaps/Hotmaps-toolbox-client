@@ -29,7 +29,7 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year} from '../../shared/data.service';
+import {constant_year, constant_year_sp_wwtp} from '../../shared/data.service';
 
 
 @Injectable()

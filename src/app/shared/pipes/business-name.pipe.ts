@@ -15,6 +15,6 @@ export class BusinessNamePipe  implements PipeTransform {
 
     value = this.businessService.getReadableName(value);
 
-    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    return value;
   }
 }
