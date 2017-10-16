@@ -6,11 +6,17 @@ import { navigationButtons } from './navigation-buttons.data';
 import { MapService } from '../map/map.service';
 import { SelectionToolButtonStateService } from './../../features/selection-tools/selection-tool-button-state.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
+import {Properties} from "../../features/feedback/properties.utils";
+import {Platform, platforms} from "../../features/feedback/platforms.utils";
+import {Logger} from "../../shared/services/logger.service";
+import {MailService} from "../../features/feedback/mail.service";
 
 @Injectable()
 export class NavigationBarService {
-
-    constructor(private panelService: SidePanelService, private selectionToolButtonStateService: SelectionToolButtonStateService) { }
+  properties: Properties = {};
+  platform: Platform;
+  url: string;
+    constructor(private panelService: SidePanelService, private selectionToolButtonStateService: SelectionToolButtonStateService, private mailService: MailService) { }
 
     toggleBar(button: any) {
         button.stateOpen = !button.stateOpen;
@@ -21,6 +27,8 @@ export class NavigationBarService {
                 this.panelService.rightPanelexpandedCollapsed();
             }else if (button.buttonFunction  === 'selection') {
               this.selectionToolButtonStateService.enable(true);
+            }else if (button.buttonFunction  === 'send_mail') {
+              this.sendEmail();
             }
         }
     }
@@ -38,4 +46,8 @@ export class NavigationBarService {
     getButtons(): NavigationButton[] {
         return navigationButtons;
     }
+    sendEmail() {
+      this.mailService.sendEmail();
+    }
+
 }

@@ -2,7 +2,7 @@
  * Created by lesly on 28.06.17.
  */
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed , async } from '@angular/core/testing';
+import {ComponentFixture, TestBed, async, inject} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -42,4 +42,5 @@ describe('AppComponent', () => {
     el_login = de[1].nativeElement.getAttribute('routerLink');
     fixture.detectChanges();
   });
+
 });
