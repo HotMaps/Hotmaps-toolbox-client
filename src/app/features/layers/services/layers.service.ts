@@ -158,8 +158,6 @@ export class LayersService extends APIService {
     console.error('An error occurred', error); // for demo purposes only
 
   }
-
-
   choosePopup(map, res: GeojsonClass, latlng: LatLng, action) {
     if (this.layersArray.containsKey(defaultLayer)) {
       this.addPopupHeatmap(map, res, latlng);
@@ -170,10 +168,7 @@ export class LayersService extends APIService {
     }
   }
   handlePopulation(map, data: any, latlng: LatLng) {
-
-
     const populationSelected = data;
-
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 

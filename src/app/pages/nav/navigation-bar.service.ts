@@ -6,10 +6,10 @@ import { navigationButtons } from './navigation-buttons.data';
 import { MapService } from '../map/map.service';
 import { SelectionToolButtonStateService } from './../../features/selection-tools/selection-tool-button-state.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
-import {Properties} from "../../features/feedback/properties.utils";
-import {Platform, platforms} from "../../features/feedback/platforms.utils";
-import {Logger} from "../../shared/services/logger.service";
-import {MailService} from "../../features/feedback/mail.service";
+import {Properties} from '../../features/feedback/properties.utils';
+import {Platform, platforms} from '../../features/feedback/platforms.utils';
+import {Logger} from '../../shared/services/logger.service';
+import {MailService} from '../../features/feedback/mail.service';
 
 @Injectable()
 export class NavigationBarService {
