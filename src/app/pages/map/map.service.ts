@@ -49,7 +49,7 @@ export class MapService implements OnInit, OnDestroy {
     this.retriveMapEvent();
 
     this.layersService.getLayers().addTo(map);
-    this.layersService.refreshLayersOnMap(map)
+    this.layersService.setupDefaultLayer()
   }
 
   retriveMapEvent(): void {
@@ -94,8 +94,8 @@ export class MapService implements OnInit, OnDestroy {
     }
   }
 
-  showOrRemoveLayer(action: string) {
-    this.layersService.showOrRemoveLayer(action, this.map);
+  showOrRemoveLayer(action: string, order: number) {
+    this.layersService.showOrRemoveLayer(action, this.map, order);
   }
 
 

@@ -7,10 +7,10 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer
 } from '../../../shared/data.service'
 
-import {LoaderService } from '../../../shared/services/loader.service';
+import {LoaderService} from '../../../shared/services/loader.service';
 
 
 import {Logger} from '../../../shared/services/logger.service';
@@ -39,11 +39,13 @@ export class LayersService extends APIService {
       {
         layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
+        zIndex: idDefaultLayer
       })
     },
 
   ]);
   private popup = L.popup();
+
   public getLayers(): any {
     return this.layers;
   }
@@ -55,6 +57,13 @@ export class LayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.layersArray;
   }
+
+  setupDefaultLayer() {
+    const layer = this.layersArray.value(defaultLayer);
+    this.logger.log(layer.toString())
+    this.layers.addLayer(layer);
+  }
+
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
@@ -84,36 +93,25 @@ export class LayersService extends APIService {
     this.logger.log('readyToShow = ' + readyToShow)
     return readyToShow;
   }
-
-  refreshLayersOnMap(map: any) {
-    this.layers.clearLayers();
-    const layers = this.layersArray.keys();
-    if  (this.layersArray.containsKey(defaultLayer)) {
-      const layer: Layer = <Layer> this.layersArray.value(defaultLayer);
-      this.layers.addLayer(layer);
-    }
-    for (let i = 0; i < layers.length; i++) {
-      if ( layers[i] !== defaultLayer) {
-        const layer: Layer = <Layer> this.layersArray.value(layers[i]);
-        this.layers.addLayer(layer);
-      }
-    }
-    map.fireEvent('didUpdateLayer', this.layersArray.keys());
+  addLayerWithOrder(map: any, layer: any) {
+    this.layers.addLayer(<Layer> layer);
+    this.logger.log(layer);
+    this.logger.log(this.layers.getLayers().toString())
   }
 
-  showOrRemoveLayer(action: string, map: any) {
+  showOrRemoveLayer(action: string, map: any, order: number) {
     this.logger.log('LayersService/this.layersArray. ' + this.layersArray.keys());
     this.logger.log('LayersService/action. ' + action);
     if (!this.layersArray.containsKey(action)) {
       this.logger.log('LayersService/addLayerWithAction');
-      this.addLayerWithAction(action, map);
+      this.addLayerWithAction(action, map, order);
     } else {
       this.logger.log('LayersService/removelayer');
       this.removelayer(action, map);
     }
   }
 
-  addLayerWithAction(action: string, map: any) {
+  addLayerWithAction(action: string, map: any, order: number) {
     this.logger.log('LayersService/ action = ' + action);
     let layer;
     if (action === wwtpLayerName) {
@@ -124,18 +122,20 @@ export class LayersService extends APIService {
         version: '1.3.0',
        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
+        zIndex: order
       })
-    }else  {
+    }else {
       // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
-       srs: 'EPSG:4326',
+      srs: 'EPSG:4326',
+      zIndex: order
     })};
-    this.layersArray.add(action, layer)
-    this.refreshLayersOnMap(map);
+    this.layers.addLayer(layer);
+    this.layersArray.add(action, layer);
   }
 
   removelayer(action: string, map: any) {
@@ -145,9 +145,6 @@ export class LayersService extends APIService {
     this.layers.removeLayer(layer);
     // we destroy the layer
     this.layersArray.remove(action);
-    this.refreshLayersOnMap(map);
-
-
   }
 
   erroxFix(error) {
