@@ -179,7 +179,7 @@ export class LayersService extends APIService {
 
   }
 
-  addPopupHectare(data: any, map: any, latlng: LatLng) {
+  addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
     this.loaderService.display(false);
     this.logger.log('LayersService/addPopupHectare/action ');
     const population_density = data.features[0].properties.population_density;
