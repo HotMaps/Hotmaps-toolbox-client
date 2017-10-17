@@ -34,22 +34,20 @@ export class PopulationService extends APIService {
     return super.POST(payload, apiUrl + postPopulationDensityInArea);
   }
   showPopulationSelectedLayer(populationSelected: any, map: any, latlng: LatLng, popup: Popup) {
-    this.logger.log('MapService/showlayer');
+    this.logger.log('PopulationService/showPopulationSelectedLayer');
     const geometrie = populationSelected.features[0].geometry
     // remove the layer if there is one
     this.removePopulationSelectedlayer(map);
-    this.logger.log('MapService/showlayer/layerWilladde');
     // add the selected area to the map
     this.populationSelectedLayer = L.vectorGrid.slicer(geometrie);
     this.populationSelectedLayer.addTo(map);
     this.loaderService.display(false);
     // add the popup area to the map
-    this.addPopupHectare(populationSelected, map, latlng, popup);
+    // this.addPopupHectare(populationSelected, map, latlng, popup);
 
   }
 
   addPopupNuts(data: any, map: any, latlng: LatLng, popup: Popup) {
-
     const stat_levl_ = data.features[0].properties.stat_levl_;
     const nuts_id = data.features[0].properties.nuts_id;
     const name = data.features[0].properties.name;
@@ -59,18 +57,6 @@ export class PopulationService extends APIService {
       '<li>nuts id: ' + nuts_id  + '</li><li>nuts level: ' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
       '<li>Population: ' +  this.helper.round(value)  + ' ' +  unit_population  + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
     this.logger.log('PopulationService/addPopup/popup/added');
-
- }
- addPopupHectare(data: any, map: any, latlng: LatLng, popup: Popup) {
-   this.loaderService.display(false);
-   const population_density = data.features[0].properties.population_density;
-   popup.setLatLng(latlng)
-     .setContent(
-       '<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-       ' <li>Population density: ' + this.helper.round(population_density)  + ' ' + unit_population + '</li> </ul>')
-     .openOn(map);
-   this.logger.log('LayersService/addPopup/popup/added');
-
 
  }
 

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, unit_population
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -164,15 +164,29 @@ export class LayersService extends APIService {
     } else if (action === wwtpLayerName) {
       this.addPopupWWTP(map, res, latlng);
     } else if (action === populationLayerName) {
-      this.handlePopulation(map, res, latlng);
+      this.addPopupHectare(map, res, latlng);
     }
   }
   handlePopulation(map, data: any, latlng: LatLng) {
+    this.logger.log('LayersService/handlePopulation');
     const populationSelected = data;
+    this.logger.log('LayersService/populationSelected ' + populationSelected);
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 
   }
+
+  addPopupHectare(data: any, map: any, latlng: LatLng) {
+    this.loaderService.display(false);
+    const population_density = data.features[0].properties.population_density;
+    this.popup.setLatLng(latlng)
+      .setContent(
+        '<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
+        ' <li>Population density: ' + this.helper.round(population_density)  + ' ' + unit_population + '</li> </ul>')
+      .openOn(map);
+    this.logger.log('LayersService/addPopupHectare');
+  }
+
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
     const heat_density = data.features[0].properties.heat_density;

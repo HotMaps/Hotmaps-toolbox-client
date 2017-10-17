@@ -16,9 +16,10 @@ export class NavigationBarService {
   properties: Properties = {};
   platform: Platform;
   url: string;
-    constructor(private panelService: SidePanelService, private selectionToolButtonStateService: SelectionToolButtonStateService, private mailService: MailService, private logger: Logger) { }
+    constructor(private panelService: SidePanelService, private selectionToolButtonStateService: SelectionToolButtonStateService,
+                private mailService: MailService, private logger: Logger) { }
     toggleBar(button: any) {
-      this.logger.log('button' + button);
+      this.logger.log('toggleBar/button' + button);
 
         button.stateOpen = !button.stateOpen;
         if (button.enable) {
@@ -30,6 +31,7 @@ export class NavigationBarService {
               this.selectionToolButtonStateService.enable(true);
             }else if (button.buttonFunction  === 'send_mail') {
               this.sendEmail();
+              button.stateOpen = !button.stateOpen;
             }
         }
     }
