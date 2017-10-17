@@ -417,7 +417,7 @@ var DataInteractionClass = (function () {
 var DataInteractionArray = [
     // {id: 11, name: 'Heat map', category: 'Comsumption'},
     { id: 17, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["e" /* defaultLayer */] },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["l" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp' },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["m" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp' },
     { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["h" /* populationLayerName */] },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
@@ -873,20 +873,31 @@ var LayersService = (function (_super) {
             this.addPopupWWTP(map, res, latlng);
         }
         else if (action === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["h" /* populationLayerName */]) {
-            this.handlePopulation(map, res, latlng);
+            this.addPopupHectare(map, res, latlng);
         }
     };
     LayersService.prototype.handlePopulation = function (map, data, latlng) {
+        this.logger.log('LayersService/handlePopulation');
         var populationSelected = data;
+        this.logger.log('LayersService/populationSelected ' + populationSelected);
         this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
         this.loaderService.display(false);
+    };
+    LayersService.prototype.addPopupHectare = function (data, map, latlng) {
+        this.loaderService.display(false);
+        var population_density = data.features[0].properties.population_density;
+        this.popup.setLatLng(latlng)
+            .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["k" /* unit_population */] + '</li> </ul>')
+            .openOn(map);
+        this.logger.log('LayersService/addPopupHectare');
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
         this.loaderService.display(false);
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["k" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["l" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
         this.logger.log('LayersService/addPopup/popup/added');
     };
@@ -896,8 +907,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["l" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["m" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["m" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["n" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('LayersService/addPopup/popup/added');
     };
@@ -967,20 +978,19 @@ var PopulationService = (function (_super) {
         return _this;
     }
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["r" /* postPopulationDensityInArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["s" /* postPopulationDensityInArea */]);
     };
     PopulationService.prototype.showPopulationSelectedLayer = function (populationSelected, map, latlng, popup) {
-        this.logger.log('MapService/showlayer');
+        this.logger.log('PopulationService/showPopulationSelectedLayer');
         var geometrie = populationSelected.features[0].geometry;
         // remove the layer if there is one
         this.removePopulationSelectedlayer(map);
-        this.logger.log('MapService/showlayer/layerWilladde');
         // add the selected area to the map
         this.populationSelectedLayer = L.vectorGrid.slicer(geometrie);
         this.populationSelectedLayer.addTo(map);
         this.loaderService.display(false);
         // add the popup area to the map
-        this.addPopupHectare(populationSelected, map, latlng, popup);
+        // this.addPopupHectare(populationSelected, map, latlng, popup);
     };
     PopulationService.prototype.addPopupNuts = function (data, map, latlng, popup) {
         var stat_levl_ = data.features[0].properties.stat_levl_;
@@ -988,19 +998,10 @@ var PopulationService = (function (_super) {
         var name = data.features[0].properties.name;
         var value = data.features[0].properties.value;
         var date = data.features[0].properties.date.split('Z')[0];
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["s" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["t" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["t" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["k" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
-    };
-    PopulationService.prototype.addPopupHectare = function (data, map, latlng, popup) {
-        this.loaderService.display(false);
-        var population_density = data.features[0].properties.population_density;
-        popup.setLatLng(latlng)
-            .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["t" /* unit_population */] + '</li> </ul>')
-            .openOn(map);
-        this.logger.log('LayersService/addPopup/popup/added');
     };
     PopulationService.prototype.removePopulationSelectedlayer = function (map) {
         if (this.populationSelectedLayer) {
@@ -1942,7 +1943,7 @@ var SummaryResultComponent = (function () {
     function SummaryResultComponent(summaryResultService) {
         this.summaryResultService = summaryResultService;
         this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["n" /* round_value */];
+        this.round = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["o" /* round_value */];
     }
     SummaryResultComponent.prototype.ngOnInit = function () {
     };
@@ -2596,7 +2597,7 @@ var NavigationBarService = (function () {
         this.properties = {};
     }
     NavigationBarService.prototype.toggleBar = function (button) {
-        this.logger.log('button' + button);
+        this.logger.log('toggleBar/button' + button);
         button.stateOpen = !button.stateOpen;
         if (button.enable) {
             if (button.buttonFunction === 'left') {
@@ -2610,6 +2611,7 @@ var NavigationBarService = (function () {
             }
             else if (button.buttonFunction === 'send_mail') {
                 this.sendEmail();
+                button.stateOpen = !button.stateOpen;
             }
         }
     };
@@ -3129,17 +3131,17 @@ var Location = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return defaultLayer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return wwtpLayerName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return postPopulationDensityInArea; });
 /* unused harmony export getGrid */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postStatsLayersArea; });
 /* unused harmony export set404url */
@@ -3147,13 +3149,13 @@ var Location = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return clickAccuracy; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return round_value; });
 /**
  * Created by lesly on 07.07.17.
  */
@@ -3186,7 +3188,7 @@ var constant_year_sp_wwtp = 2015;
 var business_name_wwtp = 'Waste Water treatment plants';
 var business_name_population = 'Population';
 var unit_capacity = 'population equivalent';
-var unit_heat_density = 'GWh/km2';
+var unit_heat_density = 'MWh/ha';
 var unit_shape_area = 'm2';
 var unit_population = 'person';
 var round_value = '1.2-2';
@@ -3320,7 +3322,7 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["n" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["o" /* round_value */]);
     };
     return Helper;
 }());
@@ -3710,7 +3712,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["o" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["p" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -3738,9 +3740,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["p" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["q" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["q" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["r" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* Location */]();
