@@ -70,4 +70,5 @@ describe('MapComponent', () => {
     fixture.detectChanges();
   });
 
+  // test map created
 });

@@ -61,7 +61,7 @@ describe('LayersService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should  load the heatmap', inject([LayersService], (service: LayersService) => {
+  it('should load the heatmap', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(defaultLayer)).toBeTruthy();
   }));
   it('should not  load the population', inject([LayersService], (service: LayersService) => {
