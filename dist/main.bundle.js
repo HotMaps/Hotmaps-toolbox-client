@@ -885,7 +885,7 @@ var LayersService = (function (_super) {
         this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
         this.loaderService.display(false);
     };
-    LayersService.prototype.addPopupHectare = function (data, map, latlng) {
+    LayersService.prototype.addPopupHectare = function (map, data, latlng) {
         this.loaderService.display(false);
         this.logger.log('LayersService/addPopupHectare/action ');
         var population_density = data.features[0].properties.population_density;
