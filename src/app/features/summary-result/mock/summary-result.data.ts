@@ -1,4 +1,4 @@
-export const SummaryResultDataPopu =
+export const SummaryResultDataPopu : any =
 {
   "layers": [
     {
@@ -14,7 +14,7 @@ export const SummaryResultDataPopu =
   ]
 };
 
-export const SummaryResultDataHeat =
+export const SummaryResultDataHeat : any  =
   {
     "layers": [
       {
@@ -35,11 +35,11 @@ export const SummaryResultDataHeat =
     ]
   };
 
-export const PayloadStatData =
+export const PayloadStatData : any  =
   {
     "layers": [],
-    "year": 2015, 
-    "points": 
+    "year": 2015,
+    "points":
       [
         { "lat": 46.76996843356982, "lng": -1.6257268708432095 },
         { "lat": 47.92403925788748, "lng": -1.6257268708432095 },

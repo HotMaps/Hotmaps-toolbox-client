@@ -1,6 +1,6 @@
-import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
+import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+import {TestBed, inject, tick, fakeAsync, async, getTestBed} from '@angular/core/testing';
 
 import {apiUrl} from '../../../shared/data.service';
 import {Location} from '../../../shared/class/location/location';
@@ -17,7 +17,7 @@ describe('PopulationService', () => {
 
   let loaderServiceStub: LoaderService;
   let loggerStub: Logger;
-  beforeEach(() => {
+  beforeEach(async(() => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger;
     TestBed.configureTestingModule({
@@ -34,15 +34,34 @@ describe('PopulationService', () => {
         {provide: MockBackend, useClass: MockBackend},
         {provide: Logger, useValue: loggerStub},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions}
+      ],
+      imports: [
+        HttpModule
       ]
     });
-  });
-  it('should be created', inject([PopulationService], (service: PopulationService) => {
-    expect(service).toBeTruthy();
+  }));
+  let subject: PopulationService = null;
+  let backend: MockBackend = null;
+
+  beforeEach(inject([PopulationService, MockBackend], (userService: PopulationService, mockBackend: MockBackend) => {
+    subject = userService;
+    backend = mockBackend;
   }));
 
-
-  it('should return the exact good response for this request', inject([PopulationService], (service: PopulationService) => {
+  it('should send the population request to the server', (done) => {
+    done();
+  });
+  it('should be created', inject([PopulationService], (service: PopulationService) => {
+    console.log(' PopulationService should be created');
+    expect(service).toBeTruthy();
+  }));
+  it('#getPopulationWithPayloads should call endpoint and return it\'s result', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(MockPopulation)
+      });
+      connection.mockRespond(new Response(options));
+    });
     const locations: Location[] =   [
       { lat: 46.90524554642923, lng: 5.701904296875 },
       { lat: 46.98025235521883, lng: 11.436767578125002 },
@@ -55,8 +74,13 @@ describe('PopulationService', () => {
       year: 2015,
       points: locations,
     }
-    return service.getPopulationWithPayloads(payload).then( data => {
-      expect(data).toEqual(MockPopulation);
-    });
-  }));
+    subject.getPopulationWithPayloads(payload).then((response) => {
+      console.log(response);
+      console.log('did get data');
+        expect(response).toEqual(MockPopulation );
+        done();
+      });
+  });
+
+
 });

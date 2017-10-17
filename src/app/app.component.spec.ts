@@ -13,7 +13,7 @@ import { MockLoaderService } from './shared/services/mock/loader.service';
 import { LoaderService } from './shared/services/loader.service'
 import {Router} from '@angular/router';
 import {routes} from './routes';
-import {Location} from '@angular/common';
+import {DecimalPipe, Location} from '@angular/common';
 import {DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
 import {RightSideComponent} from './features/side-panel/right-side-panel/right-side-panel.component';
 import {LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
@@ -25,16 +25,34 @@ import {UppercaseFirstLetterPipe} from './shared/pipes/uppercase-first-letter.pi
 import {NumberFormatPipe} from './shared/pipes/number-format.pipe';
 import {LayerNamePipe} from './shared/pipes/layer-name.pipe';
 import {BusinessNamePipe} from './shared/pipes/business-name.pipe';
+import {MapService} from "./pages/map/map.service";
+import {Logger} from "./shared/services/logger.service";
+import {SelectionToolButtonStateService} from "./features/selection-tools/selection-tool-button-state.service";
+import {SelectionToolService} from "./features/selection-tools/selection-tool.service";
+import {Helper} from "./shared/helper";
+import {SidePanelService} from "./features/side-panel/side-panel.service";
+import {NavigationBarService} from "./pages/nav/navigation-bar.service";
+import {MailService} from "./features/feedback/mail.service";
+import {SummaryResultService} from "./features/summary-result/summary-result.service";
+import {BaseRequestOptions, ConnectionBackend, Http} from "@angular/http";
+import {MockBackend} from "@angular/http/testing";
+import {ToasterService} from "./shared/services/toaster.service";
+import {LayersService} from "./features/layers/services/layers.service";
+import {PopulationService} from "./features/population/services/population.service";
+import {GeocodingService} from "./shared/services/geocoding.service";
+import {DataInteractionService} from "./features/data-interaction/data-interaction.service";
+import {BusinessInterfaceRenderService} from "./shared/business/business.service";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
 describe('AppComponent: Router', () => {
 
-  let fixture: ComponentFixture<AppComponent>;
+  //let fixture: ComponentFixture<AppComponent>;
   let mockLoaderService: MockLoaderService;
   let loaderServiceStub: LoaderService;
-  let location: Location;
-  let router: Router;
+
+  let location, router;
   beforeEach(() => {
     mockLoaderService = new MockLoaderService();
     loaderServiceStub = new LoaderService();
@@ -46,19 +64,47 @@ describe('AppComponent: Router', () => {
         BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
+        {provide: MapService, useClass: MapService},
+        {provide: Logger, useClass: Logger},
+        {provide: SelectionToolService, useClass: SelectionToolService},
+        {provide: Helper, useClass: Helper},
+        {provide: DecimalPipe, useClass: DecimalPipe},
+        {provide: SidePanelService, useClass: SidePanelService},
+        {provide: NavigationBarService, useClass: NavigationBarService},
+        {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
+        {provide: MailService, useClass: MailService},
+        {provide: SummaryResultService, useClass: SummaryResultService},
+        {
+          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+          return new Http(backend, defaultOptions);
+        }, deps: [MockBackend, BaseRequestOptions]
+        },
+        {provide: MockBackend, useClass: MockBackend},
+        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
+        {provide: ToasterService, useClass: ToasterService},
+        {provide: LayersService, useClass: LayersService},
+        {provide: PopulationService, useClass: PopulationService},
+        {provide: GeocodingService, useClass: GeocodingService},
+        {provide: DataInteractionService, useClass: DataInteractionService},
+
+        {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+
+
+
 
       ],
-      imports: [RouterTestingModule.withRoutes(routes), FormsModule ]
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule ]
     })
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
-
-    fixture = TestBed.createComponent(AppComponent);
-    router.initialNavigation();
 
   });
+  beforeEach(inject([Router, Location], (_router: Router, _location: Location) => {
+    location = _location;
+    router = _router;
+  }));
+
 
   it('fakeAsync works', fakeAsync(() => {
+    console.log('it goes to fakeAsync works');
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
     });
@@ -68,16 +114,23 @@ describe('AppComponent: Router', () => {
     expect(done).toBeTruthy();
   }));
 
-  it('navigate to "" redirects you to /map', fakeAsync(() => {
-    router.navigate(['']);
-
-    tick();
-    expect(location.path()).toBe('/map');
-  }));
-  it('navigate to "map" redirects you to /map', fakeAsync(() => {
-    router.navigate(['map']);
-    tick();
-    expect(location.path()).toBe('/map');
+  it('should /map go map', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    console.log('should /map go map');
+    router.navigate(['/map']).then(() => {
+      expect(location.path()).toBe('/map');
+      console.log('after expect');
+    });
   }));
 
+  it('should empty path go map', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    console.log('should empty path go map');
+    router.navigate(['']).then(() => {
+      expect(location.path()).toBe('/map');
+      console.log('after expect');
+    });
+  }));
 });

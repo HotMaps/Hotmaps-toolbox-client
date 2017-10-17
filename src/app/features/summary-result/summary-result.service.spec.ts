@@ -1,5 +1,5 @@
-import { Http, ConnectionBackend, BaseRequestOptions, ResponseOptions, Headers } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
 import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';
 
 import { ToasterService } from './../../shared/services/toaster.service';
@@ -14,11 +14,12 @@ import { Payload } from './../population/payload.class';
 import { APIService } from './../../shared/services/api.service';
 import { SummaryResultClass } from './summary-result.class';
 import { Helper } from './../../shared/helper';
+import {MockPopulation} from '../population/services/mock/population.data.mock';
 
 describe('SummaryResultService', () => {
     let loggerStub: Logger;
     let loaderServiceStub: LoaderService;
-    beforeEach(() => {
+    beforeEach(async(() => {
         loaderServiceStub = new LoaderService();
         loggerStub = new Logger();
         TestBed.configureTestingModule({
@@ -35,32 +36,41 @@ describe('SummaryResultService', () => {
                 {provide: MockBackend, useClass: MockBackend},
                 {provide: Logger, useValue: loggerStub},
                 {provide: BaseRequestOptions, useClass: BaseRequestOptions}
-            ]
+            ],
+          imports: [
+            HttpModule
+          ]
         });
-    });
-
-    it('should be created', inject([SummaryResultService], (service: SummaryResultService) => {
-        expect(service).toBeTruthy();
     }));
+  let subject: SummaryResultService = null;
+  let backend: MockBackend = null;
 
-    it('should get statistics for population layer',
-        inject([SummaryResultService, MockBackend], fakeAsync((summaryResultService: SummaryResultService, mockBackend: MockBackend) => {
-            /* mockBackend.connections.subscribe(c => {
-                console.log(c.request.url);
-                expect(c.request.url).toBe('http://hotmaps.hevs.ch:9005/api/stats/layers/area/');
-                c.mockRespond(new Response({
-                    body: SummaryResultDataPopu
-                }));
-            }); */
-            const payload: PayloadStat = PayloadStatData;
-            payload.layers.push('population');
-            console.log(JSON.stringify(payload));
-            let result;
-            summaryResultService.getSummaryResultWithPayload(payload).then((data) => {
-                console.log('data getSummary: ', JSON.stringify(data));
-                result = data;
-            });
-            tick(100)
-            expect(result).toBe(SummaryResultDataPopu);
-    })));
+  beforeEach(inject([SummaryResultService, MockBackend], (userService: SummaryResultService, mockBackend: MockBackend) => {
+    subject = userService;
+    backend = mockBackend;
+  }));
+  it('should send the population request to the server', (done) => {
+    done();
+  });
+  it('should be created', inject([SummaryResultService], (service: SummaryResultService) => {
+        expect(service).toBeTruthy();
+  }));
+
+  it('#getSummaryResultWithPayload' +
+    ' should call endpoint and return it\'s result', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(SummaryResultDataPopu)
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const payload: PayloadStat = PayloadStatData;
+    subject.getSummaryResultWithPayload(payload).then((response) => {
+      console.log(response);
+      console.log('did get data');
+      expect(response).toEqual(SummaryResultDataPopu );
+      done();
+    });
+  });
+
 })
