@@ -546,7 +546,7 @@ var MailService = (function () {
     MailService.prototype.sendEmail = function () {
         this.initService();
         window.open(this.url, 'newwindow', 'width=1070, height=600');
-        event.preventDefault();
+        // event.preventDefault();
     };
     MailService.prototype.initService = function () {
         if (!this.url) {
@@ -782,7 +782,8 @@ var LayersService = (function (_super) {
         var url = __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["i" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-        console.log('url ' + url);
+        this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
+        this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
         return this.http.get(url).map(function (res) { return res.json(); })
             .subscribe(function (res) { return _this.choosePopup(map, res, latlng, action); }, function (err) { return _this.erroxFix(err); });
     };
@@ -866,13 +867,14 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
+        this.logger.log('LayersService/choosePopup/action ' + action);
         if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["e" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
         else if (action === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["j" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["h" /* populationLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["h" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["d" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -885,7 +887,9 @@ var LayersService = (function (_super) {
     };
     LayersService.prototype.addPopupHectare = function (data, map, latlng) {
         this.loaderService.display(false);
+        this.logger.log('LayersService/addPopupHectare/action ');
         var population_density = data.features[0].properties.population_density;
+        this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
             ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["k" /* unit_population */] + '</li> </ul>')

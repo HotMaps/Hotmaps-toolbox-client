@@ -19,7 +19,7 @@ export class MailService {
     sendEmail() {
       this.initService();
       window.open(this.url, 'newwindow', 'width=1070, height=600');
-      event.preventDefault();
+     // event.preventDefault();
     }
     initService() {
       if (!this.url) {

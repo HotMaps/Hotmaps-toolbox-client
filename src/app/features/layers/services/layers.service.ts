@@ -69,7 +69,8 @@ export class LayersService extends APIService {
     const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    console.log('url ' + url);
+    this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
+    this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
     return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
 
@@ -159,11 +160,13 @@ export class LayersService extends APIService {
 
   }
   choosePopup(map, res: GeojsonClass, latlng: LatLng, action) {
+    this.logger.log('LayersService/choosePopup/action ' + action);
     if (this.layersArray.containsKey(defaultLayer)) {
+
       this.addPopupHeatmap(map, res, latlng);
     } else if (action === wwtpLayerName) {
       this.addPopupWWTP(map, res, latlng);
-    } else if (action === populationLayerName) {
+    } else if (action === populationLayerName + '_' + constant_year) {
       this.addPopupHectare(map, res, latlng);
     }
   }
@@ -178,7 +181,9 @@ export class LayersService extends APIService {
 
   addPopupHectare(data: any, map: any, latlng: LatLng) {
     this.loaderService.display(false);
+    this.logger.log('LayersService/addPopupHectare/action ');
     const population_density = data.features[0].properties.population_density;
+    this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
     this.popup.setLatLng(latlng)
       .setContent(
         '<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
