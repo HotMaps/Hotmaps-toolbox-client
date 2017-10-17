@@ -38,5 +38,5 @@ export const business_name_population = 'Population';
 export const unit_capacity   = 'population equivalent';
 export const unit_heat_density   = 'MWh/ha';
 export const unit_shape_area   = 'm2';
-export const unit_population   = 'person';
+export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';

@@ -22,9 +22,9 @@ import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
 import { MapService } from './pages/map/map.service';
 import { GeocodingService } from './shared/services/geocoding.service';
-import { LoginComponent } from './pages/login/login.component';
+
 import { MapComponent } from './pages/map/component/map.component';
-import { RegisterComponent } from './pages/register/register.component';
+
 import { Logger } from './shared/services/logger.service';
 import { Helper } from './shared/helper';
 import { LayersService } from './features/layers/services/layers.service';
@@ -65,9 +65,7 @@ import {MailService} from "./features/feedback/mail.service";
     AppComponent,
     SearchBarComponent,
     ToolbarComponent,
-    LoginComponent,
     MapComponent,
-    RegisterComponent,
     RightSideComponent,
     LeftSideComponent,
     NavigationBarComponent,

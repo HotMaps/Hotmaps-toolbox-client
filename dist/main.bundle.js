@@ -888,6 +888,7 @@ var LayersService = (function (_super) {
     LayersService.prototype.addPopupHectare = function (map, data, latlng) {
         this.loaderService.display(false);
         this.logger.log('LayersService/addPopupHectare/action ');
+        this.logger.log('LayersService/addPopupHectare/data ' + data);
         var population_density = data.features[0].properties.population_density;
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
