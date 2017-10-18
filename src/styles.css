@@ -6,9 +6,9 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
-*{ 
-  box-sizing: border-box; 
-} 
+*{
+  box-sizing: border-box;
+}
 .on-map {
 
 
@@ -17,10 +17,10 @@ h1 {
 .leaflet-clickable {
   cursor: crosshair !important;
 }
-
 .leaflet-container {
-  cursor: help !important;
+  cursor: default;
 }
+
 h2, h3 {
   color: #444;
   font-family: Arial, Helvetica, sans-serif;

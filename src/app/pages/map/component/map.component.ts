@@ -33,15 +33,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 ) {}
 
   ngAfterContentInit(): void {
-    this.logger.log('MapComponent/AfterViewInit');
-    this.logger.log('MapComponent/AfterViewInit/mapService val:: ' + this.mapService.getMap());
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
-    this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove()
   }
   notifySidePanelComponent() {
@@ -79,10 +76,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
-    this.logger.log('MapComponent/ngOnInit');
     // mapService get an instance of the maps and ca work on it
     this.mapService.setupMapservice(this.createMap(basemap));
-    this.logger.log('MapComponent/ngOnInit/map service intance must be initialize: ' + this.mapService.getMap());
     this.initializeNavigator();
     this.map.invalidateSize();
   }
@@ -93,8 +88,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     let self = this;
-
-    this.logger.log('MapComponent/createMap/mapService val:: ' + this.mapService.getMap());
     const option =  {
       zoomControl: false,
       center: L.latLng(47.1, 7.0833),

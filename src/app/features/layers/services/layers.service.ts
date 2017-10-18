@@ -7,7 +7,8 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, unit_population
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
+  unit_population
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -39,11 +40,13 @@ export class LayersService extends APIService {
       {
         layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
+        zIndex: idDefaultLayer
       })
     },
 
   ]);
   private popup = L.popup();
+
   public getLayers(): any {
     return this.layers;
   }
@@ -55,22 +58,24 @@ export class LayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.layersArray;
   }
+
+  setupDefaultLayer() {
+    const layer = this.layersArray.value(defaultLayer);
+    this.logger.log(layer.toString())
+    this.layers.addLayer(layer);
+  }
+
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
-    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+    const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
       action = defaultLayer + '_' + constant_year;
     }else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName + '_' + constant_year;
-     // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
-      // this.handlePopulation(map,  MockPopulation , latlng)
-
     }
-
     const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
-    this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
+    console.log('url ' + url);
     return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
 
@@ -81,41 +86,25 @@ export class LayersService extends APIService {
     if (this.layersArray.keys().length > 0) {
       readyToShow = true
     }
-    this.logger.log('layer length = ' + this.layersArray.keys().length);
-    this.logger.log('readyToShow = ' + readyToShow)
     return readyToShow;
   }
-
-  refreshLayersOnMap(map: any) {
-    this.layers.clearLayers();
-    const layers = this.layersArray.keys();
-    if  (this.layersArray.containsKey(defaultLayer)) {
-      const layer: Layer = <Layer> this.layersArray.value(defaultLayer);
-      this.layers.addLayer(layer);
-    }
-    for (let i = 0; i < layers.length; i++) {
-      if ( layers[i] !== defaultLayer) {
-        const layer: Layer = <Layer> this.layersArray.value(layers[i]);
-        this.layers.addLayer(layer);
-      }
-    }
-    map.fireEvent('didUpdateLayer', this.layersArray.keys());
+  addLayerWithOrder(map: any, layer: any) {
+    this.layers.addLayer(<Layer> layer);
+    this.logger.log(layer);
+    this.logger.log(this.layers.getLayers().toString())
   }
 
-  showOrRemoveLayer(action: string, map: any) {
-    this.logger.log('LayersService/this.layersArray. ' + this.layersArray.keys());
-    this.logger.log('LayersService/action. ' + action);
+  showOrRemoveLayer(action: string, map: any, order: number) {
+    this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
-      this.logger.log('LayersService/addLayerWithAction');
-      this.addLayerWithAction(action, map);
+      this.addLayerWithAction(action, map, order);
     } else {
-      this.logger.log('LayersService/removelayer');
       this.removelayer(action, map);
     }
+    map.fireEvent('didUpdateLayers', this.layersArray)
   }
 
-  addLayerWithAction(action: string, map: any) {
-    this.logger.log('LayersService/ action = ' + action);
+  addLayerWithAction(action: string, map: any, order: number) {
     let layer;
     if (action === wwtpLayerName) {
       layer = L.tileLayer.wms(geoserverUrl, {
@@ -125,18 +114,20 @@ export class LayersService extends APIService {
         version: '1.3.0',
        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
+        zIndex: order
       })
-    }else  {
+    }else {
       // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
       layers: 'hotmaps:' + action + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
-       srs: 'EPSG:4326',
+      srs: 'EPSG:4326',
+      zIndex: order
     })};
-    this.layersArray.add(action, layer)
-    this.refreshLayersOnMap(map);
+    this.layers.addLayer(layer);
+    this.layersArray.add(action, layer);
   }
 
   removelayer(action: string, map: any) {
@@ -146,21 +137,16 @@ export class LayersService extends APIService {
     this.layers.removeLayer(layer);
     // we destroy the layer
     this.layersArray.remove(action);
-    this.refreshLayersOnMap(map);
-
-
   }
 
   erroxFix(error) {
     this.handleError.bind(this);
     this.loaderService.display(false);
     this.toasterService.showToaster(error);
-    this.logger.log('LayerServices/handleError');
     console.error('An error occurred', error); // for demo purposes only
 
   }
   choosePopup(map, res: GeojsonClass, latlng: LatLng, action) {
-    this.logger.log('LayersService/choosePopup/action ' + action);
     if (this.layersArray.containsKey(defaultLayer)) {
 
       this.addPopupHeatmap(map, res, latlng);
@@ -171,9 +157,7 @@ export class LayersService extends APIService {
     }
   }
   handlePopulation(map, data: any, latlng: LatLng) {
-    this.logger.log('LayersService/handlePopulation');
     const populationSelected = data;
-    this.logger.log('LayersService/populationSelected ' + populationSelected);
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 
@@ -181,8 +165,6 @@ export class LayersService extends APIService {
 
   addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
     this.loaderService.display(false);
-    this.logger.log('LayersService/addPopupHectare/action ');
-    this.logger.log('LayersService/addPopupHectare/data ' + data);
     const population_density = data.features[0].properties.population_density;
     this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
     this.popup.setLatLng(latlng)
@@ -190,7 +172,6 @@ export class LayersService extends APIService {
         '<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
         ' <li>Population density: ' + this.helper.round(population_density)  + ' ' + unit_population + '</li> </ul>')
       .openOn(map);
-    this.logger.log('LayersService/addPopupHectare');
   }
 
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
@@ -201,7 +182,6 @@ export class LayersService extends APIService {
         '<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
         ' <li>Heat demand: ' + this.helper.round(heat_density)  + ' ' + unit_heat_density + '</li> </ul>')
       .openOn(map);
-    this.logger.log('LayersService/addPopup/popup/added');
   }
 
   addPopupWWTP(map, data: any, latlng: LatLng) {
@@ -213,7 +193,6 @@ export class LayersService extends APIService {
     this.popup.setLatLng(latlng).setContent('<h5>' + business_name_wwtp + '</h5> <ul class="uk-list uk-list-divider">' +
       '<li>Capacity: ' + capacity + ' ' + unit_capacity + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
          '<li>Reference date: ' + date + '</li></ul>').openOn(map);
-    this.logger.log('LayersService/addPopup/popup/added');
   }
 
 

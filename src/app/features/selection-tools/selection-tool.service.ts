@@ -36,7 +36,7 @@ import {constant_year, constant_year_sp_wwtp} from '../../shared/data.service';
 export class SelectionToolService {
 
 
-  private baseMaps: any;
+
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private currentLayer;
@@ -45,7 +45,6 @@ export class SelectionToolService {
   private drawControl;
   private isDrawControl = false;
   private selectionTooLayer: any;
-  private layerArray: Dictionary;
   private containerPopup: any;
   private popupTitle: any;
   private cancelBtn: any;
@@ -60,8 +59,12 @@ export class SelectionToolService {
   }
 
 
-  getIsActivate(): boolean {
-    return this.isActivate;
+  isLayerInMap(): boolean {
+    let hasLayer = false;
+    if (this.editableLayers.getLayers().length > 0) {
+      hasLayer = true;
+    }
+    return hasLayer;
   }
 
   notifyLoaderService(map: any) {
@@ -228,8 +231,11 @@ export class SelectionToolService {
     });
   }
 
+  openPopup() {
+    this.logger.log('SelectionToolService/openPopup');
+    this.currentLayer.openPopup();
+  }
   displaySummaryResult(result) {
-    console.log('displaySummaryResult' + result);
     this.sidePanelService.openRightPanel();
     this.sidePanelService.setSummaryResultData(result);
     this.navigationBarService.enableButton('load_result');

@@ -13,7 +13,7 @@ import {
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
-import {round_value} from "../../shared/data.service";
+import {round_value} from '../../shared/data.service';
 
 @Component({
 

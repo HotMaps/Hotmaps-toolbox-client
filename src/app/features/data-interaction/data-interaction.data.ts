@@ -1,9 +1,9 @@
 import { DataInteractionClass } from './data-interaction.class';
-import {business_name_wwtp, defaultLayer, populationLayerName} from '../../shared/data.service';
+import {business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer} from '../../shared/data.service';
 export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
-  {id: 17, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: defaultLayer},
+  {id: idDefaultLayer, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: defaultLayer},
   {id: 12, name: business_name_wwtp, category: 'Ressources', isSelected: false, workspaceName: 'wwtp'},
   {id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: populationLayerName},
   /* {id: 15, name: 'Industrial thermal waste', category: 'Ressources', isSelected: false, workspaceName: 'workspaceName'},

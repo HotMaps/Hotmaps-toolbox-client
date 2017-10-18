@@ -49,7 +49,7 @@ export class MapService implements OnInit, OnDestroy {
     this.retriveMapEvent();
 
     this.layersService.getLayers().addTo(map);
-    this.layersService.refreshLayersOnMap(map)
+    this.layersService.setupDefaultLayer()
   }
 
   retriveMapEvent(): void {
@@ -84,9 +84,12 @@ export class MapService implements OnInit, OnDestroy {
     this.map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
     });
-    /*this.map.on('didUpdateLayer', function(e) {
-       self.logger.log('MapService/didUpdateLayer-----' + e);
-    });*/
+    this.map.on('didUpdateLayers', function(e) {
+      if (self.selectionToolService.isLayerInMap() === true) {
+        self.selectionToolService.openPopup();
+        self.logger.log('MapService/didUpdateLayers-----' + e);
+      }
+    });
     this.map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {
       self.logger.log('overlayadd');
@@ -94,8 +97,8 @@ export class MapService implements OnInit, OnDestroy {
     }
   }
 
-  showOrRemoveLayer(action: string) {
-    this.layersService.showOrRemoveLayer(action, this.map);
+  showOrRemoveLayer(action: string, order: number) {
+    this.layersService.showOrRemoveLayer(action, this.map, order);
   }
 
 

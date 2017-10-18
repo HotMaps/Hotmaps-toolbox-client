@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs/Rx';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { PayloadStat } from './mock/payload.class';
+
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { SummaryResultClass } from './summary-result.class';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
