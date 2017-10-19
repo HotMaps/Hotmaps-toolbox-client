@@ -68,7 +68,6 @@ export class LayersService extends APIService {
       action = populationLayerName + '_' + constant_year;
      // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
       // this.handlePopulation(map,  MockPopulation , latlng)
-
     }
 
     const url = geoserverGetFeatureInfoUrl
@@ -79,21 +78,55 @@ export class LayersService extends APIService {
 
     // Simulate a server response (Latency)
     // Modify when in prod !!
-    new Promise(resolve => {
-      setTimeout(() => resolve(poiDataResult), 1000);
-    }).then(data => {
+    return new Promise(resolve => {
+      resolve(poiDataResult);
+    });
+    /* .then(data => {
       this.logger.log(JSON.stringify(data));
       this.panelService.setPoiData(data);
     }).then(() => {
       this.panelService.openRightPanel();
       this.navBarService.enableButton('load_result');
-    });
+    }); */
 
     /* return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => {
         this.choosePopup(map, res, latlng, action);
         this.logger.log(JSON.stringify(res));
       }, err => this.erroxFix(err)); */
+
+  }
+  getDetailInfoClick(latlng) {
+    this.loaderService.display(true);
+    let action;
+    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+    if (this.layersArray.containsKey(defaultLayer)) {
+      action = defaultLayer + '_' + constant_year;
+    }else if (this.layersArray.containsKey(populationLayerName)) {
+      action = populationLayerName + '_' + constant_year;
+     // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
+      // this.handlePopulation(map,  MockPopulation , latlng)
+    }
+
+    const url = geoserverGetFeatureInfoUrl
+      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+    this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
+    this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
+
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(poiDataResult);
+      }, 1000);
+    }).then((data) => {
+      this.logger.log(JSON.stringify(data));
+      this.panelService.setPoiData(data);
+    }).then(() => {
+      this.panelService.openRightPanel();
+      this.navBarService.enableButton('load_result');
+      this.loaderService.display(false);
+    }) ;
 
   }
 

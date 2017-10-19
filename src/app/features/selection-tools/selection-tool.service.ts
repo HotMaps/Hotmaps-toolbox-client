@@ -49,7 +49,8 @@ export class SelectionToolService {
   private containerPopup: any;
   private popupTitle: any;
   private cancelBtn: any;
-  private validationBtn: any;
+  private validationBtnSelection: any;
+  private validationBtnClick: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
      private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
@@ -82,33 +83,56 @@ export class SelectionToolService {
     el.innerHTML = str;
   }
 
-  createButtons() {
+  createButtons(type) {
     this.containerPopup = L.DomUtil.create('div');
     this.popupTitle = L.DomUtil.create('h5', '', this.containerPopup);
     this.cancelBtn = L.DomUtil.create('button', 'uk-button uk-button-danger uk-button-small uk-width-2-2', this.containerPopup);
-    this.validationBtn = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
     this.setHTMLContent(this.popupTitle, 'Area Selected');
     this.setHTMLContent(this.cancelBtn, 'Cancel');
-    this.setHTMLContent(this.validationBtn, 'Validation');
+    if (type === 'click') {
+      this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+      this.setHTMLContent(this.validationBtnClick, 'Validation');
+    }else {
+      this.validationBtnSelection =
+          L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+      this.setHTMLContent(this.validationBtnSelection, 'Validation');
+    }
   }
 
-  loadPopup(map: any, layer: Layer) {
-    this.logger.log('SelectionToolService/loadPopup');
+  loadPopupByClick(latlng: any, map: Map) {
+    this.loadPopup(map, null, latlng, 'click');
+  }
 
+  loadPopup(map: any, layer: Layer, latlng, type) {
+    this.logger.log('SelectionToolService/loadPopup');
     // Create elements with leaflet utility - validation & Cancel buttons + title
-    this.createButtons();
-    this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
+    this.createButtons('selection');
+    if (type === 'click') {
+      map.openPopup(this.containerPopup, latlng);
+    }else {
+      this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
+    }
 
     // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
-      this.clearAll();
+      if (type === 'click') {
+        map.closePopup();
+      }else {
+        this.clearAll();
+      }
     });
     // Set event bind on popup's buttons
-    L.DomEvent.on(this.validationBtn, 'click', () => {
-      if (this.currentLayer instanceof L.Circle) {
-        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
-      } else {
-        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+    L.DomEvent.on(this.validationBtnSelection, 'click', () => {
+      if (type === 'click') {
+        this.layerService.getDetailInfoClick(latlng).then(() => {
+          map.closePopup();
+        });
+      }else {
+        if (this.currentLayer instanceof L.Circle) {
+          this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        } else {
+          this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        }
       }
     });
   }
@@ -138,19 +162,15 @@ export class SelectionToolService {
       });
     });
     map.on(L.Draw.Event.DRAWSTART, function (e) {
-      console.log('DRAWSTART', e.type);
       self.isActivate = true;
     });
     map.on(L.Draw.Event.DRAWSTOP, function (e) {
-      console.log('DRAWSTOP', e.type);
     });
     map.on(L.Draw.Event.EDITSTART, function (e) {
-      console.log('EDITSTART', e.type);
       self.isActivate = true;
     });
 
     map.on(L.Draw.Event.EDITSTOP, function (e) {
-      console.log('EDITSTOP', e.type);
       self.isActivate = false;
     });
   }
@@ -162,7 +182,7 @@ export class SelectionToolService {
     this.currentLayer.editing.enable();
 
     this.editableLayers.addLayer(this.currentLayer);
-    this.loadPopup(map, this.currentLayer)
+    this.loadPopup(map, this.currentLayer, null, 'selection')
     // then we launch the validate popup
   }
 
@@ -170,7 +190,7 @@ export class SelectionToolService {
     const rectangle: any = <any>layer;
     const latlng = rectangle.getLatLngs()[0];
     const locations: Location[] = this.helper.convertLatLongToLocation(latlng);
-    return locations
+    return locations;
   }
 
   getLocationsFromCicle(layer): Location[] {

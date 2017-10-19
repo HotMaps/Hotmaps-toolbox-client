@@ -62,8 +62,10 @@ export class MapService implements OnInit, OnDestroy {
      if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
         self.layersService.getIsReadyToShowFeatureInfo() === true) {
-
-          self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
+          // self.selectionToolService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map)
+          self.selectionToolService.loadPopup(self.map, null, e.latlng, 'click')
+          /* self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map).then(data => {
+          }); */
       }
     });
     this.map.on('zoomend', function() {
