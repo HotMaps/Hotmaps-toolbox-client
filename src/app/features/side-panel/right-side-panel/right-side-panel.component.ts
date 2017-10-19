@@ -104,7 +104,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.summaryResult = summaryResult;
     }
     setPoiData(data) {
-        console.log('RightComponent/setPoiData', data)
         this.poiData = data;
         if (data) {
             this.poiTitle = Object.keys(this.poiData.features[0].properties)[0];

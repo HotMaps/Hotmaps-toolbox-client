@@ -13,7 +13,6 @@ export class BusinessNamePipe  implements PipeTransform {
 
     }
 
-    console.log('BusinessNamePipe/value:' + value);
     value = this.businessService.getReadableName(value);
     return value;
   }
