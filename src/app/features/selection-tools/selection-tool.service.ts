@@ -49,7 +49,8 @@ export class SelectionToolService {
   private containerPopup: any;
   private popupTitle: any;
   private cancelBtn: any;
-  private validationBtn: any;
+  private validationBtnSelection: any;
+  private validationBtnClick: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
      private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
@@ -82,31 +83,37 @@ export class SelectionToolService {
     el.innerHTML = str;
   }
 
-  createElementLeafletButtons() {
+  createButtons(type) {
     this.containerPopup = L.DomUtil.create('div');
     this.popupTitle = L.DomUtil.create('h5', '', this.containerPopup);
     this.cancelBtn = L.DomUtil.create('button', 'uk-button uk-button-danger uk-button-small uk-width-2-2', this.containerPopup);
-    this.validationBtn = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+    this.setHTMLContent(this.popupTitle, 'Area Selected');
+    this.setHTMLContent(this.cancelBtn, 'Cancel');
+    if (type === 'click') {
+      this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+      this.setHTMLContent(this.validationBtnClick, 'Validation');
+    }else {
+      this.validationBtnSelection =
+          L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+      this.setHTMLContent(this.validationBtnSelection, 'Validation');
+    }
   }
 
-  createButtons(title) {
-    this.createElementLeafletButtons();
-    this.setHTMLContent(this.popupTitle, title);
-    this.setHTMLContent(this.cancelBtn, 'Cancel');
-    this.setHTMLContent(this.validationBtn, 'Validation');
+  loadPopupByClick(latlng: any, map: Map) {
+    this.loadPopup(map, null, latlng, 'click');
   }
 
   loadPopup(map: any, layer: Layer, latlng, type) {
     this.logger.log('SelectionToolService/loadPopup');
     // Create elements with leaflet utility - validation & Cancel buttons + title
-    this.createButtons(type);
+    this.createButtons('selection');
     if (type === 'click') {
       map.openPopup(this.containerPopup, latlng);
     }else {
       this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
     }
 
-    // Set event bind on cancel button from popup
+    // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
       if (type === 'click') {
         map.closePopup();
@@ -114,18 +121,18 @@ export class SelectionToolService {
         this.clearAll();
       }
     });
-
-
-    // Set event bind on validation button from popup
-    L.DomEvent.on(this.validationBtn, 'click', () => {
+    // Set event bind on popup's buttons
+    L.DomEvent.on(this.validationBtnSelection, 'click', () => {
       if (type === 'click') {
         this.layerService.getDetailInfoClick(latlng).then(() => {
           map.closePopup();
         });
-      }else if (this.currentLayer instanceof L.Circle) {
-        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
-      } else {
-        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+      }else {
+        if (this.currentLayer instanceof L.Circle) {
+          this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        } else {
+          this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        }
       }
     });
   }
@@ -151,7 +158,7 @@ export class SelectionToolService {
       const event: Edited = <Edited>e;
       event.layers.eachLayer(function (layer: Layer) {
         const lay: Layer = layer;
-        self.manageEditOrCreateLayer(layer, map);
+        //  self.manageEditOrCreateLayer(layer, map);
       });
     });
     map.on(L.Draw.Event.DRAWSTART, function (e) {

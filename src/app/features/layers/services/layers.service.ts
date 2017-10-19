@@ -81,14 +81,19 @@ export class LayersService extends APIService {
     return new Promise(resolve => {
       resolve(poiDataResult);
     });
+    /* .then(data => {
+      this.logger.log(JSON.stringify(data));
+      this.panelService.setPoiData(data);
+    }).then(() => {
+      this.panelService.openRightPanel();
+      this.navBarService.enableButton('load_result');
+    }); */
 
-    /*
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+    /* return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => {
         this.choosePopup(map, res, latlng, action);
         this.logger.log(JSON.stringify(res));
-      }, err => this.erroxFix(err));
-      */
+      }, err => this.erroxFix(err)); */
 
   }
   getDetailInfoClick(latlng) {
