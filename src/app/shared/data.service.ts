@@ -41,3 +41,11 @@ export const unit_heat_density   = 'MWh/ha';
 export const unit_shape_area   = 'm2';
 export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
+
+
+//Scale Valuee
+export const nuts0   = 'NUTS 0';
+export const nuts1   = 'NUTS 1';
+export const nuts2   = 'NUTS 2';
+export const nuts3   = 'NUTS 3';
+export const hectare   = 'Hectare';

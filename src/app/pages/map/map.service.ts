@@ -16,7 +16,8 @@ import {LayersService} from '../../features/layers/services/layers.service';
 import {Logger} from '../../shared/services/logger.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {SelectionToolService} from '../../features/selection-tools/selection-tool.service';
-import {wwtpLayerName} from '../../shared/data.service';
+import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
+import {hectare, wwtpLayerName} from '../../shared/data.service';
 
 
 @Injectable()
@@ -25,31 +26,29 @@ export class MapService implements OnInit, OnDestroy {
   private baseMaps: any;
 
   constructor(private logger: Logger, private loaderService: LoaderService, private selectionToolService: SelectionToolService,
-              private layersService: LayersService, private helper: Helper) {
+              private layersService: LayersService, private helper: Helper, private selectionScaleService: SelectionScaleService) {
     logger.log('MapService/constructor()');
     this.baseMaps = basemap;
   }
 
+  addDrawerControl(map: Map) {
+    this.selectionToolService.addDrawerControl(map)
+
+  }
+
+  disableMouseEvent(elementId: string) {
+  }
   ngOnInit(): void {
     this.logger.log('MapService/ngOnInit()');
-  }
-  getMap(): Map {
-    return this.map;
   }
   ngOnDestroy(): void {
     this.logger.log('MapService/ngOnDestroy()');
   }
-  disableMouseEvent(elementId: string) {
+  getMap(): Map {
+    return this.map;
   }
-  setupMapservice(map: Map) {
-    this.logger.log('MapService/setupMapservice');
-    // set the map to the services that needs to get an instance
-    this.map = map;
-    this.selectionToolService.setMap(map);
-    this.retriveMapEvent();
-
-    this.layersService.getLayers().addTo(map);
-    this.layersService.setupDefaultLayer()
+  getSelectionScaleMenu(map: any) {
+    this.selectionScaleService.getSelectionScaleMenu(map);
   }
 
   retriveMapEvent(): void {
@@ -58,12 +57,27 @@ export class MapService implements OnInit, OnDestroy {
     this.map.on('click', function(e: MouseEvent) {
       self.logger.log('MapService/click');
       // check if the selection toul is activate
-     if (// self.selectionToolService.getIsActivate() === false &&
+      self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue() );
+      if (self.selectionScaleService.getScaleValue() === hectare) {
+        if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
         self.layersService.getIsReadyToShowFeatureInfo() === true) {
           self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
+        }
+      } else {
+
       }
     });
+
+    this.map.on('baselayerchange', onBaselayerChange);
+    function onBaselayerChange(e) {
+      self.logger.log('baselayerchange');
+      // in this part we manage the selection scale then we refresh the layers
+      const scaleLevel = e.name;
+      self.selectionScaleService.setScaleValue(scaleLevel);
+      self.layersService.setCurrentNutsLevel(scaleLevel)
+
+    }
     this.map.on('zoomend', function() {
       self.logger.log('MapService/zoomend');
     });
@@ -100,13 +114,15 @@ export class MapService implements OnInit, OnDestroy {
   showOrRemoveLayer(action: string, order: number) {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
+  setupMapservice(map: Map) {
+    this.logger.log('MapService/setupMapservice');
+    // set the map to the services that needs to get an instance
+    this.map = map;
+    this.selectionToolService.setMap(map);
+    this.retriveMapEvent();
 
-
-
-  addDrawerControl(map: Map) {
-    this.selectionToolService.addDrawerControl(map)
-
+    this.layersService.getLayers().addTo(map);
+    this.layersService.setupDefaultLayer()
   }
-
 
 }

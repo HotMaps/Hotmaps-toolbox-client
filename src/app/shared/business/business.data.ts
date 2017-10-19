@@ -1,5 +1,5 @@
 import {BusinessInterfaceRenderClass } from './business.class'
-
+import {hectare, nuts0, nuts1, nuts2, nuts3} from '../data.service';
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 17, api_name: 'heat_density', business_name: 'Average heat density'},
@@ -12,6 +12,11 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 1543, api_name: 'MWh/ha', business_name: 'MWh/ha'},
   {id: 1545, api_name: 'MWh/Inhabitants', business_name: 'MWh/person'},
   {id: 152, api_name: 'Inhabitants/ha', business_name: 'person/ha'},
+  {id: 0, api_name: '0', business_name: nuts0},
+  {id: 1, api_name: '1', business_name: nuts1},
+  {id: 2, api_name: '2', business_name: nuts2},
+  {id: 3, api_name: '3', business_name: nuts3},
+  {id: 4, api_name: '-1', business_name: hectare},
 ];
 
 

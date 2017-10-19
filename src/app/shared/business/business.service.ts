@@ -16,7 +16,13 @@ export class BusinessInterfaceRenderService {
     return business.business_name;
 
   }
-    getBusiness(): BusinessInterfaceRenderClass[] {
-        return BusinessInterfaceRenderArray;
-    }
+  // transform Nuts Value to readable name for the API
+  convertNutsToApiName(name: string): string {
+    const business  =  this.getBusiness().filter(x => x.business_name === name)[0];
+    if (this.helper.isNullOrUndefined(business)) {return name}
+    return business.api_name;
+  }
+  getBusiness(): BusinessInterfaceRenderClass[] {
+      return BusinessInterfaceRenderArray;
+  }
 }

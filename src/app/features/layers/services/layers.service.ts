@@ -28,11 +28,12 @@ import LatLng = L.LatLng;
 
 
 import {PopulationService} from '../../population/services/population.service';
+import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 
 @Injectable()
 export class LayersService extends APIService {
   private layers = new L.FeatureGroup();
-
+  private current_nuts_level = '0';
 
   private layersArray: Dictionary = new Dictionary([
     {
@@ -52,7 +53,7 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper) {
+              private populationService: PopulationService, private helper: Helper, private businessInterfaceRenderService: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -64,7 +65,9 @@ export class LayersService extends APIService {
     this.logger.log(layer.toString())
     this.layers.addLayer(layer);
   }
-
+  setCurrentNutsLevel(nutsLevel: string) {
+    this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
+  }
   getDetailLayerPoint(action: string, latlng: LatLng, map): any {
     const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {

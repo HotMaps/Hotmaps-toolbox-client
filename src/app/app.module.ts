@@ -35,6 +35,7 @@ import { GlobalErrorHandler } from './shared/services/error-handler';
 import { SidePanelService} from './features/side-panel/side-panel.service';
 import { SelectionToolService} from './features/selection-tools/selection-tool.service';
 import { SelectionToolButtonStateService} from './features/selection-tools/selection-tool-button-state.service';
+import {SelectionScaleService} from './features/selection-scale/selection-scale.service';
 import { SummaryResultComponent} from './features/summary-result/summary-result.component';
 import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
@@ -50,7 +51,7 @@ import { DecimalPipe } from '@angular/common';
 
 import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
-import {MailService} from "./features/feedback/mail.service";
+import {MailService} from './features/feedback/mail.service';
 
 
 @NgModule({
@@ -76,7 +77,7 @@ import {MailService} from "./features/feedback/mail.service";
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
-    BusinessNamePipe
+    BusinessNamePipe,
   ],
 
   providers: [
@@ -98,7 +99,8 @@ import {MailService} from "./features/feedback/mail.service";
     BusinessInterfaceRenderService,
     SummaryResultService,
     DecimalPipe,
-    MailService
+    MailService,
+    SelectionScaleService
 
 
   ],
