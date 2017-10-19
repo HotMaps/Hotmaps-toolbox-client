@@ -47,10 +47,9 @@ import { UppercaseFirstLetterPipe } from './shared/pipes/uppercase-first-letter.
 import { LayerNamePipe } from './shared/pipes/layer-name.pipe';
 import { DecimalPipe } from '@angular/common';
 
-
 import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
-import {MailService} from "./features/feedback/mail.service";
+import {MailService} from './features/feedback/mail.service';
 
 
 @NgModule({
@@ -76,7 +75,7 @@ import {MailService} from "./features/feedback/mail.service";
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
-    BusinessNamePipe
+    BusinessNamePipe,
   ],
 
   providers: [

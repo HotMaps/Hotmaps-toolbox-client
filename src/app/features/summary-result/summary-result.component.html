@@ -9,25 +9,38 @@
 
   </div>-->
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
-<div class="uk-card uk-card-body htm-card">
-<table class="uk-table uk-table-divider uk-table-small">
-    <thead>
-      <tr class="header-summary">
-        <th class="uk-table-shrink">Information</th>
-        <th class="uk-table-shrink">Value</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let i of summaryResult.layers">
-        <tr class="table-level-one">
-            <th colspan="2">{{i.name | layername}}</th>
-        </tr>
-        <tr *ngFor="let value of i.values" class="table-level-two">
-          <td>{{value.name | businessname}}</td>
-          <td *ngIf="value.value" [@tableOpacityTrigger]="'in'">{{value.value | number: round}} {{ value.unit | businessname}}</td>
-          <td *ngIf="!value.value" [@tableOpacityTrigger]="'in'">Not available</td>
-        </tr>
-    </tbody>
-  </table>
-
-</div>
+  <div class="uk-card uk-card-body htm-card">
+      <table class="uk-table uk-table-divider uk-table-small">
+        <thead>
+          <tr class="header-summary">
+            <th class="uk-table-shrink">Information</th>
+            <th class="uk-table-shrink">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="summaryResult">  
+              <ng-container *ngFor="let i of summaryResult.layers">
+              
+                <tr class="table-level-one">
+                    <th colspan="2">{{i.name | layername}}</th>
+                </tr>
+                <tr *ngFor="let value of i.values" class="table-level-two">
+                  <td>{{value.name | businessname}}</td>
+                  <td *ngIf="value.value" [@tableOpacityTrigger]="'in'">{{value.value | number: round}} {{ value.unit | businessname}}</td>
+                  <td *ngIf="!value.value" [@tableOpacityTrigger]="'in'">Not available</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="poiData">
+              <tr class="table-level-one">
+                  <th colspan="2">Point of Interest</th>
+              </tr>
+              <tr class="table-level-two">
+                <td>{{poiTitle | businessname}}</td>
+                <td>{{poiData.features[0].properties.heat_density | number: round}} </td>
+              </tr>
+            </ng-container>
+        </tbody>
+      </table>
+    </div>    
 </span>

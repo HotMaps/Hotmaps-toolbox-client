@@ -1,3 +1,5 @@
+import { NavigationBarService } from './../../../pages/nav/navigation-bar.service';
+import { SelectionToolButtonStateService } from './../../selection-tools/selection-tool-button-state.service';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -26,6 +28,8 @@ import LatLng = L.LatLng;
 
 
 
+import { poiDataResult } from './../../summary-result/mock/poi-result.data';
+import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
 
 @Injectable()
@@ -49,7 +53,8 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper) {
+              private populationService: PopulationService, private helper: Helper,
+              private panelService: SidePanelService, private navBarService: NavigationBarService) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -71,8 +76,24 @@ export class LayersService extends APIService {
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
     this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
+
+    // Simulate a server response (Latency)
+    // Modify when in prod !!
+    new Promise(resolve => {
+      setTimeout(() => resolve(poiDataResult), 1000);
+    }).then(data => {
+      this.logger.log(JSON.stringify(data));
+      this.panelService.setPoiData(data);
+    }).then(() => {
+      this.panelService.openRightPanel();
+      this.navBarService.enableButton('load_result');
+    });
+
+    /* return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+      .subscribe(res => {
+        this.choosePopup(map, res, latlng, action);
+        this.logger.log(JSON.stringify(res));
+      }, err => this.erroxFix(err)); */
 
   }
 
@@ -194,6 +215,16 @@ export class LayersService extends APIService {
   }
 
   addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
+    this.loaderService.display(false);
+    const heat_density = data.features[0].properties.heat_density;
+    this.popup.setLatLng(latlng)
+      .setContent(
+        '<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
+        ' <li>Heat demand: ' + this.helper.round(heat_density)  + ' ' + unit_heat_density + '</li> </ul>')
+      .openOn(map);
+    this.logger.log('LayersService/addPopup/popup/added');
+  }
+  addHeatmapPOI(map, data: GeojsonClass, latlng: LatLng) {
     this.loaderService.display(false);
     const heat_density = data.features[0].properties.heat_density;
     this.popup.setLatLng(latlng)

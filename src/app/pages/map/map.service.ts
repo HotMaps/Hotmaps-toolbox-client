@@ -52,6 +52,7 @@ export class MapService implements OnInit, OnDestroy {
     this.layersService.refreshLayersOnMap(map)
   }
 
+
   retriveMapEvent(): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
@@ -61,6 +62,7 @@ export class MapService implements OnInit, OnDestroy {
      if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
         self.layersService.getIsReadyToShowFeatureInfo() === true) {
+
           self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
       }
     });

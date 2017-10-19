@@ -1,3 +1,4 @@
+import { GeojsonClass } from './../layers/class/geojson.class';
 import {
   Component,
   OnInit,
@@ -13,7 +14,7 @@ import {
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
-import {round_value} from "../../shared/data.service";
+import {round_value} from '../../shared/data.service';
 
 @Component({
 
@@ -36,13 +37,18 @@ import {round_value} from "../../shared/data.service";
 })
 export class SummaryResultComponent  implements OnInit, OnDestroy  {
   @Input() expanded: boolean;
+  @Input() poiData;
+  @Input() poiTitle;
   @Input('summaryResult') summaryResult: SummaryResultClass;
+
   expandedState = 'collapsed';
   busy: Promise<any>;
   private round = round_value;
   constructor(private summaryResultService: SummaryResultService) {}
 
   ngOnInit() {
+    console.log('SummaryResultComponent/ngOnInit ' + this.expanded);
+    console.log('SummaryResultComponent/ngOnInit ' + JSON.stringify(this.poiData));
   }
 
   ngOnDestroy() {

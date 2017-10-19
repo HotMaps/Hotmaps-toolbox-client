@@ -1,3 +1,5 @@
+import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
+import { GeojsonClass } from './../../layers/class/geojson.class';
 import {
     Component,
     OnInit,
@@ -10,6 +12,8 @@ import {
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
+import { SummaryResultDataHeat } from './../../summary-result/mock/summary-result.data';
+
 @Component({
     moduleId: module.id,
     selector: 'htm-right-side-panel',
@@ -84,16 +88,26 @@ import { SummaryResultClass } from './../../summary-result/summary-result.class'
     ]
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
-    private summaryResult: SummaryResultClass;
+    private summaryResult: SummaryResultClass = null;
+    private poiData;
+    private poiTitle;
     constructor() {
         super();
     }
     ngOnInit() {
-     }
+
+    }
     ngOnDestroy() {
 
     }
     setSummaryResult(summaryResult: SummaryResultClass) {
         this.summaryResult = summaryResult;
+    }
+    setPoiData(data) {
+        console.log('RightComponent/setPoiData', data)
+        this.poiData = data;
+        if (data) {
+            this.poiTitle = Object.keys(this.poiData.features[0].properties)[0];
+        }
     }
 }
