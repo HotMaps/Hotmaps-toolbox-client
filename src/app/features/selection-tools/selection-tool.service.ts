@@ -130,6 +130,16 @@ export class SelectionToolService {
         this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
       } else {
         this.logger.log('unknown form');
+
+        for (let i = 0; i < this.layerService.getLayerArray().keys().length; i++) {
+          if (this.layerService.getLayerArray().keys()[i] !== wwtpLayerName) {
+            this.logger.log('array ' + this.layerService.getLayerArray().keys()[i]
+              + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
+            layerNameArray.push(this.layerService.getLayerArray().keys()[i] + '_ha' );
+          } else {
+            layerNameArray.push(this.layerService.getLayerArray().keys()[i]);
+          }
+        }
         this.getStatisticsFromLayer(this.getLocationsFromGeoJsonLayer(this.currentLayer), layerNameArray, map)
 
       }

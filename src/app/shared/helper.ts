@@ -47,8 +47,8 @@ export class Helper {
     const latlng = latlngArray[0][0];
     for (let i = 0; i < latlng.length; i++) {
         const loc: Location = {
-          lat: latlng[i][0],
-          lng: latlng[i][1]
+          lat: latlng[i][1],
+          lng: latlng[i][0]
         };
         locations.push(loc);
     }
