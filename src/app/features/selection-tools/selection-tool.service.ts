@@ -67,6 +67,7 @@ export class SelectionToolService {
 
   notifyLoaderService(map: any) {
     this.selectionToolButtonStateService.status.subscribe((val: boolean) => {
+      console.log(val)
       if (this.initialStateSelectionTool) {
         this.toggleControl(map);
       }else {
@@ -99,44 +100,39 @@ export class SelectionToolService {
     }
   }
 
-  loadPopupByClick(latlng: any, map: Map) {
-    this.loadPopup(map, null, latlng, 'click');
-  }
-
-  loadPopup(map: any, layer: Layer, latlng, type) {
+  loadPopup(map: any, layer: Layer) {
     this.logger.log('SelectionToolService/loadPopup');
     // Create elements with leaflet utility - validation & Cancel buttons + title
     this.createButtons('selection');
-    if (type === 'click') {
-      map.openPopup(this.containerPopup, latlng);
-    }else {
-      this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
-    }
-
+    this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
     // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
-      if (type === 'click') {
-        map.closePopup();
-      }else {
-        this.clearAll();
-      }
+      this.clearAll();
     });
+
     // Set event bind on popup's buttons
     L.DomEvent.on(this.validationBtnSelection, 'click', () => {
-      if (type === 'click') {
-        this.layerService.getDetailInfoClick(latlng).then(() => {
-          map.closePopup();
-        });
-      }else {
+
         if (this.currentLayer instanceof L.Circle) {
           this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
         } else {
           this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
         }
-      }
     });
   }
 
+  layerCreatedClick(layer, map) {
+    this.currentLayer = layer
+    this.editableLayers.clearLayers();
+    this.editableLayers.addLayer(this.currentLayer);
+    this.editableLayers.addTo(map);
+    this.loadPopup(map, this.currentLayer);
+    this.navigationBarService.enableButton('selection');
+    this.addDrawerControl(map);
+    /* this.removeVtlayer(map);
+    this.manageEditOrCreateLayer(this.currentLayer, map); */
+  }
+  
   retriveMapEvent(map: any): void {
     const self = this;
     map.on(L.Draw.Event.CREATED, function (e) {
@@ -145,12 +141,11 @@ export class SelectionToolService {
       const event: Created = <Created>e;
       const type = event.layerType,
       layer: any = event.layer;
-      self.currentLayer = layer
+      self.currentLayer = layer;
       self.isActivate = false;
       // Clear the map before to show the new selection
-      self.editableLayers.clearLayers();
       self.removeVtlayer(map);
-      self.manageEditOrCreateLayer(self.currentLayer, map);
+      self.manageEditOrCreateLayer(this.currentLayer, map);
     });
 
     map.on(L.Draw.Event.EDITED, function (e) {
@@ -180,9 +175,8 @@ export class SelectionToolService {
     this.isActivate = true;
     // we finich create the layer we go in edition mode
     this.currentLayer.editing.enable();
-
     this.editableLayers.addLayer(this.currentLayer);
-    this.loadPopup(map, this.currentLayer, null, 'selection')
+    this.loadPopup(map, this.currentLayer)
     // then we launch the validate popup
   }
 
@@ -292,8 +286,11 @@ export class SelectionToolService {
         remove: false
     },
     };
-    this.drawControl = new L.Control.Draw(this.options);
-    map.addControl(this.drawControl);
+    if (!this.isDrawControl) {
+      this.drawControl = new L.Control.Draw(this.options);
+      map.addControl(this.drawControl);
+      this.isDrawControl = !this.isDrawControl;
+    }
 
   }
 
