@@ -29,7 +29,9 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year, constant_year_sp_wwtp} from '../../shared/data.service';
+import {constant_year, constant_year_sp_wwtp, hectare, wwtpLayerName} from '../../shared/data.service';
+import {GeojsonClass} from "../layers/class/geojson.class";
+import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
 
 
 @Injectable()
@@ -49,15 +51,19 @@ export class SelectionToolService {
   private popupTitle: any;
   private cancelBtn: any;
   private validationBtn: any;
+  private scaleValue = hectare;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
      private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
-    private summaryResultService: SummaryResultService,
+    private summaryResultService: SummaryResultService, private businessInterfaceRenderService: BusinessInterfaceRenderService,
     private layerService: LayersService) {
 
   }
 
+  setScaleValue(scaleValue: string) {
+    this.scaleValue = scaleValue;
+  }
 
   isLayerInMap(): boolean {
     let hasLayer = false;
@@ -108,10 +114,24 @@ export class SelectionToolService {
     });
     // Set event bind on popup's buttons
     L.DomEvent.on(this.validationBtn, 'click', () => {
+      const layerNameArray = []
+      for (let i = 0; i < this.layerService.getLayerArray().keys().length; i++) {
+        if (this.layerService.getLayerArray().keys()[i] !== wwtpLayerName) {
+          this.logger.log('array ' + this.layerService.getLayerArray().keys()[i]
+            + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
+          layerNameArray.push(this.layerService.getLayerArray().keys()[i] + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
+        } else {
+          layerNameArray.push(this.layerService.getLayerArray().keys()[i]);
+        }
+      }
       if (this.currentLayer instanceof L.Circle) {
-        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), layerNameArray, map)
+      } else  if (this.currentLayer instanceof L.Polygon) {
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
       } else {
-        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), this.layerService.getLayerArray().keys(), map)
+        this.logger.log('unknown form');
+        this.getStatisticsFromLayer(this.getLocationsFromGeoJsonLayer(this.currentLayer), layerNameArray, map)
+
       }
     });
   }
@@ -124,12 +144,11 @@ export class SelectionToolService {
       const event: Created = <Created>e;
       const type = event.layerType,
       layer: any = event.layer;
-      self.currentLayer = layer
       self.isActivate = false;
       // Clear the map before to show the new selection
       self.editableLayers.clearLayers();
       self.removeVtlayer(map);
-      self.manageEditOrCreateLayer(self.currentLayer, map);
+      self.manageEditOrCreateLayer(layer, map);
     });
 
     map.on(L.Draw.Event.EDITED, function (e) {
@@ -160,10 +179,12 @@ export class SelectionToolService {
 
 
   manageEditOrCreateLayer(layer: any, map: any) {
+    this.currentLayer = layer;
     this.isActivate = true;
     // we finich create the layer we go in edition mode
-    this.currentLayer.editing.enable();
-
+    if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
+      this.currentLayer.editing.enable();
+    }
     this.editableLayers.addLayer(this.currentLayer);
     this.loadPopup(map, this.currentLayer)
     // then we launch the validate popup
@@ -173,8 +194,21 @@ export class SelectionToolService {
     const rectangle: any = <any>layer;
     const latlng = rectangle.getLatLngs()[0];
     const locations: Location[] = this.helper.convertLatLongToLocation(latlng);
+    this.logger.log('locations [] ' + locations );
     return locations
   }
+
+  getLocationsFromGeoJsonLayer(layer): Location[] {
+    const geojsonLayer: any = <any>layer;
+    const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
+    this.logger.log('geoJson latlng ' +  geoJson.features[0].geometry.coordinates );
+    const latlng: number[] = geoJson.features[0].geometry.coordinates;
+
+    const locations: Location[] = this.helper.convertListLatLongToLocation(latlng);
+    this.logger.log('locations [] ' + locations );
+    return locations
+  }
+
 
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
@@ -195,7 +229,9 @@ export class SelectionToolService {
   retriveAndAddLayer(population: Population, layer: any, map: any) {
     this.loaderService.display(false);
     this.navigationBarService.enableButton('load_result');
-    layer.editing.disable();
+    if (this.helper.isNullOrUndefined(layer.editing) === false) {
+      layer.editing.disable();
+    }
     this.sidePanelService.openRightPanel();
   }
 
@@ -208,7 +244,10 @@ export class SelectionToolService {
 
   clearAll() {
     this.navigationBarService.disableButton('load_result');
-    this.currentLayer.editing.disable();
+    this.logger.log('layerService/clearAll');
+    if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
+      this.currentLayer.editing.disable();
+    }
     this.editableLayers.clearLayers();
     this.sidePanelService.closeRightPanel();
   }
@@ -239,7 +278,9 @@ export class SelectionToolService {
     this.sidePanelService.openRightPanel();
     this.sidePanelService.setSummaryResultData(result);
     this.navigationBarService.enableButton('load_result');
-    this.currentLayer.editing.disable();
+    if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
+      this.currentLayer.editing.disable();
+    }
     this.currentLayer.closePopup();
     this.loaderService.display(false);
   }

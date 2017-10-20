@@ -123,7 +123,7 @@ export class LayersService extends APIService {
     }else {
       // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action + '_' + constant_year ,
+      layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',

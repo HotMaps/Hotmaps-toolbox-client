@@ -41,6 +41,20 @@ export class Helper {
     return locations;
   }
 
+  convertListLatLongToLocation(latlngArray): Location[] {
+    const locations = [];
+    console.log(latlngArray[0][0]);
+    const latlng = latlngArray[0][0];
+    for (let i = 0; i < latlng.length; i++) {
+        const loc: Location = {
+          lat: latlng[i][0],
+          lng: latlng[i][1]
+        };
+        locations.push(loc);
+    }
+    return locations;
+  }
+
   createGeodesicPolygon(origin, radius, sides, rotation) {
 
     var latlon = origin; //leaflet equivalent

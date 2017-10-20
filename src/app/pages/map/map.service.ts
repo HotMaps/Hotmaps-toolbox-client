@@ -24,6 +24,7 @@ import {GeojsonClass} from '../../features/layers/class/geojson.class';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
+import {MockLayerNuts} from "../../features/layers/services/mock/layers.selection.data.mock";
 
 @Injectable()
 export class MapService extends APIService implements OnInit, OnDestroy {
@@ -39,7 +40,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.baseMaps = basemap;
   }
   getNutsGeometryFromNuts( latlng: LatLng, nuts_level): any {
-    this.logger.log('MapService/getNutsGeometryFromNuts()');
+    this.selectAreaWithNuts(MockLayerNuts)
+
+   /* this.logger.log('MapService/getNutsGeometryFromNuts()');
     const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
@@ -49,7 +52,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     this.logger.log('url' + url);
     return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));
+      .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));*/
   }
   selectAreaWithNuts(areaSelected: any) {
     this.logger.log('MapService/selectAreaWithNuts()');
@@ -57,11 +60,20 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // remove the layer if there is one
     this.removeAreaSelectedlayer(this.map);
     // add the selected area to the map
-    this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
+    //this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
+   // this.areaNutsSelectedLayer.setZIndex(11);
+    this.areaNutsSelectedLayer = L.geoJson(areaSelected);
     this.areaNutsSelectedLayer.addTo(this.map);
+     // this.layersService.getLayers().addLayer(this.areaNutsSelectedLayer, true);
     this.loaderService.display(false);
+    this.createSelection();
     // add the popup area to the map
     // this.addPopupHectare(populationSelected, map, latlng, popup);
+  }
+  createSelection() {
+    this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
+
+
   }
   removeAreaSelectedlayer( map: any) {
     if (this.areaNutsSelectedLayer) {
@@ -95,6 +107,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       // check if the selection toul is activate
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue() );
       if (self.selectionScaleService.getScaleValue() === hectare) {
+
+        //waiting for Albane code
         if (// self.selectionToolService.getIsActivate() === false &&
         // check if there are layers to show in the layer service
         self.layersService.getIsReadyToShowFeatureInfo() === true) {
@@ -102,6 +116,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         }
       } else {
         self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
+
       }
     });
     this.map.on('baselayerchange', onBaselayerChange);
@@ -110,6 +125,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       // in this part we manage the selection scale then we refresh the layers
       const scaleLevel = e.name;
       self.selectionScaleService.setScaleValue(scaleLevel);
+      self.selectionToolService.setScaleValue(scaleLevel);
       self.layersService.setCurrentNutsLevel(scaleLevel);
       if (self.selectionToolService.isLayerInMap() === true) {
         self.selectionToolService.openPopup();
