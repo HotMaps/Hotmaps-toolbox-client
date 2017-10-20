@@ -53,7 +53,8 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper, private businessInterfaceRenderService: BusinessInterfaceRenderService) {
+              private populationService: PopulationService, private helper: Helper,
+              private businessInterfaceRenderService: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -160,6 +161,12 @@ export class LayersService extends APIService {
     }
   }
   handlePopulation(map, data: any, latlng: LatLng) {
+    const populationSelected = data;
+    this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
+    this.loaderService.display(false);
+
+  }
+  selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);

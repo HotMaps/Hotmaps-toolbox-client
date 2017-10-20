@@ -43,7 +43,7 @@ export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
 
 
-//Scale Valuee
+//Scale Value
 export const nuts0   = 'NUTS 0';
 export const nuts1   = 'NUTS 1';
 export const nuts2   = 'NUTS 2';
