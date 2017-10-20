@@ -18,7 +18,7 @@ h1 {
   cursor: crosshair !important;
 }
 .leaflet-container {
-  cursor: default;
+  cursor: help !important;
 }
 
 h2, h3 {
