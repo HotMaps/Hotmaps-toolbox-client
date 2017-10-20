@@ -131,21 +131,22 @@ export class SelectionToolService {
       } else {
         this.logger.log('unknown form');
 
+        const layerNutsArray = [];
+
         for (let i = 0; i < this.layerService.getLayerArray().keys().length; i++) {
           if (this.layerService.getLayerArray().keys()[i] !== wwtpLayerName) {
             this.logger.log('array ' + this.layerService.getLayerArray().keys()[i]
               + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
-            layerNameArray.push(this.layerService.getLayerArray().keys()[i] + '_ha' );
+            layerNutsArray.push(this.layerService.getLayerArray().keys()[i] + '_ha' );
           } else {
-            layerNameArray.push(this.layerService.getLayerArray().keys()[i]);
+            layerNutsArray.push(this.layerService.getLayerArray().keys()[i]);
           }
         }
-        this.getStatisticsFromLayer(this.getLocationsFromGeoJsonLayer(this.currentLayer), layerNameArray, map)
+        this.getStatisticsFromLayer(this.getLocationsFromGeoJsonLayer(this.currentLayer), layerNutsArray, map)
 
       }
     });
   }
-
   retriveMapEvent(map: any): void {
     const self = this;
     map.on(L.Draw.Event.CREATED, function (e) {

@@ -37,9 +37,9 @@ export class LayersService extends APIService {
 
   private layersArray: Dictionary = new Dictionary([
     {
-      key: defaultLayer, value: L.tileLayer.wms(geoserverUrl,
+      key: defaultLayer , value: L.tileLayer.wms(geoserverUrl,
       {
-        layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
+        layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
         zIndex: idDefaultLayer
       })
