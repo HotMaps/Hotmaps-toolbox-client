@@ -87,6 +87,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   getSelectionScaleMenu(map: any) {
     this.selectionScaleService.getSelectionScaleMenu(map);
   }
+
+
+
   retriveMapEvent(): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
@@ -95,13 +98,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       // check if the selection toul is activate
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue() );
       if (self.selectionScaleService.getScaleValue() === hectare) {
-        if (// self.selectionToolService.getIsActivate() === false &&
-        // check if there are layers to show in the layer service
-        self.layersService.getIsReadyToShowFeatureInfo() === true) {
-          self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
-        }
-      } else {
         self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
+          const layer = new L.Rectangle(e.latlng.toBounds(100));
+          self.selectionToolService.layerCreatedClick(layer, self.map);
       }
     });
     this.map.on('baselayerchange', onBaselayerChange);

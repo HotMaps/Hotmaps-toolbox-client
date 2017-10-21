@@ -36,14 +36,15 @@ export class NavigationBarService {
     }
 
     enableButton(id: string) {
-    const button  =  this.getButtons().filter(x => x.id === id)[0];
+      const button  =  this.getButtons().filter(x => x.id === id)[0];
       button.enable = true;
-
+      button.stateOpen = true;
     }
+
     disableButton(id: string) {
       const button  =  this.getButtons().filter(x => x.id === id)[0];
       button.enable = false;
-
+      button.stateOpen = false;
     }
     getButtons(): NavigationButton[] {
         return navigationButtons;

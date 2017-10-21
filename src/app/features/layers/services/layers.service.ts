@@ -7,8 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, unit_population
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -27,8 +26,11 @@ import LatLng = L.LatLng;
 
 
 
+import { poiDataResult } from './../../summary-result/mock/poi-result.data';
+import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import {NavigationBarService} from "../../../pages/nav/navigation-bar.service";
+import {BusinessInterfaceRenderService} from "../../../shared/business/business.service";
 
 @Injectable()
 export class LayersService extends APIService {
@@ -41,48 +43,61 @@ export class LayersService extends APIService {
       {
         layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
-        zIndex: idDefaultLayer
       })
     },
 
   ]);
   private popup = L.popup();
-
   public getLayers(): any {
     return this.layers;
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               private populationService: PopulationService, private helper: Helper,
+              private panelService: SidePanelService, private navBarService: NavigationBarService,
               private businessInterfaceRenderService: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
     return this.layersArray;
   }
-
+  setCurrentNutsLevel(nutsLevel: string) {
+    this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
+  }
   setupDefaultLayer() {
     const layer = this.layersArray.value(defaultLayer);
     this.logger.log(layer.toString())
     this.layers.addLayer(layer);
   }
-  setCurrentNutsLevel(nutsLevel: string) {
-    this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
-  }
-  getDetailLayerPoint(action: string, latlng: LatLng, map): any {
-    const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+  getDetailInfoClick(latlng) {
+    this.loaderService.display(true);
+    let action;
+    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     if (this.layersArray.containsKey(defaultLayer)) {
       action = defaultLayer + '_' + constant_year;
     }else if (this.layersArray.containsKey(populationLayerName)) {
       action = populationLayerName + '_' + constant_year;
+     // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
+      // this.handlePopulation(map,  MockPopulation , latlng)
     }
+
     const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    console.log('url ' + url);
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
+    this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
+    this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
 
+
+    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+      .subscribe(res => this.handleClickHectare(res), err => this.erroxFix(err));
+  }
+
+  handleClickHectare(data: any) {
+    this.logger.log(JSON.stringify(data));
+    this.panelService.setPoiData(data);
+    this.panelService.openRightPanel();
+    this.navBarService.enableButton('load_result');
+    this.loaderService.display(false);
   }
 
   getIsReadyToShowFeatureInfo(): boolean {
@@ -123,7 +138,7 @@ export class LayersService extends APIService {
     }else {
       // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action + '_' + constant_year ,
+      layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',

@@ -35,7 +35,7 @@ export const SummaryResultDataHeat : any  =
     ]
   };
 
-export const PayloadStatData : any  =
+export const PayloadStatData: any  =
   {
     "layers": [],
     "year": 2015,

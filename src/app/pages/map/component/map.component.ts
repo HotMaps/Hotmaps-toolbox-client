@@ -45,6 +45,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
     });
+    this.panelService.poiData.subscribe((data) => {
+      this.rightPanelComponent.setPoiData(data);
+    });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
       if (this.openRightSidebar === false) {
         this.openRightSidebar = true;
@@ -90,8 +93,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     let self = this;
     const option =  {
       zoomControl: false,
-      center: L.latLng(47.1, 7.0833),
-      zoom: 5,
+      center: L.latLng( 52.379189, 4.899431),
+      zoom: 4,
       minZoom: 4,
       maxZoom: 17,
       layers: [basemap.Esri, basemap.Hybrid]

@@ -14,7 +14,6 @@ export class BusinessNamePipe  implements PipeTransform {
     }
 
     value = this.businessService.getReadableName(value);
-
     return value;
   }
 }
