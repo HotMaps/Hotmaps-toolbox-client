@@ -8,10 +8,11 @@ import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
+import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
 @Injectable()
 export class DataInteractionService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper, private business: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   /* getModulesServices(): Promise<ModulesService[]> {
@@ -32,7 +33,16 @@ export class DataInteractionService extends APIService {
 
     this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
     const layer  =  this.getDataArrayServices().filter(x => x.workspaceName === layerName)[0];
-    if (this.helper.isNullOrUndefined(layer)) {return layerName}
+    if (this.helper.isNullOrUndefined(layer)) {
+      const layer_new  =  this.business.getReadableName(layerName);
+      if (this.helper.isNullOrUndefined(layer_new)) {
+        return layerName;
+      } else {
+        return layer_new;
+      }
+    }
+
+
     return layer.name;
 
   }

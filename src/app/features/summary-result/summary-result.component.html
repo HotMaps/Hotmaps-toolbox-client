@@ -1,18 +1,6 @@
 
-<!--  <div class="notifications">
-
-      <ul uk-accordion *ngFor="let i of summaryResults">
-            <ng-container  >
-                <htm-summary-result-cell [summaryResult]="i" [expanded]="expanded"></htm-summary-result-cell>
-            </ng-container>
-      </ul>
-
-  </div>-->
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
-  <div  *ngIf="isDataAgregate" class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Data accuracy</h3>
-            <p>These results are aggregrated from Hectare to {{scale}}</p>
-        </div>
+
   <div class="uk-card uk-card-body htm-card">
       <table class="uk-table uk-table-divider uk-table-small">
         <thead>
@@ -24,7 +12,6 @@
         <tbody>
             <ng-container *ngIf="summaryResult">
               <ng-container *ngFor="let i of summaryResult.layers">
-
                 <tr class="table-level-one">
                     <th colspan="2">{{i.name | layername}}</th>
                 </tr>

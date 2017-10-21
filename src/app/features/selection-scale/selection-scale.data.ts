@@ -20,6 +20,7 @@ export const hectareLayer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 
 const nuts0Layer = L.tileLayer.wms(geoserverUrl, {
@@ -29,6 +30,7 @@ const nuts0Layer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 0 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 const nuts1Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
@@ -37,6 +39,7 @@ const nuts1Layer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 const nuts2Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
@@ -45,6 +48,7 @@ const nuts2Layer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 2 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
@@ -53,6 +57,7 @@ const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 3 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 
 const lau1Layer = L.tileLayer.wms(geoserverUrl, {
@@ -62,6 +67,7 @@ const lau1Layer = L.tileLayer.wms(geoserverUrl, {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
+  zIndex: 10
 })
 //var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
 //  streets   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
