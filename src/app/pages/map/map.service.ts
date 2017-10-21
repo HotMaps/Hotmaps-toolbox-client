@@ -40,9 +40,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.baseMaps = basemap;
   }
   getNutsGeometryFromNuts( latlng: LatLng, nuts_level): any {
-
-    this.selectAreaWithNuts(MockLayerNuts)
-    /*this.logger.log('MapService/getNutsGeometryFromNuts()');
+    this.logger.log('MapService/getNutsGeometryFromNuts()');
     const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
@@ -52,7 +50,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     this.logger.log('url' + url);
     return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));*/
+      .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));
   }
   selectAreaWithNuts(areaSelected: any) {
     this.logger.log('MapService/selectAreaWithNuts()');
