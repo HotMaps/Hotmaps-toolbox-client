@@ -50,7 +50,7 @@ const nuts2Layer = L.tileLayer.wms(geoserverUrl, {
   srs: 'EPSG:4326',
   zIndex: 10
 })
-const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
+export const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,

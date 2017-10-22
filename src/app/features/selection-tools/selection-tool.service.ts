@@ -29,7 +29,7 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year, constant_year_sp_wwtp, hectare, wwtpLayerName} from '../../shared/data.service';
+import {constant_year, constant_year_sp_wwtp, hectare, nuts3, wwtpLayerName} from '../../shared/data.service';
 import {GeojsonClass} from "../layers/class/geojson.class";
 import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
 import {SummaryResultClass} from "../summary-result/summary-result.class";
@@ -52,7 +52,7 @@ export class SelectionToolService {
   private popupTitle: any;
   private cancelBtn: any;
   private validationBtn: any;
-  private scaleValue = hectare;
+  private scaleValue = nuts3;
   private validationBtnSelection: any;
   private validationBtnClick: any;
   private areaNutsSelectedLayer: any;
@@ -131,6 +131,7 @@ export class SelectionToolService {
         if (this.layerService.getLayerArray().keys()[i] !== wwtpLayerName) {
           this.logger.log('array ' + this.layerService.getLayerArray().keys()[i]
             + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
+          this.logger.log('loadPopup/this.scaleValue' + this.scaleValue);
           layerNameArray.push(this.layerService.getLayerArray().keys()[i] + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
         } else {
           layerNameArray.push(this.layerService.getLayerArray().keys()[i]);
@@ -211,6 +212,10 @@ export class SelectionToolService {
     map.on(L.Draw.Event.EDITSTOP, function (e) {
       self.isActivate = false;
     });
+    map.on(L.Draw.Event.DELETED, function (e) {
+      self.clearAll(map);
+    });
+
   }
 
 

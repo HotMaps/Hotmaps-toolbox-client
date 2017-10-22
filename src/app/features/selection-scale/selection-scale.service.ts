@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { SelectionScaleClass } from './class/selection-scale.class';
-import {hectareLayer, SelectionScale, SelectionScaleClassArray} from './selection-scale.data';
+import {hectareLayer, nuts3Layer, SelectionScale, SelectionScaleClassArray} from './selection-scale.data';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
-import {geoserverUrl, hectare} from '../../shared/data.service';
+import {geoserverUrl, hectare, nuts3} from '../../shared/data.service';
 @Injectable()
 export class SelectionScaleService extends APIService {
-  private scaleValue = hectare;
+  private scaleValue = nuts3;
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
@@ -55,7 +55,7 @@ export class SelectionScaleService extends APIService {
    const control = L.control.layers(SelectionScale, overlayMaps, {collapsed: false});
    control.addTo(map);
 
-    map.addLayer(hectareLayer);  // # Add this if you want to show, comment this if you want to hide it.-
+    map.addLayer(nuts3Layer);  // # Add this if you want to show, comment this if you want to hide it.-
 
   }
 

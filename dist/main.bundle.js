@@ -1020,7 +1020,8 @@ var _a, _b, _c, _d, _e;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionScaleClassArray; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return hectareLayer; });
+/* unused harmony export hectareLayer */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return nuts3Layer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SelectionScale; });
 
 var SelectionScaleClassArray = [
@@ -1147,7 +1148,7 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* hectare */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* nuts3 */];
         return _this;
     }
     SelectionScaleService.prototype.getDataInteractionServices = function () {
@@ -1178,7 +1179,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(__WEBPACK_IMPORTED_MODULE_3__selection_scale_data__["b" /* SelectionScale */], overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(__WEBPACK_IMPORTED_MODULE_3__selection_scale_data__["c" /* hectareLayer */]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(__WEBPACK_IMPORTED_MODULE_3__selection_scale_data__["c" /* nuts3Layer */]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -1278,7 +1279,7 @@ var SelectionToolService = (function () {
         this.editableLayers = new L.FeatureGroup();
         this.initialStateSelectionTool = false;
         this.isDrawControl = false;
-        this.scaleValue = __WEBPACK_IMPORTED_MODULE_9__shared_data_service__["a" /* hectare */];
+        this.scaleValue = __WEBPACK_IMPORTED_MODULE_9__shared_data_service__["a" /* nuts3 */];
     }
     SelectionToolService.prototype.setScaleValue = function (scaleValue) {
         this.scaleValue = scaleValue;
@@ -1342,6 +1343,7 @@ var SelectionToolService = (function () {
                 if (_this.layerService.getLayerArray().keys()[i] !== __WEBPACK_IMPORTED_MODULE_9__shared_data_service__["j" /* wwtpLayerName */]) {
                     _this.logger.log('array ' + _this.layerService.getLayerArray().keys()[i]
                         + _this.businessInterfaceRenderService.getNutsTosuffix(_this.scaleValue));
+                    _this.logger.log('loadPopup/this.scaleValue' + _this.scaleValue);
                     layerNameArray.push(_this.layerService.getLayerArray().keys()[i] + _this.businessInterfaceRenderService.getNutsTosuffix(_this.scaleValue));
                 }
                 else {
@@ -1415,6 +1417,9 @@ var SelectionToolService = (function () {
         });
         map.on(L.Draw.Event.EDITSTOP, function (e) {
             self.isActivate = false;
+        });
+        map.on(L.Draw.Event.DELETED, function (e) {
+            self.clearAll(map);
         });
     };
     SelectionToolService.prototype.manageEditOrCreateLayer = function (layer, map) {
@@ -2233,7 +2238,7 @@ var SummaryResultComponent = (function () {
     SummaryResultComponent.prototype.ngOnChanges = function () {
         this.logger.log('SummaryResultComponent/ngOnChanges');
         this.scale = this.selectionScaleService.getScaleValue();
-        if (this.selectionScaleService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["a" /* hectare */]) {
+        if (this.selectionScaleService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["i" /* hectare */]) {
             this.isDataAgregate = true;
         }
         else {
@@ -2720,7 +2725,7 @@ var MapService = (function (_super) {
             self.logger.log('MapService/click');
             // check if the selection toul is activate
             self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-            if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_9__shared_data_service__["a" /* hectare */]) {
+            if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_9__shared_data_service__["i" /* hectare */]) {
                 if (
                 // check if there are layers to show in the layer service
                 self.layersService.getIsReadyToShowFeatureInfo() === true) {
@@ -3343,8 +3348,8 @@ var NutsRenderArray = [
     { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["f" /* nuts0 */], suffix: '_nuts0' },
     { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["g" /* nuts1 */], suffix: '_nuts1' },
     { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["h" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["i" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["a" /* hectare */], suffix: '_ha' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["a" /* nuts3 */], suffix: '_nuts3' },
+    { id: 4, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["i" /* hectare */], suffix: '_ha' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -3444,8 +3449,8 @@ var Location = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return nuts0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return nuts1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return nuts2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return nuts3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return hectare; });
 /**
  * Created by lesly on 07.07.17.
  */
