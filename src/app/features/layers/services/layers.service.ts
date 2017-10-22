@@ -29,8 +29,8 @@ import LatLng = L.LatLng;
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from "../../../pages/nav/navigation-bar.service";
-import {BusinessInterfaceRenderService} from "../../../shared/business/business.service";
+import {NavigationBarService} from '../../../pages/nav/navigation-bar.service';
+import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 
 @Injectable()
 export class LayersService extends APIService {
@@ -69,28 +69,7 @@ export class LayersService extends APIService {
     this.logger.log(layer.toString())
     this.layers.addLayer(layer);
   }
-  getDetailInfoClick(latlng) {
-    this.loaderService.display(true);
-    let action;
-    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-    if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer + '_' + constant_year;
-    }else if (this.layersArray.containsKey(populationLayerName)) {
-      action = populationLayerName + '_' + constant_year;
-     // bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + nuts_level + 'AND ' + 'date=' + constant_year + '-01-01Z';
-      // this.handlePopulation(map,  MockPopulation , latlng)
-    }
 
-    const url = geoserverGetFeatureInfoUrl
-      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
-      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    this.logger.log('LayersService/getDetailLayerPoint/url ' + url);
-    this.logger.log('LayersService/getDetailLayerPoint/action ' + action);
-
-
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.handleClickHectare(res), err => this.erroxFix(err));
-  }
 
   handleClickHectare(data: any) {
     this.logger.log(JSON.stringify(data));

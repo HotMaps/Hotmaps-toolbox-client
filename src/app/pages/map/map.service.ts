@@ -58,7 +58,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // remove the layer if there is one
     this.removeAreaSelectedlayer(this.map);
     // add the selected area to the map
-    //this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
+    // this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
    // this.areaNutsSelectedLayer.setZIndex(11);
     this.areaNutsSelectedLayer = L.geoJson(areaSelected);
     this.areaNutsSelectedLayer.addTo(this.map);
@@ -126,7 +126,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       self.logger.log('baselayerchange');
       // in this part we manage the selection scale then we refresh the layers
       const scaleLevel = e.name;
-      self.selectionToolService.clearAll();
+      self.selectionToolService.clearAll(self.map);
       self.selectionScaleService.setScaleValue(scaleLevel);
       self.selectionToolService.setScaleValue(scaleLevel);
       self.layersService.setCurrentNutsLevel(scaleLevel);

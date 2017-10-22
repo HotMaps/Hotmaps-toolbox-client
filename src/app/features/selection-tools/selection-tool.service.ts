@@ -32,6 +32,7 @@ import { SummaryResultService } from './../summary-result/summary-result.service
 import {constant_year, constant_year_sp_wwtp, hectare, wwtpLayerName} from '../../shared/data.service';
 import {GeojsonClass} from "../layers/class/geojson.class";
 import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
+import {SummaryResultClass} from "../summary-result/summary-result.class";
 
 
 @Injectable()
@@ -54,6 +55,7 @@ export class SelectionToolService {
   private scaleValue = hectare;
   private validationBtnSelection: any;
   private validationBtnClick: any;
+  private areaNutsSelectedLayer: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
      private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
@@ -119,7 +121,7 @@ export class SelectionToolService {
 
     // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
-      this.clearAll();
+      this.clearAll(map);
     });
 
     // Set event bind on popup's buttons
@@ -170,8 +172,7 @@ export class SelectionToolService {
     this.editableLayers.addTo(map);
     this.loadPopup(map, this.currentLayer);
     this.enableNavigationService(map);
-    /* this.removeVtlayer(map);
-    this.manageEditOrCreateLayer(this.currentLayer, map); */
+
   }
 
   retriveMapEvent(map: any): void {
@@ -186,6 +187,7 @@ export class SelectionToolService {
       // Clear the map before to show the new selection
       self.editableLayers.clearLayers();
       self.removeVtlayer(map);
+      self.removeAreaNuts(map);
       self.manageEditOrCreateLayer(layer, map);
     });
 
@@ -277,7 +279,7 @@ export class SelectionToolService {
     this.loaderService.display(false);
   }
 
-  clearAll() {
+  clearAll(map: any) {
     if (this.currentLayer) {
       this.navigationBarService.disableButton('load_result');
       this.logger.log('layerService/clearAll');
@@ -285,6 +287,8 @@ export class SelectionToolService {
         this.currentLayer.editing.disable();
       }
       this.editableLayers.clearLayers();
+      this.removeVtlayer(map);
+      this.removeAreaNuts(map);
       this.sidePanelService.closeRightPanel();
       }
   }
@@ -296,6 +300,12 @@ export class SelectionToolService {
       delete this.selectionTooLayer;
     }
   }
+  removeAreaNuts(map) {
+    if (this.areaNutsSelectedLayer) {
+      map.removeLayer(this.areaNutsSelectedLayer);
+      delete this.areaNutsSelectedLayer;
+    }
+  }
 
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
@@ -304,7 +314,7 @@ export class SelectionToolService {
     this.loaderService.display(true);
     const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
     this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
-      this.displaySummaryResult(result);
+      this.displaySummaryResult(result, map);
     });
   }
 
@@ -312,7 +322,7 @@ export class SelectionToolService {
     this.logger.log('SelectionToolService/openPopup');
     this.currentLayer.openPopup();
   }
-  displaySummaryResult(result) {
+  displaySummaryResult(result: any, map: any) {
     this.sidePanelService.openRightPanel();
     this.sidePanelService.setSummaryResultData(result);
     this.logger.log('displaySummaryResult ' + JSON.stringify(result) );
@@ -321,12 +331,22 @@ export class SelectionToolService {
       this.currentLayer.editing.disable();
     }
     this.currentLayer.closePopup();
-    this.drawResult(result)
     this.loaderService.display(false);
+    this.drawResult(result, map)
+
   }
 
-  drawResult(result: any){
-
+  drawResult(result: SummaryResultClass, map: any) {
+    this.logger.log('MapService/selectAreaWithNuts()');
+    const geoJson = result.feature_collection;
+    // remove the layer if there is one
+    this.logger.log('MapService/geometrie()' + geoJson);
+    this.removeAreaNuts(map);
+    // add the selected area to the map
+    // this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
+    // this.areaNutsSelectedLayer.setZIndex(11);
+    this.areaNutsSelectedLayer = L.geoJson(geoJson);
+    this.areaNutsSelectedLayer.addTo(map);
 
   }
 
