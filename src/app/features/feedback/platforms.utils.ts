@@ -99,7 +99,7 @@ export const platforms:Platforms = {
         },
   mail : {
               name: 'mail',
-              url:  'mailto:support-hotmaps@gmail.com?subject=',
+              url:  'mailto:hotmaps2020@gmail.com?subject=',
               logoOfficial:'envelope',
               logo: 'mail',
               text: 'Mail',
