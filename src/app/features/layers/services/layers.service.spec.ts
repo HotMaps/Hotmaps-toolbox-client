@@ -17,7 +17,7 @@ import {
 import { APIService } from '../../../shared/services/api.service';
 
 import { Helper } from '../../../shared/helper';
-import {PopulationService} from "../../population/services/population.service";
+import {PopulationService} from '../../population/services/population.service';
 
 
 describe('LayersService', () => {
@@ -64,30 +64,23 @@ describe('LayersService', () => {
   it('should load the heatmap', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(defaultLayer)).toBeTruthy();
   }));
-  it('should not  load the population', inject([LayersService], (service: LayersService) => {
+  it('should not load the population', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(populationLayerName)).toBeFalsy();
   }));
-  it('should not  load the wwtp', inject([LayersService], (service: LayersService) => {
+  it('should not load the wwtp', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(wwtpLayerName)).toBeFalsy();
   }));
-
-
-  /*it('#getSummaryResultWithPayload' +
-    ' should call endpoint and return it\'s result', (done) => {
-    backend.connections.subscribe((connection: MockConnection) => {
-      const options = new ResponseOptions({
-        body: JSON.stringify(SummaryResultDataPopu)
-      });
-      connection.mockRespond(new Response(options));
-    });
-    const payload: PayloadStat = PayloadStatData;
-    subject.getSummaryResultWithPayload(payload).then((response) => {
-      console.log(response);
-      console.log('did get data');
-      expect(response).toEqual(SummaryResultDataPopu );
-      done();
-    });
-  });*/
-
+  it('should add the population', inject([LayersService], (service: LayersService) => {
+    service.getLayerArray().add(populationLayerName, populationLayerName);
+    expect(service.getLayerArray().containsKey(populationLayerName)).toBeTruthy();
+  }));
+  it('should add the wwtp', inject([LayersService], (service: LayersService) => {
+    service.getLayerArray().add(wwtpLayerName, wwtpLayerName);
+    expect(service.getLayerArray().containsKey(wwtpLayerName)).toBeTruthy();
+  }));
+  it('should remove the heatmap', inject([LayersService], (service: LayersService) => {
+    service.getLayerArray().remove(defaultLayer);
+    expect(service.getLayerArray().containsKey(defaultLayer)).toBeFalsy();
+  }));
 })
 

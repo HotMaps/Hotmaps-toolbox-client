@@ -25,24 +25,24 @@ import {UppercaseFirstLetterPipe} from './shared/pipes/uppercase-first-letter.pi
 import {NumberFormatPipe} from './shared/pipes/number-format.pipe';
 import {LayerNamePipe} from './shared/pipes/layer-name.pipe';
 import {BusinessNamePipe} from './shared/pipes/business-name.pipe';
-import {MapService} from "./pages/map/map.service";
-import {Logger} from "./shared/services/logger.service";
-import {SelectionToolButtonStateService} from "./features/selection-tools/selection-tool-button-state.service";
-import {SelectionToolService} from "./features/selection-tools/selection-tool.service";
-import {Helper} from "./shared/helper";
-import {SidePanelService} from "./features/side-panel/side-panel.service";
-import {NavigationBarService} from "./pages/nav/navigation-bar.service";
-import {MailService} from "./features/feedback/mail.service";
-import {SummaryResultService} from "./features/summary-result/summary-result.service";
-import {BaseRequestOptions, ConnectionBackend, Http} from "@angular/http";
-import {MockBackend} from "@angular/http/testing";
-import {ToasterService} from "./shared/services/toaster.service";
-import {LayersService} from "./features/layers/services/layers.service";
-import {PopulationService} from "./features/population/services/population.service";
-import {GeocodingService} from "./shared/services/geocoding.service";
-import {DataInteractionService} from "./features/data-interaction/data-interaction.service";
-import {BusinessInterfaceRenderService} from "./shared/business/business.service";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {MapService} from './pages/map/map.service';
+import {Logger} from './shared/services/logger.service';
+import {SelectionToolButtonStateService} from './features/selection-tools/selection-tool-button-state.service';
+import {SelectionToolService} from './features/selection-tools/selection-tool.service';
+import {Helper} from './shared/helper';
+import {SidePanelService} from './features/side-panel/side-panel.service';
+import {NavigationBarService} from './pages/nav/navigation-bar.service';
+import {MailService} from './features/feedback/mail.service';
+import {SummaryResultService} from './features/summary-result/summary-result.service';
+import {BaseRequestOptions, ConnectionBackend, Http} from '@angular/http';
+import {MockBackend} from '@angular/http/testing';
+import {ToasterService} from './shared/services/toaster.service';
+import {LayersService} from './features/layers/services/layers.service';
+import {PopulationService} from './features/population/services/population.service';
+import {GeocodingService} from './shared/services/geocoding.service';
+import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+import {BusinessInterfaceRenderService} from './shared/business/business.service';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
 

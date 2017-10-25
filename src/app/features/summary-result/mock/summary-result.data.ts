@@ -1,41 +1,210 @@
-export const SummaryResultDataPopu : any =
+export const summaryResultDataPopu: any =
 {
   "layers": [
     {
       "name": "population",
       "values": [
         {
-          "name": "density",
-          "value": 810763,
-          "unit": "citizens"
+          "name": "population",
+          "value": "810763",
+          "unit": "person"
+        },
+        {
+          "name": "population_density",
+          "value": "810763.000000000000",
+          "unit": "person"
+        },
+        {
+          "name": "count",
+          "value": "1",
+          "unit": "nuts"
         }
       ]
     }
-  ]
+  ],
+  "feature_collection": {
+    "type": null,
+    "crs": {
+      "type": null,
+      "properties": {
+        "name": null
+      }
+    },
+    "features": null,
+    "properties": null
+  }
 };
 
-export const SummaryResultDataHeat : any  =
-  {
-    "layers": [
-      {
-        "name": "heat_density_map",
-        "values": [
-          {
-            "name": "heat_consumption",
-            "value": 22755.0885195464,
-            "unit": "GWh"
-          },
-          {
-            "name": "heat_density",
-            "value": 4.09453443759911,
-            "unit": "GWh/km2"
-          }
-        ]
+export const summaryResultDataHeatPopulation: any  =
+{
+  "layers": [
+    {
+      "name": "population",
+      "values": [
+        {
+          "name": "population",
+          "value": "810763",
+          "unit": "person"
+        },
+        {
+          "name": "population_density",
+          "value": "810763.000000000000",
+          "unit": "person"
+        },
+        {
+          "name": "count",
+          "value": "1",
+          "unit": "nuts"
+        }
+      ]
+    },
+    {
+      "name": "heat_density_ha",
+      "values": [
+        {
+          "name": "heat_consumption",
+          "value": "0",
+          "unit": "MWh"
+        },
+        {
+          "name": "heat_density",
+          "value": "0",
+          "unit": "MWh/ha"
+        },
+        {
+          "name": "count",
+          "value": "0",
+          "unit": "cell"
+        }
+      ]
+    },
+    {
+      "name": "population",
+      "values": [
+        {
+          "name": "population",
+          "value": "810763",
+          "unit": "person"
+        },
+        {
+          "name": "population_density",
+          "value": "810763.000000000000",
+          "unit": "person"
+        },
+        {
+          "name": "count",
+          "value": "1",
+          "unit": "nuts"
+        }
+      ]
+    }
+  ],
+  "feature_collection": {
+    "type": null,
+    "crs": {
+      "type": null,
+      "properties": {
+        "name": null
       }
-    ]
-  };
+    },
+    "features": null,
+    "properties": null
+  }
+};
 
-export const PayloadStatData : any  =
+export const summaryResultDataHeatPopulationWWTP: any =
+{
+  "layers": [
+    {
+      "name": "population",
+      "values": [
+        {
+          "name": "population",
+          "value": "810763",
+          "unit": "person"
+        },
+        {
+          "name": "population_density",
+          "value": "810763.000000000000",
+          "unit": "person"
+        },
+        {
+          "name": "count",
+          "value": "1",
+          "unit": "nuts"
+        }
+      ]
+    },
+    {
+      "name": "heat_density_ha",
+      "values": [
+        {
+          "name": "heat_consumption",
+          "value": "0",
+          "unit": "MWh"
+        },
+        {
+          "name": "heat_density",
+          "value": "0",
+          "unit": "MWh/ha"
+        },
+        {
+          "name": "count",
+          "value": "0",
+          "unit": "cell"
+        }
+      ]
+    },
+    {
+      "name": "population",
+      "values": [
+        {
+          "name": "population",
+          "value": "810763",
+          "unit": "person"
+        },
+        {
+          "name": "population_density",
+          "value": "810763.000000000000",
+          "unit": "person"
+        },
+        {
+          "name": "count",
+          "value": "1",
+          "unit": "nuts"
+        }
+      ]
+    },
+    {
+      "name": "wwtp",
+      "values": [
+        {
+          "name": "power",
+          "value": "160437.215555279998647",
+          "unit": "kW"
+        },
+        {
+          "name": "capacity",
+          "value": "2489543",
+          "unit": "Person equivalent"
+        }
+      ]
+    }
+  ],
+  "feature_collection": {
+    "type": null,
+    "crs": {
+      "type": null,
+      "properties": {
+        "name": null
+      }
+    },
+    "features": null,
+    "properties": null
+  }
+};
+
+export const payloadStatData: any  =
   {
     "layers": [],
     "year": 2015,

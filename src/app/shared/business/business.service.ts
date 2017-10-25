@@ -16,7 +16,7 @@ export class BusinessInterfaceRenderService {
     return business.business_name;
 
   }
-    getBusiness(): BusinessInterfaceRenderClass[] {
-        return BusinessInterfaceRenderArray;
-    }
+  getBusiness(): BusinessInterfaceRenderClass[] {
+      return BusinessInterfaceRenderArray;
+  }
 }

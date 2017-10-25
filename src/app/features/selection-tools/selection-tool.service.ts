@@ -50,7 +50,7 @@ export class SelectionToolService {
   private cancelBtn: any;
   private validationBtn: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
-     private sidePanelService: SidePanelService,
+    private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService,

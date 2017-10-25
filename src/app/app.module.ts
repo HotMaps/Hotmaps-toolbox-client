@@ -50,11 +50,12 @@ import { DecimalPipe } from '@angular/common';
 
 import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
-import {MailService} from "./features/feedback/mail.service";
+import {MailService} from './features/feedback/mail.service';
 
 
 @NgModule({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
