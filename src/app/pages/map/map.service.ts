@@ -1,3 +1,4 @@
+import { Layer } from './../../features/summary-result/summary-result.class';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -64,13 +65,13 @@ export class MapService implements OnInit, OnDestroy {
           self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
       }
     });
-    this.map.on('zoomend', function() {
+    this.map.on('zoomend', function(e) {
       self.logger.log('MapService/zoomend');
+      self.layersService.showLayerDependingZoom(e, self.map);
     });
 
-    this.map.on('zoomstart', function(event)
-    {
-
+    this.map.on('zoomstart', function(e) {
+      self.logger.log('MapService/zoomstart');
     });
     this.map.on ('measurestart', function () {
 

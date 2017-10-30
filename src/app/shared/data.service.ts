@@ -12,12 +12,12 @@ export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
 export const defaultLayer = 'heat_density_ha';
 export const idDefaultLayer = 17;
+export const idWwtpLayer = 12;
 export const wwtpLayerName   = 'wwtp';
 // layer_name
 
 export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
-
 export const nuts_level   = '3';
 export const populationLayerName = 'population_density_ha'
 export const postPopulationDensityInArea    = '/population/density/area/';
