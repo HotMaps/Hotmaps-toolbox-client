@@ -10,6 +10,7 @@
     power: string;
     unit: string;
     heat_density: string;
+    population_density: string;
     date: string;
     bbox: number[];
   }

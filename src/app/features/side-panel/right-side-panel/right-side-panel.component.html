@@ -1,8 +1,8 @@
 <div class="container-panel-right " [@panelWidthTrigger]="expandedState">
 
     <div class="title-panel-right " [@titleColorTrigger]="expandedState">
-      <a class="link" (click)="toggleExpandedState()">
-        <i [@iconTrigger]="expandedState" class="fa fa-arrow-left" aria-hidden="true"></i>
+      <a [@iconTrigger]="expandedState" class="link" (click)="toggleExpandedState()">
+        <i class="flaticon-cross" aria-hidden="true"></i>
       </a>
         <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
 

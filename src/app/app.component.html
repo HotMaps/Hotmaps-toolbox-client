@@ -1,22 +1,8 @@
-<!--
-
-.5
-<nav>
-  <button type="button" (click)="toggleLeftExpandedState()">Left panel!</button>
-
-
-
- <!-- <a routerLink="/map">Map</a>
-  <a routerLink="/register">Register</a>
-  <a routerLink="/login">Login</a>
-</nav>-->
-  <!--  <img style="max-width:80px; margin-top: -16px;" src="../assets/logo.png">
- </div>
-
--->
-    <router-outlet>
-      <span *ngIf="showLoader" class="loading"></span>
-    </router-outlet>
+<router-outlet>
+  <span *ngIf="showLoader" class="loader-app">
+    <div uk-spinner="ratio:4"></div>
+  </span>
+</router-outlet>
 
 
 

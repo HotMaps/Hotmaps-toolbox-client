@@ -10,8 +10,7 @@
   </div>-->
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
 <div class="uk-card uk-card-body htm-card">
-<div [ngBusy]="busy"></div>
-  <table class="uk-table uk-table-divider uk-table-small">
+<table class="uk-table uk-table-divider uk-table-small">
     <thead>
       <tr class="header-summary">
         <th class="uk-table-shrink">Information</th>
@@ -24,7 +23,7 @@
         </tr>
         <tr *ngFor="let value of i.values" class="table-level-two">
           <td>{{value.name | businessname}}</td>
-          <td *ngIf="value.value" [@tableOpacityTrigger]="'in'">{{value.value | number:'1.0-3'}} {{ value.unit}}</td>
+          <td *ngIf="value.value" [@tableOpacityTrigger]="'in'">{{value.value | number: round}} {{ value.unit | businessname}}</td>
           <td *ngIf="!value.value" [@tableOpacityTrigger]="'in'">Not available</td>
         </tr>
     </tbody>

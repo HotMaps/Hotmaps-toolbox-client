@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
+}
+*{
+  box-sizing: border-box;
 }
 .on-map {
 
@@ -15,10 +17,10 @@ h1 {
 .leaflet-clickable {
   cursor: crosshair !important;
 }
-
 .leaflet-container {
   cursor: help !important;
 }
+
 h2, h3 {
   color: #444;
   font-family: Arial, Helvetica, sans-serif;

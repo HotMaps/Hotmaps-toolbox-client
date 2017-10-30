@@ -78,8 +78,10 @@ import {DataInteractionClass} from '../../data-interaction/data-interaction.clas
         //  the same time.
         //
         trigger('iconTrigger', [
-            state('collapsed', style({ transform: 'rotate(180deg)' })),
-            state('expanded', style({ transform: 'rotate(0deg)' })),
+           // state('collapsed', style({ transform: 'rotate(180deg)' })),
+          // state('collapsed', style({ transform: 'rotate(180deg)' })),
+         //   state('expanded', style({ transform: 'rotate(0deg)' })),
+
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
         ])
@@ -106,7 +108,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
        this.category = layers.map(item => item.category)
          .filter((value, index, self) => self.indexOf(value) === index);
 
-       console.log(this.category);
+
      }
 
     ngOnDestroy() {

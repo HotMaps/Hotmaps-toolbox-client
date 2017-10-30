@@ -71,3 +71,8 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
  import 'intl/locale-data/jsonp/en';
+/**
+ * According to MDN Object.assign() Browser compatibility IE is not supported.
+ You can import the Object.assign polyfill by MDN with npm. (mdn-polyfills)
+ */
+import 'mdn-polyfills/Object.assign';

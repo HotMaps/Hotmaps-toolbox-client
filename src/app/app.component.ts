@@ -5,7 +5,7 @@ import { LoaderService } from './shared/services/loader.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `<router-outlet><span *ngIf="showLoader" class="loader-app"><div uk-spinner="ratio:4"></div></span></router-outlet>`,
   styles: [ require<any>('./app.component.css')],
 
 })

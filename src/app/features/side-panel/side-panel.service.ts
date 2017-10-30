@@ -19,21 +19,19 @@ export class SidePanelService {
         this.rightToggleExpandedStatus.next(true);
     }
     openRightPanel() {
-      if (this.rightPanelStatus.value === false) {
+      // if (this.rightPanelStatus.value === false) {
         this.rightPanelStatus.next(true);
-      }
+     // }
     }
     closeRightPanel() {
-      if (this.rightPanelStatus.value === true) {
+      // if (this.rightPanelStatus.value === true) {
         this.rightPanelStatus.next(false);
-      }
+      // }
     }
 
     setSummaryResultData(data: any) {
       this.summaryResultDataStatus.next(data);
     }
-    addDataToRightPanel(data) {
 
-    }
 }
 

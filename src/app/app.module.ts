@@ -5,7 +5,6 @@ import 'leaflet.vectorgrid';
 import 'reflect-metadata';
 
 import 'jquery';
-import 'hammerjs/hammer.js';
 
 import 'leaflet-measure/dist/leaflet-measure.js';
 
@@ -14,22 +13,18 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BusyModule} from 'angular2-busy';
-import {MaterialModule} from '@angular/material';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BusinessNamePipe } from './shared/pipes/business-name.pipe';
 import { BusinessInterfaceRenderService } from './shared/business/business.service';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
-import { SidebarModule } from 'ng-sidebar';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
-import { MapService } from './shared/services/map.service';
+import { MapService } from './pages/map/map.service';
 import { GeocodingService } from './shared/services/geocoding.service';
-import { LoginComponent } from './pages/login/login.component';
-import { MapComponent } from './pages/map/map.component';
-import { RegisterComponent } from './pages/register/register.component';
+
+import { MapComponent } from './pages/map/component/map.component';
+
 import { Logger } from './shared/services/logger.service';
 import { Helper } from './shared/helper';
 import { LayersService } from './features/layers/services/layers.service';
@@ -54,30 +49,23 @@ import { DecimalPipe } from '@angular/common';
 
 
 import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
-import { PopupComponent } from './features/popup/popup.component';
-import { PopupService } from './features/popup/popup.service';
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+import {MailService} from "./features/feedback/mail.service";
 
 
 @NgModule({
   imports: [HttpModule,
     FormsModule,
-    BusyModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    MaterialModule,
-    SidebarModule.forRoot(),
-    Angular2FontawesomeModule
+    AppRoutingModule
   ],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     SearchBarComponent,
     ToolbarComponent,
-    LoginComponent,
     MapComponent,
-    RegisterComponent,
     RightSideComponent,
     LeftSideComponent,
     NavigationBarComponent,
@@ -88,8 +76,7 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
-    BusinessNamePipe,
-    PopupComponent
+    BusinessNamePipe
   ],
 
   providers: [
@@ -110,8 +97,8 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
     SelectionToolButtonStateService,
     BusinessInterfaceRenderService,
     SummaryResultService,
-    PopupService,
-    DecimalPipe
+    DecimalPipe,
+    MailService
 
 
   ],

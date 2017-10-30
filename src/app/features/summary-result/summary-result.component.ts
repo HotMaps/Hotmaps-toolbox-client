@@ -13,6 +13,7 @@ import {
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
+import {round_value} from '../../shared/data.service';
 
 @Component({
 
@@ -38,6 +39,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy  {
   @Input('summaryResult') summaryResult: SummaryResultClass;
   expandedState = 'collapsed';
   busy: Promise<any>;
+  private round = round_value;
   constructor(private summaryResultService: SummaryResultService) {}
 
   ngOnInit() {

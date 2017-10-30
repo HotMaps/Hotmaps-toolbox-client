@@ -11,7 +11,6 @@ import {Payload} from '../../features/population/payload.class';
 import {Population} from '../../features/population/population.class';
 import {LayersService} from '../../features/layers/services/layers.service';
 import {PopulationService} from '../../features/population/services/population.service';
-import { PopupService } from '../../features/popup/popup.service';
 import {SidePanelService} from '../../features/side-panel/side-panel.service';
 import {SelectionToolButtonStateService} from './selection-tool-button-state.service';
 import {LoaderService} from '../../shared/services/loader.service';
@@ -29,16 +28,15 @@ import Edited = L.DrawEvents.Edited;
 
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
-import { PayloadStatData } from './../summary-result/mock/test.data';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year} from "../../shared/data.service";
+import {constant_year, constant_year_sp_wwtp} from '../../shared/data.service';
 
 
 @Injectable()
 export class SelectionToolService {
 
 
-  private baseMaps: any;
+
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private currentLayer;
@@ -47,24 +45,26 @@ export class SelectionToolService {
   private drawControl;
   private isDrawControl = false;
   private selectionTooLayer: any;
-  private layerArray: Dictionary;
   private containerPopup: any;
   private popupTitle: any;
   private cancelBtn: any;
   private validationBtn: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
-    private populationService: PopulationService, private sidePanelService: SidePanelService,
+     private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService,
-    private layerService: LayersService,
-    private popupService: PopupService) {
+    private layerService: LayersService) {
 
   }
 
 
-  getIsActivate(): boolean {
-    return this.isActivate;
+  isLayerInMap(): boolean {
+    let hasLayer = false;
+    if (this.editableLayers.getLayers().length > 0) {
+      hasLayer = true;
+    }
+    return hasLayer;
   }
 
   notifyLoaderService(map: any) {
@@ -79,10 +79,6 @@ export class SelectionToolService {
   setMap(map: any) {
     this.notifyLoaderService(map);
     this.retriveMapEvent(map);
-    /* this.summaryResultService.getSummaryResultWithPayload(PayloadStatData).then(result => {
-      console.log(result);
-    }); */
-    //
   }
 
   setHTMLContent(el, str): any {
@@ -104,7 +100,7 @@ export class SelectionToolService {
 
     // Create elements with leaflet utility - validation & Cancel buttons + title
     this.createButtons();
-    this.currentLayer.bindPopup(this.containerPopup).openPopup();
+    this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
 
     // Set event bind on popup's buttons
     L.DomEvent.on(this.cancelBtn , 'click', () => {
@@ -123,41 +119,41 @@ export class SelectionToolService {
   retriveMapEvent(map: any): void {
     const self = this;
     map.on(L.Draw.Event.CREATED, function (e) {
+      console.log('created', e.type);
+
       const event: Created = <Created>e;
+      const type = event.layerType,
+      layer: any = event.layer;
+      self.currentLayer = layer
+      self.isActivate = false;
       // Clear the map before to show the new selection
       self.editableLayers.clearLayers();
       self.removeVtlayer(map);
-      const type = event.layerType,
-        layer: any = event.layer;
-      self.currentLayer = layer
-
       self.manageEditOrCreateLayer(self.currentLayer, map);
     });
 
     map.on(L.Draw.Event.EDITED, function (e) {
+      console.log('EDITED', e.type);
       const event: Edited = <Edited>e;
       event.layers.eachLayer(function (layer: Layer) {
         const lay: Layer = layer;
-        self.manageEditOrCreateLayer(layer, map);
+        //  self.manageEditOrCreateLayer(layer, map);
       });
     });
-
     map.on(L.Draw.Event.DRAWSTART, function (e) {
+      console.log('DRAWSTART', e.type);
       self.isActivate = true;
-
     });
-
     map.on(L.Draw.Event.DRAWSTOP, function (e) {
-      self.isActivate = false;
-
+      console.log('DRAWSTOP', e.type);
     });
-
     map.on(L.Draw.Event.EDITSTART, function (e) {
+      console.log('EDITSTART', e.type);
       self.isActivate = true;
-
     });
 
     map.on(L.Draw.Event.EDITSTOP, function (e) {
+      console.log('EDITSTOP', e.type);
       self.isActivate = false;
     });
   }
@@ -227,6 +223,7 @@ export class SelectionToolService {
 
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
+    // this.sidePanelService.closeRightPanel();
     this.loaderService.display(true);
     const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
     this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
@@ -234,8 +231,11 @@ export class SelectionToolService {
     });
   }
 
+  openPopup() {
+    this.logger.log('SelectionToolService/openPopup');
+    this.currentLayer.openPopup();
+  }
   displaySummaryResult(result) {
-    console.log('displaySummaryResult' + result);
     this.sidePanelService.openRightPanel();
     this.sidePanelService.setSummaryResultData(result);
     this.navigationBarService.enableButton('load_result');
@@ -262,6 +262,7 @@ export class SelectionToolService {
         },
         circle: true,  // Turns off this drawing tool
         rectangle: {
+
           tooltip : {
             start : 'dede',
           },

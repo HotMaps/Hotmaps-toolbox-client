@@ -2,7 +2,7 @@
  * Created by lesly on 27.05.17.
  */
 import { SpyObject } from './helper';
-import { MapService } from '../map.service';
+import { MapService } from '../../../pages/map/map.service';
 import Spy = jasmine.Spy;
 
 export class MockMapService extends SpyObject {

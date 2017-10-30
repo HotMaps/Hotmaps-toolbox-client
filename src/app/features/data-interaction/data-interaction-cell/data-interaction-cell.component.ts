@@ -9,7 +9,7 @@ import {
     animate
 } from '@angular/core';
 
-import {MapService} from '../../../shared/services/map.service'
+import {MapService} from '../../../pages/map/map.service'
 import { DataInteractionClass } from '../data-interaction.class';
 @Component({
     moduleId: module.id,
@@ -39,14 +39,14 @@ export class DataInteractionCellComponent implements OnInit {
 
     constructor(private mapService: MapService) { }
 
-  showRemoveLayer(e, action) {
+  showRemoveLayer(e, action, order) {
     this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
     if (this.dataInteraction.isSelected) {
       console.log(' dataInteraction true');
     }else {
       console.log(' dataInteraction false');
     }
-    this.mapService.showOrRemoveLayer(action);
+    this.mapService.showOrRemoveLayer(action, order);
   }
     ngOnInit() {
     }
