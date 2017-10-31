@@ -1,4 +1,3 @@
-import { Layer } from './../../features/summary-result/summary-result.class';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -7,6 +6,7 @@ import { Layer } from './../../features/summary-result/summary-result.class';
 
 import {Injectable} from '@angular/core';
 
+import { Layer } from './../../features/summary-result/summary-result.class';
 import {Map} from 'leaflet';
 import { MouseEvent} from 'leaflet';
 import {OnInit, OnDestroy} from '@angular/core';
@@ -17,7 +17,7 @@ import {LayersService} from '../../features/layers/services/layers.service';
 import {Logger} from '../../shared/services/logger.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {SelectionToolService} from '../../features/selection-tools/selection-tool.service';
-import {wwtpLayerName} from '../../shared/data.service';
+import {wwtpLayerName, zoomLevelDetectChange} from '../../shared/data.service';
 
 
 @Injectable()
@@ -47,13 +47,13 @@ export class MapService implements OnInit, OnDestroy {
     // set the map to the services that needs to get an instance
     this.map = map;
     this.selectionToolService.setMap(map);
-    this.retriveMapEvent();
+    this.retriveMapEvent(this.map);
 
     this.layersService.getLayers().addTo(map);
     this.layersService.setupDefaultLayer()
   }
 
-  retriveMapEvent(): void {
+  retriveMapEvent(map: Map): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
     this.map.on('click', function(e: MouseEvent) {
@@ -65,33 +65,39 @@ export class MapService implements OnInit, OnDestroy {
           self.layersService.getDetailLayerPoint(wwtpLayerName, e.latlng, self.map);
       }
     });
-    this.map.on('zoomend', function(e) {
+    map.on('zoomend', function(e) {
       self.logger.log('MapService/zoomend');
       self.layersService.showLayerDependingZoom(e, self.map);
     });
 
-    this.map.on('zoomstart', function(e) {
+    map.on('zoomstart', function(e) {
       self.logger.log('MapService/zoomstart');
     });
-    this.map.on ('measurestart', function () {
+    map.on ('measurestart', function () {
 
     });
-    this.map.on('measurefinish', function (evt) {
+    map.on('measurefinish', function (evt) {
     });
-    this.map.on('LayersControlEvent', function() {
+    map.on('LayersControlEvent', function() {
       self.logger.log('LayersControlEvent');
     });
 
-    this.map.on('layeradd', function(e) {
+    map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
     });
-    this.map.on('didUpdateLayers', function(e) {
+    map.on('moveend', function(e) {
+      // self.logger.log('MapService/layeradd-----' + e);
+      if (self.map.getZoom() >= zoomLevelDetectChange) {
+        self.layersService.showWwtpWithMarker(self.map);
+      }
+    });
+    map.on('didUpdateLayers', function(e) {
       if (self.selectionToolService.isLayerInMap() === true) {
         self.selectionToolService.openPopup();
         self.logger.log('MapService/didUpdateLayers-----' + e);
       }
     });
-    this.map.on('overlayadd', onOverlayAdd);
+    map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {
       self.logger.log('overlayadd');
 
@@ -109,5 +115,7 @@ export class MapService implements OnInit, OnDestroy {
 
   }
 
-
+  getLayerArray() {
+    return this.layersService.getLayerArray();
+  }
 }

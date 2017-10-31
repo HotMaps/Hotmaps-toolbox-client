@@ -1,3 +1,4 @@
+import { basemap } from './../pages/map/basemap';
 /**
  * Created by lesly on 07.07.17.
  */
@@ -32,6 +33,7 @@ export const set404url   = 'set404url';
 export const timeOut   = 200000;
 // layers constant
 export const clickAccuracy   = 100;
+export const zoomLevelDetectChange = 9;
 export const constant_year = 2012;
 export const constant_year_sp_wwtp = 2015;
 export const business_name_wwtp = 'Waste Water treatment plants';
@@ -41,3 +43,11 @@ export const unit_heat_density   = 'MWh/ha';
 export const unit_shape_area   = 'm2';
 export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
+export const map_options =  {
+  zoomControl: false,
+  center: L.latLng(47.1, 7.0833),
+  zoom: 5,
+  minZoom: 4,
+  maxZoom: 17,
+  layers: [basemap.Esri, basemap.Hybrid]
+}
