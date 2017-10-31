@@ -1,3 +1,4 @@
+import { idWwtpLayer } from './../../shared/data.service';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -50,9 +51,14 @@ export class MapService implements OnInit, OnDestroy {
     this.retriveMapEvent(this.map);
 
     this.layersService.getLayers().addTo(map);
-    this.layersService.setupDefaultLayer()
+    this.layersService.setupDefaultLayer();
+    this.layersService.setupZoomLayerGroup(map);
   }
-
+  showLayerDependingZoom() {
+    if (this.layersService.getLayerArray().containsKey(wwtpLayerName)) {
+      this.layersService.showLayerDependingZoom(wwtpLayerName, this.map, zoomLevelDetectChange);
+    }
+  }
   retriveMapEvent(map: Map): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
@@ -66,12 +72,12 @@ export class MapService implements OnInit, OnDestroy {
       }
     });
     map.on('zoomend', function(e) {
-      self.logger.log('MapService/zoomend');
-      self.layersService.showLayerDependingZoom(e, self.map);
+      // self.logger.log('MapService/zoomend');
+      self.showLayerDependingZoom()
     });
 
     map.on('zoomstart', function(e) {
-      self.logger.log('MapService/zoomstart');
+      // self.logger.log('MapService/zoomstart');
     });
     map.on ('measurestart', function () {
 
@@ -87,9 +93,7 @@ export class MapService implements OnInit, OnDestroy {
     });
     map.on('moveend', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
-      if (self.map.getZoom() >= zoomLevelDetectChange) {
-        self.layersService.showWwtpWithMarker(self.map);
-      }
+      self.showLayerDependingZoom()
     });
     map.on('didUpdateLayers', function(e) {
       if (self.selectionToolService.isLayerInMap() === true) {
@@ -108,6 +112,9 @@ export class MapService implements OnInit, OnDestroy {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
 
+  checkZoomLevelLayer(action, zoomLevel) {
+    this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+  }
 
 
   addDrawerControl(map: Map) {

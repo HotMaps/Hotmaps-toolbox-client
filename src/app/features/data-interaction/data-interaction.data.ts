@@ -3,9 +3,9 @@ import {business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer} f
 export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
-  {id: idDefaultLayer, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: defaultLayer},
-  {id: 12, name: business_name_wwtp, category: 'Ressources', isSelected: false, workspaceName: 'wwtp'},
-  {id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: populationLayerName},
+  {id: idDefaultLayer, name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: defaultLayer, zoomLevel: 0},
+  {id: 12, name: business_name_wwtp, category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: 10},
+  {id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: populationLayerName, zoomLevel: 0},
   /* {id: 15, name: 'Industrial thermal waste', category: 'Ressources', isSelected: false, workspaceName: 'workspaceName'},
    {id: 16, name: 'Solar potential per roof', category: 'Ressources', isSelected: false, workspaceName: 'workspaceName'},
 

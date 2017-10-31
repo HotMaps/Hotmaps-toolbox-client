@@ -26,14 +26,18 @@ export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const set404url   = 'set404url';
 
+// Projection data string
+export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
+export const proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 
 
 
-//layers constant
+
+// layers constant
 export const timeOut   = 200000;
 // layers constant
 export const clickAccuracy   = 100;
-export const zoomLevelDetectChange = 9;
+export const zoomLevelDetectChange = 10;
 export const constant_year = 2012;
 export const constant_year_sp_wwtp = 2015;
 export const business_name_wwtp = 'Waste Water treatment plants';
@@ -49,5 +53,6 @@ export const map_options =  {
   zoom: 5,
   minZoom: 4,
   maxZoom: 17,
+  zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
