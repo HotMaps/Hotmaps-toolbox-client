@@ -64,10 +64,10 @@ describe('LayersService', () => {
   it('should load the heatmap', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(defaultLayer)).toBeTruthy();
   }));
-  it('should not load the population', inject([LayersService], (service: LayersService) => {
+  it('should not  load the population', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(populationLayerName)).toBeFalsy();
   }));
-  it('should not load the wwtp', inject([LayersService], (service: LayersService) => {
+  it('should not  load the wwtp', inject([LayersService], (service: LayersService) => {
     expect(service.getLayerArray().containsKey(wwtpLayerName)).toBeFalsy();
   }));
 

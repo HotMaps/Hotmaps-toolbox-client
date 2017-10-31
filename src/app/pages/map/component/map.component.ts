@@ -1,4 +1,3 @@
-import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map} from 'leaflet';
 import 'leaflet-draw'
@@ -64,6 +63,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       }
     });
 
+
     this.panelService.leftPanelStatus.subscribe((val: boolean) => {
       if (this.openLeftSidebar === false) {
         this.openLeftSidebar = true;
@@ -88,7 +88,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     let self = this;
-    this.map = L.map('map', map_options);
+    const option =  {
+      zoomControl: false,
+      center: L.latLng(47.1, 7.0833),
+      zoom: 5,
+      minZoom: 4,
+      maxZoom: 17,
+      layers: [basemap.Esri, basemap.Hybrid]
+    }
+    this.map = L.map('map', option);
     L.control.zoom({ position: 'topright' }).addTo(this.map);
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -125,4 +133,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   getMap(): Map {
     return this.map;
   }
+
+
 }

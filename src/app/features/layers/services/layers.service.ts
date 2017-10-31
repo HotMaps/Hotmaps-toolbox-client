@@ -1,3 +1,4 @@
+import { Map } from 'leaflet';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -15,20 +16,18 @@ import {LoaderService } from '../../../shared/services/loader.service';
 
 
 import {Logger} from '../../../shared/services/logger.service';
-import { Map } from 'leaflet';
 
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
-import { idWwtpLayer, zoomLevelDetectChange } from './../../../shared/data.service';
+import { idWwtpLayer } from './../../../shared/data.service';
 
 import {APIService} from '../../../shared/services/api.service';
 import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
-import * as proj4x from 'proj4';
-const proj4 = (proj4x as any).default;
+
 
 import {PopulationService} from '../../population/services/population.service';
 
@@ -195,7 +194,7 @@ export class LayersService extends APIService {
   showLayerDependingZoom(event: L.Event, map) {
     const zoomLevel = map.getZoom();
     console.log('zoomlevel: ' + zoomLevel)
-    if (zoomLevel >= zoomLevelDetectChange) {
+    if (zoomLevel >= 9) {
       if (this.layersArray.containsKey(wwtpLayerName)) {
         this.showOrRemoveLayer(wwtpLayerName, map, idWwtpLayer)
         this.showWwtpWithMarker(map);
@@ -211,33 +210,34 @@ export class LayersService extends APIService {
   transformLatLngToEpsg(latlng: L.LatLng) {
     const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
     const proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
-    return proj4(proj3035).forward([latlng.lng, latlng.lat]);
+    return proj4(proj3035, [latlng.lat, latlng.lng]);
   }
   showWwtpWithMarker(map: Map) {
+    console.log(map.getBounds().getNorthEast());
     const bound = map.getBounds();
-    console.log(bound.toBBoxString())
-    console.log(bound)
-    const coordinate = [];
-    // coordinate.push(this.transformLatLngToEpsg(bound.getNorthEast()));
-    coordinate.push(this.transformLatLngToEpsg(bound.getSouthWest())[1], this.transformLatLngToEpsg(bound.getSouthWest())[0]);
-    coordinate.push(this.transformLatLngToEpsg(bound.getNorthEast())[1], this.transformLatLngToEpsg(bound.getNorthEast())[0]);
-    // coordinate.push(this.transformLatLngToEpsg(bound.getSouthWest()));
-    console.log(coordinate.toString());
-    const epsg = '3035';
+    const northEast = this.transformLatLngToEpsg(bound.getNorthEast());
+    const northWest = this.transformLatLngToEpsg(bound.getNorthWest());
+    const southEast = this.transformLatLngToEpsg(bound.getSouthEast());
+    const southWest = this.transformLatLngToEpsg(bound.getSouthWest());
 
-    const url = geoserverUrl + '?service=wfs' +
+    console.log(northEast, northWest, southEast, southWest);
+    const bbox = map.getBounds().toBBoxString();
+    const epsg = '3035';
+    console.log(bbox);
+
+    const url = 'http://hotmaps.hevs.ch:9090/geoserver/wfs?service=wfs' +
     '&version=2.0.0' +
     '&request=GetFeature' +
     '&typeNames=hotmaps:' + wwtpLayerName +
     '&srsName=EPSG:' + epsg +
-    '&bbox=' + coordinate.toString() +
+    '&bbox=' + bbox +
     '&outputFormat=application/json';
     console.log(url);
-    this.GET(url).subscribe((res) => {
-      console.log(res);
-    });
-  }
 
+    /* return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+    .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err)); */
+
+  }
   removeWwtpWithMarker(map: Map) {
 
   }
