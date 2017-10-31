@@ -1,12 +1,14 @@
-import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
+import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';
 
 import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { SummaryResultService } from './summary-result.service';
-import { PayloadStatData, SummaryResultDataPopu } from './mock/summary-result.data';
+import {
+  payloadStatData, summaryResultDataHeatPopulation,
+  summaryResultDataPopu, summaryResultDataHeatPopulationWWTP } from './mock/summary-result.data';
 import { postStatsLayersArea, apiUrl } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { PayloadStat } from './mock/payload.class';
@@ -57,20 +59,53 @@ describe('SummaryResultService', () => {
   }));
 
   it('#getSummaryResultWithPayload' +
-    ' should call endpoint and return it\'s result', (done) => {
+    ' should call endpoint and return it\'s result (Population payload)', (done) => {
     backend.connections.subscribe((connection: MockConnection) => {
       const options = new ResponseOptions({
-        body: JSON.stringify(SummaryResultDataPopu)
+        body: JSON.stringify(summaryResultDataPopu)
       });
       connection.mockRespond(new Response(options));
     });
-    const payload: PayloadStat = PayloadStatData;
+    const payload: PayloadStat = payloadStatData;
+    payload.layers.push('population');
     subject.getSummaryResultWithPayload(payload).then((response) => {
-      console.log(response);
-      console.log('did get data');
-      expect(response).toEqual(SummaryResultDataPopu );
+      expect(response).toEqual(summaryResultDataPopu);
       done();
     });
   });
-
+  it('#getSummaryResultWithPayload' +
+    ' should call endpoint and return it\'s result (Population + Heatmap payload)', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(summaryResultDataHeatPopulation)
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const payload: PayloadStat = payloadStatData;
+    payload.layers.push('heat_density_ha');
+    payload.layers.push('population');
+    console.log(payload);
+    subject.getSummaryResultWithPayload(payload).then((response) => {
+      expect(response).toEqual(summaryResultDataHeatPopulation);
+      done();
+    });
+  });
+  it('#getSummaryResultWithPayload' +
+    ' should call endpoint and return it\'s result (Population + Heatmap + WWTP payload)', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify(summaryResultDataHeatPopulationWWTP)
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const payload: PayloadStat = payloadStatData;
+    payload.layers.push('heat_density_ha');
+    payload.layers.push('population');
+    payload.layers.push('wwtp');
+    console.log(payload);
+    subject.getSummaryResultWithPayload(payload).then((response) => {
+      expect(response).toEqual(summaryResultDataHeatPopulationWWTP);
+      done();
+    });
+  });
 })

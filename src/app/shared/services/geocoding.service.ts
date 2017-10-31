@@ -2,7 +2,7 @@
  * Created by lesly on 27.05.17.
  */
 import {Http, Headers, Response} from '@angular/http';
-import {Location} from '../class/location/location.class';
+import {LocationClass} from '../class/location/location.class';
 import {Injectable} from '@angular/core';
 
 import 'rxjs/add/operator/map';
@@ -32,7 +32,7 @@ export class GeocodingService {
         this.logger.log('GeocodingService/geocode()/result' + result);
 
         if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
-        const location = new Location();
+        const location = new LocationClass();
         location.address = result.results[0].formatted_address;
         location.latitude = result.results[0].geometry.location.lat;
         location.longitude = result.results[0].geometry.location.lng;
@@ -60,7 +60,7 @@ export class GeocodingService {
       .flatMap(ip => this.http.get(getLocationFromIp + ip))
       .map((res: Response) => res.json())
       .map(result => {
-        const location = new Location();
+        const location = new LocationClass();
 
         location.address = result.city + ', ' + result.region_code + ' ' + result.zip_code + ', ' + result.country_code;
         location.latitude = result.latitude;

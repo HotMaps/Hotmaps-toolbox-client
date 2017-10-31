@@ -18,7 +18,7 @@ import {LoaderService} from '../../shared/services/loader.service';
 import {Location} from '../../shared/class/location/location';
 import {Helper} from '../../shared/helper'
 
-import {NavigationBarService} from '../../pages/nav/navigation-bar.service'
+import {NavigationBarService} from '../../pages/nav/service/navigation-bar.service'
 import Created = L.DrawEvents.Created;
 
 
@@ -29,7 +29,10 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import { SummaryResultService } from './../summary-result/summary-result.service';
-import {constant_year, constant_year_sp_wwtp, hectare, nuts3, wwtpLayerName} from '../../shared/data.service';
+import {
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, nuts3,
+  wwtpLayerName
+} from '../../shared/data.service';
 import {GeojsonClass} from "../layers/class/geojson.class";
 import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
 import {SummaryResultClass} from "../summary-result/summary-result.class";
@@ -52,12 +55,12 @@ export class SelectionToolService {
   private popupTitle: any;
   private cancelBtn: any;
   private validationBtn: any;
-  private scaleValue = nuts3;
+  private scaleValue = initial_scale_value;
   private validationBtnSelection: any;
   private validationBtnClick: any;
   private areaNutsSelectedLayer: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
-     private sidePanelService: SidePanelService,
+    private sidePanelService: SidePanelService,
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService, private businessInterfaceRenderService: BusinessInterfaceRenderService,

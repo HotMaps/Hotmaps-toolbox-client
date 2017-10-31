@@ -108,7 +108,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
        this.category = layers.map(item => item.category)
          .filter((value, index, self) => self.indexOf(value) === index);
 
-
      }
 
     ngOnDestroy() {

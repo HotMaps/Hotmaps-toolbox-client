@@ -9,10 +9,10 @@ import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
-import {geoserverUrl, hectare, nuts3} from '../../shared/data.service';
+import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} from '../../shared/data.service';
 @Injectable()
 export class SelectionScaleService extends APIService {
-  private scaleValue = nuts3;
+  private scaleValue = initial_scale_value;
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
@@ -55,7 +55,20 @@ export class SelectionScaleService extends APIService {
    const control = L.control.layers(SelectionScale, overlayMaps, {collapsed: false});
    control.addTo(map);
 
-    map.addLayer(nuts3Layer);  // # Add this if you want to show, comment this if you want to hide it.-
+
+
+    map.addLayer(this.getInitialLayer());  // # Add this if you want to show, comment this if you want to hide it.-
+
+  }
+
+  getInitialScale(): string {
+    return initial_scale_value;
+  }
+
+
+  getInitialLayer(): any {
+
+    return SelectionScale[initial_scale_value];
 
   }
 

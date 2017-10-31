@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 
 
-import { NavigationButton } from '../../pages/nav/navigation-bar.class';
-import { navigationButtons } from '../../pages/nav/navigation-buttons.data';
-import { MapService } from '../../pages/map/map.service';
-import { SelectionToolButtonStateService } from '../selection-tools/selection-tool-button-state.service';
-import { SidePanelService } from '../side-panel/side-panel.service';
-import {Properties} from "./properties.utils";
-import {Platform, platforms} from "./platforms.utils";
-import {Logger} from "../../shared/services/logger.service";
+import {Properties} from './properties.utils';
+import {Platform, platforms} from './platforms.utils';
+import {Logger} from '../../shared';
 
 @Injectable()
 export class MailService {

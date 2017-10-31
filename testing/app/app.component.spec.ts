@@ -1,7 +1,7 @@
 /**
  * Created by lesly on 14.06.17.
  */
-import { AppComponent } from '../../src/app/app.component';
+import { AppComponent } from '../../src/app/component/app.component';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';

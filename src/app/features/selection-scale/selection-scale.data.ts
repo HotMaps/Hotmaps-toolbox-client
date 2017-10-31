@@ -9,7 +9,7 @@ export const SelectionScaleClassArray: SelectionScaleClass[] = [
   {id: 6, name: 'lau2'},
   {id: 6, name: 'hectare'},
 ];
-
+// NUTS geometry is taken from the population layer but we don't use other data
 const action = 'population';
 
 
@@ -23,7 +23,7 @@ export const hectareLayer = L.tileLayer.wms(geoserverUrl, {
   zIndex: 10
 })
 
-const nuts0Layer = L.tileLayer.wms(geoserverUrl, {
+export const  nuts0Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -32,7 +32,7 @@ const nuts0Layer = L.tileLayer.wms(geoserverUrl, {
   srs: 'EPSG:4326',
   zIndex: 10
 })
-const nuts1Layer = L.tileLayer.wms(geoserverUrl, {
+export const  nuts1Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -41,7 +41,7 @@ const nuts1Layer = L.tileLayer.wms(geoserverUrl, {
   srs: 'EPSG:4326',
   zIndex: 10
 })
-const nuts2Layer = L.tileLayer.wms(geoserverUrl, {
+export const  nuts2Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -60,7 +60,7 @@ export const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   zIndex: 10
 })
 
-const lau1Layer = L.tileLayer.wms(geoserverUrl, {
+export const  lau1Layer = L.tileLayer.wms(geoserverUrl, {
   layers: 'hotmaps:' + action + 1 ,
   format: 'image/png',
   transparent: true,
@@ -69,9 +69,6 @@ const lau1Layer = L.tileLayer.wms(geoserverUrl, {
   srs: 'EPSG:4326',
   zIndex: 10
 })
-//var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
-//  streets   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
-
 
 
 

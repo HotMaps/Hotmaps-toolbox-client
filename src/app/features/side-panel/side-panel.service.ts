@@ -11,24 +11,22 @@ export class SidePanelService {
     public summaryResultDataStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     public poiData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    leftPanelexpandedCollapsed() {
-        this.leftPanelStatus.next(true);
-    }
-
+    
     rightPanelexpandedCollapsed() {
-        this.rightToggleExpandedStatus.next(true);
+      this.rightToggleExpandedStatus.next(true);
+    }
+    leftPanelexpandedCollapsed() {
+      this.leftPanelStatus.next(true);
     }
     openRightPanel() {
-      // if (this.rightPanelStatus.value === false) {
-        this.rightPanelStatus.next(true);
-     // }
+      this.rightPanelStatus.next(true);
     }
     closeRightPanel() {
-      // if (this.rightPanelStatus.value === true) {
-        this.rightPanelStatus.next(false);
-      // }
+      this.rightPanelStatus.next(false);
     }
-
+    closeLeftPanel() {
+      this.leftPanelStatus.next(false);
+    }
     setSummaryResultData(data: any) {
       this.summaryResultDataStatus.next(data);
     }

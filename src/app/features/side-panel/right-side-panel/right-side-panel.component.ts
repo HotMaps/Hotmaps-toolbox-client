@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
-import { SummaryResultDataHeat } from './../../summary-result/mock/summary-result.data';
+
 
 @Component({
     moduleId: module.id,

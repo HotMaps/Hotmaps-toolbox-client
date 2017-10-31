@@ -4,7 +4,7 @@
 import {ILatLng} from "./latLng.interface";
 import {LatLngBounds} from "leaflet";
 
-export class Location implements ILatLng {
+export class LocationClass implements ILatLng {
   latitude: number;
   longitude: number;
   address: string;

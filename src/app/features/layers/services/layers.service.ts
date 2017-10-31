@@ -29,7 +29,7 @@ import LatLng = L.LatLng;
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from '../../../pages/nav/navigation-bar.service';
+import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 
 @Injectable()

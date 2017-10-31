@@ -3,13 +3,10 @@ import { Map} from 'leaflet';
 import 'leaflet-draw'
 
 import { basemap } from '../basemap'
-import { LeftSideComponent } from '../../../features/side-panel/left-side-panel/index';
-import { Logger } from '../../../shared/services/logger.service';
+import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
+import { Logger } from '../../../shared';
 import { MapService } from '../map.service';
-import { SearchBarComponent } from '../../searchbar/searchbar.component';
-import { SidePanelService} from '../../../features/side-panel/side-panel.service';
-import { RightSideComponent } from '../../../features/side-panel/right-side-panel/index';
-
+import { SearchBarComponent } from '../../searchbar';
 
 @Component({
   selector: 'htm-map',
@@ -25,6 +22,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   openRightSidebar = false;
   openRightToggleExpanded = false;
   openLeftSidebar = false;
+  // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 

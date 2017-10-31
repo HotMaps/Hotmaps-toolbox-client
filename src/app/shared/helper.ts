@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Logger} from './services/logger.service';
-import {Location} from './class/location/location';
+import {Logger} from './services';
+import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
 import {round_value} from './data.service';
 
