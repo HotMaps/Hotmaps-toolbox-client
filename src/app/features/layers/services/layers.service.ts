@@ -215,8 +215,11 @@ export class LayersService extends APIService {
         }
         this.removeWwtpWithMarker(map);
       }
+    }else {
+      this.removeWwtpWithMarker(map);
     }
   }
+
   transformLatLngToEpsg(latlng: L.LatLng, epsgString: String) {
     return proj4(epsgString).forward([latlng.lng, latlng.lat]);
   }
@@ -238,11 +241,12 @@ export class LayersService extends APIService {
     const url = geoserverUrl + '?service=wfs' +
       '&version=2.0.0' +
       '&request=GetFeature' +
-      '&typeNames=hotmaps:' + wwtpLayerName +
+      '&typeNames=hotmaps:' + wwtpLayerName + '_' + constant_year +
       '&srsName=EPSG:' + epsg +
       '&bbox=' + coordinate.toString() +
       '&outputFormat=application/json';
     this.logger.log(coordinate.toString());
+    this.logger.log(url);
     Promise.resolve(wwtp_data).then((data) => {
       data.features.forEach(element => {
         const point = element.geometry.coordinates
@@ -258,7 +262,7 @@ export class LayersService extends APIService {
       });
     }).then(() => this.zoom_layerGroup.addTo(map));
     /* this.GET(url).toPromise().then((data) => { */
-    /* Promise.resolve(wwtp_data) */
+    /* Promise.resolve(wwtp_data).then((data) => { */
   }
 
   removeWwtpWithMarker(map: Map) {

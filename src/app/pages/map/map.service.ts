@@ -72,7 +72,7 @@ export class MapService implements OnInit, OnDestroy {
       }
     });
     map.on('zoomend', function(e) {
-      // self.logger.log('MapService/zoomend');
+      self.logger.log('MapService/zoomend');
       self.showLayerDependingZoom()
     });
 
@@ -93,7 +93,7 @@ export class MapService implements OnInit, OnDestroy {
     });
     map.on('moveend', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
-      self.showLayerDependingZoom()
+      self.showLayerDependingZoom();
     });
     map.on('didUpdateLayers', function(e) {
       if (self.selectionToolService.isLayerInMap() === true) {
