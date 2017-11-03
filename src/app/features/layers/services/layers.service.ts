@@ -241,13 +241,13 @@ export class LayersService extends APIService {
     const url = geoserverUrl + '?service=wfs' +
       '&version=2.0.0' +
       '&request=GetFeature' +
-      '&typeNames=hotmaps:' + wwtpLayerName + '_' + constant_year +
+      '&typeNames=hotmaps:' + wwtpLayerName +
       '&srsName=EPSG:' + epsg +
       '&bbox=' + coordinate.toString() +
       '&outputFormat=application/json';
     this.logger.log(coordinate.toString());
     this.logger.log(url);
-    Promise.resolve(wwtp_data).then((data) => {
+    this.GET(url).toPromise().then((data) => {
       data.features.forEach(element => {
         const point = element.geometry.coordinates
         const pointProj = proj4(proj3035).inverse([point[0], point[1]]);
