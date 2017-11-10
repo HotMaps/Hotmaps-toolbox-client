@@ -28,9 +28,8 @@ export const set404url   = 'set404url';
 
 
 
-//layers constant
-export const timeOut   = 200000;
 // layers constant
+export const timeOut   = 200000;
 export const clickAccuracy   = 100;
 export const constant_year = 2012;
 export const constant_year_sp_wwtp = 2015;
@@ -43,7 +42,7 @@ export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
 
 
-//Scale Value
+// Scale Value
 export const nuts0   = 'NUTS 0';
 export const nuts1   = 'NUTS 1';
 export const nuts2   = 'NUTS 2';

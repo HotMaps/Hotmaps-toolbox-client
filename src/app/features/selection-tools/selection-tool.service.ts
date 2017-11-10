@@ -33,9 +33,9 @@ import {
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, nuts3,
   wwtpLayerName
 } from '../../shared/data.service';
-import {GeojsonClass} from "../layers/class/geojson.class";
-import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
-import {SummaryResultClass} from "../summary-result/summary-result.class";
+import {GeojsonClass} from '../layers/class/geojson.class';
+import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
+import {SummaryResultClass} from '../summary-result/summary-result.class';
 
 
 @Injectable()
@@ -64,7 +64,8 @@ export class SelectionToolService {
     private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService, private businessInterfaceRenderService: BusinessInterfaceRenderService,
-    private layerService: LayersService) {
+    private layerService: LayersService
+  ) {
 
   }
 

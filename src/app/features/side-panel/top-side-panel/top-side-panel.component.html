@@ -1,0 +1,6 @@
+<div class='container-panel-top ' [@panelHeightTrigger]='expandedState'>
+    <div class='title-panel-top ' [@titleColorTrigger]='expandedState'>
+      <span *ngIf='expanded' [@titleTextTrigger]='in'>{{title}}</span>
+    </div>
+    <htm-feedback [expandedState]='expandedState'></htm-feedback>
+</div>

@@ -1,0 +1,32 @@
+form{
+
+}
+
+form > fieldset {
+    padding: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+input.ng-invalid, textarea.ng-invalid{
+    border: 1px solid rgb(226, 7, 7);
+}
+
+input.ng-valid, textarea.ng-valid{
+    border: 1px solid rgba(78, 78, 78, 0.19);
+}
+.loader-container{
+    z-index: 20000;
+    position: absolute;
+    width: 100%;
+    height: 480px;
+    top: 50px;
+    background-color: rgba(78, 78, 78, 0.19);
+}
+.loader-container .loader {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}

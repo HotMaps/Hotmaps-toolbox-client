@@ -38,6 +38,7 @@
     "leaflet-virtual-grid": "1.0.4",
     "leaflet.vectorgrid": "1.2.0",
     "mdn-polyfills": "^5.2.0",
+    "ng-recaptcha": "^3.0.2",
     "nodemailer": "^4.2.0",
     "normalize.css": "6.0.0",
     "reflect-metadata": "0.1.10",

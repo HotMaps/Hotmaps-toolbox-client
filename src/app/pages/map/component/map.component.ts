@@ -1,3 +1,4 @@
+import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map} from 'leaflet';
 import 'leaflet-draw'
@@ -22,10 +23,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   openRightSidebar = false;
   openRightToggleExpanded = false;
   openLeftSidebar = false;
+  openTopSidebar = false;
   // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-
+  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
   constructor(private mapService: MapService,
               private logger: Logger,  private panelService: SidePanelService,
 ) {}
@@ -34,10 +36,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
+    this.topSideComponent.setTitle('Feedback');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
-    this.map.remove()
+    this.map.remove();
   }
   notifySidePanelComponent() {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
@@ -58,9 +61,17 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       if (this.openRightToggleExpanded === false) {
         this.openRightToggleExpanded = true;
       } else {
-        this.rightPanelComponent.toggleExpandedState();
+        this.rightPanelComponent.toggleExpandedState('right');
         this.openRightSidebar = val;
+      }
+    });
 
+    this.panelService.topPanelStatus.subscribe((val: boolean) => {
+      if (this.openTopSidebar === false) {
+        this.openTopSidebar = true;
+      } else {
+        this.topSideComponent.toggleExpandedState('top');
+        this.openTopSidebar = val;
       }
     });
 
@@ -70,7 +81,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openLeftSidebar = true;
       } else {
 
-        this.leftPanelComponent.toggleExpandedState();
+        this.leftPanelComponent.toggleExpandedState('left');
         this.openLeftSidebar = val;
 
       }

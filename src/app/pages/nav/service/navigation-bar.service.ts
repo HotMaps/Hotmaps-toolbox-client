@@ -15,23 +15,24 @@ export class NavigationBarService {
   platform: Platform;
   url: string;
     constructor(private panelService: SidePanelService, private selectionToolButtonStateService: SelectionToolButtonStateService,
-      private mailService: MailService, private logger: Logger) { }
-    toggleBar(button: any) {
-      this.logger.log('button' + button);
+      private mailService: MailService, private logger: Logger) {
+    }
 
-        button.stateOpen = !button.stateOpen;
-        if (button.enable) {
-            if (button.buttonFunction === 'left') {
-                this.panelService.leftPanelexpandedCollapsed();
-            }else if (button.buttonFunction === 'right') {
-                this.panelService.rightPanelexpandedCollapsed();
-            }else if (button.buttonFunction  === 'selection') {
-              this.selectionToolButtonStateService.enable(true);
-            }else if (button.buttonFunction  === 'send_mail') {
-              this.sendEmail();
-              button.stateOpen = !button.stateOpen;
-            }
-        }
+    toggleBar(button: any) {
+      this.logger.log('button: ' + button);
+      button.stateOpen = !button.stateOpen;
+      if (button.enable) {
+          if (button.buttonFunction === 'left') {
+              this.panelService.leftPanelexpandedCollapsed();
+          }else if (button.buttonFunction === 'right') {
+              this.panelService.rightPanelexpandedCollapsed();
+          }else if (button.buttonFunction  === 'selection') {
+            this.selectionToolButtonStateService.enable(true);
+          }else if (button.buttonFunction  === 'send_mail') {
+            this.panelService.topPanelexpandedCollapsed();
+            // button.stateOpen = !button.stateOpen;
+          }
+      }
     }
     enableButton(id: string) {
       const button  =  this.getButtons().filter(x => x.id === id)[0];
@@ -43,6 +44,20 @@ export class NavigationBarService {
       const button  =  this.getButtons().filter(x => x.id === id)[0];
       button.enable = false;
       button.stateOpen = false;
+    }
+    disableButtonsWithFunction(func: string) {
+      const buttons  =  this.getButtons().filter(x => x.buttonFunction === func);
+      buttons.forEach((button) => {
+        button.enable = false;
+        button.stateOpen = false;
+      });
+    }
+    enableButtonsWithFunction(func: string) {
+      const buttons  =  this.getButtons().filter(x => x.buttonFunction === func);
+      buttons.forEach((button) => {
+        button.enable = true;
+        button.stateOpen = true;
+      });
     }
     getButtons(): NavigationButton[] {
         return navigationButtons;
