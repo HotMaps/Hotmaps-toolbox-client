@@ -1,5 +1,5 @@
 import { ToasterService } from './../../../shared/services/toaster.service';
-import { Http } from '@angular/http';
+declare var jQuery: any;
 
 import {
     Component,
@@ -62,7 +62,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     }
     sendRequest(f) {
         jQuery.post(urlMailServer, f.value, (data) => {
-            console.log(data)
+
             if (data === '1') {
                 f.reset();
                 this.submited = true;
