@@ -44,8 +44,7 @@ export class LayersService extends APIService {
         layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
       })
-    },
-
+    }
   ]);
   private popup = L.popup();
   public getLayers(): any {
@@ -160,12 +159,11 @@ export class LayersService extends APIService {
     this.loaderService.display(false);
 
   }
-  selectAreaWithNuts(map, data: any, latlng: LatLng) {
+  /* selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
-
-  }
+  } */
 
   addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
     this.loaderService.display(false);

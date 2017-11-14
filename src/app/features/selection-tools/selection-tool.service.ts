@@ -97,7 +97,9 @@ export class SelectionToolService {
   setHTMLContent(el, str): any {
     el.innerHTML = str;
   }
+  onDrawCreated(e){
 
+  }
   createButtons(type) {
     this.logger.log('SelectionToolService/createButtons');
     this.containerPopup = L.DomUtil.create('div');
@@ -398,6 +400,12 @@ export class SelectionToolService {
       this.isDrawControl = !this.isDrawControl;
     }
 
+  }
+  removeControls(map: any) {
+    if (this.isDrawControl) {
+      map.removeControl(this.drawControl)
+      this.isDrawControl = false;
+    }
   }
 
   toggleControl(map: any) {
