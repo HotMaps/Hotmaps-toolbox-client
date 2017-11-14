@@ -1,3 +1,4 @@
+import { NavigationBarService } from './../../pages/nav/service/navigation-bar.service';
 import {
     Component,
     OnInit,
@@ -34,9 +35,13 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
 
-    toggleExpandedState() {
+    toggleExpandedState(func: string) {
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
-
+        if (!this.expanded) {
+            // this.navigationBarService.disableButtonsWithFunction(func);
+        } else {
+            // this.navigationBarService.enableButtonsWithFunction(func);
+        }
         this.expanded = !this.expanded;
     }
 

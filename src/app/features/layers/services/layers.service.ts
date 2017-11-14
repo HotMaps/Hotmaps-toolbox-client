@@ -33,7 +33,7 @@ const proj4 = (proj4x as any).default;
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
+import {NavigationBarService} from '../../../pages/nav/service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 
 @Injectable()
@@ -60,7 +60,8 @@ export class LayersService extends APIService {
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               private populationService: PopulationService, private helper: Helper,
-              private panelService: SidePanelService, private navBarService: NavigationBarService,
+              private panelService: SidePanelService,
+              private navBarService: NavigationBarService,
               private businessInterfaceRenderService: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }

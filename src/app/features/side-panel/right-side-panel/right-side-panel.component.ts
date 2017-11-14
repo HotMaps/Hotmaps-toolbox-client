@@ -1,3 +1,4 @@
+import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
 import { GeojsonClass } from './../../layers/class/geojson.class';
 import {

@@ -1,5 +1,3 @@
-
-
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -8,13 +6,12 @@ import 'jquery';
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@angular/core';
 import { HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule, AppComponent  } from './';
-
 
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -23,11 +20,13 @@ import { GeocodingService, Logger, LoaderService, ToasterService,
   GlobalErrorHandler, Helper, BusinessNamePipe, BusinessInterfaceRenderService,
   LayerNamePipe, UppercaseFirstLetterPipe, NumberFormatPipe} from './shared';
 
-
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms'
 import { LayersService } from './features/layers';
 import { PopulationService } from './features/population/services/population.service';
 import { SidePanelService} from './features/side-panel/side-panel.service';
 import { SelectionToolService, SelectionToolButtonStateService} from './features/selection-tools';
+import { FeedbackComponent } from './features/feedback/';
 
 import { SelectionScaleService} from './features/selection-scale';
 import { SummaryResultComponent} from './features/summary-result/summary-result.component';
@@ -40,8 +39,8 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
 import { SummaryResultService } from './features/summary-result/summary-result.service';
 
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
-import {MailService} from './features/feedback/mail.service';
-
+import { MailService } from './features/feedback/mail.service';
+import { TopSideComponent } from 'app/features/side-panel';
 
 @NgModule({
   imports: [
@@ -49,7 +48,10 @@ import {MailService} from './features/feedback/mail.service';
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    RecaptchaFormsModule,
+    RecaptchaModule.forRoot()
   ],
   bootstrap: [AppComponent],
   declarations: [
@@ -64,10 +66,12 @@ import {MailService} from './features/feedback/mail.service';
     SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
+    TopSideComponent,
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
     BusinessNamePipe,
+    FeedbackComponent
   ],
 
   providers: [

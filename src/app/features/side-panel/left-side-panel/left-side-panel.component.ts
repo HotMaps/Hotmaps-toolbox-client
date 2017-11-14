@@ -1,3 +1,4 @@
+import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
     Component,
     OnInit,
@@ -107,7 +108,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
        this.layers = layers
        this.category = layers.map(item => item.category)
          .filter((value, index, self) => self.indexOf(value) === index);
-
      }
 
     ngOnDestroy() {
