@@ -254,22 +254,25 @@ export class LayersService extends APIService {
       '&outputFormat=application/json';
     this.logger.log(coordinate.toString());
     this.logger.log(url);
-    this.GET(url).toPromise().then((data) => {
-      data.features.forEach(element => {
-        const point = element.geometry.coordinates
-        const pointProj = proj4(proj3035).inverse([point[0], point[1]]);
-        const marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
-          icon: L.icon({
-            iconUrl: '../../assets/leaflet-images/marker-icon.png',
-            iconSize: [28, 40],
-            iconAnchor: [14, 20]
-          })
-        });
-        this.zoom_layerGroup.addLayer(marker);
-      });
-    }).then(() => this.zoom_layerGroup.addTo(map));
+    return this.http.get(url).map((data: Response) => data.json() as any)
+        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this));
     /* this.GET(url).toPromise().then((data) => { */
     /* Promise.resolve(wwtp_data).then((data) => { */
+  }
+  addPOIToMap(data, map) {
+    data.features.forEach(element => {
+      const point = element.geometry.coordinates
+      const pointProj = proj4(proj3035).inverse([point[0], point[1]]);
+      const marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
+        icon: L.icon({
+          iconUrl: '../../assets/leaflet-images/marker-icon.png',
+          iconSize: [28, 40],
+          iconAnchor: [14, 20]
+        })
+      });
+      this.zoom_layerGroup.addLayer(marker);
+    } );
+    this.zoom_layerGroup.addTo(map);
   }
 
   removeWwtpWithMarker(map: any) {

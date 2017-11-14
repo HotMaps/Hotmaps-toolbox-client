@@ -1167,22 +1167,26 @@ var LayersService = (function (_super) {
             '&outputFormat=application/json';
         this.logger.log(coordinate.toString());
         this.logger.log(url);
-        this.GET(url).toPromise().then(function (data) {
-            data.features.forEach(function (element) {
-                var point = element.geometry.coordinates;
-                var pointProj = proj4(__WEBPACK_IMPORTED_MODULE_9__shared_data_service__["x" /* proj3035 */]).inverse([point[0], point[1]]);
-                var marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
-                    icon: L.icon({
-                        iconUrl: '../../assets/leaflet-images/marker-icon.png',
-                        iconSize: [28, 40],
-                        iconAnchor: [14, 20]
-                    })
-                });
-                _this.zoom_layerGroup.addLayer(marker);
-            });
-        }).then(function () { return _this.zoom_layerGroup.addTo(map); });
+        return this.http.get(url).map(function (data) { return data.json(); })
+            .subscribe(function (res) { return _this.addPOIToMap(res, map); }, function (err) { return _this.handleError.bind(_this); });
         /* this.GET(url).toPromise().then((data) => { */
         /* Promise.resolve(wwtp_data).then((data) => { */
+    };
+    LayersService.prototype.addPOIToMap = function (data, map) {
+        var _this = this;
+        data.features.forEach(function (element) {
+            var point = element.geometry.coordinates;
+            var pointProj = proj4(__WEBPACK_IMPORTED_MODULE_9__shared_data_service__["x" /* proj3035 */]).inverse([point[0], point[1]]);
+            var marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
+                icon: L.icon({
+                    iconUrl: '../../assets/leaflet-images/marker-icon.png',
+                    iconSize: [28, 40],
+                    iconAnchor: [14, 20]
+                })
+            });
+            _this.zoom_layerGroup.addLayer(marker);
+        });
+        this.zoom_layerGroup.addTo(map);
     };
     LayersService.prototype.removeWwtpWithMarker = function (map) {
         this.logger.log('removeWwtpWithMarker');
