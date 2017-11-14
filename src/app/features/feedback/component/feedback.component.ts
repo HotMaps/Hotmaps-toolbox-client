@@ -14,7 +14,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
-import {urlMailServer} from "../../../shared/data.service";
+import {urlMailServer} from '../../../shared/data.service';
 
 @Component({
     selector: 'htm-feedback',
