@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';
 
 @Component({
-    selector: 'nav-bar',
+    selector: 'htm-nav-bar',
     templateUrl: './navigation-bar.component.html',
     styleUrls: [ './navigation-bar.component.css' ]
 })
@@ -16,7 +16,6 @@ export class NavigationBarComponent implements OnInit {
     constructor(private navService: NavigationBarService) { }
 
     ngOnInit() {
-        // you must allow the change of states
         this.navButtons = this.navService.getButtons();
     }
     toggleExpandedState(button: any) {

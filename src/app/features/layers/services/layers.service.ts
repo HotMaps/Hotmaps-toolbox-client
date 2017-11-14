@@ -1,3 +1,4 @@
+import { wwtp_data } from './../mock/wwtp.data';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -7,7 +8,8 @@ import 'rxjs/add/operator/mergeMap';
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, unit_population
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
+  unit_population, idWwtpLayer, zoomLevelDetectChange
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -18,13 +20,15 @@ import {Logger} from '../../../shared/services/logger.service';
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
+import { proj3035 } from './../../../shared/data.service';
 
 import {APIService} from '../../../shared/services/api.service';
 import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
-
+import * as proj4x from 'proj4';
+const proj4 = (proj4x as any).default;
 
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
@@ -35,6 +39,7 @@ import {BusinessInterfaceRenderService} from '../../../shared/business/business.
 @Injectable()
 export class LayersService extends APIService {
   private layers = new L.FeatureGroup();
+  private zoom_layerGroup: L.LayerGroup;
   private current_nuts_level = '0';
 
   private layersArray: Dictionary = new Dictionary([
@@ -43,6 +48,7 @@ export class LayersService extends APIService {
       {
         layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
+        zIndex: idDefaultLayer
       })
     },
 
@@ -86,17 +92,14 @@ export class LayersService extends APIService {
     }
     return readyToShow;
   }
-  addLayerWithOrder(map: any, layer: any) {
-    this.layers.addLayer(<Layer> layer);
-    this.logger.log(layer);
-    this.logger.log(this.layers.getLayers().toString())
-  }
 
   showOrRemoveLayer(action: string, map: any, order: number) {
     this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
+      this.logger.log('this.layersArray doesnt contain ' + action);
       this.addLayerWithAction(action, map, order);
     } else {
+      this.logger.log('this.layersArray contain ' + action);
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray)
@@ -136,7 +139,10 @@ export class LayersService extends APIService {
     // we destroy the layer
     this.layersArray.remove(action);
   }
-
+  setupZoomLayerGroup(map) {
+    this.zoom_layerGroup = new L.LayerGroup();
+    this.zoom_layerGroup.addTo(map);
+  }
   erroxFix(error) {
     this.handleError.bind(this);
     this.loaderService.display(false);
@@ -198,6 +204,75 @@ export class LayersService extends APIService {
       '<li>Capacity: ' + capacity + ' ' + unit_capacity + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
          '<li>Reference date: ' + date + '</li></ul>').openOn(map);
   }
+  showLayerDependingZoom(action, map, zoomLevel: number) {
+    const mapZoomLevel = map.getZoom();
+    this.logger.log('mapZoomLevel ' + mapZoomLevel + ', zoomLevel ' + zoomLevel);
+    if (this.layersArray.containsKey(action) === true) {
+      if (mapZoomLevel >= zoomLevel) {
+        const layer = this.layersArray.value(action);
+        this.layers.removeLayer(layer);
+        this.showWwtpWithMarker(map);
+      } else if (mapZoomLevel < zoomLevel) {
+        if (!this.layersArray.containsKey(action)) {
+          this.addLayerWithAction(action, map, zoomLevel);
+        } else {
+          const layer = this.layersArray.value(action);
+          this.layers.addLayer(layer);
+        }
+        this.removeWwtpWithMarker(map);
+      }
+    }else {
+      this.removeWwtpWithMarker(map);
+    }
+  }
 
+  transformLatLngToEpsg(latlng: L.LatLng, epsgString: String) {
+    return proj4(epsgString).forward([latlng.lng, latlng.lat]);
+  }
 
+  getTranformedBoundingBox(map: any, epsgString): number[] {
+    const coordinate = [];
+    const bound = map.getBounds();
+    const northEastTransformed = this.transformLatLngToEpsg(bound.getNorthEast(), epsgString);
+    const southWestTransformed  = this.transformLatLngToEpsg(bound.getSouthWest(), epsgString);
+    coordinate.push(southWestTransformed[1], southWestTransformed[0]);
+    coordinate.push(northEastTransformed[1], northEastTransformed[0]);
+    return coordinate;
+  }
+
+  showWwtpWithMarker(map: any) {
+    this.logger.log('showWwtpWithMarker');
+    const epsg = '3035';
+    const coordinate = this.getTranformedBoundingBox(map, proj3035);
+    const url = geoserverUrl + '?service=wfs' +
+      '&version=2.0.0' +
+      '&request=GetFeature' +
+      '&typeNames=hotmaps:' + wwtpLayerName +
+      '&srsName=EPSG:' + epsg +
+      '&bbox=' + coordinate.toString() +
+      '&outputFormat=application/json';
+    this.logger.log(coordinate.toString());
+    this.logger.log(url);
+    this.GET(url).toPromise().then((data) => {
+      data.features.forEach(element => {
+        const point = element.geometry.coordinates
+        const pointProj = proj4(proj3035).inverse([point[0], point[1]]);
+        const marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
+          icon: L.icon({
+            iconUrl: '../../assets/leaflet-images/marker-icon.png',
+            iconSize: [28, 40],
+            iconAnchor: [14, 20]
+          })
+        });
+        this.zoom_layerGroup.addLayer(marker);
+      });
+    }).then(() => this.zoom_layerGroup.addTo(map));
+    /* this.GET(url).toPromise().then((data) => { */
+    /* Promise.resolve(wwtp_data).then((data) => { */
+  }
+
+  removeWwtpWithMarker(map: any) {
+    this.logger.log('removeWwtpWithMarker');
+    this.zoom_layerGroup.removeFrom(map);
+  }
 }

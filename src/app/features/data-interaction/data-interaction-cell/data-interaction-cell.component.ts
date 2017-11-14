@@ -1,3 +1,4 @@
+import { LayersService } from './../../layers/services/layers.service';
 import {
     Component,
     OnInit,
@@ -39,15 +40,18 @@ export class DataInteractionCellComponent implements OnInit {
 
     constructor(private mapService: MapService) { }
 
-  showRemoveLayer(e, action, order) {
-    this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-    if (this.dataInteraction.isSelected) {
-      console.log(' dataInteraction true');
-    }else {
-      console.log(' dataInteraction false');
+    showRemoveLayer(e, action, order) {
+        this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
+        if (this.dataInteraction.isSelected) {
+            console.log(' dataInteraction true');
+        }else {
+            console.log(' dataInteraction false');
+        }
+        this.mapService.showOrRemoveLayer(action, order);
+        if (this.dataInteraction.zoomLevel > 0) {
+            this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel)
+        }
     }
-    this.mapService.showOrRemoveLayer(action, order);
-  }
     ngOnInit() {
     }
 }

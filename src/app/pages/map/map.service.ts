@@ -1,3 +1,4 @@
+import { idWwtpLayer } from './../../shared/data.service';
 /**
  * Created by lesly on 27.05.17.
  */
@@ -11,7 +12,7 @@ import {basemap} from './basemap';
 import {Helper, Logger, LoaderService, APIService, ToasterService, BusinessInterfaceRenderService} from '../../shared'
 import {SelectionToolService} from '../../features/selection-tools';
 import {SelectionScaleService} from '../../features/selection-scale';
-import {clickAccuracy, geoserverGetFeatureInfoUrl, hectare, wwtpLayerName} from '../../shared/data.service';
+import {clickAccuracy, geoserverGetFeatureInfoUrl, hectare, wwtpLayerName, zoomLevelDetectChange} from '../../shared/data.service';
 import LatLng = L.LatLng;
 import {GeojsonClass, LayersService} from '../../features/layers';
 
@@ -83,17 +84,20 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   getSelectionScaleMenu(map: any) {
     this.selectionScaleService.getSelectionScaleMenu(map);
   }
-  retriveMapEvent(): void {
+  showLayerDependingZoom() {
+    if (this.layersService.getLayerArray().containsKey(wwtpLayerName)) {
+      this.layersService.showLayerDependingZoom(wwtpLayerName, this.map, zoomLevelDetectChange);
+    }
+  }
+  retriveMapEvent(map: Map): void {
     this.logger.log('MapService/retriveMapEvent');
     const self = this;
     this.map.on('click', function(e: MouseEvent) {
       self.logger.log('MapService/click');
-      // check if the selection toul is activate
+      // check if the selection tool is activate
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue() );
       if (self.selectionScaleService.getScaleValue() === hectare) {
-        if (// self.selectionToolService.getIsActivate() === false &&
-        // check if there are layers to show in the layer service
-        self.layersService.getIsReadyToShowFeatureInfo() === true) {
+        if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
           const layer = new L.Rectangle(e.latlng.toBounds(100));
           self.selectionToolService.layerCreatedClick(layer, self.map);
         }
@@ -102,7 +106,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
       }
     });
-    this.map.on('baselayerchange', onBaselayerChange);
+    map.on('baselayerchange', onBaselayerChange);
     function onBaselayerChange(e) {
       self.logger.log('baselayerchange');
       // in this part we manage the selection scale then we refresh the layers
@@ -116,32 +120,38 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.logger.log('MapService/didUpdateLayers-----' + e);
       }
     }
-    this.map.on('zoomend', function() {
+    map.on('zoomend', function(e) {
       self.logger.log('MapService/zoomend');
+      self.showLayerDependingZoom()
     });
 
-    this.map.on('zoomstart', function(event)
-    {
+    map.on('zoomstart', function(e) {
+      // self.logger.log('MapService/zoomstart');
+    });
+    map.on ('measurestart', function () {
 
     });
-    this.map.on ('measurestart', function () {
-
+    map.on('measurefinish', function (evt) {
     });
-    this.map.on('measurefinish', function (evt) {
-    });
-    this.map.on('LayersControlEvent', function() {
+    map.on('LayersControlEvent', function() {
       self.logger.log('LayersControlEvent');
     });
-    this.map.on('layeradd', function(e) {
+
+
+    map.on('layeradd', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
     });
-    this.map.on('didUpdateLayers', function(e) {
+    map.on('moveend', function(e) {
+      // self.logger.log('MapService/layeradd-----' + e);
+      self.showLayerDependingZoom();
+    });
+    map.on('didUpdateLayers', function(e) {
       if (self.selectionToolService.isLayerInMap() === true) {
         self.selectionToolService.openPopup();
         self.logger.log('MapService/didUpdateLayers-----' + e);
       }
     });
-    this.map.on('overlayadd', onOverlayAdd);
+    map.on('overlayadd', onOverlayAdd);
     function onOverlayAdd(e) {
       self.logger.log('overlayadd');
     }
@@ -150,13 +160,22 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
   setupMapservice(map: Map) {
+    // set the map to the services that needs to get an instance
     this.logger.log('MapService/setupMapservice');
     // set the map to the services that needs to get an instance
     this.map = map;
     this.selectionToolService.setMap(map);
-    this.retriveMapEvent();
+    this.retriveMapEvent(this.map);
+
     this.layersService.getLayers().addTo(map);
-    this.layersService.setupDefaultLayer()
+    this.layersService.setupDefaultLayer();
+    this.layersService.setupZoomLayerGroup(map);
   }
 
+  checkZoomLevelLayer(action, zoomLevel) {
+    this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+  }
+  getLayerArray() {
+    return this.layersService.getLayerArray();
+  }
 }

@@ -43,7 +43,7 @@ import {GeocodingService} from '../shared/services/geocoding.service';
 import {DataInteractionService} from '../features/data-interaction/data-interaction.service';
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {SelectionScaleService} from "../features/selection-scale/selection-scale.service";
+import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
 
 
 
@@ -107,7 +107,7 @@ describe('AppComponent: Router', () => {
   }));
 
 
-  it('fakeAsync works', fakeAsync(() => {
+  /*it('fakeAsync works', fakeAsync(() => {
     console.log('it goes to fakeAsync works');
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
@@ -137,5 +137,5 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
       console.log('after expect');
     });
-  }));
+  }));*/
 });
