@@ -3181,6 +3181,8 @@ var MapService = (function (_super) {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
         var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_6__shared_data_service__["z" /* clickAccuracy */]).toBBoxString();
+        // to test
+        //
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
         var url = __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["A" /* geoserverGetFeatureInfoUrl */]
@@ -3192,7 +3194,6 @@ var MapService = (function (_super) {
     };
     MapService.prototype.selectAreaWithNuts = function (areaSelected) {
         this.logger.log('MapService/selectAreaWithNuts()');
-        var geometrie = areaSelected.features[0].geometry;
         // remove the layer if there is one
         this.removeAreaSelectedlayer(this.map);
         this.areaNutsSelectedLayer = L.geoJson(areaSelected);
@@ -3200,6 +3201,7 @@ var MapService = (function (_super) {
         // this.layersService.getLayers().addLayer(this.areaNutsSelectedLayer, true);
         this.loaderService.display(false);
         this.createSelection();
+        this.map.fitBounds(this.areaNutsSelectedLayer.getBounds());
     };
     MapService.prototype.createSelection = function () {
         this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
@@ -3267,7 +3269,7 @@ var MapService = (function (_super) {
         }
         map.on('zoomend', function (e) {
             self.logger.log('MapService/zoomend');
-            self.showLayerDependingZoom();
+            // self.showLayerDependingZoom()
         });
         map.on('zoomstart', function (e) {
             // self.logger.log('MapService/zoomstart');
@@ -3284,7 +3286,7 @@ var MapService = (function (_super) {
         });
         map.on('moveend', function (e) {
             // self.logger.log('MapService/layeradd-----' + e);
-            self.showLayerDependingZoom();
+            // self.showLayerDependingZoom();
         });
         map.on('didUpdateLayers', function (e) {
             if (self.selectionToolService.isLayerInMap() === true) {

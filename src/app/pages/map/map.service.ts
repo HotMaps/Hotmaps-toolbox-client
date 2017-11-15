@@ -32,8 +32,11 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }
   getNutsGeometryFromNuts( latlng: LatLng, nuts_level): any {
     this.logger.log('MapService/getNutsGeometryFromNuts()');
+
     const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+    // to test
+    //
     bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
     const action = 'population';
     const url = geoserverGetFeatureInfoUrl
@@ -45,7 +48,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }
   selectAreaWithNuts(areaSelected: any) {
     this.logger.log('MapService/selectAreaWithNuts()');
-    const geometrie = areaSelected.features[0].geometry
     // remove the layer if there is one
     this.removeAreaSelectedlayer(this.map);
     this.areaNutsSelectedLayer = L.geoJson(areaSelected);
@@ -53,6 +55,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
      // this.layersService.getLayers().addLayer(this.areaNutsSelectedLayer, true);
     this.loaderService.display(false);
     this.createSelection();
+    this.map.fitBounds(this.areaNutsSelectedLayer.getBounds());
 
   }
   createSelection() {
@@ -122,7 +125,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
     map.on('zoomend', function(e) {
       self.logger.log('MapService/zoomend');
-      self.showLayerDependingZoom()
+     // self.showLayerDependingZoom()
     });
 
     map.on('zoomstart', function(e) {
@@ -143,7 +146,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     });
     map.on('moveend', function(e) {
       // self.logger.log('MapService/layeradd-----' + e);
-      self.showLayerDependingZoom();
+      // self.showLayerDependingZoom();
     });
     map.on('didUpdateLayers', function(e) {
       if (self.selectionToolService.isLayerInMap() === true) {
