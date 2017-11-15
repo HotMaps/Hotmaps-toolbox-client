@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Logger} from './services/logger.service';
-import {Location} from './class/location/location';
+import {Logger} from './services';
+import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
 import {round_value} from './data.service';
 
@@ -38,6 +38,20 @@ export class Helper {
       n++;
     } while (!this.isNullOrUndefined(latlng[n]));
 
+    return locations;
+  }
+
+  convertListLatLongToLocation(latlngArray): Location[] {
+    const locations = [];
+    console.log(latlngArray[0][0]);
+    const latlng = latlngArray[0][0];
+    for (let i = 0; i < latlng.length; i++) {
+        const loc: Location = {
+          lat: latlng[i][1],
+          lng: latlng[i][0]
+        };
+        locations.push(loc);
+    }
     return locations;
   }
 

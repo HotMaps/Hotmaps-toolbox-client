@@ -4,4 +4,5 @@ export class DataInteractionClass {
   category: string;
   isSelected: boolean;
   workspaceName: string;
+  zoomLevel: number;
 }

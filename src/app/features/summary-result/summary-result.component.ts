@@ -1,3 +1,4 @@
+import { GeojsonClass } from './../layers/class/geojson.class';
 import {
   Component,
   OnInit,
@@ -6,14 +7,16 @@ import {
   state,
   style,
   transition,
-  animate, Input, AfterViewInit
+  animate, Input, AfterViewInit, OnChanges
 } from '@angular/core';
 
 
 
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass} from './summary-result.class';
-import {round_value} from '../../shared/data.service';
+import {hectare, round_value} from '../../shared/data.service';
+import {SelectionScaleService} from '../selection-scale/selection-scale.service';
+import {Logger} from '../../shared/services/logger.service';
 
 @Component({
 
@@ -34,15 +37,34 @@ import {round_value} from '../../shared/data.service';
     ]),
   ]
 })
-export class SummaryResultComponent  implements OnInit, OnDestroy  {
+export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   @Input() expanded: boolean;
+  @Input() poiData;
+  @Input() poiTitle;
   @Input('summaryResult') summaryResult: SummaryResultClass;
+
   expandedState = 'collapsed';
   busy: Promise<any>;
   private round = round_value;
-  constructor(private summaryResultService: SummaryResultService) {}
+  private scale = 'Nuts 3';
+  private isDataAgregate = false;
+  constructor(private summaryResultService: SummaryResultService, private selectionScaleService: SelectionScaleService,
+              private logger: Logger) {}
 
   ngOnInit() {
+
+
+  }
+  ngOnChanges() {
+    this.logger.log('SummaryResultComponent/ngOnChanges');
+    this.scale = this.selectionScaleService.getScaleValue();
+    if (this.selectionScaleService.getScaleValue() !== hectare) {
+      this.isDataAgregate = true;
+    } else {
+      this.isDataAgregate = false;
+    }
+    console.log('SummaryResultComponent/ngOnInit ' + this.expanded);
+    console.log('SummaryResultComponent/ngOnInit ' + JSON.stringify(this.poiData));
   }
 
   ngOnDestroy() {

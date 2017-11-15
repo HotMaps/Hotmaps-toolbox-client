@@ -1,4 +1,4 @@
-import { NavigationButton } from './navigation-bar.class';
+import { NavigationButton } from '../class/navigation-bar.class';
 
 export const navigationButtons: NavigationButton[] = [
     {id: 'layers', title: 'Folder', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false},
@@ -11,5 +11,5 @@ export const navigationButtons: NavigationButton[] = [
     {id: 'save_as', title: 'Save as', buttonFunction: '', iconClass: 'flaticon-technology-2', enable: false, stateOpen: false},
     {id: 'comparison', title: 'Comparison', buttonFunction: '', iconClass: 'flaticon-comparison-1', enable: false, stateOpen: false},
     {id: 'data_info', title: 'Dataset informations', buttonFunction: '', iconClass: 'flaticon-database-7', enable: false, stateOpen: false},
-   {id: 'feedback', title: 'issue', buttonFunction: 'send_mail', iconClass: 'flaticon-send', enable: true, stateOpen: false},
+   {id: 'feedback', title: 'Feedback', buttonFunction: 'send_mail', iconClass: 'flaticon-send', enable: true, stateOpen: false},
 ]

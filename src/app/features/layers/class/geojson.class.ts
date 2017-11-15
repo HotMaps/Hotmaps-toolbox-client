@@ -5,14 +5,14 @@
   }
 
   export interface Properties {
-    gid: number;
-    capacity: string;
-    power: string;
-    unit: string;
-    heat_density: string;
-    population_density: string;
-    date: string;
-    bbox: number[];
+    gid?: number;
+    capacity?: string;
+    power?: string;
+    unit?: string;
+    heat_density?: string;
+    population_density?: string;
+    date?: string;
+    bbox?: number[];
   }
 
 
@@ -20,8 +20,8 @@
   export interface Feature {
     type: string;
     id: string;
-    geometry: Geometry;
-    geometry_name: string;
+    geometry?: Geometry;
+    geometry_name?: string;
     properties: Properties;
   }
 
@@ -38,6 +38,6 @@
     type: string;
     totalFeatures: string;
     features: Feature[];
-    crs: Crs;
-    bbox: number[];
+    crs: number;
+    bbox?: number[];
   }

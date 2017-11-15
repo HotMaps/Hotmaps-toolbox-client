@@ -1,64 +1,57 @@
-
-
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
-
 import 'jquery';
 
-import 'leaflet-measure/dist/leaflet-measure.js';
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@angular/core';
-import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { HttpModule} from '@angular/http';
+import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import { DecimalPipe } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BusinessNamePipe } from './shared/pipes/business-name.pipe';
-import { BusinessInterfaceRenderService } from './shared/business/business.service';
+import { AppRoutingModule, AppComponent  } from './';
+
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
-import { MapService } from './pages/map/map.service';
-import { GeocodingService } from './shared/services/geocoding.service';
+import { MapService, MapComponent } from './pages/map';
+import { GeocodingService, Logger, LoaderService, ToasterService,
+  GlobalErrorHandler, Helper, BusinessNamePipe, BusinessInterfaceRenderService,
+  LayerNamePipe, UppercaseFirstLetterPipe, NumberFormatPipe} from './shared';
 
-import { MapComponent } from './pages/map/component/map.component';
-
-import { Logger } from './shared/services/logger.service';
-import { Helper } from './shared/helper';
-import { LayersService } from './features/layers/services/layers.service';
-import { LoaderService } from './shared/services/loader.service';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms'
+import { LayersService } from './features/layers';
 import { PopulationService } from './features/population/services/population.service';
-import { ToasterService } from './shared/services/toaster.service'
-import { GlobalErrorHandler } from './shared/services/error-handler';
 import { SidePanelService} from './features/side-panel/side-panel.service';
-import { SelectionToolService} from './features/selection-tools/selection-tool.service';
-import { SelectionToolButtonStateService} from './features/selection-tools/selection-tool-button-state.service';
+import { SelectionToolService, SelectionToolButtonStateService} from './features/selection-tools';
+import { FeedbackComponent } from './features/feedback/';
+
+import { SelectionScaleService} from './features/selection-scale';
 import { SummaryResultComponent} from './features/summary-result/summary-result.component';
 import { SummaryResultCellComponent} from './features/summary-result/summary-result-cell';
 import { RightSideComponent } from './features/side-panel/right-side-panel/right-side-panel.component';
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
-import { NavigationBarComponent } from './pages/nav/navigation-bar.component';
-import { NavigationBarService } from './pages/nav/navigation-bar.service';
+import { NavigationBarComponent } from './pages/nav/component/navigation-bar.component';
+import { NavigationBarService } from './pages/nav/service/navigation-bar.service';
 import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
 import { SummaryResultService } from './features/summary-result/summary-result.service';
-import { UppercaseFirstLetterPipe } from './shared/pipes/uppercase-first-letter.pipe';
-import { LayerNamePipe } from './shared/pipes/layer-name.pipe';
-import { DecimalPipe } from '@angular/common';
 
-
-import { NumberFormatPipe } from './shared/pipes/number-format.pipe';
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
-import {MailService} from "./features/feedback/mail.service";
-
+import { MailService } from './features/feedback/mail.service';
+import { TopSideComponent } from 'app/features/side-panel';
 
 @NgModule({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    RecaptchaFormsModule,
+    RecaptchaModule.forRoot()
   ],
   bootstrap: [AppComponent],
   declarations: [
@@ -73,10 +66,12 @@ import {MailService} from "./features/feedback/mail.service";
     SummaryResultCellComponent,
     DataInteractionCellComponent,
     LeftSideComponent,
+    TopSideComponent,
     UppercaseFirstLetterPipe,
     NumberFormatPipe,
     LayerNamePipe,
-    BusinessNamePipe
+    BusinessNamePipe,
+    FeedbackComponent
   ],
 
   providers: [
@@ -98,7 +93,8 @@ import {MailService} from "./features/feedback/mail.service";
     BusinessInterfaceRenderService,
     SummaryResultService,
     DecimalPipe,
-    MailService
+    MailService,
+    SelectionScaleService
 
 
   ],

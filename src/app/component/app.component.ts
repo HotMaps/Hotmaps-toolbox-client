@@ -1,6 +1,6 @@
 import {Component, AfterContentInit, OnInit, ViewChild} from '@angular/core';
 
-import { LoaderService } from './shared/services/loader.service';
+import { LoaderService } from '../shared/services/loader.service';
 
 
 @Component({

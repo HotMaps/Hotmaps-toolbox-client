@@ -1,15 +1,14 @@
+import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
+import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map} from 'leaflet';
 import 'leaflet-draw'
 
 import { basemap } from '../basemap'
-import { LeftSideComponent } from '../../../features/side-panel/left-side-panel/index';
-import { Logger } from '../../../shared/services/logger.service';
+import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
+import { Logger } from '../../../shared';
 import { MapService } from '../map.service';
-import { SearchBarComponent } from '../../searchbar/searchbar.component';
-import { SidePanelService} from '../../../features/side-panel/side-panel.service';
-import { RightSideComponent } from '../../../features/side-panel/right-side-panel/index';
-
+import { SearchBarComponent } from '../../searchbar';
 
 @Component({
   selector: 'htm-map',
@@ -25,9 +24,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   openRightSidebar = false;
   openRightToggleExpanded = false;
   openLeftSidebar = false;
+  openTopSidebar = false;
+  // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-
+  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
   constructor(private mapService: MapService,
               private logger: Logger,  private panelService: SidePanelService,
 ) {}
@@ -36,14 +37,18 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.notifySidePanelComponent();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
+    this.topSideComponent.setTitle('Feedback');
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
-    this.map.remove()
+    this.map.remove();
   }
   notifySidePanelComponent() {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
+    });
+    this.panelService.poiData.subscribe((data) => {
+      this.rightPanelComponent.setPoiData(data);
     });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
       if (this.openRightSidebar === false) {
@@ -57,9 +62,17 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       if (this.openRightToggleExpanded === false) {
         this.openRightToggleExpanded = true;
       } else {
-        this.rightPanelComponent.toggleExpandedState();
+        this.rightPanelComponent.toggleExpandedState('right');
         this.openRightSidebar = val;
+      }
+    });
 
+    this.panelService.topPanelStatus.subscribe((val: boolean) => {
+      if (this.openTopSidebar === false) {
+        this.openTopSidebar = true;
+      } else {
+        this.topSideComponent.toggleExpandedState('top');
+        this.openTopSidebar = val;
       }
     });
 
@@ -69,7 +82,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openLeftSidebar = true;
       } else {
 
-        this.leftPanelComponent.toggleExpandedState();
+        this.leftPanelComponent.toggleExpandedState('left');
         this.openLeftSidebar = val;
 
       }
@@ -88,15 +101,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   createMap(basemap: any): Map {
     // setup  the map from leaflet
     let self = this;
-    const option =  {
-      zoomControl: false,
-      center: L.latLng(47.1, 7.0833),
-      zoom: 5,
-      minZoom: 4,
-      maxZoom: 17,
-      layers: [basemap.Esri, basemap.Hybrid]
-    }
-    this.map = L.map('map', option);
+    this.map = L.map('map', map_options);
     L.control.zoom({ position: 'topright' }).addTo(this.map);
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -123,6 +128,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
 
     L.control.scale().addTo(this.map);
+    this.mapService.getSelectionScaleMenu(this.map);
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
     return this.map;
@@ -133,6 +139,4 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   getMap(): Map {
     return this.map;
   }
-
-
 }

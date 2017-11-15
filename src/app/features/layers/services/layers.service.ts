@@ -1,3 +1,4 @@
+import { wwtp_data } from './../mock/wwtp.data';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -8,7 +9,7 @@ import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population
+  unit_population, idWwtpLayer, zoomLevelDetectChange
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -19,26 +20,33 @@ import {Logger} from '../../../shared/services/logger.service';
 
 import {GeojsonClass} from '../class/geojson.class'
 import {ToasterService} from '../../../shared/services/toaster.service';
+import { proj3035 } from './../../../shared/data.service';
 
 import {APIService} from '../../../shared/services/api.service';
 import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
+import * as proj4x from 'proj4';
+const proj4 = (proj4x as any).default;
 
-
+import { poiDataResult } from './../../summary-result/mock/poi-result.data';
+import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
+import {NavigationBarService} from '../../../pages/nav/service';
+import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 
 @Injectable()
 export class LayersService extends APIService {
   private layers = new L.FeatureGroup();
-
+  private zoom_layerGroup: L.LayerGroup;
+  private current_nuts_level = '0';
 
   private layersArray: Dictionary = new Dictionary([
     {
-      key: defaultLayer, value: L.tileLayer.wms(geoserverUrl,
+      key: defaultLayer , value: L.tileLayer.wms(geoserverUrl,
       {
-        layers: 'hotmaps:' + defaultLayer + '_' + constant_year,
+        layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
         format: 'image/png', transparent: true, version: '1.3.0',
         zIndex: idDefaultLayer
       })
@@ -46,39 +54,36 @@ export class LayersService extends APIService {
 
   ]);
   private popup = L.popup();
-
   public getLayers(): any {
     return this.layers;
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper) {
+              private populationService: PopulationService, private helper: Helper,
+              private panelService: SidePanelService,
+              private navBarService: NavigationBarService,
+              private businessInterfaceRenderService: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
     return this.layersArray;
   }
-
+  setCurrentNutsLevel(nutsLevel: string) {
+    this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
+  }
   setupDefaultLayer() {
     const layer = this.layersArray.value(defaultLayer);
     this.logger.log(layer.toString())
     this.layers.addLayer(layer);
   }
 
-  getDetailLayerPoint(action: string, latlng: LatLng, map): any {
-    const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-    if (this.layersArray.containsKey(defaultLayer)) {
-      action = defaultLayer + '_' + constant_year;
-    }else if (this.layersArray.containsKey(populationLayerName)) {
-      action = populationLayerName + '_' + constant_year;
-    }
-    const url = geoserverGetFeatureInfoUrl
-      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
-      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    console.log('url ' + url);
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-      .subscribe(res => this.choosePopup(map, res, latlng, action), err => this.erroxFix(err));
 
+  handleClickHectare(data: any) {
+    this.logger.log(JSON.stringify(data));
+    this.panelService.setPoiData(data);
+    this.panelService.openRightPanel();
+    this.navBarService.enableButton('load_result');
+    this.loaderService.display(false);
   }
 
   getIsReadyToShowFeatureInfo(): boolean {
@@ -88,17 +93,14 @@ export class LayersService extends APIService {
     }
     return readyToShow;
   }
-  addLayerWithOrder(map: any, layer: any) {
-    this.layers.addLayer(<Layer> layer);
-    this.logger.log(layer);
-    this.logger.log(this.layers.getLayers().toString())
-  }
 
   showOrRemoveLayer(action: string, map: any, order: number) {
     this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
+      this.logger.log('this.layersArray doesnt contain ' + action);
       this.addLayerWithAction(action, map, order);
     } else {
+      this.logger.log('this.layersArray contain ' + action);
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray)
@@ -119,7 +121,7 @@ export class LayersService extends APIService {
     }else {
       // layer in Ha with date
      layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action + '_' + constant_year ,
+      layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
@@ -138,7 +140,10 @@ export class LayersService extends APIService {
     // we destroy the layer
     this.layersArray.remove(action);
   }
-
+  setupZoomLayerGroup(map) {
+    this.zoom_layerGroup = new L.LayerGroup();
+    this.zoom_layerGroup.addTo(map);
+  }
   erroxFix(error) {
     this.handleError.bind(this);
     this.loaderService.display(false);
@@ -157,6 +162,12 @@ export class LayersService extends APIService {
     }
   }
   handlePopulation(map, data: any, latlng: LatLng) {
+    const populationSelected = data;
+    this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
+    this.loaderService.display(false);
+
+  }
+  selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
@@ -194,6 +205,78 @@ export class LayersService extends APIService {
       '<li>Capacity: ' + capacity + ' ' + unit_capacity + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
          '<li>Reference date: ' + date + '</li></ul>').openOn(map);
   }
+  showLayerDependingZoom(action, map, zoomLevel: number) {
+    const mapZoomLevel = map.getZoom();
+    this.logger.log('mapZoomLevel ' + mapZoomLevel + ', zoomLevel ' + zoomLevel);
+    if (this.layersArray.containsKey(action) === true) {
+      if (mapZoomLevel >= zoomLevel) {
+        const layer = this.layersArray.value(action);
+        this.layers.removeLayer(layer);
+        this.showWwtpWithMarker(map);
+      } else if (mapZoomLevel < zoomLevel) {
+        if (!this.layersArray.containsKey(action)) {
+          this.addLayerWithAction(action, map, zoomLevel);
+        } else {
+          const layer = this.layersArray.value(action);
+          this.layers.addLayer(layer);
+        }
+        this.removeWwtpWithMarker(map);
+      }
+    }else {
+      this.removeWwtpWithMarker(map);
+    }
+  }
 
+  transformLatLngToEpsg(latlng: L.LatLng, epsgString: String) {
+    return proj4(epsgString).forward([latlng.lng, latlng.lat]);
+  }
 
+  getTranformedBoundingBox(map: any, epsgString): number[] {
+    const coordinate = [];
+    const bound = map.getBounds();
+    const northEastTransformed = this.transformLatLngToEpsg(bound.getNorthEast(), epsgString);
+    const southWestTransformed  = this.transformLatLngToEpsg(bound.getSouthWest(), epsgString);
+    coordinate.push(southWestTransformed[1], southWestTransformed[0]);
+    coordinate.push(northEastTransformed[1], northEastTransformed[0]);
+    return coordinate;
+  }
+
+  showWwtpWithMarker(map: any) {
+    this.logger.log('showWwtpWithMarker');
+    const epsg = '3035';
+    const coordinate = this.getTranformedBoundingBox(map, proj3035);
+    const url = geoserverUrl + '?service=wfs' +
+      '&version=2.0.0' +
+      '&request=GetFeature' +
+      '&typeNames=hotmaps:' + wwtpLayerName +
+      '&srsName=EPSG:' + epsg +
+      '&bbox=' + coordinate.toString() +
+      '&outputFormat=application/json';
+    this.logger.log(coordinate.toString());
+    this.logger.log(url);
+    return this.http.get(url).map((data: Response) => data.json() as any)
+        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this));
+    /* this.GET(url).toPromise().then((data) => { */
+    /* Promise.resolve(wwtp_data).then((data) => { */
+  }
+  addPOIToMap(data, map) {
+    data.features.forEach(element => {
+      const point = element.geometry.coordinates
+      const pointProj = proj4(proj3035).inverse([point[0], point[1]]);
+      const marker = L.marker(L.latLng(pointProj[1], pointProj[0]), {
+        icon: L.icon({
+          iconUrl: '../../assets/leaflet-images/marker-icon.png',
+          iconSize: [28, 40],
+          iconAnchor: [14, 20]
+        })
+      });
+      this.zoom_layerGroup.addLayer(marker);
+    } );
+    this.zoom_layerGroup.addTo(map);
+  }
+
+  removeWwtpWithMarker(map: any) {
+    this.logger.log('removeWwtpWithMarker');
+    this.zoom_layerGroup.removeFrom(map);
+  }
 }

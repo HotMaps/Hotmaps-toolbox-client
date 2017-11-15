@@ -4,7 +4,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Router} from '@angular/router';
 
 
-import { AppComponent }  from '../../src/app/app.component';
+import { AppComponent }  from '../../src/app/component/app.component';
 import { routes } from '../../src/app/routes';
 
 import { RegisterComponent }  from '../../src/app/register/register.component';

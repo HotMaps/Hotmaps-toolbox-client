@@ -3,7 +3,7 @@ import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 import { GeocodingService } from './geocoding.service';
 import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import {Location} from '../class/location/location.class';
+import {LocationClass} from '../class/location/location.class';
 import {Logger} from './logger.service';
 import { LoaderService } from './loader.service'
 import {geocodeUrl} from '../data.service'
@@ -35,7 +35,7 @@ describe('geocodingService', () => {
   it('should getCurrentLocation() of ip 72.229.28.185 with result from',
     inject([GeocodingService, MockBackend], fakeAsync((geocodingService: GeocodingService, mockBackend: MockBackend) => {
 
-      const location = new Location();
+      const location = new LocationClass();
       let i = 0;
       mockBackend.connections.subscribe(c => {
         console.log(c.request.url);
@@ -70,7 +70,7 @@ describe('geocodingService', () => {
   it('should geocode() from lausannne',
     inject([GeocodingService, MockBackend], fakeAsync((geocodingService: GeocodingService, mockBackend: MockBackend) => {
       let res: Response;
-      let location = new Location();
+      let location = new LocationClass();
       mockBackend.connections.subscribe(c => {
         console.log(c.request.url);
           expect(c.request.url).toBe(geocodeUrl + 'lausanne');
