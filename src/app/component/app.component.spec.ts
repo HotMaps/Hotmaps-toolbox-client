@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { MapComponent } from '../pages/map/component/map.component';
 import { SearchBarComponent } from '../pages/searchbar/searchbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MockLoaderService } from '../shared/services/mock/loader.service';
 import { LoaderService } from '../shared/services/loader.service'
@@ -19,7 +21,7 @@ import {RightSideComponent} from '../features/side-panel/right-side-panel/right-
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
 import {NavigationBarComponent} from '../pages/nav/component/navigation-bar.component';
 
-import { FormsModule } from '@angular/forms';
+
 import {SummaryResultComponent} from '../features/summary-result/summary-result.component';
 import {UppercaseFirstLetterPipe} from '../shared/pipes/uppercase-first-letter.pipe';
 import {NumberFormatPipe} from '../shared/pipes/number-format.pipe';
@@ -42,7 +44,7 @@ import {PopulationService} from '../features/population/services/population.serv
 import {GeocodingService} from '../shared/services/geocoding.service';
 import {DataInteractionService} from '../features/data-interaction/data-interaction.service';
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
-import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+
 import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
 
 
