@@ -4,6 +4,7 @@ import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'proj4leaflet';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
@@ -254,9 +255,11 @@ export class LayersService extends APIService {
       '&outputFormat=application/json';
     this.logger.log(coordinate.toString());
     this.logger.log(url);
-    return this.http.get(url).map((data: Response) => data.json() as any)
-        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this));
-    /* this.GET(url).toPromise().then((data) => { */
+    return Promise.resolve(wwtp_data).then((res) => {
+      this.addPOIToMapRegular(res, map)
+  });
+    /* this.http.get(url).map((data: Response) => data.json() as any)
+        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this)); */
     /* Promise.resolve(wwtp_data).then((data) => { */
   }
   addPOIToMap(data, map) {
@@ -272,6 +275,27 @@ export class LayersService extends APIService {
       });
       this.zoom_layerGroup.addLayer(marker);
     } );
+    this.zoom_layerGroup.addTo(map);
+  }
+
+  addPOIToMapRegular(data, map) {
+    proj4.defs('urn:ogc:def:crs:EPSG::3035', proj3035);
+    // this.zoom_layerGroup =  L.Proj.geoJson(data)
+
+
+    function onEachFeature(feature, layer) {
+      if (feature.properties) {
+        layer.setIcon(L.icon({
+          iconUrl: '../../assets/leaflet-images/marker-icon.png',
+          iconSize: [28, 40],
+          iconAnchor: [14, 20]
+        }));
+      }
+    }
+    this.zoom_layerGroup = L.Proj.geoJson(data, {
+      onEachFeature: onEachFeature
+    }).addTo(map);
+
     this.zoom_layerGroup.addTo(map);
   }
 
