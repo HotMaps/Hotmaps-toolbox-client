@@ -8,6 +8,7 @@ import {
     transition,
     animate
 } from '@angular/core';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @Component({
@@ -36,10 +37,10 @@ export class SideComponent implements OnInit, OnDestroy {
 
     toggleExpandedState() {
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
-
         this.expanded = !this.expanded;
     }
-
+    disableButtons(functionString: string) {
+    }
     display(val: boolean) {
         if (val) {
             this.expandedState =  'expanded';

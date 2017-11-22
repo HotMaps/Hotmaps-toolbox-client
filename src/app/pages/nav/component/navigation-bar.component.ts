@@ -2,6 +2,7 @@ import { NavigationBarService } from '../service';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
     selector: 'nav-bar',
@@ -13,13 +14,14 @@ export class NavigationBarComponent implements OnInit {
     @Input() leftPanel: LeftSideComponent;
     @Input() rightPanel: RightSideComponent;
     private navButtons: any[];
-    constructor(private navService: NavigationBarService) { }
+    constructor(private interactionService: InteractionService) { }
 
     ngOnInit() {
         // you must allow the change of states
-        this.navButtons = this.navService.getButtons();
+        this.navButtons = this.interactionService.getNavButtons();
     }
     toggleExpandedState(button: any) {
-        this.navService.toggleBar(button);
+        button.stateOpen = !button.stateOpen;
+        this.interactionService.toggleNavBarFromButton(button);
     }
 }

@@ -41,6 +41,7 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
 
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 import {MailService} from './features/feedback/mail.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import {MailService} from './features/feedback/mail.service';
     SummaryResultService,
     DecimalPipe,
     MailService,
-    SelectionScaleService
+    SelectionScaleService,
+    InteractionService
 
 
   ],

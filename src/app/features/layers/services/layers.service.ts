@@ -31,6 +31,7 @@ import { SidePanelService } from './../../side-panel/side-panel.service';
 import {PopulationService} from '../../population/services/population.service';
 import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Injectable()
 export class LayersService extends APIService {
@@ -53,8 +54,9 @@ export class LayersService extends APIService {
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               private populationService: PopulationService, private helper: Helper,
-              private panelService: SidePanelService, private navBarService: NavigationBarService,
-              private businessInterfaceRenderService: BusinessInterfaceRenderService) {
+              private businessInterfaceRenderService: BusinessInterfaceRenderService,
+              private interactionService: InteractionService
+            ) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -72,9 +74,10 @@ export class LayersService extends APIService {
 
   handleClickHectare(data: any) {
     this.logger.log(JSON.stringify(data));
-    this.panelService.setPoiData(data);
-    this.panelService.openRightPanel();
-    this.navBarService.enableButton('load_result');
+    this.interactionService.setSummaryResultData(data)
+    this.interactionService.openRightPanel();
+    this.interactionService.enableButtonWithId('load_result')
+    // this.interactionService.enableDisplayLoader()
     this.loaderService.display(false);
   }
 

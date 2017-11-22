@@ -26,9 +26,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 
-  constructor(private mapService: MapService,
-              private logger: Logger,  private panelService: SidePanelService,
-) {}
+  constructor(private mapService: MapService, private logger: Logger,  private panelService: SidePanelService) {}
 
   ngAfterContentInit(): void {
     this.notifySidePanelComponent();
@@ -87,7 +85,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   }
   // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
-    // setup  the map from leaflet
+    // setup the map from leaflet
     let self = this;
     const option =  {
       zoomControl: false,
@@ -124,13 +122,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
 
     L.control.scale().addTo(this.map);
-    this.mapService.getSelectionScaleMenu(this.map);
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
   showControls() {
-    this.mapService.addDrawerControl(this.map);
+    this.mapService.addDrawControls();
   }
   getMap(): Map {
     return this.map;

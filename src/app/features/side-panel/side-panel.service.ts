@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Injectable()
 export class SidePanelService {
@@ -11,11 +12,10 @@ export class SidePanelService {
     public summaryResultDataStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     public poiData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    
     rightPanelexpandedCollapsed() {
       this.rightToggleExpandedStatus.next(true);
     }
-    leftPanelexpandedCollapsed() {
+    openLeftPanel() {
       this.leftPanelStatus.next(true);
     }
     openRightPanel() {

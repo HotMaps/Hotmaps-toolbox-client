@@ -36,6 +36,7 @@ import {
 import {GeojsonClass} from "../layers/class/geojson.class";
 import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
 import {SummaryResultClass} from "../summary-result/summary-result.class";
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @Injectable()
@@ -61,10 +62,9 @@ export class SelectionToolService {
   private areaNutsSelectedLayer: any;
   constructor(private logger: Logger, private loaderService: LoaderService, private helper: Helper,
     private sidePanelService: SidePanelService,
-    private navigationBarService: NavigationBarService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private summaryResultService: SummaryResultService, private businessInterfaceRenderService: BusinessInterfaceRenderService,
-    private layerService: LayersService) {
+    private layerService: LayersService, private interractionService: InteractionService) {
 
   }
 
@@ -167,7 +167,7 @@ export class SelectionToolService {
   }
 
   enableNavigationService( map: any) {
-    this.navigationBarService.enableButton('selection');
+    this.interractionService.enableButtonWithId('selection');
     this.addDrawerControl(map);
   }
   layerCreatedClick(layer, map) {
@@ -275,11 +275,11 @@ export class SelectionToolService {
 
   retriveAndAddLayer(population: Population, layer: any, map: any) {
     this.loaderService.display(false);
-    this.navigationBarService.enableButton('load_result');
+    this.interractionService.enableButtonWithId('load_result');
     if (this.helper.isNullOrUndefined(layer.editing) === false) {
       layer.editing.disable();
     }
-    this.sidePanelService.openRightPanel();
+    this.interractionService.openRightPanel();
   }
 
   showlayer(geometrie: any, map: any) {
@@ -291,7 +291,7 @@ export class SelectionToolService {
 
   clearAll(map: any) {
     if (this.currentLayer) {
-      this.navigationBarService.disableButton('load_result');
+      this.interractionService.disableButtonWithId('load_result');
       this.logger.log('layerService/clearAll');
       if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
         this.currentLayer.editing.disable();
@@ -299,13 +299,13 @@ export class SelectionToolService {
       this.editableLayers.clearLayers();
       this.removeVtlayer(map);
       this.removeAreaNuts(map);
-      this.sidePanelService.closeRightPanel();
+      this.interractionService.closeRightPanel();
       }
   }
 
   removeVtlayer(map: any) {
     if (this.selectionTooLayer) {
-      this.navigationBarService.disableButton('load_result');
+      this.interractionService.disableButtonWithId('load_result');
       map.removeLayer(this.selectionTooLayer);
       delete this.selectionTooLayer;
     }
@@ -333,10 +333,10 @@ export class SelectionToolService {
     this.currentLayer.openPopup();
   }
   displaySummaryResult(result: any, map: any) {
-    this.sidePanelService.openRightPanel();
-    this.sidePanelService.setSummaryResultData(result);
+    this.interractionService.openRightPanel();
+    this.interractionService.setSummaryResultData(result);
     this.logger.log('displaySummaryResult ' + JSON.stringify(result) );
-    this.navigationBarService.enableButton('load_result');
+    this.interractionService.enableButtonWithId('load_result');
     if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
       this.currentLayer.editing.disable();
     }
@@ -361,6 +361,7 @@ export class SelectionToolService {
   }
 
   addDrawerControl(map: Map) {
+    this.interractionService.enableStateOpenWithID('selection');
     map.addLayer(this.editableLayers);
     this.options = {
       position: 'topleft',
