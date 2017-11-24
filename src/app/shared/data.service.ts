@@ -57,13 +57,14 @@ export const map_options =  {
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
-
+export const lau2name = 'COMM_RG_01M_2013';
 
 // Scale Value
 export const nuts0   = 'NUTS 0';
 export const nuts1   = 'NUTS 1';
 export const nuts2   = 'NUTS 2';
 export const nuts3   = 'NUTS 3';
+export const lau2   = 'Lau 2';
 export const hectare   = 'Hectare';
 export const initial_scale_value   = nuts3;
 

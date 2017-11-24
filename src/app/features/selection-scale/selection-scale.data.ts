@@ -1,5 +1,8 @@
 import { SelectionScaleClass  } from './class/selection-scale.class';
-import {business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare} from '../../shared/data.service';
+import {
+  business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare,
+  lau2name
+} from '../../shared/data.service';
 export const SelectionScaleClassArray: SelectionScaleClass[] = [
   {id: 1, name: 'nonuts'},
   {id: 2, name: 'nuts1', },
@@ -60,13 +63,11 @@ export const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   zIndex: 10
 })
 
-export const  lau1Layer = L.tileLayer.wms(geoserverUrl, {
-  layers: 'hotmaps:' + action + 1 ,
+export const  lau2Layer = L.tileLayer.wms(geoserverUrl, {
+  layers: 'hotmaps:' + lau2name,
   format: 'image/png',
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 1 + '',
-  srs: 'EPSG:4326',
   zIndex: 10
 })
 
@@ -77,6 +78,7 @@ export const SelectionScale = {
   'NUTS 1': nuts1Layer,
   'NUTS 2': nuts2Layer,
   'NUTS 3': nuts3Layer,
+  'Lau2'  : lau2Layer,
   'Hectare': hectareLayer,
 }
 

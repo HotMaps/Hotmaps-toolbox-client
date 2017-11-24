@@ -12,7 +12,10 @@ import {basemap} from './basemap';
 import {Helper, Logger, LoaderService, APIService, ToasterService, BusinessInterfaceRenderService} from '../../shared'
 import {SelectionToolService} from '../../features/selection-tools';
 import {SelectionScaleService} from '../../features/selection-scale';
-import {clickAccuracy, geoserverGetFeatureInfoUrl, hectare, wwtpLayerName, zoomLevelDetectChange} from '../../shared/data.service';
+import {
+  clickAccuracy, geoserverGetFeatureInfoUrl, hectare, lau2name, wwtpLayerName,
+  zoomLevelDetectChange
+} from '../../shared/data.service';
 import LatLng = L.LatLng;
 import {GeojsonClass, LayersService} from '../../features/layers';
 
@@ -43,6 +46,24 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
     this.logger.log('url' + url);
+    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+      .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));
+  }
+
+  getNutsGeometryFromLau2( latlng: LatLng, nuts_level): any {
+
+
+
+    let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+    // to test
+    //
+
+
+    const action = lau2name;
+    const url = geoserverGetFeatureInfoUrl
+      + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+      '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+    this.logger.log('lau2name url' + url);
     return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
       .subscribe(res => this.selectAreaWithNuts(res), err => this.handleError.bind(this));
   }
@@ -104,9 +125,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
           const layer = new L.Rectangle(e.latlng.toBounds(100));
           self.selectionToolService.layerCreatedClick(layer, self.map);
         }
-      } else {
+      } else if (self.selectionScaleService.getScaleValue() === hectare) {
         self.selectionToolService.enableNavigationService(self.map);
         self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
+      } else {
+        self.selectionToolService.enableNavigationService(self.map);
+        self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
       }
     });
     map.on('baselayerchange', onBaselayerChange);
