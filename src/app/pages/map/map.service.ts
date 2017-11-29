@@ -4,7 +4,6 @@ import { basemap } from './basemap';
 import { InteractionService } from './../../shared/services/interaction.service';
 import { SelectionToolService } from './../../features/selection-tools/selection-tool.service';
 import { GeocodingService } from './../../shared/services/geocoding.service';
-import { PopulationService } from './../../features/population/services/population.service';
 import { SelectionScaleService } from './../../features/selection-scale/selection-scale.service';
 import { DataInteractionService } from './../../features/data-interaction/data-interaction.service';
 import { GeojsonClass, LayersService } from './../../features/layers';
@@ -26,7 +25,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private areaNutsSelectedLayer: any;
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private dataInteractionService: DataInteractionService,
-        private selectionScaleService: SelectionScaleService, private populationService: PopulationService,
+        private selectionScaleService: SelectionScaleService,
         private geocodingService: GeocodingService, private selectionToolService: SelectionToolService,
         private businessInterfaceRenderService: BusinessInterfaceRenderService) {
         super(http, logger, loaderService, toasterService);
@@ -49,36 +48,38 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         const self = this;
         this.map.on('click', (event: MouseEvent) => {self.onClickEvent(self, event)});
         this.map.on('baselayerchange', (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
-        this.map.on('zoomstart', () => { self.onZoomStart()});
-        this.map.on('zoomend', () => { self.onZoomEnd()});
-        this.map.on('measurestart', () => { self.onMeasureStart()});
-        this.map.on('LayersControlEvent', () => { self.onLayersControlEvent()});
-        this.map.on('layeradd', () => { self.onLayerAdd()});
+        this.map.on('zoomstart', () => { self.onZoomStart(self)});
+        this.map.on('zoomend', () => { self.onZoomEnd(self)});
+        this.map.on('measurestart', () => { self.onMeasureStart(self)});
+        this.map.on('LayersControlEvent', () => { self.onLayersControlEvent(self)});
+        this.map.on('layeradd', () => { self.onLayerAdd(self)});
         this.map.on('didUpdateLayers', (event) => { self.onDidUpdateLayers(self, event)});
-        this.map.on('overlayadd', () => { self.onOverLayAdd()});
-        this.map.on('measurefinish', () => { self.onZoomEnd()});
-        this.map.on(L.Draw.Event.CREATED, () => { self.onDrawCreated()});
-        this.map.on(L.Draw.Event.EDITED, () => { self.onDrawEdited()});
-        this.map.on(L.Draw.Event.DRAWSTART, () => { self.onDrawStart()});
-        this.map.on(L.Draw.Event.EDITSTART, () => { self.onDrawEditStart()});
-        this.map.on(L.Draw.Event.EDITSTOP, () => { self.onDrawEditStop()});
-        this.map.on(L.Draw.Event.DELETED, () => { self.onDrawDeleted()});
+        this.map.on('overlayadd', () => { self.onOverLayAdd(self)});
+        this.map.on('measurefinish', () => { self.onZoomEnd(self)});
+        this.map.on(L.Draw.Event.CREATED, (e) => { self.onDrawCreated(self, e)});
+        this.map.on(L.Draw.Event.EDITED, () => { self.onDrawEdited(self)});
+        this.map.on(L.Draw.Event.DRAWSTART, () => { self.onDrawStart(self)});
+        this.map.on(L.Draw.Event.EDITSTART, () => { self.onDrawEditStart(self)});
+        this.map.on(L.Draw.Event.EDITSTOP, () => { self.onDrawEditStop(self)});
+        this.map.on(L.Draw.Event.DELETED, () => { self.onDrawDeleted(self)});
     }
 
     // Event functions
-    onDrawCreated() { }
-    onDrawEdited() { }
-    onDrawStart() { }
-    onDrawEditStart() { }
-    onDrawEditStop() { }
-    onDrawDeleted() { }
-    onLayersControlEvent() { }
-    onLayerAdd() { }
-    onOverLayAdd() { }
-    onMeasureStart() { }
-    onZoomStart() {
+    onDrawCreated(self, e) {
+        self.selectionToolService.drawCreated(e, this.map);
     }
-    onZoomEnd() { }
+    onDrawEdited(self) { }
+    onDrawStart(self) { self.selectionToolService.toggleActivateTool(true); }
+    onDrawEditStart(self) { self.selectionToolService.toggleActivateTool(true); }
+    onDrawEditStop(self) { self.selectionToolService.toggleActivateTool(false); }
+    onDrawDeleted(self) { self.selectionToolService.clearAll(self.map); }
+    onLayersControlEvent(self) { }
+    onLayerAdd(self) { }
+    onOverLayAdd(self) { }
+    onMeasureStart(self) { }
+    onZoomStart(self) {
+    }
+    onZoomEnd(self) { }
     onDidUpdateLayers(self, e) {
         if (self.selectionToolService.isLayerInMap() === true) {
             self.selectionToolService.openPopup();
@@ -175,7 +176,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         // set the map to the services that needs to get an instance
         this.map = map;
         this.getSelectionScaleMenu();
-        this.selectionToolService.setMap(this.map);
         this.retriveMapEvent();
         this.layersService.getLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();

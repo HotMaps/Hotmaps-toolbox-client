@@ -14,7 +14,11 @@ import { Logger } from './../../../shared/services/logger.service';
 import { LoaderService } from './../../../shared/services/loader.service';
 import { Helper } from './../../../shared/helper';
 import { ToasterService } from './../../../shared/services/toaster.service';
-import {BusinessInterfaceRenderService} from "../../../shared/business/business.service";
+import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
+import { SummaryResultService } from 'app/features/summary-result';
+import { LayersService } from 'app/features/layers';
 
 
 describe('LeftSideComponent', () => {
@@ -34,11 +38,15 @@ describe('LeftSideComponent', () => {
                         return new Http(backend, defaultOptions);
                     }, deps: [ MockBackend, BaseRequestOptions ]
                 },
-
-                { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+                { provide: InteractionService, useClass: InteractionService },
+                { provide: SidePanelService, useClass: SidePanelService },
+                { provide: SummaryResultService, useClass: SummaryResultService },
+                { provide: LayersService, useClass: LayersService },
+                { provide: NavigationBarService, useClass: NavigationBarService },
+                { provide: DataInteractionService, useClass: DataInteractionService },
+                { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
                 { provide: ToasterService },
                 { provide: Helper },
-                { provide: DataInteractionService, useClass: DataInteractionService},
                 { provide: MockBackend, useClass: MockBackend },
                 { provide: BaseRequestOptions, useClass: BaseRequestOptions },
                 { provide: Logger, useValue: loggerStub },

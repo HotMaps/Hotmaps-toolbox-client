@@ -43,7 +43,8 @@ import {GeocodingService} from '../shared/services/geocoding.service';
 import {DataInteractionService} from '../features/data-interaction/data-interaction.service';
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {SelectionScaleService} from "../features/selection-scale/selection-scale.service";
+import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 
@@ -78,6 +79,7 @@ describe('AppComponent: Router', () => {
         {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
+        {provide: InteractionService, useClass: InteractionService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

@@ -28,7 +28,7 @@ import LatLng = L.LatLng;
 
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
-import {PopulationService} from '../../population/services/population.service';
+// import {PopulationService} from '../../population/services/population.service';
 import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
@@ -53,9 +53,10 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper,
-              private businessInterfaceRenderService: BusinessInterfaceRenderService,
-              private interactionService: InteractionService
+              // private interactionService: InteractionService,
+              // private populationService: PopulationService,
+              private helper: Helper,
+              private businessInterfaceRenderService: BusinessInterfaceRenderService
             ) {
     super(http, logger, loaderService, toasterService);
   }
@@ -71,12 +72,11 @@ export class LayersService extends APIService {
     this.layers.addLayer(layer);
   }
 
-
   handleClickHectare(data: any) {
     this.logger.log(JSON.stringify(data));
-    this.interactionService.setSummaryResultData(data)
+    /* this.interactionService.setSummaryResultData(data)
     this.interactionService.openRightPanel();
-    this.interactionService.enableButtonWithId('load_result')
+    this.interactionService.enableButtonWithId('load_result') */
     // this.interactionService.enableDisplayLoader()
     this.loaderService.display(false);
   }
@@ -156,12 +156,12 @@ export class LayersService extends APIService {
       this.addPopupHectare(map, res, latlng);
     }
   }
-  handlePopulation(map, data: any, latlng: LatLng) {
+  /* handlePopulation(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 
-  }
+  } */
   /* selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);

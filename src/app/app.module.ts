@@ -72,7 +72,6 @@ import { InteractionService } from 'app/shared/services/interaction.service';
   ],
 
   providers: [
-
     DataInteractionService,
     PopulationService,
     GeocodingService,
@@ -93,8 +92,6 @@ import { InteractionService } from 'app/shared/services/interaction.service';
     MailService,
     SelectionScaleService,
     InteractionService
-
-
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

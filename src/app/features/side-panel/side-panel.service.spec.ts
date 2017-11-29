@@ -36,7 +36,7 @@ describe('SidePanelService', () => {
 
     // LEFT PANEL TESTS
     it('sould open left panel', () => {
-        service.leftPanelexpandedCollapsed()
+        service.openLeftPanel()
         expect(service.leftPanelStatus.value).toBeTruthy()
     });
     it('should close left panel', () => {

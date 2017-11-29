@@ -19,8 +19,11 @@ import { LayersService } from '../../features/layers/services/layers.service';
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
 import { SelectionToolService } from './../../features/selection-tools/selection-tool.service';
-import {BusinessInterfaceRenderService} from "../../shared/business/business.service";
-import {SelectionScaleService} from "../../features/selection-scale/selection-scale.service";
+import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
+import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
+import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
+import { GeocodingService } from 'app/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 
@@ -39,9 +42,11 @@ describe('mapService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
-
+        {provide: InteractionService, useClass: InteractionService},
         {provide: SelectionScaleService, useClass: SelectionScaleService},
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        {provide: DataInteractionService, useClass: DataInteractionService},
+        {provide: GeocodingService, useClass: GeocodingService},
         {provide: LayersService, useClass: LayersService},
         {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},

@@ -7,6 +7,8 @@ import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../.
 import { Logger } from '../../../shared';
 import { MapService } from '../map.service';
 import { SearchBarComponent } from '../../searchbar';
+import { SelectionToolButtonStateService } from 'app/features/selection-tools';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-map',
@@ -26,10 +28,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
 
-  constructor(private mapService: MapService, private logger: Logger,  private panelService: SidePanelService) {}
+  constructor(private mapService: MapService, private logger: Logger,
+    private panelService: SidePanelService,
+    private selectionToolButtonStateService: SelectionToolButtonStateService,
+    private interactionService: InteractionService) {}
 
   ngAfterContentInit(): void {
-    this.notifySidePanelComponent();
+    this.notifySubscription();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
     // this.mapService.getGridTest();
@@ -37,21 +42,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   ngOnDestroy() {
     this.map.remove()
   }
-  notifySidePanelComponent() {
+  notifySubscription() {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
     });
     this.panelService.poiData.subscribe((data) => {
       this.rightPanelComponent.setPoiData(data);
     });
-    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
-      if (this.openRightSidebar === false) {
-        this.openRightSidebar = true;
-      } else {
-        this.rightPanelComponent.display(val);
-        // this.openRightSidebar = val;
-      }
-    });
+/*     
     this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
       if (this.openRightToggleExpanded === false) {
         this.openRightToggleExpanded = true;
@@ -60,18 +58,23 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openRightSidebar = val;
 
       }
-    });
+    }); */
 
-
-    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
-      if (this.openLeftSidebar === false) {
-        this.openLeftSidebar = true;
-      } else {
-
-        this.leftPanelComponent.toggleExpandedState();
-        this.openLeftSidebar = val;
-
+    this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
+      console.log(val + '  SelectionToolButtonStateService')
+      if (val) {
+        this.mapService.addDrawControls();
+      }else {
+        this.mapService.removeDrawControls();
       }
+    });
+    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
+      this.openRightSidebar = val;
+      this.rightPanelComponent.display(val);
+    });
+    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
+      this.openLeftSidebar = val;
+      this.leftPanelComponent.display(val);
     });
   }
   ngOnInit() {

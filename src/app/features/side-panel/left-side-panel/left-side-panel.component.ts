@@ -115,7 +115,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
     }
     closePanel() {
-        this.interactionService.disableStateOpenWithID('left')
+        this.interactionService.disableStateOpenWithFunction('left')
     }
 
 }

@@ -35,7 +35,10 @@ import { DataInteractionService } from './../../../features/data-interaction/dat
 import { DecimalPipe } from '@angular/common';
 import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
-import {SelectionScaleService} from "../../../features/selection-scale/selection-scale.service";
+import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { SummaryResultService } from 'app/features/summary-result';
+import { LayersService } from 'app/features/layers';
 
 
 
@@ -66,6 +69,9 @@ describe('MapComponent', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: LayersService, useClass: LayersService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: SelectionScaleService, useClass: SelectionScaleService },
         { provide: ToasterService, useClass: ToasterService },
         { provide: MapService, useValue: mockMapService },
