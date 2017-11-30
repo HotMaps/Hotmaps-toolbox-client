@@ -22,7 +22,7 @@ import {ToasterService} from '../../../shared/services/toaster.service';
 import {APIService} from '../../../shared/services/api.service';
 import LatLng = L.LatLng;
 import Popup = L.Popup;
-import {Helper} from "../../../shared/helper";
+import {Helper} from '../../../shared/helper';
 
 @Injectable()
 export class PopulationService extends APIService {

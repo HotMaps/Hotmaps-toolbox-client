@@ -19,7 +19,7 @@ import {RightSideComponent} from '../features/side-panel/right-side-panel/right-
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
 import {NavigationBarComponent} from '../pages/nav/component/navigation-bar.component';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SummaryResultComponent} from '../features/summary-result/summary-result.component';
 import {UppercaseFirstLetterPipe} from '../shared/pipes/uppercase-first-letter.pipe';
 import {NumberFormatPipe} from '../shared/pipes/number-format.pipe';
@@ -44,12 +44,18 @@ import {DataInteractionService} from '../features/data-interaction/data-interact
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import {TopSideComponent} from '../features/side-panel/top-side-panel/top-side-panel.component';
+import {FeedbackComponent} from '../features/feedback/component/feedback.component';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import {RecaptchaModule} from 'ng-recaptcha';
+import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 
 
 
 describe('AppComponent: Router', () => {
 
-  //let fixture: ComponentFixture<AppComponent>;
+
   let mockLoaderService: MockLoaderService;
   let loaderServiceStub: LoaderService;
 
@@ -59,8 +65,8 @@ describe('AppComponent: Router', () => {
     loaderServiceStub = new LoaderService();
 
     TestBed.configureTestingModule({
-      declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent,
-        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent,
+      declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
+        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         BusinessNamePipe],
       providers: [
@@ -78,6 +84,7 @@ describe('AppComponent: Router', () => {
         {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
+        {provide: InteractionService, useClass: InteractionService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);
@@ -97,7 +104,9 @@ describe('AppComponent: Router', () => {
 
 
       ],
-      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule ]
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
+        RecaptchaFormsModule,
+        RecaptchaModule.forRoot() ]
     })
 
   });
@@ -107,7 +116,7 @@ describe('AppComponent: Router', () => {
   }));
 
 
-  /*it('fakeAsync works', fakeAsync(() => {
+  it('fakeAsync works', fakeAsync(() => {
     console.log('it goes to fakeAsync works');
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
@@ -137,5 +146,5 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
       console.log('after expect');
     });
-  }));*/
+  }));
 });

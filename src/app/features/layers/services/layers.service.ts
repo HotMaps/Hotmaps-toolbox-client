@@ -33,9 +33,10 @@ const proj4 = (proj4x as any).default;
 
 import { poiDataResult } from './../../summary-result/mock/poi-result.data';
 import { SidePanelService } from './../../side-panel/side-panel.service';
-import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from '../../../pages/nav/service';
+// import {PopulationService} from '../../population/services/population.service';
+import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Injectable()
 export class LayersService extends APIService {
@@ -60,10 +61,11 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper,
-              private panelService: SidePanelService,
-              private navBarService: NavigationBarService,
-              private businessInterfaceRenderService: BusinessInterfaceRenderService) {
+              // private interactionService: InteractionService,
+              // private populationService: PopulationService,
+              private helper: Helper,
+              private businessInterfaceRenderService: BusinessInterfaceRenderService
+            ) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -78,12 +80,12 @@ export class LayersService extends APIService {
     this.layers.addLayer(layer);
   }
 
-
   handleClickHectare(data: any) {
     this.logger.log(JSON.stringify(data));
-    this.panelService.setPoiData(data);
-    this.panelService.openRightPanel();
-    this.navBarService.enableButton('load_result');
+    /* this.interactionService.setSummaryResultData(data)
+    this.interactionService.openRightPanel();
+    this.interactionService.enableButtonWithId('load_result') */
+    // this.interactionService.enableDisplayLoader()
     this.loaderService.display(false);
   }
 
@@ -94,14 +96,17 @@ export class LayersService extends APIService {
     }
     return readyToShow;
   }
+  addLayerWithOrder(map: any, layer: any) {
+    this.layers.addLayer(<Layer> layer);
+    this.logger.log(layer);
+    this.logger.log(this.layers.getLayers().toString())
+  }
 
   showOrRemoveLayer(action: string, map: any, order: number) {
     this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
-      this.logger.log('this.layersArray doesnt contain ' + action);
       this.addLayerWithAction(action, map, order);
     } else {
-      this.logger.log('this.layersArray contain ' + action);
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray)
@@ -162,18 +167,17 @@ export class LayersService extends APIService {
       this.addPopupHectare(map, res, latlng);
     }
   }
-  handlePopulation(map, data: any, latlng: LatLng) {
+  /* handlePopulation(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 
-  }
-  selectAreaWithNuts(map, data: any, latlng: LatLng) {
+  } */
+  /* selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
-
-  }
+  } */
 
   addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
     this.loaderService.display(false);

@@ -1,4 +1,3 @@
-import { NavigationBarService } from './../../pages/nav/service/navigation-bar.service';
 import {
     Component,
     OnInit,
@@ -9,6 +8,7 @@ import {
     transition,
     animate
 } from '@angular/core';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @Component({
@@ -35,16 +35,12 @@ export class SideComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
 
-    toggleExpandedState(func: string) {
+    toggleExpandedState() {
         this.expandedState = this.expanded ? 'collapsed' : 'expanded';
-        if (!this.expanded) {
-            // this.navigationBarService.disableButtonsWithFunction(func);
-        } else {
-            // this.navigationBarService.enableButtonsWithFunction(func);
-        }
         this.expanded = !this.expanded;
     }
-
+    disableButtons(functionString: string) {
+    }
     display(val: boolean) {
         if (val) {
             this.expandedState =  'expanded';

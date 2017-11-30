@@ -1,3 +1,5 @@
+
+
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -12,6 +14,7 @@ import { DecimalPipe } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule, AppComponent  } from './';
+
 
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -39,6 +42,9 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
 import { SummaryResultService } from './features/summary-result/summary-result.service';
 
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+
+import { InteractionService } from 'app/shared/services/interaction.service';
+
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 
@@ -94,9 +100,8 @@ import { TopSideComponent } from 'app/features/side-panel';
     SummaryResultService,
     DecimalPipe,
     MailService,
-    SelectionScaleService
-
-
+    SelectionScaleService,
+    InteractionService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

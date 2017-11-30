@@ -1,11 +1,9 @@
-import { map_options } from './../../shared/data.service';
-import { basemap } from './basemap';
 import { ToasterService } from './../../shared/services/toaster.service';
 import { SummaryResultService } from './../../features/summary-result/summary-result.service';
 import { MailService } from './../../features/feedback/mail.service';
 import { SelectionToolButtonStateService } from './../../features/selection-tools/selection-tool-button-state.service';
-import { NavigationBarService } from './../nav/';
-import { TestBed, inject, fakeAsync, ComponentFixture, async, tick } from '@angular/core/testing';
+import { NavigationBarService } from '../nav/service/navigation-bar.service';
+import { TestBed, inject, fakeAsync , ComponentFixture} from '@angular/core/testing';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { Map} from 'leaflet';
@@ -21,6 +19,11 @@ import { LayersService } from '../../features/layers/services/layers.service';
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
 import { SelectionToolService } from './../../features/selection-tools/selection-tool.service';
+import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
+import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
+import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
+import { GeocodingService } from 'app/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 
@@ -28,7 +31,6 @@ describe('mapService', () => {
   let populationService: MockPopulationService;
   let loaderServiceStub: LoaderService;
   let loggerStub: Logger;
-  let service: MapService;
   beforeEach(() => {
     populationService = new MockPopulationService();
     loaderServiceStub = new LoaderService();
@@ -40,6 +42,11 @@ describe('mapService', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        {provide: InteractionService, useClass: InteractionService},
+        {provide: SelectionScaleService, useClass: SelectionScaleService},
+        {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        {provide: DataInteractionService, useClass: DataInteractionService},
+        {provide: GeocodingService, useClass: GeocodingService},
         {provide: LayersService, useClass: LayersService},
         {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},
@@ -56,28 +63,23 @@ describe('mapService', () => {
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
 
+
+
+
+
       ],
     })
   });
-  beforeEach(inject([MapService], (mapService: MapService) => {
-    service = mapService;
-  }));
 
- /* it('should getMap undefined', async(() => {
-    let map: Map;
-    map = service.getMap();
-    expect(map).toBe(undefined);
-  }));
 
-  it('should fire event zoomend', async(() => {
-    let map: Map;
-    service.setupMapservice(L.map('map', map_options));
-    map = service.getMap();
-    expect(map).toBeTruthy();
-    map.on('zoomend', (e) => {
-      expect(e.type).toBe('zoomend');
-      expect(map.getZoom()).toBe(7);
-    });
-    map.setZoom(7, { animate: false });
-  }));*/
+  it('should getMap undefined',
+    inject([MapService, MockBackend], fakeAsync((mapService: MapService, mockBackend: MockBackend) => {
+      let map: Map;
+      map = mapService.getMap();
+     expect(map).toBe(undefined);
+    }))
+  );
+
+
+
 });

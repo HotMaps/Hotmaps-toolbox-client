@@ -1,12 +1,10 @@
-import { Dictionary } from './../../../shared/class/dictionary.class';
-import { wwtpLayerName } from './../../../shared/data.service';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
 import { MockMapService } from '../../../shared/services/mock/map.service';
 
-import { ComponentFixture, TestBed, async, tick, fakeAsync } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { DataInteractionCellComponent } from '../../../features/data-interaction/data-interaction-cell/data-interaction-cell.component';
 import { SearchBarComponent } from '../../searchbar/searchbar.component';
@@ -14,7 +12,7 @@ import { SearchBarComponent } from '../../searchbar/searchbar.component';
 import { LoaderService } from '../../../shared/services/loader.service';
 import { Logger } from '../../../shared/services/logger.service';
 import { MapService} from '../map.service';
-import { MapComponent} from './map.component';
+import { MapComponent} from './map.component'
 import { MockLoggerService } from '../../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../../shared/services/mock/loader.service';
 import { GeocodingService } from '../../../shared/services/geocoding.service';
@@ -24,19 +22,27 @@ import { SidePanelService } from '../../../features/side-panel/side-panel.servic
 import { RightSideComponent } from '../../../features/side-panel/right-side-panel/right-side-panel.component';
 import { ToasterService } from '../../../shared/services/toaster.service';
 import { SelectionToolButtonStateService } from './../../../features/selection-tools/selection-tool-button-state.service';
-import { NavigationBarService, NavigationBarComponent } from './../../nav';
+import { NavigationBarService } from '../../nav/service/navigation-bar.service';
 import { BusinessNamePipe } from './../../../shared/pipes/business-name.pipe';
 import { LayerNamePipe } from './../../../shared/pipes/layer-name.pipe';
 import { SummaryResultComponent } from './../../../features/summary-result/summary-result.component';
-
+import { NavigationBarComponent } from '../../nav/component/navigation-bar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MockSidePanelService } from './../../../shared/services/mock/mock-sidepanel.service';
 import { BusinessInterfaceRenderService } from './../../../shared/business/business.service';
 import { DataInteractionService } from './../../../features/data-interaction/data-interaction.service';
 import { DecimalPipe } from '@angular/common';
 import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
-import {Map} from 'leaflet';
+import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { SummaryResultService } from 'app/features/summary-result';
+import { LayersService } from 'app/features/layers';
+import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-side-panel.component';
+import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
+import {RecaptchaModule} from 'ng-recaptcha';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 
 
 
@@ -58,7 +64,8 @@ describe('MapComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         MapComponent, LeftSideComponent, RightSideComponent,
-        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent,
+        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
+        FeedbackComponent,
         LayerNamePipe, BusinessNamePipe
       ],
       providers: [
@@ -67,7 +74,10 @@ describe('MapComponent', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
-
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: LayersService, useClass: LayersService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: SelectionScaleService, useClass: SelectionScaleService },
         { provide: ToasterService, useClass: ToasterService },
         { provide: MapService, useValue: mockMapService },
         { provide: Logger, useValue: mockLoggerService },
@@ -84,7 +94,9 @@ describe('MapComponent', () => {
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
       ],
-      imports: [FormsModule, BrowserAnimationsModule, NoopAnimationsModule]
+      imports: [FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
+        RecaptchaFormsModule,
+        RecaptchaModule.forRoot() ]
     }).compileComponents();
   });
 
@@ -95,15 +107,7 @@ describe('MapComponent', () => {
   });
 
   // test map created
-/*  it('map should be created', async((element) => {
+  it('map should be created', async((element) => {
     expect(component.getMap()).toBeDefined();
   }));
-
-  it('should remove layer wwtp when zoomlevel is higher than 9', async(() => {
-    let map: Map;
-    map = component.getMap();
-    expect(map.getZoom()).toBe(5);
-    map.setZoom(8, { animate: false });
-    expect(map.getZoom()).toBe(8);
-  }));*/
 });

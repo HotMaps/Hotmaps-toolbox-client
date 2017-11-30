@@ -9,6 +9,8 @@ import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../.
 import { Logger } from '../../../shared';
 import { MapService } from '../map.service';
 import { SearchBarComponent } from '../../searchbar';
+import { SelectionToolButtonStateService } from 'app/features/selection-tools';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-map',
@@ -29,12 +31,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
   @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
-  constructor(private mapService: MapService,
-              private logger: Logger,  private panelService: SidePanelService,
-) {}
+
+
+  constructor(private mapService: MapService, private logger: Logger,
+    private panelService: SidePanelService,
+    private selectionToolButtonStateService: SelectionToolButtonStateService,
+    private interactionService: InteractionService) {}
 
   ngAfterContentInit(): void {
-    this.notifySidePanelComponent();
+    this.notifySubscription();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
     this.topSideComponent.setTitle('Feedback');
@@ -43,26 +48,19 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   ngOnDestroy() {
     this.map.remove();
   }
-  notifySidePanelComponent() {
+  notifySubscription() {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
     });
     this.panelService.poiData.subscribe((data) => {
       this.rightPanelComponent.setPoiData(data);
     });
-    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
-      if (this.openRightSidebar === false) {
-        this.openRightSidebar = true;
-      } else {
-        this.rightPanelComponent.display(val);
-        // this.openRightSidebar = val;
-      }
-    });
+
     this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
       if (this.openRightToggleExpanded === false) {
         this.openRightToggleExpanded = true;
       } else {
-        this.rightPanelComponent.toggleExpandedState('right');
+        this.rightPanelComponent.toggleExpandedState();
         this.openRightSidebar = val;
       }
     });
@@ -71,21 +69,25 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       if (this.openTopSidebar === false) {
         this.openTopSidebar = true;
       } else {
-        this.topSideComponent.toggleExpandedState('top');
+        this.topSideComponent.toggleExpandedState();
         this.openTopSidebar = val;
       }
     });
-
-
-    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
-      if (this.openLeftSidebar === false) {
-        this.openLeftSidebar = true;
-      } else {
-
-        this.leftPanelComponent.toggleExpandedState('left');
-        this.openLeftSidebar = val;
-
+    this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
+      console.log(val + '  SelectionToolButtonStateService')
+      if (val) {
+        this.mapService.addDrawControls();
+      }else {
+        this.mapService.removeDrawControls();
       }
+    });
+    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
+      this.openRightSidebar = val;
+      this.rightPanelComponent.display(val);
+    });
+    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
+      this.openLeftSidebar = val;
+      this.leftPanelComponent.display(val);
     });
   }
   ngOnInit() {
@@ -128,13 +130,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
 
     L.control.scale().addTo(this.map);
-    this.mapService.getSelectionScaleMenu(this.map);
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
   showControls() {
-    this.mapService.addDrawerControl(this.map);
+    this.mapService.addDrawControls();
   }
   getMap(): Map {
     return this.map;
