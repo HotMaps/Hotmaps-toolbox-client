@@ -13,7 +13,7 @@ import {Helper, Logger, LoaderService, APIService, ToasterService, BusinessInter
 import {SelectionToolService} from '../../features/selection-tools';
 import {SelectionScaleService} from '../../features/selection-scale';
 import {
-  clickAccuracy, geoserverGetFeatureInfoUrl, hectare, lau2name, wwtpLayerName,
+  clickAccuracy, geoserverGetFeatureInfoUrl, hectare, lau2, lau2name, wwtpLayerName,
   zoomLevelDetectChange
 } from '../../shared/data.service';
 import LatLng = L.LatLng;
@@ -125,12 +125,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
           const layer = new L.Rectangle(e.latlng.toBounds(100));
           self.selectionToolService.layerCreatedClick(layer, self.map);
         }
-      } else if (self.selectionScaleService.getScaleValue() === hectare) {
-        self.selectionToolService.enableNavigationService(self.map);
-        self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
-      } else {
+      } else if (self.selectionScaleService.getScaleValue() === lau2) {
         self.selectionToolService.enableNavigationService(self.map);
         self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
+      } else {
+        self.selectionToolService.enableNavigationService(self.map);
+        self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
       }
     });
     map.on('baselayerchange', onBaselayerChange);
