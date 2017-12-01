@@ -1,6 +1,6 @@
 import { Http, Response } from '@angular/http';
 
-import {idWwtpLayer, lau2, lau2name} from './../../shared/data.service';
+import { lau2, lau2name} from './../../shared/data.service';
 /**
  * Created by lesly on 27.05.17.
  */

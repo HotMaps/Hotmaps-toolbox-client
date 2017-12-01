@@ -1,25 +1,36 @@
 <div [@feedbackTrigger]="expandedState">
-    <form *ngIf='!submited' #form='ngForm' (ngSubmit)='submit(form)' novalidate>
+    <form *ngIf='!submited' #form='ngForm' (ngSubmit)='submit(form)' enctype="multipart/form-data" method="post" novalidate>
         <fieldset class='uk-fieldset'>
-            <div class='uk-margin'><input name='name' class='uk-input' type='text' placeholder='Firstname / Lastname' ngModel #names='ngModel' required ></div>        
-            <div class='uk-margin'><input name='mail' class='uk-input' type='text' placeholder='Mail' required email ngModel #mail='ngModel'></div>
-            <div class='uk-margin uk-grid-small uk-child-width-auto uk-grid'>
+            <div class='uk-margin-small'><input name='name' class='uk-input uk-form-small' type='text' placeholder='Firstname / Lastname' ngModel #names='ngModel' required ></div>
+            <div class='uk-margin-small'><input name='mail' class='uk-input uk-form-small' type='text' placeholder='Mail' required email ngModel #mail='ngModel'></div>
+            <div class='uk-margin-small'><input name='company' class='uk-input uk-form-small' type='text' placeholder='Company' required company ngModel #company='ngModel'></div>
+            <div class='uk-margin-small uk-grid-small uk-child-width-auto uk-grid'>
                 <label><input class='uk-radio' type='radio' name='categorie' value='Issue' ngModel #categorie='ngModel' required> Issue</label>
                 <label><input class='uk-radio' type='radio' name='categorie' value='Improvement' ngModel #categorie='ngModel'> Improvement</label>
             </div>
-            <div class='uk-margin'><textarea name='description' class='uk-textarea' rows='5' placeholder='Description' ngModel #description='ngModel' required></textarea></div>
-            <div class='uk-margin'>
-                <re-captcha siteKey="6Ldb7zcUAAAAADpGmUYGHKDq4HnQ-WqzfqissGje" name="captcha" [(ngModel)]="captcha"  required></re-captcha>   
-            </div>                
-            <div class='uk-margin'>
+            <div class='uk-margin-small'>
+                <div class="uk-width-1-1 uk-inline" uk-form-custom="target: true">
+                    <input type="file" name="picture" #file (change)="onUploadFile(file.files)">
+                    <input class="uk-input input-file  uk-form-small" type="text" placeholder="Select / drag&drop file" disabled>
+                    <span class="uk-form-icon" uk-icon="icon: upload"></span>
+                </div>
+            </div>
+            <div class='uk-margin-small'><textarea name='description' class='uk-textarea' rows='3' placeholder='Description' ngModel #description='ngModel' required></textarea></div>
+            <div class='uk-margin-small'>
+                <re-captcha siteKey="6Ldb7zcUAAAAADpGmUYGHKDq4HnQ-WqzfqissGje" name="captcha" [(ngModel)]="captcha"  required></re-captcha>
+            </div>
+            <div class='uk-margin-small'>
                 <button class='uk-button uk-button-default uk-width-1-1' type='submit' [disabled]='!form.valid'>
                     Submit
                 </button>
-                <!-- <button class='uk-button uk-button-default uk-width-1-1' (click)="loaderOn()">loaderOn()</button> -->
-                        
+                <button class='uk-button uk-button-default uk-width-1-1'(click)="close($event)" type='close'>
+                  close
+                </button>
             </div>
+
+
         </fieldset>
-        
+
     </form>
     <ng-container *ngIf='feedbackLoader'>
         <div class="loader-container">
@@ -28,9 +39,9 @@
     </ng-container>
     <ng-container *ngIf='submited'>
         <div class='uk-padding-small'>
-            Your request has been succesfull sent to administrators. It will be processed in the shortest time. <br /> 
+            Your request has been succesfull sent to administrators. It will be processed in the shortest time. <br />
             Thanks Hotmappers !
-            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button></div>        
+            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button></div>
         </div>
     </ng-container>
 </div>

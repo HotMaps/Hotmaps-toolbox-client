@@ -16,7 +16,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class InteractionService {
 
-    constructor(logger: Logger,
+    constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
@@ -52,6 +52,7 @@ export class InteractionService {
       this.sidePanelService.topPanelexpandedCollapsed();
     }
     closeTopPanel() {
+      this.logger.log('InteractionService/closeTopPanel');
       this.sidePanelService.topPanelexpandedCollapsed();
     }
     closeRightPanel() {

@@ -16,9 +16,10 @@ export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
-export const idWwtpLayer = 12;
 export const wwtpLayerName   = 'wwtp';
-export const urlMailServer   = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+export const urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+export const timeOutAjaxRequest = 10000;
+
 // layer_name
 
 export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +

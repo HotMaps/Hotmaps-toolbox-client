@@ -10,33 +10,19 @@ import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population, idWwtpLayer, zoomLevelDetectChange
+  unit_population, zoomLevelDetectChange
 } from '../../../shared/data.service'
 
-import {LoaderService } from '../../../shared/services/loader.service';
-
-
-import {Logger} from '../../../shared/services/logger.service';
-
-
+import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
 import {GeojsonClass} from '../class/geojson.class'
-import {ToasterService} from '../../../shared/services/toaster.service';
-import { proj3035 } from './../../../shared/data.service';
-
-import {APIService} from '../../../shared/services/api.service';
-import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
 
-import { poiDataResult } from './../../summary-result/mock/poi-result.data';
-import { SidePanelService } from './../../side-panel/side-panel.service';
-// import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
-import { InteractionService } from 'app/shared/services/interaction.service';
+
+
 
 @Injectable()
 export class LayersService extends APIService {
