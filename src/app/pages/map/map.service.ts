@@ -1,35 +1,26 @@
+import { Http, Response } from '@angular/http';
+
 import {idWwtpLayer, lau2, lau2name} from './../../shared/data.service';
 /**
  * Created by lesly on 27.05.17.
  */
-
-
 import { BusinessInterfaceRenderService } from './../../shared/business/business.service';
-import { hectare, clickAccuracy, geoserverGetFeatureInfoUrl } from './../../shared/data.service';
+import { hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
+  MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
+  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD} from './../../shared/data.service';
 import { basemap } from './basemap';
-import { InteractionService } from './../../shared/services/interaction.service';
-import { SelectionToolService } from './../../features/selection-tools/selection-tool.service';
-import { GeocodingService } from './../../shared/services/geocoding.service';
-import { SelectionScaleService } from './../../features/selection-scale/selection-scale.service';
-import { DataInteractionService } from './../../features/data-interaction/data-interaction.service';
-import { GeojsonClass, LayersService } from './../../features/layers';
-import { Http, Response } from '@angular/http';
-import { OnInit, OnDestroy, Injectable } from '@angular/core';
 
+import { SelectionToolService } from './../../features/selection-tools';
+import { SelectionScaleService } from './../../features/selection-scale';
+import { GeojsonClass, LayersService } from './../../features/layers';
+
+import { OnInit, OnDestroy, Injectable } from '@angular/core';
 import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import LatLng = L.LatLng;
-import 'leaflet-draw';
-import EDITED = L.Draw.Event.EDITED;
-import DRAWSTART = L.Draw.Event.DRAWSTART;
-import DELETED = L.Draw.Event.DELETED;
-import EDITSTOP = L.Draw.Event.EDITSTOP;
-import EDITSTART = L.Draw.Event.EDITSTART;
-import CREATED = L.Draw.Event.CREATED;
-
 
 
 @Injectable()
@@ -38,10 +29,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private baseMaps: any;
     private areaNutsSelectedLayer: any;
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-        private layersService: LayersService, private dataInteractionService: DataInteractionService,
-        private selectionScaleService: SelectionScaleService,
-        private geocodingService: GeocodingService, private selectionToolService: SelectionToolService,
-        private businessInterfaceRenderService: BusinessInterfaceRenderService) {
+        private layersService: LayersService, private selectionScaleService: SelectionScaleService,
+                private selectionToolService: SelectionToolService,
+                private businessInterfaceRenderService: BusinessInterfaceRenderService) {
         super(http, logger, loaderService, toasterService);
         this.baseMaps = basemap;
     }
@@ -56,26 +46,23 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     getMap(): Map {
         return this.map;
     }
-
     // Retrive all map events
     retriveMapEvent(): void {
         const self = this;
-        this.map.on('click', (event: MouseEvent) => {self.onClickEvent(self, event)});
-        this.map.on('baselayerchange', (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
-        this.map.on('zoomstart', () => { self.onZoomStart(self)});
-        this.map.on('zoomend', () => { self.onZoomEnd(self)});
-        this.map.on('measurestart', () => { self.onMeasureStart(self)});
-        this.map.on('LayersControlEvent', () => { self.onLayersControlEvent(self)});
-        this.map.on('layeradd', () => { self.onLayerAdd(self)});
-        this.map.on('didUpdateLayers', (event) => { self.onDidUpdateLayers(self, event)});
-        this.map.on('overlayadd', () => { self.onOverLayAdd(self)});
-        this.map.on('measurefinish', () => { self.onZoomEnd(self)});
-        this.map.on(CREATED, (e) => { self.onDrawCreated(self, e)});
-        this.map.on(EDITED, () => { self.onDrawEdited(self)});
-        this.map.on(DRAWSTART, () => { self.onDrawStart(self)});
-        this.map.on(EDITSTART, () => { self.onDrawEditStart(self)});
-        this.map.on(EDITSTOP, () => { self.onDrawEditStop(self)});
-        this.map.on(DELETED, () => { self.onDrawDeleted(self)});
+        this.map.on(MAPCLICK, (event: MouseEvent) => {self.onClickEvent(self, event)});
+        this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
+        this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self)});
+        this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self)});
+        this.map.on(MAPLAYERSCONTROLEVENT, () => { self.onLayersControlEvent(self)});
+        this.map.on(MAPLAYERADD, () => { self.onLayerAdd(self)});
+        this.map.on(MAPDIDIUPDATELAYER, (event) => { self.onDidUpdateLayers(self, event)});
+        this.map.on(MAPOVERLAYADD, () => { self.onOverLayAdd(self)});
+        this.map.on(MAPDRAWCREATED, (e) => { self.onDrawCreated(self, e)});
+        this.map.on(MAPDRAWEDITED, () => { self.onDrawEdited(self)});
+        this.map.on(MAPDRAWSTART, () => { self.onDrawStart(self)});
+        this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self)});
+        this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self)});
+        this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self)});
     }
 
     // Event functions
@@ -119,8 +106,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
       if (self.selectionScaleService.getScaleValue() === hectare) {
         if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
-          const layer = new L.Rectangle(e.latlng.toBounds(100));
-          self.selectionToolService.layerCreatedClick(layer, self.map);
+         // const layer = new L.Rectangle(e.latlng.toBounds(100));
+          const point = e.latlng;
+          self.selectionToolService.layerCreatedClick(point, self.map);
         }
       } else if (self.selectionScaleService.getScaleValue() === lau2) {
         self.selectionToolService.enableNavigationService(self.map);
@@ -158,7 +146,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
     // LAU management;
       getNutsGeometryFromLau2( latlng: LatLng, nuts_level): any {
-        let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+        const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
         const action = lau2name;
         const url = geoserverGetFeatureInfoUrl
           + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
@@ -210,7 +198,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.layersService.setupDefaultLayer();
     }
   checkZoomLevelLayer(action, zoomLevel) {
-    this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+    // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
   }
   getLayerArray() {
     return this.layersService.getLayerArray();

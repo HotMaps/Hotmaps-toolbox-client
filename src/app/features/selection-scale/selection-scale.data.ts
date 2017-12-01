@@ -78,7 +78,7 @@ export const SelectionScale = {
   'NUTS 1': nuts1Layer,
   'NUTS 2': nuts2Layer,
   'NUTS 3': nuts3Layer,
-  'Lau 2'  : lau2Layer,
+  'LAU 2'  : lau2Layer,
   'Hectare': hectareLayer,
 }
 

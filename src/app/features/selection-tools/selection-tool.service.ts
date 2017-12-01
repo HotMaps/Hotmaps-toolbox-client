@@ -147,6 +147,9 @@ export class SelectionToolService {
         this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), layerNameArray, map)
       } else  if (this.currentLayer instanceof L.Polygon) {
         this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
+      }else  if (this.currentLayer instanceof L.latLng) {
+
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
       } else {
         this.logger.log('unknown form');
 
@@ -171,16 +174,27 @@ export class SelectionToolService {
     this.interactionService.enableButtonWithId('selection');
     this.addDrawerControl(map);
   }
-  layerCreatedClick(layer, map) {
-    this.logger.log('SelectionToolService/layerCreatedClick');
-    this.currentLayer = layer
-    this.editableLayers.clearLayers();
-    this.editableLayers.addLayer(this.currentLayer);
-    this.editableLayers.addTo(map);
-    this.loadPopup(map, this.currentLayer);
-    this.enableNavigationService(map);
+  /*layerCreatedClick(point, map) {
+   this.logger.log('SelectionToolService/layerCreatedClick');
+   //this.currentLayer = layer
+   //this.editableLayers.clearLayers();
+   //this.editableLayers.addLayer(this.currentLayer);
+   //this.editableLayers.addTo(map);
+   this.loadPopup(map, this.currentLayer);
+   this.enableNavigationService(map);
 
-  }
+ }*/
+
+ layerCreatedClick(layer, map) {
+   this.logger.log('SelectionToolService/layerCreatedClick');
+   this.currentLayer = layer
+   this.editableLayers.clearLayers();
+   this.editableLayers.addLayer(this.currentLayer);
+   this.editableLayers.addTo(map);
+   this.loadPopup(map, this.currentLayer);
+   this.enableNavigationService(map);
+
+ }
   toggleActivateTool(val: boolean) {
     this.isActivate = val;
   }
