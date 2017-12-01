@@ -106,9 +106,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
       if (self.selectionScaleService.getScaleValue() === hectare) {
         if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
-         // const layer = new L.Rectangle(e.latlng.toBounds(100));
-          const point = e.latlng;
-          self.selectionToolService.layerCreatedClick(point, self.map);
+          const layer = new L.Rectangle(e.latlng.toBounds(100));
+          //const point = e.latlng;
+          self.selectionToolService.layerCreatedClick(layer, self.map);
         }
       } else if (self.selectionScaleService.getScaleValue() === lau2) {
         self.selectionToolService.enableNavigationService(self.map);
