@@ -51,6 +51,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
+import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
 
 
 
@@ -100,6 +101,9 @@ describe('AppComponent: Router', () => {
         {provide: DataInteractionService, useClass: DataInteractionService},
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
+
+
 
 
 

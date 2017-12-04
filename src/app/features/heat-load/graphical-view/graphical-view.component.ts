@@ -7,9 +7,10 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 
 import { Stocks } from './shared/data';
+import { Stock } from './shared/data';
 import {SummaryResultClass} from '../../summary-result/summary-result.class';
 import {Logger} from "../../../shared/services/logger.service";
-import {HeatLoadClass} from "../heat-load.class";
+import {HeatLoadClass, Value} from "../heat-load.class";
 
 @Component({
   selector: 'htm-graphical-view',
@@ -22,6 +23,8 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
   @Input() poiTitle;
   @Input('heatLoadResult') heatLoadResult: HeatLoadClass;
   subtitle: string = 'Heat load profil';
+
+  private heatloads: Stock[];
   width_const = 600;
   height_const = 200;
 
@@ -34,8 +37,8 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
   private line: d3Shape.Line<[number, number]>;
   constructor(private logger: Logger) {
 
-    this.width = 500 - this.margin.left - this.margin.right;
-    this.height = 150 - this.margin.top - this.margin.bottom;
+    this.width = 600 - this.margin.left - this.margin.right;
+    this.height = 200 - this.margin.top - this.margin.bottom;
   }
 
   ngOnInit() {
@@ -45,23 +48,35 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
 
 
     if (this.heatLoadResult) {
-      console.log('GraphicalViewComponent/ngOnInit ' + JSON.stringify(this.heatLoadResult));
+      console.log('GraphicalViewComponent/ngOnInit ' + JSON.stringify(this.heatLoadResult.values));
+    }
+
+  }
+  ngOnChanges() {
+    this.logger.log('GraphicalViewComponent/ngOnChanges');
+    if (this.heatLoadResult) {
+      this.heatloads = [];
+      for (const value of this.heatLoadResult.values) {
+        this.logger.log('entry =' + JSON.stringify(value) );
+        const result = JSON.stringify(value)
+        const s: Stock = {
+          date : this.getDate(value),
+          value : value.value,
+        };
+        this.heatloads.push(s);
+      }
+      this.logger.log('heatloads/ngOnChanges' + JSON.stringify(this.heatloads));
+      this.logger.log('Stocks/ngOnChanges' + JSON.stringify(Stocks));
+
     }
     this.initSvg();
     this.initAxis();
     this.drawAxis();
     this.drawLine();
-  }
-  ngOnChanges() {
-    this.logger.log('GraphicalViewComponent/ngOnChanges');
-    if (this.heatLoadResult) {
-      console.log('GraphicalViewComponent/ngOnInit ' + JSON.stringify(this.heatLoadResult));
+     //
     }
-  }
-
-
   private initSvg() {
-    this.svg = d3.select("svg")
+    this.svg = d3.select("#charts")
       .append("g")
       .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
   }
@@ -69,9 +84,19 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
   private initAxis() {
     this.x = d3Scale.scaleTime().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);
-    this.x.domain(d3Array.extent(Stocks, (d) => d.date ));
+    this.x.domain(d3Array.extent(Stocks, (d) => d.date));
+    this.logger.log('this.x.domain' + this.x.domain());
     this.y.domain(d3Array.extent(Stocks, (d) => d.value ));
+    this.logger.log('this.x.domain' + this.y.domain());
+
   }
+  private getDate(heatload: any): Date {
+    const date = new Date(heatload.year + '-' + heatload.month + '-01');
+    this.logger.log('getDate/date = '+ date );
+    return date;
+
+  }
+
 
   private drawAxis() {
 

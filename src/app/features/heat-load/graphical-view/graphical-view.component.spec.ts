@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphicalViewComponent } from './graphical-view.component';
+import {HeatLoadAggregateService} from "../heat-load.service";
 
 describe('GraphicalViewComponent', () => {
   let component: GraphicalViewComponent;
@@ -8,7 +9,17 @@ describe('GraphicalViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphicalViewComponent ]
+      declarations: [ GraphicalViewComponent ],
+      providers: [
+
+        {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
+
+
+
+
+
+
+      ],
     })
     .compileComponents();
   }));
