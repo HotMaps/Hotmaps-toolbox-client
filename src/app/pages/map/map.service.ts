@@ -21,6 +21,7 @@ import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import LatLng = L.LatLng;
+import {nuts2DataResult} from './component/mockdata';
 
 
 @Injectable()
@@ -142,7 +143,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
-         return this.getAreaFromScale(url);
+
+      this.selectAreaWithNuts(nuts2DataResult);
+         //return this.getAreaFromScale(url);
     }
     // LAU management;
       getNutsGeometryFromLau2( latlng: LatLng, nuts_level): any {
@@ -151,6 +154,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         const url = geoserverGetFeatureInfoUrl
           + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
           '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+
+
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
       }

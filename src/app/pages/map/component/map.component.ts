@@ -52,6 +52,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
     });
+    this.panelService.heatLoadResultStatus.subscribe((data) => {
+      this.rightPanelComponent.setHeatLoadResult(data);
+    });
     this.panelService.poiData.subscribe((data) => {
       this.rightPanelComponent.setPoiData(data);
     });

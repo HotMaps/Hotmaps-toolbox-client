@@ -50,6 +50,7 @@ import {FeedbackComponent} from '../features/feedback/component/feedback.compone
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
+import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
 
 
 
@@ -67,7 +68,7 @@ describe('AppComponent: Router', () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
-        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
+        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe, GraphicalViewComponent,
         BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

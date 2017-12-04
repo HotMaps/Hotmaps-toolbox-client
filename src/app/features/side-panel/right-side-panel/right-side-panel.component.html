@@ -8,6 +8,19 @@
 
     </div>
 
-    <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result>
+
+  <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
+    <li id="tab1"><a href="">Summary</a></li>
+    <li id="tab2"><a href="">Energy Statistics</a></li>
+
+  </ul>
+  <ul id="my-id3" class="uk-switcher uk-margin">
+    <li><htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result></li>
+    <li><htm-graphical-view [heatLoadResult]="heatLoadResult" [expanded]="expanded" ></htm-graphical-view></li>
+
+  </ul>
+  <!-- This is the container of the content items -->
+
+  <!--  <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result>-->
 
 </div>

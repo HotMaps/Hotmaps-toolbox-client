@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
+import {HeatLoadClass} from "../../heat-load/heat-load.class";
 
 
 @Component({
@@ -90,6 +91,7 @@ import { SummaryResultClass } from './../../summary-result/summary-result.class'
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
     private summaryResult: SummaryResultClass = null;
+    private heatLoadResult: HeatLoadClass = null;
     private poiData;
     private poiTitle;
     constructor() {
@@ -103,6 +105,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
     setSummaryResult(summaryResult: SummaryResultClass) {
         this.summaryResult = summaryResult;
+    }
+    setHeatLoadResult(heatLoadResult: HeatLoadClass) {
+      this.heatLoadResult = heatLoadResult;
     }
     setPoiData(data) {
         this.poiData = data;

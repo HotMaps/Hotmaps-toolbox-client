@@ -47,6 +47,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
+import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
+import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
 
 @NgModule({
   imports: [
@@ -77,7 +79,8 @@ import { TopSideComponent } from 'app/features/side-panel';
     NumberFormatPipe,
     LayerNamePipe,
     BusinessNamePipe,
-    FeedbackComponent
+    FeedbackComponent,
+    GraphicalViewComponent
   ],
 
   providers: [
@@ -101,7 +104,8 @@ import { TopSideComponent } from 'app/features/side-panel';
     DecimalPipe,
     MailService,
     SelectionScaleService,
-    InteractionService
+    InteractionService,
+    HeatLoadAggregateService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

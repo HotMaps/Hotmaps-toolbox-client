@@ -13,6 +13,12 @@ i {
     font-size: 1.5em;
 }
 
+
+.uk-tab{
+
+  justify-content: center;
+
+}
 .container-panel-right {
     flex: 1;
     display: flex;
@@ -53,7 +59,7 @@ i {
 }
 a {
     text-decoration: none;
-    
+
 }
 .title-panel-right>a{
     line-height: 50px;

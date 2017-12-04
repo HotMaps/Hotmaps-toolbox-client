@@ -41,7 +41,10 @@
         <div class='uk-padding-small'>
             Your request has been succesfull sent to administrators. It will be processed in the shortest time. <br />
             Thanks Hotmappers !
-            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button></div>
+            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button>
+              <button class='uk-button uk-button-default uk-width-1-1'(click)="close($event)" type='close'>
+                close
+              </button></div>
         </div>
     </ng-container>
 </div>

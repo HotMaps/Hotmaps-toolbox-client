@@ -14,6 +14,7 @@ export class SidePanelService {
     public topPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public rightToggleExpandedStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public summaryResultDataStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public heatLoadResultStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     public poiData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
 
@@ -43,6 +44,10 @@ export class SidePanelService {
     }
     setSummaryResultData(data: any) {
       this.summaryResultDataStatus.next(data);
+    }
+
+    setHeatLoadResultData(data: any) {
+      this.heatLoadResultStatus.next(data);
     }
     setPoiData(data) {
       this.poiData.next(data);

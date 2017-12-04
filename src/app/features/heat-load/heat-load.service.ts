@@ -8,23 +8,22 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import { postStatsLayersArea, apiUrl } from './../../shared/data.service';
+import {apiUrl, postHeatLoadAggregateMonth} from './../../shared/data.service';
 
 
 
 @Injectable()
-export class SummaryResultService extends APIService {
+export class HeatLoadAggregateService extends APIService {
 
   public summaryResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public poiResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 
-  getSummaryResultWithPayload(payload: any): Promise<any> {
-    console.log('SummaryResultService/getSummaryResultWithPayload = ', JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postStatsLayersArea);
+  getHeatLoadAggregateMonthWithPayload(payload: any): Promise<any> {
+    console.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ', JSON.stringify(payload));
+    return super.POST(payload, apiUrl + postHeatLoadAggregateMonth);
   }
 
 
