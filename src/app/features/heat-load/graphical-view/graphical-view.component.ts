@@ -9,8 +9,8 @@ import * as d3Axis from 'd3-axis';
 import { Stocks } from './shared/data';
 import { Stock } from './shared/data';
 import {SummaryResultClass} from '../../summary-result/summary-result.class';
-import {Logger} from "../../../shared/services/logger.service";
-import {HeatLoadClass, Value} from "../heat-load.class";
+import {Logger} from '../../../shared/services/logger.service';
+import {HeatLoadClass, Value} from '../heat-load.class';
 
 @Component({
   selector: 'htm-graphical-view',

@@ -14,9 +14,7 @@ export const SelectionScaleClassArray: SelectionScaleClass[] = [
 ];
 // NUTS geometry is taken from the population layer but we don't use other data
 const action = 'population';
-
-
-export const hectareLayer = L.tileLayer.wms(geoserverUrl, {
+export const hectareOption = {
   layers: 'hotmaps:' + action + 0 ,
   format: 'image/png',
   transparent: true,
@@ -24,9 +22,8 @@ export const hectareLayer = L.tileLayer.wms(geoserverUrl, {
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
   zIndex: 10
-})
-
-export const  nuts0Layer = L.tileLayer.wms(geoserverUrl, {
+}
+export const nuts0LayerOption = {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -34,8 +31,8 @@ export const  nuts0Layer = L.tileLayer.wms(geoserverUrl, {
   cql_filter : 'stat_levl_ = ' + 0 + '',
   srs: 'EPSG:4326',
   zIndex: 10
-})
-export const  nuts1Layer = L.tileLayer.wms(geoserverUrl, {
+}
+export const nuts1LayerOption = {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -43,8 +40,8 @@ export const  nuts1Layer = L.tileLayer.wms(geoserverUrl, {
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
   zIndex: 10
-})
-export const  nuts2Layer = L.tileLayer.wms(geoserverUrl, {
+}
+export const nuts2LayerOption = {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -52,8 +49,8 @@ export const  nuts2Layer = L.tileLayer.wms(geoserverUrl, {
   cql_filter : 'stat_levl_ = ' + 2 + '',
   srs: 'EPSG:4326',
   zIndex: 10
-})
-export const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
+}
+export const nuts3LayerOption = {
   layers: 'hotmaps:' + action,
   format: 'image/png',
   transparent: true,
@@ -61,24 +58,22 @@ export const nuts3Layer = L.tileLayer.wms(geoserverUrl, {
   cql_filter : 'stat_levl_ = ' + 3 + '',
   srs: 'EPSG:4326',
   zIndex: 10
-})
-
-export const  lau2Layer = L.tileLayer.wms(geoserverUrl, {
+}
+export const  lau2LayerOption = {
   layers: 'hotmaps:' + lau2name,
   format: 'image/png',
   transparent: true,
   version: '1.3.0',
   zIndex: 10
-})
-
-
-
-export const SelectionScale = {
-  'NUTS 0': nuts0Layer,
-  'NUTS 1': nuts1Layer,
-  'NUTS 2': nuts2Layer,
-  'NUTS 3': nuts3Layer,
-  'LAU 2'  : lau2Layer,
-  'Hectare': hectareLayer,
 }
 
+/*
+* loading  Event  Fired when the grid layer starts loading tiles.
+tileunload   TileEvent  Fired when a tile is removed (e.g. when a tile goes off the screen).
+tileloadstart  TileEvent  Fired when a tile is requested and starts loading.
+tileerror  TileErrorEvent   Fired when there is an error loading a tile.
+tileload   TileEvent  Fired when a tile loads.
+load   Event  Fired when the grid layer loaded all visible tiles.
+*
+*
+* */

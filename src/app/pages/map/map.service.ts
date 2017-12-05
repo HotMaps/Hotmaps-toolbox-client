@@ -64,6 +64,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self)});
         this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self)});
         this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self)});
+
+
     }
 
     // Event functions
@@ -186,7 +188,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
 
     getSelectionScaleMenu() {
-        this.selectionScaleService.getSelectionScaleMenu(this.map);
+        this.selectionScaleService.getSelectionScaleMenu(this.map, this.loaderService);
     }
 
     showOrRemoveLayer(action: string, order: number) {
