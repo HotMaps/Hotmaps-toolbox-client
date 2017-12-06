@@ -13,6 +13,9 @@ import {
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
+import {HeatLoadClass} from "../../heat-load/heat-load.class";
+import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @Component({
@@ -90,10 +93,11 @@ import { SummaryResultClass } from './../../summary-result/summary-result.class'
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
     private summaryResult: SummaryResultClass = null;
+    private heatLoadResult: Stock2 = null;
     private poiData;
     private poiTitle;
-    constructor() {
-        super();
+    constructor(protected interactionService: InteractionService) {
+        super(interactionService);
     }
     ngOnInit() {
 
@@ -103,6 +107,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
     setSummaryResult(summaryResult: SummaryResultClass) {
         this.summaryResult = summaryResult;
+    }
+    setHeatLoadResult(heatLoadResult: Stock2) {
+      this.heatLoadResult = heatLoadResult;
     }
     setPoiData(data) {
         this.poiData = data;

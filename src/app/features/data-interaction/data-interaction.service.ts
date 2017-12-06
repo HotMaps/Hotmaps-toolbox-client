@@ -12,7 +12,8 @@ import {BusinessInterfaceRenderService} from '../../shared/business/business.ser
 @Injectable()
 export class DataInteractionService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper, private business: BusinessInterfaceRenderService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+    private helper: Helper, private business: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }
   /* getModulesServices(): Promise<ModulesService[]> {

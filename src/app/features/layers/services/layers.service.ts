@@ -4,52 +4,41 @@ import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'proj4leaflet';
+import 'proj4';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population, idWwtpLayer, zoomLevelDetectChange
+  unit_population, zoomLevelDetectChange
 } from '../../../shared/data.service'
 
-import {LoaderService } from '../../../shared/services/loader.service';
-
-
-import {Logger} from '../../../shared/services/logger.service';
-
-
+import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
 import {GeojsonClass} from '../class/geojson.class'
-import {ToasterService} from '../../../shared/services/toaster.service';
-import { proj3035 } from './../../../shared/data.service';
-
-import {APIService} from '../../../shared/services/api.service';
-import {Helper} from '../../../shared/helper';
 import Layer = L.Layer;
 import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
 
-import { poiDataResult } from './../../summary-result/mock/poi-result.data';
-import { SidePanelService } from './../../side-panel/side-panel.service';
-import {PopulationService} from '../../population/services/population.service';
-import {NavigationBarService} from '../../../pages/nav/service';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+
+
 
 @Injectable()
 export class LayersService extends APIService {
   private layers = new L.FeatureGroup();
   private zoom_layerGroup: L.LayerGroup;
   private current_nuts_level = '0';
+  private heatmapOption = {
+    layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
+    format: 'image/png', transparent: true, version: '1.3.0',
+    zIndex: idDefaultLayer
+  };
 
   private layersArray: Dictionary = new Dictionary([
     {
-      key: defaultLayer , value: L.tileLayer.wms(geoserverUrl,
-      {
-        layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
-        format: 'image/png', transparent: true, version: '1.3.0',
-        zIndex: idDefaultLayer
-      })
+      key: defaultLayer , value: this.getTilayer( this.heatmapOption, this.loaderService)
     },
 
   ]);
@@ -59,10 +48,11 @@ export class LayersService extends APIService {
   }
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-              private populationService: PopulationService, private helper: Helper,
-              private panelService: SidePanelService,
-              private navBarService: NavigationBarService,
-              private businessInterfaceRenderService: BusinessInterfaceRenderService) {
+              // private interactionService: InteractionService,
+              // private populationService: PopulationService,
+              private helper: Helper,
+              private businessInterfaceRenderService: BusinessInterfaceRenderService
+            ) {
     super(http, logger, loaderService, toasterService);
   }
   getLayerArray(): Dictionary {
@@ -77,12 +67,12 @@ export class LayersService extends APIService {
     this.layers.addLayer(layer);
   }
 
-
   handleClickHectare(data: any) {
     this.logger.log(JSON.stringify(data));
-    this.panelService.setPoiData(data);
-    this.panelService.openRightPanel();
-    this.navBarService.enableButton('load_result');
+    /* this.interactionService.setSummaryResultData(data)
+    this.interactionService.openRightPanel();
+    this.interactionService.enableButtonWithId('load_result') */
+    // this.interactionService.enableDisplayLoader()
     this.loaderService.display(false);
   }
 
@@ -93,14 +83,17 @@ export class LayersService extends APIService {
     }
     return readyToShow;
   }
+  addLayerWithOrder(map: any, layer: any) {
+    this.layers.addLayer(<Layer> layer);
+    this.logger.log(layer);
+    this.logger.log(this.layers.getLayers().toString())
+  }
 
   showOrRemoveLayer(action: string, map: any, order: number) {
     this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
-      this.logger.log('this.layersArray doesnt contain ' + action);
       this.addLayerWithAction(action, map, order);
     } else {
-      this.logger.log('this.layersArray contain ' + action);
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray)
@@ -109,27 +102,46 @@ export class LayersService extends APIService {
   addLayerWithAction(action: string, map: any, order: number) {
     let layer;
     if (action === wwtpLayerName) {
-      layer = L.tileLayer.wms(geoserverUrl, {
+      const option = {
         layers: 'hotmaps:' + action ,
         format: 'image/png',
         transparent: true,
         version: '1.3.0',
-       // cql_filter : 'stat_levl_ = ' + nuts_level + '',
+        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
         zIndex: order
-      })
+      }
+      layer = this.getTilayer(option, this.loaderService);
     }else {
       // layer in Ha with date
-     layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
-      format: 'image/png',
-      transparent: true,
-      version: '1.3.0',
-      srs: 'EPSG:4326',
-      zIndex: order
-    })};
+      const option = {
+        layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
+        format: 'image/png',
+        transparent: true,
+        version: '1.3.0',
+        srs: 'EPSG:4326',
+        zIndex: order
+      }
+     layer = this.getTilayer(option, this.loaderService);
+    };
     this.layers.addLayer(layer);
     this.layersArray.add(action, layer);
+  }
+
+  getTilayer(option: any, loader): any {
+    const wms_request = L.tileLayer.wms(geoserverUrl, option);
+    wms_request.on('load', function() {
+      // loader.display(false)
+    });
+    wms_request.on('tileunload', function() {  });
+    wms_request.on('tileloadstart', function() {
+      // loader.display(true)
+    });
+    wms_request.on('tileerror', function() {
+      // loader.display(false)
+      });
+    wms_request.on('loading', function() {  });
+    return wms_request;
   }
 
   removelayer(action: string, map: any) {
@@ -161,18 +173,17 @@ export class LayersService extends APIService {
       this.addPopupHectare(map, res, latlng);
     }
   }
-  handlePopulation(map, data: any, latlng: LatLng) {
+  /* handlePopulation(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
 
-  }
-  selectAreaWithNuts(map, data: any, latlng: LatLng) {
+  } */
+  /* selectAreaWithNuts(map, data: any, latlng: LatLng) {
     const populationSelected = data;
     this.populationService.showPopulationSelectedLayer(populationSelected, map, latlng, this.popup);
     this.loaderService.display(false);
-
-  }
+  } */
 
   addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
     this.loaderService.display(false);
@@ -254,9 +265,11 @@ export class LayersService extends APIService {
       '&outputFormat=application/json';
     this.logger.log(coordinate.toString());
     this.logger.log(url);
-    return this.http.get(url).map((data: Response) => data.json() as any)
-        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this));
-    /* this.GET(url).toPromise().then((data) => { */
+    return Promise.resolve(wwtp_data).then((res) => {
+      this.addPOIToMapRegular(res, map)
+  });
+    /* this.http.get(url).map((data: Response) => data.json() as any)
+        .subscribe(res => this.addPOIToMap(res, map), err => this.handleError.bind(this)); */
     /* Promise.resolve(wwtp_data).then((data) => { */
   }
   addPOIToMap(data, map) {
@@ -272,6 +285,27 @@ export class LayersService extends APIService {
       });
       this.zoom_layerGroup.addLayer(marker);
     } );
+    this.zoom_layerGroup.addTo(map);
+  }
+
+  addPOIToMapRegular(data, map) {
+    proj4.defs('urn:ogc:def:crs:EPSG::3035', proj3035);
+    // this.zoom_layerGroup =  L.Proj.geoJson(data)
+
+
+    function onEachFeature(feature, layer) {
+      if (feature.properties) {
+        layer.setIcon(L.icon({
+          iconUrl: '../../assets/leaflet-images/marker-icon.png',
+          iconSize: [28, 40],
+          iconAnchor: [14, 20]
+        }));
+      }
+    }
+    this.zoom_layerGroup = L.Proj.geoJson(data, {
+      onEachFeature: onEachFeature
+    }).addTo(map);
+
     this.zoom_layerGroup.addTo(map);
   }
 

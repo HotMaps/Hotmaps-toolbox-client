@@ -1,3 +1,5 @@
+
+
 import 'leaflet';
 import 'leaflet.vectorgrid';
 import 'reflect-metadata';
@@ -12,6 +14,7 @@ import { DecimalPipe } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule, AppComponent  } from './';
+
 
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
@@ -39,8 +42,13 @@ import { DataInteractionCellComponent} from './features/data-interaction/data-in
 import { SummaryResultService } from './features/summary-result/summary-result.service';
 
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+
+import { InteractionService } from 'app/shared/services/interaction.service';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
+import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
+import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
 
 @NgModule({
   imports: [
@@ -51,7 +59,8 @@ import { TopSideComponent } from 'app/features/side-panel';
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    NgxChartsModule
   ],
   bootstrap: [AppComponent],
   declarations: [
@@ -71,7 +80,8 @@ import { TopSideComponent } from 'app/features/side-panel';
     NumberFormatPipe,
     LayerNamePipe,
     BusinessNamePipe,
-    FeedbackComponent
+    FeedbackComponent,
+    GraphicalViewComponent
   ],
 
   providers: [
@@ -94,9 +104,9 @@ import { TopSideComponent } from 'app/features/side-panel';
     SummaryResultService,
     DecimalPipe,
     MailService,
-    SelectionScaleService
-
-
+    SelectionScaleService,
+    InteractionService,
+    HeatLoadAggregateService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { MapComponent } from '../pages/map/component/map.component';
 import { SearchBarComponent } from '../pages/searchbar/searchbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MockLoaderService } from '../shared/services/mock/loader.service';
 import { LoaderService } from '../shared/services/loader.service'
@@ -21,7 +19,7 @@ import {RightSideComponent} from '../features/side-panel/right-side-panel/right-
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
 import {NavigationBarComponent} from '../pages/nav/component/navigation-bar.component';
 
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SummaryResultComponent} from '../features/summary-result/summary-result.component';
 import {UppercaseFirstLetterPipe} from '../shared/pipes/uppercase-first-letter.pipe';
 import {NumberFormatPipe} from '../shared/pipes/number-format.pipe';
@@ -44,14 +42,22 @@ import {PopulationService} from '../features/population/services/population.serv
 import {GeocodingService} from '../shared/services/geocoding.service';
 import {DataInteractionService} from '../features/data-interaction/data-interaction.service';
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
-
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import {TopSideComponent} from '../features/side-panel/top-side-panel/top-side-panel.component';
+import {FeedbackComponent} from '../features/feedback/component/feedback.component';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import {RecaptchaModule} from 'ng-recaptcha';
+import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
+import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
+import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
 
 
 
 describe('AppComponent: Router', () => {
 
-  //let fixture: ComponentFixture<AppComponent>;
+
   let mockLoaderService: MockLoaderService;
   let loaderServiceStub: LoaderService;
 
@@ -61,9 +67,9 @@ describe('AppComponent: Router', () => {
     loaderServiceStub = new LoaderService();
 
     TestBed.configureTestingModule({
-      declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent,
-        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent,
-        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
+      declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
+        SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
+        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe, GraphicalViewComponent,
         BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
@@ -80,6 +86,7 @@ describe('AppComponent: Router', () => {
         {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
+        {provide: InteractionService, useClass: InteractionService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);
@@ -94,12 +101,17 @@ describe('AppComponent: Router', () => {
         {provide: DataInteractionService, useClass: DataInteractionService},
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
+
+
 
 
 
 
       ],
-      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule ]
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
+        RecaptchaFormsModule,
+        RecaptchaModule.forRoot() ]
     })
 
   });
@@ -109,8 +121,8 @@ describe('AppComponent: Router', () => {
   }));
 
 
-  /*it('fakeAsync works', fakeAsync(() => {
-    console.log('it goes to fakeAsync works');
+  it('fakeAsync works', fakeAsync(() => {
+
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
     });
@@ -124,20 +136,20 @@ describe('AppComponent: Router', () => {
   it('should /map go map', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    console.log('should /map go map');
+
     router.navigate(['/map']).then(() => {
       expect(location.path()).toBe('/map');
-      console.log('after expect');
+
     });
   }));
 
   it('should empty path go map', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    console.log('should empty path go map');
+
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('/map');
-      console.log('after expect');
+
     });
-  }));*/
+  }));
 });

@@ -18,6 +18,7 @@ import { SummaryResultClass } from './../../summary-result/summary-result.class'
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
     moduleId: module.id,
@@ -54,8 +55,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
     ]
 })
 export class TopSideComponent extends SideComponent implements OnInit, OnDestroy {
-    constructor() {
-        super();
+    constructor(protected interactionService: InteractionService) {
+        super(interactionService);
     }
     ngOnInit() {
     }

@@ -1,21 +1,26 @@
 import { basemap } from './../pages/map/basemap';
+
+import 'leaflet-draw';
+
 /**
  * Created by lesly on 07.07.17.
  */
 const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
-const devUrl    = 'http://hotmaps.hevs.ch:9005/api';
-
+const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const geoserverDevUrl    = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
+const geoserverProdUrl    = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
-export const geoserverUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
+export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
-export const idWwtpLayer = 12;
 export const wwtpLayerName   = 'wwtp';
-export const urlMailServer   = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+export const urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+export const timeOutAjaxRequest = 10000;
+
 // layer_name
 
 export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
@@ -25,6 +30,8 @@ export const populationLayerName = 'population_density'
 export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
+export const postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
+export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
 
 // Projection data string
@@ -57,13 +64,30 @@ export const map_options =  {
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
-
+export const lau2name = 'COMM_RG_01M_2013';
 
 // Scale Value
 export const nuts0   = 'NUTS 0';
 export const nuts1   = 'NUTS 1';
 export const nuts2   = 'NUTS 2';
 export const nuts3   = 'NUTS 3';
+export const lau2   = 'LAU 2';
 export const hectare   = 'Hectare';
 export const initial_scale_value   = nuts3;
 
+export const MAPDRAWEDITED = L.Draw.Event.EDITED;
+export const MAPDRAWSTART = L.Draw.Event.DRAWSTART;
+export const MAPDRAWDELETED = L.Draw.Event.DELETED;
+export const MAPDRAWEDITSTOP = L.Draw.Event.EDITSTOP;
+export const MAPDRAWEDITSTART = L.Draw.Event.EDITSTART;
+export const MAPDRAWCREATED = L.Draw.Event.CREATED;
+
+export const MAPCLICK = 'click';
+export const MAPLAYERCHANCE = 'baselayerchange';
+export const MAPZOOMSTART = 'zoomstart';
+export const MAPZOOMEND = 'zoomend';
+
+export const MAPLAYERSCONTROLEVENT = 'LayersControlEvent';
+export const MAPLAYERADD = 'layeradd';
+export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
+export const MAPOVERLAYADD = 'overlayadd';

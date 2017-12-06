@@ -1,0 +1,24 @@
+
+<div class="uk-card uk-card-body htm-card">
+  <h5 class="uk-card-title">{{subtitle}} </h5>
+  <div class="lineargraph">
+    <ngx-charts-line-chart *ngIf="loadProfileData"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="loadProfileData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [autoScale]="autoScale"
+    (select)="onSelect($event)"
+    (activate)="onHover($event)"
+    (deactivate)="onHoverStop()">
+    </ngx-charts-line-chart>
+  </div>
+</div>
+

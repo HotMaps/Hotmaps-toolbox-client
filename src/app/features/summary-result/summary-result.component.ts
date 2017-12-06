@@ -63,8 +63,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     } else {
       this.isDataAgregate = false;
     }
-    console.log('SummaryResultComponent/ngOnInit ' + this.expanded);
-    console.log('SummaryResultComponent/ngOnInit ' + JSON.stringify(this.poiData));
+
   }
 
   ngOnDestroy() {
@@ -72,7 +71,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   }
 
   getData(data: any) {
-    console.log('summary result ' + data);
+
     this.summaryResult = data;
   }
 

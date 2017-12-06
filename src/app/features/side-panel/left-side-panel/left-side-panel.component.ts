@@ -14,6 +14,7 @@ import {SideComponent} from '../side-panel.component';
 
 import {DataInteractionService} from '../../data-interaction/data-interaction.service';
 import {DataInteractionClass} from '../../data-interaction/data-interaction.class';
+import { InteractionService } from 'app/shared/services/interaction.service';
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -96,8 +97,8 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   layers: DataInteractionClass[];
   category: DataInteractionClass[];
 
-  constructor(private dataInteractionService: DataInteractionService) {
-        super();
+  constructor(private dataInteractionService: DataInteractionService, protected interactionService: InteractionService) {
+        super(interactionService);
     }
 
     ngOnInit() {
@@ -113,6 +114,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     ngOnDestroy() {
 
     }
-
+    
 
 }

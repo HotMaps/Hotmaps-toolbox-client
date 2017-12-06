@@ -1,10 +1,10 @@
 <div *ngFor="let button of navButtons" class="icon-nav">
-        <i *ngIf="button.buttonFunction=='left'" class="{{button.iconClass}}" title="{{button.title}}" uk-tooltip="pos: bottom"
+        <i class="{{button.iconClass}}" title="{{button.title}}" uk-tooltip="pos: bottom"
         [class.disabledButton]="!button.enable"
-        [class.clickedButton]="leftPanel.expanded && button.enable"
+        [class.clickedButton]="button.stateOpen"
         (click)="button.enable ? toggleExpandedState(button) : null"></i>
 
-        <i *ngIf="button.buttonFunction == 'right'" class="icon-nav {{button.iconClass}}" title="{{button.title}}" uk-tooltip="pos: bottom"
+<!--         <i *ngIf="button.buttonFunction == 'right'" class="icon-nav {{button.iconClass}}" title="{{button.title}}" uk-tooltip="pos: bottom"
         [class.disabledButton]="!button.enable"
         [class.clickedButton]="rightPanel.expanded && button.enable"
         (click)="button.enable ? toggleExpandedState(button) : null"></i>
@@ -12,5 +12,5 @@
         <i *ngIf="button.buttonFunction != 'right' && button.buttonFunction != 'left'" class="{{button.iconClass}}" title="{{button.title}}" uk-tooltip="pos: bottom"
         [class.disabledButton]="!button.enable"
         [class.clickedButton]="button.stateOpen && button.enable"
-        (click)="button.enable ? toggleExpandedState(button) : null"></i>
+        (click)="button.enable ? toggleExpandedState(button) : null"></i> -->
 </div>

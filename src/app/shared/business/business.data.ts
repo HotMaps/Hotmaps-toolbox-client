@@ -3,6 +3,7 @@ import {hectare, nuts0, nuts1, nuts2, nuts3} from '../data.service';
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 17, api_name: 'heat_density', business_name: 'Average heat density'},
+  {id: 172, api_name: 'heat_density_lau2', business_name: 'Heat map / aggregrated from Hectares to LAU2'},
   {id: 172, api_name: 'heat_density_nuts3', business_name: 'Heat map / aggregrated from Hectares to NUTS3'},
   {id: 174, api_name: 'heat_density_nuts2', business_name: 'Heat map  / aggregrated from Hectares to NUTS2'},
   {id: 175, api_name: 'heat_density_nuts1', business_name: 'Heat map / aggregrated from Hectares to NUTS1'},

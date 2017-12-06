@@ -10166,7 +10166,7 @@ IntlPolyfill.__addLocaleData({locale:"en",date:{ca:["gregory","buddhist","chines
 /***/ "../../../../mdn-polyfills/Object.assign.js":
 /***/ (function(module, exports) {
 
-!function(){"use strict";"function"!=typeof Object.assign&&(Object.assign=function(n){if(void 0===n||null===n)throw new TypeError("Cannot convert undefined or null to object");for(var t=Object(n),o=1;o<arguments.length;o++){var r=arguments[o];if(void 0!==r&&null!==r)for(var e in r)r.hasOwnProperty(e)&&(t[e]=r[e])}return t})}();
+!function(){"function"!=typeof Object.assign&&(Object.assign=function(n){if(void 0===n||null===n)throw new TypeError("Cannot convert undefined or null to object");for(var o=Object(n),r=1;r<arguments.length;r++){var t=arguments[r];if(void 0!==t&&null!==t)for(var e in t)t.hasOwnProperty(e)&&(o[e]=t[e])}return o})}();
 
 
 /***/ }),

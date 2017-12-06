@@ -14,7 +14,8 @@ import {
     ViewChild
 } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
-import {urlMailServer} from '../../../shared/data.service';
+import { urlSendMail, timeOutAjaxRequest } from 'app/shared';
+import {InteractionService} from '../../../shared/services/interaction.service';
 
 @Component({
     selector: 'htm-feedback',
@@ -33,9 +34,10 @@ import {urlMailServer} from '../../../shared/data.service';
 export class FeedbackComponent implements OnInit, OnDestroy {
 
     @Input() expandedState;
+    private files;
     private submited = false;
     private feedbackLoader = false;
-    constructor(private toasterService: ToasterService) {
+    constructor(private toasterService: ToasterService, private  interactionService: InteractionService) {
     }
     ngOnInit() {
     }
@@ -56,25 +58,46 @@ export class FeedbackComponent implements OnInit, OnDestroy {
             this.submited = false;
         }
     }
-
+    close(f) {
+      this.interactionService.closeTopPanel();
+      this.interactionService.disableStateOpenWithFunction('send_mail');
+    }
+    onUploadFile(files) {
+        // console.log(files[0]);
+        this.files = files[0];
+    }
     showError() {
-        this.toasterService.showToaster('Unable to send the message! Please, try later or send a mail to administrator');
+        this.toasterService.showToaster('Enable to send the message! Please, try later or send a mail to administrator');
     }
     sendRequest(f) {
-        jQuery.post(urlMailServer, f.value, (data) => {
+        const fd = new FormData();
 
-            if (data === '1') {
-                f.reset();
-                this.submited = true;
-                this.feedbackLoader = false;
-            } else {
-                this.feedbackLoader = false;
+        if (this.files) {
+            fd.append('file', this.files, this.files.name);
+        }
+        fd.append('formValues', JSON.stringify(f.value))
+        jQuery.ajax({
+            url : urlSendMail,
+            type: 'POST',
+            data : fd,
+            processData: false,
+            contentType: false,
+            success: (data, status) => {
+                if (data === '1') {
+                    f.reset();
+                    this.submited = true;
+                    this.feedbackLoader = false;
+                } else {
+                    this.showError();
+                    this.feedbackLoader = false;
+                }
+
+            },
+            error: () => {
                 this.showError();
-
-            }
-        }).fail(() => {
-            this.feedbackLoader = false;
-            this.showError();
+                this.feedbackLoader = false;
+            },
+            timeout: timeOutAjaxRequest
         });
     }
 }

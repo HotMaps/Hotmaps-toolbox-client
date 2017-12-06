@@ -26,7 +26,7 @@ export class Logger {
   logJson(obj: any) {
     if (isDevMode() === true) {
       this.logs.push('JSON representation: ' + JSON.stringify(obj));
-      console.log('JSON representation: ' + JSON.stringify(obj));
+
     }
   }
 

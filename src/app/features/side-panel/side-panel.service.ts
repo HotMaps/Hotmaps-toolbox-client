@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Injectable()
 export class SidePanelService {
@@ -8,18 +9,22 @@ export class SidePanelService {
     public leftPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     // status for right panel
     public rightPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+
     public topPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public rightToggleExpandedStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public summaryResultDataStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public heatLoadResultStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     public poiData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
 
     topPanelexpandedCollapsed() {
       this.topPanelStatus.next(true);
     }
-    rightPanelexpandedCollapsed() {
-      this.rightToggleExpandedStatus.next(true);
+    closeTopPanelexpandedCollapsed() {
+      this.topPanelStatus.next(false);
     }
-    leftPanelexpandedCollapsed() {
+    openLeftPanel() {
       this.leftPanelStatus.next(true);
     }
     openTopPanel() {
@@ -39,6 +44,10 @@ export class SidePanelService {
     }
     setSummaryResultData(data: any) {
       this.summaryResultDataStatus.next(data);
+    }
+
+    setHeatLoadResultData(data: any) {
+      this.heatLoadResultStatus.next(data);
     }
     setPoiData(data) {
       this.poiData.next(data);

@@ -28,9 +28,9 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.logger.log('ToolbarComponent/ngOnInit');
-    this.mapService.disableMouseEvent('add-marker');
+/*     this.mapService.disableMouseEvent('add-marker');
     this.mapService.disableMouseEvent('remove-marker');
-    this.mapService.disableMouseEvent('toggle-layer');
+    this.mapService.disableMouseEvent('toggle-layer'); */
   }
 
   Initialize() {

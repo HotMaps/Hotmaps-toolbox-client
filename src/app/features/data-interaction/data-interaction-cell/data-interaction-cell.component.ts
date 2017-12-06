@@ -43,9 +43,9 @@ export class DataInteractionCellComponent implements OnInit {
     showRemoveLayer(e, action, order) {
         this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
         if (this.dataInteraction.isSelected) {
-            console.log(' dataInteraction true');
+
         }else {
-            console.log(' dataInteraction false');
+
         }
         this.mapService.showOrRemoveLayer(action, order);
         if (this.dataInteraction.zoomLevel > 0) {

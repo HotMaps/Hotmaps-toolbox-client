@@ -1,11 +1,13 @@
-form{
+form {
 
 }
 
 form > fieldset {
     padding: 10px;
 }
-
+.input-file{
+    padding-left: 35px !important;
+}
 textarea {
     resize: none;
 }
@@ -21,7 +23,7 @@ input.ng-valid, textarea.ng-valid{
     z-index: 20000;
     position: absolute;
     width: 100%;
-    height: 480px;
+    height: 490px;
     top: 50px;
     background-color: rgba(78, 78, 78, 0.19);
 }

@@ -16,7 +16,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     toasterService.showToaster(message);
 
 
-    console.log('flerwajgoerjgpergperwjgpoerjgerpogjerpgjererierjeworqj2pr');
+
     // IMPORTANT: Rethrow the error otherwise it gets swallowed
     throw error;
   }

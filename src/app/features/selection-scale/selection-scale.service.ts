@@ -3,7 +3,12 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { SelectionScaleClass } from './class/selection-scale.class';
-import {hectareLayer, nuts3Layer, SelectionScale, SelectionScaleClassArray} from './selection-scale.data';
+import {
+  hectareOption,
+  lau2LayerOption,
+  nuts0LayerOption, nuts1LayerOption, nuts2LayerOption, nuts3LayerOption,
+  SelectionScaleClassArray
+} from './selection-scale.data';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
@@ -13,7 +18,7 @@ import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} 
 @Injectable()
 export class SelectionScaleService extends APIService {
   private scaleValue = initial_scale_value;
-
+  private wms_request;
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
@@ -46,30 +51,48 @@ export class SelectionScaleService extends APIService {
       setTimeout(() => resolve(this.getDataInteractionServices()), 2000);
     });
   }
-
-  getSelectionScaleMenu(map: any) {
+  getTilayer(option: any, loader): any {
+    const wms_request = L.tileLayer.wms(geoserverUrl, option);
+    wms_request.on('load', function() {
+      // loader.display(false)
+    });
+    wms_request.on('tileunload', function() {  });
+    wms_request.on('tileloadstart', function() {
+     // loader.display(true)
+    });
+    wms_request.on('tileerror', function() {
+     // loader.display(false)
+    });
+    wms_request.on('loading', function() {  });
+    return wms_request;
+  }
+  getSelectionScaleMenu(map: any, loader) {
+    const  nuts0Layer = this.getTilayer(nuts0LayerOption, loader);
+    const  nuts1Layer = this.getTilayer(nuts1LayerOption, loader);
+    const  nuts2Layer = this.getTilayer(nuts2LayerOption, loader);
+    const  nuts3Layer = this.getTilayer(nuts3LayerOption, loader);
+    const  lau2Layer = this.getTilayer(lau2LayerOption, loader);
+    const hectareLayer = this.getTilayer(hectareOption, loader)
+    const SelectionScale = {
+      'NUTS 0': nuts0Layer,
+      'NUTS 1': nuts1Layer,
+      'NUTS 2': nuts2Layer,
+      'NUTS 3': nuts3Layer,
+      'LAU 2'  : lau2Layer,
+      'Hectare': hectareLayer,
+    }
 
     const overlayMaps = {
     };
 
    const control = L.control.layers(SelectionScale, overlayMaps, {collapsed: false});
    control.addTo(map);
-
-
-
-    map.addLayer(this.getInitialLayer());  // # Add this if you want to show, comment this if you want to hide it.-
+    map.addLayer(SelectionScale[initial_scale_value]);  // # Add this if you want to show, comment this if you want to hide it.-
 
   }
 
   getInitialScale(): string {
     return initial_scale_value;
-  }
-
-
-  getInitialLayer(): any {
-
-    return SelectionScale[initial_scale_value];
-
   }
 
 
