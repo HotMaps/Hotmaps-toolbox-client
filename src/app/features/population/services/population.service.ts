@@ -30,9 +30,17 @@ export class PopulationService extends APIService {
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
+
+  /**
+  * Get the population with payloads
+  */
   getPopulationWithPayloads(payload: Payload): Promise<Population> {
     return super.POST(payload, apiUrl + postPopulationDensityInArea);
   }
+
+  /**
+  * Show the population selected layer
+  */
   showPopulationSelectedLayer(populationSelected: any, map: any, latlng: LatLng, popup: Popup) {
     this.logger.log('PopulationService/showPopulationSelectedLayer');
     const geometrie = populationSelected.features[0].geometry
@@ -47,6 +55,9 @@ export class PopulationService extends APIService {
 
   }
 
+  /**
+  * Add the Nuts popup
+  */
   addPopupNuts(data: any, map: any, latlng: LatLng, popup: Popup) {
     const stat_levl_ = data.features[0].properties.stat_levl_;
     const nuts_id = data.features[0].properties.nuts_id;
@@ -60,6 +71,9 @@ export class PopulationService extends APIService {
 
  }
 
+  /**
+  * Remove the population selected layer
+  */
   removePopulationSelectedlayer( map: any) {
     if (this.populationSelectedLayer) {
       this.logger.log('MapService/removelayer');

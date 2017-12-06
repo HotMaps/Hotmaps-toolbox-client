@@ -44,9 +44,17 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     resetForm(f) {
         f.reset()
     }
+
+    /**
+     * Make a new request
+     */
     makeNewRequest() {
         this.submited = false;
     }
+
+    /**
+     * Submit the feedback
+     */
     submit(f) {
         this.feedbackLoader = true;
         if (f.valid) {
@@ -57,9 +65,16 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Show an error when fail to send a request
+     */
     showError() {
         this.toasterService.showToaster('Unable to send the message! Please, try later or send a mail to administrator');
     }
+
+    /**
+     * Send a request by mail
+     */
     sendRequest(f) {
         jQuery.post(urlMailServer, f.value, (data) => {
 

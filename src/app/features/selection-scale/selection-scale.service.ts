@@ -21,15 +21,24 @@ export class SelectionScaleService extends APIService {
   getDataInteractionServices(): Promise<SelectionScaleClass[]> {
     return Promise.resolve(SelectionScaleClassArray);
   }
+
+  /**
+  * Get the initial scale value
+  */  
   getScaleValue(): string {
     return this.scaleValue;
   }
 
+  /**
+  * Set the scale value
+  */
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
 
-
+  /**
+  * Get the selection scale array
+  */  
   getDataArrayServices(): SelectionScaleClass[] {
     return SelectionScaleClassArray;
   }
@@ -47,6 +56,9 @@ export class SelectionScaleService extends APIService {
     });
   }
 
+  /**
+  * Get the selection scale menu
+  */ 
   getSelectionScaleMenu(map: any) {
 
     const overlayMaps = {
@@ -61,15 +73,18 @@ export class SelectionScaleService extends APIService {
 
   }
 
+  /**
+  * Get the initial scale
+  */  
   getInitialScale(): string {
     return initial_scale_value;
   }
 
-
+  /**
+  * Get the inital layer
+  */  
   getInitialLayer(): any {
-
     return SelectionScale[initial_scale_value];
-
   }
 
 

@@ -84,10 +84,17 @@ export class SelectionToolService {
       //  self.manageEditOrCreateLayer(layer, map);
     });
   }
+
+  /**
+  * Set the scale value
+  */
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
 
+  /**
+  * Check if layer is in the map
+  */  
   isLayerInMap(): boolean {
     let hasLayer = false;
     if (this.editableLayers.getLayers().length > 0) {

@@ -11,6 +11,10 @@ export class MailService {
   platform: Platform;
   url: string;
     constructor(private logger: Logger) { }
+
+    /**
+    * Send the email
+    */  
     sendEmail() {
       this.initService();
       window.open(this.url, 'newwindow', 'width=1070, height=600');
@@ -23,6 +27,10 @@ export class MailService {
         this.constructUrl();
       }
     }
+
+  /**
+  * Fetch properties for the mail
+  */    
   fetchProperties() {
     this.properties.url = this.properties.url || this.getMetaContent('og:url') || window.location.href.toString();
     this.properties.title = this.properties.title || this.getMetaContent('og:title') || document.title;
@@ -37,6 +45,9 @@ export class MailService {
     }
   }
 
+  /**
+  * Construct the url for the mail 
+  */ 
   constructUrl() {
     this.url = this.platform.url + this.properties.url;
     if (this.platform.properties) {
