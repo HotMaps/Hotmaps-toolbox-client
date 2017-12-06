@@ -23,12 +23,14 @@ import Created = L.DrawEvents.Created;
 
 import Layer = L.Layer;
 import Edited = L.DrawEvents.Edited;
+import * as proj4x from 'proj4';
+const proj4 = (proj4x as any).default;
 
 
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import {
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, nuts2, nuts3,
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, proj3035,
   wwtpLayerName
 } from '../../shared/data.service';
 import {GeojsonClass} from '../layers/class/geojson.class';
@@ -296,6 +298,8 @@ export class SelectionToolService {
     this.loaderService.display(true);
     const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
     const summaryPromise = this.interactionService.getSummaryResultWithPayload(payload).then(result => {
+      console.log(result );
+
       this.displaySummaryResult(result, map);
     }).catch();
     request.push(summaryPromise);
@@ -354,7 +358,17 @@ export class SelectionToolService {
    // this.logger.log('MapService/selectAreaWithNuts()');
    // this.logger.log('result.feature_collection()' + result.feature_collection.type);
     if (this.helper.isNullOrUndefined(result.feature_collection.type) === false) {
-      const geoJson = result.feature_collection;
+      // this.logger.log('result ' + JSON.stringify(result));
+      // this.logger.log('result feature_collection ' + JSON.stringify(result.feature_collection));
+      let geoJson = null
+      if (this.scaleValue === lau2) {
+
+        proj4.defs('EPSG:3035', proj3035);
+        geoJson = L.Proj.geoJson(result.feature_collection);
+      }else {
+        geoJson = result.feature_collection;
+      }
+     //  this.logger.log('geoJson ' + JSON.stringify(geoJson));
       // remove the layer if there is one
      // this.logger.log('MapService/geometrie()' + geoJson);
       this.removeAreaNuts(map);
