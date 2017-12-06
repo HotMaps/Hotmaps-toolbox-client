@@ -9,7 +9,7 @@ export interface Value {
     nuts_level: string;
   }
 export interface HeatLoadClass {
-    values: Value[];
-  }
+  values: Value[];
+}
 
 

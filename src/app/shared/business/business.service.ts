@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { BusinessInterfaceRenderClass } from './business.class';
 import { BusinessInterfaceRenderArray } from './business.data';
 import { NutsRenderArray } from './nuts.data';
-import {Helper} from '../helper';
-import {NutsRenderClass} from './NutsRenderClass';
+import { Helper } from '../helper';
+import { NutsRenderClass } from './NutsRenderClass';
 
 @Injectable()
 export class BusinessInterfaceRenderService {

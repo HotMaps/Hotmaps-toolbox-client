@@ -1,30 +1,27 @@
-import {Component, Input, OnInit, OnChanges} from '@angular/core';
+import {Component, Input, OnInit, OnChanges, OnDestroy} from '@angular/core';
 
-import * as d3 from 'd3-selection';
-import * as d3Scale from 'd3-scale';
-import * as d3Shape from 'd3-shape';
-import * as d3Array from 'd3-array';
-import * as d3Axis from 'd3-axis';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import { Stocks } from './shared/data';
+import { Stocks, load_profile_data, load_profile_data2 } from './shared/data';
 import { Stock } from './shared/data';
 import {SummaryResultClass} from '../../summary-result/summary-result.class';
-import {Logger} from '../../../shared/services/logger.service';
-import {HeatLoadClass, Value} from '../heat-load.class';
+import {Logger} from "../../../shared/services/logger.service";
+import {HeatLoadClass, Value} from "../heat-load.class";
+import { TemplateRef } from '@angular/core/src/linker/template_ref';
+import { LoadProfile, Stock2 } from 'app/features/heat-load/graphical-view/shared';
 
 @Component({
   selector: 'htm-graphical-view',
   templateUrl: './graphical-view.component.html',
   styleUrls: ['./graphical-view.component.css']
 })
-export class GraphicalViewComponent implements OnInit, OnChanges {
+export class GraphicalViewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() expanded: boolean;
 
   @Input() poiTitle;
-  @Input('heatLoadResult') heatLoadResult: HeatLoadClass;
+  @Input('heatLoadResult') heatLoadResult: Stock2[];
   subtitle: string = 'Heat load profil';
 
-  private heatloads: Stock[];
   width_const = 600;
   height_const = 200;
 
@@ -34,96 +31,54 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
   private x: any;
   private y: any;
   private svg: any;
-  private line: d3Shape.Line<[number, number]>;
-  constructor() {
+  // private line: d3Shape.Line<[number, number]>;
+  private data;
+  private valueDisplayed = 0;
+  private loadProfileData: LoadProfile[] = [];
+  single: any[];
+  multi: any[];
+  private timeline = true;
+  view: any[] = [450, 300];
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  xAxisLabel = 'Month';
+  showYAxisLabel = true;
+  yAxisLabel = 'GWH';
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
 
-    this.width = 600 - this.margin.left - this.margin.right;
-    this.height = 200 - this.margin.top - this.margin.bottom;
+  // line, area
+  autoScale = false;
+  constructor(private logger: Logger) {
   }
-
-  ngOnInit() {
-
-    //const nuts_id = this.summaryResult['nuts_id'];
-   // this.logger.log('nuts_id ' + nuts_id);
-
-
-    if (this.heatLoadResult) {
-
-    }
-
+  ngOnDestroy(){
+    this.logger.log('GraphicalViewComponent/ngOnDestroy');
   }
+  ngOnInit() {}
+
   ngOnChanges() {
-
+    this.logger.log('GraphicalViewComponent/ngOnChanges');
     if (this.heatLoadResult) {
-      this.heatloads = [];
-      for (const value of this.heatLoadResult.values) {
-
-        const result = JSON.stringify(value)
-        const s: Stock = {
-          date : this.getDate(value),
-          value : value.value,
-        };
-        this.heatloads.push(s);
-      }
-
-
+      this.loadProfileData = [{
+        name: 'Load profile data',
+        series: this.heatLoadResult
+      }];
     }
-    this.initSvg();
-    this.initAxis();
-    this.drawAxis();
-    this.drawLine();
-     //
-    }
-  private initSvg() {
-    this.svg = d3.select("#charts")
-      .append("g")
-      .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
   }
-
-  private initAxis() {
-    this.x = d3Scale.scaleTime().range([0, this.width]);
-    this.y = d3Scale.scaleLinear().range([this.height, 0]);
-    this.x.domain(d3Array.extent(Stocks, (d) => d.date));
-
-    this.y.domain(d3Array.extent(Stocks, (d) => d.value ));
-
-
+  onHoverStop() {
+    this.valueDisplayed = 0;
   }
-  private getDate(heatload: any): Date {
-    const date = new Date(heatload.year + '-' + heatload.month + '-01');
-
-    return date;
-
+  onHover(event) {
+    console.log(event);
+    // this.valueDisplayed = event.value.value;
   }
-
-
-  private drawAxis() {
-
-    this.svg.append("g")
-      .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + this.height + ")")
-      .call(d3Axis.axisBottom(this.x));
-
-    this.svg.append("g")
-      .attr("class", "axis axis--y")
-      .call(d3Axis.axisLeft(this.y))
-      .append("text")
-      .attr("class", "axis-title")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Price ($)");
-  }
-
-  private drawLine() {
-    this.line = d3Shape.line()
-      .x( (d: any) => this.x(d.date) )
-      .y( (d: any) => this.y(d.value) );
-
-    this.svg.append("path")
-      .datum(Stocks)
-      .attr("class", "line")
-      .attr("d", this.line);
+  onSelect(event) {
+    // this.valueDisplayed = event.value;
+    // console.log(event);
   }
 }

@@ -44,7 +44,7 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 
 import { InteractionService } from 'app/shared/services/interaction.service';
-
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
@@ -59,7 +59,8 @@ import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    NgxChartsModule
   ],
   bootstrap: [AppComponent],
   declarations: [

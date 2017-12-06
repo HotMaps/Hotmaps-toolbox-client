@@ -3,9 +3,12 @@ import {Logger} from './services';
 import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
 import {round_value} from './data.service';
+import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
+import { MONTHNAME } from 'app/shared/class/month.data';
 
 @Injectable()
 export class Helper {
+  private monthData = MONTHNAME;
   constructor(private logger: Logger, private decimalPipe: DecimalPipe) {
   }
 
@@ -136,7 +139,32 @@ export class Helper {
     if (this.isNullOrUndefined(num) === true) { return num};
     return this.decimalPipe.transform(num, round_value );
   }
+  formatDataLoadProfil(data) {
+    // console.log(data);
+    // const loadProfileData: LoadProfile;
+    const formattedValues = [];
+    data.values.map((value) => {
+      console.log(this.getMonthString(this.getDate(value).getMonth()));
+      const stockValue: Stock2 = {
+        name: this.getMonthString(this.getDate(value).getMonth()),
+        value: Math.round(value.value)
+      };
+      // console.log(stockValue);
+      formattedValues.push(stockValue);
+    });
+    return formattedValues;
+  }
+  private getDate(heatload: any): Date {
+    const date = new Date(heatload.year + '-' + heatload.month + '-01');
+    this.logger.log('getDate/date = ' + date );
+    return date;
 
+  }
+  private getMonthString(numberOfMonth) {
+    const month = MONTHNAME.filter(m => m.id === numberOfMonth + 1)[0];
+    // console.log(month);
+    return month.month;
+  }
 }
 
 

@@ -28,7 +28,7 @@ import Edited = L.DrawEvents.Edited;
 import { Dictionary } from './../../shared/class/dictionary.class';
 import { PayloadStat } from './../summary-result/mock/payload.class';
 import {
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, nuts3,
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, nuts2, nuts3,
   wwtpLayerName
 } from '../../shared/data.service';
 import {GeojsonClass} from '../layers/class/geojson.class';
@@ -76,14 +76,7 @@ export class SelectionToolService {
     this.removeAreaNuts(map);
     this.manageEditOrCreateLayer(layer, map);
   }
-  drawEdited(e) {
 
-    const event: Edited = <Edited>e;
-    event.layers.eachLayer(function (layer: Layer) {
-      const lay: Layer = layer;
-      //  self.manageEditOrCreateLayer(layer, map);
-    });
-  }
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
@@ -117,9 +110,7 @@ export class SelectionToolService {
   }
 
   loadPopup(map: any, layer: Layer) {
-    //this.logger.log('SelectionToolService/loadPopup');
 
-    // Create elements with leaflet utility - validation & Cancel buttons + title
     this.createButtons('selection');
     this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
     // Set event bind on popup's buttons
@@ -303,33 +294,37 @@ export class SelectionToolService {
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
    const self = this;
-    //this.logger.log('SelectionToolService/getStatisticsFromLayer');
-    // this.sidePanelService.closeRightPanel();
+    const request = [];
     this.loaderService.display(true);
     const payload: PayloadStat = { layers: layers, year: constant_year, points: locations }
-
     const summaryPromise = this.interactionService.getSummaryResultWithPayload(payload).then(result => {
-     // this.logger.log('SummaryResult ' + JSON.stringify(result));
       this.displaySummaryResult(result, map);
-     //  this.logger.log('summaryPromise ');
     }).catch();
+    request.push(summaryPromise);
+    this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
+    if (this.scaleValue === nuts2) {
+      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
+      this.logger.log('nuts_id =  ' + nuts_id);
+      const heatLoadPayload = {
+        'year': 2010,
+        'nuts_id': nuts_id,
+        'nuts_level': '2'
+      }
+      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+      //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
+        const data = this.helper.formatDataLoadProfil(result);
+        this.displayHeatLoad(data);
+      }).catch();
+      request.push(heatloadPromise);
+    } else {
+      this.displayHeatLoad(null);
 
-    const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-    this.logger.log('nuts_id =  ' + nuts_id);
-    let heatLoadPayload = {
-      "year": 2010,
-      "nuts_id": nuts_id,
-      "nuts_level": "2"
     }
-    const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
-    //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
-      this.displayHeatLoad(result);
-    }).catch();
 
     Promise
-      .all([summaryPromise, heatloadPromise])
+      .all(request)
       .then(values => {
-        this.logger.log('Promise then ');
+        this.logger.log('Promise then ' + values);
       });
 
   }

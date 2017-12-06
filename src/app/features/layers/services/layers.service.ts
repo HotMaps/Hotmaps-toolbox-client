@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'proj4leaflet';
+import 'proj4';
 
 import {Dictionary} from '../../../shared/class/dictionary.class'
 import {

@@ -2,7 +2,77 @@ export interface Stock {
   date: Date,
   value: number
 }
+export interface Stock2 {
+  name: any,
+  value: number
+}
+export interface LoadProfile {
+  name: string,
+  series: Stock2[]
+}
+export const load_profile_data: any[] = [
+    {
+      "name": "Heat load",
+      "series": [
+        {
+          "name": new Date("2010-01-01"),
+          "value": 210.73
+        },
+        {
+          "name": new Date("2010-02-01"),
+          "value": 210.73
+        },
+        {
+          "name": new Date("2010-03-01"),
+          "value": 214.01
+        },
+        {
+          "name": new Date("2010-04-01"),
+          "value": 214.01
+        },
+        {
+          "name": new Date("2010-05-01"),
+          "value": 500.01
+        },
+        {
+          "name": new Date("2010-06-01"),
+          "value": 231.01
+        },
+        {
+          "name": new Date("2010-07-01"),
+          "value": 764.01
+        },
+      ]
+    }
+]
 
+export const load_profile_data2: any[] = [
+  {
+    "name": "Heat load",
+    "series": [
+      {
+        "name": new Date("2010-08-01"),
+        "value": 978.73
+      },
+      {
+        "name": new Date("2010-09-01"),
+        "value": 213.73
+      },
+      {
+        "name": new Date("2010-10-01"),
+        "value": 567.01
+      },
+      {
+        "name": new Date("2010-11-01"),
+        "value": 214.01
+      },
+      {
+        "name": new Date("2010-12-01"),
+        "value": 213.01
+      }
+    ]
+  }
+]
 export const Stocks: Stock[] = [
   {date: new Date("2010-01-01"), value: 210.73},
   {date: new Date("2010-01-04"), value: 214.01},

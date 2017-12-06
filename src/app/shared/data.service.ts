@@ -90,5 +90,3 @@ export const MAPLAYERSCONTROLEVENT = 'LayersControlEvent';
 export const MAPLAYERADD = 'layeradd';
 export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
 export const MAPOVERLAYADD = 'overlayadd';
-
-
