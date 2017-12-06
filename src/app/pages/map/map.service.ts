@@ -110,7 +110,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       if (self.selectionScaleService.getScaleValue() === hectare) {
         if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
           const layer = new L.Rectangle(e.latlng.toBounds(100));
-          //const point = e.latlng;
           self.selectionToolService.layerCreatedClick(layer, self.map);
         }
       } else if (self.selectionScaleService.getScaleValue() === lau2) {
@@ -146,8 +145,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
 
-      this.selectAreaWithNuts(nuts2DataResult);
-         //return this.getAreaFromScale(url);
+     // this.selectAreaWithNuts(nuts2DataResult);
+      return this.getAreaFromScale(url);
     }
     // LAU management;
       getNutsGeometryFromLau2( latlng: LatLng, nuts_level): any {

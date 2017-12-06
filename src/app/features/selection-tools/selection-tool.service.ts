@@ -124,15 +124,13 @@ export class SelectionToolService {
       const layerNameArray = []
       for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
         if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
-        //  this.logger.log('array ' + this.interactionService.getLayerArray().keys()[i]
-          //  + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
-         // this.logger.log('loadPopup/this.scaleValue' + this.scaleValue);
           layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
             this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
         } else {
           layerNameArray.push(this.interactionService.getLayerArray().keys()[i]);
         }
       }
+      this.logger.log('layerNameArray' + layerNameArray);
       if (this.currentLayer instanceof L.Circle) {
         this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), layerNameArray, map)
       } else  if (this.currentLayer instanceof L.Polygon) {
