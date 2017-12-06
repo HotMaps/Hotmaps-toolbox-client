@@ -43,6 +43,8 @@ import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-
 import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import {GraphicalViewComponent} from "../../../features/heat-load/graphical-view/graphical-view.component";
+import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
 
 
 
@@ -66,7 +68,7 @@ describe('MapComponent', () => {
         MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent,
-        LayerNamePipe, BusinessNamePipe
+        LayerNamePipe, BusinessNamePipe, GraphicalViewComponent
       ],
       providers: [
         {
@@ -74,6 +76,7 @@ describe('MapComponent', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: InteractionService, useClass: InteractionService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },

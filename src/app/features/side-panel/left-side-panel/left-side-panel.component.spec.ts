@@ -19,6 +19,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
+import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
 
 
 describe('LeftSideComponent', () => {
@@ -39,6 +40,7 @@ describe('LeftSideComponent', () => {
                     }, deps: [ MockBackend, BaseRequestOptions ]
                 },
                 { provide: InteractionService, useClass: InteractionService },
+                { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
                 { provide: SidePanelService, useClass: SidePanelService },
                 { provide: SummaryResultService, useClass: SummaryResultService },
                 { provide: LayersService, useClass: LayersService },

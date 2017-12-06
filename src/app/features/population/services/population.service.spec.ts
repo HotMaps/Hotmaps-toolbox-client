@@ -52,7 +52,7 @@ describe('PopulationService', () => {
     done();
   });
   it('should be created', inject([PopulationService], (service: PopulationService) => {
-    console.log(' PopulationService should be created');
+
     expect(service).toBeTruthy();
   }));
   it('#getPopulationWithPayloads should call endpoint and return it\'s result', (done) => {
@@ -75,8 +75,8 @@ describe('PopulationService', () => {
       points: locations,
     }
     subject.getPopulationWithPayloads(payload).then((response) => {
-      console.log(response);
-      console.log('did get data');
+
+
         expect(response).toEqual(MockPopulation );
         done();
       });

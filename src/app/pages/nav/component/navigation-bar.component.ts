@@ -56,6 +56,6 @@ export class NavigationBarComponent implements OnInit {
 
         }
 
-        console.log(button);
+
     }
 }

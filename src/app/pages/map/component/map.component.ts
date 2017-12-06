@@ -77,7 +77,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       }
     });
     this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
-      console.log(val + '  SelectionToolButtonStateService')
       if (val) {
         this.mapService.addDrawControls();
       }else {

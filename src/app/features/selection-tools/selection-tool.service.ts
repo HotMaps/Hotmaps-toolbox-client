@@ -66,7 +66,6 @@ export class SelectionToolService {
   ) {}
 
   drawCreated(e, map) {
-    console.log('created', e.type);
     const event: Created = <Created>e;
     const type = event.layerType,
     layer: any = event.layer;
@@ -78,7 +77,7 @@ export class SelectionToolService {
     this.manageEditOrCreateLayer(layer, map);
   }
   drawEdited(e) {
-    console.log('EDITED', e.type);
+
     const event: Edited = <Edited>e;
     event.layers.eachLayer(function (layer: Layer) {
       const lay: Layer = layer;

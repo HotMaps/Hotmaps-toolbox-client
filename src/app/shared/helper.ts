@@ -43,7 +43,6 @@ export class Helper {
 
   convertListLatLongToLocation(latlngArray): Location[] {
     const locations = [];
-    console.log(latlngArray[0][0]);
     const latlng = latlngArray[0][0];
     for (let i = 0; i < latlng.length; i++) {
         const loc: Location = {

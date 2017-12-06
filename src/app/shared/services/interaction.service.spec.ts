@@ -12,6 +12,7 @@ import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderService } from 'app/shared';
+import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
 
 
 
@@ -32,6 +33,7 @@ describe('InteractionService', () => {
             }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: InteractionService, useClass: InteractionService },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: Logger, useValue: mockLoggerService },

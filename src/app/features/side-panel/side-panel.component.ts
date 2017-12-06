@@ -49,6 +49,6 @@ export class SideComponent implements OnInit, OnDestroy {
             this.expandedState = 'collapsed';
             this.expanded = false;
         }
-      console.log('this.expandedState ' + this.expandedState);
+
     }
 }

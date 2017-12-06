@@ -70,7 +70,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     }
     sendRequest(f) {
         const fd = new FormData();
-        console.log(f.value);
+
         if (this.files) {
             fd.append('file', this.files, this.files.name);
         }
@@ -90,7 +90,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
                     this.showError();
                     this.feedbackLoader = false;
                 }
-                console.log(data);
+
             },
             error: () => {
                 this.showError();

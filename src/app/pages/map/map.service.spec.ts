@@ -24,6 +24,7 @@ import {SelectionScaleService} from '../../features/selection-scale/selection-sc
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
 
 
 
@@ -43,6 +44,7 @@ describe('mapService', () => {
         }, deps: [MockBackend, BaseRequestOptions]
         },
         {provide: InteractionService, useClass: InteractionService},
+        {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
         {provide: SelectionScaleService, useClass: SelectionScaleService},
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
         {provide: DataInteractionService, useClass: DataInteractionService},

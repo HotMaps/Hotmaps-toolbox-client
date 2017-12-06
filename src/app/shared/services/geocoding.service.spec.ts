@@ -38,7 +38,7 @@ describe('geocodingService', () => {
       const location = new LocationClass();
       let i = 0;
       mockBackend.connections.subscribe(c => {
-        console.log(c.request.url);
+
 
         if (i === 0) {
           expect(c.request.url).toBe(getIpUrl);
@@ -51,11 +51,11 @@ describe('geocodingService', () => {
           '"region_code":"NY","region_name":"New York","city":"New York","zip_code":"10036",' +
           '"time_zone":"America/New_York","latitude":40.7605,"longitude":-73.9933,"metro_code":501}'});
           c.mockRespond(new Response(response));
-          console.log(c.request.url);
+
         }
       });
       geocodingService.getCurrentLocation().subscribe((result) => {
-        console.log('result.longitude ' + result.longitude);
+
         location.address = result.address;
         location.latitude = result.latitude;
         location.longitude = result.longitude;
@@ -72,14 +72,13 @@ describe('geocodingService', () => {
       let res: Response;
       let location = new LocationClass();
       mockBackend.connections.subscribe(c => {
-        console.log(c.request.url);
+
           expect(c.request.url).toBe(geocodeUrl + 'lausanne');
-        console.log(c.request.url);
+
       });
       geocodingService.geocode('lausanne').subscribe((result) => {
         location = result;
-        console.log('result' + result.latitude);
-        console.log('result address' + result.longitude);
+
       });
       tick();
 

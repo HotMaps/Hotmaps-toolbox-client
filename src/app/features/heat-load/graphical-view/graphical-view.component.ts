@@ -35,7 +35,7 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
   private y: any;
   private svg: any;
   private line: d3Shape.Line<[number, number]>;
-  constructor(private logger: Logger) {
+  constructor() {
 
     this.width = 600 - this.margin.left - this.margin.right;
     this.height = 200 - this.margin.top - this.margin.bottom;
@@ -48,16 +48,16 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
 
 
     if (this.heatLoadResult) {
-      console.log('GraphicalViewComponent/ngOnInit ' + JSON.stringify(this.heatLoadResult.values));
+
     }
 
   }
   ngOnChanges() {
-    this.logger.log('GraphicalViewComponent/ngOnChanges');
+
     if (this.heatLoadResult) {
       this.heatloads = [];
       for (const value of this.heatLoadResult.values) {
-        this.logger.log('entry =' + JSON.stringify(value) );
+
         const result = JSON.stringify(value)
         const s: Stock = {
           date : this.getDate(value),
@@ -65,8 +65,7 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
         };
         this.heatloads.push(s);
       }
-      this.logger.log('heatloads/ngOnChanges' + JSON.stringify(this.heatloads));
-      this.logger.log('Stocks/ngOnChanges' + JSON.stringify(Stocks));
+
 
     }
     this.initSvg();
@@ -85,14 +84,14 @@ export class GraphicalViewComponent implements OnInit, OnChanges {
     this.x = d3Scale.scaleTime().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);
     this.x.domain(d3Array.extent(Stocks, (d) => d.date));
-    this.logger.log('this.x.domain' + this.x.domain());
+
     this.y.domain(d3Array.extent(Stocks, (d) => d.value ));
-    this.logger.log('this.x.domain' + this.y.domain());
+
 
   }
   private getDate(heatload: any): Date {
     const date = new Date(heatload.year + '-' + heatload.month + '-01');
-    this.logger.log('getDate/date = '+ date );
+
     return date;
 
   }

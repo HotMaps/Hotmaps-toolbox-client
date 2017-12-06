@@ -130,10 +130,10 @@ export class LayersService extends APIService {
   getTilayer(option: any, loader): any {
     const wms_request = L.tileLayer.wms(geoserverUrl, option);
     wms_request.on('load', function() {loader.display(false) });
-    wms_request.on('tileunload', function() { console.log('tileunload') });
+    wms_request.on('tileunload', function() {  });
     wms_request.on('tileloadstart', function() { loader.display(true) });
     wms_request.on('tileerror', function() { loader.display(false) });
-    wms_request.on('loading', function() { console.log('loading') });
+    wms_request.on('loading', function() {  });
     return wms_request;
   }
 

@@ -84,7 +84,7 @@ describe('SummaryResultService', () => {
     const payload: PayloadStat = payloadStatData;
     payload.layers.push('heat_density_ha');
     payload.layers.push('population');
-    console.log(payload);
+
     subject.getSummaryResultWithPayload(payload).then((response) => {
       expect(response).toEqual(summaryResultDataHeatPopulation);
       done();
@@ -102,7 +102,7 @@ describe('SummaryResultService', () => {
     payload.layers.push('heat_density_ha');
     payload.layers.push('population');
     payload.layers.push('wwtp');
-    console.log(payload);
+
     subject.getSummaryResultWithPayload(payload).then((response) => {
       expect(response).toEqual(summaryResultDataHeatPopulationWWTP);
       done();

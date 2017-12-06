@@ -22,7 +22,7 @@ export class HeatLoadAggregateService extends APIService {
   }
 
   getHeatLoadAggregateMonthWithPayload(payload: any): Promise<any> {
-    console.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ', JSON.stringify(payload));
+    this.logger.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ' + JSON.stringify(payload));
     return super.POST(payload, apiUrl + postHeatLoadAggregateMonth);
   }
 

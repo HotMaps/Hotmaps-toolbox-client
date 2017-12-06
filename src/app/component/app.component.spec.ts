@@ -122,7 +122,7 @@ describe('AppComponent: Router', () => {
 
 
   it('fakeAsync works', fakeAsync(() => {
-    console.log('it goes to fakeAsync works');
+
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
     });
@@ -136,20 +136,20 @@ describe('AppComponent: Router', () => {
   it('should /map go map', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    console.log('should /map go map');
+
     router.navigate(['/map']).then(() => {
       expect(location.path()).toBe('/map');
-      console.log('after expect');
+
     });
   }));
 
   it('should empty path go map', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    console.log('should empty path go map');
+
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('/map');
-      console.log('after expect');
+
     });
   }));
 });
