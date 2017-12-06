@@ -29,15 +29,15 @@ export class LayersService extends APIService {
   private layers = new L.FeatureGroup();
   private zoom_layerGroup: L.LayerGroup;
   private current_nuts_level = '0';
+  private heatmapOption = {
+    layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
+    format: 'image/png', transparent: true, version: '1.3.0',
+    zIndex: idDefaultLayer
+  };
 
   private layersArray: Dictionary = new Dictionary([
     {
-      key: defaultLayer , value: L.tileLayer.wms(geoserverUrl,
-      {
-        layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
-        format: 'image/png', transparent: true, version: '1.3.0',
-        zIndex: idDefaultLayer
-      })
+      key: defaultLayer , value: this.getTilayer( this.heatmapOption, this.loaderService)
     },
 
   ]);
@@ -101,27 +101,40 @@ export class LayersService extends APIService {
   addLayerWithAction(action: string, map: any, order: number) {
     let layer;
     if (action === wwtpLayerName) {
-      layer = L.tileLayer.wms(geoserverUrl, {
+      const option = {
         layers: 'hotmaps:' + action ,
         format: 'image/png',
         transparent: true,
         version: '1.3.0',
-       // cql_filter : 'stat_levl_ = ' + nuts_level + '',
+        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
         zIndex: order
-      })
+      }
+      layer = this.getTilayer(option, this.loaderService);
     }else {
       // layer in Ha with date
-     layer = L.tileLayer.wms(geoserverUrl, {
-      layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
-      format: 'image/png',
-      transparent: true,
-      version: '1.3.0',
-      srs: 'EPSG:4326',
-      zIndex: order
-    })};
+      const option = {
+        layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
+        format: 'image/png',
+        transparent: true,
+        version: '1.3.0',
+        srs: 'EPSG:4326',
+        zIndex: order
+      }
+     layer = this.getTilayer(option, this.loaderService);
+    };
     this.layers.addLayer(layer);
     this.layersArray.add(action, layer);
+  }
+
+  getTilayer(option: any, loader): any {
+    const wms_request = L.tileLayer.wms(geoserverUrl, option);
+    wms_request.on('load', function() {loader.display(false) });
+    wms_request.on('tileunload', function() { console.log('tileunload') });
+    wms_request.on('tileloadstart', function() { loader.display(true) });
+    wms_request.on('tileerror', function() { loader.display(false) });
+    wms_request.on('loading', function() { console.log('loading') });
+    return wms_request;
   }
 
   removelayer(action: string, map: any) {
