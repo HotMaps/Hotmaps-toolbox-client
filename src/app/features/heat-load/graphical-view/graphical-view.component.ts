@@ -47,7 +47,7 @@ export class GraphicalViewComponent implements OnInit, OnChanges, OnDestroy {
   showXAxisLabel = true;
   xAxisLabel = 'Month';
   showYAxisLabel = true;
-  yAxisLabel = 'GWH';
+  yAxisLabel = 'kW';
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };

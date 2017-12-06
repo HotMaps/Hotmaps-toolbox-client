@@ -942,7 +942,7 @@ var GraphicalViewComponent = (function () {
         this.showXAxisLabel = true;
         this.xAxisLabel = 'Month';
         this.showYAxisLabel = true;
-        this.yAxisLabel = 'GWH';
+        this.yAxisLabel = 'kW';
         this.colorScheme = {
             domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
         };
