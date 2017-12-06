@@ -39,7 +39,7 @@ export class InteractionService {
         this.navigationBarService.disableButton(buttonString);
     }
     disableAllButtonsWithFunction(functionString: string) {
-        this.navigationBarService.disableButtons(functionString);
+        this.navigationBarService.disableButton(functionString);
     }
     enableAllButtonsWithFunction(functionString: string) {
         this.navigationBarService.enableButtons(functionString);

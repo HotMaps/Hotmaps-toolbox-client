@@ -60,6 +60,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     }
     close(f) {
       this.interactionService.closeTopPanel();
+      this.interactionService.disableStateOpenWithFunction('send_mail');
     }
     onUploadFile(files) {
         // console.log(files[0]);

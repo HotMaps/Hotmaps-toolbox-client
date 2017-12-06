@@ -15,6 +15,7 @@ import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import {HeatLoadClass} from "../../heat-load/heat-load.class";
 import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 
 @Component({
@@ -95,8 +96,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     private heatLoadResult: Stock2 = null;
     private poiData;
     private poiTitle;
-    constructor() {
-        super();
+    constructor(protected interactionService: InteractionService) {
+        super(interactionService);
     }
     ngOnInit() {
 

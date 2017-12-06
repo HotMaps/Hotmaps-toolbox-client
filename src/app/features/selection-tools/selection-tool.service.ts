@@ -340,6 +340,7 @@ export class SelectionToolService {
     this.interactionService.openRightPanel();
     this.interactionService.setSummaryResultData(result);
     this.interactionService.enableButtonWithId('load_result');
+    this.interactionService.enableStateOpenWithFunction('right');
     if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
       this.currentLayer.editing.disable();
     }

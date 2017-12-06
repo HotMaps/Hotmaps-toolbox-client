@@ -19,7 +19,7 @@ export class SideComponent implements OnInit, OnDestroy {
     protected expanded = false;
     protected title = 'SideComponent title';
     protected expandedState = 'collapsed';
-    constructor() {
+    constructor(protected interactionService: InteractionService) {
     }
 
 
@@ -50,5 +50,8 @@ export class SideComponent implements OnInit, OnDestroy {
             this.expanded = false;
         }
 
+    }
+    closePanel(functionString) {
+        this.interactionService.disableStateOpenWithFunction(functionString)
     }
 }

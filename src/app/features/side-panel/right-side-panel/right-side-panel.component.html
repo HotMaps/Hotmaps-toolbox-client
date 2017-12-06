@@ -1,7 +1,7 @@
 <div class="container-panel-right " [@panelWidthTrigger]="expandedState">
 
     <div class="title-panel-right " [@titleColorTrigger]="expandedState">
-      <a [@iconTrigger]="expandedState" class="link" (click)="toggleExpandedState('right')">
+      <a [@iconTrigger]="expandedState" class="link" (click)="toggleExpandedState('right'); closePanel('right')">
         <i class="flaticon-cross" aria-hidden="true"></i>
       </a>
         <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>

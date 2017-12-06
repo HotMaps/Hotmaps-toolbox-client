@@ -97,8 +97,8 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   layers: DataInteractionClass[];
   category: DataInteractionClass[];
 
-  constructor(private dataInteractionService: DataInteractionService, private interactionService: InteractionService) {
-        super();
+  constructor(private dataInteractionService: DataInteractionService, protected interactionService: InteractionService) {
+        super(interactionService);
     }
 
     ngOnInit() {
@@ -114,8 +114,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     ngOnDestroy() {
 
     }
-    closePanel() {
-        this.interactionService.disableStateOpenWithFunction('left')
-    }
+    
 
 }
