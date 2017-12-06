@@ -174,7 +174,7 @@ export class SelectionToolService {
  }*/
 
  layerCreatedClick(layer, map) {
-   //this.logger.log('SelectionToolService/layerCreatedClick');
+
    this.currentLayer = layer
    this.editableLayers.clearLayers();
    this.editableLayers.addLayer(this.currentLayer);

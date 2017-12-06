@@ -56,7 +56,7 @@ export class GraphicalViewComponent implements OnInit, OnChanges, OnDestroy {
   autoScale = false;
   constructor(private logger: Logger) {
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.logger.log('GraphicalViewComponent/ngOnDestroy');
   }
   ngOnInit() {}
