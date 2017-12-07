@@ -280,6 +280,7 @@ export class SelectionToolService {
 
   removeVtlayer(map: any) {
     if (this.selectionTooLayer) {
+      this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
       map.removeLayer(this.selectionTooLayer);
       delete this.selectionTooLayer;
