@@ -265,6 +265,7 @@ export class SelectionToolService {
 
   clearAll(map: any) {
     if (this.currentLayer) {
+      this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
      // this.logger.log('layerService/clearAll');
       if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
