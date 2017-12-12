@@ -15,6 +15,7 @@ import {SideComponent} from '../side-panel.component';
 import {DataInteractionService} from '../../data-interaction/data-interaction.service';
 import {DataInteractionClass} from '../../data-interaction/data-interaction.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { leftPanelSize } from 'app/shared';
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -32,38 +33,17 @@ import { InteractionService } from 'app/shared/services/interaction.service';
         //  shrinking the panel down.
         //
         trigger('panelWidthTrigger', [
-            state('expanded', style({ width: '350px' })),
+            state('expanded', style({ width: leftPanelSize + 'px' })),
             state('collapsed', style({ width: '0px' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),
-
-        // Define the animation used in the title bar where the colors swap from
-        //  a red foreground with white background, to the opposite. In this case
-        //  we use the same timings as the width animation above so these two
-        //  transitions happen at the same time
-        //
         trigger('titleColorTrigger', [
             state('collapsed', style({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
             state('expanded', style({ backgroundColor: '#333333', color: '#FFFFFF' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
         ]),
-
-        // The title text trigger is a little different because it's an animation
-        //  for an element being added to the DOM. Here we take advantage of the 'void'
-        //  transition using a hard-coded state called 'in' (which is also hard coded in
-        //  the template).
-        //
-        // What we do in this animation is say when the element is added to the DOM
-        //  it should have an opacity of 0 (i.e., hidden), wait 300ms, and then animate
-        //  it's opacity change to 1 over a 100 ms time span. This effectively delays the
-        //  appearance of the text until after the panel has slid out to the full size.
-        //
-        // When the element is removed we take a different approach and animate the
-        //  opacity change back to 0 over a short 50ms interval. This ensures it's gone before
-        //  the panel starts to slide back in, creating a nice effect.
-        //
         trigger('titleTextTrigger', [
             state('in', style({ opacity: '1' })),
             transition('void => *', [style({ opacity: '0' }),
@@ -73,12 +53,6 @@ import { InteractionService } from 'app/shared/services/interaction.service';
                 animate('50ms', style({ opacity: '0' }))
             ])
         ]),
-
-        // Define the animation used in the arrow icon where it rotates to point left
-        //  or right based on the state of the panel. In this case we use the same
-        //  timings as the width animation above so these two transitions happen at
-        //  the same time.
-        //
         trigger('iconTrigger', [
            // state('collapsed', style({ transform: 'rotate(180deg)' })),
           // state('collapsed', style({ transform: 'rotate(180deg)' })),
