@@ -31,7 +31,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
   @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
-
+  private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
     private panelService: SidePanelService,
@@ -67,7 +67,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openRightSidebar = val;
       }
     });
-
+    this.mapService.getZoomLevel().subscribe((zoomlevel) => {
+      this.zoomlevel = zoomlevel;
+    })
     this.panelService.topPanelStatus.subscribe((val: boolean) => {
       if (this.openTopSidebar === false) {
         this.openTopSidebar = true;

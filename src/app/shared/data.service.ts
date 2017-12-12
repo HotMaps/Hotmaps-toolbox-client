@@ -54,10 +54,11 @@ export const unit_heat_density   = 'MWh/ha';
 export const unit_shape_area   = 'm2';
 export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
+export const defaultZoomLevel = 5;
 export const map_options =  {
   zoomControl: false,
   center: L.latLng(47.1, 7.0833),
-  zoom: 5,
+  zoom: defaultZoomLevel,
   minZoom: 4,
   maxZoom: 17,
   zoomAnimationThreshold: 3,

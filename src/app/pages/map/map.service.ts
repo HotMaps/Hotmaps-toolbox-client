@@ -1,34 +1,34 @@
-import { Http, Response } from '@angular/http';
-
-import { lau2, lau2name} from './../../shared/data.service';
 /**
  * Created by lesly on 27.05.17.
  */
+import { OnInit, OnDestroy, Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+
+
 import { BusinessInterfaceRenderService } from './../../shared/business/business.service';
-import { hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
+import { lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
   MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
   MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD} from './../../shared/data.service';
 import { basemap } from './basemap';
-
 import { SelectionToolService } from './../../features/selection-tools';
 import { SelectionScaleService } from './../../features/selection-scale';
 import { GeojsonClass, LayersService } from './../../features/layers';
-
-import { OnInit, OnDestroy, Injectable } from '@angular/core';
 import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import LatLng = L.LatLng;
 import {nuts2DataResult} from './component/mockdata';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import LatLng = L.LatLng;
 
 @Injectable()
 export class MapService extends APIService implements OnInit, OnDestroy {
     private map: Map;
     private baseMaps: any;
     private areaNutsSelectedLayer: any;
+    private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
                 private selectionToolService: SelectionToolService,
@@ -83,7 +83,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     onMeasureStart(self) { }
     onZoomStart(self) {
     }
-    onZoomEnd(self) { }
+    onZoomEnd(self) {
+        this.zoomlevel.next(self.map.getZoom())
+    }
     onDidUpdateLayers(self, e) {
         if (self.selectionToolService.isLayerInMap() === true) {
             self.selectionToolService.openPopup();
@@ -121,7 +123,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       }
 
     }
-
+    getZoomLevel(): BehaviorSubject<number> {
+        return this.zoomlevel;
+    }
     // Draw control management
     addDrawControls() {
         this.selectionToolService.addDrawerControl(this.map);
@@ -144,7 +148,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
-
      // this.selectAreaWithNuts(nuts2DataResult);
       return this.getAreaFromScale(url);
     }
