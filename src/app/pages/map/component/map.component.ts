@@ -21,58 +21,18 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private map: Map;
-  @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
-  // management of initial status of sidebar
-  openRightSidebar = false;
-  openRightToggleExpanded = false;
-  openLeftSidebar = false;
-  openTopSidebar = false;
-  // declaration of the left and right sidebar
-  @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
-  @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
-
 
   constructor(private mapService: MapService, private logger: Logger,
-    private panelService: SidePanelService,
-    private selectionToolButtonStateService: SelectionToolButtonStateService,
-    private interactionService: InteractionService) {}
+    private selectionToolButtonStateService: SelectionToolButtonStateService) {}
 
   ngAfterContentInit(): void {
     this.notifySubscription();
-    this.leftPanelComponent.setTitle('Layers');
-    this.rightPanelComponent.setTitle('Load Result');
-    this.topSideComponent.setTitle('Feedback');
-    // this.mapService.getGridTest();
   }
   ngOnDestroy() {
     this.map.remove();
   }
-  notifySubscription() {
-    this.panelService.summaryResultDataStatus.subscribe((data) => {
-      this.rightPanelComponent.setSummaryResult(data);
-    });
-    this.panelService.poiData.subscribe((data) => {
-      this.rightPanelComponent.setPoiData(data);
-    });
 
-    this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
-      if (this.openRightToggleExpanded === false) {
-        this.openRightToggleExpanded = true;
-      } else {
-        this.rightPanelComponent.toggleExpandedState();
-        this.openRightSidebar = val;
-      }
-    });
-
-    this.panelService.topPanelStatus.subscribe((val: boolean) => {
-      if (this.openTopSidebar === false) {
-        this.openTopSidebar = true;
-      } else {
-        this.topSideComponent.toggleExpandedState();
-        this.openTopSidebar = val;
-      }
-    });
+  notifySubscription() { 
     this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
       console.log(val + '  SelectionToolButtonStateService')
       if (val) {
@@ -81,24 +41,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.mapService.removeDrawControls();
       }
     });
-    this.panelService.rightPanelStatus.subscribe((val: boolean) => {
-      this.openRightSidebar = val;
-      this.rightPanelComponent.display(val);
-    });
-    this.panelService.leftPanelStatus.subscribe((val: boolean) => {
-      this.openLeftSidebar = val;
-      this.leftPanelComponent.display(val);
-    });
   }
+
   ngOnInit() {
     // mapService get an instance of the maps and ca work on it
     this.mapService.setupMapservice(this.createMap(basemap));
-    this.initializeNavigator();
     this.map.invalidateSize();
   }
-  initializeNavigator(): void {
-    this.searchBarComponent.Initialize();
-  }
+
   // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
     // setup  the map from leaflet

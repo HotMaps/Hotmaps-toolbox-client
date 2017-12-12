@@ -6,6 +6,7 @@ import { RightSideComponent, LeftSideComponent} from '../../../features/side-pan
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { SelectionToolButtonStateService } from 'app/features/selection-tools';
 
+
 @Component({
     selector: 'htm-nav-bar',
     templateUrl: './navigation-bar.component.html',
@@ -15,10 +16,11 @@ import { SelectionToolButtonStateService } from 'app/features/selection-tools';
 export class NavigationBarComponent implements OnInit {
     @Input() leftPanel: LeftSideComponent;
     @Input() rightPanel: RightSideComponent;
+
     private navButtons: any[];
     constructor(
         private interactionService: InteractionService,
-        private selectionToolButtonStateService: SelectionToolButtonStateService,
+        private selectionToolButtonStateService: SelectionToolButtonStateService
     ) { }
 
     ngOnInit() {

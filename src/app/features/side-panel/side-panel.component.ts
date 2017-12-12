@@ -22,8 +22,6 @@ export class SideComponent implements OnInit, OnDestroy {
     constructor() {
     }
 
-
-
     setTitle(title: string) {
         this.title = title
     }

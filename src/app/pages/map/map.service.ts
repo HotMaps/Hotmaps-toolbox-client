@@ -78,8 +78,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     onLayerAdd(self) { }
     onOverLayAdd(self) { }
     onMeasureStart(self) { }
-    onZoomStart(self) {
-    }
+    onZoomStart(self) { }
     onZoomEnd(self) { }
     onDidUpdateLayers(self, e) {
         if (self.selectionToolService.isLayerInMap() === true) {
