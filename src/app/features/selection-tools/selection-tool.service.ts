@@ -2,6 +2,10 @@
 /**
  * Created by lesly on 27.05.17.
  */
+
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Injectable} from '@angular/core';
 
 import {Map} from 'leaflet';
@@ -41,7 +45,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 export class SelectionToolService {
 
 
-
+  // Improvement of coding style : 
+  // place private members after public members, alphabetized
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private currentLayer;

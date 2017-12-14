@@ -5,6 +5,10 @@ import 'leaflet-draw';
 /**
  * Created by lesly on 07.07.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
 const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
 

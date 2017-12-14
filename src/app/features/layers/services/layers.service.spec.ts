@@ -1,4 +1,6 @@
-
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';

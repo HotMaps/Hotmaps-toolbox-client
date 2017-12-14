@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Injectable} from '@angular/core';
 import {Logger} from './services';
 import {Location} from './class';
@@ -57,6 +60,9 @@ export class Helper {
 
   createGeodesicPolygon(origin, radius, sides, rotation) {
 
+    // Improvement of coding style : (with codelyzer)
+    // Forbidden 'var' keyword, use 'let' or 'const' instead (in all file)
+    // Some property are never reassigned; use 'const' instead of 'var'.
     var latlon = origin; //leaflet equivalent
     var angle;
     var new_lonlat, geom_point;

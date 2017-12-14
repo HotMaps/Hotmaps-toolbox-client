@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { Pipe, PipeTransform } from '@angular/core';
 import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
 import {BusinessInterfaceRenderService} from '../business/business.service';

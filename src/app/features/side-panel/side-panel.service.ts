@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { InteractionService } from 'app/shared/services/interaction.service';
@@ -5,6 +8,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 @Injectable()
 export class SidePanelService {
 
+    // Improvement of coding style : 
+    // place private members after public members, alphabetized
     // status for left panel
     public leftPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     // status for right panel

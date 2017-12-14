@@ -5,7 +5,9 @@ import 'leaflet.vectorgrid';
 import 'reflect-metadata';
 import 'jquery';
 
-
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@angular/core';
 import { HttpModule} from '@angular/http';
 import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';

@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Location} from '@angular/common';
 import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';

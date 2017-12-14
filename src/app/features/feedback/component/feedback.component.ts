@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { ToasterService } from './../../../shared/services/toaster.service';
 declare var jQuery: any;
 
@@ -32,6 +35,8 @@ import {urlMailServer} from '../../../shared/data.service';
 })
 export class FeedbackComponent implements OnInit, OnDestroy {
 
+    // Improvement of coding style : 
+    // place private members after public members, alphabetized
     @Input() expandedState;
     private submited = false;
     private feedbackLoader = false;
@@ -52,6 +57,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         this.submited = false;
     }
 
+    // Improvement of coding style : 
+    // The name of this method could be more specific
     /**
      * Submit the feedback
      */
@@ -72,6 +79,9 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         this.toasterService.showToaster('Unable to send the message! Please, try later or send a mail to administrator');
     }
 
+    // Improvement of coding style : 
+    // make data services responsible for XHR calls, local storage, stashing in memory, or any other data operations
+    // this method should be in a service and not in a component 
     /**
      * Send a request by mail
      */

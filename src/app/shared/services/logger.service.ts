@@ -16,6 +16,9 @@ export class Logger {
   logObj(obj: any) {
     let output = '';
     console.log(output);
+    // Improvement of coding style : (with codelyzer)
+    // for (... in ...) statements must be filtered with an if statement
+    // Identifier 'property' is never reassigned; use 'const' instead of 'let'
     for (let property in obj) {
       console.log(output);
       output += property + ': ' + obj[property] + '; ';

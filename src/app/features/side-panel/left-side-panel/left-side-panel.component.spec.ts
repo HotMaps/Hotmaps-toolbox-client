@@ -1,3 +1,5 @@
+// Improvement of coding style : 
+// listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';

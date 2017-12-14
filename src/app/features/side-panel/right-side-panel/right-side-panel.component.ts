@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
 import { GeojsonClass } from './../../layers/class/geojson.class';
@@ -89,6 +92,8 @@ import { SummaryResultClass } from './../../summary-result/summary-result.class'
     ]
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
+    // Improvement of coding style : 
+    // place private members after public members, alphabetized
     private summaryResult: SummaryResultClass = null;
     private poiData;
     private poiTitle;

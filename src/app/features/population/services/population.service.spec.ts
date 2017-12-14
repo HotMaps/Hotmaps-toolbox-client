@@ -1,3 +1,5 @@
+// Improvement of coding style : 
+// listing import lines alphabetized by the module
 import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {TestBed, inject, tick, fakeAsync, async, getTestBed} from '@angular/core/testing';

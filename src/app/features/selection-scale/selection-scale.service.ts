@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Map, map, tileLayer, featureGroup, control as Lcontrol, marker as Lmarker} from 'leaflet';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';

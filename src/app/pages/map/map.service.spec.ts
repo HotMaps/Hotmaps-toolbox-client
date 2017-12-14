@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { ToasterService } from './../../shared/services/toaster.service';
 import { SummaryResultService } from './../../features/summary-result/summary-result.service';
 import { MailService } from './../../features/feedback/mail.service';

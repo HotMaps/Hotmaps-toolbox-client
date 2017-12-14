@@ -1,4 +1,6 @@
-
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -64,6 +66,8 @@ export class PopulationService extends APIService {
     const name = data.features[0].properties.name;
     const value = data.features[0].properties.value
     const date = data.features[0].properties.date.split('Z')[0];
+    // Improvement of coding style : (with codelyzer)
+    // Line 73 exceeds maximum line length of 140
     popup.setLatLng(latlng).setContent('<h5>' + business_name_population + '</h5> <ul class="uk-list uk-list-divider">' +
       '<li>nuts id: ' + nuts_id  + '</li><li>nuts level: ' + stat_levl_  + '</li><li>name: ' + name + '</li>' +
       '<li>Population: ' +  this.helper.round(value)  + ' ' +  unit_population  + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);

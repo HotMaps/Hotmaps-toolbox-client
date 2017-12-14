@@ -1,6 +1,9 @@
 /**
  * Created by lesly on 27.05.17.
  */
+
+ // Improvement of coding style : 
+// listing import lines alphabetized by the module
 import {Http, Headers, Response} from '@angular/http';
 import {LocationClass} from '../class/location/location.class';
 import {Injectable} from '@angular/core';

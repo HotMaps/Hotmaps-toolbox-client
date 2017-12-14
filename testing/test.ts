@@ -1,5 +1,8 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import 'zone.js/dist/long-stack-trace-zone';
 import 'zone.js/dist/proxy.js';
 import 'zone.js/dist/sync-test';

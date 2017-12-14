@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { DecimalPipe } from '@angular/common';
 import { BusinessInterfaceRenderArray } from './business.data';
 import { MockLoaderService } from './../services/mock/loader.service';

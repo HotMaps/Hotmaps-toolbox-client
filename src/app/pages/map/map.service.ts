@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { Http, Response } from '@angular/http';
 
 import {idWwtpLayer, lau2, lau2name} from './../../shared/data.service';
@@ -25,6 +28,8 @@ import LatLng = L.LatLng;
 
 @Injectable()
 export class MapService extends APIService implements OnInit, OnDestroy {
+    // Improvement of coding style : 
+    // place private members after public members, alphabetized
     private map: Map;
     private baseMaps: any;
     private areaNutsSelectedLayer: any;
@@ -197,6 +202,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.layersService.getLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();
     }
+  // Improvement of coding style : 
+  // this method doesn't do anything, we can delete it
   checkZoomLevelLayer(action, zoomLevel) {
     // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
   }

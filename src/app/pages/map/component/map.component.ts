@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
 import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
@@ -20,6 +23,9 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
+
+  // Improvement of coding style : 
+  // place private members after public members, alphabetized
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
@@ -102,6 +108,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
     // setup  the map from leaflet
+    // Improvement of coding style : (with codelyzer)
+    // Identifier 'self' is never reassigned; use 'const' instead of 'let'
     let self = this;
     this.map = L.map('map', map_options);
     L.control.zoom({ position: 'topright' }).addTo(this.map);

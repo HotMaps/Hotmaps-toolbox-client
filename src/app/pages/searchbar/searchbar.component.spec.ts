@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { MockMapService } from '../../shared/services/mock/map.service';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
