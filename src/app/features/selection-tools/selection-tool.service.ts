@@ -225,9 +225,7 @@ export class SelectionToolService {
   getNUTSIDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    this.logger.log('geoJson=' + JSON.stringify(geoJson));
-    console.log(geoJson);
-    // this.logger.log('geoJson latlng ' +  geoJson.features[0].properties.nuts_id);
+   // this.logger.log('geoJson latlng ' +  geoJson.features[0].properties.nuts_id);
     const nuts_id: string = geoJson.features[0].properties.nuts_id;
     return nuts_id;
   }
@@ -309,11 +307,11 @@ export class SelectionToolService {
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
     if (this.scaleValue === nuts2) {
-      // const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-      // this.logger.log('nuts_id =  ' + nuts_id);
+      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
+      this.logger.log('nuts_id =  ' + nuts_id);
       const heatLoadPayload = {
         'year': 2010,
-        'nuts_id': 'PL41',
+        'nuts_id': nuts_id,
         'nuts_level': '2'
       }
       const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
@@ -364,14 +362,14 @@ export class SelectionToolService {
     if (this.helper.isNullOrUndefined(result.feature_collection.type) === false) {
       // this.logger.log('result ' + JSON.stringify(result));
       // this.logger.log('result feature_collection ' + JSON.stringify(result.feature_collection));
-      const geoJson = result.feature_collection;
-      /* if (this.scaleValue === lau2) {
+      let geoJson = null
+      if (this.scaleValue === lau2) {
 
         proj4.defs('EPSG:3035', proj3035);
         geoJson = L.Proj.geoJson(result.feature_collection);
       }else {
-        
-      } */
+        geoJson = result.feature_collection;
+      }
      //  this.logger.log('geoJson ' + JSON.stringify(geoJson));
       // remove the layer if there is one
      // this.logger.log('MapService/geometrie()' + geoJson);

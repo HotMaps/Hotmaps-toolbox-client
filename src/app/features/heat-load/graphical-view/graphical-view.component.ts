@@ -9,6 +9,7 @@ import {Logger} from "../../../shared/services/logger.service";
 import {HeatLoadClass, Value} from "../heat-load.class";
 import { TemplateRef } from '@angular/core/src/linker/template_ref';
 import { LoadProfile, Stock2 } from 'app/features/heat-load/graphical-view/shared';
+import { rightPanelSize } from 'app/shared';
 
 @Component({
   selector: 'htm-graphical-view',
@@ -38,7 +39,7 @@ export class GraphicalViewComponent implements OnInit, OnChanges, OnDestroy {
   single: any[];
   multi: any[];
   private timeline = true;
-  view: any[] = [450, 300];
+  view: any[] = [rightPanelSize - 30, 300];
   // options
   showXAxis = true;
   showYAxis = true;

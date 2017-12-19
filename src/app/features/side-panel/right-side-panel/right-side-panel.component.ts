@@ -13,9 +13,10 @@ import {
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
-import {HeatLoadClass} from "../../heat-load/heat-load.class";
+import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { rightPanelSize } from 'app/shared';
 
 
 @Component({
@@ -35,7 +36,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
         //  shrinking the panel down.
         //
         trigger('panelWidthTrigger', [
-            state('expanded', style({ width: '480px' })),
+            state('expanded', style({ width: rightPanelSize + 'px' })),
             state('collapsed', style({ width: '0px' })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms 200ms ease-out'))
