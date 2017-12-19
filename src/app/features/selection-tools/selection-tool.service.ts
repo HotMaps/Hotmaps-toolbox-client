@@ -305,11 +305,11 @@ export class SelectionToolService {
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
     if (this.scaleValue === nuts2) {
-      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-      this.logger.log('nuts_id =  ' + nuts_id);
+      /* const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
+      this.logger.log('nuts_id =  ' + nuts_id); */
       const heatLoadPayload = {
         'year': 2010,
-        'nuts_id': nuts_id,
+        'nuts_id': 'PL41',
         'nuts_level': '2'
       }
       const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {

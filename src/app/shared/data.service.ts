@@ -74,19 +74,21 @@ export const lau2   = 'LAU 2';
 export const hectare   = 'Hectare';
 export const initial_scale_value   = nuts3;
 
+// Event variable
 export const MAPDRAWEDITED = L.Draw.Event.EDITED;
 export const MAPDRAWSTART = L.Draw.Event.DRAWSTART;
 export const MAPDRAWDELETED = L.Draw.Event.DELETED;
 export const MAPDRAWEDITSTOP = L.Draw.Event.EDITSTOP;
 export const MAPDRAWEDITSTART = L.Draw.Event.EDITSTART;
 export const MAPDRAWCREATED = L.Draw.Event.CREATED;
-
 export const MAPCLICK = 'click';
 export const MAPLAYERCHANCE = 'baselayerchange';
 export const MAPZOOMSTART = 'zoomstart';
 export const MAPZOOMEND = 'zoomend';
-
 export const MAPLAYERSCONTROLEVENT = 'LayersControlEvent';
 export const MAPLAYERADD = 'layeradd';
 export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
 export const MAPOVERLAYADD = 'overlayadd';
+
+export const rightPanelSize = 600;
+export const leftPanelSize = 350;
