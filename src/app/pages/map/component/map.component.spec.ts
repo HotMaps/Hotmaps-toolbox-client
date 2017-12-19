@@ -45,6 +45,7 @@ import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {GraphicalViewComponent} from "../../../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -97,9 +98,12 @@ describe('MapComponent', () => {
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
       ],
-      imports: [FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
+      imports: [
+        FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot() ]
+        RecaptchaModule.forRoot(),
+        NgxChartsModule
+      ]
     }).compileComponents();
   });
 
