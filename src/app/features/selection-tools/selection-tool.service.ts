@@ -267,6 +267,7 @@ export class SelectionToolService {
 
   clearAll(map: any) {
     if (this.currentLayer) {
+      this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
      // this.logger.log('layerService/clearAll');
       if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
@@ -281,6 +282,7 @@ export class SelectionToolService {
 
   removeVtlayer(map: any) {
     if (this.selectionTooLayer) {
+      this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
       map.removeLayer(this.selectionTooLayer);
       delete this.selectionTooLayer;
