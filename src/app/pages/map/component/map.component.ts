@@ -67,9 +67,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openRightSidebar = val;
       }
     });
-    this.mapService.getZoomLevel().subscribe((zoomlevel) => {
+    /*this.mapService.getZoomLevel().subscribe((zoomlevel) => {
       this.zoomlevel = zoomlevel;
-    })
+    })*/
     this.panelService.topPanelStatus.subscribe((val: boolean) => {
       if (this.openTopSidebar === false) {
         this.openTopSidebar = true;
