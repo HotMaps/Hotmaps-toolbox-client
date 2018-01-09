@@ -14,8 +14,10 @@ import {
     ViewChild
 } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
-import { urlSendMail, timeOutAjaxRequest } from 'app/shared';
-import {InteractionService} from '../../../shared/services/interaction.service';
+import { urlSendMail, timeOutAjaxRequest, APIService, Logger, LoaderService } from 'app/shared';
+import { InteractionService } from '../../../shared/services/interaction.service';
+import { Http } from '@angular/http';
+import { issue_levels, issue_type } from 'app/features/feedback/data-taiga';
 
 @Component({
     selector: 'htm-feedback',
@@ -32,12 +34,15 @@ import {InteractionService} from '../../../shared/services/interaction.service';
     ]
 })
 export class FeedbackComponent implements OnInit, OnDestroy {
+    private issue_levels = issue_levels;
+    private issue_type = issue_type;
 
     @Input() expandedState;
     private files;
     private submited = false;
     private feedbackLoader = false;
-    constructor(private toasterService: ToasterService, private  interactionService: InteractionService) {
+    constructor(private toasterService: ToasterService, private interactionService: InteractionService) {
+
     }
     ngOnInit() {
     }
@@ -59,15 +64,15 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         }
     }
     close(f) {
-      this.interactionService.closeTopPanel();
-      this.interactionService.disableStateOpenWithFunction('send_mail');
+        this.interactionService.closeTopPanel();
+        this.interactionService.disableStateOpenWithFunction('send_mail');
     }
     onUploadFile(files) {
         // console.log(files[0]);
         this.files = files[0];
     }
     showError() {
-        this.toasterService.showToaster('Enable to send the message! Please, try later or send a mail to administrator');
+        this.toasterService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
     }
     sendRequest(f) {
         const fd = new FormData();
@@ -76,14 +81,15 @@ export class FeedbackComponent implements OnInit, OnDestroy {
             fd.append('file', this.files, this.files.name);
         }
         fd.append('formValues', JSON.stringify(f.value))
+        // console.log(f.value);
         jQuery.ajax({
-            url : urlSendMail,
+            url: 'http://localhost/sendmail/send-taiga-issue.php',
             type: 'POST',
-            data : fd,
+            data: fd,
             processData: false,
             contentType: false,
             success: (data, status) => {
-                if (data === '1') {
+                if ((data === '1') || (data === 1)) {
                     f.reset();
                     this.submited = true;
                     this.feedbackLoader = false;
@@ -93,7 +99,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
                 }
 
             },
-            error: () => {
+            error: (e) => {
                 this.showError();
                 this.feedbackLoader = false;
             },

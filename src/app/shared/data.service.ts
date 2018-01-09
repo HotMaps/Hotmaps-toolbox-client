@@ -22,13 +22,16 @@ export const timeOutAjaxRequest = 10000;
 
 // layer_name
 
-export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
-  'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
+export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms?' +
+'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
+export const geoserverGetFeatureInfoUrlProd = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
+'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
 export const populationLayerName = 'population_density'
 export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
+export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
 export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
