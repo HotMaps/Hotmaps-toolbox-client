@@ -38,7 +38,7 @@ export class APIService {
        message = 'Timeout has occurred';
     }
 
-    // this.toasterService.showToaster(message + ', please try again later');
+    this.toasterService.showToaster('We encountered a problem' + ', please try again later');
     this.logger.log('APIService/handleError');
     console.log('An error occurred', error.message); // for demo purposes only
     return Promise.reject(error.message || error);
@@ -54,7 +54,6 @@ export class APIService {
   }
   GET(url): any {
     return this.http.get(url, this.headers)
-      .map((res: Response) => res.json().data as any);
   }
 
   public async getJSONFromFille(url: string): Promise<any> {

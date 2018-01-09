@@ -20,6 +20,10 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
+
+  //dany
+  showHide: boolean = false;
+
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
@@ -80,9 +84,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
     this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
       if (val) {
-        this.mapService.addDrawControls();
+        //this.mapService.addDrawControls();
+        this.showHide = true;
       }else {
-        this.mapService.removeDrawControls();
+        //this.mapService.removeDrawControls();
+        this.showHide = false;
       }
     });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
@@ -95,8 +101,10 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
-    // mapService get an instance of the maps and ca work on it
+    // mapService get an instance of the maps and can work on it
     this.mapService.setupMapservice(this.createMap(basemap));
+
+
     this.initializeNavigator();
     this.map.invalidateSize();
   }
@@ -138,9 +146,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
-  showControls() {
+  /*showControls() {
     this.mapService.addDrawControls();
-  }
+  }*/
   getMap(): Map {
     return this.map;
   }

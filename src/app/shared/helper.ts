@@ -5,6 +5,7 @@ import { DecimalPipe } from '@angular/common';
 import {round_value} from './data.service';
 import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
 import { MONTHNAME } from 'app/shared/class/month.data';
+import {GeojsonClass} from '../features/layers/class/geojson.class';
 
 @Injectable()
 export class Helper {
@@ -54,6 +55,19 @@ export class Helper {
         };
         locations.push(loc);
     }
+    return locations;
+  }
+  convertLatLongToLocationString(latlng): string {
+    let n = 0;
+    let locations = '';
+    do {
+      const loc =  latlng[n].lat + ' ' + latlng[n].lng + ','
+      locations = locations + loc;
+      n++;
+    } while (!this.isNullOrUndefined(latlng[n]));
+
+    const loc =  latlng[0].lat + ' ' + latlng[0].lng
+    locations = locations + loc;
     return locations;
   }
 
@@ -165,6 +179,50 @@ export class Helper {
     // console.log(month);
     return month.month;
   }
+
+  getLocationsFromPolygon(layer): Location[] {
+    const rectangle: any = <any>layer;
+    const latlng = rectangle.getLatLngs()[0];
+    const locations: Location[] = this.convertLatLongToLocation(latlng);
+    this.logger.log('locations [] ' + locations );
+    return locations
+  }
+
+  getLocationsFromGeoJsonLayer(layer): Location[] {
+    const geojsonLayer: any = <any>layer;
+    const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
+    this.logger.log('geoJson latlng ' +  geoJson.features[0].geometry.coordinates );
+    const latlng: number[] = geoJson.features[0].geometry.coordinates;
+
+    const locations: Location[] = this.convertListLatLongToLocation(latlng);
+    this.logger.log('locations [] ' + locations );
+    return locations
+  }
+
+  getNUTSIDFromGeoJsonLayer(layer): string {
+    const geojsonLayer: any = <any>layer;
+    const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
+    const nuts_id: string = geoJson.features[0].properties.nuts_id;
+    return nuts_id;
+  }
+
+  getLocationsFromCicle(layer): Location[] {
+    const circle: any = <any>layer;
+    const origin = circle.getLatLng(); // center of drawn circle
+    const radius = circle.getRadius(); // radius of drawn circle
+    const polys = this.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
+    const locations = [];
+    for (let i = 0; i < polys.length; i++) {
+      const loc: Location = {
+        lat: polys[i].lat,
+        lng: polys[i].lng
+      };
+      locations.push(loc);
+    }
+    return locations
+  }
+
+
 }
 
 

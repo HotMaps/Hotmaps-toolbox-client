@@ -53,6 +53,7 @@ import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 
 
 
@@ -70,7 +71,8 @@ describe('AppComponent: Router', () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
-        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe, GraphicalViewComponent,
+        SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
+        GraphicalViewComponent,
         BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
@@ -119,7 +121,7 @@ describe('AppComponent: Router', () => {
 
 
   it('fakeAsync works', fakeAsync(() => {
-
+    console.log('it goes to fakeAsync works');
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
     });

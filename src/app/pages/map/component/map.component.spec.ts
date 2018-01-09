@@ -37,6 +37,7 @@ import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
 import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { SelectionToolService } from '../../../features/selection-tools/selection-tool.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
 import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-side-panel.component';
@@ -46,6 +47,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {GraphicalViewComponent} from "../../../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SelectionToolComponent } from '../../../features/selection-tools/selection-tool/selection-tool.component';
 
 
 
@@ -68,8 +70,9 @@ describe('MapComponent', () => {
       declarations: [
         MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
-        FeedbackComponent,
-        LayerNamePipe, BusinessNamePipe, GraphicalViewComponent
+        FeedbackComponent, SelectionToolComponent,
+        LayerNamePipe, BusinessNamePipe,
+        GraphicalViewComponent
       ],
       providers: [
         {
@@ -92,6 +95,7 @@ describe('MapComponent', () => {
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
         { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+        { provide: SelectionToolService, useClass: SelectionToolService },
         { provide: MailService, useClass: MailService },
         { provide: Helper, useClass: Helper },
         { provide: DecimalPipe, useClass: DecimalPipe },
