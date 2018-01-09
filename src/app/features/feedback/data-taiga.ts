@@ -8,3 +8,5 @@ export const issue_type = [
     { name: 'Question', id: 489108 },
     { name: 'Enhancement', id: 489109 }
 ];
+
+export const urlTaigaFeedback = 'urltochange.php';

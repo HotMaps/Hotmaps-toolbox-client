@@ -11,5 +11,3 @@ export const NutsRenderArray: NutsRenderClass[] = [
   {id: 5, api_name: '-1', business_name: hectare, suffix: '_ha'},
 ];
 
-
-

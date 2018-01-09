@@ -17,7 +17,7 @@ import { Validators, NgForm } from '@angular/forms';
 import { urlSendMail, timeOutAjaxRequest, APIService, Logger, LoaderService } from 'app/shared';
 import { InteractionService } from '../../../shared/services/interaction.service';
 import { Http } from '@angular/http';
-import { issue_levels, issue_type } from 'app/features/feedback/data-taiga';
+import { issue_levels, issue_type, urlTaigaFeedback } from 'app/features/feedback/data-taiga';
 
 @Component({
     selector: 'htm-feedback',
@@ -68,7 +68,6 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         this.interactionService.disableStateOpenWithFunction('send_mail');
     }
     onUploadFile(files) {
-        // console.log(files[0]);
         this.files = files[0];
     }
     showError() {
@@ -81,9 +80,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
             fd.append('file', this.files, this.files.name);
         }
         fd.append('formValues', JSON.stringify(f.value))
-        // console.log(f.value);
         jQuery.ajax({
-            url: 'http://localhost/sendmail/send-taiga-issue.php',
+            url: urlTaigaFeedback,
             type: 'POST',
             data: fd,
             processData: false,
