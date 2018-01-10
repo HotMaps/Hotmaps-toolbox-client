@@ -19,12 +19,17 @@ export class SelectionToolComponent implements OnInit {
 	  nbNutsSelected = 0;
 	  private scaleSelected: string;
 	  private subscription: any;
+    private subscriptionNbNutsSelected: any;
     constructor(private selectionScaleService: SelectionScaleService,
     private selectionToolService: SelectionToolService,
     private mapService: MapService) {
     this.scaleSelected = selectionScaleService.getScaleValue();
     this.subscription = selectionScaleService.scaleValueSubject.subscribe((value) => {
       this.scaleSelected = value;
+    });
+
+    this.subscriptionNbNutsSelected = selectionToolService.getNutsSelectedSubject().subscribe((value) => {
+      this.nbNutsSelected = value;
     });
 
     // subscribing to click event subject of MapService
@@ -100,9 +105,8 @@ export class SelectionToolComponent implements OnInit {
    * Load the results of the selection
    */
   loadResultsButton() {
-    const currentLayer = this.selectionToolService.getCurrentLayer();
     const map = this.mapService.getMap();
-    this.selectionToolService.loadResults(map, currentLayer);
+    this.selectionToolService.loadResultNuts(map);
   }
 
   /**

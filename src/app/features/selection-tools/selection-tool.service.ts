@@ -13,7 +13,7 @@ declare const L: any;
 
 
 
-import { PayloadStat } from './../summary-result/mock/payload.class';
+import {PayloadStat, PlayloadStatNuts} from '../summary-result/class/payload.class';
 import {
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, proj3035,
   wwtpLayerName
@@ -41,6 +41,8 @@ export class SelectionToolService extends APIService  {
   private theDrawer;
   private isDrawer = false;
   private isPolygonDrawer = false;
+
+  private nbNutsSelectedSubject: Subject<number> = new Subject<number>();
   private enableLoadResultSubject = new Subject<any>();
   enableLoadResultSubjectObs = this.enableLoadResultSubject.asObservable();
   private disableLoadResultSubject = new Subject<any>();
@@ -54,6 +56,9 @@ export class SelectionToolService extends APIService  {
     private interactionService: InteractionService
   ) {super(http, logger, loaderService, toasterService); }
 
+  getNutsSelectedSubject(): Subject<number> {
+    return this.nbNutsSelectedSubject;
+  }
   getMultiSelectionLayers(): any {
     return this.multiSelectionLayers;
   }
@@ -174,7 +179,58 @@ export class SelectionToolService extends APIService  {
      }
 
    }
+  loadResultNuts(map) {
+      this.interactionService.onPopupValidation();
+      const layerNameArray = []
+      for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
+        if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
+          layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
+            this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
+        } else {
+          layerNameArray.push(this.interactionService.getLayerArray().keys()[i]);
+        }
+      }
+      this.logger.log('layerNameArray ' + layerNameArray);
+      this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray, map);
+  }
+// Summary result show result
+  getStatisticsFromIds(nutsIds: string[], layers: string[], map: any) {
+    const self = this;
+    const request = [];
+    this.loaderService.display(true);
+    const payload: PlayloadStatNuts = { layers: layers, year: constant_year, nuts: nutsIds }
+    const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
+     // this.editableLayers.clearLayers();
+      this.displaySummaryResult(result, map);
+    }).catch();
+    request.push(summaryPromise);
+    this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+  /*  if (this.scaleValue === nuts2) {
+      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
+      this.logger.log('nuts_id =  ' + nuts_id);
+      const heatLoadPayload = {
+        'year': 2010,
+        'nuts_id': nuts_id,
+        'nuts_level': '2'
+      }
+      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+        this.logger.log('heatLoadPayload ' + JSON.stringify(result));
+        const data = this.helper.formatDataLoadProfil(result);
+        this.displayHeatLoad(data);
+      }).catch();
+      request.push(heatloadPromise);
+    } else { */
+      this.displayHeatLoad(null);
 
+   // }
+
+    Promise
+      .all(request)
+      .then(values => {
+        this.logger.log('Promise then ' + values);
+      });
+
+  }
   enableNavigationService( map: any) {
     this.interactionService.enableButtonWithId('selection');
   }
@@ -197,6 +253,7 @@ export class SelectionToolService extends APIService  {
     if (indexToRemove !== 999) {
       this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove])
     }
+    this.nbNutsSelectedSubject.next(this.nutsIds.size);
   }
   containLayer(layer: any): boolean {
     const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer);
@@ -317,13 +374,9 @@ export class SelectionToolService extends APIService  {
     this.interactionService.setSummaryResultData(result);
     this.interactionService.enableButtonWithId('load_result');
     this.interactionService.enableStateOpenWithFunction('right');
-    if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
-      this.currentLayer.editing.disable();
-    }
-    this.currentLayer.closePopup();
     this.loaderService.display(false);
     // this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
-    this.drawResult(result, map)
+    //this.drawResult(result, map)
   }
 
   drawResult(result: SummaryResultClass, map: any) {
@@ -453,8 +506,6 @@ export class SelectionToolService extends APIService  {
 
   drawResultBeforeLoadingResult(result: any) {
     if (this.helper.isNullOrUndefined(result) === false) {
-
-      this.logger.log('result JSON' + JSON.stringify(result));
       for (const feature of result.features) {
         this.nutsIds.add(feature.properties.nuts_id)
         const areaNutsSelectedLayer = L.geoJson(feature);
@@ -466,6 +517,7 @@ export class SelectionToolService extends APIService  {
       });
 
     }
+    this.nbNutsSelectedSubject.next(this.nutsIds.size);
     this.loaderService.display(false);
   }
 
@@ -474,6 +526,7 @@ export class SelectionToolService extends APIService  {
       const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer)
         this.nutsIds.add(nuts_id)
         this.multiSelectionLayers.addLayer(layer) ;
+        this.nbNutsSelectedSubject.next(this.nutsIds.size);
     }
     this.loaderService.display(false);
   }

@@ -30,6 +30,7 @@ export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
+export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
 

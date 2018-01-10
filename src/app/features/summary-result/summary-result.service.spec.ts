@@ -11,7 +11,7 @@ import {
   summaryResultDataPopu, summaryResultDataHeatPopulationWWTP } from './mock/summary-result.data';
 import { postStatsLayersArea, apiUrl } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
-import { PayloadStat } from './mock/payload.class';
+import { PayloadStat } from './class/payload.class';
 import { Payload } from './../population/payload.class';
 import { APIService } from './../../shared/services/api.service';
 import { SummaryResultClass } from './summary-result.class';

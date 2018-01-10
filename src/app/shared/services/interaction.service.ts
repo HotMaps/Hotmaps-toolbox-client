@@ -80,6 +80,9 @@ export class InteractionService {
     setSummaryResultData(data) {
         this.sidePanelService.setSummaryResultData(data);
     }
+    getSummaryResultWithIds(payload): Promise<any> {
+      return this.summaryResultService.getSummaryResultWithIds(payload);
+    }
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
