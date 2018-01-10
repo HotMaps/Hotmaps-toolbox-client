@@ -183,25 +183,24 @@ export class SelectionToolService extends APIService  {
     // if the nut
     const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer);
     this.nutsIds.delete(nuts_id)
-    this.multiSelectionLayers.removeLayer(layer);
+    const self = this
+    let indexToRemove = 999;
+    for (let i = 0; i < this.multiSelectionLayers.getLayers().length; i++) {
+      const layerInsideMultiSelectionLayer = this.multiSelectionLayers.getLayers()[i];
+      const nutsIDInMultiSelectionLayers = self.getNUTSIDFromGeoJsonLayer(layerInsideMultiSelectionLayer)
+      self.logger.log('nutsIDInMultiSelectionLayers = ' + nutsIDInMultiSelectionLayers);
+      if (nuts_id === nutsIDInMultiSelectionLayers) {
+        indexToRemove = i
+        break;
+      }
+    }
+    if (indexToRemove !== 999) {
+      this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove])
+    }
   }
   containLayer(layer: any): boolean {
-    const self = this;
     const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer);
-    self.logger.log('nuts_id' + nuts_id );
-    this.multiSelectionLayers.eachLayer(function(layerInsideMultiSelectionLayer) {
-      layerInsideMultiSelectionLayer.onEachFeature(function(feature, layerInside) {
-           if (nuts_id === layerInside.properties.nuts_id) {
-             self.logger.log('multiSelectionLayer hasLayer' )
-           } else {
-             self.logger.log('multiSelectionLayer has not this Layer' );
-           }
-      });
-    });
-
-
-
-    return this.multiSelectionLayers.hasLayer(layer)
+    return this.nutsIds.has(nuts_id)
   }
  layerCreatedClick(layer, map) {
    this.logger.log('SelectionToolService/layerCreatedClick');
@@ -454,20 +453,29 @@ export class SelectionToolService extends APIService  {
 
   drawResultBeforeLoadingResult(result: any) {
     if (this.helper.isNullOrUndefined(result) === false) {
+
+      this.logger.log('result JSON' + JSON.stringify(result));
       for (const feature of result.features) {
         this.nutsIds.add(feature.properties.nuts_id)
+        const areaNutsSelectedLayer = L.geoJson(feature);
+        this.multiSelectionLayers.addLayer(areaNutsSelectedLayer) ;
       }
       const self = this
       this.nutsIds.forEach(function(item, sameItem, s) {
         self.logger.log(item);
       });
-      const geoJson = result;
-      const areaNutsSelectedLayer = L.geoJson(geoJson);
-      this.multiSelectionLayers.addLayer(areaNutsSelectedLayer) ;
+
     }
     this.loaderService.display(false);
   }
 
-
+  addToMultiSelectionLayers(layer: any) {
+    if (this.helper.isNullOrUndefined(layer) === false) {
+      const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer)
+        this.nutsIds.add(nuts_id)
+        this.multiSelectionLayers.addLayer(layer) ;
+    }
+    this.loaderService.display(false);
+  }
 
 }
