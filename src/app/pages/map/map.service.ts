@@ -92,11 +92,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
         self.selectionToolService.drawHectareCreated(e, this.map);
 
-      } else if (self.selectionScaleService.getScaleValue() === lau2) {
-
       } else {
-        const nuts_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
-        self.selectionToolService.drawNutsCreated(e, this.map, nuts_lvl);
+        const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
+        self.selectionToolService.drawCreated(e, this.map, scale_lvl);
       }
     }
     onDrawEdited(self) { }

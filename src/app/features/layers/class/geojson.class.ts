@@ -7,6 +7,7 @@
   export interface Properties {
     gid?: number;
     nuts_id?: string;
+    comm_id?: string;
     capacity?: string;
     power?: string;
     unit?: string;

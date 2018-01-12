@@ -205,6 +205,12 @@ export class Helper {
     const nuts_id: string = geoJson.features[0].properties.nuts_id;
     return nuts_id;
   }
+  getLAU2IDFromGeoJsonLayer(layer): string {
+    const geojsonLayer: any = <any>layer;
+    const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
+    const lau2_id: string = geoJson.features[0].properties.comm_id;
+    return lau2_id;
+  }
 
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;

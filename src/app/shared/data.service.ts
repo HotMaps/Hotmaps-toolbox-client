@@ -65,7 +65,7 @@ export const map_options =  {
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
-export const lau2name = 'COMM_RG_01M_2013';
+export const lau2name = 'tbl_lau2_4326';
 
 // Scale Value
 export const nuts0   = 'NUTS 0';

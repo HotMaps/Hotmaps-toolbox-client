@@ -23,7 +23,7 @@ import {BusinessInterfaceRenderService} from '../../shared/business/business.ser
 import {SummaryResultClass} from '../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Subject } from 'rxjs/Subject';
-import {geoserverUrl} from '../../shared';
+import {geoserverUrl, lau2name} from '../../shared';
 import {APIService, ToasterService} from '../../shared/services';
 import {Http} from '@angular/http';
 
@@ -98,16 +98,15 @@ export class SelectionToolService extends APIService  {
     // Clear the map before to show the new selection
     this.manageEditOrCreateLayer(layer, map);
   }
-  drawNutsCreated(e, map, nuts_lvl) {
-    console.log('created', e.type);
+  drawCreated(e, map, nuts_lvl) {
+
     const event: Created = <Created>e;
     const type = event.layerType,
     layer: any = event.layer;
     this.isActivate = false;
     // Clear the map before to show the new selection
     // enable buttons when layer is created
-    this.enableButtonLoad();
-    this.enableButtonClearAll();
+
 
     let location = '';
     if (layer instanceof L.Circle) {
@@ -119,9 +118,15 @@ export class SelectionToolService extends APIService  {
     } else {
       location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
 
-      // this.logger.log('unknown form');
+      //
     }
-    this.getNutID(location, map, nuts_lvl)
+    this.logger.log('nuts_lvl' + nuts_lvl);
+    if (nuts_lvl === 4) { // lau2 lvl
+      this.getLau2ID(location, map, nuts_lvl)
+    }else {
+      this.getNutID(location, map, nuts_lvl)
+    }
+
   }
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
@@ -234,18 +239,25 @@ export class SelectionToolService extends APIService  {
   enableNavigationService( map: any) {
     this.interactionService.enableButtonWithId('selection');
   }
-
+  getSelectionIdFromLayer(layer): any {
+    let id_selection = this.getNUTSIDFromGeoJsonLayer(layer);
+    if (this.helper.isNullOrUndefined(id_selection) === true) {
+      id_selection = this.getLAU2IDFromGeoJsonLayer(layer);
+    }
+    return id_selection
+  }
   removeLayerFromMultiSelectionLayers(layer: any) {
+    this.logger.log('SelectionToolService/removeLayerFromMultiSelectionLayers');
     // if the nut
-    const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer);
-    this.nutsIds.delete(nuts_id)
+    const id_selection = this.getSelectionIdFromLayer(layer)
+    this.nutsIds.delete(id_selection)
     const self = this
     let indexToRemove = 999;
     for (let i = 0; i < this.multiSelectionLayers.getLayers().length; i++) {
       const layerInsideMultiSelectionLayer = this.multiSelectionLayers.getLayers()[i];
-      const nutsIDInMultiSelectionLayers = self.getNUTSIDFromGeoJsonLayer(layerInsideMultiSelectionLayer)
-      self.logger.log('nutsIDInMultiSelectionLayers = ' + nutsIDInMultiSelectionLayers);
-      if (nuts_id === nutsIDInMultiSelectionLayers) {
+      const iDInMultiSelectionLayers = self.getSelectionIdFromLayer(layerInsideMultiSelectionLayer)
+
+      if (id_selection === iDInMultiSelectionLayers) {
         indexToRemove = i
         break;
       }
@@ -253,11 +265,12 @@ export class SelectionToolService extends APIService  {
     if (indexToRemove !== 999) {
       this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove])
     }
-    this.nbNutsSelectedSubject.next(this.nutsIds.size);
+
+    this.updateSelectionToolAction();
   }
   containLayer(layer: any): boolean {
-    const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer);
-    return this.nutsIds.has(nuts_id)
+    const id_selection = this.getSelectionIdFromLayer(layer);
+    return this.nutsIds.has(id_selection)
   }
  layerCreatedClick(layer, map) {
    this.logger.log('SelectionToolService/layerCreatedClick');
@@ -265,9 +278,7 @@ export class SelectionToolService extends APIService  {
    this.editableLayers.clearLayers();
    this.editableLayers.addLayer(this.currentLayer);
    this.editableLayers.addTo(map);
-   // this.loadPopup(map, this.currentLayer); dany
    this.enableNavigationService(map);
-
  }
   toggleActivateTool(val: boolean) {
     this.isActivate = val;
@@ -296,6 +307,9 @@ export class SelectionToolService extends APIService  {
   getNUTSIDFromGeoJsonLayer(layer): string {
     return this.helper.getNUTSIDFromGeoJsonLayer(layer);
   }
+  getLAU2IDFromGeoJsonLayer(layer): string {
+    return this.helper.getLAU2IDFromGeoJsonLayer(layer);
+  }
 
 
   getLocationsFromCicle(layer): Location[] {
@@ -316,9 +330,7 @@ export class SelectionToolService extends APIService  {
       // remove all nutsID selected
       this.nutsIds.clear();
 
-      // disable buttons after clear
-      this.disableButtonClearAll();
-      this.disableButtonLoad();
+      this.updateSelectionToolAction();
   }
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
@@ -484,6 +496,21 @@ export class SelectionToolService extends APIService  {
   getCurrentLayer() {
     return this.currentLayer;
   }
+  getLau2ID(location, map, nuts_lvl) {
+    this.loaderService.display(true);
+    const epsg = '4326';
+    const coordinate = location;
+    const url = geoserverUrl + '?service=wfs' +
+      '&version=2.0.0' +
+      '&request=GetFeature' +
+      '&srsName=EPSG:' + epsg +
+      '&typeNames=hotmaps:' + lau2name +
+      '&outputFormat=application/json' +
+      '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))'
+    this.logger.log('lau2 url ' + url);
+    this.GET(url).map((res: Response) => res.json()  as any)
+      .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
+  }
 
   getNutID(location, map, nuts_lvl) {
     this.loaderService.display(true);
@@ -503,11 +530,25 @@ export class SelectionToolService extends APIService  {
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
   }
 
-
+  updateSelectionToolAction() {
+    if (this.nutsIds.size > 0) {
+      this.enableButtonLoad();
+      this.enableButtonClearAll();
+    } else {
+      // disable buttons after clear
+      this.disableButtonClearAll();
+      this.disableButtonLoad();
+    }
+    this.nbNutsSelectedSubject.next(this.nutsIds.size);
+  }
   drawResultBeforeLoadingResult(result: any) {
     if (this.helper.isNullOrUndefined(result) === false) {
       for (const feature of result.features) {
-        this.nutsIds.add(feature.properties.nuts_id)
+        if (this.helper.isNullOrUndefined(feature.properties.nuts_id) === false) {
+          this.nutsIds.add(feature.properties.nuts_id)
+        } else {
+          this.nutsIds.add(feature.properties.comm_id)
+        }
         const areaNutsSelectedLayer = L.geoJson(feature);
         this.multiSelectionLayers.addLayer(areaNutsSelectedLayer) ;
       }
@@ -517,18 +558,18 @@ export class SelectionToolService extends APIService  {
       });
 
     }
-    this.nbNutsSelectedSubject.next(this.nutsIds.size);
+
+    this.updateSelectionToolAction();
     this.loaderService.display(false);
   }
-
   addToMultiSelectionLayers(layer: any) {
     if (this.helper.isNullOrUndefined(layer) === false) {
-      const nuts_id = this.getNUTSIDFromGeoJsonLayer(layer)
-        this.nutsIds.add(nuts_id)
-        this.multiSelectionLayers.addLayer(layer) ;
-        this.nbNutsSelectedSubject.next(this.nutsIds.size);
+      const selection_id = this.getSelectionIdFromLayer(layer)
+      this.nutsIds.add(selection_id)
+      this.multiSelectionLayers.addLayer(layer) ;
     }
     this.loaderService.display(false);
+    this.updateSelectionToolAction();
   }
 
 }
