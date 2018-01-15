@@ -4,8 +4,6 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { SelectionScaleService } from '../../selection-scale/selection-scale.service';
-import { SelectionToolService } from '../selection-tool.service';
 import { MapService } from '../../../pages/map/map.service';
 declare var jQuery: any;
 import * as $ from "jquery";
@@ -16,21 +14,22 @@ import * as $ from "jquery";
   styleUrls: ['./selection-tool.component.css']
 })
 export class SelectionToolComponent implements OnInit {
+
 	  nbNutsSelected = 0;
-	  private scaleSelected: string;
+	  private scaleSelected: any;
 	  private subscription: any;
     private subscriptionNbNutsSelected: any;
-    constructor(private selectionScaleService: SelectionScaleService,
-    private selectionToolService: SelectionToolService,
-    private mapService: MapService) {
-    this.scaleSelected = selectionScaleService.getScaleValue();
-    this.subscription = selectionScaleService.scaleValueSubject.subscribe((value) => {
-      this.scaleSelected = value;
-    });
 
-    this.subscriptionNbNutsSelected = selectionToolService.getNutsSelectedSubject().subscribe((value) => {
+    constructor(private mapService: MapService) {
+
+    this.scaleSelected = mapService.getScaleValue();
+    this.subscription = mapService.getScaleValueSubject().subscribe((value) => {
+      this.scaleSelected = value;
+    })
+
+    this.subscriptionNbNutsSelected = mapService.getNutsSelectedSubject().subscribe((value) => {
       this.nbNutsSelected = value;
-    });
+    })
 
     // subscribing to click event subject of MapService
     this.mapService.clickEventSubjectObs.subscribe(() => {
@@ -38,19 +37,19 @@ export class SelectionToolComponent implements OnInit {
       }
     );
 
-    this.selectionToolService.enableLoadResultSubjectObs.subscribe(() => {
+    this.mapService.getEnableLoadResultSubjectObs().subscribe(() => {
       $("#loadBtn").removeAttr("disabled");
     })
 
-    this.selectionToolService.enableClearAllSubjectObs.subscribe(() => {
+    this.mapService.getEnableClearAllSubjectObs().subscribe(() => {
       $("#clearBtn").removeAttr("disabled");
     })
 
-    this.selectionToolService.disableLoadResultSubjectObs.subscribe(() => {
+    this.mapService.getDisableLoadResultSubjectObs().subscribe(() => {
       $("#loadBtn").prop("disabled", true);
     })
 
-    this.selectionToolService.disbleClearAllSubjectObs.subscribe(() => {
+    this.mapService.getDisbleClearAllSubjectObs().subscribe(() => {
       $("#clearBtn").prop("disabled", true);
     })
 
@@ -76,29 +75,33 @@ export class SelectionToolComponent implements OnInit {
    * Click method when cursor selection tool is selected
    */
   cursorClick() {
-    this.selectionToolService.clickSelection(this.mapService.getMap());
-    $('#radio-1').prop( 'checked', true );
+    const map = this.mapService.getMap();
+    this.mapService.clickSelection(map);
+    $('#radio-1').prop( 'checked', true );    
   }
 
   /**
    * Click method when square selection tool is selected
    */
   squareClick() {
-    this.selectionToolService.drawRectangle(this.mapService.getMap());
+    const map = this.mapService.getMap();
+    this.mapService.drawTool(map, "rectangle");
   }
 
   /**
    * Click method when circle selection tool is selected
    */
   circleClick() {
-    this.selectionToolService.drawCircle(this.mapService.getMap());
+    const map = this.mapService.getMap();
+    this.mapService.drawTool(map, "circle");
   }
 
   /**
    * Click method when polygon selection tool is selected
    */
   polygonClick() {
-    this.selectionToolService.drawPolygon(this.mapService.getMap());
+    const map = this.mapService.getMap();
+    this.mapService.drawTool(map, "polygon");
   }
 
   /**
@@ -106,14 +109,15 @@ export class SelectionToolComponent implements OnInit {
    */
   loadResultsButton() {
     const map = this.mapService.getMap();
-    this.selectionToolService.loadResultNuts(map);
+    this.mapService.loadResultNuts(map);
   }
 
   /**
    * Clear all informations in the info box
    */
   clearAllButton() {
-     this.selectionToolService.clearAll(this.mapService.getMap());
+     const map = this.mapService.getMap();
+     this.mapService.clearAll(map);
   }
 
 

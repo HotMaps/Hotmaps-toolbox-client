@@ -51,6 +51,7 @@ export class SelectionToolService extends APIService  {
   enableClearAllSubjectObs = this.enableClearAllSubject.asObservable();
   private disableClearAllSubject = new Subject<any>();
   disbleClearAllSubjectObs = this.disableClearAllSubject.asObservable();
+
   constructor(http: Http, logger: Logger,  loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
     private interactionService: InteractionService
@@ -420,47 +421,15 @@ export class SelectionToolService extends APIService  {
    */
   clickSelection(map: Map) {
     if (this.isDrawer) {
-      this.getDrawer().disable(); // disable the current drawer before creating a new one
+      this.getDrawer().disable(); 
     }
     this.isPolygonDrawer = false;
   }
+  
   /**
-   * Activate the drawing rectangle tool
+   * Activate the drawing tool
    */
-  drawRectangle(map: Map) {
-    map.addLayer(this.editableLayers);
-    this.editableLayers.clearLayers();
-    if (this.isDrawer) {
-      this.getDrawer().disable(); // disable the current drawer before creating a new one
-    }
-
-    this.theDrawer = new L.Draw.Rectangle(map);
-    this.theDrawer.enable();
-
-    this.isDrawer = true;
-    this.isPolygonDrawer = false;
-  }
-
-  /**
-   * Activate the drawing circle tool
-   */
-  drawCircle(map: Map) {
-    map.addLayer(this.editableLayers);
-    this.editableLayers.clearLayers();
-    if (this.isDrawer) {
-      this.getDrawer().disable(); // disable the current drawer before creating a new one
-    }
-    this.theDrawer = new L.Draw.Circle(map);
-    this.theDrawer.enable();
-
-    this.isDrawer = true;
-    this.isPolygonDrawer = false;
-  }
-
-  /**
-   * Activate the drawing polygon tool
-   */
-  drawPolygon(map: Map) {
+  drawTool(map: Map, tool: string){
     map.addLayer(this.editableLayers);
     this.editableLayers.clearLayers();
 
@@ -468,12 +437,30 @@ export class SelectionToolService extends APIService  {
       this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
 
-    this.theDrawer = new L.Draw.Polygon(map);
-    this.theDrawer.enable();
+    switch (tool) {
+      case "rectangle":
+        this.theDrawer = new L.Draw.Rectangle(map);
+        this.isPolygonDrawer = false;
+        break;
 
+      case "circle":
+        this.theDrawer = new L.Draw.Circle(map);
+        this.isPolygonDrawer = false;
+        break;
+
+      case "polygon":
+        this.theDrawer = new L.Draw.Polygon(map);
+        this.isPolygonDrawer = true;
+        break;
+      
+      default: 
+        break;
+    }
+
+    this.theDrawer.enable();
     this.isDrawer = true;
-    this.isPolygonDrawer = true;
   }
+
   /**
    * Get the current drawer
    */
