@@ -3305,51 +3305,37 @@ var SelectionToolService = (function (_super) {
      */
     SelectionToolService.prototype.clickSelection = function (map) {
         if (this.isDrawer) {
-            this.getDrawer().disable(); // disable the current drawer before creating a new one
+            this.getDrawer().disable();
         }
         this.isPolygonDrawer = false;
     };
     /**
-     * Activate the drawing rectangle tool
+     * Activate the drawing tool
      */
-    SelectionToolService.prototype.drawRectangle = function (map) {
+    SelectionToolService.prototype.drawTool = function (map, tool) {
         map.addLayer(this.editableLayers);
         this.editableLayers.clearLayers();
         if (this.isDrawer) {
             this.getDrawer().disable(); // disable the current drawer before creating a new one
         }
-        this.theDrawer = new L.Draw.Rectangle(map);
-        this.theDrawer.enable();
-        this.isDrawer = true;
-        this.isPolygonDrawer = false;
-    };
-    /**
-     * Activate the drawing circle tool
-     */
-    SelectionToolService.prototype.drawCircle = function (map) {
-        map.addLayer(this.editableLayers);
-        this.editableLayers.clearLayers();
-        if (this.isDrawer) {
-            this.getDrawer().disable(); // disable the current drawer before creating a new one
+        switch (tool) {
+            case "rectangle":
+                this.theDrawer = new L.Draw.Rectangle(map);
+                this.isPolygonDrawer = false;
+                break;
+            case "circle":
+                this.theDrawer = new L.Draw.Circle(map);
+                this.isPolygonDrawer = false;
+                break;
+            case "polygon":
+                this.theDrawer = new L.Draw.Polygon(map);
+                this.isPolygonDrawer = true;
+                break;
+            default:
+                break;
         }
-        this.theDrawer = new L.Draw.Circle(map);
         this.theDrawer.enable();
         this.isDrawer = true;
-        this.isPolygonDrawer = false;
-    };
-    /**
-     * Activate the drawing polygon tool
-     */
-    SelectionToolService.prototype.drawPolygon = function (map) {
-        map.addLayer(this.editableLayers);
-        this.editableLayers.clearLayers();
-        if (this.isDrawer) {
-            this.getDrawer().disable(); // disable the current drawer before creating a new one
-        }
-        this.theDrawer = new L.Draw.Polygon(map);
-        this.theDrawer.enable();
-        this.isDrawer = true;
-        this.isPolygonDrawer = true;
     };
     /**
      * Get the current drawer
@@ -3491,11 +3477,9 @@ module.exports = "<div class=\"containers\">\n  <div id=\"selection-tools-box\">
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection_scale_selection_scale_service__ = __webpack_require__("../../../../../src/app/features/selection-scale/selection-scale.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolComponent; });
 /**
  * Created by Dany on 20.12.17.
@@ -3512,37 +3496,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var SelectionToolComponent = (function () {
-    function SelectionToolComponent(selectionScaleService, selectionToolService, mapService) {
+    function SelectionToolComponent(mapService) {
         var _this = this;
-        this.selectionScaleService = selectionScaleService;
-        this.selectionToolService = selectionToolService;
         this.mapService = mapService;
         this.nbNutsSelected = 0;
-        this.scaleSelected = selectionScaleService.getScaleValue();
-        this.subscription = selectionScaleService.scaleValueSubject.subscribe(function (value) {
+        this.scaleSelected = mapService.getScaleValue();
+        this.subscription = mapService.getScaleValueSubject().subscribe(function (value) {
             _this.scaleSelected = value;
         });
-        this.subscriptionNbNutsSelected = selectionToolService.getNutsSelectedSubject().subscribe(function (value) {
+        this.subscriptionNbNutsSelected = mapService.getNutsSelectedSubject().subscribe(function (value) {
             _this.nbNutsSelected = value;
         });
         // subscribing to click event subject of MapService
         this.mapService.clickEventSubjectObs.subscribe(function () {
             _this.cursorClick(); // call cursor click method when we click anywhere in the map
         });
-        this.selectionToolService.enableLoadResultSubjectObs.subscribe(function () {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("#loadBtn").removeAttr("disabled");
+        this.mapService.getEnableLoadResultSubjectObs().subscribe(function () {
+            __WEBPACK_IMPORTED_MODULE_2_jquery__('#loadBtn').removeAttr('disabled');
         });
-        this.selectionToolService.enableClearAllSubjectObs.subscribe(function () {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("#clearBtn").removeAttr("disabled");
+        this.mapService.getEnableClearAllSubjectObs().subscribe(function () {
+            __WEBPACK_IMPORTED_MODULE_2_jquery__('#clearBtn').removeAttr('disabled');
         });
-        this.selectionToolService.disableLoadResultSubjectObs.subscribe(function () {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("#loadBtn").prop("disabled", true);
+        this.mapService.getDisableLoadResultSubjectObs().subscribe(function () {
+            __WEBPACK_IMPORTED_MODULE_2_jquery__('#loadBtn').prop('disabled', true);
         });
-        this.selectionToolService.disbleClearAllSubjectObs.subscribe(function () {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("#clearBtn").prop("disabled", true);
+        this.mapService.getDisbleClearAllSubjectObs().subscribe(function () {
+            __WEBPACK_IMPORTED_MODULE_2_jquery__('#clearBtn').prop('disabled', true);
         });
     }
     SelectionToolComponent.prototype.ngOnInit = function () {
@@ -3563,39 +3543,44 @@ var SelectionToolComponent = (function () {
      * Click method when cursor selection tool is selected
      */
     SelectionToolComponent.prototype.cursorClick = function () {
-        this.selectionToolService.clickSelection(this.mapService.getMap());
-        __WEBPACK_IMPORTED_MODULE_4_jquery__('#radio-1').prop('checked', true);
+        var map = this.mapService.getMap();
+        this.mapService.clickSelection(map);
+        __WEBPACK_IMPORTED_MODULE_2_jquery__('#radio-1').prop('checked', true);
     };
     /**
      * Click method when square selection tool is selected
      */
     SelectionToolComponent.prototype.squareClick = function () {
-        this.selectionToolService.drawRectangle(this.mapService.getMap());
+        var map = this.mapService.getMap();
+        this.mapService.drawTool(map, 'rectangle');
     };
     /**
      * Click method when circle selection tool is selected
      */
     SelectionToolComponent.prototype.circleClick = function () {
-        this.selectionToolService.drawCircle(this.mapService.getMap());
+        var map = this.mapService.getMap();
+        this.mapService.drawTool(map, 'circle');
     };
     /**
      * Click method when polygon selection tool is selected
      */
     SelectionToolComponent.prototype.polygonClick = function () {
-        this.selectionToolService.drawPolygon(this.mapService.getMap());
+        var map = this.mapService.getMap();
+        this.mapService.drawTool(map, 'polygon');
     };
     /**
      * Load the results of the selection
      */
     SelectionToolComponent.prototype.loadResultsButton = function () {
         var map = this.mapService.getMap();
-        this.selectionToolService.loadResultNuts(map);
+        this.mapService.loadResultNuts(map);
     };
     /**
      * Clear all informations in the info box
      */
     SelectionToolComponent.prototype.clearAllButton = function () {
-        this.selectionToolService.clearAll(this.mapService.getMap());
+        var map = this.mapService.getMap();
+        this.mapService.clearAll(map);
     };
     return SelectionToolComponent;
 }());
@@ -3605,10 +3590,10 @@ SelectionToolComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__selection_scale_selection_scale_service__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__selection_scale_selection_scale_service__["a" /* SelectionScaleService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__selection_tool_service__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__selection_tool_service__["a" /* SelectionToolService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__pages_map_map_service__["a" /* MapService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object])
 ], SelectionToolComponent);
 
-var _a, _b, _c;
+var _a;
 //# sourceMappingURL=selection-tool.component.js.map
 
 /***/ }),
@@ -5102,6 +5087,72 @@ var MapService = (function (_super) {
     };
     MapService.prototype.checkZoomLevelLayer = function (action, zoomLevel) {
         // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+    };
+    /**
+     * Activate the drawing tool
+     */
+    MapService.prototype.drawTool = function (map, tool) {
+        this.selectionToolService.drawTool(map, tool);
+    };
+    /**
+     * Activate the selection tool
+     */
+    MapService.prototype.clickSelection = function (map) {
+        this.selectionToolService.clickSelection(map);
+    };
+    /**
+     * Load the nuts selection results
+     */
+    MapService.prototype.loadResultNuts = function (map) {
+        this.selectionToolService.loadResultNuts(map);
+    };
+    /**
+     * Clear the selection(s)
+     */
+    MapService.prototype.clearAll = function (map) {
+        this.selectionToolService.clearAll(map);
+    };
+    /**
+     * Get the nutsSelected Subject of SelectionToolService
+     */
+    MapService.prototype.getNutsSelectedSubject = function () {
+        return this.selectionToolService.getNutsSelectedSubject();
+    };
+    /**
+     * Get the EnableLoadResultSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getEnableLoadResultSubjectObs = function () {
+        return this.selectionToolService.enableLoadResultSubjectObs;
+    };
+    /**
+     * Get the EnableClearAllSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getEnableClearAllSubjectObs = function () {
+        return this.selectionToolService.enableClearAllSubjectObs;
+    };
+    /**
+     * Get the DisableLoadResultSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getDisableLoadResultSubjectObs = function () {
+        return this.selectionToolService.disableLoadResultSubjectObs;
+    };
+    /**
+     * Get the DisbleClearAllSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getDisbleClearAllSubjectObs = function () {
+        return this.selectionToolService.disbleClearAllSubjectObs;
+    };
+    /**
+     * Get the ScaleValueSubject of SelectionScaleService
+     */
+    MapService.prototype.getScaleValueSubject = function () {
+        return this.selectionScaleService.scaleValueSubject;
+    };
+    /**
+     * Get the ScaleValue of SelectionScaleService
+     */
+    MapService.prototype.getScaleValue = function () {
+        return this.selectionScaleService.getScaleValue();
     };
     return MapService;
 }(__WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__["a" /* APIService */]));
