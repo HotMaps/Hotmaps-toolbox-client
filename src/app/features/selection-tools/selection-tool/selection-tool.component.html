@@ -1,7 +1,7 @@
 <div class="containers">
   <div id="selection-tools-box">
     <div>
-      <input id="radio-1" class="radio-custom" name="radio-group" type="radio" checked (click)="cursorClick()">
+      <input id="radio-1" class="radio-custom" name="radio-group" type="radio" checked [class.isChecked]="isCheckedTest" (click)="cursorClick()">
       <label id="cursor" for="radio-1" class="radio-custom-label"></label>
     </div>
     <div>
@@ -17,11 +17,11 @@
       <label id="polygon" for="radio-4" class="radio-custom-label"></label>
     </div>
   </div>
-  <div id="info-box">
+  <div *ngIf="!hectarSelected" id="info-box">
   	<div class="uk-container uk-padding-remove">
   		<div>
-  		<p>Element selected<span>{{nbNutsSelected}}</span></p>
-  		<p>Scale<span>{{scaleSelected}}</span></p>
+      <p>Element selected<span>{{nbNutsSelected}}</span></p>
+      <p>Scale<span>{{scaleSelected}}</span></p>
   	<!--	<p>Area<span>0 km2</span></p> -->
   		</div>
   		<div class="divButtons">

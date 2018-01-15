@@ -2,13 +2,14 @@
  * Created by Dany on 20.12.17.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { SelectionScaleService } from '../../selection-scale/selection-scale.service';
 import { SelectionToolService } from '../selection-tool.service';
 import { MapService } from '../../../pages/map/map.service';
 declare var jQuery: any;
-import * as $ from "jquery";
+import * as $ from 'jquery';
+import { hectare } from 'app/shared';
 
 @Component({
   selector: 'htm-selection-tool',
@@ -16,16 +17,23 @@ import * as $ from "jquery";
   styleUrls: ['./selection-tool.component.css']
 })
 export class SelectionToolComponent implements OnInit {
-	  nbNutsSelected = 0;
-	  private scaleSelected: string;
-	  private subscription: any;
-    private subscriptionNbNutsSelected: any;
-    constructor(private selectionScaleService: SelectionScaleService,
+  nbNutsSelected = 0;
+  private scaleSelected: string;
+  private hectarSelected = false;
+  private subscription: any;
+  private subscriptionNbNutsSelected: any;
+  private isCheckedTest = true;
+  constructor(private selectionScaleService: SelectionScaleService,
     private selectionToolService: SelectionToolService,
     private mapService: MapService) {
     this.scaleSelected = selectionScaleService.getScaleValue();
     this.subscription = selectionScaleService.scaleValueSubject.subscribe((value) => {
       this.scaleSelected = value;
+      if (value === hectare) {
+        this.hectarSelected = true;
+      } else {
+        this.hectarSelected = false;
+      }
     });
 
     this.subscriptionNbNutsSelected = selectionToolService.getNutsSelectedSubject().subscribe((value) => {
@@ -34,41 +42,41 @@ export class SelectionToolComponent implements OnInit {
 
     // subscribing to click event subject of MapService
     this.mapService.clickEventSubjectObs.subscribe(() => {
-        this.cursorClick(); // call cursor click method when we click anywhere in the map
-      }
+      this.cursorClick(); // call cursor click method when we click anywhere in the map
+    }
     );
 
     this.selectionToolService.enableLoadResultSubjectObs.subscribe(() => {
-      $("#loadBtn").removeAttr("disabled");
+      $('#loadBtn').removeAttr('disabled');
     })
 
     this.selectionToolService.enableClearAllSubjectObs.subscribe(() => {
-      $("#clearBtn").removeAttr("disabled");
+      $('#clearBtn').removeAttr('disabled');
     })
 
     this.selectionToolService.disableLoadResultSubjectObs.subscribe(() => {
-      $("#loadBtn").prop("disabled", true);
+      $('#loadBtn').prop('disabled', true);
     })
 
     this.selectionToolService.disbleClearAllSubjectObs.subscribe(() => {
-      $("#clearBtn").prop("disabled", true);
+      $('#clearBtn').prop('disabled', true);
     })
 
   }
 
   ngOnInit() {
     // disable the click through the 2 boxes
-    const boxTools = L.DomUtil.get('selection-tools-box');
-    const boxInfos = L.DomUtil.get('info-box');
+    /* const boxTools = L.DomUtil.get('selection-tools-box');
+    const boxInfos = L.DomUtil.get('info-box'); */
 
-    if (!L.Browser.touch) {
+    /* if (!L.Browser.touch) {
       L.DomEvent.disableClickPropagation(boxTools);
       L.DomEvent.disableClickPropagation(boxInfos);
       // L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
     } else {
       L.DomEvent.on(boxTools, 'click', L.DomEvent.stopPropagation);
       L.DomEvent.on(boxInfos, 'click', L.DomEvent.stopPropagation);
-    }
+    } */
 
   }
 
@@ -77,7 +85,7 @@ export class SelectionToolComponent implements OnInit {
    */
   cursorClick() {
     this.selectionToolService.clickSelection(this.mapService.getMap());
-    $('#radio-1').prop( 'checked', true );
+    this.isCheckedTest = true;
   }
 
   /**
@@ -113,7 +121,7 @@ export class SelectionToolComponent implements OnInit {
    * Clear all informations in the info box
    */
   clearAllButton() {
-     this.selectionToolService.clearAll(this.mapService.getMap());
+    this.selectionToolService.clearAll(this.mapService.getMap());
   }
 
 
