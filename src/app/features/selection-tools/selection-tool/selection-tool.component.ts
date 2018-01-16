@@ -9,6 +9,7 @@ import { hectare } from 'app/shared';
 import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
+import {Logger} from "../../../shared/services/logger.service";
 
 @Component({
   selector: 'htm-selection-tool',
@@ -25,7 +26,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private isClearBtnDisabled = true;
   private stButtons = stButtons;
 
-  constructor(private mapService: MapService) {}
+  constructor(private mapService: MapService, private logger: Logger) {}
 
   ngOnInit() {
     this.subscribeMapService();
@@ -33,8 +34,10 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     this.checkScale();
   }
   ngOnDestroy() {
+    this.logger.log('SelectionToolComponent/ngOnDestroy');
     this.subscription.unsubscribe();
     this.subscriptionNbNutsSelected.unsubscribe();
+
   }
   subscribeMapService() {
     this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {

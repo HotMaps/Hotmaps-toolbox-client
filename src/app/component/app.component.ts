@@ -1,6 +1,7 @@
-import {Component, AfterContentInit, OnInit, ViewChild} from '@angular/core';
+import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angular/core';
 
 import { LoaderService } from '../shared/services/loader.service';
+import {Logger} from '../shared/services/logger.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { LoaderService } from '../shared/services/loader.service';
 
 })
 
-export class AppComponent implements OnInit , AfterContentInit {
+export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
 
 
 
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit , AfterContentInit {
   showLoader: boolean;
 
   constructor(
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService, private logger: Logger) {
   }
 
   ngAfterContentInit(): void {
@@ -34,7 +35,9 @@ export class AppComponent implements OnInit , AfterContentInit {
     });
   }
 
-
+  ngOnDestroy() {
+    this.logger.log('AppComponent/ngOnDestroy');
+  }
   ngOnInit() {
   }
 

@@ -533,10 +533,6 @@ export class SelectionToolService extends APIService  {
         }
       }
       const self = this
-      this.nutsIds.forEach(function(item, sameItem, s) {
-        self.logger.log(item);
-      });
-
     }
     this.updateSelectionToolAction();
     this.loaderService.display(false);
