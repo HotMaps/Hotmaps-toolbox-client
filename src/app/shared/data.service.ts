@@ -17,7 +17,7 @@ export const apiUrl = devUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
-export const urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+export const urlSendMail = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const timeOutAjaxRequest = 10000;
 
 // layer_name

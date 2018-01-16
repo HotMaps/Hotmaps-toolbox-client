@@ -13,6 +13,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 179, api_name: 'population_density_nuts2', business_name: 'population'},
   {id: 147, api_name: 'population_density_nuts1', business_name: 'population'},
   {id: 157, api_name: 'population_density_nuts0', business_name: 'population'},
+  {id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2'},
   {id: 157, api_name: 'population_density', business_name: 'Average population density'},
   {id: 167, api_name: 'population_density_ha', business_name: 'population density'},
   {id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption'},
