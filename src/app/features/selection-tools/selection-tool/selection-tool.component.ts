@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
 import { hectare } from 'app/shared';
+import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
 
 @Component({
   selector: 'htm-selection-tool',
@@ -17,22 +18,16 @@ export class SelectionToolComponent implements OnInit {
   private scaleSelected: any;
   private subscription: any;
   private subscriptionNbNutsSelected: any;
+  private isHectarSelected = false;
+  private isLoaBtnDisabled = true;
+  private isClearBtnDisabled = true;
 
-  private isLoaBtnDisabled: boolean = true;
-  private isClearBtnDisabled: boolean = true;
-
-  private stButtons = [
-    { id: '1', type: 'click', isChecked: true },
-    { id: '2', type: 'rectangle', isChecked: false },
-    { id: '3', type: 'circle', isChecked: false },
-    { id: '4', type: 'polygon', isChecked: false }
-  ]
+  private stButtons = stButtons;
 
   constructor(private mapService: MapService) {
-
-    this.scaleSelected = mapService.getScaleValue();
     this.subscription = mapService.getScaleValueSubject().subscribe((value) => {
       this.scaleSelected = value;
+      this.checkScale();
     })
 
     this.subscriptionNbNutsSelected = mapService.getNutsSelectedSubject().subscribe((value) => {
@@ -64,14 +59,21 @@ export class SelectionToolComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.scaleSelected = this.mapService.getScaleValue();
+    this.checkScale();
   }
   cursorClick() {
     const map = this.mapService.getMap();
     this.mapService.clickSelection(map);
     this.stButtons[0].isChecked = true;
   }
-
+  checkScale() {
+    if (this.scaleSelected === hectare) {
+      this.isHectarSelected = true;
+    } else {
+      this.isHectarSelected = false;
+    }
+  }
   /**
    * Draw method of the activated selection tool
    */

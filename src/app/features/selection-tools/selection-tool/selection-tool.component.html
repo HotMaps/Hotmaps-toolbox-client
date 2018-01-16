@@ -5,7 +5,7 @@
           <label id="{{button.type}}" for="radio-{{button.id}}" class="radio-custom-label"></label>
       </div>
     </div>
-    <div id="info-box">
+    <div *ngIf="!isHectarSelected" id="info-box">
       <div class="uk-container uk-padding-remove">
         <div>
           <p>Element selected<span>{{nbNutsSelected}}</span></p>
