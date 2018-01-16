@@ -19,7 +19,7 @@ export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
 export const urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
 export const timeOutAjaxRequest = 10000;
-
+export const unit_heatload_profil = 'kW'
 // layer_name
 
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +

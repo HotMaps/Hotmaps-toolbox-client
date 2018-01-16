@@ -233,7 +233,26 @@ export class SelectionToolService extends APIService  {
     }).catch();
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+    this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
+    if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
+      
+      this.logger.log('nuts_id =  ' + this.nutsIds.values());
+      const heatLoadPayload = {
+        'year': 2010,
+        'nuts': Array.from(this.nutsIds.values()),
+        'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
+      }
+      console.log('heatLoadPayload=');
+      console.log(JSON.stringify(heatLoadPayload));
+      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+        this.logger.log('heatLoadresult ' + JSON.stringify(result));
+        const data = this.helper.formatDataLoadProfil(result);
+        this.displayHeatLoad(data);
+      }).catch();
+      request.push(heatloadPromise);
+    } else {
       this.displayHeatLoad(null);
+    }
     Promise
       .all(request)
       .then(values => {
@@ -344,6 +363,7 @@ export class SelectionToolService extends APIService  {
       this.nutsIds.clear();
 
       this.updateSelectionToolAction();
+      this.displayHeatLoad(null)
   }
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
@@ -358,14 +378,15 @@ export class SelectionToolService extends APIService  {
     }).catch();
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
-    if (this.scaleValue === nuts2) {
-      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-      this.logger.log('nuts_id =  ' + nuts_id);
+    if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
+      
+      this.logger.log('nuts_id =  ' + this.nutsIds.values());
       const heatLoadPayload = {
         'year': 2010,
-        'nuts_id': nuts_id,
-        'nuts_level': '2'
+        'nuts_id': this.nutsIds,
+        'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
       }
+      console.log(heatLoadPayload);
       const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
       //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
         const data = this.helper.formatDataLoadProfil(result);

@@ -2,6 +2,10 @@ export interface Stock {
   date: Date,
   value: number
 }
+export interface HeatLoadResult {
+  name: string,
+  series: Stock2[]
+}
 export interface Stock2 {
   name: any,
   value: number
