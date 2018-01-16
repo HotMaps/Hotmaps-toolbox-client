@@ -15,8 +15,7 @@ declare const L: any;
 
 import {PayloadStat, PlayloadStatNuts} from '../summary-result/class/payload.class';
 import {
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, proj3035,
-  wwtpLayerName
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, wwtpLayerName
 } from '../../shared/data.service';
 import {GeojsonClass} from '../layers/class/geojson.class';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
@@ -91,12 +90,8 @@ export class SelectionToolService extends APIService  {
       this.interactionService.onPopupValidation();
       const layerNameArray = []
       for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
-        if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
           layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
             this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
-        } else {
-          layerNameArray.push(this.interactionService.getLayerArray().keys()[i]);
-        }
       }
       this.logger.log('layerNameArray' + layerNameArray);
       if (this.currentLayer instanceof L.Circle) {
@@ -211,12 +206,8 @@ export class SelectionToolService extends APIService  {
       this.interactionService.onPopupValidation();
       const layerNameArray = []
       for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
-        if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
           layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
             this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
-        } else {
-          layerNameArray.push(this.interactionService.getLayerArray().keys()[i]);
-        }
       }
       this.logger.log('layerNameArray ' + layerNameArray);
       this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray, map);

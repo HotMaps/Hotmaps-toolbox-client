@@ -86,7 +86,6 @@ export class InteractionService {
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-
     getLoadProfileAggregateResultWithPayload(payload): Promise<any> {
       return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload);
     }
