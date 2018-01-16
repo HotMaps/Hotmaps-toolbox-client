@@ -95,6 +95,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       } else {
         const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
         self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+        self.selectionToolService.setIsPolygonDrawer(false);
       }
     }
     onDrawEdited(self) { }
@@ -153,7 +154,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
       // automatic cursor tool selection doesn't work if polygon draw is activated
       if (!self.selectionToolService.getPolygonDrawerState()) {
-          self.clickCursorUpdate(); // automatic cursor tool selection
+        self.logger.log('self.selectionToolService.getPolygonDrawerState()');
+
+        self.clickCursorUpdate(); // automatic cursor tool selection
       }
       // check if the selection toul is activate
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());

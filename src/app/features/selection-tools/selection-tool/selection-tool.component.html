@@ -1,34 +1,21 @@
 <div class="containers">
-  <div id="selection-tools-box">
-    <div>
-      <input id="radio-1" class="radio-custom" name="radio-group" type="radio" checked (click)="cursorClick()">
-      <label id="cursor" for="radio-1" class="radio-custom-label"></label>
+    <div id="selection-tools-box">
+      <div *ngFor="let button of stButtons">
+          <input id="radio-{{button.id}}" class="radio-custom" name="radio-group" type="radio" [checked]="button.isChecked" (click)="drawTool(button)">
+          <label id="{{button.type}}" for="radio-{{button.id}}" class="radio-custom-label"></label>
+      </div>
     </div>
-    <div>
-      <input id="radio-2" class="radio-custom" name="radio-group" type="radio" (click)="squareClick()">
-      <label id="square" for="radio-2" class="radio-custom-label"></label>
+    <div *ngIf="!isHectarSelected" id="info-box">
+      <div class="uk-container uk-padding-remove">
+        <div>
+          <p>Element selected<span>{{nbNutsSelected}}</span></p>
+          <p>Scale<span>{{scaleSelected}}</span></p>
+        </div>
+        <div class="divButtons">
+          <button id="loadBtn" class="uk-button uk-button-primary uk-button-small" [disabled]="isLoaBtnDisabled" (click)="loadResultsButton()">Load results</button>
+          <button id="clearBtn" class="uk-button uk-button-danger uk-button-small" [disabled]="isClearBtnDisabled" (click)="clearAllButton()">Clear all</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <input id="radio-3" class="radio-custom" name="radio-group" type="radio" (click)="circleClick()">
-      <label id="circle" for="radio-3" class="radio-custom-label"></label>
-    </div>
-    <div>
-      <input id="radio-4" class="radio-custom" name="radio-group" type="radio" (click)="polygonClick()">
-      <label id="polygon" for="radio-4" class="radio-custom-label"></label>
-    </div>
-  </div>
-  <div id="info-box">
-  	<div class="uk-container uk-padding-remove">
-  		<div>
-  		<p>Element selected<span>{{nbNutsSelected}}</span></p>
-  		<p>Scale<span>{{scaleSelected}}</span></p>
-  	<!--	<p>Area<span>0 km2</span></p> -->
-  		</div>
-  		<div class="divButtons">
-  			<button id="loadBtn" class="uk-button uk-button-primary uk-button-small" disabled (click)="loadResultsButton()">Load results</button>
-  			<button id="clearBtn" class="uk-button uk-button-danger uk-button-small" disabled (click)="clearAllButton()">Clear all</button>
-  		</div>
-  	</div>
-  </div>
 
-</div>
+  </div>

@@ -2,122 +2,113 @@
  * Created by Dany on 20.12.17.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
-declare var jQuery: any;
-import * as $ from 'jquery';
+import { hectare } from 'app/shared';
+import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'htm-selection-tool',
   templateUrl: './selection-tool.component.html',
   styleUrls: ['./selection-tool.component.css']
 })
-export class SelectionToolComponent implements OnInit {
+export class SelectionToolComponent implements OnInit, OnDestroy {
   nbNutsSelected = 0;
   private scaleSelected: any;
-  private subscription: any;
-  private subscriptionNbNutsSelected: any;
+  private subscription: Subscription;
+  private subscriptionNbNutsSelected: Subscription;
+  private isHectarSelected = false;
+  private isLoaBtnDisabled = true;
+  private isClearBtnDisabled = true;
+  private stButtons = stButtons;
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService) {}
 
-  this.scaleSelected = mapService.getScaleValue();
-  this.subscription = mapService.getScaleValueSubject().subscribe((value) => {
-    this.scaleSelected = value;
-  })
+  ngOnInit() {
+    this.subscribeMapService();
+    this.scaleSelected = this.mapService.getScaleValue();
+    this.checkScale();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscriptionNbNutsSelected.unsubscribe();
+  }
+  subscribeMapService() {
+    this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
+      this.scaleSelected = value;
+      this.checkScale();
+    })
 
-  this.subscriptionNbNutsSelected = mapService.getNutsSelectedSubject().subscribe((value) => {
-    this.nbNutsSelected = value;
-  })
+    this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
+      this.nbNutsSelected = value;
+    })
 
-  // subscribing to click event subject of MapService
-  this.mapService.clickEventSubjectObs.subscribe(() => {
+    // subscribing to click event subject of MapService
+    this.mapService.clickEventSubjectObs.subscribe(() => {
       this.cursorClick(); // call cursor click method when we click anywhere in the map
     }
-  );
+    );
 
-  this.mapService.getEnableLoadResultSubjectObs().subscribe(() => {
-    $('#loadBtn').removeAttr('disabled');
-  })
+    this.mapService.getEnableLoadResultSubjectObs().subscribe(() => {
+      this.isLoaBtnDisabled = false;
+    })
 
-  this.mapService.getEnableClearAllSubjectObs().subscribe(() => {
-    $('#clearBtn').removeAttr('disabled');
-  })
+    this.mapService.getEnableClearAllSubjectObs().subscribe(() => {
+      this.isClearBtnDisabled = false;
+    })
 
-  this.mapService.getDisableLoadResultSubjectObs().subscribe(() => {
-    $('#loadBtn').prop('disabled', true);
-  })
+    this.mapService.getDisableLoadResultSubjectObs().subscribe(() => {
+      this.isLoaBtnDisabled = true;
+    })
 
-  this.mapService.getDisbleClearAllSubjectObs().subscribe(() => {
-    $('#clearBtn').prop('disabled', true);
-  })
-
-}
-
-ngOnInit() {
-  // disable the click through the 2 boxes
-  const boxTools = L.DomUtil.get('selection-tools-box');
-  const boxInfos = L.DomUtil.get('info-box');
-
-  if (!L.Browser.touch) {
-    L.DomEvent.disableClickPropagation(boxTools);
-    L.DomEvent.disableClickPropagation(boxInfos);
-    // L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-  } else {
-    L.DomEvent.on(boxTools, 'click', L.DomEvent.stopPropagation);
-    L.DomEvent.on(boxInfos, 'click', L.DomEvent.stopPropagation);
+    this.mapService.getDisbleClearAllSubjectObs().subscribe(() => {
+      this.isClearBtnDisabled = true;
+    });
+  }
+  cursorClick() {
+    const map = this.mapService.getMap();
+    this.mapService.clickSelection(map);
+    this.stButtons[0].isChecked = true;
+  }
+  checkScale() {
+    if (this.scaleSelected === hectare) {
+      this.isHectarSelected = true;
+    } else {
+      this.isHectarSelected = false;
+    }
+  }
+  /**
+   * Draw method of the activated selection tool
+   */
+  drawTool(button: any) {
+    if (button.type === 'click') {
+      this.cursorClick()
+    } else {
+      const map = this.mapService.getMap();
+      this.mapService.drawTool(map, button.type);
+      this.stButtons[0].isChecked = false;
+    }
   }
 
-}
+  /**
+   * Load the results of the selection
+   */
+  loadResultsButton() {
+    const map = this.mapService.getMap();
+    this.mapService.loadResultNuts(map);
+  }
 
-/**
- * Click method when cursor selection tool is selected
- */
-cursorClick() {
-  const map = this.mapService.getMap();
-  this.mapService.clickSelection(map);
-  $('#radio-1').prop( 'checked', true );
-}
+  /**
+   * Clear all informations in the info box
+   */
+  clearAllButton() {
+    const map = this.mapService.getMap();
+    this.mapService.clearAll(map);
+  }
 
-/**
- * Click method when square selection tool is selected
- */
-squareClick() {
-  const map = this.mapService.getMap();
-  this.mapService.drawTool(map, 'rectangle');
-}
-
-/**
- * Click method when circle selection tool is selected
- */
-circleClick() {
-  const map = this.mapService.getMap();
-  this.mapService.drawTool(map, 'circle');
-}
-
-/**
- * Click method when polygon selection tool is selected
- */
-polygonClick() {
-  const map = this.mapService.getMap();
-  this.mapService.drawTool(map, 'polygon');
-}
-
-/**
- * Load the results of the selection
- */
-loadResultsButton() {
-  const map = this.mapService.getMap();
-  this.mapService.loadResultNuts(map);
-}
-
-/**
- * Clear all informations in the info box
- */
-clearAllButton() {
-   const map = this.mapService.getMap();
-   this.mapService.clearAll(map);
-}
 
 
 }

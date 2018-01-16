@@ -20,9 +20,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
-
-  //dany
-  showHide: boolean = false;
+  isSelectionToolVisible = false;
+  showHide = false;
 
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
@@ -83,11 +82,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       }
     });
     this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
+      this.logger.log('mapComponent/selectionTool: ' + val)
       if (val) {
-        //this.mapService.addDrawControls();
+        this.interactionService.enableStateOpenWithFunction('selection')
         this.showHide = true;
       }else {
-        //this.mapService.removeDrawControls();
+        this.interactionService.disableStateOpenWithFunction('selection')
         this.showHide = false;
       }
     });

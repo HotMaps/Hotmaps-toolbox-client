@@ -3,7 +3,7 @@
  * Created by lesly on 27.05.17.
  */
 import {Injectable} from '@angular/core';
-import {Map} from 'leaflet';
+import {Map, Layer} from 'leaflet';
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
 import {Logger, LoaderService, Helper} from '../../shared/';
@@ -52,11 +52,105 @@ export class SelectionToolService extends APIService  {
   private disableClearAllSubject = new Subject<any>();
   disbleClearAllSubjectObs = this.disableClearAllSubject.asObservable();
 
+
+
+  // ONLY FOR HECTAR (POPUP)
+  private containerPopup: any;
+  private popupTitle: any;
+  private cancelBtn: any;
+  private validationBtn: any;
+  private validationBtnSelection: any;
+  private validationBtnClick: any;
+  // =======================
+
+
   constructor(http: Http, logger: Logger,  loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
     private interactionService: InteractionService
   ) {super(http, logger, loaderService, toasterService); }
+  // ===============================================================================================================
+  // ONLY FOR HECTAR (POPUP)
+  createButtons(type) {
+    // this.logger.log('SelectionToolService/createButtons');
+     this.containerPopup = L.DomUtil.create('div');
+     this.popupTitle = L.DomUtil.create('h5', '', this.containerPopup);
+     this.cancelBtn = L.DomUtil.create('button', 'uk-button uk-button-danger uk-button-small uk-width-2-2', this.containerPopup);
+     this.setHTMLContent(this.popupTitle, 'Area Selected');
+     this.setHTMLContent(this.cancelBtn, 'Cancel');
+     if (type === 'click') {
+       this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+       this.setHTMLContent(this.validationBtnClick, 'Validation');
+     }else {
+       this.validationBtnSelection =
+           L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+       this.setHTMLContent(this.validationBtnSelection, 'Validation');
+     }
+   }
+  loadPopup(map: any, layer: Layer) {
+    this.createButtons('selection');
+    this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
+    // Set event bind on popup's buttons
+    L.DomEvent.on(this.cancelBtn , 'click', () => {
+      this.clearAll(map);
+    });
 
+    // Set event bind on popup's buttons
+    L.DomEvent.on(this.validationBtnSelection, 'click', () => {
+      this.interactionService.onPopupValidation();
+      const layerNameArray = []
+      for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
+        if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
+          layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
+            this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
+        } else {
+          layerNameArray.push(this.interactionService.getLayerArray().keys()[i]);
+        }
+      }
+      this.logger.log('layerNameArray' + layerNameArray);
+      if (this.currentLayer instanceof L.Circle) {
+        this.getStatisticsFromLayer(this.getLocationsFromCicle(this.currentLayer), layerNameArray, map)
+      } else  if (this.currentLayer instanceof L.Polygon) {
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
+      }else  if (this.currentLayer instanceof L.latLng) {
+
+        this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
+      } else {
+       // this.logger.log('unknown form');
+
+        const layerNutsArray = [];
+
+        for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
+          if (this.interactionService.getLayerArray().keys()[i] !== wwtpLayerName) {
+           // this.logger.log('array ' + this.interactionService.getLayerArray().keys()[i]
+           //   + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
+            layerNutsArray.push(this.interactionService.getLayerArray().keys()[i] + '_ha' );
+          } else {
+            layerNutsArray.push(this.interactionService.getLayerArray().keys()[i]);
+          }
+        }
+        this.getStatisticsFromLayer(this.getLocationsFromGeoJsonLayer(this.currentLayer), layerNutsArray, map)
+
+      }
+    });
+
+  }
+  drawHectareCreated(e, map) {
+    const event: Created = <Created>e;
+    const type = event.layerType,
+    layer: any = event.layer;
+    this.isActivate = false;
+    // Clear the map before to show the new selection
+    this.editableLayers.clearLayers();
+    this.manageEditOrCreateLayer(layer, map);
+    this.loadPopup(map, layer);
+  }
+
+  // ===============================================================================================================
+
+
+  setIsPolygonDrawer(value) {
+    this.isPolygonDrawer = value;
+  }
   getNutsSelectedSubject(): Subject<number> {
     return this.nbNutsSelectedSubject;
   }
@@ -90,21 +184,14 @@ export class SelectionToolService extends APIService  {
   disableButtonClearAll() {
     this.disableClearAllSubject.next();
   }
-  drawHectareCreated(e, map) {
-    console.log('created', e.type);
-    const event: Created = <Created>e;
-    const type = event.layerType,
-      layer: any = event.layer;
-    this.isActivate = false;
-    // Clear the map before to show the new selection
-    this.manageEditOrCreateLayer(layer, map);
-  }
+  
   drawCreated(e, map, nuts_lvl) {
 
     const event: Created = <Created>e;
     const type = event.layerType,
     layer: any = event.layer;
     this.isActivate = false;
+    this.isPolygonDrawer = false;
     // Clear the map before to show the new selection
     // enable buttons when layer is created
 
@@ -280,6 +367,7 @@ export class SelectionToolService extends APIService  {
    this.editableLayers.addLayer(this.currentLayer);
    this.editableLayers.addTo(map);
    this.enableNavigationService(map);
+   this.loadPopup(map, layer);
  }
   toggleActivateTool(val: boolean) {
     this.isActivate = val;
@@ -294,6 +382,7 @@ export class SelectionToolService extends APIService  {
     }
     this.editableLayers.addLayer(this.currentLayer);
     // then we launch the validate popup
+
   }
 
   getLocationsFromPolygon(layer): Location[] {
@@ -320,8 +409,14 @@ export class SelectionToolService extends APIService  {
 
 
   clearAll(map: any) {
+    // ONLY HECTAR LEVEL
+    if (this.scaleValue === hectare) {
+      this.editableLayers.clearLayers();
+    }
+    // ====
     if (this.isDrawer) {
         this.theDrawer.disable(); // Disable the actual drawer anyway and
+        this.isPolygonDrawer = false;
       }
       this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
@@ -389,7 +484,7 @@ export class SelectionToolService extends APIService  {
     this.interactionService.enableStateOpenWithFunction('right');
     this.loaderService.display(false);
     // this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
-    //this.drawResult(result, map)
+    // this.drawResult(result, map)
   }
 
   drawResult(result: SummaryResultClass, map: any) {
@@ -421,18 +516,16 @@ export class SelectionToolService extends APIService  {
    */
   clickSelection(map: Map) {
     if (this.isDrawer) {
-      this.getDrawer().disable(); 
+      this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
     this.isPolygonDrawer = false;
   }
-  
   /**
-   * Activate the drawing tool
+   * Activate the drawing rectangle tool
    */
-  drawTool(map: Map, tool: string){
+  drawTool(map: Map, tool: string) {
     map.addLayer(this.editableLayers);
     this.editableLayers.clearLayers();
-
     if (this.isDrawer) {
       this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
@@ -452,15 +545,16 @@ export class SelectionToolService extends APIService  {
         this.theDrawer = new L.Draw.Polygon(map);
         this.isPolygonDrawer = true;
         break;
-      
-      default: 
+
+      default:
         break;
     }
 
     this.theDrawer.enable();
-    this.isDrawer = true;
-  }
 
+    this.isDrawer = true;
+    this.isPolygonDrawer = true;
+  }
   /**
    * Get the current drawer
    */

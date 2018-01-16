@@ -48,7 +48,6 @@ export class SelectionScaleService extends APIService {
     this.scaleValue = scaleValue;
   }
 
-
   getDataArrayServices(): SelectionScaleClass[] {
     return SelectionScaleClassArray;
   }
