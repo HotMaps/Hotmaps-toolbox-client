@@ -95,6 +95,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       } else {
         const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
         self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+        self.selectionToolService.setIsPolygonDrawer(false);
       }
     }
     onDrawEdited(self) { }
@@ -153,7 +154,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
       // automatic cursor tool selection doesn't work if polygon draw is activated
       if (!self.selectionToolService.getPolygonDrawerState()) {
-          self.clickCursorUpdate(); // automatic cursor tool selection
+        self.logger.log('self.selectionToolService.getPolygonDrawerState()');
+
+        self.clickCursorUpdate(); // automatic cursor tool selection
       }
       // check if the selection toul is activate
       self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
@@ -272,6 +275,83 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
   checkZoomLevelLayer(action, zoomLevel) {
     // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+  }
+
+  /**
+   * Activate the drawing tool
+   */
+  drawTool(map: Map, tool: string) {
+      this.selectionToolService.drawTool(map, tool);
+  }
+
+  /**
+   * Activate the selection tool
+   */
+  clickSelection(map: Map) {
+      this.selectionToolService.clickSelection(map);
+  }
+
+  /**
+   * Load the nuts selection results
+   */
+  loadResultNuts(map: Map) {
+      this.selectionToolService.loadResultNuts(map);
+  }
+
+  /**
+   * Clear the selection(s)
+   */
+  clearAll(map: Map) {
+      this.selectionToolService.clearAll(map);
+  }
+
+  /**
+   * Get the nutsSelected Subject of SelectionToolService
+   */
+  getNutsSelectedSubject(): Subject<number> {
+      return this.selectionToolService.getNutsSelectedSubject();
+  }
+
+  /**
+   * Get the EnableLoadResultSubjectObs of SelectionToolService
+   */
+  getEnableLoadResultSubjectObs() {
+      return this.selectionToolService.enableLoadResultSubjectObs;
+  }
+
+  /**
+   * Get the EnableClearAllSubjectObs of SelectionToolService
+   */
+  getEnableClearAllSubjectObs() {
+      return this.selectionToolService.enableClearAllSubjectObs;
+  }
+
+  /**
+   * Get the DisableLoadResultSubjectObs of SelectionToolService
+   */
+  getDisableLoadResultSubjectObs() {
+      return this.selectionToolService.disableLoadResultSubjectObs;
+  }
+
+  /**
+   * Get the DisbleClearAllSubjectObs of SelectionToolService
+   */
+  getDisbleClearAllSubjectObs() {
+      return this.selectionToolService.disbleClearAllSubjectObs;
+  }
+
+  /**
+   * Get the ScaleValueSubject of SelectionScaleService
+   */
+  getScaleValueSubject(): Subject<string> {
+      return this.selectionScaleService.scaleValueSubject;
+  }
+
+  /**
+   * Get the ScaleValue of SelectionScaleService
+   */
+  getScaleValue() {
+      return this.selectionScaleService.getScaleValue();
   }
 
 

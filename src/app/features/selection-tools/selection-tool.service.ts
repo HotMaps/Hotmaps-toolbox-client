@@ -148,7 +148,9 @@ export class SelectionToolService extends APIService  {
   // ===============================================================================================================
 
 
-
+  setIsPolygonDrawer(value) {
+    this.isPolygonDrawer = value;
+  }
   getNutsSelectedSubject(): Subject<number> {
     return this.nbNutsSelectedSubject;
   }
@@ -182,13 +184,14 @@ export class SelectionToolService extends APIService  {
   disableButtonClearAll() {
     this.disableClearAllSubject.next();
   }
-
+  
   drawCreated(e, map, nuts_lvl) {
 
     const event: Created = <Created>e;
     const type = event.layerType,
     layer: any = event.layer;
     this.isActivate = false;
+    this.isPolygonDrawer = false;
     // Clear the map before to show the new selection
     // enable buttons when layer is created
 
@@ -379,7 +382,7 @@ export class SelectionToolService extends APIService  {
     }
     this.editableLayers.addLayer(this.currentLayer);
     // then we launch the validate popup
-    
+
   }
 
   getLocationsFromPolygon(layer): Location[] {
@@ -413,6 +416,7 @@ export class SelectionToolService extends APIService  {
     // ====
     if (this.isDrawer) {
         this.theDrawer.disable(); // Disable the actual drawer anyway and
+        this.isPolygonDrawer = false;
       }
       this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
@@ -480,7 +484,7 @@ export class SelectionToolService extends APIService  {
     this.interactionService.enableStateOpenWithFunction('right');
     this.loaderService.display(false);
     // this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
-    //this.drawResult(result, map)
+    // this.drawResult(result, map)
   }
 
   drawResult(result: SummaryResultClass, map: any) {
@@ -519,48 +523,33 @@ export class SelectionToolService extends APIService  {
   /**
    * Activate the drawing rectangle tool
    */
-  drawRectangle(map: Map) {
+  drawTool(map: Map, tool: string) {
     map.addLayer(this.editableLayers);
     this.editableLayers.clearLayers();
     if (this.isDrawer) {
       this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
 
-    this.theDrawer = new L.Draw.Rectangle(map);
-    this.theDrawer.enable();
+    switch (tool) {
+      case "rectangle":
+        this.theDrawer = new L.Draw.Rectangle(map);
+        this.isPolygonDrawer = false;
+        break;
 
-    this.isDrawer = true;
-    this.isPolygonDrawer = false;
-  }
+      case "circle":
+        this.theDrawer = new L.Draw.Circle(map);
+        this.isPolygonDrawer = false;
+        break;
 
-  /**
-   * Activate the drawing circle tool
-   */
-  drawCircle(map: Map) {
-    map.addLayer(this.editableLayers);
-    this.editableLayers.clearLayers();
-    if (this.isDrawer) {
-      this.getDrawer().disable(); // disable the current drawer before creating a new one
-    }
-    this.theDrawer = new L.Draw.Circle(map);
-    this.theDrawer.enable();
+      case "polygon":
+        this.theDrawer = new L.Draw.Polygon(map);
+        this.isPolygonDrawer = true;
+        break;
 
-    this.isDrawer = true;
-    this.isPolygonDrawer = false;
-  }
-
-  /**
-   * Activate the drawing polygon tool
-   */
-  drawPolygon(map: Map) {
-    map.addLayer(this.editableLayers);
-    this.editableLayers.clearLayers();
-
-    if (this.isDrawer) {
-      this.getDrawer().disable(); // disable the current drawer before creating a new one
+      default:
+        break;
     }
 
-    this.theDrawer = new L.Draw.Polygon(map);
     this.theDrawer.enable();
 
     this.isDrawer = true;

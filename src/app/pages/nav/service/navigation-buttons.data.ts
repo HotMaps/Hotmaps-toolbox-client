@@ -1,7 +1,7 @@
 import { NavigationButton } from '../class/navigation-bar.class';
 
 export const navigationButtons: NavigationButton[] = [
-    {id: 'layers', title: 'Folder', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false},
+    {id: 'layers', title: 'Layer', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false},
     {id: 'selection', title: 'Selection', buttonFunction: 'selection', iconClass: 'flaticon-vector', enable: true, stateOpen: false},
     {id: 'folder', title: 'Folder', buttonFunction: '', iconClass: 'flaticon-folder-2', enable: false, stateOpen: false},
     {id: 'load_result', title: 'Load result', buttonFunction: 'right', iconClass: 'flaticon-pie-chart-1', enable: false, stateOpen: false},
