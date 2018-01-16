@@ -21,6 +21,9 @@
     background-color: white;
     width: 30px;
     border-radius: 4px;
+    padding:0 ! important;
+    margin: 0 ! important;
+
 }
 
 #cursor{
@@ -102,6 +105,7 @@ span {
     flex-direction: column;
     min-height: 0;
     min-width: 0;*/
+    width: 30px;
 }
 
 #info-box{

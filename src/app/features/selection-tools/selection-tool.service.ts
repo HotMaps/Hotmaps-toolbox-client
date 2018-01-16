@@ -322,6 +322,7 @@ export class SelectionToolService extends APIService  {
   clearAll(map: any) {
     if (this.isDrawer) {
         this.theDrawer.disable(); // Disable the actual drawer anyway and
+        this.isPolygonDrawer = false;
       }
       this.interactionService.disableStateOpenWithFunction('right');
       this.interactionService.disableButtonWithId('load_result');
