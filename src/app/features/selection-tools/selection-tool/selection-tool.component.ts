@@ -52,6 +52,11 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     }
     );
 
+    this.mapService.drawCreatedSubjectObs.subscribe(() => {
+        this.cursorClick();
+      }
+    );
+
     this.mapService.getEnableLoadResultSubjectObs().subscribe(() => {
       this.isLoaBtnDisabled = false;
     })
@@ -107,6 +112,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   clearAllButton() {
     const map = this.mapService.getMap();
     this.mapService.clearAll(map);
+    this.cursorClick();
   }
 
 

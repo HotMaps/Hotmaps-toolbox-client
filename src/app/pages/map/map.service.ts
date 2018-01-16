@@ -40,6 +40,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private clickEventSubject = new Subject<any>(); // Observable source for click
     clickEventSubjectObs = this.clickEventSubject.asObservable(); // Observable stream
 
+    private drawCreatedSubject = new Subject<any>();
+    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();    
+
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
                 private selectionToolService: SelectionToolService,
@@ -57,10 +60,17 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
 
     /**
-    * Call the cursor click method of the selection tool
+    * Update the clickCursorSubject
     */
     clickCursorUpdate() {
         this.clickEventSubject.next();
+    }
+
+    /**
+    * Update the drawCreatedSubject
+    */
+    drawCreatedUpdate() {
+        this.drawCreatedSubject.next();
     }
 
     getMap(): Map {
@@ -96,6 +106,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
         self.selectionToolService.drawCreated(e, this.map, scale_lvl);
         self.selectionToolService.setIsPolygonDrawer(false);
+        self.drawCreatedUpdate();
       }
     }
     onDrawEdited(self) { }
