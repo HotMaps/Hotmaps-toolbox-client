@@ -122,7 +122,6 @@ export class SelectionToolService extends APIService  {
 
       }
     });
-
   }
   drawHectareCreated(e, map) {
     const event: Created = <Created>e;
@@ -533,6 +532,11 @@ export class SelectionToolService extends APIService  {
           this.multiSelectionLayers.addLayer(areaNutsSelectedLayer) ;
         }
       }
+      const self = this
+      this.nutsIds.forEach(function(item, sameItem, s) {
+        self.logger.log(item);
+      });
+
     }
     this.updateSelectionToolAction();
     this.loaderService.display(false);
