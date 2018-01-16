@@ -7,30 +7,42 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MapService } from '../../../pages/map/map.service';
 import { hectare } from 'app/shared';
 import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'htm-selection-tool',
   templateUrl: './selection-tool.component.html',
   styleUrls: ['./selection-tool.component.css']
 })
-export class SelectionToolComponent implements OnInit {
+export class SelectionToolComponent implements OnInit, OnDestroy {
   nbNutsSelected = 0;
   private scaleSelected: any;
-  private subscription: any;
-  private subscriptionNbNutsSelected: any;
+  private subscription: Subscription;
+  private subscriptionNbNutsSelected: Subscription;
   private isHectarSelected = false;
   private isLoaBtnDisabled = true;
   private isClearBtnDisabled = true;
-
   private stButtons = stButtons;
 
-  constructor(private mapService: MapService) {
-    this.subscription = mapService.getScaleValueSubject().subscribe((value) => {
+  constructor(private mapService: MapService) {}
+
+  ngOnInit() {
+    this.subscribeMapService();
+    this.scaleSelected = this.mapService.getScaleValue();
+    this.checkScale();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscriptionNbNutsSelected.unsubscribe();
+  }
+  subscribeMapService() {
+    this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
       this.scaleSelected = value;
       this.checkScale();
     })
 
-    this.subscriptionNbNutsSelected = mapService.getNutsSelectedSubject().subscribe((value) => {
+    this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
       this.nbNutsSelected = value;
     })
 
@@ -54,13 +66,7 @@ export class SelectionToolComponent implements OnInit {
 
     this.mapService.getDisbleClearAllSubjectObs().subscribe(() => {
       this.isClearBtnDisabled = true;
-    })
-
-  }
-
-  ngOnInit() {
-    this.scaleSelected = this.mapService.getScaleValue();
-    this.checkScale();
+    });
   }
   cursorClick() {
     const map = this.mapService.getMap();
