@@ -15,7 +15,7 @@ declare const L: any;
 
 import {PayloadStat, PlayloadStatNuts} from '../summary-result/class/payload.class';
 import {
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, wwtpLayerName
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, wwtpLayerName
 } from '../../shared/data.service';
 import {GeojsonClass} from '../layers/class/geojson.class';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
@@ -70,7 +70,8 @@ export class SelectionToolService extends APIService  {
      this.setHTMLContent(this.popupTitle, 'Area Selected');
      this.setHTMLContent(this.cancelBtn, 'Cancel');
      if (type === 'click') {
-       this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
+       this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2',
+         this.containerPopup);
        this.setHTMLContent(this.validationBtnClick, 'Validation');
      }else {
        this.validationBtnSelection =
@@ -224,7 +225,26 @@ export class SelectionToolService extends APIService  {
     }).catch();
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+    this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
+    if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
+
+      this.logger.log('nuts_id =  ' + this.nutsIds.values());
+      const heatLoadPayload = {
+        'year': 2010,
+        'nuts': Array.from(this.nutsIds.values()),
+        'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
+      }
+      console.log('heatLoadPayload=');
+      console.log(JSON.stringify(heatLoadPayload));
+      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+        this.logger.log('heatLoadresult ' + JSON.stringify(result));
+        const data = this.helper.formatDataLoadProfil(result);
+        this.displayHeatLoad(data);
+      }).catch();
+      request.push(heatloadPromise);
+    } else {
       this.displayHeatLoad(null);
+    }
     Promise
       .all(request)
       .then(values => {
@@ -335,6 +355,7 @@ export class SelectionToolService extends APIService  {
       this.nutsIds.clear();
 
       this.updateSelectionToolAction();
+      this.displayHeatLoad(null)
   }
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
@@ -349,14 +370,15 @@ export class SelectionToolService extends APIService  {
     }).catch();
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
-    if (this.scaleValue === nuts2) {
-      const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-      this.logger.log('nuts_id =  ' + nuts_id);
+    if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
+
+      this.logger.log('nuts_id =  ' + this.nutsIds.values());
       const heatLoadPayload = {
         'year': 2010,
-        'nuts_id': nuts_id,
-        'nuts_level': '2'
+        'nuts_id': this.nutsIds,
+        'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
       }
+      console.log(heatLoadPayload);
       const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
       //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
         const data = this.helper.formatDataLoadProfil(result);
@@ -509,6 +531,11 @@ export class SelectionToolService extends APIService  {
     this.nbNutsSelectedSubject.next(this.nutsIds.size);
   }
   drawResultBeforeLoadingResult(result: any) {
+    this.logger.log('result is ' + result);
+    this.logger.log('result is ' + result.features);
+    if (result.features.length === 0) {
+      this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+    }
     if (this.helper.isNullOrUndefined(result) === false) {
       for (const feature of result.features) {
         let selection_id ;

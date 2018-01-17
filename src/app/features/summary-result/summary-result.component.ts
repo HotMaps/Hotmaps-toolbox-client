@@ -45,6 +45,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
   expandedState = 'collapsed';
   busy: Promise<any>;
+  private subtitle = 'Summary';
   private round = round_value;
   private scale = 'Nuts 3';
   private isDataAgregate = false;

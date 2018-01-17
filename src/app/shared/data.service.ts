@@ -20,6 +20,7 @@ export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const timeOutAjaxRequest = 10000;
+export const unit_heatload_profil = 'kW'
 
 
 // layer_name
