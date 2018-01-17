@@ -28,7 +28,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
     animations: [
         // Trigger of height
         trigger('panelHeightTrigger', [
-            state('expanded', style({ height: '542px', top: '57px' })),
+            state('expanded', style({ height: '627px', top: '57px' })),
             state('collapsed', style({ height: '0px', display: 'none'  })),
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))

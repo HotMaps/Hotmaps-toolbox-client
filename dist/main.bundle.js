@@ -96,8 +96,9 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__swimlane_ngx_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__features_feedback_mail_service__ = __webpack_require__("../../../../../src/app/features/feedback/mail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_app_features_side_panel__ = __webpack_require__("../../../../../src/app/features/side-panel/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__features_heat_load_graphical_view___ = __webpack_require__("../../../../../src/app/features/heat-load/graphical-view/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__features_selection_tools_selection_tool_selection_tool_component__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__features_heat_load_graphical_view___ = __webpack_require__("../../../../../src/app/features/heat-load/graphical-view/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -105,6 +106,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -180,7 +182,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__shared__["LayerNamePipe"],
             __WEBPACK_IMPORTED_MODULE_14__shared__["BusinessNamePipe"],
             __WEBPACK_IMPORTED_MODULE_21__features_feedback___["FeedbackComponent"],
-            __WEBPACK_IMPORTED_MODULE_36__features_heat_load_graphical_view___["a" /* GraphicalViewComponent */]
+            __WEBPACK_IMPORTED_MODULE_37__features_heat_load_graphical_view___["a" /* GraphicalViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__features_selection_tools_selection_tool_selection_tool_component__["a" /* SelectionToolComponent */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_31__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */],
@@ -203,7 +206,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_34__features_feedback_mail_service__["a" /* MailService */],
             __WEBPACK_IMPORTED_MODULE_22__features_selection_scale__["a" /* SelectionScaleService */],
             __WEBPACK_IMPORTED_MODULE_32_app_shared_services_interaction_service__["a" /* InteractionService */],
-            __WEBPACK_IMPORTED_MODULE_37__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]
+            __WEBPACK_IMPORTED_MODULE_38__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]
         ],
         schemas: [
             __WEBPACK_IMPORTED_MODULE_4__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]
@@ -239,6 +242,7 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -251,9 +255,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var AppComponent = (function () {
-    function AppComponent(loaderService) {
+    function AppComponent(loaderService, logger) {
         this.loaderService = loaderService;
+        this.logger = logger;
     }
     AppComponent.prototype.ngAfterContentInit = function () {
         this.notifyLoaderService();
@@ -263,6 +269,9 @@ var AppComponent = (function () {
         this.loaderService.status.subscribe(function (val) {
             _this.showLoader = val;
         });
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('AppComponent/ngOnDestroy');
     };
     AppComponent.prototype.ngOnInit = function () {
     };
@@ -274,10 +283,10 @@ AppComponent = __decorate([
         template: "<router-outlet><span *ngIf=\"showLoader\" class=\"loader-app\"><div uk-spinner=\"ratio:4\"></div></span></router-outlet>",
         styles: [__webpack_require__("../../../../../src/app/component/app.component.css")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
 ], AppComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -421,7 +430,7 @@ var DataInteractionClass = (function () {
 var DataInteractionArray = [
     // {id: 11, name: 'Heat map', category: 'Comsumption'},
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["v" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* defaultLayer */], zoomLevel: 0 },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["U" /* zoomLevelDetectChange */] },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["W" /* zoomLevelDetectChange */] },
     { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* populationLayerName */], zoomLevel: 0 },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
@@ -539,7 +548,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "form {\n\n}\n\nform > fieldset {\n    padding: 10px;\n}\n.input-file{\n    padding-left: 35px !important;\n}\ntextarea {\n    resize: none;\n}\n\ninput.ng-invalid, textarea.ng-invalid{\n    border: 1px solid rgb(226, 7, 7);\n}\n\ninput.ng-valid, textarea.ng-valid{\n    border: 1px solid rgba(78, 78, 78, 0.19);\n}\n.loader-container{\n    z-index: 20000;\n    position: absolute;\n    width: 100%;\n    height: 490px;\n    top: 50px;\n    background-color: rgba(78, 78, 78, 0.19);\n}\n.loader-container .loader {\n    position: absolute;\n    top: 45%;\n    left: 45%;\n}\n", ""]);
+exports.push([module.i, "form {\n\n}\n\nform > fieldset {\n    padding: 10px;\n}\n.input-file{\n    padding-left: 35px !important;\n}\ntextarea {\n    resize: none;\n}\n\ninput.ng-invalid, textarea.ng-invalid, select.ng-invalid{\n    border: 1px solid rgb(226, 7, 7);\n}\n\ninput.ng-valid, textarea.ng-valid{\n    border: 1px solid rgba(78, 78, 78, 0.19);\n}\n.loader-container{\n    z-index: 20000;\n    position: absolute;\n    width: 100%;\n    height: 578px;\n    top: 50px;\n    background-color: rgba(78, 78, 78, 0.19);\n}\n.loader-container .loader {\n    position: absolute;\n    top: 45%;\n    left: 45%;\n}\n", ""]);
 
 // exports
 
@@ -552,7 +561,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/feedback/component/feedback.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@feedbackTrigger]=\"expandedState\">\n    <form *ngIf='!submited' #form='ngForm' (ngSubmit)='submit(form)' enctype=\"multipart/form-data\" method=\"post\" novalidate>\n        <fieldset class='uk-fieldset'>\n            <div class='uk-margin-small'><input name='name' class='uk-input uk-form-small' type='text' placeholder='Firstname / Lastname' ngModel #names='ngModel' required ></div>\n            <div class='uk-margin-small'><input name='mail' class='uk-input uk-form-small' type='text' placeholder='Mail' required email ngModel #mail='ngModel'></div>\n            <div class='uk-margin-small'><input name='company' class='uk-input uk-form-small' type='text' placeholder='Company' required company ngModel #company='ngModel'></div>\n            <div class='uk-margin-small uk-grid-small uk-child-width-auto uk-grid'>\n                <label><input class='uk-radio' type='radio' name='categorie' value='Issue' ngModel #categorie='ngModel' required> Issue</label>\n                <label><input class='uk-radio' type='radio' name='categorie' value='Improvement' ngModel #categorie='ngModel'> Improvement</label>\n            </div>\n            <div class='uk-margin-small'>\n                <div class=\"uk-width-1-1 uk-inline\" uk-form-custom=\"target: true\">\n                    <input type=\"file\" name=\"picture\" #file (change)=\"onUploadFile(file.files)\">\n                    <input class=\"uk-input input-file  uk-form-small\" type=\"text\" placeholder=\"Select / drag&drop file\" disabled>\n                    <span class=\"uk-form-icon\" uk-icon=\"icon: upload\"></span>\n                </div>\n            </div>\n            <div class='uk-margin-small'><textarea name='description' class='uk-textarea' rows='3' placeholder='Description' ngModel #description='ngModel' required></textarea></div>\n            <div class='uk-margin-small'>\n                <re-captcha siteKey=\"6Ldb7zcUAAAAADpGmUYGHKDq4HnQ-WqzfqissGje\" name=\"captcha\" [(ngModel)]=\"captcha\"  required></re-captcha>\n            </div>\n            <div class='uk-margin-small'>\n                <button class='uk-button uk-button-default uk-width-1-1' type='submit' [disabled]='!form.valid'>\n                    Submit\n                </button>\n                <button class='uk-button uk-button-default uk-width-1-1'(click)=\"close($event)\" type='close'>\n                  close\n                </button>\n            </div>\n\n\n        </fieldset>\n\n    </form>\n    <ng-container *ngIf='feedbackLoader'>\n        <div class=\"loader-container\">\n            <div class=\"loader\" uk-spinner></div>\n        </div>\n    </ng-container>\n    <ng-container *ngIf='submited'>\n        <div class='uk-padding-small'>\n            Your request has been succesfull sent to administrators. It will be processed in the shortest time. <br />\n            Thanks Hotmappers !\n            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button>\n              <button class='uk-button uk-button-default uk-width-1-1' (click)=\"close($event)\" type='close'>\n                close\n              </button></div>\n        </div>\n    </ng-container>\n</div>\n"
+module.exports = "<div [@feedbackTrigger]=\"expandedState\">\n    <form *ngIf='!submited' #form='ngForm' (ngSubmit)='submit(form)' enctype=\"multipart/form-data\" method=\"post\" novalidate>\n        <fieldset class='uk-fieldset'>\n            <div class='uk-margin-small'><input name='name' class='uk-input uk-form-small' type='text' placeholder='Firstname / Lastname' ngModel #names='ngModel' required ></div>\n            <div class='uk-margin-small'><input name='mail' class='uk-input uk-form-small' type='text' placeholder='Mail' required email ngModel #mail='ngModel'></div>\n            <div class='uk-margin-small'><input name='company' class='uk-input uk-form-small' type='text' placeholder='Company' required company ngModel #company='ngModel'></div>\n            <!-- <div class='uk-margin-small uk-grid-small uk-child-width-auto uk-grid'>\n                <label><input class='uk-radio' type='radio' name='categorie' value='Issue' ngModel #categorie='ngModel' required> Issue</label>\n                <label><input class='uk-radio' type='radio' name='categorie' value='Improvement' ngModel #categorie='ngModel'> Improvement</label>\n            </div> -->\n            <div class='uk-margin-small'>\n                <select class='uk-select uk-form-small' name=\"type\" ngModel #type='ngModel' required>\n                    <option value=\"\">Select feedback type...</option>                        \n                    <option *ngFor=\"let type of issue_type\" [ngValue]=\"type.id\">\n                        {{type.name}}\n                    </option>\n                </select>\n            </div>\n            <div class='uk-margin-small'>\n                <select class='uk-select uk-form-small' name=\"level\" ngModel #level='ngModel' required>\n                    <option value=\"\">Select feedback priority...</option>                        \n                    <option *ngFor=\"let level of issue_levels\" [ngValue]=\"level.id\">\n                        {{level.name}}\n                    </option>\n                </select>\n            </div>\n            <div class='uk-margin-small'><input name='title' class='uk-input uk-form-small' type='text' placeholder='Title' ngModel #title='ngModel' required ></div>\n            <div class='uk-margin-small'><textarea name='description' class='uk-textarea uk-form-small' rows='3' placeholder='Description' ngModel #description='ngModel' required></textarea></div>\n            <div class='uk-margin-small'>\n                <div class=\"uk-width-1-1 uk-inline\" uk-form-custom=\"target: true\">\n                    <input type=\"file\" name=\"picture\" #file (change)=\"onUploadFile(file.files)\" accept=\"image/*\">\n                    <input class=\"uk-input input-file  uk-form-small\" type=\"text\" placeholder=\"Select / drag&drop file\" disabled>\n                    <span class=\"uk-form-icon\" uk-icon=\"icon: upload\"></span>\n                </div>\n            </div>\n            <div class='uk-margin-small'>\n                <re-captcha siteKey=\"6Ldb7zcUAAAAADpGmUYGHKDq4HnQ-WqzfqissGje\" name=\"captcha\" [(ngModel)]=\"captcha\" required></re-captcha>\n            </div>\n            <div class='uk-margin-small'>\n                <button class='uk-button uk-button-default uk-width-1-1' type='submit' [disabled]='!form.valid'>\n                    Submit\n                </button>\n                <button class='uk-button uk-button-default uk-width-1-1'(click)=\"close($event)\" type='close'>\n                  close\n                </button>\n            </div>\n        </fieldset>\n    </form>\n    <ng-container *ngIf='feedbackLoader'>\n        <div class=\"loader-container\">\n            <div class=\"loader\" uk-spinner></div>\n        </div>\n    </ng-container>\n    <ng-container *ngIf='submited'>\n        <div class='uk-padding-small'>\n            Your request has been succesfull sent to administrators. It will be processed in the shortest time. <br />\n            Thanks Hotmappers !\n            <div class='uk-margin'><button class='uk-button uk-button-default uk-width-1-1' (click)='makeNewRequest()'>New request</button>\n              <button class='uk-button uk-button-default uk-width-1-1' (click)=\"close($event)\" type='close'>\n                close\n              </button></div>\n        </div>\n    </ng-container>\n</div>\n"
 
 /***/ }),
 
@@ -564,6 +573,8 @@ module.exports = "<div [@feedbackTrigger]=\"expandedState\">\n    <form *ngIf='!
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__ = __webpack_require__("../../../../../src/app/features/feedback/data-taiga.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedbackComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -578,10 +589,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var FeedbackComponent = (function () {
     function FeedbackComponent(toasterService, interactionService) {
         this.toasterService = toasterService;
         this.interactionService = interactionService;
+        this.issue_levels = __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__["a" /* issue_levels */];
+        this.issue_type = __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__["b" /* issue_type */];
         this.submited = false;
         this.feedbackLoader = false;
     }
@@ -610,11 +625,10 @@ var FeedbackComponent = (function () {
         this.interactionService.disableStateOpenWithFunction('send_mail');
     };
     FeedbackComponent.prototype.onUploadFile = function (files) {
-        // console.log(files[0]);
         this.files = files[0];
     };
     FeedbackComponent.prototype.showError = function () {
-        this.toasterService.showToaster('Enable to send the message! Please, try later or send a mail to administrator');
+        this.toasterService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
     };
     FeedbackComponent.prototype.sendRequest = function (f) {
         var _this = this;
@@ -624,13 +638,13 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_2_app_shared__["urlSendMail"],
+            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["Y" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
             contentType: false,
             success: function (data, status) {
-                if (data === '1') {
+                if ((data === '1') || (data === 1)) {
                     f.reset();
                     _this.submited = true;
                     _this.feedbackLoader = false;
@@ -640,7 +654,7 @@ var FeedbackComponent = (function () {
                     _this.feedbackLoader = false;
                 }
             },
-            error: function () {
+            error: function (e) {
                 _this.showError();
                 _this.feedbackLoader = false;
             },
@@ -673,6 +687,26 @@ FeedbackComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=feedback.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/feedback/data-taiga.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return issue_levels; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return issue_type; });
+var issue_levels = [
+    { name: 'low', id: 486542 },
+    { name: 'normal', id: 486543 },
+    { name: 'high', id: 486544 }
+];
+var issue_type = [
+    { name: 'Bug', id: 489107 },
+    { name: 'Question', id: 489108 },
+    { name: 'Enhancement', id: 489109 }
+];
+//# sourceMappingURL=data-taiga.js.map
 
 /***/ }),
 
@@ -888,7 +922,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.lineargraph{\n    height: 400px;\n}", ""]);
+exports.push([module.i, "\n.lineargraph{\n    padding: 10px;\n    height: 400px;\n    width: 580px;\n    min-height: 400px;\n    min-width: 580px;\n    position: relative;\n}\n\n.ngx-charts-outer > svg{\n    overflow: auto !important;\n}", ""]);
 
 // exports
 
@@ -901,7 +935,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/heat-load/graphical-view/graphical-view.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <h5 class=\"uk-card-title\">{{subtitle}} </h5>\n  <div class=\"lineargraph\">\n    <ngx-charts-line-chart *ngIf=\"loadProfileData\"\n    [view]=\"view\"\n    [scheme]=\"colorScheme\"\n    [results]=\"loadProfileData\"\n    [gradient]=\"gradient\"\n    [xAxis]=\"showXAxis\"\n    [yAxis]=\"showYAxis\"\n    [legend]=\"showLegend\"\n    [showXAxisLabel]=\"showXAxisLabel\"\n    [showYAxisLabel]=\"showYAxisLabel\"\n    [xAxisLabel]=\"xAxisLabel\"\n    [yAxisLabel]=\"yAxisLabel\"\n    [autoScale]=\"autoScale\"\n    (select)=\"onSelect($event)\"\n    (activate)=\"onHover($event)\"\n    (deactivate)=\"onHoverStop()\">\n    </ngx-charts-line-chart>\n  </div>\n</div>\n\n"
+module.exports = "<div class=\"lineargraph\">\n  <h5 class=\"uk-card-title\">{{subtitle}} </h5>\n  <ngx-charts-line-chart *ngIf=\"loadProfileData\"\n  [view]=\"view\"\n  [scheme]=\"colorScheme\"\n  [results]=\"loadProfileData\"\n  [gradient]=\"false\"\n  [xAxis]=\"showXAxis\"\n  [yAxis]=\"showYAxis\"\n  [legend]=\"false\"\n  [showXAxisLabel]=\"showXAxisLabel\"\n  [showYAxisLabel]=\"showYAxisLabel\"\n  [xAxisLabel]=\"xAxisLabel\"\n  [yAxisLabel]=\"yAxisLabel\"\n  [autoScale]=\"autoScale\"\n  [seriesTooltipTemplate]=\"tooltipTemplate\"\n  [yAxisTickFormatting]=\"yFormatting\"\n  (select)=\"onSelect($event)\">\n    <ng-template #tooltipTemplate let-model=\"model\">\n      <h1>\n        {{model.name}}\n      </h1>\n      <p style=\"color:white\">{{model.series}}: {{model.value}} kW</p>\n    </ng-template>\n  </ngx-charts-line-chart>\n</div>\n"
 
 /***/ }),
 
@@ -911,6 +945,7 @@ module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <h5 class=\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GraphicalViewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -923,6 +958,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var GraphicalViewComponent = (function () {
     function GraphicalViewComponent(logger) {
         this.logger = logger;
@@ -933,34 +969,39 @@ var GraphicalViewComponent = (function () {
         this.valueDisplayed = 0;
         this.loadProfileData = [];
         this.timeline = true;
-        this.view = [450, 300];
+        // view: any[] = [rightPanelSize - 30, 400];
+        this.view = undefined;
         // options
         this.showXAxis = true;
         this.showYAxis = true;
-        this.gradient = false;
-        this.showLegend = false;
-        this.showXAxisLabel = true;
+        this.gradient = true;
+        this.showLegend = true;
+        this.showXAxisLabel = false;
         this.xAxisLabel = 'Month';
-        this.showYAxisLabel = true;
-        this.yAxisLabel = 'kW';
+        this.showYAxisLabel = false;
+        this.yAxisLabel = __WEBPACK_IMPORTED_MODULE_2_app_shared__["unit_heatload_profil"];
         this.colorScheme = {
-            domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+            domain: ['#5AA454', '#A10A28', '#C7B42C']
         };
-        // line, area
-        this.autoScale = false;
+        this.autoScale = true;
     }
     GraphicalViewComponent.prototype.ngOnDestroy = function () {
         this.logger.log('GraphicalViewComponent/ngOnDestroy');
     };
     GraphicalViewComponent.prototype.ngOnInit = function () { };
+    GraphicalViewComponent.prototype.formateTooltip = function (model) {
+        console.log(model);
+        return model.name;
+    };
     GraphicalViewComponent.prototype.ngOnChanges = function () {
         this.logger.log('GraphicalViewComponent/ngOnChanges');
+        console.log(this.heatLoadResult);
         if (this.heatLoadResult) {
-            this.loadProfileData = [{
-                    name: 'Load profile data',
-                    series: this.heatLoadResult
-                }];
+            this.loadProfileData = this.heatLoadResult;
         }
+    };
+    GraphicalViewComponent.prototype.yFormatting = function (val) {
+        return val + ' ' + __WEBPACK_IMPORTED_MODULE_2_app_shared__["unit_heatload_profil"];
     };
     GraphicalViewComponent.prototype.onHoverStop = function () {
         this.valueDisplayed = 0;
@@ -987,16 +1028,20 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('heatLoadResult'),
     __metadata("design:type", Array)
 ], GraphicalViewComponent.prototype, "heatLoadResult", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])('tooltipTemplate'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"]) === "function" && _a || Object)
+], GraphicalViewComponent.prototype, "tooltipTemplate", void 0);
 GraphicalViewComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-graphical-view',
         template: __webpack_require__("../../../../../src/app/features/heat-load/graphical-view/graphical-view.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/heat-load/graphical-view/graphical-view.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
 ], GraphicalViewComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=graphical-view.component.js.map
 
 /***/ }),
@@ -2222,7 +2267,7 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* constant_year */],
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["t" /* constant_year */],
             format: 'image/png', transparent: true, version: '1.3.0',
             zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* idDefaultLayer */]
         };
@@ -2280,7 +2325,7 @@ var LayersService = (function (_super) {
     };
     LayersService.prototype.addLayerWithAction = function (action, map, order) {
         var layer;
-        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* wwtpLayerName */]) {
+        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* wwtpLayerName */]) {
             var option = {
                 layers: 'hotmaps:' + action,
                 format: 'image/png',
@@ -2295,7 +2340,7 @@ var LayersService = (function (_super) {
         else {
             // layer in Ha with date
             var option = {
-                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* constant_year */],
+                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["t" /* constant_year */],
                 format: 'image/png',
                 transparent: true,
                 version: '1.3.0',
@@ -2345,10 +2390,10 @@ var LayersService = (function (_super) {
         if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["w" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["w" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["t" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -2434,7 +2479,7 @@ var LayersService = (function (_super) {
         var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["e" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["s" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -2550,7 +2595,7 @@ var PopulationService = (function (_super) {
         return _this;
     }
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["S" /* postPopulationDensityInArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["U" /* postPopulationDensityInArea */]);
     };
     PopulationService.prototype.showPopulationSelectedLayer = function (populationSelected, map, latlng, popup) {
         this.logger.log('PopulationService/showPopulationSelectedLayer');
@@ -2570,7 +2615,7 @@ var PopulationService = (function (_super) {
         var name = data.features[0].properties.name;
         var value = data.features[0].properties.value;
         var date = data.features[0].properties.date.split('Z')[0];
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["T" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["V" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
             '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["x" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
@@ -2712,6 +2757,8 @@ load   Event  Fired when the grid layer loaded all visible tiles.
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionScaleService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2741,13 +2788,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */];
+        // scale value subject
+        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__["Subject"]();
         return _this;
     }
+    /**
+     * Get and change the selected scale value
+     */
+    SelectionScaleService.prototype.changeScale = function () {
+        this.scaleValueSubject.next(this.scaleValue);
+    };
     SelectionScaleService.prototype.getDataInteractionServices = function () {
         return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__selection_scale_data__["a" /* SelectionScaleClassArray */]);
     };
@@ -2806,6 +2862,17 @@ var SelectionScaleService = (function (_super) {
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
         map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+    };
+    SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
+        var SelectionScale = {
+            'NUTS 0': 0,
+            'NUTS 1': 1,
+            'NUTS 2': 2,
+            'NUTS 3': 3,
+            'LAU 2': 4,
+            'Hectare': 5,
+        };
+        return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
         return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */];
@@ -2874,14 +2941,27 @@ SelectionToolButtonStateService = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_proj4__ = __webpack_require__("../../../../proj4/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_proj4__ = __webpack_require__("../../../../proj4/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared___ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services__ = __webpack_require__("../../../../../src/app/shared/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2896,48 +2976,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 
 
+var proj4 = __WEBPACK_IMPORTED_MODULE_1_proj4__["default"];
 
 
 
-var proj4 = __WEBPACK_IMPORTED_MODULE_4_proj4__["default"];
 
 
 
-var SelectionToolService = (function () {
-    function SelectionToolService(logger, loaderService, helper, businessInterfaceRenderService, interactionService) {
-        this.logger = logger;
-        this.loaderService = loaderService;
-        this.helper = helper;
-        this.businessInterfaceRenderService = businessInterfaceRenderService;
-        this.interactionService = interactionService;
-        this.editableLayers = new L.FeatureGroup();
-        this.initialStateSelectionTool = false;
-        this.isDrawControl = false;
-        this.scaleValue = __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["d" /* initial_scale_value */];
+
+
+var SelectionToolService = (function (_super) {
+    __extends(SelectionToolService, _super);
+    // =======================
+    function SelectionToolService(http, logger, loaderService, toasterService, helper, businessInterfaceRenderService, interactionService) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        _this.businessInterfaceRenderService = businessInterfaceRenderService;
+        _this.interactionService = interactionService;
+        _this.nutsIds = new Set;
+        _this.editableLayers = new L.FeatureGroup();
+        _this.multiSelectionLayers = new L.layerGroup();
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["d" /* initial_scale_value */];
+        _this.isDrawer = false;
+        _this.isPolygonDrawer = false;
+        _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
+        _this.enableLoadResultSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
+        _this.enableLoadResultSubjectObs = _this.enableLoadResultSubject.asObservable();
+        _this.disableLoadResultSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
+        _this.disableLoadResultSubjectObs = _this.disableLoadResultSubject.asObservable();
+        _this.enableClearAllSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
+        _this.enableClearAllSubjectObs = _this.enableClearAllSubject.asObservable();
+        _this.disableClearAllSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
+        _this.disbleClearAllSubjectObs = _this.disableClearAllSubject.asObservable();
+        return _this;
     }
-    SelectionToolService.prototype.drawCreated = function (e, map) {
-        var event = e;
-        var type = event.layerType, layer = event.layer;
-        this.isActivate = false;
-        // Clear the map before to show the new selection
-        this.editableLayers.clearLayers();
-        this.removeVtlayer(map);
-        this.removeAreaNuts(map);
-        this.manageEditOrCreateLayer(layer, map);
-    };
-    SelectionToolService.prototype.setScaleValue = function (scaleValue) {
-        this.scaleValue = scaleValue;
-    };
-    SelectionToolService.prototype.isLayerInMap = function () {
-        var hasLayer = false;
-        if (this.editableLayers.getLayers().length > 0) {
-            hasLayer = true;
-        }
-        return hasLayer;
-    };
-    SelectionToolService.prototype.setHTMLContent = function (el, str) {
-        el.innerHTML = str;
-    };
+    // ===============================================================================================================
+    // ONLY FOR HECTAR (POPUP)
     SelectionToolService.prototype.createButtons = function (type) {
         // this.logger.log('SelectionToolService/createButtons');
         this.containerPopup = L.DomUtil.create('div');
@@ -2968,13 +3042,8 @@ var SelectionToolService = (function () {
             _this.interactionService.onPopupValidation();
             var layerNameArray = [];
             for (var i = 0; i < _this.interactionService.getLayerArray().keys().length; i++) {
-                if (_this.interactionService.getLayerArray().keys()[i] !== __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["r" /* wwtpLayerName */]) {
-                    layerNameArray.push(_this.interactionService.getLayerArray().keys()[i] +
-                        _this.businessInterfaceRenderService.getNutsTosuffix(_this.scaleValue));
-                }
-                else {
-                    layerNameArray.push(_this.interactionService.getLayerArray().keys()[i]);
-                }
+                layerNameArray.push(_this.interactionService.getLayerArray().keys()[i] +
+                    _this.businessInterfaceRenderService.getNutsTosuffix(_this.scaleValue));
             }
             _this.logger.log('layerNameArray' + layerNameArray);
             if (_this.currentLayer instanceof L.Circle) {
@@ -2987,10 +3056,9 @@ var SelectionToolService = (function () {
                 _this.getStatisticsFromLayer(_this.getLocationsFromPolygon(_this.currentLayer), layerNameArray, map);
             }
             else {
-                // this.logger.log('unknown form');
                 var layerNutsArray = [];
                 for (var i = 0; i < _this.interactionService.getLayerArray().keys().length; i++) {
-                    if (_this.interactionService.getLayerArray().keys()[i] !== __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["r" /* wwtpLayerName */]) {
+                    if (_this.interactionService.getLayerArray().keys()[i] !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["s" /* wwtpLayerName */]) {
                         // this.logger.log('array ' + this.interactionService.getLayerArray().keys()[i]
                         //   + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
                         layerNutsArray.push(_this.interactionService.getLayerArray().keys()[i] + '_ha');
@@ -3003,27 +3071,180 @@ var SelectionToolService = (function () {
             }
         });
     };
+    SelectionToolService.prototype.drawHectareCreated = function (e, map) {
+        var event = e;
+        var type = event.layerType, layer = event.layer;
+        this.isActivate = false;
+        // Clear the map before to show the new selection
+        this.editableLayers.clearLayers();
+        this.manageEditOrCreateLayer(layer, map);
+        this.loadPopup(map, layer);
+    };
+    SelectionToolService.prototype.setIsPolygonDrawer = function (value) {
+        this.isPolygonDrawer = value;
+    };
+    SelectionToolService.prototype.getNutsSelectedSubject = function () {
+        return this.nbNutsSelectedSubject;
+    };
+    SelectionToolService.prototype.getMultiSelectionLayers = function () {
+        return this.multiSelectionLayers;
+    };
+    /**
+     * Enable button "Load results"
+     */
+    SelectionToolService.prototype.enableButtonLoad = function () {
+        this.enableLoadResultSubject.next();
+    };
+    /**
+     * Disable button "Load results"
+     */
+    SelectionToolService.prototype.disableButtonLoad = function () {
+        this.disableLoadResultSubject.next();
+    };
+    /**
+     * Enable button "Clear all"
+     */
+    SelectionToolService.prototype.enableButtonClearAll = function () {
+        this.enableClearAllSubject.next();
+    };
+    /**
+     * disable button "Clear all"
+     */
+    SelectionToolService.prototype.disableButtonClearAll = function () {
+        this.disableClearAllSubject.next();
+    };
+    SelectionToolService.prototype.drawCreated = function (e, map, nuts_lvl) {
+        var event = e;
+        var type = event.layerType, layer = event.layer;
+        this.isActivate = false;
+        this.isPolygonDrawer = false;
+        // Clear the map before to show the new selection
+        // enable buttons when layer is created
+        var location = '';
+        if (layer instanceof L.Circle) {
+            location = this.helper.convertLatLongToLocationString(this.getLocationsFromCicle(layer));
+        }
+        else if (layer instanceof L.Polygon) {
+            location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer));
+        }
+        else if (layer instanceof L.latLng) {
+            location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer));
+        }
+        else {
+            location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer));
+        }
+        this.logger.log('nuts_lvl' + nuts_lvl);
+        if (nuts_lvl === 4) {
+            this.getLau2ID(location, map, nuts_lvl);
+        }
+        else {
+            this.getNutID(location, map, nuts_lvl);
+        }
+    };
+    SelectionToolService.prototype.setScaleValue = function (scaleValue) {
+        this.scaleValue = scaleValue;
+    };
+    SelectionToolService.prototype.isLayerInMap = function () {
+        var hasLayer = false;
+        if (this.editableLayers.getLayers().length > 0) {
+            hasLayer = true;
+        }
+        return hasLayer;
+    };
+    SelectionToolService.prototype.setHTMLContent = function (el, str) {
+        el.innerHTML = str;
+    };
+    SelectionToolService.prototype.loadResultNuts = function (map) {
+        this.interactionService.onPopupValidation();
+        var layerNameArray = [];
+        for (var i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
+            layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
+                this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue));
+        }
+        this.logger.log('layerNameArray ' + layerNameArray);
+        this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray, map);
+    };
+    // Summary result show result
+    SelectionToolService.prototype.getStatisticsFromIds = function (nutsIds, layers, map) {
+        var _this = this;
+        var self = this;
+        var request = [];
+        this.loaderService.display(true);
+        var payload = { layers: layers, year: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["t" /* constant_year */], nuts: nutsIds };
+        var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
+            // this.editableLayers.clearLayers();
+            _this.displaySummaryResult(result, map);
+        }).catch();
+        request.push(summaryPromise);
+        this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue);
+        this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue);
+        if ((this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["o" /* nuts2 */]) || (this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["p" /* nuts3 */])) {
+            this.logger.log('nuts_id =  ' + this.nutsIds.values());
+            var heatLoadPayload = {
+                'year': 2010,
+                'nuts': Array.from(this.nutsIds.values()),
+                'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
+            };
+            console.log('heatLoadPayload=');
+            console.log(JSON.stringify(heatLoadPayload));
+            var heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(function (result) {
+                _this.logger.log('heatLoadresult ' + JSON.stringify(result));
+                var data = _this.helper.formatDataLoadProfil(result);
+                _this.displayHeatLoad(data);
+            }).catch();
+            request.push(heatloadPromise);
+        }
+        else {
+            this.displayHeatLoad(null);
+        }
+        Promise
+            .all(request)
+            .then(function (values) {
+            _this.logger.log('Promise then ' + values);
+        });
+    };
     SelectionToolService.prototype.enableNavigationService = function (map) {
         this.interactionService.enableButtonWithId('selection');
-        this.addDrawerControl(map);
     };
-    /*layerCreatedClick(point, map) {
-     this.logger.log('SelectionToolService/layerCreatedClick');
-     //this.currentLayer = layer
-     //this.editableLayers.clearLayers();
-     //this.editableLayers.addLayer(this.currentLayer);
-     //this.editableLayers.addTo(map);
-     this.loadPopup(map, this.currentLayer);
-     this.enableNavigationService(map);
-  
-   }*/
+    SelectionToolService.prototype.getSelectionIdFromLayer = function (layer) {
+        var id_selection = this.getNUTSIDFromGeoJsonLayer(layer);
+        if (this.helper.isNullOrUndefined(id_selection) === true) {
+            id_selection = this.getLAU2IDFromGeoJsonLayer(layer);
+        }
+        return id_selection;
+    };
+    SelectionToolService.prototype.removeLayerFromMultiSelectionLayers = function (layer) {
+        this.logger.log('SelectionToolService/removeLayerFromMultiSelectionLayers');
+        // if the nut
+        var id_selection = this.getSelectionIdFromLayer(layer);
+        this.nutsIds.delete(id_selection);
+        var self = this;
+        var indexToRemove = 999;
+        for (var i = 0; i < this.multiSelectionLayers.getLayers().length; i++) {
+            var layerInsideMultiSelectionLayer = this.multiSelectionLayers.getLayers()[i];
+            var iDInMultiSelectionLayers = self.getSelectionIdFromLayer(layerInsideMultiSelectionLayer);
+            if (id_selection === iDInMultiSelectionLayers) {
+                indexToRemove = i;
+                break;
+            }
+        }
+        if (indexToRemove !== 999) {
+            this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove]);
+        }
+        this.updateSelectionToolAction();
+    };
+    SelectionToolService.prototype.containLayer = function (layer) {
+        var id_selection = this.getSelectionIdFromLayer(layer);
+        return this.nutsIds.has(id_selection);
+    };
     SelectionToolService.prototype.layerCreatedClick = function (layer, map) {
+        this.logger.log('SelectionToolService/layerCreatedClick');
         this.currentLayer = layer;
         this.editableLayers.clearLayers();
         this.editableLayers.addLayer(this.currentLayer);
         this.editableLayers.addTo(map);
-        this.loadPopup(map, this.currentLayer);
         this.enableNavigationService(map);
+        this.loadPopup(map, layer);
     };
     SelectionToolService.prototype.toggleActivateTool = function (val) {
         this.isActivate = val;
@@ -3036,86 +3257,42 @@ var SelectionToolService = (function () {
             this.currentLayer.editing.enable();
         }
         this.editableLayers.addLayer(this.currentLayer);
-        this.loadPopup(map, this.currentLayer);
         // then we launch the validate popup
     };
     SelectionToolService.prototype.getLocationsFromPolygon = function (layer) {
-        var rectangle = layer;
-        var latlng = rectangle.getLatLngs()[0];
-        var locations = this.helper.convertLatLongToLocation(latlng);
-        // this.logger.log('locations [] ' + locations );
-        return locations;
+        return this.helper.getLocationsFromPolygon(layer);
     };
     SelectionToolService.prototype.getLocationsFromGeoJsonLayer = function (layer) {
-        var geojsonLayer = layer;
-        var geoJson = geojsonLayer.toGeoJSON();
-        // this.logger.log('geoJson latlng ' +  geoJson.features[0].geometry.coordinates );
-        var latlng = geoJson.features[0].geometry.coordinates;
-        var locations = this.helper.convertListLatLongToLocation(latlng);
-        // this.logger.log('locations [] ' + locations );
-        return locations;
+        return this.helper.getLocationsFromGeoJsonLayer(layer);
     };
     SelectionToolService.prototype.getNUTSIDFromGeoJsonLayer = function (layer) {
-        var geojsonLayer = layer;
-        var geoJson = geojsonLayer.toGeoJSON();
-        // this.logger.log('geoJson latlng ' +  geoJson.features[0].properties.nuts_id);
-        var nuts_id = geoJson.features[0].properties.nuts_id;
-        return nuts_id;
+        return this.helper.getNUTSIDFromGeoJsonLayer(layer);
+    };
+    SelectionToolService.prototype.getLAU2IDFromGeoJsonLayer = function (layer) {
+        return this.helper.getLAU2IDFromGeoJsonLayer(layer);
     };
     SelectionToolService.prototype.getLocationsFromCicle = function (layer) {
-        var circle = layer;
-        var origin = circle.getLatLng(); // center of drawn circle
-        var radius = circle.getRadius(); // radius of drawn circle
-        var polys = this.helper.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
-        var locations = [];
-        for (var i = 0; i < polys.length; i++) {
-            var loc = {
-                lat: polys[i].lat,
-                lng: polys[i].lng
-            };
-            locations.push(loc);
-        }
-        return locations;
-    };
-    SelectionToolService.prototype.retriveAndAddLayer = function (population, layer, map) {
-        this.loaderService.display(false);
-        this.interactionService.enableButtonWithId('load_result');
-        if (this.helper.isNullOrUndefined(layer.editing) === false) {
-            layer.editing.disable();
-        }
-        this.interactionService.openRightPanel();
-    };
-    SelectionToolService.prototype.showlayer = function (geometrie, map) {
-        this.removeVtlayer(map);
-        this.selectionTooLayer = L.vectorGrid.slicer(geometrie);
-        this.selectionTooLayer.addTo(map);
-        this.loaderService.display(false);
+        return this.helper.getLocationsFromCicle(layer);
     };
     SelectionToolService.prototype.clearAll = function (map) {
-        if (this.currentLayer) {
-            this.interactionService.disableButtonWithId('load_result');
-            // this.logger.log('layerService/clearAll');
-            if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
-                this.currentLayer.editing.disable();
-            }
+        // ONLY HECTAR LEVEL
+        if (this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["r" /* hectare */]) {
             this.editableLayers.clearLayers();
-            this.removeVtlayer(map);
-            this.removeAreaNuts(map);
-            this.interactionService.closeRightPanel();
         }
-    };
-    SelectionToolService.prototype.removeVtlayer = function (map) {
-        if (this.selectionTooLayer) {
-            this.interactionService.disableButtonWithId('load_result');
-            map.removeLayer(this.selectionTooLayer);
-            delete this.selectionTooLayer;
+        // ====
+        if (this.isDrawer) {
+            this.theDrawer.disable(); // Disable the actual drawer anyway and
+            this.isPolygonDrawer = false;
         }
-    };
-    SelectionToolService.prototype.removeAreaNuts = function (map) {
-        if (this.areaNutsSelectedLayer) {
-            map.removeLayer(this.areaNutsSelectedLayer);
-            delete this.areaNutsSelectedLayer;
-        }
+        this.interactionService.disableStateOpenWithFunction('right');
+        this.interactionService.disableButtonWithId('load_result');
+        this.interactionService.closeRightPanel();
+        // remove all layers selected
+        this.multiSelectionLayers.clearLayers();
+        // remove all nutsID selected
+        this.nutsIds.clear();
+        this.updateSelectionToolAction();
+        this.displayHeatLoad(null);
     };
     // Summary result show result
     SelectionToolService.prototype.getStatisticsFromLayer = function (locations, layers, map) {
@@ -3123,21 +3300,21 @@ var SelectionToolService = (function () {
         var self = this;
         var request = [];
         this.loaderService.display(true);
-        var payload = { layers: layers, year: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["s" /* constant_year */], points: locations };
+        var payload = { layers: layers, year: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["t" /* constant_year */], points: locations };
         var summaryPromise = this.interactionService.getSummaryResultWithPayload(payload).then(function (result) {
             console.log(result);
             _this.displaySummaryResult(result, map);
         }).catch();
         request.push(summaryPromise);
         this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue);
-        if (this.scaleValue === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["n" /* nuts2 */]) {
-            var nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
-            this.logger.log('nuts_id =  ' + nuts_id);
+        if ((this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["o" /* nuts2 */]) || (this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["p" /* nuts3 */])) {
+            this.logger.log('nuts_id =  ' + this.nutsIds.values());
             var heatLoadPayload = {
                 'year': 2010,
-                'nuts_id': nuts_id,
-                'nuts_level': '2'
+                'nuts_id': this.nutsIds,
+                'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
             };
+            console.log(heatLoadPayload);
             var heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(function (result) {
                 //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
                 var data = _this.helper.formatDataLoadProfil(result);
@@ -3158,7 +3335,7 @@ var SelectionToolService = (function () {
         this.interactionService.setLoadProfileAggregateResultData(data);
     };
     SelectionToolService.prototype.openPopup = function () {
-        // this.logger.log('SelectionToolService/openPopup');
+        this.logger.log('SelectionToolService/openPopup');
         this.currentLayer.openPopup();
     };
     SelectionToolService.prototype.displaySummaryResult = function (result, map) {
@@ -3167,104 +3344,344 @@ var SelectionToolService = (function () {
         this.interactionService.setSummaryResultData(result);
         this.interactionService.enableButtonWithId('load_result');
         this.interactionService.enableStateOpenWithFunction('right');
-        if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
-            this.currentLayer.editing.disable();
-        }
-        this.currentLayer.closePopup();
         this.loaderService.display(false);
-        //this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
-        this.drawResult(result, map);
-    };
-    SelectionToolService.prototype.drawResult = function (result, map) {
-        // this.logger.log('MapService/selectAreaWithNuts()');
-        // this.logger.log('result.feature_collection()' + result.feature_collection.type);
-        if (this.helper.isNullOrUndefined(result.feature_collection.type) === false) {
-            // this.logger.log('result ' + JSON.stringify(result));
-            // this.logger.log('result feature_collection ' + JSON.stringify(result.feature_collection));
-            var geoJson = null;
-            if (this.scaleValue === __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["p" /* lau2 */]) {
-                proj4.defs('EPSG:3035', __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["t" /* proj3035 */]);
-                geoJson = L.Proj.geoJson(result.feature_collection);
-            }
-            else {
-                geoJson = result.feature_collection;
-            }
-            //  this.logger.log('geoJson ' + JSON.stringify(geoJson));
-            // remove the layer if there is one
-            // this.logger.log('MapService/geometrie()' + geoJson);
-            this.removeAreaNuts(map);
-            // add the selected area to the map
-            // this.areaNutsSelectedLayer = L.vectorGrid.slicer(geometrie);
-            // this.areaNutsSelectedLayer.setZIndex(11);
-            this.areaNutsSelectedLayer = L.geoJson(geoJson);
-            this.areaNutsSelectedLayer.addTo(map);
-        }
-    };
-    SelectionToolService.prototype.addDrawerControl = function (map) {
-        // this.interactionService.enableStateOpenWithID('selection');
-        map.addLayer(this.editableLayers);
-        this.options = {
-            position: 'topleft',
-            draw: {
-                polyline: false,
-                polygon: {
-                    allowIntersection: false,
-                    drawError: {
-                        color: '#e1e100',
-                        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-                    },
-                    shapeOptions: {
-                        color: '#bada55'
-                    }
-                },
-                circle: true,
-                rectangle: {
-                    tooltip: {
-                        start: 'dede',
-                    },
-                    shapeOptions: {
-                        clickable: false
-                    }
-                },
-                marker: false,
-            },
-            edit: {
-                featureGroup: this.editableLayers,
-                edit: false,
-                remove: false
-            },
-        };
-        if (!this.isDrawControl) {
-            this.drawControl = new L.Control.Draw(this.options);
-            map.addControl(this.drawControl);
-            this.isDrawControl = !this.isDrawControl;
-        }
-    };
-    SelectionToolService.prototype.removeControls = function (map) {
-        if (this.isDrawControl) {
-            map.removeControl(this.drawControl);
-            this.isDrawControl = false;
-        }
+        // this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
+        // this.drawResult(result, map)
     };
     SelectionToolService.prototype.toggleControl = function (map) {
-        if (this.isDrawControl) {
-            map.removeControl(this.drawControl);
-            this.isDrawControl = false;
+        if (this.isDrawer) {
+            this.theDrawer.disable(); // Disable the actual drawer
         }
         else {
-            this.addDrawerControl(map);
-            this.isDrawControl = true;
+            this.isDrawer = true;
         }
     };
+    /**
+     * Activate the click selection tool
+     */
+    SelectionToolService.prototype.clickSelection = function (map) {
+        if (this.isDrawer) {
+            this.getDrawer().disable(); // disable the current drawer before creating a new one
+        }
+        this.isPolygonDrawer = false;
+    };
+    /**
+     * Activate the drawing rectangle tool
+     */
+    SelectionToolService.prototype.drawTool = function (map, tool) {
+        map.addLayer(this.editableLayers);
+        this.editableLayers.clearLayers();
+        if (this.isDrawer) {
+            this.getDrawer().disable(); // disable the current drawer before creating a new one
+        }
+        switch (tool) {
+            case 'rectangle':
+                this.theDrawer = new L.Draw.Rectangle(map);
+                this.isPolygonDrawer = false;
+                break;
+            case 'circle':
+                this.theDrawer = new L.Draw.Circle(map);
+                this.isPolygonDrawer = false;
+                break;
+            case 'polygon':
+                this.theDrawer = new L.Draw.Polygon(map);
+                this.isPolygonDrawer = true;
+                break;
+            default:
+                break;
+        }
+        this.theDrawer.enable();
+        this.isDrawer = true;
+        this.isPolygonDrawer = true;
+    };
+    /**
+     * Get the current drawer
+     */
+    SelectionToolService.prototype.getDrawer = function () {
+        return this.theDrawer;
+    };
+    /**
+     * Return true if polygon drawer is selected (activated)
+     */
+    SelectionToolService.prototype.getPolygonDrawerState = function () {
+        if (this.isPolygonDrawer) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    /**
+     * Get the current layer
+     */
+    SelectionToolService.prototype.getCurrentLayer = function () {
+        return this.currentLayer;
+    };
+    SelectionToolService.prototype.getLau2ID = function (location, map, nuts_lvl) {
+        var _this = this;
+        this.loaderService.display(true);
+        var epsg = '4326';
+        var coordinate = location;
+        var url = __WEBPACK_IMPORTED_MODULE_7__shared__["geoserverUrl"] + '?service=wfs' +
+            '&version=2.0.0' +
+            '&request=GetFeature' +
+            '&srsName=EPSG:' + epsg +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_7__shared__["lau2name"] +
+            '&outputFormat=application/json' +
+            '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))';
+        this.logger.log('lau2 url ' + url);
+        this.GET(url).map(function (res) { return res.json(); })
+            .subscribe(function (res) { return _this.drawResultBeforeLoadingResult(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
+    };
+    SelectionToolService.prototype.getNutID = function (location, map, nuts_lvl) {
+        var _this = this;
+        this.loaderService.display(true);
+        this.logger.log('getNutID');
+        var epsg = '4326';
+        var coordinate = location;
+        var url = __WEBPACK_IMPORTED_MODULE_7__shared__["geoserverUrl"] + '?service=wfs' +
+            '&version=2.0.0' +
+            '&request=GetFeature' +
+            '&srsName=EPSG:' + epsg +
+            '&typeNames=hotmaps:' + 'population' +
+            '&outputFormat=application/json' +
+            '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))' +
+            'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z';
+        this.GET(url).map(function (res) { return res.json(); })
+            .subscribe(function (res) { return _this.drawResultBeforeLoadingResult(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
+    };
+    SelectionToolService.prototype.updateSelectionToolAction = function () {
+        if (this.nutsIds.size > 0) {
+            this.enableButtonLoad();
+            this.enableButtonClearAll();
+        }
+        else {
+            // disable buttons after clear
+            this.disableButtonClearAll();
+            this.disableButtonLoad();
+        }
+        this.nbNutsSelectedSubject.next(this.nutsIds.size);
+    };
+    SelectionToolService.prototype.drawResultBeforeLoadingResult = function (result) {
+        this.logger.log('result is ' + result);
+        this.logger.log('result is ' + result.features);
+        if (result.features.length === 0) {
+            this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+        }
+        if (this.helper.isNullOrUndefined(result) === false) {
+            for (var _i = 0, _a = result.features; _i < _a.length; _i++) {
+                var feature = _a[_i];
+                var selection_id = void 0;
+                if (this.helper.isNullOrUndefined(feature.properties.nuts_id) === false) {
+                    selection_id = feature.properties.nuts_id;
+                }
+                else {
+                    selection_id = feature.properties.comm_id;
+                }
+                if (this.nutsIds.has(selection_id) === false) {
+                    this.nutsIds.add(selection_id);
+                    var areaNutsSelectedLayer = L.geoJson(feature);
+                    this.multiSelectionLayers.addLayer(areaNutsSelectedLayer);
+                }
+            }
+            var self = this;
+        }
+        this.updateSelectionToolAction();
+        this.loaderService.display(false);
+    };
+    SelectionToolService.prototype.addToMultiSelectionLayers = function (layer) {
+        if (this.helper.isNullOrUndefined(layer) === false) {
+            var selection_id = this.getSelectionIdFromLayer(layer);
+            if (this.nutsIds.has(selection_id) === false) {
+                this.nutsIds.add(selection_id);
+                this.multiSelectionLayers.addLayer(layer);
+                this.updateSelectionToolAction();
+            }
+        }
+        this.loaderService.display(false);
+    };
     return SelectionToolService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_8__shared_services__["f" /* APIService */]));
 SelectionToolService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_helper__["a" /* Helper */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services__["d" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _g || Object])
 ], SelectionToolService);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=selection-tool.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-button.data.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return stButtons; });
+var stButtons = [
+    { id: '1', type: 'click', isChecked: true },
+    { id: '2', type: 'rectangle', isChecked: false },
+    { id: '3', type: 'circle', isChecked: false },
+    { id: '4', type: 'polygon', isChecked: false }
+];
+//# sourceMappingURL=selection-button.data.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:114px;\n}\n\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"containers\">\n    <div id=\"selection-tools-box\">\n      <div *ngFor=\"let button of stButtons\">\n          <input id=\"radio-{{button.id}}\" class=\"radio-custom\" name=\"radio-group\" type=\"radio\" [checked]=\"button.isChecked\" (click)=\"drawTool(button)\">\n          <label id=\"{{button.type}}\" for=\"radio-{{button.id}}\" class=\"radio-custom-label\"></label>\n      </div>\n    </div>\n    <div *ngIf=\"!isHectarSelected\" id=\"info-box\">\n      <div class=\"uk-container uk-padding-remove\">\n        <div>\n          <p>Element selected<span>{{nbNutsSelected}}</span></p>\n          <p>Scale<span>{{scaleSelected}}</span></p>\n        </div>\n        <div class=\"divButtons\">\n          <button id=\"loadBtn\" class=\"uk-button uk-button-primary uk-button-small\" [disabled]=\"isLoaBtnDisabled\" (click)=\"loadResultsButton()\">Load results</button>\n          <button id=\"clearBtn\" class=\"uk-button uk-button-danger uk-button-small\" [disabled]=\"isClearBtnDisabled\" (click)=\"clearAllButton()\">Clear all</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-button.data.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolComponent; });
+/**
+ * Created by Dany on 20.12.17.
+ */
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SelectionToolComponent = (function () {
+    function SelectionToolComponent(mapService, logger) {
+        this.mapService = mapService;
+        this.logger = logger;
+        this.nbNutsSelected = 0;
+        this.isHectarSelected = false;
+        this.isLoaBtnDisabled = true;
+        this.isClearBtnDisabled = true;
+        this.stButtons = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__["a" /* stButtons */];
+    }
+    SelectionToolComponent.prototype.ngOnInit = function () {
+        this.subscribeMapService();
+        this.scaleSelected = this.mapService.getScaleValue();
+        this.checkScale();
+    };
+    SelectionToolComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('SelectionToolComponent/ngOnDestroy');
+        this.subscription.unsubscribe();
+        this.subscriptionNbNutsSelected.unsubscribe();
+    };
+    SelectionToolComponent.prototype.subscribeMapService = function () {
+        var _this = this;
+        this.subscription = this.mapService.getScaleValueSubject().subscribe(function (value) {
+            _this.scaleSelected = value;
+            _this.checkScale();
+        });
+        this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
+            _this.nbNutsSelected = value;
+        });
+        // subscribing to click event subject of MapService
+        this.mapService.clickEventSubjectObs.subscribe(function () {
+            _this.cursorClick(); // call cursor click method when we click anywhere in the map
+        });
+        this.mapService.drawCreatedSubjectObs.subscribe(function () {
+            _this.cursorClick();
+        });
+        this.mapService.getEnableLoadResultSubjectObs().subscribe(function () {
+            _this.isLoaBtnDisabled = false;
+        });
+        this.mapService.getEnableClearAllSubjectObs().subscribe(function () {
+            _this.isClearBtnDisabled = false;
+        });
+        this.mapService.getDisableLoadResultSubjectObs().subscribe(function () {
+            _this.isLoaBtnDisabled = true;
+        });
+        this.mapService.getDisbleClearAllSubjectObs().subscribe(function () {
+            _this.isClearBtnDisabled = true;
+        });
+    };
+    SelectionToolComponent.prototype.cursorClick = function () {
+        var map = this.mapService.getMap();
+        this.mapService.clickSelection(map);
+        this.stButtons[0].isChecked = true;
+    };
+    SelectionToolComponent.prototype.checkScale = function () {
+        if (this.scaleSelected === __WEBPACK_IMPORTED_MODULE_2_app_shared__["hectare"]) {
+            this.isHectarSelected = true;
+        }
+        else {
+            this.isHectarSelected = false;
+        }
+    };
+    /**
+     * Draw method of the activated selection tool
+     */
+    SelectionToolComponent.prototype.drawTool = function (button) {
+        if (button.type === 'click') {
+            this.cursorClick();
+        }
+        else {
+            var map = this.mapService.getMap();
+            this.mapService.drawTool(map, button.type);
+            this.stButtons[0].isChecked = false;
+        }
+    };
+    /**
+     * Load the results of the selection
+     */
+    SelectionToolComponent.prototype.loadResultsButton = function () {
+        var map = this.mapService.getMap();
+        this.mapService.loadResultNuts(map);
+    };
+    /**
+     * Clear all informations in the info box
+     */
+    SelectionToolComponent.prototype.clearAllButton = function () {
+        var map = this.mapService.getMap();
+        this.mapService.clearAll(map);
+        this.cursorClick();
+    };
+    return SelectionToolComponent;
+}());
+SelectionToolComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-selection-tool',
+        template: __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+], SelectionToolComponent);
+
+var _a, _b;
+//# sourceMappingURL=selection-tool.component.js.map
 
 /***/ }),
 
@@ -3335,6 +3752,7 @@ module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"exp
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeftSideComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -3355,6 +3773,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3399,36 +3818,17 @@ LeftSideComponent = __decorate([
             //  shrinking the panel down.
             //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('panelWidthTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '350px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_4_app_shared__["leftPanelSize"] + 'px' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '0px' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            // Define the animation used in the title bar where the colors swap from
-            //  a red foreground with white background, to the opposite. In this case
-            //  we use the same timings as the width animation above so these two
-            //  transitions happen at the same time
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('titleColorTrigger', [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ backgroundColor: '#333333', color: '#FFFFFF' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            // The title text trigger is a little different because it's an animation
-            //  for an element being added to the DOM. Here we take advantage of the 'void'
-            //  transition using a hard-coded state called 'in' (which is also hard coded in
-            //  the template).
-            //
-            // What we do in this animation is say when the element is added to the DOM
-            //  it should have an opacity of 0 (i.e., hidden), wait 300ms, and then animate
-            //  it's opacity change to 1 over a 100 ms time span. This effectively delays the
-            //  appearance of the text until after the panel has slid out to the full size.
-            //
-            // When the element is removed we take a different approach and animate the
-            //  opacity change back to 0 over a short 50ms interval. This ensures it's gone before
-            //  the panel starts to slide back in, creating a nice effect.
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('titleTextTrigger', [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }),
@@ -3438,11 +3838,6 @@ LeftSideComponent = __decorate([
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('50ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))
                 ])
             ]),
-            // Define the animation used in the arrow icon where it rotates to point left
-            //  or right based on the state of the panel. In this case we use the same
-            //  timings as the width animation above so these two transitions happen at
-            //  the same time.
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('iconTrigger', [
                 // state('collapsed', style({ transform: 'rotate(180deg)' })),
                 // state('collapsed', style({ transform: 'rotate(180deg)' })),
@@ -3480,7 +3875,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n\n\ni {\n    font-size: 1.5em;\n}\n\n\n.uk-tab{\n\n  -webkit-box-pack: center;\n\n      -ms-flex-pack: center;\n\n          justify-content: center;\n\n}\n.container-panel-right {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 50px;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 50px;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow:hidden;\n  max-height: 94vh;\n}\n\n.content-right-panel{\n    max-height: 89vh;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\ni {\n    font-size: 1.5em;\n}\n\n\n.uk-tab{\n\n  -webkit-box-pack: center;\n\n      -ms-flex-pack: center;\n\n          justify-content: center;\n\n}\n.container-panel-right {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 5vh;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 5vh;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -3493,7 +3888,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n    <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n      <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n        <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n      </a>\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n    </div>\n  <div *ngIf=\"heatLoadResult;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\">\n      <li id=\"tab1\"><a href=\"\">Summary</a></li>\n      <li id=\"tab2\"><a href=\"\">Energy Statistics</a></li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher uk-margin\">\n      <li><htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result></li>\n      <li><htm-graphical-view [heatLoadResult]=\"heatLoadResult\" [expanded]=\"expanded\" ></htm-graphical-view></li>\n\n    </ul>\n  </ng-template>\n\n  <ng-template #normal_content> <li><htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result></li>\n  </ng-template>\n\n  <!-- This is the container of the content items -->\n\n  <!--  <htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result>-->\n\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n<!--   <div *ngIf=\"heatLoadResult;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n <ng-template #energy_stat_content> --> \n    <div class=\"content-right-panel\">\n      <!-- <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\">\n          <li id=\"tab1\"><a href=\"\">Summary</a></li>\n          <li id=\"tab2\"><a href=\"\">Energy Statistics</a></li>\n    \n        </ul>\n        <ul id=\"my-id3\" class=\"uk-switcher uk-margin\"> -->\n      <!-- <li style=\"width:580px;\" class=\"uk-active\"> -->\n      <div *ngIf=\"summaryResult\">\n        <htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result>\n        <hr class=\"uk-divider\">\n      </div>\n      <!-- </li>\n          <li style=\"width:580px;\"> -->\n      <div *ngIf=\"heatLoadResult\">\n        <htm-graphical-view [heatLoadResult]=\"heatLoadResult\" [expanded]=\"expanded\"></htm-graphical-view>\n      </div>\n      <!-- </li>\n        </ul> -->\n    </div>\n\n    <!-- <ng-template #normal_content> <li><htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result></li>\n  </ng-template> -->\n\n    <!-- This is the container of the content items -->\n\n    <!--  <htm-summary-result [summaryResult]=\"summaryResult\" [poiTitle]=\"poiTitle\" [poiData]=\"poiData\" [expanded]=\"expanded\"></htm-summary-result>-->\n\n</div>"
 
 /***/ }),
 
@@ -3504,6 +3899,7 @@ module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"e
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RightSideComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -3524,6 +3920,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3571,7 +3968,7 @@ RightSideComponent = __decorate([
             //  shrinking the panel down.
             //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('panelWidthTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '480px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_3_app_shared__["rightPanelSize"] + 'px' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '0px' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 200ms ease-out'))
@@ -3855,7 +4252,7 @@ TopSideComponent = __decorate([
         animations: [
             // Trigger of height
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('panelHeightTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ height: '542px', top: '57px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ height: '627px', top: '57px' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ height: '0px', display: 'none' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-out'))
@@ -4018,7 +4415,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n\n\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}", ""]);
+exports.push([module.i, "\n:host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n\n\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}", ""]);
 
 // exports
 
@@ -4031,7 +4428,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n\n  <div class=\"uk-card uk-card-body htm-card\">\n      <table class=\"uk-table uk-table-divider uk-table-small\">\n        <thead>\n          <tr class=\"header-summary\">\n            <th class=\"uk-table-shrink\">Information</th>\n            <th class=\"uk-table-shrink\">Value</th>\n          </tr>\n        </thead>\n        <tbody>\n            <ng-container *ngIf=\"summaryResult\">\n              <ng-container *ngFor=\"let i of summaryResult.layers\">\n                <tr class=\"table-level-one\">\n                    <th colspan=\"2\">{{i.name | layername}}</th>\n                </tr>\n                <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n                  <td>{{value.name | businessname}}</td>\n                  <td *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n                  <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n                </tr>\n              </ng-container>\n            </ng-container>\n            <ng-container *ngIf=\"poiData\">\n              <tr class=\"table-level-one\">\n                  <th colspan=\"2\">{{poiTitle}}</th>\n              </tr>\n              <tr class=\"table-level-two\">\n                <td>{{poiTitle | businessname}}</td>\n                <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n              </tr>\n            </ng-container>\n        </tbody>\n      </table>\n    </div>\n</span>\n"
+module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\">\n      <h5 class=\"uk-card-title\">{{subtitle}} </h5>\n      <table class=\"uk-table uk-table-divider uk-table-small\">\n        <thead>\n          <tr class=\"header-summary\">\n            <th class=\"uk-table-shrink\">Information</th>\n            <th class=\"uk-table-shrink\">Value</th>\n          </tr>\n        </thead>\n        <tbody>\n            <ng-container *ngIf=\"summaryResult\">\n              <ng-container *ngFor=\"let i of summaryResult.layers\">\n                <tr class=\"table-level-one\">\n                    <th colspan=\"2\">{{i.name | layername}}</th>\n                </tr>\n                <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n                  <td>{{value.name | businessname}}</td>\n                  <td *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n                  <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n                </tr>\n              </ng-container>\n            </ng-container>\n            <ng-container *ngIf=\"poiData\">\n              <tr class=\"table-level-one\">\n                  <th colspan=\"2\">{{poiTitle}}</th>\n              </tr>\n              <tr class=\"table-level-two\">\n                <td>{{poiTitle | businessname}}</td>\n                <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n              </tr>\n            </ng-container>\n        </tbody>\n      </table>\n    </div>\n</span>\n"
 
 /***/ }),
 
@@ -4067,7 +4464,8 @@ var SummaryResultComponent = (function () {
         this.selectionScaleService = selectionScaleService;
         this.logger = logger;
         this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["h" /* round_value */];
+        this.subtitle = 'Summary';
+        this.round = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["i" /* round_value */];
         this.scale = 'Nuts 3';
         this.isDataAgregate = false;
     }
@@ -4076,7 +4474,7 @@ var SummaryResultComponent = (function () {
     SummaryResultComponent.prototype.ngOnChanges = function () {
         this.logger.log('SummaryResultComponent/ngOnChanges');
         this.scale = this.selectionScaleService.getScaleValue();
-        if (this.selectionScaleService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["q" /* hectare */]) {
+        if (this.selectionScaleService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["r" /* hectare */]) {
             this.isDataAgregate = true;
         }
         else {
@@ -4188,6 +4586,10 @@ var SummaryResultService = (function (_super) {
         this.logger.log('SummaryResultService/getSummaryResultWithPayload = ' + JSON.stringify(payload));
         return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["g" /* postStatsLayersArea */]);
     };
+    SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
+        this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["h" /* postStatsLayersNutsIds */]);
+    };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
 SummaryResultService = __decorate([
@@ -4263,7 +4665,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/pages/map/component/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <!--<hmt-toolbar></hmt-toolbar> -->\n  </div>\n\n  <htm-right-side-panel></htm-right-side-panel>\n</div>\n"
+module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"showHide\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n   </div>\n\n   <htm-right-side-panel></htm-right-side-panel>\n </div>\n"
 
 /***/ }),
 
@@ -4275,7 +4677,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  min-height: 6vh;\n  height: 6vh;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n}\n.container-map {\n  min-height: 94vh;\n  height: 94vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  min-height: 6vh;\n  height: 6vh;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  min-height: 94vh;\n  height: 94vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 // exports
 
@@ -4329,6 +4731,8 @@ var MapComponent = (function () {
         this.panelService = panelService;
         this.selectionToolButtonStateService = selectionToolButtonStateService;
         this.interactionService = interactionService;
+        this.isSelectionToolVisible = false;
+        this.showHide = false;
         // management of initial status of sidebar
         this.openRightSidebar = false;
         this.openRightToggleExpanded = false;
@@ -4348,7 +4752,12 @@ var MapComponent = (function () {
     MapComponent.prototype.notifySubscription = function () {
         var _this = this;
         this.panelService.summaryResultDataStatus.subscribe(function (data) {
-            _this.rightPanelComponent.setSummaryResult(data);
+            if (data && data.layers.length === 0) {
+                _this.rightPanelComponent.setSummaryResult(null);
+            }
+            else {
+                _this.rightPanelComponent.setSummaryResult(data);
+            }
         });
         this.panelService.heatLoadResultStatus.subscribe(function (data) {
             _this.rightPanelComponent.setHeatLoadResult(data);
@@ -4365,6 +4774,9 @@ var MapComponent = (function () {
                 _this.openRightSidebar = val;
             }
         });
+        /*this.mapService.getZoomLevel().subscribe((zoomlevel) => {
+          this.zoomlevel = zoomlevel;
+        })*/
         this.panelService.topPanelStatus.subscribe(function (val) {
             if (_this.openTopSidebar === false) {
                 _this.openTopSidebar = true;
@@ -4375,11 +4787,14 @@ var MapComponent = (function () {
             }
         });
         this.selectionToolButtonStateService.status.subscribe(function (val) {
+            _this.logger.log('mapComponent/selectionTool: ' + val);
             if (val) {
-                _this.mapService.addDrawControls();
+                _this.interactionService.enableStateOpenWithFunction('selection');
+                _this.showHide = true;
             }
             else {
-                _this.mapService.removeDrawControls();
+                _this.interactionService.disableStateOpenWithFunction('selection');
+                _this.showHide = false;
             }
         });
         this.panelService.rightPanelStatus.subscribe(function (val) {
@@ -4392,7 +4807,7 @@ var MapComponent = (function () {
         });
     };
     MapComponent.prototype.ngOnInit = function () {
-        // mapService get an instance of the maps and ca work on it
+        // mapService get an instance of the maps and can work on it
         this.mapService.setupMapservice(this.createMap(__WEBPACK_IMPORTED_MODULE_4__basemap__["a" /* basemap */]));
         this.initializeNavigator();
         this.map.invalidateSize();
@@ -4404,7 +4819,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["R" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["T" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -4433,9 +4848,9 @@ var MapComponent = (function () {
         // this.mapService.addDrawerControl(this.map);
         return this.map;
     };
-    MapComponent.prototype.showControls = function () {
-        this.mapService.addDrawControls();
-    };
+    /*showControls() {
+      this.mapService.addDrawControls();
+    }*/
     MapComponent.prototype.getMap = function () {
         return this.map;
     };
@@ -4490,8 +4905,8 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__ = __webpack_require__("../../../../../src/app/features/selection-tools/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__ = __webpack_require__("../../../../../src/app/features/selection-scale/index.ts");
@@ -4501,6 +4916,11 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4522,7 +4942,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 /**
  * Created by lesly on 27.05.17.
  */
@@ -4537,14 +4956,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var MapService = (function (_super) {
     __extends(MapService, _super);
-    function MapService(http, logger, loaderService, toasterService, layersService, selectionScaleService, selectionToolService, businessInterfaceRenderService) {
+    function MapService(http, logger, loaderService, toasterService, layersService, selectionScaleService, selectionToolService, businessInterfaceRenderService, selectionToolButtonStateService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.layersService = layersService;
         _this.selectionScaleService = selectionScaleService;
         _this.selectionToolService = selectionToolService;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
+        _this.selectionToolButtonStateService = selectionToolButtonStateService;
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["C" /* defaultZoomLevel */]);
+        _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"](); // Observable source for click
+        _this.clickEventSubjectObs = _this.clickEventSubject.asObservable(); // Observable stream
+        _this.drawCreatedSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"]();
+        _this.drawCreatedSubjectObs = _this.drawCreatedSubject.asObservable();
         _this.baseMaps = __WEBPACK_IMPORTED_MODULE_3__basemap__["a" /* basemap */];
         return _this;
     }
@@ -4554,43 +4982,78 @@ var MapService = (function (_super) {
     MapService.prototype.ngOnDestroy = function () {
         this.logger.log('MapService/ngOnDestroy()');
     };
+    /**
+    * Update the clickCursorSubject
+    */
+    MapService.prototype.clickCursorUpdate = function () {
+        this.clickEventSubject.next();
+    };
+    /**
+    * Update the drawCreatedSubject
+    */
+    MapService.prototype.drawCreatedUpdate = function () {
+        this.drawCreatedSubject.next();
+    };
     MapService.prototype.getMap = function () {
         return this.map;
     };
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["B" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["C" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["D" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["E" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["F" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["G" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["H" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["I" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["J" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["K" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["L" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["M" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["N" /* MAPDRAWEDITSTOP */], function () { self.onDrawEditStop(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["O" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["D" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["E" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["F" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["G" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["H" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["I" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDRAWEDITSTOP */], function () { self.onDrawEditStop(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
-        self.selectionToolService.drawCreated(e, this.map);
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["r" /* hectare */]) {
+            self.selectionToolService.drawHectareCreated(e, this.map);
+        }
+        else {
+            var scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
+            self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+            self.selectionToolService.setIsPolygonDrawer(false);
+            self.drawCreatedUpdate();
+        }
     };
     MapService.prototype.onDrawEdited = function (self) { };
-    MapService.prototype.onDrawStart = function (self) { self.selectionToolService.toggleActivateTool(true); };
-    MapService.prototype.onDrawEditStart = function (self) { self.selectionToolService.toggleActivateTool(true); };
-    MapService.prototype.onDrawEditStop = function (self) { self.selectionToolService.toggleActivateTool(false); };
-    MapService.prototype.onDrawDeleted = function (self) { self.selectionToolService.clearAll(self.map); };
+    MapService.prototype.onDrawStart = function (self) {
+        self.selectionToolService.toggleActivateTool(true);
+        self.logger.log('MapService/DrawStart');
+        this.selectionToolService.enableButtonClearAll(); // enable button when the drawing starts
+    };
+    MapService.prototype.onDrawEditStart = function (self) {
+        self.selectionToolService.toggleActivateTool(true);
+        self.logger.log('MapService/DrawEditStart');
+    };
+    MapService.prototype.onDrawEditStop = function (self) {
+        self.selectionToolService.toggleActivateTool(false);
+        self.logger.log('MapService/DrawEditStop');
+    };
+    MapService.prototype.onDrawDeleted = function (self) {
+        self.selectionToolService.clearAll(self.map);
+        self.logger.log('MapService/DrawDeleted');
+    };
     MapService.prototype.onLayersControlEvent = function (self) { };
     MapService.prototype.onLayerAdd = function (self) { };
     MapService.prototype.onOverLayAdd = function (self) { };
     MapService.prototype.onMeasureStart = function (self) { };
     MapService.prototype.onZoomStart = function (self) {
     };
-    MapService.prototype.onZoomEnd = function (self) { };
+    MapService.prototype.onZoomEnd = function (self) {
+        this.zoomlevel.next(self.map.getZoom());
+    };
     MapService.prototype.onDidUpdateLayers = function (self, e) {
         if (self.selectionToolService.isLayerInMap() === true) {
             self.selectionToolService.openPopup();
@@ -4609,18 +5072,26 @@ var MapService = (function (_super) {
             self.selectionToolService.openPopup();
             self.logger.log('MapService/didUpdateLayers-----' + e);
         }
+        // changes the actual scale
+        this.selectionScaleService.changeScale();
     };
     MapService.prototype.onClickEvent = function (self, e) {
         self.logger.log('MapService/click');
+        self.selectionToolButtonStateService.enable(true); // opens the selection tools
+        // automatic cursor tool selection doesn't work if polygon draw is activated
+        if (!self.selectionToolService.getPolygonDrawerState()) {
+            self.logger.log('self.selectionToolService.getPolygonDrawerState()');
+            self.clickCursorUpdate(); // automatic cursor tool selection
+        }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["q" /* hectare */]) {
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["r" /* hectare */]) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
                 var layer = new L.Rectangle(e.latlng.toBounds(100));
                 self.selectionToolService.layerCreatedClick(layer, self.map);
             }
         }
-        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["p" /* lau2 */]) {
+        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["q" /* lau2 */]) {
             self.selectionToolService.enableNavigationService(self.map);
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         }
@@ -4629,13 +5100,16 @@ var MapService = (function (_super) {
             self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
         }
     };
+    MapService.prototype.getZoomLevel = function () {
+        return this.zoomlevel;
+    };
     // Draw control management
-    MapService.prototype.addDrawControls = function () {
-        this.selectionToolService.addDrawerControl(this.map);
-    };
-    MapService.prototype.removeDrawControls = function () {
+    /*addDrawControls() {
+        //this.selectionToolService.addDrawerControl(this.map);
+    }*/
+    /*removeDrawControls() {
         this.selectionToolService.removeControls(this.map);
-    };
+    }*/
     MapService.prototype.toggleDrawControls = function () {
         this.selectionToolService.toggleControl(this.map);
     };
@@ -4643,21 +5117,20 @@ var MapService = (function (_super) {
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["P" /* clickAccuracy */]).toBBoxString();
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* clickAccuracy */]).toBBoxString();
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["Q" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
-        // this.selectAreaWithNuts(nuts2DataResult);
         return this.getAreaFromScale(url);
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_1__shared_data_service__["P" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["f" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["Q" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
@@ -4666,17 +5139,27 @@ var MapService = (function (_super) {
     MapService.prototype.getAreaFromScale = function (url) {
         var _this = this;
         return this.http.get(url).map(function (res) { return res.json(); })
-            .subscribe(function (res) { return _this.selectAreaWithNuts(res); }, function (err) { return _this.handleError.bind(_this); });
+            .subscribe(function (res) { return _this.selectAreaWithNuts(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
     };
     MapService.prototype.selectAreaWithNuts = function (areaSelected) {
-        this.logger.log('MapService/selectAreaWithNuts()');
-        // remove the layer if there is one
-        this.removeAreaSelectedlayer();
-        this.areaNutsSelectedLayer = L.geoJSON(areaSelected);
-        this.areaNutsSelectedLayer.addTo(this.map);
-        // this.layersService.getLayers().addLayer(this.areaNutsSelectedLayer, true);
-        this.loaderService.display(false);
-        this.createSelection();
+        // test if polygon tool is activated in order to avoid selecting a nuts during a polygon drawing
+        if (!this.selectionToolService.getPolygonDrawerState()) {
+            this.logger.log('MapService/selectAreaWithNuts()');
+            var areaSelectedLayer = false;
+            if (this.areaNutsSelectedLayer) {
+                areaSelectedLayer = true; // true if an area nuts is selected
+            }
+            // remove the layer if there is one
+            this.removeAreaSelectedlayer();
+            // create an other selection only if this is a new area or if no area is actually selected (highlighted)
+            var areaNutsSelectedLayer = L.geoJSON(areaSelected);
+            if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
+                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer);
+            }
+            else {
+                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer);
+            }
+        }
     };
     MapService.prototype.createSelection = function () {
         this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
@@ -4686,6 +5169,9 @@ var MapService = (function (_super) {
             this.logger.log('MapService/removeAreaSelectedlayer');
             this.map.removeLayer(this.areaNutsSelectedLayer);
             delete this.areaNutsSelectedLayer;
+            // disable buttons when layer is removed
+            this.selectionToolService.disableButtonClearAll();
+            this.selectionToolService.disableButtonLoad();
         }
     };
     MapService.prototype.getSelectionScaleMenu = function () {
@@ -4701,22 +5187,86 @@ var MapService = (function (_super) {
         this.getSelectionScaleMenu();
         this.retriveMapEvent();
         this.layersService.getLayers().addTo(this.map);
+        this.selectionToolService.getMultiSelectionLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();
     };
     MapService.prototype.checkZoomLevelLayer = function (action, zoomLevel) {
         // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
     };
-    MapService.prototype.getLayerArray = function () {
-        return this.layersService.getLayerArray();
+    /**
+     * Activate the drawing tool
+     */
+    MapService.prototype.drawTool = function (map, tool) {
+        this.selectionToolService.drawTool(map, tool);
+    };
+    /**
+     * Activate the selection tool
+     */
+    MapService.prototype.clickSelection = function (map) {
+        this.selectionToolService.clickSelection(map);
+    };
+    /**
+     * Load the nuts selection results
+     */
+    MapService.prototype.loadResultNuts = function (map) {
+        this.selectionToolService.loadResultNuts(map);
+    };
+    /**
+     * Clear the selection(s)
+     */
+    MapService.prototype.clearAll = function (map) {
+        this.selectionToolService.clearAll(map);
+    };
+    /**
+     * Get the nutsSelected Subject of SelectionToolService
+     */
+    MapService.prototype.getNutsSelectedSubject = function () {
+        return this.selectionToolService.getNutsSelectedSubject();
+    };
+    /**
+     * Get the EnableLoadResultSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getEnableLoadResultSubjectObs = function () {
+        return this.selectionToolService.enableLoadResultSubjectObs;
+    };
+    /**
+     * Get the EnableClearAllSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getEnableClearAllSubjectObs = function () {
+        return this.selectionToolService.enableClearAllSubjectObs;
+    };
+    /**
+     * Get the DisableLoadResultSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getDisableLoadResultSubjectObs = function () {
+        return this.selectionToolService.disableLoadResultSubjectObs;
+    };
+    /**
+     * Get the DisbleClearAllSubjectObs of SelectionToolService
+     */
+    MapService.prototype.getDisbleClearAllSubjectObs = function () {
+        return this.selectionToolService.disbleClearAllSubjectObs;
+    };
+    /**
+     * Get the ScaleValueSubject of SelectionScaleService
+     */
+    MapService.prototype.getScaleValueSubject = function () {
+        return this.selectionScaleService.scaleValueSubject;
+    };
+    /**
+     * Get the ScaleValue of SelectionScaleService
+     */
+    MapService.prototype.getScaleValue = function () {
+        return this.selectionScaleService.getScaleValue();
     };
     return MapService;
 }(__WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__["a" /* APIService */]));
 MapService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _j || Object])
 ], MapService);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=map.service.js.map
 
 /***/ }),
@@ -4753,7 +5303,9 @@ module.exports = "<div *ngFor=\"let button of navButtons\" class=\"icon-nav\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_side_panel__ = __webpack_require__("../../../../../src/app/features/side-panel/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__ = __webpack_require__("../../../../../src/app/features/selection-tools/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavigationBarComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4768,10 +5320,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var NavigationBarComponent = (function () {
-    function NavigationBarComponent(interactionService, selectionToolButtonStateService) {
+    function NavigationBarComponent(interactionService, selectionToolButtonStateService, selectionToolService, mapService) {
         this.interactionService = interactionService;
         this.selectionToolButtonStateService = selectionToolButtonStateService;
+        this.selectionToolService = selectionToolService;
+        this.mapService = mapService;
     }
     NavigationBarComponent.prototype.ngOnInit = function () {
         // you must allow the change of states
@@ -4788,6 +5344,7 @@ var NavigationBarComponent = (function () {
                 }
                 else if (button.buttonFunction === 'selection') {
                     this.selectionToolButtonStateService.enable(false);
+                    this.selectionToolService.clearAll(this.mapService.getMap());
                 }
                 else if (button.buttonFunction === 'send_mail') {
                     // Toggle top panel when it's opened
@@ -4830,10 +5387,10 @@ NavigationBarComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/pages/nav/component/navigation-bar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/nav/component/navigation-bar.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__["b" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__["b" /* SelectionToolButtonStateService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__["a" /* SelectionToolService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */]) === "function" && _f || Object])
 ], NavigationBarComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=navigation-bar.component.js.map
 
 /***/ }),
@@ -4938,7 +5495,7 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return navigationButtons; });
 var navigationButtons = [
-    { id: 'layers', title: 'Folder', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false },
+    { id: 'layers', title: 'Layer', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false },
     { id: 'selection', title: 'Selection', buttonFunction: 'selection', iconClass: 'flaticon-vector', enable: true, stateOpen: false },
     { id: 'folder', title: 'Folder', buttonFunction: '', iconClass: 'flaticon-folder-2', enable: false, stateOpen: false },
     { id: 'load_result', title: 'Load result', buttonFunction: 'right', iconClass: 'flaticon-pie-chart-1', enable: false, stateOpen: false },
@@ -5040,6 +5597,7 @@ var SearchBarComponent = (function () {
         this.logger.log('NavigatorComponent/goto()/this.address!=null' + this.address);
         this.geocoder.geocode(this.address)
             .subscribe(function (location) {
+            _this.logger.log('location' + _this.address + ' ' + JSON.stringify(location));
             _this.map.fitBounds(location.viewBounds, {});
             _this.address = location.address;
             _this.loaderService.display(false);
@@ -5277,10 +5835,17 @@ var BusinessInterfaceRenderArray = [
     { id: 175, api_name: 'heat_density_nuts1', business_name: 'Heat map / aggregrated from Hectares to NUTS1' },
     { id: 176, api_name: 'heat_density_nuts0', business_name: 'Heat map  / aggregrated from Hectares to NUTS0' },
     { id: 177, api_name: 'heat_density_ha', business_name: 'Heat map' },
-    { id: 178, api_name: 'population_density_nuts3', business_name: 'population' },
-    { id: 179, api_name: 'population_density_nuts2', business_name: 'population' },
-    { id: 147, api_name: 'population_density_nuts1', business_name: 'population' },
-    { id: 157, api_name: 'population_density_nuts0', business_name: 'population' },
+    { id: 172, api_name: 'wwtp_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
+    { id: 172, api_name: 'wwtp_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
+    { id: 174, api_name: 'wwtp_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2' },
+    { id: 175, api_name: 'wwtp_nuts1', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS1' },
+    { id: 176, api_name: 'wwtp_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0' },
+    { id: 176, api_name: 'wwtp_ha', business_name: 'Waste Water treatment plants' },
+    { id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3' },
+    { id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2' },
+    { id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1' },
+    { id: 157, api_name: 'population_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\'' },
+    { id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2' },
     { id: 157, api_name: 'population_density', business_name: 'Average population density' },
     { id: 167, api_name: 'population_density_ha', business_name: 'population density' },
     { id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption' },
@@ -5394,12 +5959,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["l" /* nuts0 */], suffix: '_nuts0' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["m" /* nuts1 */], suffix: '_nuts1' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["n" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["o" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["p" /* lau2 */], suffix: '_lau2' },
-    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["q" /* hectare */], suffix: '_ha' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["m" /* nuts0 */], suffix: '_nuts0' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["n" /* nuts1 */], suffix: '_nuts1' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["o" /* nuts2 */], suffix: '_nuts2' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["p" /* nuts3 */], suffix: '_nuts3' },
+    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["q" /* lau2 */], suffix: '_lau2' },
+    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["r" /* hectare */], suffix: '_ha' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -5466,10 +6031,15 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["geoserverUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "urlSendMail")) __webpack_require__.d(__webpack_exports__, "urlSendMail", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["urlSendMail"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "unit_heatload_profil")) __webpack_require__.d(__webpack_exports__, "unit_heatload_profil", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["unit_heatload_profil"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["timeOutAjaxRequest"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["leftPanelSize"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dictionary_class__ = __webpack_require__("../../../../../src/app/shared/class/dictionary.class.ts");
 /* unused harmony namespace reexport */
 
@@ -5494,10 +6064,15 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["geoserverUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "urlSendMail")) __webpack_require__.d(__webpack_exports__, "urlSendMail", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["urlSendMail"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "unit_heatload_profil")) __webpack_require__.d(__webpack_exports__, "unit_heatload_profil", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["unit_heatload_profil"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["timeOutAjaxRequest"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["leftPanelSize"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__location__ = __webpack_require__("../../../../../src/app/shared/class/location/location.ts");
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_class__ = __webpack_require__("../../../../../src/app/shared/class/location/location.class.ts");
@@ -5579,62 +6154,68 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw__ = __webpack_require__("../../../../leaflet-draw/dist/leaflet.draw.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return geocodeUrl; });
+/* unused harmony export geoserverProdUrl */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return defaultLayer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return urlSendMail; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return timeOutAjaxRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return unit_heatload_profil; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return postPopulationDensityInArea; });
 /* unused harmony export getGrid */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return postStatsLayersArea; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postHeatLoadAggregateMonth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return postStatsLayersNutsIds; });
 /* unused harmony export postStatsLayersPoint */
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return proj3035; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return proj3035; });
 /* unused harmony export proj4326 */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return business_name_population; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return unit_capacity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return map_options; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nuts2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return lau2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return nuts3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return lau2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return hectare; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return leftPanelSize; });
 
 
 /**
@@ -5642,8 +6223,7 @@ var MONTHNAME = [
  */
 var prodUrl = 'http://hotmaps.hevs.ch:9005/api';
 var devUrl = 'http://hotmaps.hevs.ch:9006/api';
-var geoserverDevUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
-var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+var geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverProdUrl;
@@ -5654,10 +6234,11 @@ var apiUrl = prodUrl;
 var defaultLayer = 'heat_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
-var urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+var urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 var timeOutAjaxRequest = 10000;
+var unit_heatload_profil = 'kW';
 // layer_name
-var geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
+var geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
     'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:';
 var nuts_level = '3';
 var populationLayerName = 'population_density';
@@ -5665,6 +6246,7 @@ var postPopulationDensityInArea = '/population/density/area/';
 var getGrid = '/grids/1km/area/';
 var postStatsLayersArea = '/stats/layers/area/';
 var postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
+var postStatsLayersNutsIds = '/stats/layers/nuts/';
 var postStatsLayersPoint = '/stats/layers/point/';
 var set404url = 'set404url';
 // Projection data string
@@ -5684,16 +6266,17 @@ var unit_heat_density = 'MWh/ha';
 var unit_shape_area = 'm2';
 var unit_population = 'person/ha';
 var round_value = '1.2-2';
+var defaultZoomLevel = 5;
 var map_options = {
     zoomControl: false,
     center: L.latLng(47.1, 7.0833),
-    zoom: 5,
+    zoom: defaultZoomLevel,
     minZoom: 4,
     maxZoom: 17,
     zoomAnimationThreshold: 3,
     layers: [__WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Esri, __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Hybrid]
 };
-var lau2name = 'COMM_RG_01M_2013';
+var lau2name = 'tbl_lau2';
 // Scale Value
 var nuts0 = 'NUTS 0';
 var nuts1 = 'NUTS 1';
@@ -5702,6 +6285,7 @@ var nuts3 = 'NUTS 3';
 var lau2 = 'LAU 2';
 var hectare = 'Hectare';
 var initial_scale_value = nuts3;
+// Event variable
 var MAPDRAWEDITED = L.Draw.Event.EDITED;
 var MAPDRAWSTART = L.Draw.Event.DRAWSTART;
 var MAPDRAWDELETED = L.Draw.Event.DELETED;
@@ -5716,6 +6300,8 @@ var MAPLAYERSCONTROLEVENT = 'LayersControlEvent';
 var MAPLAYERADD = 'layeradd';
 var MAPDIDIUPDATELAYER = 'didUpdateLayers';
 var MAPOVERLAYADD = 'overlayadd';
+var rightPanelSize = 600;
+var leftPanelSize = 350;
 //# sourceMappingURL=data.service.js.map
 
 /***/ }),
@@ -5790,6 +6376,18 @@ var Helper = (function () {
         }
         return locations;
     };
+    Helper.prototype.convertLatLongToLocationString = function (latlng) {
+        var n = 0;
+        var locations = '';
+        do {
+            var loc_1 = latlng[n].lat + ' ' + latlng[n].lng + ',';
+            locations = locations + loc_1;
+            n++;
+        } while (!this.isNullOrUndefined(latlng[n]));
+        var loc = latlng[0].lat + ' ' + latlng[0].lng;
+        locations = locations + loc;
+        return locations;
+    };
     Helper.prototype.createGeodesicPolygon = function (origin, radius, sides, rotation) {
         var latlon = origin; //leaflet equivalent
         var angle;
@@ -5861,33 +6459,88 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["i" /* round_value */]);
     };
     Helper.prototype.formatDataLoadProfil = function (data) {
         var _this = this;
-        // console.log(data);
+        console.log(data);
         // const loadProfileData: LoadProfile;
         var formattedValues = [];
+        var minStockValue = { name: 'Min', series: [] };
+        var maxStockValue = { name: 'Max', series: [] };
+        var averageStockValue = { name: 'Average', series: [] };
         data.values.map(function (value) {
-            console.log(_this.getMonthString(_this.getDate(value).getMonth()));
-            var stockValue = {
+            averageStockValue.series.push({
                 name: _this.getMonthString(_this.getDate(value).getMonth()),
-                value: Math.round(value.value)
-            };
-            // console.log(stockValue);
-            formattedValues.push(stockValue);
+                value: +_this.round(value.average)
+            });
+            maxStockValue.series.push({
+                name: _this.getMonthString(_this.getDate(value).getMonth()),
+                value: +_this.round(value.max)
+            });
+            minStockValue.series.push({
+                name: _this.getMonthString(_this.getDate(value).getMonth()),
+                value: +_this.round(value.min)
+            });
         });
+        formattedValues.push(maxStockValue);
+        formattedValues.push(averageStockValue);
+        formattedValues.push(minStockValue);
+        console.log('formattedValues');
+        console.log(formattedValues);
         return formattedValues;
     };
     Helper.prototype.getDate = function (heatload) {
         var date = new Date(heatload.year + '-' + heatload.month + '-01');
-        this.logger.log('getDate/date = ' + date);
         return date;
     };
     Helper.prototype.getMonthString = function (numberOfMonth) {
         var month = __WEBPACK_IMPORTED_MODULE_4_app_shared_class_month_data__["a" /* MONTHNAME */].filter(function (m) { return m.id === numberOfMonth + 1; })[0];
         // console.log(month);
         return month.month;
+    };
+    Helper.prototype.getLocationsFromPolygon = function (layer) {
+        var rectangle = layer;
+        var latlng = rectangle.getLatLngs()[0];
+        var locations = this.convertLatLongToLocation(latlng);
+        this.logger.log('locations [] ' + locations);
+        return locations;
+    };
+    Helper.prototype.getLocationsFromGeoJsonLayer = function (layer) {
+        var geojsonLayer = layer;
+        var geoJson = geojsonLayer.toGeoJSON();
+        this.logger.log('geoJson latlng ' + geoJson.features[0].geometry.coordinates);
+        var latlng = geoJson.features[0].geometry.coordinates;
+        var locations = this.convertListLatLongToLocation(latlng);
+        this.logger.log('locations [] ' + locations);
+        return locations;
+    };
+    Helper.prototype.getNUTSIDFromGeoJsonLayer = function (layer) {
+        var geojsonLayer = layer;
+        var geoJson = geojsonLayer.toGeoJSON();
+        var nuts_id = geoJson.features[0].properties.nuts_id;
+        return nuts_id;
+    };
+    Helper.prototype.getLAU2IDFromGeoJsonLayer = function (layer) {
+        var geojsonLayer = layer;
+        var geoJson = geojsonLayer.toGeoJSON();
+        var lau2_id = geoJson.features[0].properties.comm_id;
+        return lau2_id;
+    };
+    Helper.prototype.getLocationsFromCicle = function (layer) {
+        var circle = layer;
+        var origin = circle.getLatLng(); // center of drawn circle
+        var radius = circle.getRadius(); // radius of drawn circle
+        var polys = this.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
+        var locations = [];
+        for (var i = 0; i < polys.length; i++) {
+            var loc = {
+                lat: polys[i].lat,
+                lng: polys[i].lng
+            };
+            locations.push(loc);
+        }
+        return locations;
     };
     return Helper;
 }());
@@ -5918,10 +6571,15 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["geoserverUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "urlSendMail")) __webpack_require__.d(__webpack_exports__, "urlSendMail", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["urlSendMail"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "unit_heatload_profil")) __webpack_require__.d(__webpack_exports__, "unit_heatload_profil", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["unit_heatload_profil"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["timeOutAjaxRequest"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["leftPanelSize"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pipes__ = __webpack_require__("../../../../../src/app/shared/pipes/index.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "UppercaseFirstLetterPipe", function() { return __WEBPACK_IMPORTED_MODULE_2__pipes__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "NumberFormatPipe", function() { return __WEBPACK_IMPORTED_MODULE_2__pipes__["b"]; });
@@ -5935,9 +6593,14 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["t"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "urlSendMail", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["V"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["W"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["B"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["r"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "unit_heatload_profil", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["X"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["Z"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_0"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_1"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -6248,7 +6911,7 @@ var APIService = (function () {
         if (error.name === 'TimeoutError') {
             message = 'Timeout has occurred';
         }
-        // this.toasterService.showToaster(message + ', please try again later');
+        this.toasterService.showToaster('We encountered a problem' + ', please try again later');
         this.logger.log('APIService/handleError');
         console.log('An error occurred', error.message); // for demo purposes only
         return Promise.reject(error.message || error);
@@ -6262,8 +6925,7 @@ var APIService = (function () {
             .catch(this.handleError.bind(this));
     };
     APIService.prototype.GET = function (url) {
-        return this.http.get(url, this.headers)
-            .map(function (res) { return res.json().data; });
+        return this.http.get(url, this.headers);
     };
     APIService.prototype.getJSONFromFille = function (url) {
         return __awaiter(this, void 0, void 0, function () {
@@ -6378,7 +7040,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -6406,9 +7068,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["l" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
@@ -6553,6 +7215,9 @@ var InteractionService = (function () {
     };
     InteractionService.prototype.setSummaryResultData = function (data) {
         this.sidePanelService.setSummaryResultData(data);
+    };
+    InteractionService.prototype.getSummaryResultWithIds = function (payload) {
+        return this.summaryResultService.getSummaryResultWithIds(payload);
     };
     InteractionService.prototype.getSummaryResultWithPayload = function (payload) {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
@@ -6703,6 +7368,34 @@ ToasterService = __decorate([
 ], ToasterService);
 
 //# sourceMappingURL=toaster.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/assets/icons/circle.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "circle.df926cb12474ff14262c.svg";
+
+/***/ }),
+
+/***/ "../../../../../src/assets/icons/cursor.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "cursor.b4161d2aa14d89efbf4d.svg";
+
+/***/ }),
+
+/***/ "../../../../../src/assets/icons/polygon.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "polygon.9ac264441c3af7e1f589.svg";
+
+/***/ }),
+
+/***/ "../../../../../src/assets/icons/square.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "square.ff851f9fc445783d0e66.svg";
 
 /***/ }),
 

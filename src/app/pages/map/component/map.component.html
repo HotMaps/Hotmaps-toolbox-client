@@ -15,8 +15,12 @@
   <htm-top-side-panel></htm-top-side-panel>
   <htm-left-side-panel></htm-left-side-panel>
   <div id="map">
+    <htm-selection-tool *ngIf="showHide" onclick="event.stopPropagation();"></htm-selection-tool>
     <!--<hmt-toolbar></hmt-toolbar> -->
-  </div>
+    <!-- <div class="zoom-level-box">
+       {{zoomlevel}}
+     </div> -->
+   </div>
 
-  <htm-right-side-panel></htm-right-side-panel>
-</div>
+   <htm-right-side-panel></htm-right-side-panel>
+ </div>

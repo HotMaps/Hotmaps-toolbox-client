@@ -7,10 +7,10 @@ import 'leaflet-draw';
  */
 const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
 const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
-const geoserverDevUrl    = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
-const geoserverProdUrl    = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 
+export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
+
 export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
@@ -18,12 +18,15 @@ export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
-export const urlSendMail = 'http://hotmaps.hevs.ch:8585/sendEmail/sendmail.php';
+
+export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const timeOutAjaxRequest = 10000;
+export const unit_heatload_profil = 'kW'
+
 
 // layer_name
 
-export const geoserverGetFeatureInfoUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms?' +
+export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
 export const populationLayerName = 'population_density'
@@ -31,6 +34,7 @@ export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
+export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
 
@@ -55,16 +59,17 @@ export const unit_heat_density   = 'MWh/ha';
 export const unit_shape_area   = 'm2';
 export const unit_population   = 'person/ha';
 export const round_value   = '1.2-2';
+export const defaultZoomLevel = 5;
 export const map_options =  {
   zoomControl: false,
   center: L.latLng(47.1, 7.0833),
-  zoom: 5,
+  zoom: defaultZoomLevel,
   minZoom: 4,
   maxZoom: 17,
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
-export const lau2name = 'COMM_RG_01M_2013';
+export const lau2name = 'tbl_lau2';
 
 // Scale Value
 export const nuts0   = 'NUTS 0';
@@ -75,19 +80,21 @@ export const lau2   = 'LAU 2';
 export const hectare   = 'Hectare';
 export const initial_scale_value   = nuts3;
 
+// Event variable
 export const MAPDRAWEDITED = L.Draw.Event.EDITED;
 export const MAPDRAWSTART = L.Draw.Event.DRAWSTART;
 export const MAPDRAWDELETED = L.Draw.Event.DELETED;
 export const MAPDRAWEDITSTOP = L.Draw.Event.EDITSTOP;
 export const MAPDRAWEDITSTART = L.Draw.Event.EDITSTART;
 export const MAPDRAWCREATED = L.Draw.Event.CREATED;
-
 export const MAPCLICK = 'click';
 export const MAPLAYERCHANCE = 'baselayerchange';
 export const MAPZOOMSTART = 'zoomstart';
 export const MAPZOOMEND = 'zoomend';
-
 export const MAPLAYERSCONTROLEVENT = 'LayersControlEvent';
 export const MAPLAYERADD = 'layeradd';
 export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
 export const MAPOVERLAYADD = 'overlayadd';
+
+export const rightPanelSize = 600;
+export const leftPanelSize = 350;

@@ -13,7 +13,7 @@ import { MockLoaderService } from '../shared/services/mock/loader.service';
 import { LoaderService } from '../shared/services/loader.service'
 import {Router} from '@angular/router';
 import {routes} from '../routes';
-import {DecimalPipe, Location} from '@angular/common';
+import {DecimalPipe, Location, APP_BASE_HREF} from '@angular/common';
 import {DataInteractionCellComponent} from '../features/data-interaction/data-interaction-cell/data-interaction-cell.component';
 import {RightSideComponent} from '../features/side-panel/right-side-panel/right-side-panel.component';
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
@@ -52,6 +52,8 @@ import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 
 
 
@@ -69,7 +71,8 @@ describe('AppComponent: Router', () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
-        SummaryResultComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe, GraphicalViewComponent,
+        SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
+        GraphicalViewComponent,
         BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
@@ -102,16 +105,12 @@ describe('AppComponent: Router', () => {
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
         {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
-
-
-
-
-
-
+        {provide: APP_BASE_HREF, useValue : '/' }
       ],
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot() ]
+        RecaptchaModule.forRoot(), NgxChartsModule
+      ]
     })
 
   });
@@ -122,7 +121,7 @@ describe('AppComponent: Router', () => {
 
 
   it('fakeAsync works', fakeAsync(() => {
-
+    console.log('it goes to fakeAsync works');
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
     });

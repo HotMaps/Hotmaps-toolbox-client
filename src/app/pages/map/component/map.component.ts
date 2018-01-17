@@ -20,6 +20,9 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 })
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
+  isSelectionToolVisible = false;
+  showHide = false;
+
   private map: Map;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
@@ -31,7 +34,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
   @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
-
+  private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
     private panelService: SidePanelService,
@@ -50,7 +53,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   }
   notifySubscription() {
     this.panelService.summaryResultDataStatus.subscribe((data) => {
-      this.rightPanelComponent.setSummaryResult(data);
+      if (data && data.layers.length === 0) {
+        this.rightPanelComponent.setSummaryResult(null);
+      } else {
+        this.rightPanelComponent.setSummaryResult(data);
+      }
     });
     this.panelService.heatLoadResultStatus.subscribe((data) => {
       this.rightPanelComponent.setHeatLoadResult(data);
@@ -67,7 +74,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openRightSidebar = val;
       }
     });
-
+    /*this.mapService.getZoomLevel().subscribe((zoomlevel) => {
+      this.zoomlevel = zoomlevel;
+    })*/
     this.panelService.topPanelStatus.subscribe((val: boolean) => {
       if (this.openTopSidebar === false) {
         this.openTopSidebar = true;
@@ -77,10 +86,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       }
     });
     this.selectionToolButtonStateService.status.subscribe((val: Boolean) => {
+      this.logger.log('mapComponent/selectionTool: ' + val)
       if (val) {
-        this.mapService.addDrawControls();
+        this.interactionService.enableStateOpenWithFunction('selection')
+        this.showHide = true;
       }else {
-        this.mapService.removeDrawControls();
+        this.interactionService.disableStateOpenWithFunction('selection')
+        this.showHide = false;
       }
     });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {
@@ -93,8 +105,10 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
-    // mapService get an instance of the maps and ca work on it
+    // mapService get an instance of the maps and can work on it
     this.mapService.setupMapservice(this.createMap(basemap));
+
+
     this.initializeNavigator();
     this.map.invalidateSize();
   }
@@ -136,9 +150,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // this.mapService.addDrawerControl(this.map);
     return this.map;
   }
-  showControls() {
+  /*showControls() {
     this.mapService.addDrawControls();
-  }
+  }*/
   getMap(): Map {
     return this.map;
   }

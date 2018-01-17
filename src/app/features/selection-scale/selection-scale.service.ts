@@ -15,12 +15,26 @@ import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
 import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} from '../../shared/data.service';
+
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class SelectionScaleService extends APIService {
   private scaleValue = initial_scale_value;
+
+  // scale value subject
+  scaleValueSubject: Subject<string> = new Subject<string>();
+
   private wms_request;
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
+  }
+
+  /**
+   * Get and change the selected scale value
+   */
+  changeScale() {
+    this.scaleValueSubject.next(this.scaleValue);
   }
 
   getDataInteractionServices(): Promise<SelectionScaleClass[]> {
@@ -33,7 +47,6 @@ export class SelectionScaleService extends APIService {
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
-
 
   getDataArrayServices(): SelectionScaleClass[] {
     return SelectionScaleClassArray;
@@ -90,11 +103,20 @@ export class SelectionScaleService extends APIService {
     map.addLayer(SelectionScale[initial_scale_value]);  // # Add this if you want to show, comment this if you want to hide it.-
 
   }
-
+  getIdFromNuts(nuts_lvl): any {
+    const SelectionScale = {
+      'NUTS 0': 0,
+      'NUTS 1': 1,
+      'NUTS 2': 2,
+      'NUTS 3': 3,
+      'LAU 2'  : 4,
+      'Hectare': 5,
+    }
+    return SelectionScale[nuts_lvl]
+  }
   getInitialScale(): string {
     return initial_scale_value;
   }
-
 
 
 

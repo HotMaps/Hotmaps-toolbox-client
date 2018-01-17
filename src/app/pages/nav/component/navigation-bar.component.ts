@@ -4,7 +4,9 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { SelectionToolButtonStateService } from 'app/features/selection-tools';
+import { SelectionToolButtonStateService } from '../../../features/selection-tools/selection-tool-button-state.service';
+import { SelectionToolService } from '../../../features/selection-tools/selection-tool.service';
+import { MapService } from '../../../pages/map/map.service';
 
 @Component({
     selector: 'htm-nav-bar',
@@ -16,9 +18,12 @@ export class NavigationBarComponent implements OnInit {
     @Input() leftPanel: LeftSideComponent;
     @Input() rightPanel: RightSideComponent;
     private navButtons: any[];
+
     constructor(
         private interactionService: InteractionService,
         private selectionToolButtonStateService: SelectionToolButtonStateService,
+        private selectionToolService: SelectionToolService,
+        private mapService: MapService
     ) { }
 
     ngOnInit() {
@@ -33,7 +38,8 @@ export class NavigationBarComponent implements OnInit {
                 }else if (button.buttonFunction === 'right') {
                     this.interactionService.closeRightPanel()
                 }else if (button.buttonFunction  === 'selection') {
-                  this.selectionToolButtonStateService.enable(false);
+                    this.selectionToolButtonStateService.enable(false);
+                    this.selectionToolService.clearAll(this.mapService.getMap());
                 }else if (button.buttonFunction  === 'send_mail') {
                     // Toggle top panel when it's opened
                     this.interactionService.openTopPanel();
@@ -45,7 +51,7 @@ export class NavigationBarComponent implements OnInit {
                 }else if (button.buttonFunction === 'right') {
                     this.interactionService.openRightPanel()
                 }else if (button.buttonFunction  === 'selection') {
-                  this.selectionToolButtonStateService.enable(true);
+                    this.selectionToolButtonStateService.enable(true);
                   // this.interactionService.enableButtonWithId(button.buttonFunction);
                 }else if (button.buttonFunction  === 'send_mail') {
                     // Toggle top panel when it's closed

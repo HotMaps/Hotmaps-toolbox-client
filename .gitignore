@@ -18,6 +18,8 @@
 *.sublime-workspace
 
 # IDE - VSCode
+
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -40,3 +42,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.package-lock.json
