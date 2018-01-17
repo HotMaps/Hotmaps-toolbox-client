@@ -6155,6 +6155,7 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw__ = __webpack_require__("../../../../leaflet-draw/dist/leaflet.draw.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
+/* unused harmony export geoserverDevUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return geoserverUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getIpUrl; });
@@ -6224,13 +6225,14 @@ var MONTHNAME = [
 var prodUrl = 'http://hotmaps.hevs.ch:9005/api';
 var devUrl = 'http://hotmaps.hevs.ch:9006/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
+var geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = geoserverProdUrl;
+var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = prodUrl;
+var apiUrl = devUrl;
 var defaultLayer = 'heat_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
