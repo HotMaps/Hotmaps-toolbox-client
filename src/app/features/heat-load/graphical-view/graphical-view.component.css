@@ -1,13 +1,11 @@
-.htm-card {
-    padding: 10px;
-}
+
 .lineargraph{
+    padding: 10px;
     height: 400px;
     width: 580px;
     min-height: 400px;
     min-width: 580px;
     position: relative;
-    clear: both;
 }
 
 .ngx-charts-outer > svg{

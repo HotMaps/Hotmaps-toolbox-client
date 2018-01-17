@@ -37,8 +37,8 @@ export class GraphicalViewComponent implements OnInit, OnChanges, OnDestroy {
   private valueDisplayed = 0;
   private loadProfileData: LoadProfile[] = [];
   private timeline = true;
-  view: any[] = [rightPanelSize - 30, 400];
-  // view: any[] = undefined;
+  // view: any[] = [rightPanelSize - 30, 400];
+  view: any[] = undefined;
   // options
   showXAxis = true;
   showYAxis = true;
