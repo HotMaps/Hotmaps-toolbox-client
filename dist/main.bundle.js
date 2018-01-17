@@ -5597,6 +5597,7 @@ var SearchBarComponent = (function () {
         this.logger.log('NavigatorComponent/goto()/this.address!=null' + this.address);
         this.geocoder.geocode(this.address)
             .subscribe(function (location) {
+            _this.logger.log('location' + _this.address + ' ' + JSON.stringify(location));
             _this.map.fitBounds(location.viewBounds, {});
             _this.address = location.address;
             _this.loaderService.display(false);

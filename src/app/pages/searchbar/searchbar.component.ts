@@ -39,6 +39,7 @@ export class SearchBarComponent implements OnInit {
     this.logger.log('NavigatorComponent/goto()/this.address!=null' + this.address);
     this.geocoder.geocode(this.address)
       .subscribe(location => {
+        this.logger.log('location' + this.address + ' ' + JSON.stringify(location));
         this.map.fitBounds(location.viewBounds, {});
         this.address = location.address;
         this.loaderService.display(false);
