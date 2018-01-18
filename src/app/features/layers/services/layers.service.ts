@@ -11,7 +11,7 @@ import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population, zoomLevelDetectChange
+  unit_population, zoomLevelDetectChange, formatImage
 } from '../../../shared/data.service'
 
 import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
@@ -32,7 +32,7 @@ export class LayersService extends APIService {
   private current_nuts_level = '0';
   private heatmapOption = {
     layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
-    format: 'image/png', transparent: true, version: '1.3.0',
+    format: formatImage, transparent: true, version: '1.3.0',
     zIndex: idDefaultLayer
   };
 
@@ -104,7 +104,7 @@ export class LayersService extends APIService {
     if (action === wwtpLayerName) {
       const option = {
         layers: 'hotmaps:' + action ,
-        format: 'image/png',
+        format: formatImage,
         transparent: true,
         version: '1.3.0',
         // cql_filter : 'stat_levl_ = ' + nuts_level + '',
@@ -116,7 +116,7 @@ export class LayersService extends APIService {
       // layer in Ha with date
       const option = {
         layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
-        format: 'image/png',
+        format: formatImage,
         transparent: true,
         version: '1.3.0',
         srs: 'EPSG:4326',

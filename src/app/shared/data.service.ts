@@ -24,7 +24,7 @@ export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send
 export const timeOutAjaxRequest = 10000;
 export const unit_heatload_profil = 'kW'
 
-
+export const formatImage = 'image/png8';
 // layer_name
 
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
@@ -70,7 +70,7 @@ export const map_options =  {
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri, basemap.Hybrid]
 }
-export const lau2name = 'tbl_lau2';
+export const lau2name = 'tbl_lau1_2';
 
 // Scale Value
 export const nuts0   = 'NUTS 0';

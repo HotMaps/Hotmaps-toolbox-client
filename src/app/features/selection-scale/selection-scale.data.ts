@@ -1,7 +1,7 @@
 import { SelectionScaleClass  } from './class/selection-scale.class';
 import {
   business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare,
-  lau2name
+  lau2name, formatImage
 } from '../../shared/data.service';
 export const SelectionScaleClassArray: SelectionScaleClass[] = [
   {id: 1, name: 'nonuts'},
@@ -16,7 +16,7 @@ export const SelectionScaleClassArray: SelectionScaleClass[] = [
 const action = 'population';
 export const hectareOption = {
   layers: 'hotmaps:' + action + 0 ,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
@@ -25,7 +25,7 @@ export const hectareOption = {
 }
 export const nuts0LayerOption = {
   layers: 'hotmaps:' + action,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 0 + '',
@@ -34,7 +34,7 @@ export const nuts0LayerOption = {
 }
 export const nuts1LayerOption = {
   layers: 'hotmaps:' + action,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
@@ -43,7 +43,7 @@ export const nuts1LayerOption = {
 }
 export const nuts2LayerOption = {
   layers: 'hotmaps:' + action,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 2 + '',
@@ -52,7 +52,7 @@ export const nuts2LayerOption = {
 }
 export const nuts3LayerOption = {
   layers: 'hotmaps:' + action,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 3 + '',
@@ -61,7 +61,7 @@ export const nuts3LayerOption = {
 }
 export const  lau2LayerOption = {
   layers: 'hotmaps:' + lau2name,
-  format: 'image/png',
+  format: formatImage,
   transparent: true,
   version: '1.3.0',
   zIndex: 10
