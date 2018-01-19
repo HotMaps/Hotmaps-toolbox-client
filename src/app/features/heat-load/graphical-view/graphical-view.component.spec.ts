@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphicalViewComponent } from './graphical-view.component';
 import {HeatLoadAggregateService} from '../heat-load.service';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Logger } from 'app/shared';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +18,7 @@ describe('GraphicalViewComponent', () => {
         {provide: Logger, useClass: Logger},
         {provide: APP_BASE_HREF, useValue : '/' }
       ],
-      imports: [ NgxChartsModule, BrowserAnimationsModule, NoopAnimationsModule ]
+      imports: [ BrowserAnimationsModule, NoopAnimationsModule ]
     })
     .compileComponents();
   }));

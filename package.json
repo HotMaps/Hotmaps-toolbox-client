@@ -22,12 +22,11 @@
     "@angular/platform-browser": "4.1.0",
     "@angular/platform-browser-dynamic": "4.1.0",
     "@angular/router": "4.1.0",
-    "@swimlane/ngx-charts": "5.3.1",
     "animate.css": "3.5.2",
     "brfs": "1.4.3",
+    "chart.js": "^2.7.1",
     "classlist.js": "1.1.20150312",
     "core-js": "2.4.1",
-    "d3": "^4.9.1",
     "ie-shim": "0.1.0",
     "intl": "1.2.5",
     "jquery": "3.2.1",
@@ -66,6 +65,7 @@
     "@types/leaflet-draw": "0.4.6",
     "@types/node": "6.0.42",
     "@types/proj4leaflet": "^1.0.4",
+    "@types/chartjs": "0.0.31",
     "codelyzer": "3.0.1",
     "jasmine-core": "2.6.2",
     "jasmine-spec-reporter": "4.1.0",
@@ -83,11 +83,6 @@
     "tslint": "5.3.2",
     "css-loader": "0.28.0",
     "html-loader": "0.4.5",
-    "typescript": "2.3.3",
-    "@types/d3-array": "1.0.5",
-    "@types/d3-axis": "1.0.5",
-    "@types/d3-scale": "1.0.4",
-    "@types/d3-selection": "1.0.5",
-    "@types/d3-shape": "1.0.5"
+    "typescript": "2.3.3"
   }
 }

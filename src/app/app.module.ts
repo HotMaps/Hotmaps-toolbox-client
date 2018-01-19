@@ -6,12 +6,12 @@ import 'reflect-metadata';
 import 'jquery';
 
 
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef } from '@angular/core';
 import { HttpModule} from '@angular/http';
 import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule, AppComponent  } from './';
 
@@ -44,12 +44,12 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/selection-tool/selection-tool.component';
 import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
-import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
+import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
+
 
 @NgModule({
   imports: [
@@ -60,8 +60,7 @@ import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot(),
-    NgxChartsModule
+    RecaptchaModule.forRoot()
   ],
   bootstrap: [AppComponent],
   declarations: [

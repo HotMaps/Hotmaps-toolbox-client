@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 import {Map, Layer} from 'leaflet';
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
-import {Logger, LoaderService, Helper} from '../../shared/';
+import {Logger, LoaderService, Helper, nuts3} from '../../shared/';
 import {Location} from '../../shared/class/location/location';
 import Created = L.DrawEvents.Created;
 declare const L: any;
@@ -213,25 +213,44 @@ export class SelectionToolService extends APIService  {
       this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray, map);
   }
 // Summary result show result
-  getStatisticsFromIds(nutsIds: string[], layers: string[], map: any) {
-    const self = this;
-    const request = [];
-    this.loaderService.display(true);
-    const payload: PlayloadStatNuts = { layers: layers, year: constant_year, nuts: nutsIds }
-    const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
-     // this.editableLayers.clearLayers();
-      this.displaySummaryResult(result, map);
-    }).catch();
-    request.push(summaryPromise);
-    this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
-      this.displayHeatLoad(null);
-    Promise
-      .all(request)
-      .then(values => {
-        this.logger.log('Promise then ' + values);
-      });
+getStatisticsFromIds(nutsIds: string[], layers: string[], map: any) {
+  const self = this;
+  const request = [];
+  this.loaderService.display(true);
+  const payload: PlayloadStatNuts = { layers: layers, year: constant_year, nuts: nutsIds }
+  const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
+   // this.editableLayers.clearLayers();
+    this.displaySummaryResult(result, map);
+  }).catch();
+  request.push(summaryPromise);
+  this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+  this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
+  if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
 
+    this.logger.log('nuts_id =  ' + this.nutsIds.values());
+    const heatLoadPayload = {
+      'year': 2010,
+      'nuts': Array.from(this.nutsIds.values()),
+      'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
+    }
+    console.log('heatLoadPayload=');
+    console.log(JSON.stringify(heatLoadPayload));
+    const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+      this.logger.log('heatLoadresult ' + JSON.stringify(result));
+      const data = this.helper.formatDataLoadProfil(result);
+      this.displayHeatLoad(data);
+    }).catch();
+    request.push(heatloadPromise);
+  } else {
+    this.displayHeatLoad(null);
   }
+  Promise
+    .all(request)
+    .then(values => {
+      this.logger.log('Promise then ' + values);
+    });
+
+}
   enableNavigationService( map: any) {
     this.interactionService.enableButtonWithId('selection');
   }
@@ -348,7 +367,7 @@ export class SelectionToolService extends APIService  {
       this.displaySummaryResult(result, map);
     }).catch();
     request.push(summaryPromise);
-    this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
+    this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue);
     if (this.scaleValue === nuts2) {
       const nuts_id = this.getNUTSIDFromGeoJsonLayer(this.currentLayer);
       this.logger.log('nuts_id =  ' + nuts_id);
