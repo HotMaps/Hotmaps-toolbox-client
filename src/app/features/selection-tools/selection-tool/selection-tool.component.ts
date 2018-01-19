@@ -2,7 +2,7 @@
  * Created by Dany on 20.12.17.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit, AfterViewInit} from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
 import { hectare } from 'app/shared';
@@ -16,7 +16,7 @@ import {Logger} from "../../../shared/services/logger.service";
   templateUrl: './selection-tool.component.html',
   styleUrls: ['./selection-tool.component.css']
 })
-export class SelectionToolComponent implements OnInit, OnDestroy {
+export class SelectionToolComponent implements OnInit, OnDestroy, AfterViewInit {
   nbNutsSelected = 0;
   private scaleSelected: any;
   private subscription: Subscription;
@@ -29,14 +29,23 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   constructor(private mapService: MapService, private logger: Logger) {}
 
   ngOnInit() {
-    this.subscribeMapService();
+    this.logger.log('SelectionToolComponent/ngOnInit');
     this.scaleSelected = this.mapService.getScaleValue();
     this.checkScale();
+  }
+  ngAfterViewInit() {
+    this.logger.log('SelectionToolComponent/ngAfterViewInit');
+    this.subscribeMapService();
+
+
   }
   ngOnDestroy() {
     this.logger.log('SelectionToolComponent/ngOnDestroy');
     this.subscription.unsubscribe();
+    delete this.subscription;
     this.subscriptionNbNutsSelected.unsubscribe();
+    delete this.subscriptionNbNutsSelected;
+    delete this.scaleSelected;
 
   }
   subscribeMapService() {

@@ -50,8 +50,8 @@ import {FeedbackComponent} from '../features/feedback/component/feedback.compone
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
-import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
+import {GraphicalViewComponent} from '../features/heat-load/graphical-view/graphical-view.component';
+import {HeatLoadAggregateService} from '../features/heat-load/heat-load.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 

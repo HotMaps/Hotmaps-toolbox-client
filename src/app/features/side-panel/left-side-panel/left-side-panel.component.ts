@@ -1,13 +1,13 @@
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
-    Component,
-    OnInit,
-    OnDestroy,
-    trigger,
-    state,
-    style,
-    transition,
-    animate
+  Component,
+  OnInit,
+  OnDestroy,
+  trigger,
+  state,
+  style,
+  transition,
+  animate, ChangeDetectionStrategy
 } from '@angular/core';
 
 import {SideComponent} from '../side-panel.component';
@@ -88,6 +88,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     ngOnDestroy() {
 
     }
-    
+
 
 }

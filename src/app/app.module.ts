@@ -49,7 +49,7 @@ import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/selection-tool/selection-tool.component';
 import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
-import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from './features/heat-load/heat-load.service';
 
 @NgModule({
   imports: [

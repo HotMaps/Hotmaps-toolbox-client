@@ -1,6 +1,6 @@
 
 import { NavigationBarService } from '../service';
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';
 import { InteractionService } from 'app/shared/services/interaction.service';
@@ -11,12 +11,15 @@ import { MapService } from '../../../pages/map/map.service';
 @Component({
     selector: 'htm-nav-bar',
     templateUrl: './navigation-bar.component.html',
-    styleUrls: [ './navigation-bar.component.css' ]
+    styleUrls: [ './navigation-bar.component.css' ],
+
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NavigationBarComponent implements OnInit {
     @Input() leftPanel: LeftSideComponent;
     @Input() rightPanel: RightSideComponent;
+
     private navButtons: any[];
 
     constructor(

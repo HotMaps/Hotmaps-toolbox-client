@@ -1,6 +1,9 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
 import { map_options } from './../../../shared/data.service';
-import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
+import {
+  Component, ViewChild, OnInit, AfterContentInit, OnDestroy, ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Map} from 'leaflet';
 import 'leaflet-draw'
 
@@ -42,6 +45,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     private interactionService: InteractionService) {}
 
   ngAfterContentInit(): void {
+    this.logger.log('MapComponent/ngAfterContentInit');
     this.notifySubscription();
     this.leftPanelComponent.setTitle('Layers');
     this.rightPanelComponent.setTitle('Load Result');
@@ -49,6 +53,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // this.mapService.getGridTest();
   }
   ngOnDestroy() {
+    this.logger.log('MapComponent/ngOnDestroy');
     this.map.remove();
   }
   notifySubscription() {
@@ -105,6 +110,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
+    this.logger.log('MapComponent/ngOnInit');
     // mapService get an instance of the maps and can work on it
     this.mapService.setupMapservice(this.createMap(basemap));
 

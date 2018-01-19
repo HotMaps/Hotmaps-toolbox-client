@@ -1,4 +1,4 @@
-import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 
 import { LoaderService } from '../shared/services/loader.service';
 import {Logger} from '../shared/services/logger.service';
@@ -8,6 +8,7 @@ import {Logger} from '../shared/services/logger.service';
   selector: 'app-root',
   template: `<router-outlet><span *ngIf="showLoader" class="loader-app"><div uk-spinner="ratio:4"></div></span></router-outlet>`,
   styles: [ require<any>('./app.component.css')],
+
 
 })
 

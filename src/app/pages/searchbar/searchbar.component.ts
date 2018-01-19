@@ -1,7 +1,7 @@
 /**
  * Created by lesly on 31.05.17.
  */
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {GeocodingService} from '../../shared/services/geocoding.service';
 import {MapService} from '../map/map.service';
 import {Logger} from '../../shared/services/logger.service';
@@ -12,7 +12,7 @@ import {Map} from 'leaflet';
   selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
   styles: [ require<any>('./searchbar.component.scss') ],
-  providers: []
+
 })
 export class SearchBarComponent implements OnInit {
   address: string;
