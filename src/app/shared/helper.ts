@@ -153,30 +153,42 @@ export class Helper {
     if (this.isNullOrUndefined(num) === true) { return num};
     return this.decimalPipe.transform(num, round_value );
   }
-  formatDataLoadProfil(data) {
-    // console.log(data);
-    // const loadProfileData: LoadProfile;
-    const formattedValues = [];
+  formatHeatLoadForChartjs(data) {
+    const datasetsCharts = [
+      {label: 'Min', data: [], borderColor: '#2889DF', fill: false},
+      {label: 'Max', data: [], borderColor: '#2889DF', fill: false},
+      {label: 'Average', data: [], borderColor: '#d94f5c', fill: false}
+    ];
+    const labels = [];
+    const formattedValues = {labels: [], datas: []};
     data.values.map((value) => {
-      console.log(this.getMonthString(this.getDate(value).getMonth()));
-      const stockValue: Stock2 = {
-        name: this.getMonthString(this.getDate(value).getMonth()),
-        value: Math.round(value.value)
-      };
-      // console.log(stockValue);
-      formattedValues.push(stockValue);
+      datasetsCharts[0].data.push(Math.round(value.min))
+      datasetsCharts[1].data.push(Math.round(value.max))
+      datasetsCharts[2].data.push(Math.round(value.average))
+      formattedValues.labels.push(this.getMonthString(this.getDate(value).getMonth()));
     });
+
+    formattedValues.datas.push(datasetsCharts);
+    return formattedValues;
+  }
+  formatDataLoadProfil(data) {
+    const formattedValues = [];
+    const labels = [];
+    const DataValues = [];
+    data.values.map((value) => {
+      labels.push(this.getMonthString(this.getDate(value).getMonth()));
+      DataValues.push(Math.round(value.max))
+    });
+    formattedValues.push(labels, DataValues);
     return formattedValues;
   }
   private getDate(heatload: any): Date {
     const date = new Date(heatload.year + '-' + heatload.month + '-01');
-    this.logger.log('getDate/date = ' + date );
     return date;
 
   }
   private getMonthString(numberOfMonth) {
     const month = MONTHNAME.filter(m => m.id === numberOfMonth + 1)[0];
-    // console.log(month);
     return month.month;
   }
 

@@ -109,7 +109,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     setSummaryResult(summaryResult: SummaryResultClass) {
         this.summaryResult = summaryResult;
     }
-    setHeatLoadResult(heatLoadResult: Stock2) {
+    setHeatLoadResult(heatLoadResult: any) {
       this.heatLoadResult = heatLoadResult;
     }
     setPoiData(data) {
