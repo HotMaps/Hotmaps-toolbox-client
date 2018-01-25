@@ -17,7 +17,6 @@ export class SidePanelService {
     public heatLoadResultStatus: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     public poiData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-
     topPanelexpandedCollapsed() {
       this.topPanelStatus.next(true);
     }

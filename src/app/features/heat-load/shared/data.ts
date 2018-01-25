@@ -1,3 +1,4 @@
+
 export interface Stock {
   date: Date,
   value: number
@@ -10,6 +11,7 @@ export interface LoadProfile {
   name: string,
   series: Stock2[]
 }
+
 export const load_profile_data: any[] = [
     {
       "name": "Heat load",

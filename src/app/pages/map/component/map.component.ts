@@ -22,8 +22,9 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   showHide = false;
-
+  private nutsIds: string[];
   private map: Map;
+  private layers;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
   // management of initial status of sidebar
   openRightSidebar = false;
@@ -52,6 +53,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
+    this.mapService.getScaleValueSubject().subscribe(() => {
+      this.mapService.setLayersSubject();
+    });
+    this.mapService.getLayerArray().subscribe((data) => {
+      this.layers = data;
+    })
+    this.mapService.getSubscribtionNutsIds().subscribe((data) => {
+      this.nutsIds = data;
+    })
     this.panelService.summaryResultDataStatus.subscribe((data) => {
       this.rightPanelComponent.setSummaryResult(data);
     });

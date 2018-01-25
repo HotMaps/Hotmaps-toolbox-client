@@ -96,7 +96,8 @@ export class LayersService extends APIService {
     } else {
       this.removelayer(action, map);
     }
-    map.fireEvent('didUpdateLayers', this.layersArray)
+    map.fireEvent('didUpdateLayers', this.layersArray);
+
   }
 
   addLayerWithAction(action: string, map: any, order: number) {

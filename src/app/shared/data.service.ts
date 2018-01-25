@@ -31,7 +31,7 @@ export const populationLayerName = 'population_density'
 export const postPopulationDensityInArea    = '/population/density/area/';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
-export const postHeatLoadAggregateMonth = '/load-profile/aggregate/month';
+export const postHeatLoadAggregate = '/load-profile/aggregate/';
 export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
@@ -40,7 +40,15 @@ export const set404url   = 'set404url';
 export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 export const proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 
-
+// Heat load profil
+export const heat_load_api_day = 'day';
+export const heat_load_api_year = 'year';
+export const heat_load_api_month = 'month';
+export const buttons_heat_load = [
+  { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010 },
+  { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1 },
+  { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1 },
+];
 
 
 // layers constant

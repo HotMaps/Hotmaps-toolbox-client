@@ -5,9 +5,11 @@ import { Http, Response } from '@angular/http';
  */
 
 import { BusinessInterfaceRenderService } from './../../shared/business/business.service';
-import { lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
-  MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
-  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD} from './../../shared/data.service';
+import {
+    lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
+    MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
+    MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD
+} from './../../shared/data.service';
 import { basemap } from './basemap';
 
 import { SelectionToolService } from './../../features/selection-tools';
@@ -19,7 +21,7 @@ import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {nuts2DataResult} from './component/mockdata';
+import { nuts2DataResult } from './component/mockdata';
 
 import LatLng = L.LatLng;
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -34,31 +36,34 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private baseMaps: any;
     private areaNutsSelectedLayer: any;
     private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
-
+    private layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
     private tempAreaSelected;
 
     private clickEventSubject = new Subject<any>(); // Observable source for click
     clickEventSubjectObs = this.clickEventSubject.asObservable(); // Observable stream
 
     private drawCreatedSubject = new Subject<any>();
-    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();    
+    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();
 
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
-                private selectionToolService: SelectionToolService,
-                private businessInterfaceRenderService: BusinessInterfaceRenderService,
-                private selectionToolButtonStateService: SelectionToolButtonStateService) {
+        private selectionToolService: SelectionToolService,
+        private businessInterfaceRenderService: BusinessInterfaceRenderService,
+        private selectionToolButtonStateService: SelectionToolButtonStateService) {
         super(http, logger, loaderService, toasterService);
         this.baseMaps = basemap;
     }
     ngOnInit(): void {
         this.logger.log('MapService/ngOnInit()');
+        this.layerArray.next(this.layersService.getLayerArray().keys())
     }
 
     ngOnDestroy(): void {
         this.logger.log('MapService/ngOnDestroy()');
     }
-
+    getSubscribtionNutsIds() {
+        return this.selectionToolService.nutsIdsSubject.asObservable()
+    }
     /**
     * Update the clickCursorSubject
     */
@@ -79,35 +84,35 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // Retrive all map events
     retriveMapEvent(): void {
         const self = this;
-        this.map.on(MAPCLICK, (event: MouseEvent) => {self.onClickEvent(self, event)});
+        this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });
         this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
-        this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self)});
-        this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self)});
-        this.map.on(MAPLAYERSCONTROLEVENT, () => { self.onLayersControlEvent(self)});
-        this.map.on(MAPLAYERADD, () => { self.onLayerAdd(self)});
-        this.map.on(MAPDIDIUPDATELAYER, (event) => { self.onDidUpdateLayers(self, event)});
-        this.map.on(MAPOVERLAYADD, () => { self.onOverLayAdd(self)});
-        this.map.on(MAPDRAWCREATED, (e) => { self.onDrawCreated(self, e)});
-        this.map.on(MAPDRAWEDITED, () => { self.onDrawEdited(self)});
-        this.map.on(MAPDRAWSTART, () => { self.onDrawStart(self)});
-        this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self)});
-        this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self)});
-        this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self)});
+        this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
+        this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
+        this.map.on(MAPLAYERSCONTROLEVENT, () => { self.onLayersControlEvent(self) });
+        this.map.on(MAPLAYERADD, () => { self.onLayerAdd(self) });
+        this.map.on(MAPDIDIUPDATELAYER, (event) => { self.onDidUpdateLayers(self, event) });
+        this.map.on(MAPOVERLAYADD, () => { self.onOverLayAdd(self) });
+        this.map.on(MAPDRAWCREATED, (e) => { self.onDrawCreated(self, e) });
+        this.map.on(MAPDRAWEDITED, () => { self.onDrawEdited(self) });
+        this.map.on(MAPDRAWSTART, () => { self.onDrawStart(self) });
+        this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self) });
+        this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self) });
+        this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self) });
     }
 
     // Event functions
     onDrawCreated(self, e) {
 
-      if (self.selectionScaleService.getScaleValue() === hectare) {
+        if (self.selectionScaleService.getScaleValue() === hectare) {
 
-        self.selectionToolService.drawHectareCreated(e, this.map);
+            self.selectionToolService.drawHectareCreated(e, this.map);
 
-      } else {
-        const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
-        self.selectionToolService.drawCreated(e, this.map, scale_lvl);
-        self.selectionToolService.setIsPolygonDrawer(false);
-        self.drawCreatedUpdate();
-      }
+        } else {
+            const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
+            self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+            self.selectionToolService.setIsPolygonDrawer(false);
+            self.drawCreatedUpdate();
+        }
     }
     onDrawEdited(self) { }
     onDrawStart(self) {
@@ -160,29 +165,29 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.selectionScaleService.changeScale();
     }
     onClickEvent(self, e: MouseEvent) {
-      self.logger.log('MapService/click');
-      self.selectionToolButtonStateService.enable(true); // opens the selection tools
+        self.logger.log('MapService/click');
+        self.selectionToolButtonStateService.enable(true); // opens the selection tools
 
-      // automatic cursor tool selection doesn't work if polygon draw is activated
-      if (!self.selectionToolService.getPolygonDrawerState()) {
-        self.logger.log('self.selectionToolService.getPolygonDrawerState()');
+        // automatic cursor tool selection doesn't work if polygon draw is activated
+        if (!self.selectionToolService.getPolygonDrawerState()) {
+            self.logger.log('self.selectionToolService.getPolygonDrawerState()');
 
-        self.clickCursorUpdate(); // automatic cursor tool selection
-      }
-      // check if the selection toul is activate
-      self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-      if (self.selectionScaleService.getScaleValue() === hectare) {
-        if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
-          const layer = new L.Rectangle(e.latlng.toBounds(100));
-          self.selectionToolService.layerCreatedClick(layer, self.map);
+            self.clickCursorUpdate(); // automatic cursor tool selection
         }
-      } else if (self.selectionScaleService.getScaleValue() === lau2) {
-        self.selectionToolService.enableNavigationService(self.map);
-        self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
-      } else {
-        self.selectionToolService.enableNavigationService(self.map);
-        self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
-      }
+        // check if the selection toul is activate
+        self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
+        if (self.selectionScaleService.getScaleValue() === hectare) {
+            if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
+                const layer = new L.Rectangle(e.latlng.toBounds(100));
+                self.selectionToolService.layerCreatedClick(layer, self.map);
+            }
+        } else if (self.selectionScaleService.getScaleValue() === lau2) {
+            self.selectionToolService.enableNavigationService(self.map);
+            self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
+        } else {
+            self.selectionToolService.enableNavigationService(self.map);
+            self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
+        }
 
     }
     getZoomLevel(): BehaviorSubject<number> {
@@ -200,7 +205,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
 
     // NUTS management
-    getNutsGeometryFromNuts( latlng: LatLng, nuts_level): any {
+    getNutsGeometryFromNuts(latlng: LatLng, nuts_level): any {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
         let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
@@ -210,21 +215,21 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
-         return this.getAreaFromScale(url);
+        return this.getAreaFromScale(url);
     }
     // LAU management;
-      getNutsGeometryFromLau2( latlng: LatLng, nuts_level): any {
+    getNutsGeometryFromLau2(latlng: LatLng, nuts_level): any {
         const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
         const action = lau2name;
         const url = geoserverGetFeatureInfoUrl
-          + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
-          '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
+            + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
+            '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
-      }
+    }
     getAreaFromScale(url): any {
-      return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
-        .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
+        return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+            .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
     }
 
 
@@ -240,10 +245,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             this.removeAreaSelectedlayer();
             // create an other selection only if this is a new area or if no area is actually selected (highlighted)
             const areaNutsSelectedLayer = L.geoJSON(areaSelected);
-            if  (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
-              this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
+            if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
+                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
             } else {
-              this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
+                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
             }
         }
     }
@@ -284,86 +289,95 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.selectionToolService.getMultiSelectionLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();
     }
-  checkZoomLevelLayer(action, zoomLevel) {
-    // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
-  }
+    checkZoomLevelLayer(action, zoomLevel) {
+        // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
+    }
 
-  /**
-   * Activate the drawing tool
-   */
-  drawTool(map: Map, tool: string) {
-      this.selectionToolService.drawTool(map, tool);
-  }
+    /**
+     * Activate the drawing tool
+     */
+    drawTool(map: Map, tool: string) {
+        this.selectionToolService.drawTool(map, tool);
+    }
 
-  /**
-   * Activate the selection tool
-   */
-  clickSelection(map: Map) {
-      this.selectionToolService.clickSelection(map);
-  }
+    /**
+     * Activate the selection tool
+     */
+    clickSelection(map: Map) {
+        this.selectionToolService.clickSelection(map);
+    }
 
-  /**
-   * Load the nuts selection results
-   */
-  loadResultNuts(map: Map) {
-      this.selectionToolService.loadResultNuts(map);
-  }
+    /**
+     * Load the nuts selection results
+     */
+    loadResultNuts(map: Map) {
+        this.selectionToolService.loadResultNuts(map);
+    }
 
-  /**
-   * Clear the selection(s)
-   */
-  clearAll(map: Map) {
-      this.selectionToolService.clearAll(map);
-  }
+    /**
+     * Clear the selection(s)
+     */
+    clearAll(map: Map) {
+        this.selectionToolService.clearAll(map);
+    }
 
-  /**
-   * Get the nutsSelected Subject of SelectionToolService
-   */
-  getNutsSelectedSubject(): Subject<number> {
-      return this.selectionToolService.getNutsSelectedSubject();
-  }
+    /**
+     * Get the nutsSelected Subject of SelectionToolService
+     */
+    getNutsSelectedSubject(): Subject<number> {
+        return this.selectionToolService.getNutsSelectedSubject();
+    }
 
-  /**
-   * Get the EnableLoadResultSubjectObs of SelectionToolService
-   */
-  getEnableLoadResultSubjectObs() {
-      return this.selectionToolService.enableLoadResultSubjectObs;
-  }
+    /**
+     * Get the EnableLoadResultSubjectObs of SelectionToolService
+     */
+    getEnableLoadResultSubjectObs() {
+        return this.selectionToolService.enableLoadResultSubjectObs;
+    }
 
-  /**
-   * Get the EnableClearAllSubjectObs of SelectionToolService
-   */
-  getEnableClearAllSubjectObs() {
-      return this.selectionToolService.enableClearAllSubjectObs;
-  }
+    /**
+     * Get the EnableClearAllSubjectObs of SelectionToolService
+     */
+    getEnableClearAllSubjectObs() {
+        return this.selectionToolService.enableClearAllSubjectObs;
+    }
 
-  /**
-   * Get the DisableLoadResultSubjectObs of SelectionToolService
-   */
-  getDisableLoadResultSubjectObs() {
-      return this.selectionToolService.disableLoadResultSubjectObs;
-  }
+    /**
+     * Get the DisableLoadResultSubjectObs of SelectionToolService
+     */
+    getDisableLoadResultSubjectObs() {
+        return this.selectionToolService.disableLoadResultSubjectObs;
+    }
 
-  /**
-   * Get the DisbleClearAllSubjectObs of SelectionToolService
-   */
-  getDisbleClearAllSubjectObs() {
-      return this.selectionToolService.disbleClearAllSubjectObs;
-  }
+    /**
+     * Get the DisbleClearAllSubjectObs of SelectionToolService
+     */
+    getDisbleClearAllSubjectObs() {
+        return this.selectionToolService.disbleClearAllSubjectObs;
+    }
 
-  /**
-   * Get the ScaleValueSubject of SelectionScaleService
-   */
-  getScaleValueSubject(): Subject<string> {
-      return this.selectionScaleService.scaleValueSubject;
-  }
+    /**
+     * Get the ScaleValueSubject of SelectionScaleService
+     */
+    getScaleValueSubject(): Subject<string> {
+        return this.selectionScaleService.scaleValueSubject;
+    }
 
-  /**
-   * Get the ScaleValue of SelectionScaleService
-   */
-  getScaleValue() {
-      return this.selectionScaleService.getScaleValue();
-  }
+    /**
+     * Get the ScaleValue of SelectionScaleService
+     */
+    getScaleValue() {
+        return this.selectionScaleService.getScaleValue();
+    }
 
-
+    setLayersSubject() {
+        const layers = [];
+        this.layersService.getLayerArray().keys().map((layersName) => {
+            layers.push(layersName + this.businessInterfaceRenderService.getNutsTosuffix(this.selectionScaleService.getScaleValue()));
+        });
+        this.layerArray.next(layers);
+    }
+    getLayerArray() {
+        return this.layerArray;
+    }
 }

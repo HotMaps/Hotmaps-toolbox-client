@@ -25,6 +25,7 @@ import { Subject } from 'rxjs/Subject';
 import {geoserverUrl, lau2name} from '../../shared';
 import {APIService, ToasterService} from '../../shared/services';
 import {Http} from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
@@ -48,6 +49,8 @@ export class SelectionToolService extends APIService  {
   enableClearAllSubjectObs = this.enableClearAllSubject.asObservable();
   private disableClearAllSubject = new Subject<any>();
   disbleClearAllSubjectObs = this.disableClearAllSubject.asObservable();
+
+  nutsIdsSubject = new BehaviorSubject<string[]>([]);
   // ONLY FOR HECTAR (POPUP)
   private containerPopup: any;
   private popupTitle: any;
@@ -59,7 +62,10 @@ export class SelectionToolService extends APIService  {
   constructor(http: Http, logger: Logger,  loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
     private interactionService: InteractionService
-  ) {super(http, logger, loaderService, toasterService); }
+  ) {
+    super(http, logger, loaderService, toasterService);
+  }
+
   // ===============================================================================================================
   // ONLY FOR HECTAR (POPUP)
   createButtons(type) {
@@ -100,7 +106,6 @@ export class SelectionToolService extends APIService  {
       } else  if (this.currentLayer instanceof L.Polygon) {
         this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
       }else  if (this.currentLayer instanceof L.latLng) {
-
         this.getStatisticsFromLayer(this.getLocationsFromPolygon(this.currentLayer), layerNameArray, map)
       } else {
         const layerNutsArray = [];
@@ -211,43 +216,37 @@ export class SelectionToolService extends APIService  {
             this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) );
       }
       this.logger.log('layerNameArray ' + layerNameArray);
-      this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray, map);
+      this.getStatisticsFromIds(Array.from(this.nutsIds), layerNameArray);
   }
-// Summary result show result
-  getStatisticsFromIds(nutsIds: string[], layers: string[], map: any) {
-    const self = this;
-    const request = [];
-    this.loaderService.display(true);
+  summaryResultRequest(nutsIds: string[], layers: string[]) {
     const payload: PlayloadStatNuts = { layers: layers, year: constant_year, nuts: nutsIds }
     const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
-     // this.editableLayers.clearLayers();
-      this.displaySummaryResult(result, map);
-    }).catch();
-    request.push(summaryPromise);
-    this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+      this.displaySummaryResult(result);
+    }).catch((e) => {this.logger.log(JSON.stringify(e))});
+  }
+  heatloadRequest(nutsIds: string[], layers: string[]) {
     if ((this.scaleValue === nuts2) || (this.scaleValue === nuts3)) {
 
       this.logger.log('nuts_id =  ' + this.nutsIds.values());
-      const heatLoadPayload = {
-        'year': 2010,
-        'nuts': Array.from(this.nutsIds.values()),
+      const payload = {
+        'year': 2010, 'month': 1, 'day': 1, 'nuts': nutsIds,
         'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
       }
-        const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+        const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(payload, 'year').then(result => {
         this.logger.log('heatLoadresult ' + JSON.stringify(result));
         const data = this.helper.formatDataLoadProfil(result);
         this.displayHeatLoad(result);
       }).catch();
-      request.push(heatloadPromise);
     } else {
       this.displayHeatLoad(null);
     }
-    Promise
-      .all(request)
-      .then(values => {
-        this.logger.log('Promise then ' + values);
-      });
-
+  }
+// Summary result show result
+  getStatisticsFromIds(nutsIds: string[], layers: string[]) {
+    this.logger.log('getStatisticsFromIds/this.scaleValue ' + this.scaleValue)
+    this.loaderService.display(true);
+    this.summaryResultRequest(nutsIds, layers)
+    this.heatloadRequest(nutsIds, layers)
   }
   enableNavigationService( map: any) {
     this.interactionService.enableButtonWithId('selection');
@@ -363,7 +362,7 @@ export class SelectionToolService extends APIService  {
     const summaryPromise = this.interactionService.getSummaryResultWithPayload(payload).then(result => {
       console.log(result );
 
-      this.displaySummaryResult(result, map);
+      this.displaySummaryResult(result);
     }).catch();
     request.push(summaryPromise);
     this.logger.log('getStatisticsFromLayer/this.scaleValue ' + this.scaleValue)
@@ -376,7 +375,7 @@ export class SelectionToolService extends APIService  {
         'nuts_level': this.businessInterfaceRenderService.convertNutsToApiName(this.scaleValue)
       }
       console.log(heatLoadPayload);
-      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload).then(result => {
+      const heatloadPromise = this.interactionService.getLoadProfileAggregateResultWithPayload(heatLoadPayload, 'year').then(result => {
       //  this.logger.log('heatLoadPayload ' + JSON.stringify(result));
         const data = this.helper.formatDataLoadProfil(result);
         this.displayHeatLoad(data);
@@ -403,15 +402,12 @@ export class SelectionToolService extends APIService  {
     this.logger.log('SelectionToolService/openPopup');
     this.currentLayer.openPopup();
   }
-  displaySummaryResult(result: any, map: any) {
-    // this.logger.log('displaySummaryResult');
+  displaySummaryResult(result: any) {
     this.interactionService.openRightPanel();
     this.interactionService.setSummaryResultData(result);
     this.interactionService.enableButtonWithId('load_result');
     this.interactionService.enableStateOpenWithFunction('right');
     this.loaderService.display(false);
-    // this.logger.log('this.loaderService.display(false) ;' + JSON.stringify(result) );
-    // this.drawResult(result, map)
   }
 
   toggleControl(map: any) {
@@ -526,6 +522,7 @@ export class SelectionToolService extends APIService  {
       this.disableButtonLoad();
     }
     this.nbNutsSelectedSubject.next(this.nutsIds.size);
+    this.nutsIdsSubject.next(Array.from(this.nutsIds));
   }
   drawResultBeforeLoadingResult(result: any) {
     this.logger.log('result is ' + result);

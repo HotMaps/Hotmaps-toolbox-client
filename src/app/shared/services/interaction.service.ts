@@ -12,7 +12,7 @@ import { LayersService } from 'app/features/layers';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
 
 @Injectable()
 export class InteractionService {
@@ -86,8 +86,8 @@ export class InteractionService {
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-    getLoadProfileAggregateResultWithPayload(payload): Promise<any> {
-      return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload);
+    getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
+        return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
     }
 
     setLoadProfileAggregateResultData(data) {

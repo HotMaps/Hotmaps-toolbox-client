@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphicalViewComponent } from './graphical-view.component';
+import { HeatLoadChartComponent } from './heat-load-chart.component';
 import {HeatLoadAggregateService} from '../heat-load.service';
 import { Logger } from 'app/shared';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('GraphicalViewComponent', () => {
-  let component: GraphicalViewComponent;
-  let fixture: ComponentFixture<GraphicalViewComponent>;
+  let component: HeatLoadChartComponent;
+  let fixture: ComponentFixture<HeatLoadChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphicalViewComponent ],
+      declarations: [ HeatLoadChartComponent ],
       providers: [
         {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
         {provide: Logger, useClass: Logger},
@@ -24,7 +24,7 @@ describe('GraphicalViewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphicalViewComponent);
+    fixture = TestBed.createComponent(HeatLoadChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

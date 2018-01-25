@@ -3,9 +3,9 @@ import {Logger} from './services';
 import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
 import {round_value} from './data.service';
-import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import {GeojsonClass} from '../features/layers/class/geojson.class';
+import { DatasetChart } from 'app/features/chart/chart';
 
 @Injectable()
 export class Helper {
@@ -154,29 +154,33 @@ export class Helper {
     return this.decimalPipe.transform(num, round_value );
   }
   formatHeatLoadForChartjs(data) {
-    const datasetsCharts = [
+    const datasets: DatasetChart[] = [
       {label: 'Min', data: [], borderColor: '#2889DF', fill: false},
       {label: 'Max', data: [], borderColor: '#2889DF', fill: false},
       {label: 'Average', data: [], borderColor: '#d94f5c', fill: false}
     ];
     const labels = [];
-    const formattedValues = {labels: [], datas: []};
+    const formattedValues = [];
+
     data.values.map((value) => {
-      datasetsCharts[0].data.push(Math.round(value.min))
-      datasetsCharts[1].data.push(Math.round(value.max))
-      datasetsCharts[2].data.push(Math.round(value.average))
-      formattedValues.labels.push(this.getMonthString(this.getDate(value).getMonth()));
+      datasets[0].data.push(Math.round(value.min))
+      datasets[1].data.push(Math.round(value.max))
+      datasets[2].data.push(Math.round(value.average))
+      labels.push(this.getMonthString(this.getDate(value).getMonth(),1));
     });
 
-    formattedValues.datas.push(datasetsCharts);
+    formattedValues.push(datasets, labels);
     return formattedValues;
   }
-  formatDataLoadProfil(data) {
+  validateDate(buttons) {
+    console.log(buttons)
+  }
+   formatDataLoadProfil(data) {
     const formattedValues = [];
     const labels = [];
     const DataValues = [];
     data.values.map((value) => {
-      labels.push(this.getMonthString(this.getDate(value).getMonth()));
+      labels.push(this.getMonthString(this.getDate(value).getMonth(), 1));
       DataValues.push(Math.round(value.max))
     });
     formattedValues.push(labels, DataValues);
@@ -187,8 +191,8 @@ export class Helper {
     return date;
 
   }
-  private getMonthString(numberOfMonth) {
-    const month = MONTHNAME.filter(m => m.id === numberOfMonth + 1)[0];
+  getMonthString(numberOfMonth, index) {
+    const month = MONTHNAME.filter(m => m.id === numberOfMonth + index)[0];
     return month.month;
   }
 

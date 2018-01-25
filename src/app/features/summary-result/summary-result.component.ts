@@ -42,6 +42,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   @Input() poiData;
   @Input() poiTitle;
   @Input('summaryResult') summaryResult: SummaryResultClass;
+  @Input() nutsIds;
 
   expandedState = 'collapsed';
   busy: Promise<any>;
@@ -57,6 +58,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   }
   ngOnChanges() {
     this.logger.log('SummaryResultComponent/ngOnChanges');
+    console.log(this.nutsIds);
     this.scale = this.selectionScaleService.getScaleValue();
     if (this.selectionScaleService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;

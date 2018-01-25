@@ -4,28 +4,32 @@
     <a [@iconTrigger]="expandedState" class="link" (click)="toggleExpandedState('right'); closePanel('right')">
       <i class="flaticon-cross" aria-hidden="true"></i>
     </a>
-      <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
+    <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
 
   </div>
-<div *ngIf="heatLoadResult;then energy_stat_content else normal_content" class="energy-statistic"></div>
-<ng-template #energy_stat_content>
-  <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
-    <li id="tab1"><a href="">Summary</a></li>
-    <li id="tab2"><a href="">Energy Statistics</a></li>
+  <div *ngIf="heatLoadResult;then energy_stat_content else normal_content" class="energy-statistic"></div>
+  <ng-template #energy_stat_content>
+    <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
+      <li id="tab1">
+        <a href="">Summary</a>
+      </li>
+      <li id="tab2">
+        <a href="">Energy Statistics</a>
+      </li>
 
-  </ul>
-  <ul id="my-id3" class="uk-switcher">
-    <li><htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result></li>
-    <li><htm-graphical-view [heatLoadResult]="heatLoadResult" [expanded]="expanded" ></htm-graphical-view></li>
+    </ul>
+    <ul id="my-id3" class="uk-switcher">
+      <li>
+        <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded" [nutsIds]="nutsIds" [layers]="layers"></htm-summary-result>
+      </li>
+      <li>
+        <htm-heat-load-chart [heatLoadResult]="heatLoadResult" [expanded]="expanded" [nutsIds]="nutsIds" [layers]="layers"></htm-heat-load-chart>
+      </li>
 
-  </ul>
-</ng-template>
+    </ul>
+  </ng-template>
 
-<ng-template #normal_content> <li><htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result></li>
-</ng-template>
-
-<!-- This is the container of the content items -->
-
-<!--  <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result>-->
-
+  <ng-template #normal_content>
+    <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result>
+  </ng-template>
 </div>

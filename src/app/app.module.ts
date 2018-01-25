@@ -47,8 +47,9 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/selection-tool/selection-tool.component';
-import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
+import { HeatLoadChartComponent } from './features/heat-load/component/';
 import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
+import { ChartComponent } from './features/chart/chart.component';
 
 
 @NgModule({
@@ -81,8 +82,9 @@ import { HeatLoadAggregateService } from './features/heat-load/heat-load.service
     LayerNamePipe,
     BusinessNamePipe,
     FeedbackComponent,
-    GraphicalViewComponent,
-    SelectionToolComponent
+    HeatLoadChartComponent,
+    SelectionToolComponent,
+    ChartComponent
   ],
 
   providers: [

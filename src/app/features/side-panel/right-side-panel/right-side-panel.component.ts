@@ -9,14 +9,16 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    Input,
+    SimpleChanges
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
-import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize } from 'app/shared';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -92,11 +94,14 @@ import { rightPanelSize } from 'app/shared';
         ])
     ]
 })
-export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
+export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     private summaryResult: SummaryResultClass = null;
-    private heatLoadResult: Stock2 = null;
+    private heatLoadResult: any = null;
     private poiData;
     private poiTitle;
+    @Input() nutsIds;
+    @Input() layers;
+    
     constructor(protected interactionService: InteractionService) {
         super(interactionService);
     }
@@ -105,6 +110,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
     ngOnDestroy() {
 
+    }
+    ngOnChanges(change: SimpleChanges) {
+        console.log('RightSideComponent/ngOnChanges');
     }
     setSummaryResult(summaryResult: SummaryResultClass) {
         this.summaryResult = summaryResult;
