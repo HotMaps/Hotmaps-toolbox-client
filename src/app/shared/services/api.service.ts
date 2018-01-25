@@ -1,6 +1,10 @@
 /**
  * Created by lesly on 19.07.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';

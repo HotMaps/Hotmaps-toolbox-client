@@ -1,6 +1,10 @@
 /**
  * Created by lesly on 31.05.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Component, OnInit} from '@angular/core';
 import {GeocodingService} from '../../shared/services/geocoding.service';
 import {MapService} from '../map/map.service';
@@ -23,6 +27,10 @@ export class SearchBarComponent implements OnInit {
               private logger: Logger, private loaderService: LoaderService) {
     this.address = '';
   }
+
+  // Improvement of coding style : 
+  // use lower camel case to name methods 
+  // this method doesn't do anything, we can delete it
   Initialize() {
   }
 

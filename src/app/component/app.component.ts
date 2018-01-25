@@ -16,7 +16,11 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
 
 
 
-  // management of initial status of general loading
+
+  /**
+   * management of initial status of general loading
+   * AppComponent own general loading
+   */
   showLoader: boolean;
 
   constructor(
@@ -24,10 +28,14 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
   }
 
   ngAfterContentInit(): void {
+
    this.notifyLoaderService();
 
   }
-
+  /**
+   * subcribe the status of the loader service
+   * AppComponent own general loading
+   */
   notifyLoaderService() {
 
     this.loaderService.status.subscribe((val: boolean) => {

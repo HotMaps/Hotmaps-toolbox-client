@@ -1,6 +1,10 @@
 /**
  * Created by lesly on 27.05.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {Component, OnInit} from '@angular/core';
 import {MapService} from '../map/map.service';
 import { MouseEvent} from 'leaflet';
@@ -33,6 +37,8 @@ export class ToolbarComponent implements OnInit {
     this.mapService.disableMouseEvent('toggle-layer'); */
   }
 
+  // Improvement of coding style : 
+  // use lower camel case to name methods 
   Initialize() {
     this.logger.log('ToolbarComponent/Initialize');
 

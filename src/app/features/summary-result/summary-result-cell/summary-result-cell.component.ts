@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import {
     Component,
     OnInit,
@@ -33,6 +36,8 @@ import { SummaryResultClass } from '../summary-result.class';
     ]
 })
 export class SummaryResultCellComponent implements OnInit {
+    // Improvement of coding style : 
+    // place private members after public members, alphabetized
     @Input() summaryResult: SummaryResultClass;
     @Input() expanded: boolean;
 

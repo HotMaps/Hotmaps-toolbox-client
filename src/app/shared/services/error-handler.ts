@@ -2,6 +2,8 @@
  * Created by lesly on 13.07.17.
  */
 
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
 import { ErrorHandler, Injectable, Injector} from '@angular/core';
 import {ToasterService} from './toaster.service';
 import {LoaderService} from './loader.service';

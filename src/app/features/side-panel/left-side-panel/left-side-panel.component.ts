@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
     Component,
@@ -65,6 +68,8 @@ import { leftPanelSize } from 'app/shared';
   providers: [DataInteractionService],
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
+  // Improvement of coding style : 
+  // place private members after public members, alphabetized
   expanded = false;
   expandedState = 'collapsed';
 
@@ -79,6 +84,9 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
       this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
      }
+     // Improvement of coding style : 
+     // make data services responsible for XHR calls, local storage, stashing in memory, or any other data operations
+     // this method should be in a service and not in a component (not sure)
      getLayerAndCategory(layers: any) {
        this.layers = layers
        this.category = layers.map(item => item.category)

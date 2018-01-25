@@ -2,6 +2,10 @@
 /**
  * Created by lesly on 28.06.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
 import {ComponentFixture, TestBed, async, inject, tick, fakeAsync} from '@angular/core/testing';
 import { AppComponent } from './app.component';

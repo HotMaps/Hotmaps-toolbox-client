@@ -1,6 +1,10 @@
 /**
  * Created by lesly on 14.06.17.
  */
+
+ // Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { AppComponent } from '../src/app/component/app.component';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';

@@ -27,8 +27,12 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Dependencies
+## Add Documentation
 
-Swimlane module version should not be greater than 5.3.1
-Minimum: 
- - @angular/core@^4.1.0
+1. Run `npm install --save-dev @compodoc/compodoc@1.0.3` to install the version 1.0.3 of [Compodoc](https://compodoc.github.io/website/).
+2. Define a script task for it in your package.json :
+	"scripts": {
+  		"compodoc": "./node_modules/.bin/compodoc -p tsconfig.json"
+	}
+3. Run `npm run compodoc` to generate the documentation files.
+4. Run `./node_modules/.bin/compodoc -s` to serve the generated documentation (default http://localhost:8080/)

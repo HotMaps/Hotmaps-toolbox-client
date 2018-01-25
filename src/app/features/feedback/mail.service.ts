@@ -11,6 +11,10 @@ export class MailService {
   platform: Platform;
   url: string;
     constructor(private logger: Logger) { }
+
+    /**
+    * Send the email
+    */  
     sendEmail() {
       this.initService();
       window.open(this.url, 'newwindow', 'width=1070, height=600');
@@ -23,6 +27,10 @@ export class MailService {
         this.constructUrl();
       }
     }
+
+  /**
+  * Fetch properties for the mail
+  */    
   fetchProperties() {
     this.properties.url = this.properties.url || this.getMetaContent('og:url') || window.location.href.toString();
     this.properties.title = this.properties.title || this.getMetaContent('og:title') || document.title;
@@ -30,6 +38,8 @@ export class MailService {
     this.properties.image = this.properties.image || this.getMetaContent('og:image');
     this.properties.via = this.properties.via || this.getMetaContent('n2s:via');
     this.properties.hashtags = this.properties.hashtags || this.getMetaContent('n2s:hashtags');
+    // Improvement of coding style : (with codelyzer)
+    // Identifier 'p' is never reassigned; use 'const' instead of 'let' (also 'val' and 'key')
     for (let p in this.properties) {
       if (this.properties.hasOwnProperty(p)) {
         this.properties[p] = encodeURIComponent(this.properties[p]);
@@ -37,6 +47,9 @@ export class MailService {
     }
   }
 
+  /**
+  * Construct the url for the mail 
+  */ 
   constructUrl() {
     this.url = this.platform.url + this.properties.url;
     if (this.platform.properties) {
@@ -51,6 +64,8 @@ export class MailService {
   }
   getMetaContent(property: string) {
     const elem = document.querySelector(`meta[property='${property}']`);
+    // Improvement of coding style : (with codelyzer)
+    // if statements must be braced
     if (elem)
       return elem.getAttribute('content');
     return '';

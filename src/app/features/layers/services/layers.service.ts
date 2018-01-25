@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { wwtp_data } from './../mock/wwtp.data';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
@@ -27,6 +30,9 @@ const proj4 = (proj4x as any).default;
 
 @Injectable()
 export class LayersService extends APIService {
+
+  // Improvement of coding style : 
+  // place private members after public members, alphabetized
   private layers = new L.FeatureGroup();
   private zoom_layerGroup: L.LayerGroup;
   private current_nuts_level = '0';
@@ -43,6 +49,9 @@ export class LayersService extends APIService {
 
   ]);
   private popup = L.popup();
+
+  // Improvement of coding style : 
+  // put constructor in top of all methods
   public getLayers(): any {
     return this.layers;
   }

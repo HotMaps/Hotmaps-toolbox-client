@@ -1,4 +1,8 @@
 /* tslint:disable:no-unused-variable */
+
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 import { GeocodingService } from './geocoding.service';
 import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions } from '@angular/http';
@@ -69,6 +73,8 @@ describe('geocodingService', () => {
 
   it('should geocode() from lausannne',
     inject([GeocodingService, MockBackend], fakeAsync((geocodingService: GeocodingService, mockBackend: MockBackend) => {
+      // Improvement of coding style : (with codelyzer)
+      // Identifier 'res' is never reassigned; use 'const' instead of 'let'
       let res: Response;
       let location = new LocationClass();
       mockBackend.connections.subscribe(c => {

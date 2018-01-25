@@ -1,3 +1,6 @@
+// Improvement of coding style : 
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
 import { SelectionScaleClass  } from './class/selection-scale.class';
 import {
   business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare,
