@@ -513,7 +513,7 @@ export class SelectionToolService extends APIService {
         this.updateSelectionToolAction();
       }
     }
-    this.loaderService.display(false);
+    //this.loaderService.display(false);
   }
 
 }

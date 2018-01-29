@@ -11,6 +11,11 @@
     background-color: #1e87f0;
     color: white;
 }
+.waitingbox {
+    height: 150px;
+    width: 100%;
+    position: relative;
+}
 .title {
     height: 50px;
     width: 100%;

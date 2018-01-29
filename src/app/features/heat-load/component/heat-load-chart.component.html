@@ -1,5 +1,5 @@
 
-<div class="uk-card uk-card-body htm-card">
+<div class="uk-card uk-card-body htm-card" [hidden]="loadingData">
   <div class="title">
     <h5 class="uk-card-title" style="float:left;margin-bottom: 0px;">{{subtitle}} </h5>
     <div class="uk-button-group date-buttons" style="float:right;">
@@ -17,7 +17,9 @@
     <span class="right" (click)="incrementDate()" [hidden]="selectedButton.api_ref=='year'">Next {{selectedButton.api_ref}} <span uk-icon="icon:triangle-right"></span></span>
   </div>
   <div class="lineargraph">
-    <div *ngIf="loadingData" class="spinner" uk-spinner></div>
     <htm-chart [datasets]="datasets" [labels]="labels" [type]="type"></htm-chart>
   </div>
+</div>
+<div *ngIf="loadingData" class="waitingbox">
+  <div class="spinner" uk-spinner></div>
 </div>
