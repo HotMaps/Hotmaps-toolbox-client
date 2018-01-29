@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import {  } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Logger } from 'app/shared';
 
 @Component({
   selector: 'htm-chart',
@@ -12,19 +12,17 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() datasets;
   @Input() labels;
   @Input() type = 'line';
-  
+  @Input() updateChart;
+
   private chart: Chart;
 
-  constructor() { }
+  constructor(private logger: Logger) { }
 
   ngOnInit() {
-    console.log('ChartComponent/ngOnInit()');
-    console.log(this.datasets);
-    console.log(this.labels);
-    console.log(this.type);
+    this.logger.log('ChartComponent/ngOnInit()');
   }
   ngOnChanges() {
-    console.log('ChartComponent/ngOnChange()');
+    this.logger.log('ChartComponent/ngOnChange()');
     this.createChart();
   }
   ngAfterViewInit() {

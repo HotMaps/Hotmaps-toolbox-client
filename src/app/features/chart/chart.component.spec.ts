@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChartComponent } from './chart.component';
+import { Logger } from 'app/shared';
 
 describe('ChartComponent', () => {
   let component: ChartComponent;
@@ -8,7 +9,10 @@ describe('ChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
+      declarations: [ ChartComponent ],
+      providers: [
+        { provide: Logger, useClass: Logger }
+      ]
     })
     .compileComponents();
   }));

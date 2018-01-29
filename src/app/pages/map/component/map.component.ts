@@ -9,8 +9,9 @@ import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../.
 import { Logger } from '../../../shared';
 import { MapService } from '../map.service';
 import { SearchBarComponent } from '../../searchbar';
-import { SelectionToolButtonStateService } from 'app/features/selection-tools';
+import { SelectionToolButtonStateService, SelectionToolService } from 'app/features/selection-tools';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { Location } from '../../../shared/class/location/location';
 
 @Component({
   selector: 'htm-map',
@@ -23,9 +24,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   showHide = false;
   private nutsIds: string[];
+  private locationsSelection: Location[];
   private map: Map;
   private layers;
+  private scaleLevel;
+  private heatloadStatus;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
+
   // management of initial status of sidebar
   openRightSidebar = false;
   openRightToggleExpanded = false;
@@ -40,7 +45,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   constructor(private mapService: MapService, private logger: Logger,
     private panelService: SidePanelService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
-    private interactionService: InteractionService) {}
+    private selectionToolService: SelectionToolService,
+    private interactionService: InteractionService
+  ) {}
 
   ngAfterContentInit(): void {
     this.notifySubscription();
@@ -53,25 +60,26 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
-    this.mapService.getScaleValueSubject().subscribe(() => {
-      this.mapService.setLayersSubject();
+    this.panelService.lauchHeatloadCalculationStatus.subscribe((value) => {
+      this.heatloadStatus = value;
     });
-    this.mapService.getLayerArray().subscribe((data) => {
-      this.layers = data;
-    })
-    this.mapService.getSubscribtionNutsIds().subscribe((data) => {
+    if (this.mapService.getScaleValueSubject() !== null) {
+      this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
+        this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
+        this.mapService.setLayersSubject();
+      });
+    }
+    if (this.mapService.getLayerArray() !== null) {
+      this.mapService.getLayerArray().subscribe((data) => {
+        this.layers = data;
+      });
+    }
+    this.selectionToolService.nutsIdsSubject.subscribe((data) => {
       this.nutsIds = data;
-    })
-    this.panelService.summaryResultDataStatus.subscribe((data) => {
-      this.rightPanelComponent.setSummaryResult(data);
     });
-    this.panelService.heatLoadResultStatus.subscribe((data) => {
-      this.rightPanelComponent.setHeatLoadResult(data);
+    this.selectionToolService.locationsSubject.subscribe((data) => {
+      this.locationsSelection = data;
     });
-    this.panelService.poiData.subscribe((data) => {
-      this.rightPanelComponent.setPoiData(data);
-    });
-
     this.panelService.rightToggleExpandedStatus.subscribe((val: boolean) => {
       if (this.openRightToggleExpanded === false) {
         this.openRightToggleExpanded = true;
@@ -80,9 +88,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.openRightSidebar = val;
       }
     });
-    /*this.mapService.getZoomLevel().subscribe((zoomlevel) => {
-      this.zoomlevel = zoomlevel;
-    })*/
+    if (this.mapService.getZoomLevel() !== null) {
+      this.mapService.getZoomLevel().subscribe((zoomlevel) => {
+        this.zoomlevel = zoomlevel;
+      });
+    }
     this.panelService.topPanelStatus.subscribe((val: boolean) => {
       if (this.openTopSidebar === false) {
         this.openTopSidebar = true;
@@ -124,7 +134,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // main method create and display map (main purpose of this component)
   createMap(basemap: any): Map {
     // setup  the map from leaflet
-    let self = this;
+    const self = this;
     this.map = L.map('map', map_options);
     L.control.zoom({ position: 'topright' }).addTo(this.map);
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,

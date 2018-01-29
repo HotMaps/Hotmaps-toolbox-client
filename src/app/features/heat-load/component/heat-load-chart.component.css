@@ -1,8 +1,11 @@
 .htm-card {
     padding: 10px;
 }
-.lineargraph{
-    height: 400px;
+.spinner {
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    color: black; 
 }
 .activebutton{
     background-color: #1e87f0;

@@ -17,6 +17,7 @@
     <span class="right" (click)="incrementDate()" [hidden]="selectedButton.api_ref=='year'">Next {{selectedButton.api_ref}} <span uk-icon="icon:triangle-right"></span></span>
   </div>
   <div class="lineargraph">
+    <div *ngIf="loadingData" class="spinner" uk-spinner></div>
     <htm-chart [datasets]="datasets" [labels]="labels" [type]="type"></htm-chart>
   </div>
 </div>

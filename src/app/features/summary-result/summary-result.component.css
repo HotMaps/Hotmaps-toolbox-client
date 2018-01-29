@@ -7,8 +7,20 @@
   min-height: 0;
   overflow: hidden;
 }
-
-
+.uk-table{
+  margin-top: 0px;
+}
+/* .wait-graph-container{
+  background-color: rgba(71, 71, 71, 0.3);
+  position: relative;
+} */
+.spinner {
+  position: absolute; 
+  left: 50%; 
+  top: 50%; 
+  color: black;
+  margin: 15px 15px 15px -25px;
+}
 i {
   font-size: 1.5em;
 }

@@ -10,6 +10,7 @@ import { DatasetChart } from 'app/features/chart/chart';
 @Injectable()
 export class Helper {
   private monthData = MONTHNAME;
+
   constructor(private logger: Logger, private decimalPipe: DecimalPipe) {
   }
 
@@ -152,28 +153,6 @@ export class Helper {
   round(num: string): string {
     if (this.isNullOrUndefined(num) === true) { return num};
     return this.decimalPipe.transform(num, round_value );
-  }
-  formatHeatLoadForChartjs(data) {
-    const datasets: DatasetChart[] = [
-      {label: 'Min', data: [], borderColor: '#2889DF', fill: false},
-      {label: 'Max', data: [], borderColor: '#2889DF', fill: false},
-      {label: 'Average', data: [], borderColor: '#d94f5c', fill: false}
-    ];
-    const labels = [];
-    const formattedValues = [];
-
-    data.values.map((value) => {
-      datasets[0].data.push(Math.round(value.min))
-      datasets[1].data.push(Math.round(value.max))
-      datasets[2].data.push(Math.round(value.average))
-      labels.push(this.getMonthString(this.getDate(value).getMonth(),1));
-    });
-
-    formattedValues.push(datasets, labels);
-    return formattedValues;
-  }
-  validateDate(buttons) {
-    console.log(buttons)
   }
    formatDataLoadProfil(data) {
     const formattedValues = [];

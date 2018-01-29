@@ -19,9 +19,10 @@ import { HeatLoadAggregateService } from 'app/features/heat-load/heat-load.servi
 })
 export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() expanded: boolean;
-  @Input('heatLoadResult') heatLoadResult: Stock2[];
   @Input() nutsIds;
   @Input() layers;
+  @Input() scaleLevel;
+  @Input() heatloadStatus;
 
   private buttons_date_type;
   private chart: Chart;
@@ -33,26 +34,24 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private selectedButton;
   private titleDate;
   private default_year = 2010;
+  private loadingData = false;
 
   constructor(private logger: Logger, private helper: Helper, private heatLoadAggregateService: HeatLoadAggregateService) {
   }
   ngOnInit() {
+    this.logger.log('HeatLoadChartComponent/ngOnInit');
     this.initComponent();
+    this.update()
   }
+
   ngOnDestroy() {
     this.logger.log('HeatLoadChartComponent/ngOnDestroy');
     this.unselectButtons();
     this.initComponent();
   }
   ngOnChanges(changes: SimpleChanges) {
-    this.loadProfileData = [];
     this.logger.log('HeatLoadChartComponent/ngOnChanges');
-    console.log(this.nutsIds);
-    if (changes.heatLoadResult !== undefined) {
-      this.loadProfileData = this.helper.formatHeatLoadForChartjs(this.heatLoadResult);
-      this.datasets = this.loadProfileData[0];
-      this.labels = this.loadProfileData[1];
-    }
+    this.update();
   }
   initComponent() {
     this.buttons_date_type = buttons_heat_load;
@@ -95,13 +94,28 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     if (this.selectedButton.api_ref === heat_load_api_month) {
       return this.helper.getMonthString(button.date, 0)
     } else {
-      return button.date;
+      return button.name + ' ' + button.date;
     }
   }
   update() {
-    const payload = ''
-    this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, this.selectedButton.api_ref).then((result) => {
-      console.log(result)
-    })
+    this.logger.log('HeatLoadComponent/update');
+    if (this.buttons_date_type !== undefined) {
+      this.loadingData = true;
+      const payload = {
+        'year': this.buttons_date_type[0].date,
+        'month': this.buttons_date_type[1].date,
+        'day': this.buttons_date_type[2].date,
+        'nuts': this.nutsIds,
+        'nuts_level': this.scaleLevel
+      }
+      this.heatLoadAggregateService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
+        this.loadProfileData = [];
+        this.loadProfileData = this.heatLoadAggregateService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
+        this.datasets = this.loadProfileData[0];
+        this.labels = this.loadProfileData[1];
+      }).then(() => {
+        this.loadingData = false;
+      });
+    }
   }
 }

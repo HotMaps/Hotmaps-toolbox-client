@@ -23,6 +23,7 @@ export class InteractionService {
         private summaryResultService: SummaryResultService,
         private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService
     ) { }
+    
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
@@ -77,9 +78,7 @@ export class InteractionService {
     getNavButtons() {
         return this.navigationBarService.getButtons();
     }
-    setSummaryResultData(data) {
-        this.sidePanelService.setSummaryResultData(data);
-    }
+
     getSummaryResultWithIds(payload): Promise<any> {
       return this.summaryResultService.getSummaryResultWithIds(payload);
     }
@@ -89,8 +88,8 @@ export class InteractionService {
     getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
         return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
     }
-
-    setLoadProfileAggregateResultData(data) {
-      this.sidePanelService.setHeatLoadResultData(data);
+    lauchHeatloadCalculation(value) {
+        this.sidePanelService.setLauchHeatloadCalculation(value)
     }
+
 }

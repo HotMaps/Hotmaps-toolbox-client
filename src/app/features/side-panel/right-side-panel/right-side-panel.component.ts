@@ -94,36 +94,19 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
         ])
     ]
 })
-export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
+export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
     private summaryResult: SummaryResultClass = null;
-    private heatLoadResult: any = null;
-    private poiData;
     private poiTitle;
     @Input() nutsIds;
     @Input() layers;
-    
+    @Input() scaleLevel;
+    @Input() heatloadStatus;
+    @Input() locationsSelection;
+
     constructor(protected interactionService: InteractionService) {
         super(interactionService);
     }
-    ngOnInit() {
+    ngOnInit() {}
+    ngOnDestroy() {}
 
-    }
-    ngOnDestroy() {
-
-    }
-    ngOnChanges(change: SimpleChanges) {
-        console.log('RightSideComponent/ngOnChanges');
-    }
-    setSummaryResult(summaryResult: SummaryResultClass) {
-        this.summaryResult = summaryResult;
-    }
-    setHeatLoadResult(heatLoadResult: any) {
-      this.heatLoadResult = heatLoadResult;
-    }
-    setPoiData(data) {
-        this.poiData = data;
-        if (data) {
-            this.poiTitle = Object.keys(this.poiData.features[0].properties)[0];
-        }
-    }
 }

@@ -15,9 +15,6 @@ import {postStatsLayersArea, apiUrl, postStatsLayersNutsIds} from './../../share
 @Injectable()
 export class SummaryResultService extends APIService {
 
-  public summaryResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public poiResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }

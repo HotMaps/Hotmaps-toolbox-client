@@ -1,7 +1,7 @@
 
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
-
   <div class="uk-card uk-card-body htm-card">
+      <div *ngIf="loadingData" class="spinner" uk-spinner></div>
       <table class="uk-table uk-table-divider uk-table-small">
         <thead>
           <tr class="header-summary">

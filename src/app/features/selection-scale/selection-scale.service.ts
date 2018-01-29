@@ -17,19 +17,23 @@ import {Helper} from '../../shared/helper';
 import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} from '../../shared/data.service';
 
 import { Subject } from 'rxjs/Subject';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
-export class SelectionScaleService extends APIService {
+export class SelectionScaleService extends APIService implements OnInit {
   private scaleValue = initial_scale_value;
 
   // scale value subject
-  scaleValueSubject: Subject<string> = new Subject<string>();
+  scaleValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>(nuts3);
 
   private wms_request;
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
-
+  ngOnInit() {
+    this.changeScale()
+  }
   /**
    * Get and change the selected scale value
    */

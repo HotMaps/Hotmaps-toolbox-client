@@ -36,7 +36,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private baseMaps: any;
     private areaNutsSelectedLayer: any;
     private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
-    private layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+    public layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
     private tempAreaSelected;
 
     private clickEventSubject = new Subject<any>(); // Observable source for click
@@ -231,7 +231,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
             .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
     }
-
+    getNutsBusiness(scaleLevel) {
+        return this.businessInterfaceRenderService.convertNutsToApiName(scaleLevel);
+    }
 
     selectAreaWithNuts(areaSelected: any) {
         // test if polygon tool is activated in order to avoid selecting a nuts during a polygon drawing

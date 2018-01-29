@@ -40,7 +40,7 @@ export class APIService {
 
     this.toasterService.showToaster('We encountered a problem' + ', please try again later');
     this.logger.log('APIService/handleError');
-    console.log('An error occurred', error.message); // for demo purposes only
+    this.logger.log('An error occurred: ' + error.message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
   POST(payload, url): Promise<any> {

@@ -7,7 +7,7 @@
     <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
 
   </div>
-  <div *ngIf="heatLoadResult;then energy_stat_content else normal_content" class="energy-statistic"></div>
+  <div *ngIf="heatloadStatus;then energy_stat_content else normal_content" class="energy-statistic"></div>
   <ng-template #energy_stat_content>
     <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
       <li id="tab1">
@@ -20,16 +20,37 @@
     </ul>
     <ul id="my-id3" class="uk-switcher">
       <li>
-        <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded" [nutsIds]="nutsIds" [layers]="layers"></htm-summary-result>
+        <htm-summary-result 
+          *ngIf="expanded"
+          [poiTitle]="poiTitle" 
+          [expanded]="expanded" 
+          [nutsIds]="nutsIds" 
+          [layers]="layers"
+          [scaleLevel]="scaleLevel"
+          [locationsSelection]="locationsSelection"
+          ></htm-summary-result>
       </li>
       <li>
-        <htm-heat-load-chart [heatLoadResult]="heatLoadResult" [expanded]="expanded" [nutsIds]="nutsIds" [layers]="layers"></htm-heat-load-chart>
+        <htm-heat-load-chart 
+          *ngIf="expanded"
+          [expanded]="expanded" 
+          [nutsIds]="nutsIds" 
+          [layers]="layers" 
+          [scaleLevel]="scaleLevel"
+          [heatloadStatus]="heatloadStatus"></htm-heat-load-chart>
       </li>
-
-    </ul>
+  </ul>
   </ng-template>
 
   <ng-template #normal_content>
-    <htm-summary-result [summaryResult]="summaryResult" [poiTitle]="poiTitle" [poiData]="poiData" [expanded]="expanded"></htm-summary-result>
+    <htm-summary-result
+      *ngIf="expanded"
+      [poiTitle]="poiTitle"
+      [expanded]="expanded"
+      [nutsIds]="nutsIds" 
+      [layers]="layers"
+      [scaleLevel]="scaleLevel"
+      [locationsSelection]="locationsSelection"      
+      ></htm-summary-result>
   </ng-template>
 </div>
