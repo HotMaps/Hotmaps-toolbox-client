@@ -47,10 +47,11 @@ import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-
 import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-import {GraphicalViewComponent} from "../../../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectionToolComponent } from '../../../features/selection-tools/selection-tool/selection-tool.component';
+import { HeatLoadChartComponent } from 'app/features/heat-load/component';
+import { ChartComponent } from 'app/features/chart/chart.component';
+import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
 
 
 
@@ -62,20 +63,21 @@ describe('MapComponent', () => {
   let mockLoggerService: MockLoggerService;
   let mockLoaderService: MockLoaderService;
   let mockGeocodeService: MockGeocodeService;
-
+  let mockSelectionScaleService: MockSelectionScaleService;
   beforeEach(() => {
     mockMapService = new MockMapService();
     mockSidePanelService = new SidePanelService();
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     mockGeocodeService = new MockGeocodeService();
+    mockSelectionScaleService = new MockSelectionScaleService();
     TestBed.configureTestingModule({
       declarations: [
         MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        GraphicalViewComponent
+        HeatLoadChartComponent, ChartComponent
       ],
       providers: [
         {
@@ -87,13 +89,13 @@ describe('MapComponent', () => {
         { provide: InteractionService, useClass: InteractionService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },
-        { provide: SelectionScaleService, useClass: SelectionScaleService },
         { provide: ToasterService, useClass: ToasterService },
         { provide: MapService, useValue: mockMapService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
         { provide: GeocodingService, useValue: mockGeocodeService },
+        { provide: SelectionScaleService, useValue: mockSelectionScaleService },
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
@@ -108,8 +110,7 @@ describe('MapComponent', () => {
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot(),
-        NgxChartsModule
+        RecaptchaModule.forRoot()
       ]
     }).compileComponents();
   });

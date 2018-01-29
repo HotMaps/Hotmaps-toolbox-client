@@ -1,0 +1,25 @@
+
+<div class="uk-card uk-card-body htm-card" [hidden]="loadingData">
+  <div class="title">
+    <h5 class="uk-card-title" style="float:left;margin-bottom: 0px;">{{subtitle}} </h5>
+    <div class="uk-button-group date-buttons" style="float:right;">
+      <button *ngFor="let button of buttons_date_type" 
+        (click)="changeHeatloadType(button)" 
+        class="uk-button uk-button-default uk-button-small" [class.activebutton]="button.selected" 
+        [class.uk-active]="button.selected">
+        {{button.name}}
+      </button>
+    </div>
+  </div>
+  <div class="date-visu">
+    <span class="left" (click)="decrementDate()" [hidden]="selectedButton.api_ref=='year'"><span uk-icon="icon:triangle-left"></span>Previous {{selectedButton.api_ref}}</span>
+    <span class="center">{{getCurrentDateFormated(selectedButton)}}</span>
+    <span class="right" (click)="incrementDate()" [hidden]="selectedButton.api_ref=='year'">Next {{selectedButton.api_ref}} <span uk-icon="icon:triangle-right"></span></span>
+  </div>
+  <div class="lineargraph">
+    <htm-chart [datasets]="datasets" [labels]="labels" [type]="type"></htm-chart>
+  </div>
+</div>
+<div *ngIf="loadingData" class="waitingbox">
+  <div class="spinner" uk-spinner></div>
+</div>

@@ -18,11 +18,9 @@ i {
     font-size: 1.5em;
 }
 
-
 .uk-tab{
-
   justify-content: center;
-
+    margin-bottom: 5px;
 }
 .container-panel-right {
     flex: 1;

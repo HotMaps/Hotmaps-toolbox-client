@@ -1,6 +1,4 @@
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Injectable } from '@angular/core';
@@ -16,11 +14,6 @@ import {postStatsLayersArea, apiUrl, postStatsLayersNutsIds} from './../../share
 
 @Injectable()
 export class SummaryResultService extends APIService {
-
-	// Improvement of coding style : 
-  // place private members after public members, alphabetized
-  public summaryResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public poiResult: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);

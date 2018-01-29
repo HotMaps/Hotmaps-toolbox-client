@@ -9,7 +9,7 @@ import { hectare } from 'app/shared';
 import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
-import {Logger} from "../../../shared/services/logger.service";
+import {Logger} from '../../../shared/services/logger.service';
 
 @Component({
   selector: 'htm-selection-tool',

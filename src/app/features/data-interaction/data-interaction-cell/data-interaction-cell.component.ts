@@ -54,6 +54,7 @@ export class DataInteractionCellComponent implements OnInit {
         if (this.dataInteraction.zoomLevel > 0) {
             this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel)
         }
+        this.mapService.setLayersSubject()
     }
     ngOnInit() {
     }

@@ -20,7 +20,13 @@
     <!-- <div class="zoom-level-box">
        {{zoomlevel}}
      </div> -->
-   </div>
+  </div>
 
-   <htm-right-side-panel></htm-right-side-panel>
- </div>
+  <htm-right-side-panel 
+    [nutsIds]="nutsIds" 
+    [layers]="layers" 
+    [scaleLevel]="scaleLevel" 
+    [heatloadStatus]="heatloadStatus" 
+    [locationsSelection]="locationsSelection">
+  </htm-right-side-panel>
+</div>

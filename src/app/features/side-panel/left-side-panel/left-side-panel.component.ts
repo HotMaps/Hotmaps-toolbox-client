@@ -1,6 +1,3 @@
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
     Component,
@@ -13,10 +10,10 @@ import {
     animate
 } from '@angular/core';
 
-import {SideComponent} from '../side-panel.component';
-
-import {DataInteractionService} from '../../data-interaction/data-interaction.service';
-import {DataInteractionClass} from '../../data-interaction/data-interaction.class';
+import { SideComponent } from '../side-panel.component';
+import { Chart } from 'chart.js'
+import { DataInteractionService } from '../../data-interaction/data-interaction.service';
+import { DataInteractionClass } from '../../data-interaction/data-interaction.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
 @Component({
@@ -50,52 +47,44 @@ import { leftPanelSize } from 'app/shared';
         trigger('titleTextTrigger', [
             state('in', style({ opacity: '1' })),
             transition('void => *', [style({ opacity: '0' }),
-                animate('100ms 300ms')
+            animate('100ms 300ms')
             ]),
             transition('* => void', [
                 animate('50ms', style({ opacity: '0' }))
             ])
         ]),
         trigger('iconTrigger', [
-           // state('collapsed', style({ transform: 'rotate(180deg)' })),
-          // state('collapsed', style({ transform: 'rotate(180deg)' })),
-         //   state('expanded', style({ transform: 'rotate(0deg)' })),
+            // state('collapsed', style({ transform: 'rotate(180deg)' })),
+            // state('collapsed', style({ transform: 'rotate(180deg)' })),
+            //   state('expanded', style({ transform: 'rotate(0deg)' })),
 
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
         ])
     ],
-  providers: [DataInteractionService],
+    providers: [DataInteractionService],
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
-  // Improvement of coding style : 
-  // place private members after public members, alphabetized
-  expanded = false;
-  expandedState = 'collapsed';
+    expanded = false;
+    expandedState = 'collapsed';
+    layers: DataInteractionClass[];
+    category: DataInteractionClass[];
 
-  layers: DataInteractionClass[];
-  category: DataInteractionClass[];
-
-  constructor(private dataInteractionService: DataInteractionService, protected interactionService: InteractionService) {
+    constructor(private dataInteractionService: DataInteractionService, protected interactionService: InteractionService) {
         super(interactionService);
     }
 
     ngOnInit() {
-
-      this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
-     }
-     // Improvement of coding style : 
-     // make data services responsible for XHR calls, local storage, stashing in memory, or any other data operations
-     // this method should be in a service and not in a component (not sure)
-     getLayerAndCategory(layers: any) {
-       this.layers = layers
-       this.category = layers.map(item => item.category)
-         .filter((value, index, self) => self.indexOf(value) === index);
-     }
+        this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
+    }
+    getLayerAndCategory(layers: any) {
+        this.layers = layers
+        this.category = layers.map(item => item.category)
+            .filter((value, index, self) => self.indexOf(value) === index);
+    }
 
     ngOnDestroy() {
 
     }
-    
 
 }

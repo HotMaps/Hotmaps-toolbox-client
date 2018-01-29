@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Logger } from './services';
-import { Location } from './class';
+import {Injectable} from '@angular/core';
+import {Logger} from './services';
+import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
-import { round_value } from './data.service';
-import { Stock2, HeatLoadResult } from 'app/features/heat-load/graphical-view/shared';
+import {round_value} from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
-import { GeojsonClass } from '../features/layers/class/geojson.class';
+import {GeojsonClass} from '../features/layers/class/geojson.class';
+import { DatasetChart } from 'app/features/chart/chart';
 
 @Injectable()
 export class Helper {
   private monthData = MONTHNAME;
+
   constructor(private logger: Logger, private decimalPipe: DecimalPipe) {
   }
 
@@ -49,11 +50,11 @@ export class Helper {
     const locations = [];
     const latlng = latlngArray[0][0];
     for (let i = 0; i < latlng.length; i++) {
-      const loc: Location = {
-        lat: latlng[i][1],
-        lng: latlng[i][0]
-      };
-      locations.push(loc);
+        const loc: Location = {
+          lat: latlng[i][1],
+          lng: latlng[i][0]
+        };
+        locations.push(loc);
     }
     return locations;
   }
@@ -61,12 +62,12 @@ export class Helper {
     let n = 0;
     let locations = '';
     do {
-      const loc = latlng[n].lat + ' ' + latlng[n].lng + ','
+      const loc =  latlng[n].lat + ' ' + latlng[n].lng + ','
       locations = locations + loc;
       n++;
     } while (!this.isNullOrUndefined(latlng[n]));
 
-    const loc = latlng[0].lat + ' ' + latlng[0].lng
+    const loc =  latlng[0].lat + ' ' + latlng[0].lng
     locations = locations + loc;
     return locations;
   }
@@ -142,45 +143,26 @@ export class Helper {
   latLngsToCoords(arrLatlng) {
     const self = this;
     const coords = [];
-    arrLatlng.forEach(function (latlng) {
-      coords.push([latlng.lng, latlng.lat]);
-    },
+    arrLatlng.forEach(function(latlng) {
+        coords.push( [latlng.lng, latlng.lat]);
+      },
       this);
     return coords;
   }
 
   round(num: string): string {
-    if (this.isNullOrUndefined(num) === true) { return num };
-    return this.decimalPipe.transform(num, round_value);
+    if (this.isNullOrUndefined(num) === true) { return num};
+    return this.decimalPipe.transform(num, round_value );
   }
-  formatDataLoadProfil(data) {
-    console.log(data);
-    // const loadProfileData: LoadProfile;
-    const formattedValues: HeatLoadResult[] = [];
-    const minStockValue: HeatLoadResult = { name: 'Min', series: [] };
-    const maxStockValue: HeatLoadResult = { name: 'Max', series: [] };
-    const averageStockValue: HeatLoadResult = { name: 'Average', series: [] };
+   formatDataLoadProfil(data) {
+    const formattedValues = [];
+    const labels = [];
+    const DataValues = [];
     data.values.map((value) => {
-      averageStockValue.series.push(
-      {
-        name: this.getMonthString(this.getDate(value).getMonth()),
-        value: +this.round(value.average)
-      });
-      maxStockValue.series.push(
-        {
-          name: this.getMonthString(this.getDate(value).getMonth()),
-          value: +this.round(value.max)
-        });
-      minStockValue.series.push({
-        name: this.getMonthString(this.getDate(value).getMonth()),
-        value: +this.round(value.min)
-      });
+      labels.push(this.getMonthString(this.getDate(value).getMonth(), 1));
+      DataValues.push(Math.round(value.max))
     });
-    formattedValues.push(maxStockValue);
-    formattedValues.push(averageStockValue);
-    formattedValues.push(minStockValue);
-    console.log('formattedValues');
-    console.log(formattedValues);
+    formattedValues.push(labels, DataValues);
     return formattedValues;
   }
   private getDate(heatload: any): Date {
@@ -188,9 +170,8 @@ export class Helper {
     return date;
 
   }
-  private getMonthString(numberOfMonth) {
-    const month = MONTHNAME.filter(m => m.id === numberOfMonth + 1)[0];
-    // console.log(month);
+  getMonthString(numberOfMonth, index) {
+    const month = MONTHNAME.filter(m => m.id === numberOfMonth + index)[0];
     return month.month;
   }
 
@@ -198,18 +179,18 @@ export class Helper {
     const rectangle: any = <any>layer;
     const latlng = rectangle.getLatLngs()[0];
     const locations: Location[] = this.convertLatLongToLocation(latlng);
-    this.logger.log('locations [] ' + locations);
+    this.logger.log('locations [] ' + locations );
     return locations
   }
 
   getLocationsFromGeoJsonLayer(layer): Location[] {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    this.logger.log('geoJson latlng ' + geoJson.features[0].geometry.coordinates);
+    this.logger.log('geoJson latlng ' +  geoJson.features[0].geometry.coordinates );
     const latlng: number[] = geoJson.features[0].geometry.coordinates;
 
     const locations: Location[] = this.convertListLatLongToLocation(latlng);
-    this.logger.log('locations [] ' + locations);
+    this.logger.log('locations [] ' + locations );
     return locations
   }
 

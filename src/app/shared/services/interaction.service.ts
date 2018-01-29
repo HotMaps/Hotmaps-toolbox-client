@@ -15,7 +15,7 @@ import { LayersService } from 'app/features/layers';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
 
 @Injectable()
 export class InteractionService {
@@ -26,6 +26,7 @@ export class InteractionService {
         private summaryResultService: SummaryResultService,
         private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService
     ) { }
+    
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
@@ -80,20 +81,18 @@ export class InteractionService {
     getNavButtons() {
         return this.navigationBarService.getButtons();
     }
-    setSummaryResultData(data) {
-        this.sidePanelService.setSummaryResultData(data);
-    }
+
     getSummaryResultWithIds(payload): Promise<any> {
       return this.summaryResultService.getSummaryResultWithIds(payload);
     }
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-    getLoadProfileAggregateResultWithPayload(payload): Promise<any> {
-      return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload);
+    getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
+        return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
+    }
+    lauchHeatloadCalculation(value) {
+        this.sidePanelService.setLauchHeatloadCalculation(value)
     }
 
-    setLoadProfileAggregateResultData(data) {
-      this.sidePanelService.setHeatLoadResultData(data);
-    }
 }

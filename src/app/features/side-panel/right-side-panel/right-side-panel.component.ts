@@ -12,14 +12,16 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    Input,
+    SimpleChanges
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
-import { Stock2 } from 'app/features/heat-load/graphical-view/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize } from 'app/shared';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -99,28 +101,17 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     // Improvement of coding style : 
     // place private members after public members, alphabetized
     private summaryResult: SummaryResultClass = null;
-    private heatLoadResult: Stock2 = null;
-    private poiData;
     private poiTitle;
+    @Input() nutsIds;
+    @Input() layers;
+    @Input() scaleLevel;
+    @Input() heatloadStatus;
+    @Input() locationsSelection;
+
     constructor(protected interactionService: InteractionService) {
         super(interactionService);
     }
-    ngOnInit() {
+    ngOnInit() {}
+    ngOnDestroy() {}
 
-    }
-    ngOnDestroy() {
-
-    }
-    setSummaryResult(summaryResult: SummaryResultClass) {
-        this.summaryResult = summaryResult;
-    }
-    setHeatLoadResult(heatLoadResult: Stock2) {
-      this.heatLoadResult = heatLoadResult;
-    }
-    setPoiData(data) {
-        this.poiData = data;
-        if (data) {
-            this.poiTitle = Object.keys(this.poiData.features[0].properties)[0];
-        }
-    }
 }

@@ -54,10 +54,10 @@ import {FeedbackComponent} from '../features/feedback/component/feedback.compone
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {GraphicalViewComponent} from "../features/heat-load/graphical-view/graphical-view.component";
 import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
+import { HeatLoadChartComponent } from 'app/features/heat-load/component';
+import { ChartComponent } from 'app/features/chart/chart.component';
 
 
 
@@ -76,8 +76,7 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        GraphicalViewComponent,
-        BusinessNamePipe],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -113,7 +112,7 @@ describe('AppComponent: Router', () => {
       ],
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot(), NgxChartsModule
+        RecaptchaModule.forRoot()
       ]
     })
 

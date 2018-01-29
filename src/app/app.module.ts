@@ -5,7 +5,7 @@ import 'leaflet.vectorgrid';
 import 'reflect-metadata';
 import 'jquery';
 
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef} from '@angular/core';
@@ -46,12 +46,13 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
 import {DataInteractionService} from './features/data-interaction/data-interaction.service';
 
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/selection-tool/selection-tool.component';
-import { GraphicalViewComponent } from './features/heat-load/graphical-view/';
-import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
+import { HeatLoadChartComponent } from './features/heat-load/component/';
+import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
+import { ChartComponent } from './features/chart/chart.component';
+
 
 @NgModule({
   imports: [
@@ -62,8 +63,7 @@ import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot(),
-    NgxChartsModule
+    RecaptchaModule.forRoot()
   ],
   bootstrap: [AppComponent],
   declarations: [
@@ -84,8 +84,9 @@ import {HeatLoadAggregateService} from "./features/heat-load/heat-load.service";
     LayerNamePipe,
     BusinessNamePipe,
     FeedbackComponent,
-    GraphicalViewComponent,
-    SelectionToolComponent
+    HeatLoadChartComponent,
+    SelectionToolComponent,
+    ChartComponent
   ],
 
   providers: [
