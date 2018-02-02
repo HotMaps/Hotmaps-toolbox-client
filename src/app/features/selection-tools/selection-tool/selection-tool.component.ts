@@ -31,7 +31,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeMapService();
     this.scaleSelected = this.mapService.getScaleValue();
-    this.checkScale();
+
   }
   ngOnDestroy() {
     this.logger.log('SelectionToolComponent/ngOnDestroy');
@@ -42,7 +42,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   subscribeMapService() {
     this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
       this.scaleSelected = value;
-      this.checkScale();
+
     })
 
     this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
@@ -80,13 +80,6 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     const map = this.mapService.getMap();
     this.mapService.clickSelection(map);
     this.stButtons[0].isChecked = true;
-  }
-  checkScale() {
-    if (this.scaleSelected === hectare) {
-      this.isHectarSelected = true;
-    } else {
-      this.isHectarSelected = false;
-    }
   }
   /**
    * Draw method of the activated selection tool

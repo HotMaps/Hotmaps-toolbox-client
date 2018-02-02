@@ -33,5 +33,4 @@ export class SummaryResultService extends APIService {
 
 
 
-
 }

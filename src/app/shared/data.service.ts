@@ -6,12 +6,12 @@ import 'leaflet-draw';
  * Created by lesly on 07.07.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
 const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
-
+const localApiUrl    = 'http://localhost:5000/api';
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
@@ -19,7 +19,7 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
@@ -36,6 +36,8 @@ export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
 export const nuts_level   = '3';
 export const populationLayerName = 'population_density'
 export const postPopulationDensityInArea    = '/population/density/area/';
+export const postHectareCentroid    = '/raster/layers/area/centroids';
+export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregate = '/load-profile/aggregate/';
@@ -75,7 +77,7 @@ export const round_value   = '1.2-2';
 export const defaultZoomLevel = 5;
 export const map_options =  {
   zoomControl: false,
-  center: L.latLng(47.1, 7.0833),
+  center: L.latLng(47.33249406663852, 0.6976318359375),
   zoom: defaultZoomLevel,
   minZoom: 4,
   maxZoom: 17,

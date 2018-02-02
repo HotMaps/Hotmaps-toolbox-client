@@ -6,9 +6,11 @@ import { Http, Response } from '@angular/http';
 
 import { BusinessInterfaceRenderService } from './../../shared/business/business.service';
 import {
-    lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART, MAPDRAWDELETED,
-    MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
-    MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD
+  lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART,
+  MAPDRAWDELETED,
+  MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
+  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD, apiUrl, postPopulationDensityInArea,
+  postStatsLayersArea, postForOneHectareCentroid
 } from './../../shared/data.service';
 import { basemap } from './basemap';
 
@@ -28,6 +30,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/selection-tool-button-state.service';
+import {Helper} from "../../shared/helper";
 
 
 @Injectable()
@@ -47,7 +50,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
-        private selectionToolService: SelectionToolService,
+        private selectionToolService: SelectionToolService, private helper: Helper,
         private businessInterfaceRenderService: BusinessInterfaceRenderService,
         private selectionToolButtonStateService: SelectionToolButtonStateService) {
         super(http, logger, loaderService, toasterService);
@@ -102,17 +105,11 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
     // Event functions
     onDrawCreated(self, e) {
-
-        if (self.selectionScaleService.getScaleValue() === hectare) {
-
-            self.selectionToolService.drawHectareCreated(e, this.map);
-
-        } else {
             const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
             self.selectionToolService.drawCreated(e, this.map, scale_lvl);
             self.selectionToolService.setIsPolygonDrawer(false);
             self.drawCreatedUpdate();
-        }
+
     }
     onDrawEdited(self) { }
     onDrawStart(self) {
@@ -178,8 +175,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
         if (self.selectionScaleService.getScaleValue() === hectare) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
-                const layer = new L.Rectangle(e.latlng.toBounds(100));
-                self.selectionToolService.layerCreatedClick(layer, self.map);
+                self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         } else if (self.selectionScaleService.getScaleValue() === lau2) {
             self.selectionToolService.enableNavigationService(self.map);
@@ -227,12 +223,63 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
     }
+    postHectareCentroid(payload: any): Promise<any> {
+
+      return this.POST(payload, apiUrl + postForOneHectareCentroid);
+    }
+    getHectareGeometryFromClick(latlng: LatLng, nuts_level): any {
+      const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+      const action = lau2name;
+      const payload = {
+        point: latlng.lng + ' ' + latlng.lat,
+      }
+      const url = apiUrl + postStatsLayersArea
+      this.postHectareCentroid(payload).then(result => {
+        this.loaderService.display(false);
+        this.logger.log('result' + JSON.stringify(result) );
+        this.selectAreaWithHectare(result);
+      }).then(() => { }).catch((e) => {
+        this.loaderService.display(false);
+
+        this.logger.log(e);
+        this.logger.log('error in getHectareCentroid');
+
+      });
+    }
     getAreaFromScale(url): any {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
             .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
     }
     getNutsBusiness(scaleLevel) {
         return this.businessInterfaceRenderService.convertNutsToApiName(scaleLevel);
+    }
+
+    selectAreaWithHectare(areaSelected: any) {
+      // test if polygon tool is activated in order to avoid selecting a nuts during a polygon drawing
+      if (!this.selectionToolService.getPolygonDrawerState()) {
+        this.logger.log('MapService/selectAreaWithNuts()');
+        let areaSelectedLayer = false;
+        if (this.areaNutsSelectedLayer) {
+          areaSelectedLayer = true; // true if an area nuts is selected
+        }
+
+        const lng = areaSelected.coordinates[0];
+        const lat = areaSelected.coordinates[1];
+        const point = L.latLng(lat, lng);
+        const selection_id = point;
+        const layer = new L.Rectangle(point.toBounds(100));
+
+        this.selectionToolService.addHectareToMultiSelectionLayers(layer)
+        // remove the layer if there is one
+        /*this.removeAreaSelectedlayer();
+        // create an other selection only if this is a new area or if no area is actually selected (highlighted)
+        const areaNutsSelectedLayer = L.geoJSON(areaSelected);
+        if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
+          this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
+        } else {
+          this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
+        }*/
+      }
     }
 
     selectAreaWithNuts(areaSelected: any) {

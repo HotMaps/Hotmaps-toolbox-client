@@ -2,10 +2,13 @@ import {Injectable} from '@angular/core';
 import {Logger} from './services';
 import {Location} from './class';
 import { DecimalPipe } from '@angular/common';
-import {round_value} from './data.service';
+import {proj3035, round_value} from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import {GeojsonClass} from '../features/layers/class/geojson.class';
 import { DatasetChart } from 'app/features/chart/chart';
+import * as proj4x from 'proj4';
+const proj4 = (proj4x as any).default;
+
 
 @Injectable()
 export class Helper {
@@ -58,6 +61,7 @@ export class Helper {
     }
     return locations;
   }
+
   convertLatLongToLocationString(latlng): string {
     let n = 0;
     let locations = '';
@@ -68,6 +72,20 @@ export class Helper {
     } while (!this.isNullOrUndefined(latlng[n]));
 
     const loc =  latlng[0].lat + ' ' + latlng[0].lng
+    locations = locations + loc;
+    return locations;
+  }
+
+  convertPostGisLatLongToLocationString(latlng): string {
+    let n = 0;
+    let locations = '';
+    do {
+      const loc =  latlng[n].lng + ' ' + latlng[n].lat + ','
+      locations = locations + loc;
+      n++;
+    } while (!this.isNullOrUndefined(latlng[n]));
+
+    const loc =  latlng[0].lng + ' ' + latlng[0].lat
     locations = locations + loc;
     return locations;
   }
@@ -192,6 +210,23 @@ export class Helper {
     const locations: Location[] = this.convertListLatLongToLocation(latlng);
     this.logger.log('locations [] ' + locations );
     return locations
+  }
+
+  transformLatLngToEpsg(latlng: L.LatLng, epsgString: String) {
+    return proj4(epsgString).forward([latlng.lng, latlng.lat]);
+  }
+  transformLatLngToEpsg3035(latlng: L.LatLng, ) {
+    return proj4(proj3035).forward([latlng.lng, latlng.lat]);
+  }
+
+  getTranformedBoundingBox(map: any, epsgString): number[] {
+    const coordinate = [];
+    const bound = map.getBounds();
+    const northEastTransformed = this.transformLatLngToEpsg(bound.getNorthEast(), epsgString);
+    const southWestTransformed  = this.transformLatLngToEpsg(bound.getSouthWest(), epsgString);
+    coordinate.push(southWestTransformed[1], southWestTransformed[0]);
+    coordinate.push(northEastTransformed[1], northEastTransformed[0]);
+    return coordinate;
   }
 
   getNUTSIDFromGeoJsonLayer(layer): string {

@@ -2,7 +2,7 @@
  * Created by lesly on 19.07.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
@@ -51,6 +51,16 @@ export class APIService {
 
     return this.http
       .post(url, JSON.stringify(payload), {headers: this.headers})
+      .timeout(timeOut)
+      .toPromise()
+      .then( response => response.json() as any)
+      .catch(this.handleError.bind(this));
+  }
+
+  POSTunStringify(payload, url): Promise<any> {
+
+    return this.http
+      .post(url, payload, {headers: this.headers})
       .timeout(timeOut)
       .toPromise()
       .then( response => response.json() as any)

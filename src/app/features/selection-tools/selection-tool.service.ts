@@ -11,11 +11,14 @@ import { Location } from '../../shared/class/location/location';
 import Created = L.DrawEvents.Created;
 declare const L: any;
 
-
+export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 
 import { PayloadStat, PlayloadStatNuts } from '../summary-result/class/payload.class';
 import {
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, wwtpLayerName
+  apiUrl,
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, postHectareCentroid,
+  postStatsLayersArea,
+  wwtpLayerName
 } from '../../shared/data.service';
 import { GeojsonClass } from '../layers/class/geojson.class';
 import { BusinessInterfaceRenderService } from '../../shared/business/business.service';
@@ -26,6 +29,7 @@ import { geoserverUrl, lau2name } from '../../shared';
 import { APIService, ToasterService } from '../../shared/services';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {DataCentroid} from "../../shared/services/mock/data-heat-demand";
 
 
 @Injectable()
@@ -177,18 +181,33 @@ export class SelectionToolService extends APIService {
     // Clear the map before to show the new selection
     // enable buttons when layer is created
     let location = '';
-    if (layer instanceof L.Circle) {
-      location = this.helper.convertLatLongToLocationString(this.getLocationsFromCicle(layer))
-    } else if (layer instanceof L.Polygon) {
-      location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer))
-    } else if (layer instanceof L.latLng) {
-      location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer))
-    } else {
-      location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
+    if (nuts_lvl === 5) {
+      // lvl hectares lat lng is inverse
+      if (layer instanceof L.Circle) {
+        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromCicle(layer))
+      } else if (layer instanceof L.Polygon) {
+        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
+      } else if (layer instanceof L.latLng) {
+        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
+      } else {
+        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
+      }
+    }else {
+      if (layer instanceof L.Circle) {
+        location = this.helper.convertLatLongToLocationString(this.getLocationsFromCicle(layer))
+      } else if (layer instanceof L.Polygon) {
+        location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer))
+      } else if (layer instanceof L.latLng) {
+        location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer))
+      } else {
+        location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
+      }
     }
     this.logger.log('nuts_lvl' + nuts_lvl);
     if (nuts_lvl === 4) { // lau2 lvl
       this.getLau2ID(location, map, nuts_lvl)
+    } else if (nuts_lvl === 5) {
+      this.getHectareCentroid(location, map, nuts_lvl)
     } else {
       this.getNutID(location, map, nuts_lvl)
     }
@@ -467,6 +486,31 @@ export class SelectionToolService extends APIService {
     this.GET(url).map((res: Response) => res.json() as any)
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
   }
+  postHectareCentroid(payload: any): Promise<any> {
+
+    return this.POST(payload, apiUrl + postHectareCentroid);
+  }
+  getHectareCentroid(location, map, nuts_lvl): any {
+    this.loaderService.display(true);
+    this.logger.log('getNutID');
+    this.logger.log('location ' + location);
+
+    const url = apiUrl + postHectareCentroid
+    const payload = {
+      centroids: location,
+    }
+    this.postHectareCentroid(payload).then(result => {
+      this.loaderService.display(false);
+      this.logger.log('result' + JSON.stringify(result) );
+      this.drawHectaresLoadingResult(result, map);
+    }).then(() => { }).catch((e) => {
+      this.loaderService.display(false);
+
+      this.logger.log(e);
+      this.logger.log('error in getHectareCentroid');
+
+    });
+  }
   updateSelectionToolAction() {
     if (this.nutsIds.size > 0) {
       this.enableButtonLoad();
@@ -478,6 +522,55 @@ export class SelectionToolService extends APIService {
     }
     this.nbNutsSelectedSubject.next(this.nutsIds.size);
     this.nutsIdsSubject.next(Array.from(this.nutsIds));
+  }
+
+
+  updateSelectionToolActionHectare() {
+    if (this.multiSelectionLayers.getLayers().length > 0) {
+      this.enableButtonLoad();
+      this.enableButtonClearAll();
+    } else {
+      // disable buttons after clear
+      this.disableButtonClearAll();
+      this.disableButtonLoad();
+    }
+    // update the number of hectare selected
+    this.nbNutsSelectedSubject.next(this.multiSelectionLayers.getLayers().length);
+
+    // we define result as multi-polygon
+
+
+    //this.nutsIdsSubject.next(Array.from(this.nutsIds));
+  }
+
+
+  drawHectaresLoadingResult(result: any, map) {
+    this.logger.log('result is ' + result);
+    this.logger.log('result is ' + result.features);
+    if (result.centroids.length === 0) {
+      this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+    }
+    if (this.helper.isNullOrUndefined(result) === false) {
+      for (const feature of result.centroids) {
+        const lng = feature.coordinates[0];
+        const lat = feature.coordinates[1];
+        const point = L.latLng(lat, lng);
+        const selection_id = point;
+        const layer = new L.Rectangle(point.toBounds(100));
+        this.logger.log('._leaflet_id ' + (layer._leaflet_id));
+        this.logger.log('hasLayer ' + this.multiSelectionLayers.hasLayer(layer));
+        if (this.multiSelectionLayers.hasLayer(layer) === false) {
+          this.nutsIds.add(selection_id)
+
+          this.multiSelectionLayers.addLayer(layer)
+          this.logger.log('values ' + JSON.stringify(feature));
+          this.logger.log('array size ' + this.nutsIds.size);
+          this.logger.log('hasLayer ' + this.multiSelectionLayers.hasLayer(layer));
+       }
+      }
+       this.updateSelectionToolActionHectare();
+      this.loaderService.display(false);
+    }
   }
   drawResultBeforeLoadingResult(result: any) {
     this.logger.log('result is ' + result);
@@ -512,6 +605,19 @@ export class SelectionToolService extends APIService {
         this.multiSelectionLayers.addLayer(layer);
         this.updateSelectionToolAction();
       }
+    }
+    //this.loaderService.display(false);
+  }
+
+  addHectareToMultiSelectionLayers(layer: any) {
+    if (this.helper.isNullOrUndefined(layer) === false) {
+      this.multiSelectionLayers.addLayer(layer);
+     // const selection_id = this.getSelectionIdFromLayer(layer)
+      /*if (this.nutsIds.has(selection_id) === false) {
+        this.nutsIds.add(selection_id)
+        this.multiSelectionLayers.addLayer(layer);
+        this.updateSelectionToolAction();
+      }*/
     }
     //this.loaderService.display(false);
   }
