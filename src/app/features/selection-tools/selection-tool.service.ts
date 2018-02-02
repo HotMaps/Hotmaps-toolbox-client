@@ -35,12 +35,12 @@ import {DataCentroid} from "../../shared/services/mock/data-heat-demand";
 @Injectable()
 export class SelectionToolService extends APIService {
   private nutsIds = new Set;
+  private hectareCentroidNumber = 0;
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
   private multiSelectionLayers = new L.layerGroup();
   private currentLayer;
   private scaleValue = initial_scale_value;
-  private areaNutsSelectedLayer: any;
   private theDrawer;
   private isDrawer = false;
   private isPolygonDrawer = false;
@@ -207,7 +207,7 @@ export class SelectionToolService extends APIService {
     if (nuts_lvl === 4) { // lau2 lvl
       this.getLau2ID(location, map, nuts_lvl)
     } else if (nuts_lvl === 5) {
-      this.getHectareCentroid(location, map, nuts_lvl)
+      this.getHectareCentroid(location, map, nuts_lvl,layer)
     } else {
       this.getNutID(location, map, nuts_lvl)
     }
@@ -490,7 +490,7 @@ export class SelectionToolService extends APIService {
 
     return this.POST(payload, apiUrl + postHectareCentroid);
   }
-  getHectareCentroid(location, map, nuts_lvl): any {
+  getHectareCentroid(location, map, nuts_lvl, layer): any {
     this.loaderService.display(true);
     this.logger.log('getNutID');
     this.logger.log('location ' + location);
@@ -502,7 +502,7 @@ export class SelectionToolService extends APIService {
     this.postHectareCentroid(payload).then(result => {
       this.loaderService.display(false);
       this.logger.log('result' + JSON.stringify(result) );
-      this.drawHectaresLoadingResult(result, map);
+      this.drawHectaresLoadingResult(result, map, layer);
     }).then(() => { }).catch((e) => {
       this.loaderService.display(false);
 
@@ -526,7 +526,7 @@ export class SelectionToolService extends APIService {
 
 
   updateSelectionToolActionHectare() {
-    if (this.multiSelectionLayers.getLayers().length > 0) {
+    if (this.hectareCentroidNumber > 0) {
       this.enableButtonLoad();
       this.enableButtonClearAll();
     } else {
@@ -535,7 +535,7 @@ export class SelectionToolService extends APIService {
       this.disableButtonLoad();
     }
     // update the number of hectare selected
-    this.nbNutsSelectedSubject.next(this.multiSelectionLayers.getLayers().length);
+    this.nbNutsSelectedSubject.next(this.hectareCentroidNumber );
 
     // we define result as multi-polygon
 
@@ -544,29 +544,16 @@ export class SelectionToolService extends APIService {
   }
 
 
-  drawHectaresLoadingResult(result: any, map) {
+  drawHectaresLoadingResult(result: any, map, layer) {
     this.logger.log('result is ' + result);
     this.logger.log('result is ' + result.features);
     if (result.centroids.length === 0) {
       this.toasterService.showToaster('We encountered a problem, there is no data for this area');
     }
     if (this.helper.isNullOrUndefined(result) === false) {
-      for (const feature of result.centroids) {
-        const lng = feature.coordinates[0];
-        const lat = feature.coordinates[1];
-        const point = L.latLng(lat, lng);
-        const selection_id = point;
-        const layer = new L.Rectangle(point.toBounds(100));
-        this.logger.log('._leaflet_id ' + (layer._leaflet_id));
-        this.logger.log('hasLayer ' + this.multiSelectionLayers.hasLayer(layer));
-        if (this.multiSelectionLayers.hasLayer(layer) === false) {
-          this.nutsIds.add(selection_id)
-
-          this.multiSelectionLayers.addLayer(layer)
-          this.logger.log('values ' + JSON.stringify(feature));
-          this.logger.log('array size ' + this.nutsIds.size);
-          this.logger.log('hasLayer ' + this.multiSelectionLayers.hasLayer(layer));
-       }
+      this.hectareCentroidNumber = this.hectareCentroidNumber + result.centroids.length;
+      if (this.multiSelectionLayers.hasLayer(layer) === false) {
+        this.multiSelectionLayers.addLayer(layer);
       }
        this.updateSelectionToolActionHectare();
       this.loaderService.display(false);
