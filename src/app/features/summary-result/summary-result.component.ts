@@ -97,7 +97,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     this.logger.log('SummaryResultComponent/updateLayers()');
     this.loadingData = true;
     const payload: PayloadStat = { layers: this.layers, year: constant_year, points: this.locationsSelection }
-    const summaryPromise = this.summaryResultService.getSummaryResultWithPayload(payload).then(result => {
+    const summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
     }).then(() => { this.loadingData = false; }).catch((e) => {
       this.logger.log(JSON.stringify(e))

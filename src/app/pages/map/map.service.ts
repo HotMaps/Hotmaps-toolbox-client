@@ -228,7 +228,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       return this.POST(payload, apiUrl + postForOneHectareCentroid);
     }
     getHectareGeometryFromClick(latlng: LatLng, nuts_level): any {
-      const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
+      /*const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
       const action = lau2name;
       const payload = {
         point: latlng.lng + ' ' + latlng.lat,
@@ -244,7 +244,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.logger.log(e);
         this.logger.log('error in getHectareCentroid');
 
-      });
+      });*/
+
+      // if point is inside layer group create the
     }
     getAreaFromScale(url): any {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
@@ -360,7 +362,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
      * Load the nuts selection results
      */
     loadResultNuts(map: Map) {
-        this.selectionToolService.loadResultNuts(map);
+          this.selectionToolService.loadResultNuts(map);
     }
 
     /**

@@ -35,13 +35,15 @@ export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
 export const populationLayerName = 'population_density'
-export const postPopulationDensityInArea    = '/population/density/area/';
+export const postPopulationDensityInArea    = '/population/density/area';
 export const postHectareCentroid    = '/raster/layers/area/centroids';
+export const postNumberHectareCentroid    = '/raster/layers/hectare/count';
 export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregate = '/load-profile/aggregate/';
 export const postStatsLayersNutsIds = '/stats/layers/nuts/';
+export const postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
 export const postStatsLayersPoint = '/stats/layers/point/';
 export const set404url   = 'set404url';
 

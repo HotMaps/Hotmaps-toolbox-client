@@ -17,6 +17,7 @@ import { PayloadStat, PlayloadStatNuts } from '../summary-result/class/payload.c
 import {
   apiUrl,
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, postHectareCentroid,
+  postNumberHectareCentroid,
   postStatsLayersArea,
   wwtpLayerName
 } from '../../shared/data.service';
@@ -129,16 +130,7 @@ export class SelectionToolService extends APIService {
       }
     });
   }
-  drawHectareCreated(e, map) {
-    const event: Created = <Created>e;
-    const type = event.layerType,
-      layer: any = event.layer;
-    this.isActivate = false;
-    // Clear the map before to show the new selection
-    this.editableLayers.clearLayers();
-    this.manageEditOrCreateLayer(layer, map);
-    this.loadPopup(map, layer);
-  }
+
   setIsPolygonDrawer(value) {
     this.isPolygonDrawer = value;
   }
@@ -207,7 +199,7 @@ export class SelectionToolService extends APIService {
     if (nuts_lvl === 4) { // lau2 lvl
       this.getLau2ID(location, map, nuts_lvl)
     } else if (nuts_lvl === 5) {
-      this.getHectareCentroid(location, map, nuts_lvl,layer)
+      this.getHectareCentroid(location, map, nuts_lvl, layer)
     } else {
       this.getNutID(location, map, nuts_lvl)
     }
@@ -226,7 +218,6 @@ export class SelectionToolService extends APIService {
   setHTMLContent(el, str): any {
     el.innerHTML = str;
   }
-
 
   loadResultNuts(map) {
     this.interactionService.onPopupValidation();
@@ -338,6 +329,7 @@ export class SelectionToolService extends APIService {
     // ONLY HECTAR LEVEL
     if (this.scaleValue === hectare) {
       this.editableLayers.clearLayers();
+      this.hectareCentroidNumber = 0;
     }
     // ================
     if (this.isDrawer) {
@@ -488,14 +480,13 @@ export class SelectionToolService extends APIService {
   }
   postHectareCentroid(payload: any): Promise<any> {
 
-    return this.POST(payload, apiUrl + postHectareCentroid);
+    return this.POST(payload, apiUrl + postNumberHectareCentroid);
   }
   getHectareCentroid(location, map, nuts_lvl, layer): any {
     this.loaderService.display(true);
     this.logger.log('getNutID');
     this.logger.log('location ' + location);
 
-    const url = apiUrl + postHectareCentroid
     const payload = {
       centroids: location,
     }
@@ -536,22 +527,16 @@ export class SelectionToolService extends APIService {
     }
     // update the number of hectare selected
     this.nbNutsSelectedSubject.next(this.hectareCentroidNumber );
-
     // we define result as multi-polygon
-
-
-    //this.nutsIdsSubject.next(Array.from(this.nutsIds));
   }
 
-
   drawHectaresLoadingResult(result: any, map, layer) {
-    this.logger.log('result is ' + result);
-    this.logger.log('result is ' + result.features);
-    if (result.centroids.length === 0) {
-      this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+    if (result.count === 0) {
+      this.toasterService.showToaster(' there is no data for this area');
     }
     if (this.helper.isNullOrUndefined(result) === false) {
-      this.hectareCentroidNumber = this.hectareCentroidNumber + result.centroids.length;
+      this.logger.log('result is ' + result.count);
+      this.hectareCentroidNumber = this.hectareCentroidNumber + result.count;
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         this.multiSelectionLayers.addLayer(layer);
       }
@@ -593,20 +578,12 @@ export class SelectionToolService extends APIService {
         this.updateSelectionToolAction();
       }
     }
-    //this.loaderService.display(false);
   }
 
   addHectareToMultiSelectionLayers(layer: any) {
     if (this.helper.isNullOrUndefined(layer) === false) {
       this.multiSelectionLayers.addLayer(layer);
-     // const selection_id = this.getSelectionIdFromLayer(layer)
-      /*if (this.nutsIds.has(selection_id) === false) {
-        this.nutsIds.add(selection_id)
-        this.multiSelectionLayers.addLayer(layer);
-        this.updateSelectionToolAction();
-      }*/
     }
-    //this.loaderService.display(false);
   }
 
 }
