@@ -30,7 +30,8 @@ import { geoserverUrl, lau2name } from '../../shared';
 import { APIService, ToasterService } from '../../shared/services';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import {DataCentroid} from "../../shared/services/mock/data-heat-demand";
+import {DataCentroid} from '../../shared/services/mock/data-heat-demand';
+import { Area } from 'app/features/selection-tools/multiple-selection';
 
 
 @Injectable()
@@ -39,7 +40,7 @@ export class SelectionToolService extends APIService {
   private hectareCentroidNumber = 0;
   private isActivate: boolean;
   private editableLayers = new L.FeatureGroup();
-  private multiSelectionLayers = new L.layerGroup();
+  private multiSelectionLayers: L.FeatureGroup = new L.FeatureGroup();
   private currentLayer;
   private scaleValue = initial_scale_value;
   private theDrawer;
@@ -57,6 +58,7 @@ export class SelectionToolService extends APIService {
 
   nutsIdsSubject = new BehaviorSubject<string[]>([]);
   locationsSubject = new BehaviorSubject<Location[]>([]);
+  areasSubject = new BehaviorSubject<L.Layer[]>([]);
   // ONLY FOR HECTAR (POPUP)
   private containerPopup: any;
   private popupTitle: any;
@@ -141,25 +143,25 @@ export class SelectionToolService extends APIService {
     return this.multiSelectionLayers;
   }
   /**
-   * Enable button "Load results"
+   * Enable button 'Load results'
    */
   enableButtonLoad() {
     this.enableLoadResultSubject.next();
   }
   /**
-   * Disable button "Load results"
+   * Disable button 'Load results'
    */
   disableButtonLoad() {
     this.disableLoadResultSubject.next();
   }
   /**
-   * Enable button "Clear all"
+   * Enable button 'Clear all'
    */
   enableButtonClearAll() {
     this.enableClearAllSubject.next();
   }
   /**
-   * disable button "Clear all"
+   * disable button 'Clear all'
    */
   disableButtonClearAll() {
     this.disableClearAllSubject.next();
@@ -167,22 +169,28 @@ export class SelectionToolService extends APIService {
   drawCreated(e, map, nuts_lvl) {
     const event: Created = <Created>e;
     const type = event.layerType,
-      layer: any = event.layer;
+    layer: any = event.layer;
+    console.log(layer);
+    let controlIntersectHectar = false;
     this.isActivate = false;
     this.isPolygonDrawer = false;
     // Clear the map before to show the new selection
     // enable buttons when layer is created
     let location = '';
     if (nuts_lvl === 5) {
-      // lvl hectares lat lng is inverse
-      if (layer instanceof L.Circle) {
-        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromCicle(layer))
-      } else if (layer instanceof L.Polygon) {
-        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
-      } else if (layer instanceof L.latLng) {
-        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
-      } else {
-        location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
+      controlIntersectHectar = this.helper.controlDrawedLayer(this.multiSelectionLayers, layer);
+      console.log(controlIntersectHectar)
+      if (!controlIntersectHectar) {
+        // lvl hectares lat lng is inverse
+        if (layer instanceof L.Circle) {
+          location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromCicle(layer))
+        } else if (layer instanceof L.Polygon) {
+          location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
+        } else if (layer instanceof L.latLng) {
+          location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer))
+        } else {
+          location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
+        }
       }
     }else {
       if (layer instanceof L.Circle) {
@@ -195,11 +203,14 @@ export class SelectionToolService extends APIService {
         location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer))
       }
     }
-    this.logger.log('nuts_lvl' + nuts_lvl);
+    this.logger.log('nuts_lvl ' + nuts_lvl);
     if (nuts_lvl === 4) { // lau2 lvl
       this.getLau2ID(location, map, nuts_lvl)
     } else if (nuts_lvl === 5) {
-      this.getHectareCentroid(location, map, nuts_lvl, layer)
+      if (!controlIntersectHectar) {
+        this.getHectareCentroid(location, map, nuts_lvl, layer);
+      }
+
     } else {
       this.getNutID(location, map, nuts_lvl)
     }
@@ -329,7 +340,6 @@ export class SelectionToolService extends APIService {
     // ONLY HECTAR LEVEL
     if (this.scaleValue === hectare) {
       this.editableLayers.clearLayers();
-      this.hectareCentroidNumber = 0;
     }
     // ================
     if (this.isDrawer) {
@@ -345,7 +355,7 @@ export class SelectionToolService extends APIService {
     this.nutsIds.clear();
 
     this.updateSelectionToolAction();
-    this.displayHeatLoad(false)
+    this.displayHeatLoad(false);
   }
 
 
@@ -490,17 +500,7 @@ export class SelectionToolService extends APIService {
     const payload = {
       centroids: location,
     }
-    this.postHectareCentroid(payload).then(result => {
-      this.loaderService.display(false);
-      this.logger.log('result' + JSON.stringify(result) );
-      this.drawHectaresLoadingResult(result, map, layer);
-    }).then(() => { }).catch((e) => {
-      this.loaderService.display(false);
-
-      this.logger.log(e);
-      this.logger.log('error in getHectareCentroid');
-
-    });
+    this.drawHectaresLoadingResult(map, layer);
   }
   updateSelectionToolAction() {
     if (this.nutsIds.size > 0) {
@@ -517,7 +517,7 @@ export class SelectionToolService extends APIService {
 
 
   updateSelectionToolActionHectare() {
-    if (this.hectareCentroidNumber > 0) {
+    if (this.areasSubject.getValue().length > 0) {
       this.enableButtonLoad();
       this.enableButtonClearAll();
     } else {
@@ -526,22 +526,17 @@ export class SelectionToolService extends APIService {
       this.disableButtonLoad();
     }
     // update the number of hectare selected
-    this.nbNutsSelectedSubject.next(this.hectareCentroidNumber );
     // we define result as multi-polygon
   }
 
-  drawHectaresLoadingResult(result: any, map, layer) {
-    if (result.count === 0) {
-      this.toasterService.showToaster(' there is no data for this area');
-    }
-    if (this.helper.isNullOrUndefined(result) === false) {
-      this.logger.log('result is ' + result.count);
-      this.hectareCentroidNumber = this.hectareCentroidNumber + result.count;
+  drawHectaresLoadingResult(map, layer: Layer) {
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         this.multiSelectionLayers.addLayer(layer);
-      }
-       this.updateSelectionToolActionHectare();
-      this.loaderService.display(false);
+        this.areasSubject.next(this.multiSelectionLayers.getLayers());
+        this.logger.log('result is ' + this.areasSubject.getValue().length);
+        this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
+        this.updateSelectionToolActionHectare();
+        this.loaderService.display(false);
     }
   }
   drawResultBeforeLoadingResult(result: any) {

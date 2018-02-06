@@ -30,7 +30,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/selection-tool-button-state.service';
-import {Helper} from "../../shared/helper";
+import {Helper} from '../../shared/helper';
 
 
 @Injectable()
@@ -109,7 +109,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             self.selectionToolService.drawCreated(e, this.map, scale_lvl);
             self.selectionToolService.setIsPolygonDrawer(false);
             self.drawCreatedUpdate();
-
     }
     onDrawEdited(self) { }
     onDrawStart(self) {

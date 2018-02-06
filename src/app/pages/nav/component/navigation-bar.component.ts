@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { NavigationBarService } from '../service';
@@ -41,7 +41,7 @@ export class NavigationBarComponent implements OnInit {
                     this.interactionService.closeRightPanel()
                 }else if (button.buttonFunction  === 'selection') {
                     this.selectionToolButtonStateService.enable(false);
-                    this.selectionToolService.clearAll(this.mapService.getMap());
+                    // this.selectionToolService.clearAll(this.mapService.getMap());
                 }else if (button.buttonFunction  === 'send_mail') {
                     // Toggle top panel when it's opened
                     this.interactionService.openTopPanel();

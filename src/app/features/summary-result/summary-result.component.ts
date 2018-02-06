@@ -13,12 +13,13 @@ import {
 
 
 import {SummaryResultService} from './summary-result.service';
-import {SummaryResultClass} from './summary-result.class';
+import {SummaryResultClass, Layer} from './summary-result.class';
 import {hectare, round_value, constant_year} from '../../shared/data.service';
 import {SelectionScaleService} from '../selection-scale/selection-scale.service';
 import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
-import { PlayloadStatNuts, PayloadStat } from 'app/features/summary-result/class/payload.class';
+import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
+import { Helper } from 'app/shared';
 
 @Component({
 
@@ -46,6 +47,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
+  @Input() areas: Layer[];
 
   expandedState = 'collapsed';
   private round = round_value;
@@ -55,7 +57,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   private loadingData = false;
 
   constructor(private summaryResultService: SummaryResultService, private selectionScaleService: SelectionScaleService,
-              private logger: Logger) {}
+              private logger: Logger, private helper: Helper) {}
 
   ngOnInit() {
 
@@ -64,12 +66,13 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
     this.scale = this.selectionScaleService.getScaleValue();
+    console.log(changes);
     if (this.selectionScaleService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;
-      this.updateIds();
+      this.updateWithIds();
     } else {
       this.isDataAgregate = false;
-      this.updateLayers()
+      this.updateWithAreas()
     }
 
   }
@@ -82,8 +85,8 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
     this.summaryResult = data;
   }
-  updateIds() {
-    this.logger.log('SummaryResultComponent/updateIds()');
+  updateWithIds() {
+    this.logger.log('SummaryResultComponent/updateWithIds()');
     this.loadingData = true;
     const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
     const summaryPromise = this.summaryResultService.getSummaryResultWithIds(payload).then(result => {
@@ -93,10 +96,21 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
       this.loadingData = false;
     });
   }
-  updateLayers() {
-    this.logger.log('SummaryResultComponent/updateLayers()');
+  updateWithAreas() {
+    this.logger.log('SummaryResultComponent/updateWithAreas()');
     this.loadingData = true;
-    const payload: PayloadStat = { layers: this.layers, year: constant_year, points: this.locationsSelection }
+    const area = this.areas;
+    const areas = [];
+    this.areas.map((layer: Layer) => {
+      const points = [];
+      if (layer instanceof L.Circle) {
+        areas.push({points: this.helper.getLocationsFromCicle(layer)})
+      } else {
+        areas.push({points: this.helper.getLocationsFromPolygon(layer)})
+      }
+    });
+    const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
+    console.log(payload);
     const summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
     }).then(() => { this.loadingData = false; }).catch((e) => {

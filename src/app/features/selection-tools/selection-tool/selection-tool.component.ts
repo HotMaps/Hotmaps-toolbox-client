@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
 import { hectare } from 'app/shared';
-import { stButtons } from 'app/features/selection-tools/selection-tool/selection-button.data';
+import { stButtons, defaultElementSelected } from 'app/features/selection-tools/selection-tool/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
 import {Logger} from '../../../shared/services/logger.service';
@@ -17,7 +17,7 @@ import {Logger} from '../../../shared/services/logger.service';
   styleUrls: ['./selection-tool.component.css']
 })
 export class SelectionToolComponent implements OnInit, OnDestroy {
-  nbNutsSelected = 0;
+  private nbElementsSelected = 0;
   private scaleSelected: any;
   private subscription: Subscription;
   private subscriptionNbNutsSelected: Subscription;
@@ -25,7 +25,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private isLoaBtnDisabled = true;
   private isClearBtnDisabled = true;
   private stButtons = stButtons;
-
+  private elementSelected = defaultElementSelected;
   constructor(private mapService: MapService, private logger: Logger) {}
 
   ngOnInit() {
@@ -42,11 +42,16 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   subscribeMapService() {
     this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
       this.scaleSelected = value;
+      if (value === hectare) {
+        this.elementSelected = 'Zones selected'
+      } else {
+        this.elementSelected = defaultElementSelected;
+      }
 
     })
 
     this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
-      this.nbNutsSelected = value;
+      this.nbElementsSelected = value;
     })
 
     // subscribing to click event subject of MapService

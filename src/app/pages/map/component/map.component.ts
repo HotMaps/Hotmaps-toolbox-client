@@ -1,7 +1,7 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
 import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
-import { Map} from 'leaflet';
+import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
 
 import { basemap } from '../basemap'
@@ -25,6 +25,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   showHide = false;
   private nutsIds: string[];
   private locationsSelection: Location[];
+  private areas: Layer[];
   private map: Map;
   private layers;
   private scaleLevel;
@@ -74,6 +75,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.layers = data;
       });
     }
+    this.selectionToolService.areasSubject.subscribe((areas) => {
+      this.areas = areas;
+    })
     this.selectionToolService.nutsIdsSubject.subscribe((data) => {
       this.nutsIds = data;
     });

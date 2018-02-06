@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
@@ -98,7 +98,7 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
     ]
 })
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
-    // Improvement of coding style : 
+    // Improvement of coding style :
     // place private members after public members, alphabetized
     private summaryResult: SummaryResultClass = null;
     private poiTitle;
@@ -107,6 +107,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() scaleLevel;
     @Input() heatloadStatus;
     @Input() locationsSelection;
+    @Input() areas;
 
     constructor(protected interactionService: InteractionService) {
         super(interactionService);

@@ -7,6 +7,9 @@ import { MONTHNAME } from 'app/shared/class/month.data';
 import {GeojsonClass} from '../features/layers/class/geojson.class';
 import { DatasetChart } from 'app/features/chart/chart';
 import * as proj4x from 'proj4';
+import { Point, toPoint } from 'proj4';
+import * as contain from '@turf/boolean-contains';
+
 const proj4 = (proj4x as any).default;
 
 
@@ -258,7 +261,125 @@ export class Helper {
     return locations
   }
 
+  checkIntersect(l1, l2) {
+    var intersects = false;
+    for (var i = 0; i <= l1.coordinates.length - 2; ++i) {
+        for (var j = 0; j <= l2.coordinates.length - 2; ++j) {
+            var a1Latlon = L.latLng(l1.coordinates[i][1], l1.coordinates[i][0]),
+                a2Latlon = L.latLng(l1.coordinates[i + 1][1], l1.coordinates[i + 1][0]),
+                b1Latlon = L.latLng(l2.coordinates[j][1], l2.coordinates[j][0]),
+                b2Latlon = L.latLng(l2.coordinates[j + 1][1], l2.coordinates[j + 1][0]),
+                a1 = L.Projection.SphericalMercator.project(a1Latlon),
+                a2 = L.Projection.SphericalMercator.project(a2Latlon),
+                b1 = L.Projection.SphericalMercator.project(b1Latlon),
+                b2 = L.Projection.SphericalMercator.project(b2Latlon),
+                ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x),
+                ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x),
+                u_b = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
+            if (u_b != 0) {
+                var ua = ua_t / u_b,
+                    ub = ub_t / u_b;
+                if (0 <= ua && ua <= 1 && 0 <= ub && ub <= 1) {
+                    intersects=true;
+                }
+            }
+        }
+    }
 
+    return intersects;
+  }
+  lineify(inputGeom) {
+    var outputLines = {
+        "type": "GeometryCollection",
+            "geometries": []
+    }
+    switch (inputGeom.type) {
+        case "GeometryCollection":
+            for (var i in inputGeom.geometries) {
+                var geomLines = this.lineify(inputGeom.geometries[i]);
+                if (geomLines) {
+                    for (var j in geomLines.geometries) {
+                        outputLines.geometries.push(geomLines.geometries[j]);
+                    }
+                } else {
+                    outputLines = null;
+                }
+            }
+            break;
+        case "Feature":
+            var geomLines = this.lineify(inputGeom.geometry);
+            if (geomLines) {
+                for (var j in geomLines.geometries) {
+                    outputLines.geometries.push(geomLines.geometries[j]);
+                }
+            } else {
+                outputLines = null;
+            }
+            break;
+        case "FeatureCollection":
+            for (var i in inputGeom.features) {
+                var geomLines = this.lineify(inputGeom.features[i].geometry);
+                if (geomLines) {
+                    for (var j in geomLines.geometries) {
+                        outputLines.geometries.push(geomLines.geometries[j]);
+                    }
+                } else {
+                    outputLines = null;
+                }
+            }
+            break;
+        case "LineString":
+            outputLines.geometries.push(inputGeom);
+            break;
+        case "MultiLineString":
+        case "Polygon":
+            for (var i in inputGeom.coordinates) {
+                outputLines.geometries.push({
+                    "type": "LineString",
+                        "coordinates": inputGeom.coordinates[i]
+                });
+            }
+            break;
+        case "MultiPolygon":
+            for (var i in inputGeom.coordinates) {
+                for (var j in inputGeom.coordinates[i]) {
+                    outputLines.geometries.push({
+                        "type": "LineString",
+                            "coordinates": inputGeom.coordinates[i][j]
+                    });
+                }
+            }
+            break;
+        default:
+            outputLines = null;
+    }
+    return outputLines;
+}
+  controlDrawedLayer(baseLayer, drawLayer) {
+    var baseJson = baseLayer.toGeoJSON(),
+    drawJson = drawLayer.toGeoJSON(),
+    baseLines = this.lineify(baseJson),
+    drawLines = this.lineify(drawJson),
+    pointCrossed = false
+    baseJson.features.map((feature) => {
+      if (this.testSpatial(feature, drawJson) === true) {
+        pointCrossed = true;
+      }
+    })
+    if (baseLines && drawLines) {
+        for (var i in drawLines.geometries) {
+            for (var j in baseLines.geometries) {
+              if (pointCrossed === true) { return pointCrossed };
+              console.log(baseLines.geometries[j], drawLines.geometries[i])
+              pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
+            }
+        }
+    }
+    return pointCrossed;
+  }
+  testSpatial(baseJson, drawJson) {
+    return contain.default(drawJson, baseJson)
+  }
 }
 
 

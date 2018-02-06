@@ -33,7 +33,7 @@ export class SummaryResultService extends APIService {
   }
 
   getSummaryResultWithMultiAreas(payload: any): Promise<any> {
-    this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
+    this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsLayersHectareMulti);
   }
 

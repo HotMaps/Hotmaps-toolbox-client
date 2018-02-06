@@ -11,3 +11,11 @@ export class PlayloadStatNuts {
   year: number;
   nuts: string[];
 }
+export interface PayloadStatHectar {
+  layers: string[],
+  areas: Area[],
+  year: number
+}
+export interface Area {
+  points: Location[]
+}
