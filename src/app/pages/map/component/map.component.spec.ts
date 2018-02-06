@@ -65,6 +65,7 @@ describe('MapComponent', () => {
   let mockGeocodeService: MockGeocodeService;
   let mockSelectionScaleService: MockSelectionScaleService;
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     mockMapService = new MockMapService();
     mockSidePanelService = new SidePanelService();
     mockLoggerService = new MockLoggerService();

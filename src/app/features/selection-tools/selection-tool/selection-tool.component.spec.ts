@@ -67,7 +67,7 @@ describe('SelectionToolComponent', () => {
   });
 
   it('nbNutsSelected should be 0 at start', () => {
-        expect(component.nbNutsSelected).toBe(0);
+        expect(component.getNbElementsSelected()).toBe(0);
   });
 
 });
