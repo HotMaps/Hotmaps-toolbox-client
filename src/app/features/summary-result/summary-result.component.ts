@@ -66,7 +66,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
     this.scale = this.selectionScaleService.getScaleValue();
-    console.log(changes);
+
     if (this.selectionScaleService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;
       this.updateWithIds();
@@ -110,7 +110,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
       }
     });
     const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
-    console.log(payload);
+
     const summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
     }).then(() => { this.loadingData = false; }).catch((e) => {

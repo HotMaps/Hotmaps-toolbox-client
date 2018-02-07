@@ -367,7 +367,7 @@ export class Helper {
     } else {
       drawJson = drawLayer.toGeoJSON()
     }
-    console.log(drawJson)
+   // console.log(drawJson)
     var baseJson = baseLayer.toGeoJSON(),
     baseLines = this.lineify(baseJson),
     drawLines = this.lineify(drawJson),
@@ -381,7 +381,7 @@ export class Helper {
         for (var i in drawLines.geometries) {
             for (var j in baseLines.geometries) {
               if (pointCrossed === true) { return pointCrossed };
-              console.log(baseLines.geometries[j], drawLines.geometries[i])
+             // console.log(baseLines.geometries[j], drawLines.geometries[i])
               pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
             }
         }

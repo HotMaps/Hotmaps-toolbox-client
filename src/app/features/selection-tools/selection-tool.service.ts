@@ -187,7 +187,7 @@ export class SelectionToolService extends APIService {
     let location = '';
     if (nuts_lvl === 5) {
       controlIntersectHectar = this.helper.controlDrawedLayer(this.multiSelectionLayers, layer);
-      console.log(controlIntersectHectar)
+
       if (!controlIntersectHectar) {
         // lvl hectares lat lng is inverse
         if (layer instanceof L.Circle) {
