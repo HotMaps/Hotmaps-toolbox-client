@@ -105,10 +105,11 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
     // Event functions
     onDrawCreated(self, e) {
-            const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
-            self.selectionToolService.drawCreated(e, this.map, scale_lvl);
-            self.selectionToolService.setIsPolygonDrawer(false);
-            self.drawCreatedUpdate();
+        self.logger.log('MapService/onDrawCreated');
+        const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
+        self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+        self.selectionToolService.setIsPolygonDrawer(false);
+        self.drawCreatedUpdate();
     }
     onDrawEdited(self) { }
     onDrawStart(self) {
