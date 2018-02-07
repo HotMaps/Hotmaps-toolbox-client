@@ -356,8 +356,19 @@ export class Helper {
     return outputLines;
 }
   controlDrawedLayer(baseLayer, drawLayer) {
+    // console.log(baseLayer, drawLayer)
+    let drawJson;
+    if (drawLayer instanceof L.Circle) {
+      drawJson = {
+        "type": "Feature", "properties": {}, "geometry": {
+          "type": "Polygon", "coordinates": this.getLocationsFromCicle(drawLayer)
+        }
+      }
+    } else {
+      drawJson = drawLayer.toGeoJSON()
+    }
+    console.log(drawJson)
     var baseJson = baseLayer.toGeoJSON(),
-    drawJson = drawLayer.toGeoJSON(),
     baseLines = this.lineify(baseJson),
     drawLines = this.lineify(drawJson),
     pointCrossed = false

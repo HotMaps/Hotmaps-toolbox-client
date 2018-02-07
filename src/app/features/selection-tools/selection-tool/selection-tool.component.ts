@@ -17,7 +17,7 @@ import {Logger} from '../../../shared/services/logger.service';
   styleUrls: ['./selection-tool.component.css']
 })
 export class SelectionToolComponent implements OnInit, OnDestroy {
-  private nbElementsSelected = 0;
+  nbElementsSelected = 0;
   private scaleSelected: any;
   private subscription: Subscription;
   private subscriptionNbNutsSelected: Subscription;

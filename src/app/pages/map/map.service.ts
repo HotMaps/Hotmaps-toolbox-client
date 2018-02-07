@@ -101,33 +101,44 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self) });
         this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self) });
         this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self) });
+        this.map.on('draw:editmove', () => { self.bla(self) });
+        this.map.on('draw:editresize', () => { self.blabla(self) });
     }
-
+    bla(self) {
+        self.logger.log('MapService/draw:editmove');
+    }
+    blabla(self) {
+        self.logger.log('MapService/draw:editresize');
+    }
     // Event functions
     onDrawCreated(self, e) {
-            const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
-            self.selectionToolService.drawCreated(e, this.map, scale_lvl);
-            self.selectionToolService.setIsPolygonDrawer(false);
-            self.drawCreatedUpdate();
+        self.logger.log('MapService/onDrawCreated');
+        const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
+        self.selectionToolService.drawCreated(e, this.map, scale_lvl);
+        self.selectionToolService.setIsPolygonDrawer(false);
+        self.drawCreatedUpdate();
     }
-    onDrawEdited(self) { }
+    onDrawEdited(self) {
+        self.logger.log('MapService/onDrawEdited');
+    }
     onDrawStart(self) {
-        self.selectionToolService.toggleActivateTool(true);
         self.logger.log('MapService/DrawStart');
+        self.selectionToolService.toggleActivateTool(true);
 
         this.selectionToolService.enableButtonClearAll(); // enable button when the drawing starts
     }
     onDrawEditStart(self) {
-        self.selectionToolService.toggleActivateTool(true);
         self.logger.log('MapService/DrawEditStart');
+        self.selectionToolService.toggleActivateTool(true);
     }
     onDrawEditStop(self) {
-        self.selectionToolService.toggleActivateTool(false);
         self.logger.log('MapService/DrawEditStop');
+        self.selectionToolService.setAreas();
+        self.selectionToolService.toggleActivateTool(false);
     }
     onDrawDeleted(self) {
-        self.selectionToolService.clearAll(self.map);
         self.logger.log('MapService/DrawDeleted');
+        self.selectionToolService.clearAll(self.map);
     }
     onLayersControlEvent(self) { }
     onLayerAdd(self) { }

@@ -170,7 +170,15 @@ export class SelectionToolService extends APIService {
     const event: Created = <Created>e;
     const type = event.layerType,
     layer: any = event.layer;
-    console.log(layer);
+    layer.on('click', function() {
+      if (layer.editing.enabled()) {
+        layer.editing.disable();
+        map.fire('draw:editstop');
+      } else {
+        layer.editing.enable();
+        map.fire('draw:editstart');
+      }
+    });
     let controlIntersectHectar = false;
     this.isActivate = false;
     this.isPolygonDrawer = false;
@@ -528,7 +536,9 @@ export class SelectionToolService extends APIService {
     // update the number of hectare selected
     // we define result as multi-polygon
   }
-
+  setAreas() {
+    this.areasSubject.next(this.multiSelectionLayers.getLayers());
+  }
   drawHectaresLoadingResult(map, layer: Layer) {
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         this.multiSelectionLayers.addLayer(layer);
