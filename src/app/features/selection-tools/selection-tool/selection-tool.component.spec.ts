@@ -36,6 +36,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -44,11 +45,14 @@ describe('SelectionToolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpModule],
-      declarations: [ SelectionToolComponent ],
-      providers: [ {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService}, SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
-                BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService]
+      imports: [HttpModule],
+      declarations: [SelectionToolComponent],
+      providers: [
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+        SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
+        BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
+        MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService]
     })
     .compileComponents();
   }));

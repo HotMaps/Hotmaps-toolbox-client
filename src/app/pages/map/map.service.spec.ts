@@ -27,7 +27,8 @@ import {SelectionScaleService} from '../../features/selection-scale/selection-sc
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 
 
 
@@ -53,6 +54,7 @@ describe('mapService', () => {
         {provide: DataInteractionService, useClass: DataInteractionService},
         {provide: GeocodingService, useClass: GeocodingService},
         {provide: LayersService, useClass: LayersService},
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},

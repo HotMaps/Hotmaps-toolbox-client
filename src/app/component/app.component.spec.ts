@@ -58,6 +58,7 @@ import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service"
 import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 
 
 
@@ -81,7 +82,7 @@ describe('AppComponent: Router', () => {
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
         {provide: SidePanelService, useClass: SidePanelService},
-
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: SelectionScaleService, useClass: SelectionScaleService},
         {provide: Logger, useClass: Logger},
         {provide: SelectionToolService, useClass: SelectionToolService},

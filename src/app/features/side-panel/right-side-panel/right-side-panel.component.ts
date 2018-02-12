@@ -16,11 +16,11 @@ import {
     Input,
     SimpleChanges
 } from '@angular/core';
-import {SideComponent} from '../side-panel.component';
+import { SideComponent } from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { rightPanelSize } from 'app/shared';
+import { rightPanelSize, nuts2 } from 'app/shared';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
@@ -76,7 +76,7 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
         trigger('titleTextTrigger', [
             state('in', style({ opacity: '1' })),
             transition('void => *', [style({ opacity: '0' }),
-                animate('100ms 300ms')
+            animate('100ms 300ms')
             ]),
             transition('* => void', [
                 animate('50ms', style({ opacity: '0' }))
@@ -89,15 +89,15 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
         //  the same time.
         //
         trigger('iconTrigger', [
-           // state('collapsed', style({ transform: 'rotate(0deg)' })),
-          //  state('expanded', style({ transform: 'rotate(180deg)' })),
+            // state('collapsed', style({ transform: 'rotate(0deg)' })),
+            //  state('expanded', style({ transform: 'rotate(180deg)' })),
 
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
         ])
     ]
 })
-export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
+export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     // Improvement of coding style :
     // place private members after public members, alphabetized
     private summaryResult: SummaryResultClass = null;
@@ -105,14 +105,21 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() nutsIds;
     @Input() layers;
     @Input() scaleLevel;
-    @Input() heatloadStatus;
+    private heatloadStatus = false;
     @Input() locationsSelection;
     @Input() areas;
 
     constructor(protected interactionService: InteractionService) {
         super(interactionService);
     }
-    ngOnInit() {}
-    ngOnDestroy() {}
+    ngOnInit() { }
+    ngOnDestroy() { }
+    ngOnChanges() {
+        if ((this.scaleLevel === '3') || (this.scaleLevel === '2')) {
+            this.heatloadStatus = true;
+        } else {
+            this.heatloadStatus = false;
+        }
+    }
 
 }

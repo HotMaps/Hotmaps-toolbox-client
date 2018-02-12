@@ -17,7 +17,6 @@ export class SidePanelService {
 
     public topPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public rightToggleExpandedStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    public lauchHeatloadCalculationStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     topPanelexpandedCollapsed() {
       this.topPanelStatus.next(true);
@@ -42,16 +41,6 @@ export class SidePanelService {
     }
     closeLeftPanel() {
       this.leftPanelStatus.next(false);
-    }
-  /*
-    setHeatLoadResultData(data: any) {
-      this.heatLoadResultStatus.next(data);
-    }
-    setPoiData(data) {
-      this.poiData.next(data);
-    } */
-    setLauchHeatloadCalculation(value) {
-      this.lauchHeatloadCalculationStatus.next(value);
     }
 }
 

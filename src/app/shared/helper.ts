@@ -244,7 +244,17 @@ export class Helper {
     const lau2_id: string = geoJson.features[0].properties.comm_id;
     return lau2_id;
   }
-
+  getLocationsFromLayer(layer) {
+    if (layer instanceof L.Circle) {
+      return this.getLocationsFromCicle(layer)
+    } else if (layer instanceof L.Polygon) {
+      return this.getLocationsFromPolygon(layer)
+    } else if (layer instanceof L.latLng) {
+      return this.getLocationsFromPolygon(layer)
+    } else {
+      return this.getLocationsFromGeoJsonLayer(layer)
+    }
+  }
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
     const origin = circle.getLatLng(); // center of drawn circle
@@ -367,11 +377,10 @@ export class Helper {
     } else {
       drawJson = drawLayer.toGeoJSON()
     }
-    console.log(drawJson)
     var baseJson = baseLayer.toGeoJSON(),
     baseLines = this.lineify(baseJson),
     drawLines = this.lineify(drawJson),
-    pointCrossed = false
+    pointCrossed = false;
     baseJson.features.map((feature) => {
       if (this.testSpatial(feature, drawJson) === true) {
         pointCrossed = true;

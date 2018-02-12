@@ -52,6 +52,7 @@ import { SelectionToolComponent } from './features/selection-tools/selection-too
 import { HeatLoadChartComponent } from './features/heat-load/component/';
 import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
 import { ChartComponent } from './features/chart/chart.component';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 
 
 @NgModule({
@@ -111,7 +112,8 @@ import { ChartComponent } from './features/chart/chart.component';
     MailService,
     SelectionScaleService,
     InteractionService,
-    HeatLoadAggregateService
+    HeatLoadAggregateService,
+    SelectionToolUtils
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

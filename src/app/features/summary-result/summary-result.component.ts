@@ -113,6 +113,8 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     console.log(payload);
     const summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
+      // Demo purpose
+      this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => { this.loadingData = false; }).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;

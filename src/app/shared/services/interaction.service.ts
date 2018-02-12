@@ -91,8 +91,4 @@ export class InteractionService {
     getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
         return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
     }
-    lauchHeatloadCalculation(value) {
-        this.sidePanelService.setLauchHeatloadCalculation(value)
-    }
-
 }
