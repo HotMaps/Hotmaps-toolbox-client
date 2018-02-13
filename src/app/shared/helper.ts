@@ -92,6 +92,18 @@ export class Helper {
     locations = locations + loc;
     return locations;
   }
+  convertPointToGeoJSONFormat(latlng) {
+    let n = 0;
+    const locations = [];
+    do {
+      const loc = [];
+      loc.push(latlng[n].lng, latlng[n].lat)
+      locations.push(loc);
+      n++;
+    } while (!this.isNullOrUndefined(latlng[n]));
+
+    return locations;
+  }
 
   createGeodesicPolygon(origin, radius, sides, rotation) {
 
@@ -359,17 +371,14 @@ export class Helper {
     // console.log(baseLayer, drawLayer)
     let drawJson;
     if (drawLayer instanceof L.Circle) {
-      drawJson = {
-        "type": "Feature", "properties": {}, "geometry": {
-          "type": "Polygon", "coordinates": this.getLocationsFromCicle(drawLayer)
-        }
-      }
+      drawJson = this.circleToGeoJSON(drawLayer)
     } else {
       drawJson = drawLayer.toGeoJSON()
     }
     console.log(drawJson)
-    var baseJson = baseLayer.toGeoJSON(),
-    baseLines = this.lineify(baseJson),
+    var baseJson = baseLayer.toGeoJSON();
+    console.log(baseJson)
+    var baseLines = this.lineify(baseJson),
     drawLines = this.lineify(drawJson),
     pointCrossed = false
     baseJson.features.map((feature) => {
@@ -390,6 +399,16 @@ export class Helper {
   }
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
+  }
+  circleToGeoJSON(layer) {
+    return {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+          "type": "Polygon",
+          "coordinates": [this.latLngsToCoords(this.getLocationsFromCicle(layer))]
+      }
+    }
   }
 }
 

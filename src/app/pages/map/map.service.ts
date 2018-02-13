@@ -67,6 +67,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     getSubscribtionNutsIds() {
         return this.selectionToolService.nutsIdsSubject.asObservable()
     }
+    getNbOfLayersSelected() {
+        return this.selectionToolService.nbOfLayersSelected;
+    }
     /**
     * Update the clickCursorSubject
     */
@@ -99,17 +102,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.map.on(MAPDRAWEDITED, () => { self.onDrawEdited(self) });
         this.map.on(MAPDRAWSTART, () => { self.onDrawStart(self) });
         this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self) });
-        this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self) });
+        this.map.on(MAPDRAWEDITSTOP, (e) => { self.onDrawEditStop(self, e) });
         this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self) });
-        this.map.on('draw:editmove', () => { self.bla(self) });
-        this.map.on('draw:editresize', () => { self.blabla(self) });
     }
-    bla(self) {
-        self.logger.log('MapService/draw:editmove');
-    }
-    blabla(self) {
-        self.logger.log('MapService/draw:editresize');
-    }
+
     // Event functions
     onDrawCreated(self, e) {
         self.logger.log('MapService/onDrawCreated');
@@ -131,7 +127,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.logger.log('MapService/DrawEditStart');
         self.selectionToolService.toggleActivateTool(true);
     }
-    onDrawEditStop(self) {
+    onDrawEditStop(self, e) {
         self.logger.log('MapService/DrawEditStop');
         self.selectionToolService.setAreas();
         self.selectionToolService.toggleActivateTool(false);
@@ -199,13 +195,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     getZoomLevel(): BehaviorSubject<number> {
         return this.zoomlevel;
     }
-    // Draw control management
-    /*addDrawControls() {
-        //this.selectionToolService.addDrawerControl(this.map);
-    }*/
-    /*removeDrawControls() {
-        this.selectionToolService.removeControls(this.map);
-    }*/
+    deleteSelectedAreas() {
+        this.selectionToolService.deleteSelectedAreas()
+    }
     toggleDrawControls() {
         this.selectionToolService.toggleControl(this.map);
     }

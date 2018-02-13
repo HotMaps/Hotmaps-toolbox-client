@@ -25,6 +25,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private isLoaBtnDisabled = true;
   private isClearBtnDisabled = true;
   private stButtons = stButtons;
+  private layerSelected;
   private elementSelected = defaultElementSelected;
   constructor(private mapService: MapService, private logger: Logger) {}
 
@@ -49,7 +50,9 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       }
 
     })
-
+    this.mapService.getNbOfLayersSelected().subscribe((value) => {
+      this.layerSelected = value;
+    })
     this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
       this.nbElementsSelected = value;
     })
@@ -116,6 +119,23 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     this.cursorClick();
   }
 
-
-
+  setClearButtonText() {
+    let layer = ' layers';
+    if (this.layerSelected === 1) {
+      layer = ' layer';
+    }
+    if (this.layerSelected >= 1) {
+      return 'Clear ' + this.layerSelected + layer;
+    } else if (this.layerSelected === 0) {
+      return 'Clear all';
+    }
+  }
+  clearLayers() {
+    if (this.layerSelected > 1) {
+      this.mapService.deleteSelectedAreas();
+    } else {
+      this.mapService.clearAll(this.mapService.getMap());
+      this.cursorClick();
+    }
+  }
 }
