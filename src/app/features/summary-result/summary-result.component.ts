@@ -20,6 +20,8 @@ import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
 import { Helper } from 'app/shared';
+import {InteractionService} from '../../shared/services/interaction.service';
+import {MapService} from '../../pages/map/map.service';
 
 @Component({
 
@@ -56,49 +58,50 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   private isDataAgregate = false;
   private loadingData = false;
 
-  constructor(private summaryResultService: SummaryResultService, private selectionScaleService: SelectionScaleService,
-              private logger: Logger, private helper: Helper) {}
+  constructor(private mapService: MapService,
+              private logger: Logger, private helper: Helper, private interactionService: InteractionService) {}
 
   ngOnInit() {
-
-
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
-    this.scale = this.selectionScaleService.getScaleValue();
+    this.scale = this.mapService.getScaleValue();
     console.log(changes);
-    if (this.selectionScaleService.getScaleValue() !== hectare) {
+    if (this.mapService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;
       this.updateWithIds();
     } else {
       this.isDataAgregate = false;
       this.updateWithAreas()
     }
-
   }
-
   ngOnDestroy() {
-
   }
-
   getData(data: any) {
-
     this.summaryResult = data;
   }
   updateWithIds() {
-    this.logger.log('SummaryResultComponent/updateWithIds()');
+    this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
     this.loadingData = true;
+    this.interactionService.displayButtonExport(!this.loadingData)
+
     const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
-    const summaryPromise = this.summaryResultService.getSummaryResultWithIds(payload).then(result => {
+    const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
       this.summaryResult = result;
-    }).then(() => { this.loadingData = false; }).catch((e) => {
+      this.interactionService.setSummaryData(result);
+    }).then(() => {
+      this.loadingData = false;
+      this.interactionService.displayButtonExport(!this.loadingData)
+    }).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;
+      this.interactionService.displayButtonExport(!this.loadingData)
     });
   }
   updateWithAreas() {
     this.logger.log('SummaryResultComponent/updateWithAreas()');
     this.loadingData = true;
+    this.interactionService.displayButtonExport(!this.loadingData)
     const area = this.areas;
     const areas = [];
     this.areas.map((layer: Layer) => {
@@ -111,11 +114,14 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     });
     const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
     console.log(payload);
-    const summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(result => {
+    const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
-    }).then(() => { this.loadingData = false; }).catch((e) => {
+      this.interactionService.setSummaryData(result);
+    }).then(() => { this.loadingData = false;
+      this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;
+      this.interactionService.displayButtonExport(!this.loadingData)
     });
   }
 }

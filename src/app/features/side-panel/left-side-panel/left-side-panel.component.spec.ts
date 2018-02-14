@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,7 @@ import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.servi
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
 import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
+import {ExportDataService} from "../../export-data/service/export-data.service";
 
 
 describe('LeftSideComponent', () => {
@@ -42,6 +43,8 @@ describe('LeftSideComponent', () => {
                     }, deps: [ MockBackend, BaseRequestOptions ]
                 },
                 { provide: InteractionService, useClass: InteractionService },
+                {provide: SidePanelService, useClass: SidePanelService },
+                { provide: ExportDataService, useClass: ExportDataService },
                 { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
                 { provide: SidePanelService, useClass: SidePanelService },
                 { provide: SummaryResultService, useClass: SummaryResultService },

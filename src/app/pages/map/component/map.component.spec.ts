@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
@@ -52,6 +52,8 @@ import { SelectionToolComponent } from '../../../features/selection-tools/select
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
+import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
+import {ExportDataService} from "../../../features/export-data/service/export-data.service";
 
 
 
@@ -78,7 +80,7 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        HeatLoadChartComponent, ChartComponent
+        HeatLoadChartComponent, ChartComponent, ExportDataComponent
       ],
       providers: [
         {
@@ -88,6 +90,7 @@ describe('MapComponent', () => {
         },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: InteractionService, useClass: InteractionService },
+        { provide: ExportDataService, useClass: ExportDataService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: ToasterService, useClass: ToasterService },

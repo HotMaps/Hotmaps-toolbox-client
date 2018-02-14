@@ -9,11 +9,11 @@
   </div>
   <div *ngIf="heatloadStatus;then energy_stat_content else normal_content" class="energy-statistic"></div>
   <ng-template #energy_stat_content>
-    <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
-      <li id="tab1">
+    <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
+      <li id="tab1" (click)="clickTab('summary')">
         <a href="">Summary</a>
       </li>
-      <li id="tab2">
+      <li id="tab2" (click)="clickTab('stats')">
         <a href="">Energy Statistics</a>
       </li>
 
@@ -54,4 +54,5 @@
       [areas]="areas"
       ></htm-summary-result>
   </ng-template>
+  <htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data>
 </div>

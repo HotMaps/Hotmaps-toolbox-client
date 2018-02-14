@@ -36,7 +36,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private default_year = 2010;
   private loadingData = false;
 
-  constructor(private logger: Logger, private helper: Helper, private heatLoadAggregateService: HeatLoadAggregateService) {
+  constructor(private logger: Logger, private helper: Helper, private heatLoadAggregateService: HeatLoadAggregateService,
+              private interactionService: InteractionService) {
   }
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
@@ -101,6 +102,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     this.logger.log('HeatLoadComponent/update');
     if (this.buttons_date_type !== undefined) {
       this.loadingData = true;
+      this.interactionService.displayButtonExportStats(!this.loadingData);
       const payload = {
         'year': this.buttons_date_type[0].date,
         'month': this.buttons_date_type[1].date,
@@ -110,11 +112,17 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       }
       this.heatLoadAggregateService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
         this.loadProfileData = [];
+        this.interactionService.setDataStats(result);
         this.loadProfileData = this.heatLoadAggregateService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
       }).then(() => {
         this.loadingData = false;
+        this.interactionService.displayButtonExportStats(!this.loadingData);
+      }).catch((e) => {
+        this.logger.log(JSON.stringify(e))
+        this.loadingData = false;
+        this.interactionService.displayButtonExportStats(!this.loadingData)
       });
     }
   }

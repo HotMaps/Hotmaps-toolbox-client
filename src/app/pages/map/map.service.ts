@@ -73,7 +73,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     clickCursorUpdate() {
         this.clickEventSubject.next();
     }
-
     /**
     * Update the drawCreatedSubject
     */
@@ -238,25 +237,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       return this.POST(payload, apiUrl + postForOneHectareCentroid);
     }
     getHectareGeometryFromClick(latlng: LatLng, nuts_level): any {
-      /*const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-      const action = lau2name;
-      const payload = {
-        point: latlng.lng + ' ' + latlng.lat,
-      }
-      const url = apiUrl + postStatsLayersArea
-      this.postHectareCentroid(payload).then(result => {
-        this.loaderService.display(false);
-        this.logger.log('result' + JSON.stringify(result) );
-        this.selectAreaWithHectare(result);
-      }).then(() => { }).catch((e) => {
-        this.loaderService.display(false);
-
-        this.logger.log(e);
-        this.logger.log('error in getHectareCentroid');
-
-      });*/
-
-      // if point is inside layer group create the
     }
     getAreaFromScale(url): any {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
@@ -282,15 +262,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         const layer = new L.Rectangle(point.toBounds(100));
 
         this.selectionToolService.addHectareToMultiSelectionLayers(layer)
-        // remove the layer if there is one
-        /*this.removeAreaSelectedlayer();
-        // create an other selection only if this is a new area or if no area is actually selected (highlighted)
-        const areaNutsSelectedLayer = L.geoJSON(areaSelected);
-        if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
-          this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
-        } else {
-          this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
-        }*/
       }
     }
 

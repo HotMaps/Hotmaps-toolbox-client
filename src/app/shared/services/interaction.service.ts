@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
@@ -16,6 +16,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
+import {ExportDataService} from "../../features/export-data/service/export-data.service";
 
 @Injectable()
 export class InteractionService {
@@ -24,12 +25,31 @@ export class InteractionService {
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
-        private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService
+        private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService,
+                private exportDataService: ExportDataService
     ) { }
-    
+
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
+    // interface for export data service
+
+    displayButtonExportStats(value: boolean) {
+      this.exportDataService.displayButtonExportStats(value);
+    }
+    setDataStats(data: any) {
+      this.exportDataService.setDataStats(data);
+    }
+    setTabsSelectedName(data: string) {
+      this.exportDataService.setTabsSelectedName(data);
+    }
+    displayButtonExport(val: boolean) {
+      this.exportDataService.displayButtonExport(val);
+    }
+    setSummaryData(val: any) {
+        this.exportDataService.setDataSummary(val);
+    }
+
     enableStateOpenWithFunction(functionString: string) {
         this.navigationBarService.enableOpenStateWithFunction(functionString)
     }
@@ -77,13 +97,15 @@ export class InteractionService {
     disableLeftPanel() {
         this.sidePanelService.closeLeftPanel();
     }
-
     getNavButtons() {
         return this.navigationBarService.getButtons();
     }
 
     getSummaryResultWithIds(payload): Promise<any> {
       return this.summaryResultService.getSummaryResultWithIds(payload);
+    }
+    getSummaryResultWithMultiAreas(payload: any): Promise<any> {
+      return this.summaryResultService.getSummaryResultWithMultiAreas(payload);
     }
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);

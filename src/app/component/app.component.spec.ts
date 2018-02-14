@@ -3,7 +3,7 @@
  * Created by lesly on 28.06.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
@@ -58,6 +58,8 @@ import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service"
 import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
+import {ExportDataComponent} from "../features/export-data/component/export-data.component";
+import {ExportDataService} from "../features/export-data/service/export-data.service";
 
 
 
@@ -76,13 +78,13 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
         {provide: SidePanelService, useClass: SidePanelService},
-
         {provide: SelectionScaleService, useClass: SelectionScaleService},
+        {provide: ExportDataService, useClass: ExportDataService},
         {provide: Logger, useClass: Logger},
         {provide: SelectionToolService, useClass: SelectionToolService},
         {provide: Helper, useClass: Helper},

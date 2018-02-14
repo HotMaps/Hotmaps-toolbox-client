@@ -14,14 +14,15 @@ import {
     transition,
     animate,
     Input,
-    SimpleChanges
+  OnChanges
 } from '@angular/core';
 import {SideComponent} from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize } from 'app/shared';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import {Logger} from "../../../shared/services/logger.service";
+
 
 
 @Component({
@@ -97,7 +98,7 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
         ])
     ]
 })
-export class RightSideComponent extends SideComponent implements OnInit, OnDestroy {
+export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     // Improvement of coding style :
     // place private members after public members, alphabetized
     private summaryResult: SummaryResultClass = null;
@@ -108,11 +109,20 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() heatloadStatus;
     @Input() locationsSelection;
     @Input() areas;
+    @Input() actualtab;
 
-    constructor(protected interactionService: InteractionService) {
+
+    constructor(protected interactionService: InteractionService, private logger: Logger) {
         super(interactionService);
     }
-    ngOnInit() {}
+    ngOnChanges() {
+    }
+    clickTab(id: string) {
+      this.logger.log('clickTab' + id);
+      this.interactionService.setTabsSelectedName(id);
+    }
+    ngOnInit() {
+    }
     ngOnDestroy() {}
 
 }

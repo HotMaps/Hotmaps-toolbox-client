@@ -36,6 +36,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
+import {ExportDataService} from "../../export-data/service/export-data.service";
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -48,7 +49,7 @@ describe('SelectionToolComponent', () => {
       declarations: [ SelectionToolComponent ],
       providers: [ {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService}, SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
                 BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService]
+                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService]
     })
     .compileComponents();
   }));
@@ -62,8 +63,6 @@ describe('SelectionToolComponent', () => {
   it('selection tool component should be created', () => {
     expect(component).toBeTruthy();
     expect(fixture).toBeTruthy();
-
-
   });
 
   it('nbNutsSelected should be 0 at start', () => {

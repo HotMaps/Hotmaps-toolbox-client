@@ -10,6 +10,13 @@ import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { MockLoaderService } from 'app/shared/services/mock/loader.service';
 import { MockLoggerService } from 'app/shared/services/mock/logger.service';
+import {InteractionService} from '../../../shared/services/interaction.service';
+import {SidePanelService} from "../../side-panel/side-panel.service";
+import {NavigationBarService} from "../../../pages/nav/service/navigation-bar.service";
+import {SummaryResultService} from "../../summary-result/summary-result.service";
+import {LayersService} from "../../layers/services/layers.service";
+import {ExportDataService} from "../../export-data/service/export-data.service";
+import {BusinessInterfaceRenderService} from "../../../shared/business/business.service";
 
 describe('HeatLoadChartComponent', () => {
   let component: HeatLoadChartComponent;
@@ -23,8 +30,16 @@ describe('HeatLoadChartComponent', () => {
       declarations: [HeatLoadChartComponent, ChartComponent],
       providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+
         { provide: Logger, useClass: Logger },
         { provide: ToasterService, useClass: ToasterService },
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: LayersService, useClass: LayersService },
+        { provide: ExportDataService, useClass: ExportDataService },
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: Helper, useClass: Helper },

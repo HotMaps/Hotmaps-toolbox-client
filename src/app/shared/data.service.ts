@@ -115,3 +115,9 @@ export const MAPOVERLAYADD = 'overlayadd';
 
 export const rightPanelSize = 600;
 export const leftPanelSize = 350;
+
+// tab values
+
+export const tab1 = 'summary'
+
+export const tab2 = 'stats'

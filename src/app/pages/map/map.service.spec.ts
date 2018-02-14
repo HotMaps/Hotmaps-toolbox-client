@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { ToasterService } from './../../shared/services/toaster.service';
@@ -28,6 +28,7 @@ import { DataInteractionService } from 'app/features/data-interaction/data-inter
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import {ExportDataService} from "../../features/export-data/service/export-data.service";
 
 
 
@@ -67,6 +68,7 @@ describe('mapService', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
+        { provide: ExportDataService, useClass: ExportDataService },
 
 
 

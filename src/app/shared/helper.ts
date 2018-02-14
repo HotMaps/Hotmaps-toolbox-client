@@ -391,6 +391,24 @@ export class Helper {
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }
+
+  concatenateLayer(input): any {
+    let array = [];
+    for (const entry of input)
+    {
+      for (const entry_in_entry of entry.values)
+      {
+        array.push(entry_in_entry);
+      }
+    }
+    return array
+  }
+  generateRandomName(): string {
+      // Math.random should be unique because of its seeding algorithm.
+      // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+      // after the decimal.
+      return '_' + Math.random().toString(36).substr(2, 9);
+  }
 }
 
 
