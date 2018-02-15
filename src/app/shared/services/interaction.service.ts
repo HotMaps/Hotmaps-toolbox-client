@@ -48,7 +48,6 @@ export class InteractionService {
     enableAllButtonsWithFunction(functionString: string) {
         this.navigationBarService.enableButtons(functionString);
     }
-    onPopupValidation() {}
     // RIGHT PANEL
     openRightPanel() {
         this.sidePanelService.openRightPanel();

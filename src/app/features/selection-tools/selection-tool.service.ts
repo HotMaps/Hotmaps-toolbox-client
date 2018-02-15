@@ -37,6 +37,8 @@ export class SelectionToolService extends APIService {
   private nutsIds = new Set;
   private isActivate: boolean;
   private multiSelectionLayers: L.FeatureGroup = new L.FeatureGroup();
+  private controlMultiLayer: L.FeatureGroup = new L.FeatureGroup();
+  private currentLayer;
   private scaleValue = initial_scale_value;
   private theDrawer;
   private isDrawer = false;
@@ -48,6 +50,7 @@ export class SelectionToolService extends APIService {
   nutsIdsSubject = new BehaviorSubject<string[]>([]);
   locationsSubject = new BehaviorSubject<Location[]>([]);
   areasSubject = new BehaviorSubject<L.Layer[]>([]);
+  nbOfLayersSelected: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
@@ -68,6 +71,10 @@ export class SelectionToolService extends APIService {
   setLoadresultButton(value) {
     this.buttonLoadResultStatus.next(value);
   }
+  getControlMultiLayer(): any {
+    return this.controlMultiLayer;
+  }
+  
   setButtonClearAll(value) {
     this.buttonClearAll.next(value);
   }
@@ -81,16 +88,6 @@ export class SelectionToolService extends APIService {
     this.isPolygonDrawer = false;
     let location = '';
     this.logger.log('scale lvl ' + nuts_lvl);
-    
-    layer.on('click', function() {
-      if (layer.editing.enabled()) {
-        layer.editing.disable();
-        map.fire('draw:editstop');
-      } else {
-        layer.editing.enable();
-        map.fire('draw:editstart');
-      }
-    });
 
     // enable buttons when layer is created
     if (nuts_lvl === 5) {
@@ -114,7 +111,6 @@ export class SelectionToolService extends APIService {
   }
 
   loadResultNuts(map) {
-    this.interactionService.onPopupValidation();
     const layerNameArray = []
     for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
       layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
@@ -122,6 +118,7 @@ export class SelectionToolService extends APIService {
     }
     this.logger.log('layerNameArray ' + layerNameArray);
     this.getStatistics();
+    this.setAreas()
   }
 
   enableNavigationService() {
@@ -144,6 +141,7 @@ export class SelectionToolService extends APIService {
     }
     if (indexToRemove !== 999) {
       this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove])
+      this.controlMultiLayer.removeLayer(this.controlMultiLayer.getLayers()[indexToRemove])
     }
 
     this.updateSelectionToolAction();
@@ -158,7 +156,8 @@ export class SelectionToolService extends APIService {
   }
 
   clearAll(map: any) {
-    console.log(this.multiSelectionLayers);
+    this.nbOfLayersSelected.next(0);
+    // ================
     if (this.isDrawer) {
       this.theDrawer.disable(); // Disable the actual drawer anyway and
       this.isPolygonDrawer = false;
@@ -168,6 +167,7 @@ export class SelectionToolService extends APIService {
     this.interactionService.closeRightPanel();
     // remove all layers selected
     this.multiSelectionLayers.clearLayers();
+    this.controlMultiLayer.clearLayers();
     // remove all nutsID selected
     this.nutsIds.clear();
     this.updateSelectionToolAction();
@@ -287,16 +287,52 @@ export class SelectionToolService extends APIService {
   setAreas() {
     this.areasSubject.next(this.multiSelectionLayers.getLayers());
   }
+  setLayerDependingCircleForControl(layer) {
+    let layerInMultiSelection;
+    if (layer instanceof L.Circle) {
+      layerInMultiSelection = L.polygon([this.helper.getLocationsFromCicle(layer)]);
+    } else {
+      layerInMultiSelection = layer;
+    }
 
-  drawHectaresLoadingResult(map, layer: Layer) {
-    if (this.multiSelectionLayers.hasLayer(layer) === false) {
-      console.log('drawHectaresLoadingResult()')
-      this.multiSelectionLayers.addLayer(layer);
-      this.areasSubject.next(this.multiSelectionLayers.getLayers());
-      this.logger.log('result is ' + this.areasSubject.getValue().length);
-      this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
-      this.updateSelectionToolActionHectare();
-      this.loaderService.display(false);
+    layerInMultiSelection._leaflet_id = layer._leaflet_id;
+    return layerInMultiSelection;
+  }
+  drawHectaresLoadingResult(map: Map, layer: any) {
+      if (this.multiSelectionLayers.hasLayer(layer) === false) {
+        const layerTemp = this.setLayerDependingCircleForControl(layer)
+        this.controlMultiLayer.addLayer(layerTemp);
+        this.multiSelectionLayers.addLayer(layer);
+        this.areasSubject.next(this.multiSelectionLayers.getLayers());
+        this.logger.log('result is ' + this.areasSubject.getValue().length);
+        this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
+        this.updateSelectionToolActionHectare();
+        this.loaderService.display(false);
+
+
+        const self = this;
+        layer.on('click', function() {
+          if (layer.options.fillColor === null) {
+            layer.setStyle({
+              'fillColor': 'red'
+            });
+            self.nbOfLayersSelected.next(self.nbOfLayersSelected.value + 1);
+          } else {
+            layer.setStyle({
+              'fillColor': null
+            });
+            self.nbOfLayersSelected.next(self.nbOfLayersSelected.value - 1);
+          }
+          /* const self = this;
+          if (layer.editing.enabled()) {
+            layer.editing.disable();
+            self.updateControlLayers(layer);
+            map.fire('draw:editstop');
+          } else {
+            layer.editing.enable();
+            map.fire('draw:editstart');
+          } */
+        });
     }
   }
 
@@ -341,6 +377,18 @@ export class SelectionToolService extends APIService {
     if (this.helper.isNullOrUndefined(layer) === false) {
       this.multiSelectionLayers.addLayer(layer);
     }
+  }
+
+  deleteSelectedAreas() {
+    this.multiSelectionLayers.getLayers().map((layer: any) => {
+      if (layer.options.fillColor === 'red') {
+        this.multiSelectionLayers.removeLayer(layer);
+        this.controlMultiLayer.removeLayer(layer);
+      }
+    });
+    this.nbOfLayersSelected.next(0);
+    this.setAreas();
+    this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
   }
 
 }
