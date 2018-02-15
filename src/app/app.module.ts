@@ -54,6 +54,8 @@ import { HeatLoadAggregateService } from './features/heat-load/heat-load.service
 import { ChartComponent } from './features/chart/chart.component';
 import { ExportDataComponent } from './features/export-data/component/export-data.component';
 import { ExportDataService} from './features/export-data/service/export-data.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+
 
 @NgModule({
   imports: [
@@ -114,6 +116,7 @@ import { ExportDataService} from './features/export-data/service/export-data.ser
     SelectionScaleService,
     InteractionService,
     HeatLoadAggregateService,
+    SelectionToolUtils,
     ExportDataService
   ],
   schemas: [

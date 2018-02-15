@@ -5,7 +5,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
-import { hectare } from 'app/shared';
+import { hectare, Helper } from 'app/shared';
 import { stButtons, defaultElementSelected } from 'app/features/selection-tools/selection-tool/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
@@ -25,8 +25,9 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private isLoaBtnDisabled = true;
   private isClearBtnDisabled = true;
   private stButtons = stButtons;
+  private layerSelected;
   private elementSelected = defaultElementSelected;
-  constructor(private mapService: MapService, private logger: Logger) {}
+  constructor(private mapService: MapService, private logger: Logger, private helper: Helper) {}
 
   ngOnInit() {
     this.subscribeMapService();
@@ -40,46 +41,69 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
 
   }
   subscribeMapService() {
-    this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
-      this.scaleSelected = value;
-      if (value === hectare) {
-        this.elementSelected = 'Zones selected'
-      } else {
-        this.elementSelected = defaultElementSelected;
-      }
+    if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
+      this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
+        this.scaleSelected = value;
+        if (value === hectare) {
+          this.elementSelected = 'Zones selected'
+        } else {
+          this.elementSelected = defaultElementSelected;
+        }
+      })
+    }
 
-    })
+    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.nbElementsSelected = value;
+      })
+    }
+    
+    if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
+      this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
+        this.scaleSelected = value;
+        if (value === hectare) {
+          this.elementSelected = 'Zones selected'
+        } else {
+          this.elementSelected = defaultElementSelected;
+        }
 
-    this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
-      this.nbElementsSelected = value;
-    })
+      })
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getNbOfLayersSelected())) {
+      this.mapService.getNbOfLayersSelected().subscribe((value) => {
+        this.layerSelected = value;
+      })
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.nbElementsSelected = value;
+      })
+
+    }
 
     // subscribing to click event subject of MapService
-    this.mapService.clickEventSubjectObs.subscribe(() => {
-      this.cursorClick(); // call cursor click method when we click anywhere in the map
+    if (!this.helper.isNullOrUndefined(this.mapService.clickEventSubjectObs)) {
+        this.mapService.clickEventSubjectObs.subscribe(() => {
+          this.cursorClick(); // call cursor click method when we click anywhere in the map
+        });
     }
-    );
 
-    this.mapService.drawCreatedSubjectObs.subscribe(() => {
+    if (!this.helper.isNullOrUndefined(this.mapService.drawCreatedSubjectObs)) {
+      this.mapService.drawCreatedSubjectObs.subscribe(() => {
         this.cursorClick();
-      }
-    );
+      });
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getClearAllButtonSubject())) {
+      this.mapService.getClearAllButtonSubject().subscribe((value) => {
+        this.isClearBtnDisabled = !value;
+      })
+    }
 
-    this.mapService.getEnableLoadResultSubjectObs().subscribe(() => {
-      this.isLoaBtnDisabled = false;
-    })
-
-    this.mapService.getEnableClearAllSubjectObs().subscribe(() => {
-      this.isClearBtnDisabled = false;
-    })
-
-    this.mapService.getDisableLoadResultSubjectObs().subscribe(() => {
-      this.isLoaBtnDisabled = true;
-    })
-
-    this.mapService.getDisbleClearAllSubjectObs().subscribe(() => {
-      this.isClearBtnDisabled = true;
-    });
+    if (!this.helper.isNullOrUndefined(this.mapService.getLoadResultbuttonState())) {
+      this.mapService.getLoadResultbuttonState().subscribe((value) => {
+        this.isLoaBtnDisabled = !value;
+      })
+    }
   }
   cursorClick() {
     const map = this.mapService.getMap();
@@ -94,7 +118,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       this.cursorClick()
     } else {
       const map = this.mapService.getMap();
-      this.mapService.drawTool(map, button.type);
+      this.mapService.activateDrawTool(map, button.type);
       this.stButtons[0].isChecked = false;
     }
   }
@@ -116,6 +140,23 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     this.cursorClick();
   }
 
-
-
+  setClearButtonText() {
+    let layer = ' layers';
+    if (this.layerSelected === 1) {
+      layer = ' layer';
+    }
+    if (this.layerSelected >= 1) {
+      return 'Clear ' + this.layerSelected + layer;
+    } else if (this.layerSelected === 0) {
+      return 'Clear all';
+    }
+  }
+  clearLayers() {
+    if (this.layerSelected > 1) {
+      this.mapService.deleteSelectedAreas();
+    } else {
+      this.mapService.clearAll(this.mapService.getMap());
+      this.cursorClick();
+    }
+  }
 }

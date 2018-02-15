@@ -42,6 +42,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     public layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
     private tempAreaSelected;
 
+
+    // TODO: A modifier
     private clickEventSubject = new Subject<any>(); // Observable source for click
     clickEventSubjectObs = this.clickEventSubject.asObservable(); // Observable stream
 
@@ -66,6 +68,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
     getSubscribtionNutsIds() {
         return this.selectionToolService.nutsIdsSubject.asObservable()
+    }
+    getNbOfLayersSelected() {
+        return this.selectionToolService.nbOfLayersSelected;
     }
     /**
     * Update the clickCursorSubject
@@ -98,17 +103,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.map.on(MAPDRAWEDITED, () => { self.onDrawEdited(self) });
         this.map.on(MAPDRAWSTART, () => { self.onDrawStart(self) });
         this.map.on(MAPDRAWEDITSTART, () => { self.onDrawEditStart(self) });
-        this.map.on(MAPDRAWEDITSTOP, () => { self.onDrawEditStop(self) });
+        this.map.on(MAPDRAWEDITSTOP, (e) => { self.onDrawEditStop(self, e) });
         this.map.on(MAPDRAWDELETED, () => { self.onDrawDeleted(self) });
-        this.map.on('draw:editmove', () => { self.bla(self) });
-        this.map.on('draw:editresize', () => { self.blabla(self) });
     }
-    bla(self) {
-        self.logger.log('MapService/draw:editmove');
-    }
-    blabla(self) {
-        self.logger.log('MapService/draw:editresize');
-    }
+
     // Event functions
     onDrawCreated(self, e) {
         self.logger.log('MapService/onDrawCreated');
@@ -124,13 +122,13 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.logger.log('MapService/DrawStart');
         self.selectionToolService.toggleActivateTool(true);
 
-        this.selectionToolService.enableButtonClearAll(); // enable button when the drawing starts
+        this.selectionToolService.setButtonClearAll(true); // enable button when the drawing starts
     }
     onDrawEditStart(self) {
         self.logger.log('MapService/DrawEditStart');
         self.selectionToolService.toggleActivateTool(true);
     }
-    onDrawEditStop(self) {
+    onDrawEditStop(self, e) {
         self.logger.log('MapService/DrawEditStop');
         self.selectionToolService.setAreas();
         self.selectionToolService.toggleActivateTool(false);
@@ -149,10 +147,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.zoomlevel.next(self.map.getZoom())
     }
     onDidUpdateLayers(self, e) {
-        if (self.selectionToolService.isLayerInMap() === true) {
-            self.selectionToolService.openPopup();
-            self.logger.log('MapService/didUpdateLayers-----' + e);
-        }
+        self.logger.log('MapService/onDidUpdateLayers-----' + e);
     }
     onBaselayerChange(self, e: LayersControlEvent) {
         self.logger.log('baselayerchange');
@@ -162,15 +157,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.selectionScaleService.setScaleValue(scaleLevel);
         self.selectionToolService.setScaleValue(scaleLevel);
         self.layersService.setCurrentNutsLevel(scaleLevel);
-        if (self.selectionToolService.isLayerInMap() === true) {
-            self.selectionToolService.openPopup();
-            self.logger.log('MapService/didUpdateLayers-----' + e);
-        }
 
         // changes the actual scale
         this.selectionScaleService.changeScale();
     }
     onClickEvent(self, e: MouseEvent) {
+        if (self.getScaleValue() === hectare) { return; }
         self.logger.log('MapService/click');
         self.selectionToolButtonStateService.enable(true); // opens the selection tools
 
@@ -187,10 +179,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
                 self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         } else if (self.selectionScaleService.getScaleValue() === lau2) {
-            self.selectionToolService.enableNavigationService(self.map);
+            self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         } else {
-            self.selectionToolService.enableNavigationService(self.map);
+            self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
         }
 
@@ -198,13 +190,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     getZoomLevel(): BehaviorSubject<number> {
         return this.zoomlevel;
     }
-    // Draw control management
-    /*addDrawControls() {
-        //this.selectionToolService.addDrawerControl(this.map);
-    }*/
-    /*removeDrawControls() {
-        this.selectionToolService.removeControls(this.map);
-    }*/
+
+    deleteSelectedAreas() {
+        this.selectionToolService.deleteSelectedAreas()
+    }
     toggleDrawControls() {
         this.selectionToolService.toggleControl(this.map);
     }
@@ -236,8 +225,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
       return this.POST(payload, apiUrl + postForOneHectareCentroid);
     }
-    getHectareGeometryFromClick(latlng: LatLng, nuts_level): any {
-    }
+
     getAreaFromScale(url): any {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
             .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
@@ -289,7 +277,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
 
     createSelection() {
-        this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
+       // this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
     }
     removeAreaSelectedlayer() {
         if (this.areaNutsSelectedLayer) {
@@ -298,8 +286,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             delete this.areaNutsSelectedLayer;
 
             // disable buttons when layer is removed
-            this.selectionToolService.disableButtonClearAll();
-            this.selectionToolService.disableButtonLoad();
+            this.selectionToolService.setButtonClearAll(false);
+            this.selectionToolService.setLoadresultButton(false);
         }
     }
 
@@ -328,15 +316,15 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     /**
      * Activate the drawing tool
      */
-    drawTool(map: Map, tool: string) {
-        this.selectionToolService.drawTool(map, tool);
+    activateDrawTool(map: Map, tool: string) {
+        this.selectionToolService.activateDrawTool(map, tool);
     }
 
     /**
      * Activate the selection tool
      */
     clickSelection(map: Map) {
-        this.selectionToolService.clickSelection(map);
+        this.selectionToolService.activateClickSelectionTool();
     }
 
     /**
@@ -363,29 +351,15 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     /**
      * Get the EnableLoadResultSubjectObs of SelectionToolService
      */
-    getEnableLoadResultSubjectObs() {
-        return this.selectionToolService.enableLoadResultSubjectObs;
-    }
-
-    /**
-     * Get the EnableClearAllSubjectObs of SelectionToolService
-     */
-    getEnableClearAllSubjectObs() {
-        return this.selectionToolService.enableClearAllSubjectObs;
-    }
-
-    /**
-     * Get the DisableLoadResultSubjectObs of SelectionToolService
-     */
-    getDisableLoadResultSubjectObs() {
-        return this.selectionToolService.disableLoadResultSubjectObs;
+    getLoadResultbuttonState() {
+        return this.selectionToolService.buttonLoadResultStatus;
     }
 
     /**
      * Get the DisbleClearAllSubjectObs of SelectionToolService
      */
-    getDisbleClearAllSubjectObs() {
-        return this.selectionToolService.disbleClearAllSubjectObs;
+    getClearAllButtonSubject() {
+        return this.selectionToolService.buttonClearAll;
     }
 
     /**

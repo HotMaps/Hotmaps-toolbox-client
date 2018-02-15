@@ -35,6 +35,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../heat-load/heat-load.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 import {ExportDataService} from '../export-data/service/export-data.service';
 
 
@@ -44,9 +45,14 @@ describe('SelectionToolService', () => {
         TestBed.configureTestingModule({
             imports: [ HttpModule],
             providers: [
-                {provide: SelectionToolService, useClass: SelectionToolService}, {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
+                {provide: SelectionToolService, useClass: SelectionToolService},
+                {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
+                {provide: SelectionToolUtils, useClass: SelectionToolUtils},
                 SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
-                BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService, LayersService,
+                BusinessInterfaceRenderService,
+                SidePanelService, InteractionService,
+                NavigationBarService, SummaryResultService,
+                LayersService,
                 MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService
             ]
         })

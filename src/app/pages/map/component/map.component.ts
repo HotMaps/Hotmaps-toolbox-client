@@ -22,14 +22,13 @@ import { Location } from '../../../shared/class/location/location';
 
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
-  showHide = false;
+  selectionToolShow = false;
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
   private map: Map;
   private layers;
   private scaleLevel;
-  private heatloadStatus;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -61,9 +60,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
-    this.panelService.lauchHeatloadCalculationStatus.subscribe((value) => {
-      this.heatloadStatus = value;
-    });
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
@@ -109,10 +105,10 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       this.logger.log('mapComponent/selectionTool: ' + val)
       if (val) {
         this.interactionService.enableStateOpenWithFunction('selection')
-        this.showHide = true;
+        this.selectionToolShow = true;
       }else {
         this.interactionService.disableStateOpenWithFunction('selection')
-        this.showHide = false;
+        this.selectionToolShow = false;
       }
     });
     this.panelService.rightPanelStatus.subscribe((val: boolean) => {

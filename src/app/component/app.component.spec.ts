@@ -60,6 +60,7 @@ import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import {ExportDataComponent} from "../features/export-data/component/export-data.component";
 import {ExportDataService} from "../features/export-data/service/export-data.service";
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 
 
 
@@ -83,6 +84,7 @@ describe('AppComponent: Router', () => {
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
         {provide: SidePanelService, useClass: SidePanelService},
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: SelectionScaleService, useClass: SelectionScaleService},
         {provide: ExportDataService, useClass: ExportDataService},
         {provide: Logger, useClass: Logger},

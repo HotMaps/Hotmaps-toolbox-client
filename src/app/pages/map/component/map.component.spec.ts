@@ -1,6 +1,6 @@
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
@@ -52,6 +52,7 @@ import { SelectionToolComponent } from '../../../features/selection-tools/select
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
 import {ExportDataService} from "../../../features/export-data/service/export-data.service";
 
@@ -88,6 +89,7 @@ describe('MapComponent', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: InteractionService, useClass: InteractionService },
         { provide: ExportDataService, useClass: ExportDataService },

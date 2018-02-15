@@ -92,6 +92,18 @@ export class Helper {
     locations = locations + loc;
     return locations;
   }
+  convertPointToGeoJSONFormat(latlng) {
+    let n = 0;
+    const locations = [];
+    do {
+      const loc = [];
+      loc.push(latlng[n].lng, latlng[n].lat)
+      locations.push(loc);
+      n++;
+    } while (!this.isNullOrUndefined(latlng[n]));
+
+    return locations;
+  }
 
   createGeodesicPolygon(origin, radius, sides, rotation) {
 
@@ -244,7 +256,17 @@ export class Helper {
     const lau2_id: string = geoJson.features[0].properties.comm_id;
     return lau2_id;
   }
-
+  getLocationsFromLayer(layer) {
+    if (layer instanceof L.Circle) {
+      return this.getLocationsFromCicle(layer)
+    } else if (layer instanceof L.Polygon) {
+      return this.getLocationsFromPolygon(layer)
+    } else if (layer instanceof L.latLng) {
+      return this.getLocationsFromPolygon(layer)
+    } else {
+      return this.getLocationsFromGeoJsonLayer(layer)
+    }
+  }
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
     const origin = circle.getLatLng(); // center of drawn circle
@@ -356,22 +378,16 @@ export class Helper {
     return outputLines;
 }
   controlDrawedLayer(baseLayer, drawLayer) {
-    // console.log(baseLayer, drawLayer)
     let drawJson;
     if (drawLayer instanceof L.Circle) {
-      drawJson = {
-        "type": "Feature", "properties": {}, "geometry": {
-          "type": "Polygon", "coordinates": this.getLocationsFromCicle(drawLayer)
-        }
-      }
+      drawJson = this.circleToGeoJSON(drawLayer)
     } else {
       drawJson = drawLayer.toGeoJSON()
     }
-    console.log(drawJson)
     var baseJson = baseLayer.toGeoJSON(),
     baseLines = this.lineify(baseJson),
     drawLines = this.lineify(drawJson),
-    pointCrossed = false
+    pointCrossed = false;
     baseJson.features.map((feature) => {
       if (this.testSpatial(feature, drawJson) === true) {
         pointCrossed = true;
@@ -381,7 +397,6 @@ export class Helper {
         for (var i in drawLines.geometries) {
             for (var j in baseLines.geometries) {
               if (pointCrossed === true) { return pointCrossed };
-              console.log(baseLines.geometries[j], drawLines.geometries[i])
               pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
             }
         }
@@ -390,6 +405,16 @@ export class Helper {
   }
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
+  }
+  circleToGeoJSON(layer) {
+    return {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+          "type": "Polygon",
+          "coordinates": [this.latLngsToCoords(this.getLocationsFromCicle(layer))]
+      }
+    }
   }
 
   concatenateLayer(input): any {

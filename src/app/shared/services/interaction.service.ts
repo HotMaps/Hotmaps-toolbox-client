@@ -68,7 +68,6 @@ export class InteractionService {
     enableAllButtonsWithFunction(functionString: string) {
         this.navigationBarService.enableButtons(functionString);
     }
-    onPopupValidation() {}
     // RIGHT PANEL
     openRightPanel() {
         this.sidePanelService.openRightPanel();
@@ -113,8 +112,4 @@ export class InteractionService {
     getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
         return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
     }
-    lauchHeatloadCalculation(value) {
-        this.sidePanelService.setLauchHeatloadCalculation(value)
-    }
-
 }

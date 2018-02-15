@@ -1,6 +1,6 @@
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
 import { GeojsonClass } from './../../layers/class/geojson.class';
@@ -16,13 +16,12 @@ import {
     Input,
   OnChanges
 } from '@angular/core';
-import {SideComponent} from '../side-panel.component';
+import { SideComponent } from '../side-panel.component';
 import { SummaryResultClass } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { rightPanelSize } from 'app/shared';
+import { rightPanelSize, nuts2 } from 'app/shared';
 import {Logger} from "../../../shared/services/logger.service";
-
 
 
 @Component({
@@ -77,7 +76,7 @@ import {Logger} from "../../../shared/services/logger.service";
         trigger('titleTextTrigger', [
             state('in', style({ opacity: '1' })),
             transition('void => *', [style({ opacity: '0' }),
-                animate('100ms 300ms')
+            animate('100ms 300ms')
             ]),
             transition('* => void', [
                 animate('50ms', style({ opacity: '0' }))
@@ -90,8 +89,8 @@ import {Logger} from "../../../shared/services/logger.service";
         //  the same time.
         //
         trigger('iconTrigger', [
-           // state('collapsed', style({ transform: 'rotate(0deg)' })),
-          //  state('expanded', style({ transform: 'rotate(180deg)' })),
+            // state('collapsed', style({ transform: 'rotate(0deg)' })),
+            //  state('expanded', style({ transform: 'rotate(180deg)' })),
 
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
@@ -106,23 +105,27 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() nutsIds;
     @Input() layers;
     @Input() scaleLevel;
-    @Input() heatloadStatus;
+    private heatloadStatus = false;
     @Input() locationsSelection;
     @Input() areas;
-    @Input() actualtab;
 
 
     constructor(protected interactionService: InteractionService, private logger: Logger) {
         super(interactionService);
     }
+    ngOnInit() { }
+    ngOnDestroy() { }
     ngOnChanges() {
+        if ((this.scaleLevel === '3') || (this.scaleLevel === '2')) {
+            this.heatloadStatus = true;
+        } else {
+            this.heatloadStatus = false;
+        }
     }
     clickTab(id: string) {
       this.logger.log('clickTab' + id);
       this.interactionService.setTabsSelectedName(id);
     }
-    ngOnInit() {
-    }
-    ngOnDestroy() {}
+
 
 }

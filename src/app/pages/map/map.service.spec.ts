@@ -1,6 +1,6 @@
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { ToasterService } from './../../shared/services/toaster.service';
 import { SummaryResultService } from './../../features/summary-result/summary-result.service';
 import { MailService } from './../../features/feedback/mail.service';
@@ -27,6 +27,8 @@ import {SelectionScaleService} from '../../features/selection-scale/selection-sc
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
 
@@ -54,6 +56,7 @@ describe('mapService', () => {
         {provide: DataInteractionService, useClass: DataInteractionService},
         {provide: GeocodingService, useClass: GeocodingService},
         {provide: LayersService, useClass: LayersService},
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},

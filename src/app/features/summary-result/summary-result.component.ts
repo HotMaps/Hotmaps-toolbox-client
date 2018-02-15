@@ -66,7 +66,6 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
     this.scale = this.mapService.getScaleValue();
-    console.log(changes);
     if (this.mapService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;
       this.updateWithIds();
@@ -117,6 +116,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
       this.interactionService.setSummaryData(result);
+      this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => { this.loadingData = false;
       this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
       this.logger.log(JSON.stringify(e))

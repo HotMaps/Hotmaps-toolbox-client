@@ -22,7 +22,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
-  @Input() heatloadStatus;
 
   private buttons_date_type;
   private chart: Chart;
