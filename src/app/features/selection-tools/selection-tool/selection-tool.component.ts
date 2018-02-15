@@ -57,21 +57,29 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
         this.nbElementsSelected = value;
       })
     }
-    this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
-      this.scaleSelected = value;
-      if (value === hectare) {
-        this.elementSelected = 'Zones selected'
-      } else {
-        this.elementSelected = defaultElementSelected;
-      }
+    
+    if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
+      this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
+        this.scaleSelected = value;
+        if (value === hectare) {
+          this.elementSelected = 'Zones selected'
+        } else {
+          this.elementSelected = defaultElementSelected;
+        }
 
-    })
-    this.mapService.getNbOfLayersSelected().subscribe((value) => {
-      this.layerSelected = value;
-    })
-    this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
-      this.nbElementsSelected = value;
-    })
+      })
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getNbOfLayersSelected())) {
+      this.mapService.getNbOfLayersSelected().subscribe((value) => {
+        this.layerSelected = value;
+      })
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.nbElementsSelected = value;
+      })
+
+    }
 
     // subscribing to click event subject of MapService
     if (!this.helper.isNullOrUndefined(this.mapService.clickEventSubjectObs)) {
