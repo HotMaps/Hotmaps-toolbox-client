@@ -108,7 +108,7 @@ span {
     /*border: 1px solid #000000;*/
     margin-top: 8px;
     height: 100%;
-    width: 280px;
+    width: 250px;
     background-color: white;
     padding:8px;
     border-radius: 4px;
@@ -121,6 +121,6 @@ span {
 
 .uk-button{
     font-size: 12px;
-    width:130px;
+    width:100%;
 }
 

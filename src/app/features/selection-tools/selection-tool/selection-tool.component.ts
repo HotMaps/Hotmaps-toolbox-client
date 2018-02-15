@@ -141,14 +141,15 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   }
 
   setClearButtonText() {
-    let layer = ' layers';
-    if (this.layerSelected === 1) {
-      layer = ' layer';
+    
+    let zoneString = ' zones';
+    if (this.layerSelected === 1 || this.nbElementsSelected === 1) {
+      zoneString = ' zone';
     }
     if (this.layerSelected >= 1) {
-      return 'Clear ' + this.layerSelected + layer;
+      return 'Clear ' + this.layerSelected + zoneString;
     } else if (this.layerSelected === 0) {
-      return 'Clear all';
+      return 'Clear ' + this.nbElementsSelected + zoneString;
     }
   }
   clearLayers() {
