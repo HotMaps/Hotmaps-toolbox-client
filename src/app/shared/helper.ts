@@ -391,6 +391,13 @@ export class Helper {
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }
+
+  createDurationCurveLabels(array){
+    for (var i = 0; i <= 8760; ++i) {
+        array[i] = i;
+    }
+    return array;
+  }
 }
 
 

@@ -10,7 +10,6 @@ import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_loa
 import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { HeatLoadAggregateService } from 'app/features/heat-load/heat-load.service';
 
 @Component({
   selector: 'htm-heat-load-chart',
@@ -36,7 +35,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private default_year = 2010;
   private loadingData = false;
 
-  constructor(private logger: Logger, private helper: Helper, private heatLoadAggregateService: HeatLoadAggregateService) {
+
+  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
@@ -100,7 +100,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   update() {
     this.logger.log('HeatLoadComponent/update');
     if (this.buttons_date_type !== undefined) {
-      this.loadingData = true;
+      this.loadingData = true;      
       const payload = {
         'year': this.buttons_date_type[0].date,
         'month': this.buttons_date_type[1].date,
@@ -108,14 +108,15 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         'nuts': this.nutsIds,
         'nuts_level': this.scaleLevel
       }
-      this.heatLoadAggregateService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
+      this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
         this.loadProfileData = [];
-        this.loadProfileData = this.heatLoadAggregateService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
+        this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
       }).then(() => {
         this.loadingData = false;
-      });
+     
+      });      
     }
   }
 }

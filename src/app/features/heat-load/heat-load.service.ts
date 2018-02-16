@@ -26,14 +26,10 @@ export class HeatLoadAggregateService extends APIService {
   ]
   private formattedValues = [];
 
+
   private labels = [];
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
-  }
-
-  getHeatLoadAggregateMonthWithPayload(payload: any, type_api_ref): Promise<any> {
-    this.logger.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ' + JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
   }
 
   getHeatLoad(payload, type_api_ref) {

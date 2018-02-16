@@ -52,6 +52,8 @@ import { SelectionToolComponent } from './features/selection-tools/selection-too
 import { HeatLoadChartComponent } from './features/heat-load/component/';
 import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
 import { ChartComponent } from './features/chart/chart.component';
+import { DurationCurveComponent } from './features/duration-curve/duration-curve.component';
+import { DurationCurveService } from './features/duration-curve/duration-curve.service'
 
 
 @NgModule({
@@ -86,7 +88,8 @@ import { ChartComponent } from './features/chart/chart.component';
     FeedbackComponent,
     HeatLoadChartComponent,
     SelectionToolComponent,
-    ChartComponent
+    ChartComponent,
+    DurationCurveComponent
   ],
 
   providers: [
@@ -111,7 +114,8 @@ import { ChartComponent } from './features/chart/chart.component';
     MailService,
     SelectionScaleService,
     InteractionService,
-    HeatLoadAggregateService
+    HeatLoadAggregateService,
+    DurationCurveService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

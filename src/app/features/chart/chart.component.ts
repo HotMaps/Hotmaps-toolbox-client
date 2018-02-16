@@ -13,6 +13,7 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() labels;
   @Input() type = 'line';
   @Input() updateChart;
+  @Input() options;
 
   private chart: Chart;
 
@@ -35,7 +36,8 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
       data: {
         labels:  this.labels,
         datasets: this.datasets
-      }
+      },
+      options: this.options
     });
   }
   resetChart() {

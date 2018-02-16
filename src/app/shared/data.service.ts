@@ -11,6 +11,7 @@ import 'leaflet-draw';
 // listing import lines alphabetized by the module
 const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
 const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const locaDevUrl    = 'http://localhost:5000/api';
 const localApiUrl    = 'http://localhost:5000/api';
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
@@ -42,6 +43,7 @@ export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregate = '/load-profile/aggregate/';
+export const postDurationCurve = '/load-profile/aggregate/duration_curve';
 export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
 export const postStatsLayersPoint = '/stats/layers/point/';
@@ -69,6 +71,7 @@ export const clickAccuracy   = 100;
 export const zoomLevelDetectChange = 10;
 export const constant_year = 2012;
 export const constant_year_sp_wwtp = 2015;
+export const constant_year_duration_curve = 2010;
 export const business_name_wwtp = 'Waste Water treatment plants';
 export const business_name_population = 'Population';
 export const unit_capacity   = 'population equivalent';
@@ -115,3 +118,22 @@ export const MAPOVERLAYADD = 'overlayadd';
 
 export const rightPanelSize = 600;
 export const leftPanelSize = 350;
+
+// Duration curve graph data
+export const duration_curve_graph_options = {
+      legend: {
+          display: false
+      },
+      elements:{
+        point:{
+          radius:0
+        }
+      },
+      tooltips: {enabled: false},
+      hover: {mode: null},      
+      scales:{
+            xAxes: [{
+                display: false
+            }]
+        }
+  }
