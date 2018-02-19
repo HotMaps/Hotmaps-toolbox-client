@@ -43,18 +43,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private tempAreaSelected;
 
 
-    // TODO: A modifier
-    /*private clickEventSubject = new Subject<any>(); // Observable source for click
-    clickEventSubjectObs = this.clickEventSubject.asObservable(); // Observable stream
-
-    private drawCreatedSubject = new Subject<any>();
-    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();*/
-
-    private clickEventSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    private clickEventSubjectObs = this.clickEventSubject.asObservable();
-
-    private drawCreatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    private drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();
+    private clickEventSubject: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+    private drawCreatedSubject: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
@@ -85,10 +75,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.clickEventSubject.next(value);
     }
     /**
-    * Get ClickEventSubjectObs
+    * Get ClickEventSubject
     */
-    getClickEventSubjectObs(){
-        return this.clickEventSubjectObs;
+    getClickEventSubject(){
+        return this.clickEventSubject;
     }
     /**
     * Update the drawCreatedSubject
@@ -97,10 +87,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.drawCreatedSubject.next(value);
     }
     /**
-    * Get DrawCreatedSubjectObs
+    * Get DrawCreatedSubject
     */
-    getDrawCreatedSubjectObs(){
-        return this.drawCreatedSubjectObs;
+    getDrawCreatedSubject(){
+        return this.drawCreatedSubject;
     }
 
     getMap(): Map {
@@ -131,7 +121,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         const scale_lvl = self.selectionScaleService.getIdFromNuts(self.selectionScaleService.getScaleValue());
         self.selectionToolService.drawCreated(e, this.map, scale_lvl);
         self.selectionToolService.setIsPolygonDrawer(false);
-        self.drawCreatedUpdate();
+        self.drawCreatedUpdate(true);
     }
     onDrawEdited(self) {
         self.logger.log('MapService/onDrawEdited');
@@ -188,7 +178,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         if (!self.selectionToolService.getPolygonDrawerState()) {
             self.logger.log('self.selectionToolService.getPolygonDrawerState()');
 
-            self.clickCursorUpdate(); // automatic cursor tool selection
+            self.clickCursorUpdate(true); // automatic cursor tool selection
         }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());

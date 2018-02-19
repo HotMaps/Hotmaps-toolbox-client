@@ -210,24 +210,7 @@ export class SelectionToolService extends APIService {
     if (this.isDrawer) {
       this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
-    // TODO: Modifier et mettre dans tableau
-    /*switch (tool) {
-      case 'rectangle':
-        this.theDrawer = new L.Draw.Rectangle(map);
-        this.isPolygonDrawer = false;
-        break;
-      case 'circle':
-        this.theDrawer = new L.Draw.Circle(map);
-        this.isPolygonDrawer = false;
-        break;
-
-      case 'polygon':
-        this.theDrawer = new L.Draw.Polygon(map);
-        this.isPolygonDrawer = true;
-        break;
-      default:
-        break;
-    }*/
+    
     const drawerObject = this.selectionToolDrawers[tool].creation;
     this.theDrawer = new drawerObject(map);
     this.isPolygonDrawer = this.selectionToolDrawers[tool].isPolygonDrawer;

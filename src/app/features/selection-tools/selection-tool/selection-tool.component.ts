@@ -82,14 +82,14 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     }
 
     // subscribing to click event subject of MapService
-    if (!this.helper.isNullOrUndefined(this.mapService.getClickEventSubjectObs())) {
-        this.mapService.getClickEventSubjectObs().subscribe(() => {
+    if (!this.helper.isNullOrUndefined(this.mapService.getClickEventSubject())) {
+        this.mapService.getClickEventSubject().subscribe(() => {
           this.cursorClick(); // call cursor click method when we click anywhere in the map
         });
     }
 
-    if (!this.helper.isNullOrUndefined(this.mapService.getDrawCreatedSubjectObs())) {
-      this.mapService.getDrawCreatedSubjectObs().subscribe(() => {
+    if (!this.helper.isNullOrUndefined(this.mapService.getDrawCreatedSubject())) {
+      this.mapService.getDrawCreatedSubject().subscribe(() => {
         this.cursorClick();
       });
     }
@@ -106,7 +106,6 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     }
   }
   cursorClick() {
-    console.log("dany map cursolclick")
     const map = this.mapService.getMap();
     this.mapService.clickSelection(map);
     this.stButtons[0].isChecked = true;
