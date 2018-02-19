@@ -30,6 +30,7 @@ import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Area } from 'app/features/selection-tools/multiple-selection';
 import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+import { selectionToolDrawers } from 'app/features/selection-tools/selection-tool/selection-button.data';
 
 
 @Injectable()
@@ -43,6 +44,7 @@ export class SelectionToolService extends APIService {
   private theDrawer;
   private isDrawer = false;
   private isPolygonDrawer = false;
+  private selectionToolDrawers = selectionToolDrawers;
   private nbNutsSelectedSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   buttonLoadResultStatus = new BehaviorSubject<boolean>(false);
   buttonClearAll = new BehaviorSubject<boolean>(false);
@@ -201,13 +203,15 @@ export class SelectionToolService extends APIService {
     this.isPolygonDrawer = false;
   }
 
+
+
   activateDrawTool(map: Map, tool: string) {
 
     if (this.isDrawer) {
       this.getDrawer().disable(); // disable the current drawer before creating a new one
     }
     // TODO: Modifier et mettre dans tableau
-    switch (tool) {
+    /*switch (tool) {
       case 'rectangle':
         this.theDrawer = new L.Draw.Rectangle(map);
         this.isPolygonDrawer = false;
@@ -223,11 +227,14 @@ export class SelectionToolService extends APIService {
         break;
       default:
         break;
-    }
+    }*/
+    const drawerObject = this.selectionToolDrawers[tool].creation;
+    this.theDrawer = new drawerObject(map);
+    this.isPolygonDrawer = this.selectionToolDrawers[tool].isPolygonDrawer;
 
     this.theDrawer.enable();
     this.isDrawer = true;
-    this.isPolygonDrawer = true;
+    //this.isPolygonDrawer = true;
   }
 
   getDrawer() {

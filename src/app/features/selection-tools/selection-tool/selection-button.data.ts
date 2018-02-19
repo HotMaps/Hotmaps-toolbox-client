@@ -1,3 +1,5 @@
+declare const L: any;
+
 export const stButtons = [
   { id: '1', type: 'click', isChecked: true },
   { id: '2', type: 'rectangle', isChecked: false },
@@ -5,3 +7,9 @@ export const stButtons = [
   { id: '4', type: 'polygon', isChecked: false }
 ];
 export const defaultElementSelected = 'Elements selected';
+
+export const selectionToolDrawers = {
+	'rectangle':{id: 'rect', creation: L.Draw.Rectangle, isPolygonDrawer:false},
+	'circle':{id: 'circle', creation: L.Draw.Circle, isPolygonDrawer:false},
+	'polygon':{id: 'poly', creation: L.Draw.Polygon, isPolygonDrawer:true}
+};

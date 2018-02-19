@@ -44,11 +44,17 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
 
     // TODO: A modifier
-    private clickEventSubject = new Subject<any>(); // Observable source for click
+    /*private clickEventSubject = new Subject<any>(); // Observable source for click
     clickEventSubjectObs = this.clickEventSubject.asObservable(); // Observable stream
 
     private drawCreatedSubject = new Subject<any>();
-    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();
+    drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();*/
+
+    private clickEventSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private clickEventSubjectObs = this.clickEventSubject.asObservable();
+
+    private drawCreatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();
 
     constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
         private layersService: LayersService, private selectionScaleService: SelectionScaleService,
@@ -75,14 +81,26 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     /**
     * Update the clickCursorSubject
     */
-    clickCursorUpdate() {
-        this.clickEventSubject.next();
+    clickCursorUpdate(value) {
+        this.clickEventSubject.next(value);
+    }
+    /**
+    * Get ClickEventSubjectObs
+    */
+    getClickEventSubjectObs(){
+        return this.clickEventSubjectObs;
     }
     /**
     * Update the drawCreatedSubject
     */
-    drawCreatedUpdate() {
-        this.drawCreatedSubject.next();
+    drawCreatedUpdate(value) {
+        this.drawCreatedSubject.next(value);
+    }
+    /**
+    * Get DrawCreatedSubjectObs
+    */
+    getDrawCreatedSubjectObs(){
+        return this.drawCreatedSubjectObs;
     }
 
     getMap(): Map {
