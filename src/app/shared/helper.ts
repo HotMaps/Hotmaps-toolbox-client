@@ -441,6 +441,13 @@ export class Helper {
       // after the decimal.
       return '_' + Math.random().toString(36).substr(2, 9);
   }
+
+  createDurationCurveLabels(array){
+    for (var i = 0; i <= 8760; ++i) {
+        array[i] = i;
+    }
+    return array;
+  }
 }
 
 

@@ -1,6 +1,6 @@
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 
 import { LoaderService } from './loader.service';
@@ -17,6 +17,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
+import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
 
 @Injectable()
 export class InteractionService {
@@ -25,8 +26,9 @@ export class InteractionService {
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
-        private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService,
-                private exportDataService: ExportDataService
+        private layerService: LayersService, private exportDataService: ExportDataService
+        , private heatLoadAggregateService: HeatLoadAggregateService,
+        private durationCurveService: DurationCurveService
     ) { }
 
     getLayerArray(): Dictionary {
@@ -109,7 +111,17 @@ export class InteractionService {
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-    getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
-        return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
+    getHeatLoad(payload, type_api_ref): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref);
     }
+    formatHeatLoadForChartjs(data, api_ref){
+        return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
+    }
+    getDurationCurveWithPayload(payload): Promise<any>{
+        return this.durationCurveService.getDurationCurveWithPayload(payload);
+    }
+    transformDurationCurveData(data){
+        return this.durationCurveService.transformData(data);
+    }
+
 }

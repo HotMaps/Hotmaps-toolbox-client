@@ -37,7 +37,13 @@
           [nutsIds]="nutsIds"
           [layers]="layers"
           [scaleLevel]="scaleLevel"
-          ></htm-heat-load-chart>
+          [heatloadStatus]="heatloadStatus"></htm-heat-load-chart>
+        <htm-duration-curve
+          *ngIf="expanded"
+          [expanded]="expanded"
+          [nutsIds]="nutsIds"
+          [scaleLevel]="scaleLevel"
+          [heatloadStatus]="heatloadStatus"></htm-duration-curve>
       </li>
   </ul>
   </ng-template>

@@ -10,7 +10,6 @@ import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_loa
 import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { HeatLoadAggregateService } from 'app/features/heat-load/heat-load.service';
 
 @Component({
   selector: 'htm-heat-load-chart',
@@ -35,8 +34,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private default_year = 2010;
   private loadingData = false;
 
-  constructor(private logger: Logger, private helper: Helper, private heatLoadAggregateService: HeatLoadAggregateService,
-              private interactionService: InteractionService) {
+
+  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
@@ -102,6 +101,22 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       but.selected = false
     });
   }
+  decrementDate() {
+    if (this.selectedButton.api_ref === heat_load_api_year) {
+    } else if (this.selectedButton.date !== 1) {
+      this.selectedButton.date--;
+      this.update();
+    }
+  }
+  incrementDate() {
+    if ((this.selectedButton.api_ref === heat_load_api_month) && (this.selectedButton.date === 12)) {
+    } else if ((this.selectedButton.api_ref === heat_load_api_day) && (this.selectedButton.date === 30)) {
+    } else if (this.selectedButton.api_ref === heat_load_api_year) {
+    } else {
+      this.selectedButton.date++;
+      this.update();
+    }
+  }
 
   defineTitleDate(value) {
     this.titleDate = value;
@@ -125,10 +140,10 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         'nuts': this.nutsIds,
         'nuts_level': this.scaleLevel
       }
-      this.heatLoadAggregateService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
+      this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
-        this.loadProfileData = this.heatLoadAggregateService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
+        this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
       }).then(() => {

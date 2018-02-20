@@ -12,8 +12,7 @@
     color: white;
 }
 .waitingbox {
-    height: 36.7vh;
-    /*height: 150px;*/
+    height: 150px;
     width: 100%;
     position: relative;
 }

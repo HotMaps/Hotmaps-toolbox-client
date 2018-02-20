@@ -52,6 +52,8 @@ import { SelectionToolComponent } from './features/selection-tools/component/sel
 import { HeatLoadChartComponent } from './features/heat-load/component/';
 import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
 import { ChartComponent } from './features/chart/chart.component';
+import { DurationCurveComponent } from './features/duration-curve/duration-curve.component';
+import { DurationCurveService } from './features/duration-curve/duration-curve.service'
 import { ExportDataComponent } from './features/export-data/component/export-data.component';
 import { ExportDataService} from './features/export-data/service/export-data.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
@@ -90,6 +92,7 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
     HeatLoadChartComponent,
     SelectionToolComponent,
     ChartComponent,
+    DurationCurveComponent,
     ExportDataComponent
   ],
 
@@ -117,7 +120,8 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
     InteractionService,
     HeatLoadAggregateService,
     SelectionToolUtils,
-    ExportDataService
+    ExportDataService,
+    DurationCurveService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

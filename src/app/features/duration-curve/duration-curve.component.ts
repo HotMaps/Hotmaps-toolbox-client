@@ -1,0 +1,69 @@
+import { Component, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, ViewChild, SimpleChanges } from '@angular/core';
+
+import { DatasetChart } from 'app/features/chart/chart';
+import { Logger } from '../../shared/services/logger.service';
+import { Helper } from 'app/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { constant_year_duration_curve, duration_curve_graph_options } from '../../shared/data.service';
+
+
+@Component({
+  selector: 'htm-duration-curve',
+  templateUrl: './duration-curve.component.html',
+  styleUrls: ['./duration-curve.component.css']
+})
+export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() expanded: boolean;
+  @Input() nutsIds;
+  @Input() scaleLevel;
+  @Input() heatloadStatus;
+
+  private datasets: DatasetChart[];
+  private labels = [];
+  private options: any;
+
+  private subtitle = 'Duration curve';
+  private loadingData = false;
+  private showDurationCurve = false;
+
+
+  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) { 
+	  
+	}
+
+  ngOnInit() {
+  	this.logger.log('DurationCurveComponent/ngOnInit');
+  	this.update()  	
+  }
+
+  ngOnDestroy() {
+    this.logger.log('DurationCurveComponent/ngOnDestroy');
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.logger.log('DurationCurveComponent/ngOnChanges');
+    this.update()
+  }
+
+  update(){
+  	this.logger.log('DurationCurveComponent/update');
+
+    const payload = {
+        'year': constant_year_duration_curve,
+        'nuts': this.nutsIds
+    }
+
+    this.loadingData = true;
+    this.showDurationCurve = false;
+
+    this.interactionService.getDurationCurveWithPayload(payload).then((result) => {
+        this.datasets = this.interactionService.transformDurationCurveData(result);
+	  		this.labels = this.helper.createDurationCurveLabels(this.labels);
+        this.options = duration_curve_graph_options;
+      }).then(() => {
+        this.loadingData = false;
+        this.showDurationCurve = true;
+      });
+  }
+
+}
