@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
 import { hectare, Helper } from 'app/shared';
-import { stButtons, defaultElementSelected } from 'app/features/selection-tools/selection-tool/selection-button.data';
+import { stButtons, defaultElementSelected } from 'app/features/selection-tools/component/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
 import {Logger} from '../../../shared/services/logger.service';
@@ -57,7 +57,6 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
         this.nbElementsSelected = value;
       })
     }
-    
     if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
       this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
         this.scaleSelected = value;
@@ -152,7 +151,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     }
   }
   clearLayers() {
-    if (this.layerSelected > 1) {
+    if (this.layerSelected >= 1) {
       this.mapService.deleteSelectedAreas();
     } else {
       this.mapService.clearAll(this.mapService.getMap());

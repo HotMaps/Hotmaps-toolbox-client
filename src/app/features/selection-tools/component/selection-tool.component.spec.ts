@@ -6,7 +6,7 @@ import {DecimalPipe, Location} from '@angular/common';
 
 import { SelectionToolComponent } from './selection-tool.component';
 import { SelectionScaleService } from '../../selection-scale/selection-scale.service';
-import { SelectionToolService } from '../../selection-tools/selection-tool.service';
+import { SelectionToolService } from '../service/selection-tool.service';
 import { Logger } from './../../../shared/services/logger.service';
 import { LoaderService } from './../../../shared/services/loader.service';
 import { ToasterService } from './../../../shared/services/toaster.service';
@@ -24,7 +24,7 @@ import {UppercaseFirstLetterPipe} from '../../../shared/pipes/uppercase-first-le
 import {NumberFormatPipe} from '../../../shared/pipes/number-format.pipe';
 import {LayerNamePipe} from '../../../shared/pipes/layer-name.pipe';
 import {BusinessNamePipe} from '../../../shared/pipes/business-name.pipe';
-import {SelectionToolButtonStateService} from '../../selection-tools/selection-tool-button-state.service';
+import {SelectionToolButtonStateService} from '../service/selection-tool-button-state.service';
 import {MailService} from '../../feedback/mail.service';
 import {PopulationService} from '../../population/services/population.service';
 import {GeocodingService} from '../../../shared/services/geocoding.service';
@@ -36,7 +36,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
-import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from "../../export-data/service/export-data.service";
 
 describe('SelectionToolComponent', () => {

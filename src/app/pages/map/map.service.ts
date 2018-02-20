@@ -29,7 +29,7 @@ import LatLng = L.LatLng;
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 
-import { SelectionToolButtonStateService } from '../../features/selection-tools/selection-tool-button-state.service';
+import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import {Helper} from '../../shared/helper';
 
 

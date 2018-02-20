@@ -31,8 +31,8 @@ import {LayerNamePipe} from '../shared/pipes/layer-name.pipe';
 import {BusinessNamePipe} from '../shared/pipes/business-name.pipe';
 import {MapService} from '../pages/map/map.service';
 import {Logger} from '../shared/services/logger.service';
-import {SelectionToolButtonStateService} from '../features/selection-tools/selection-tool-button-state.service';
-import {SelectionToolService} from '../features/selection-tools/selection-tool.service';
+import {SelectionToolButtonStateService} from '../features/selection-tools/service/selection-tool-button-state.service';
+import {SelectionToolService} from '../features/selection-tools/service/selection-tool.service';
 import {Helper} from '../shared/helper';
 import {SidePanelService} from '../features/side-panel/side-panel.service';
 import {NavigationBarService} from '../pages/nav/service/navigation-bar.service';
@@ -55,12 +55,12 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
-import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
+import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import {ExportDataComponent} from "../features/export-data/component/export-data.component";
 import {ExportDataService} from "../features/export-data/service/export-data.service";
-import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 
 
 

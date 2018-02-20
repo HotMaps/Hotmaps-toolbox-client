@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
@@ -22,7 +22,7 @@ import { Helper } from '../../../shared/helper';
 import {PopulationService} from '../../population/services/population.service';
 import {SidePanelService} from '../../side-panel/side-panel.service';
 import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.service';
-import {SelectionToolButtonStateService} from '../../selection-tools/selection-tool-button-state.service';
+import {SelectionToolButtonStateService} from '../../selection-tools/service/selection-tool-button-state.service';
 import {MailService} from '../../feedback/mail.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 

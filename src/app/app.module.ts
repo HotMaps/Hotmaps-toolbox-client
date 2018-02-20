@@ -48,13 +48,13 @@ import {DataInteractionService} from './features/data-interaction/data-interacti
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
-import { SelectionToolComponent } from './features/selection-tools/selection-tool/selection-tool.component';
+import { SelectionToolComponent } from './features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from './features/heat-load/component/';
 import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
 import { ChartComponent } from './features/chart/chart.component';
 import { ExportDataComponent } from './features/export-data/component/export-data.component';
 import { ExportDataService} from './features/export-data/service/export-data.service';
-import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 
 
 @NgModule({

@@ -13,7 +13,7 @@ export class ExportDataService {
   private statusStats: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private dataStats: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private tabsSelectedName: BehaviorSubject<string> = new BehaviorSubject<string>(tab1);
-  constructor(private helper: Helper) {}
+  constructor(private helper: Helper, private logger: Logger) {}
   /**
    * subcribe summary result
    *
@@ -69,8 +69,10 @@ export class ExportDataService {
     };
     let dataFormated ;
     if (concatenate === true) {
+      this.logger.log('data' + JSON.stringify(data));
       dataFormated =  this.helper.concatenateLayer(data);
     } else {
+      this.logger.log('data' + JSON.stringify(data));
       dataFormated = JSON.stringify(data)
     }
     new Angular2Csv(dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);

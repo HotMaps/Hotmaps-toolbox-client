@@ -419,6 +419,13 @@ export class Helper {
 
   concatenateLayer(input): any {
     let array = [];
+
+    const header = {
+      "name": "indicator",
+      "value": "value",
+      "unit": "unit",
+      }
+    array.push(header);
     for (const entry of input)
     {
       for (const entry_in_entry of entry.values)

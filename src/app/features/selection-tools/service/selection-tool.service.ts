@@ -6,30 +6,30 @@ import { Injectable } from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
-import { Logger, LoaderService, Helper } from '../../shared/';
-import { Location } from '../../shared/class/location/location';
+import { Logger, LoaderService, Helper } from '../../../shared';
+import { Location } from '../../../shared/class/location/location';
 import Created = L.DrawEvents.Created;
 declare const L: any;
 
-import { PayloadStat, PlayloadStatNuts } from '../summary-result/class/payload.class';
+import { PayloadStat, PlayloadStatNuts } from '../../summary-result/class/payload.class';
 import {
   apiUrl,
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, postHectareCentroid,
   postNumberHectareCentroid,
   postStatsLayersArea,
   wwtpLayerName
-} from '../../shared/data.service';
-import { GeojsonClass } from '../layers/class/geojson.class';
-import { BusinessInterfaceRenderService } from '../../shared/business/business.service';
-import { SummaryResultClass } from '../summary-result/summary-result.class';
+} from '../../../shared/data.service';
+import { GeojsonClass } from '../../layers/class/geojson.class';
+import { BusinessInterfaceRenderService } from '../../../shared/business/business.service';
+import { SummaryResultClass } from '../../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Subject } from 'rxjs/Subject';
-import { geoserverUrl, lau2name } from '../../shared';
-import { APIService, ToasterService } from '../../shared/services';
+import { geoserverUrl, lau2name } from '../../../shared';
+import { APIService, ToasterService } from '../../../shared/services';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Area } from 'app/features/selection-tools/multiple-selection';
-import { SelectionToolUtils } from 'app/features/selection-tools/selection-tool-utils.service';
+import { Area } from 'app/features/selection-tools/service/multiple-selection';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 
 
 @Injectable()
@@ -74,7 +74,7 @@ export class SelectionToolService extends APIService {
   getControlMultiLayer(): any {
     return this.controlMultiLayer;
   }
-  
+
   setButtonClearAll(value) {
     this.buttonClearAll.next(value);
   }
