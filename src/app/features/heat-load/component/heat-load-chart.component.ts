@@ -22,7 +22,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
-
+  private dateHeatload = { year: 2010, month: 1, day: 1 }
   private buttons_date_type;
   private chart: Chart;
   private labels;
@@ -47,7 +47,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this.logger.log('HeatLoadChartComponent/ngOnDestroy');
     this.unselectButtons();
-    this.initComponent();
+    // this.initComponent();
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('HeatLoadChartComponent/ngOnChanges');
@@ -58,33 +58,49 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     this.selectedButton = this.buttons_date_type[0];
     this.titleDate = this.selectedButton.date;
     this.selectedButton.selected = true;
+    this.setOptionsInButtons();
+  }
+  setOptionsInButtons() {
+    let month = this.buttons_date_type[1].date,
+    year = this.buttons_date_type[0].date;
+    this.buttons_date_type.map((button) => {
+      button.options = [];
+      let maxDate;
+      if (button.api_ref === heat_load_api_day) {
+        maxDate = this.getDaysInMonth(month, year);
+      } else {
+        maxDate = button.max;
+      }
+      for (let i = button.min; i <= maxDate; i++) {
+        let dateToPush;
+        if (button.api_ref === heat_load_api_month) {
+          dateToPush = this.helper.getMonthString(i, 0);
+        } else {
+          dateToPush = i;
+        }
+        button.options.push({name: dateToPush, id: i});
+      }
+    })
+  }
+  getDaysInMonth(month, year) {
+    console.log(new Date(year, month, 0).getDate())
+    return new Date(year, month, 0).getDate();
+  }
+  onSelectChange(event) {
+    this.selectedButton.date = +event.target.value;
+    this.update()
   }
   changeHeatloadType(button) {
     this.unselectButtons();
     button.selected = true;
     this.selectedButton = button;
+    this.setOptionsInButtons();
     this.update()
   }
   unselectButtons() {
     this.buttons_date_type.map((but) => {
       but.selected = false
     });
-  }
-  decrementDate() {
-    if (this.selectedButton.api_ref === heat_load_api_year) {
-    } else if (this.selectedButton.date !== 1) {
-      this.selectedButton.date--;
-      this.update();
-    }
-  }
-  incrementDate() {
-    if ((this.selectedButton.api_ref === heat_load_api_month) && (this.selectedButton.date === 12)) {
-    } else if ((this.selectedButton.api_ref === heat_load_api_day) && (this.selectedButton.date === 30)) {
-    } else if (this.selectedButton.api_ref === heat_load_api_year) {
-    } else {
-      this.selectedButton.date++;
-      this.update();
-    }
   }
 
   defineTitleDate(value) {

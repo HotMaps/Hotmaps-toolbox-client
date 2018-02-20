@@ -56,9 +56,9 @@ export const heat_load_api_day = 'day';
 export const heat_load_api_year = 'year';
 export const heat_load_api_month = 'month';
 export const buttons_heat_load = [
-  { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010 },
-  { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1 },
-  { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1 },
+  { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010, min: 2010, max: 2010, options: [] },
+  { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
+  { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 
 

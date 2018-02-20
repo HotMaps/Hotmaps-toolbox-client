@@ -28,9 +28,8 @@ import { DataInteractionService } from 'app/features/data-interaction/data-inter
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
-import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import {ExportDataService} from "../../features/export-data/service/export-data.service";
-
+import { SelectionToolUtils } from '../../features/selection-tools/service/selection-tool-utils.service';
+import {ExportDataService} from '../../features/export-data/service/export-data.service';
 
 
 describe('mapService', () => {
