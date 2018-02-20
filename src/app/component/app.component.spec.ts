@@ -58,7 +58,8 @@ import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service"
 import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
-
+import { DurationCurveComponent } from '../features/duration-curve/duration-curve.component';
+import { DurationCurveService } from "../features/duration-curve/duration-curve.service";
 
 
 describe('AppComponent: Router', () => {
@@ -76,7 +77,7 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, DurationCurveComponent],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -93,6 +94,7 @@ describe('AppComponent: Router', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: InteractionService, useClass: InteractionService},
+        {provide: DurationCurveService, useClass: DurationCurveService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

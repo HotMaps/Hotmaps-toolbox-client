@@ -52,6 +52,9 @@ import { SelectionToolComponent } from '../../../features/selection-tools/select
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
+import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
+
 
 
 
@@ -78,7 +81,7 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        HeatLoadChartComponent, ChartComponent
+        HeatLoadChartComponent, ChartComponent, DurationCurveComponent
       ],
       providers: [
         {
@@ -107,6 +110,8 @@ describe('MapComponent', () => {
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: DurationCurveService, useClass: DurationCurveService }
+
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,

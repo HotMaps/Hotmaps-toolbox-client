@@ -35,6 +35,8 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../heat-load/heat-load.service';
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../features/duration-curve/duration-curve.component";
 
 
 describe('SelectionToolService', () => {
@@ -46,7 +48,7 @@ describe('SelectionToolService', () => {
                 {provide: SelectionToolService, useClass: SelectionToolService}, {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
                 SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
                 BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService, LayersService,
-                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService
+                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, DurationCurveService
             ]
         })
     }));

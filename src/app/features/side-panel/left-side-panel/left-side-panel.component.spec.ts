@@ -22,6 +22,8 @@ import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.servi
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
 import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
+import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
 
 
 describe('LeftSideComponent', () => {
@@ -49,6 +51,7 @@ describe('LeftSideComponent', () => {
                 { provide: NavigationBarService, useClass: NavigationBarService },
                 { provide: DataInteractionService, useClass: DataInteractionService },
                 { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+                { provide: DurationCurveService, useClass: DurationCurveService },
                 { provide: ToasterService },
                 { provide: Helper },
                 { provide: MockBackend, useClass: MockBackend },

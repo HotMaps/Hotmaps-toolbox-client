@@ -28,6 +28,7 @@ import { DataInteractionService } from 'app/features/data-interaction/data-inter
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 
 
 
@@ -67,6 +68,8 @@ describe('mapService', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
+        {provide: DurationCurveService, useClass: DurationCurveService}
+
 
 
 

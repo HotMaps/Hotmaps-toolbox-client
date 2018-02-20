@@ -16,6 +16,7 @@ import { MockBackend } from '@angular/http/testing';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderService } from 'app/shared';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 
 
 
@@ -48,6 +49,7 @@ describe('InteractionService', () => {
         { provide: LoaderService, useValue: mockLoggerService },
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: DurationCurveService, useClass: DurationCurveService }
       ],
       imports: []
     }).compileComponents();
