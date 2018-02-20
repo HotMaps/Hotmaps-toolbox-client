@@ -58,10 +58,15 @@ import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service"
 import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
+<<<<<<< HEAD
 import {ExportDataComponent} from "../features/export-data/component/export-data.component";
 import {ExportDataService} from "../features/export-data/service/export-data.service";
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 
+=======
+import { DurationCurveComponent } from '../features/duration-curve/duration-curve.component';
+import { DurationCurveService } from "../features/duration-curve/duration-curve.service";
+>>>>>>> feature-duration-curve
 
 
 describe('AppComponent: Router', () => {
@@ -79,7 +84,11 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
+<<<<<<< HEAD
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent],
+=======
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, DurationCurveComponent],
+>>>>>>> feature-duration-curve
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -97,6 +106,7 @@ describe('AppComponent: Router', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: InteractionService, useClass: InteractionService},
+        {provide: DurationCurveService, useClass: DurationCurveService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);
