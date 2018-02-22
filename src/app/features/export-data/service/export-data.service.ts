@@ -67,13 +67,17 @@ export class ExportDataService {
       showTitle: false,
       useBom: true
     };
+    let cpt = 0;
     let dataFormated ;
+    this.logger.log('ExportDataService/exportData');
+    this.logger.log('data' + JSON.stringify(data));
     if (concatenate === true) {
-      this.logger.log('data' + JSON.stringify(data));
+
       dataFormated =  this.helper.summaryResultToCSV(data);
     } else {
-      this.logger.log('data' + JSON.stringify(data));
       dataFormated = this.helper.resultToCSV(data)
+      cpt ++ ;
+      this.logger.log('number of tap' + cpt);
     }
     new Angular2Csv(dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);
   }

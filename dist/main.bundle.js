@@ -1121,14 +1121,17 @@ var ExportDataService = (function () {
             showTitle: false,
             useBom: true
         };
+        var cpt = 0;
         var dataFormated;
+        this.logger.log('ExportDataService/exportData');
+        this.logger.log('data' + JSON.stringify(data));
         if (concatenate === true) {
-            this.logger.log('data' + JSON.stringify(data));
             dataFormated = this.helper.summaryResultToCSV(data);
         }
         else {
-            this.logger.log('data' + JSON.stringify(data));
             dataFormated = this.helper.resultToCSV(data);
+            cpt++;
+            this.logger.log('number of tap' + cpt);
         }
         new __WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv__["Angular2Csv"](dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);
     };
@@ -7676,10 +7679,16 @@ var Helper = (function () {
         return header;
     };
     Helper.prototype.resultToCSV = function (input) {
-        var array = [];
+        this.logger.log('Helper/resultToCSV');
+        var csvResult = input;
         var header = this.keysFromJson(input);
-        input.unshift(header);
-        return input;
+        var array = [];
+        array.push(header);
+        for (var _i = 0, input_2 = input; _i < input_2.length; _i++) {
+            var entry = input_2[_i];
+            array.push(entry);
+        }
+        return array;
     };
     Helper.prototype.generateRandomName = function () {
         // Math.random should be unique because of its seeding algorithm.

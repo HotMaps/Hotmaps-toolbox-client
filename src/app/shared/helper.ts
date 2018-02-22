@@ -446,12 +446,17 @@ export class Helper {
       return header;
 
   }
-
   resultToCSV(input): any {
-    let array = [];
+    this.logger.log('Helper/resultToCSV');
+    const csvResult = input;
     const header = this.keysFromJson(input);
-    input.unshift(header);
-    return input
+    let array = [];
+    array.push(header);
+    for (const entry of input)
+    {
+      array.push(entry);
+    }
+    return array;
   }
   generateRandomName(): string {
       // Math.random should be unique because of its seeding algorithm.
@@ -460,7 +465,7 @@ export class Helper {
       return '_' + Math.random().toString(36).substr(2, 9);
   }
 
-  createDurationCurveLabels(array){
+  createDurationCurveLabels(array) {
     for (var i = 0; i <= 8760; ++i) {
         array[i] = i;
     }
