@@ -1124,11 +1124,11 @@ var ExportDataService = (function () {
         var dataFormated;
         if (concatenate === true) {
             this.logger.log('data' + JSON.stringify(data));
-            dataFormated = this.helper.concatenateLayer(data);
+            dataFormated = this.helper.summaryResultToCSV(data);
         }
         else {
             this.logger.log('data' + JSON.stringify(data));
-            dataFormated = JSON.stringify(data);
+            dataFormated = this.helper.resultToCSV(data);
         }
         new __WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv__["Angular2Csv"](dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);
     };
@@ -5270,7 +5270,6 @@ var SummaryResultComponent = (function () {
         this.logger.log('SummaryResultComponent/updateWithAreas()');
         this.loadingData = true;
         this.interactionService.displayButtonExport(!this.loadingData);
-        var area = this.areas;
         var areas = [];
         this.areas.map(function (layer) {
             var points = [];
@@ -5281,12 +5280,20 @@ var SummaryResultComponent = (function () {
                 areas.push({ points: _this.helper.getLocationsFromPolygon(layer) });
             }
         });
+        this.logger.log('SummaryResultComponent/areas()' + JSON.stringify(areas));
+        if (areas.length === 0) {
+            this.logger.log('SummaryResultComponent/areas().lenght === 0');
+            this.loadingData = false;
+            this.interactionService.displayButtonExport(!this.loadingData);
+            return;
+        }
+        ;
+        ;
         var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* constant_year */], areas: areas };
-        console.log(payload);
         var summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(function (result) {
             _this.summaryResult = result;
             _this.interactionService.setSummaryData(result);
-            _this.summaryResult.layers[0].values.push({ name: 'Zones Selected', value: _this.areas.length });
+            // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(function () {
             _this.loadingData = false;
             _this.interactionService.displayButtonExport(!_this.loadingData);
@@ -7127,7 +7134,7 @@ var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = localApiUrl;
+var apiUrl = devUrl;
 var defaultLayer = 'heat_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
@@ -7641,12 +7648,12 @@ var Helper = (function () {
             }
         };
     };
-    Helper.prototype.concatenateLayer = function (input) {
+    Helper.prototype.summaryResultToCSV = function (input) {
         var array = [];
         var header = {
-            "name": "indicator",
-            "value": "value",
-            "unit": "unit",
+            "1": "unit",
+            "2": "indicator",
+            "3": "value",
         };
         array.push(header);
         for (var _i = 0, input_1 = input; _i < input_1.length; _i++) {
@@ -7657,6 +7664,22 @@ var Helper = (function () {
             }
         }
         return array;
+    };
+    Helper.prototype.keysFromJson = function (jsonData) {
+        var val = jsonData[0];
+        var header = {};
+        for (var j in val) {
+            var sub_key = j;
+            var sub_val = val[j];
+            header[j] = j;
+        }
+        return header;
+    };
+    Helper.prototype.resultToCSV = function (input) {
+        var array = [];
+        var header = this.keysFromJson(input);
+        input.unshift(header);
+        return input;
     };
     Helper.prototype.generateRandomName = function () {
         // Math.random should be unique because of its seeding algorithm.

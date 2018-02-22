@@ -100,8 +100,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   updateWithAreas() {
     this.logger.log('SummaryResultComponent/updateWithAreas()');
     this.loadingData = true;
-    this.interactionService.displayButtonExport(!this.loadingData)
-    const area = this.areas;
+    this.interactionService.displayButtonExport(!this.loadingData);
     const areas = [];
     this.areas.map((layer: Layer) => {
       const points = [];
@@ -111,12 +110,20 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
         areas.push({points: this.helper.getLocationsFromPolygon(layer)})
       }
     });
+    this.logger.log('SummaryResultComponent/areas()' +   JSON.stringify(areas) )
+    if (areas.length === 0) {
+      this.logger.log('SummaryResultComponent/areas().lenght === 0')
+      this.loadingData = false;
+      this.interactionService.displayButtonExport(!this.loadingData)
+      return
+    };
+   ;
     const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
-    console.log(payload);
+
     const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
       this.interactionService.setSummaryData(result);
-      this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
+      // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => { this.loadingData = false;
       this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
       this.logger.log(JSON.stringify(e))

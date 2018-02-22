@@ -417,13 +417,12 @@ export class Helper {
     }
   }
 
-  concatenateLayer(input): any {
+  summaryResultToCSV(input): any {
     let array = [];
-
     const header = {
-      "name": "indicator",
-      "value": "value",
-      "unit": "unit",
+      "1": "unit",
+      "2": "indicator",
+      "3": "value",
       }
     array.push(header);
     for (const entry of input)
@@ -434,6 +433,25 @@ export class Helper {
       }
     }
     return array
+  }
+
+  keysFromJson(jsonData): any {
+      const val = jsonData[0];
+      let header = {}
+      for(const j in val) {
+        const sub_key = j;
+        const sub_val = val[j];
+        header[j] = j
+      }
+      return header;
+
+  }
+
+  resultToCSV(input): any {
+    let array = [];
+    const header = this.keysFromJson(input);
+    input.unshift(header);
+    return input
   }
   generateRandomName(): string {
       // Math.random should be unique because of its seeding algorithm.

@@ -70,10 +70,10 @@ export class ExportDataService {
     let dataFormated ;
     if (concatenate === true) {
       this.logger.log('data' + JSON.stringify(data));
-      dataFormated =  this.helper.concatenateLayer(data);
+      dataFormated =  this.helper.summaryResultToCSV(data);
     } else {
       this.logger.log('data' + JSON.stringify(data));
-      dataFormated = JSON.stringify(data)
+      dataFormated = this.helper.resultToCSV(data)
     }
     new Angular2Csv(dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);
   }
