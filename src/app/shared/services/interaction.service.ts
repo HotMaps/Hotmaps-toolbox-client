@@ -16,7 +16,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
-import {ExportDataService} from "../../features/export-data/service/export-data.service";
+import {ExportDataService} from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
 
 @Injectable()

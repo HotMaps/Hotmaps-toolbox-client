@@ -21,13 +21,13 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
-import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
-<<<<<<< HEAD
-import {ExportDataService} from "../../export-data/service/export-data.service";
-=======
-import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
-import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
->>>>>>> feature-duration-curve
+import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
+
+import {ExportDataService} from '../../export-data/service/export-data.service';
+
+import { DurationCurveService } from '../../../features/duration-curve/duration-curve.service';
+import { DurationCurveComponent } from '../../../features/duration-curve/duration-curve.component';
+
 
 
 describe('LeftSideComponent', () => {

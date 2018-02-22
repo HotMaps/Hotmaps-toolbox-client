@@ -36,12 +36,11 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
-<<<<<<< HEAD:src/app/features/selection-tools/component/selection-tool.component.spec.ts
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import {ExportDataService} from "../../export-data/service/export-data.service";
-=======
-import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
->>>>>>> feature-duration-curve:src/app/features/selection-tools/selection-tool/selection-tool.component.spec.ts
+import {ExportDataService} from '../../export-data/service/export-data.service';
+
+import { DurationCurveService } from '../../../features/duration-curve/duration-curve.service';
+
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -50,7 +49,7 @@ describe('SelectionToolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-<<<<<<< HEAD:src/app/features/selection-tools/component/selection-tool.component.spec.ts
+
       imports: [HttpModule],
       declarations: [SelectionToolComponent],
       providers: [
@@ -58,14 +57,9 @@ describe('SelectionToolComponent', () => {
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
         BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-        MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService]
-=======
-      imports: [ HttpModule],
-      declarations: [ SelectionToolComponent ],
-      providers: [ {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService}, SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
-                BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, DurationCurveService]
->>>>>>> feature-duration-curve:src/app/features/selection-tools/selection-tool/selection-tool.component.spec.ts
+        MapService, SelectionToolButtonStateService, MailService, PopulationService,
+        GeocodingService, DataInteractionService, ExportDataService, DurationCurveService],
+
     })
     .compileComponents();
   }));

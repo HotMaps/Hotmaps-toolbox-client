@@ -17,9 +17,10 @@ import { HeatLoadAggregateService } from 'app/features/heat-load/heat-load.servi
 import { heatloaddataresponseyear, heatloaddataresponseday } from 'app/features/heat-load/mock/data';
 
 import { DurationCurveService } from './duration-curve.service';
+import {ExportDataService} from "../export-data/service/export-data.service";
 
 describe('DurationCurveService', () => {
-	
+
 	let loggerStub: Logger;
   	let loaderServiceStub: LoaderService;
   beforeEach(async(() => {
@@ -39,7 +40,9 @@ describe('DurationCurveService', () => {
                 { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
                 { provide: MockBackend, useClass: MockBackend },
                 { provide: Logger, useValue: loggerStub },
-                { provide: BaseRequestOptions, useClass: BaseRequestOptions }
+                { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+              { provide: ExportDataService, useClass: ExportDataService }
+
             ],
             imports: [
                 HttpModule

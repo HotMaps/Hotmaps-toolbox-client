@@ -27,14 +27,11 @@ import {SelectionScaleService} from '../../features/selection-scale/selection-sc
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-<<<<<<< HEAD
 import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
-=======
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
-import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
->>>>>>> feature-duration-curve
+import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
+
 
 
 
@@ -75,17 +72,8 @@ describe('mapService', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
-<<<<<<< HEAD
         { provide: ExportDataService, useClass: ExportDataService },
-=======
         {provide: DurationCurveService, useClass: DurationCurveService}
-
->>>>>>> feature-duration-curve
-
-
-
-
-
       ],
     })
   });

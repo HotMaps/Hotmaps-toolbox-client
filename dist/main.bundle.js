@@ -1732,6 +1732,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], HeatLoadChartComponent.prototype, "scaleLevel", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], HeatLoadChartComponent.prototype, "heatloadStatus", void 0);
 HeatLoadChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-heat-load-chart',
@@ -7123,7 +7127,7 @@ var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = localApiUrl;
 var defaultLayer = 'heat_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
