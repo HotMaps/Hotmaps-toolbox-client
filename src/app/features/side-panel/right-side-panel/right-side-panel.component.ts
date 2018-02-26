@@ -116,7 +116,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     ngOnInit() { }
     ngOnDestroy() { }
     ngOnChanges() {
-        if ((this.scaleLevel === '3') || (this.scaleLevel === '2')) {
+        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') ) {
             this.heatloadStatus = true;
         } else {
             this.heatloadStatus = false;

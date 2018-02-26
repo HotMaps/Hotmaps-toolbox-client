@@ -142,6 +142,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         'nuts': this.nutsIds,
         'nuts_level': this.scaleLevel
       }
+      this.logger.log('HeatLoadComponent/update/payload ' + JSON.stringify(payload) );
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
