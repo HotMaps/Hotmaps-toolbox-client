@@ -44,8 +44,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
     this.initComponent();
-    
-    this.update();   
+
+    this.update();
   }
 
   ngOnDestroy() {
@@ -55,7 +55,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('HeatLoadChartComponent/ngOnChanges');
-    this.update();  
+    this.update();
   }
   initComponent() {
     this.buttons_date_type = buttons_heat_load;
@@ -92,14 +92,14 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
   onSelectChange(event) {
     this.selectedButton.date = +event.target.value;
-    this.update();  
+    this.update();
   }
   changeHeatloadType(button) {
     this.unselectButtons();
     button.selected = true;
     this.selectedButton = button;
     this.setOptionsInButtons();
-    this.update();  
+    this.update();
   }
   unselectButtons() {
     this.buttons_date_type.map((but) => {
@@ -110,7 +110,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     if (this.selectedButton.api_ref === heat_load_api_year) {
     } else if (this.selectedButton.date !== 1) {
       this.selectedButton.date--;
-      this.update();  
+      this.update();
     }
   }
   incrementDate() {
@@ -119,7 +119,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     } else if (this.selectedButton.api_ref === heat_load_api_year) {
     } else {
       this.selectedButton.date++;
-      this.update();  
+      this.update();
     }
   }
 
@@ -134,15 +134,14 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  update(){
+  update() {
     this.logger.log('HeatLoadComponent/update');
-    
     if (this.buttons_date_type !== undefined) {
-      var isHectare = false;
+      let isHectare = false;
       this.loadingData = true;
       this.interactionService.displayButtonExportStats(!this.loadingData);
-
-      if (this.scaleLevel === '-1'){ // updating chart with data by hectare
+      let payload: any;
+      if (this.scaleLevel === '-1') { // updating chart with data by hectare
         isHectare = true;
         const area = this.areas;
         const areas = [];
@@ -155,29 +154,28 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
           }
         });
 
-        var payload: any;
-        if(this.selectedButton.api_ref === 'day'){
+        if (this.selectedButton.api_ref === 'day') {
           payload = {
           'year': this.buttons_date_type[0].date,
           'month': this.buttons_date_type[1].date,
           'day': this.buttons_date_type[2].date,
           'areas': areas
           }
-        }else if(this.selectedButton.api_ref === 'month'){
+        }else if (this.selectedButton.api_ref === 'month') {
           payload = {
           'year': this.buttons_date_type[0].date,
           'month': this.buttons_date_type[1].date,
           'areas': areas
           }
-        }else if(this.selectedButton.api_ref === 'year'){
+        }else if (this.selectedButton.api_ref === 'year') {
           payload = {
           'year': this.buttons_date_type[0].date,
           'areas': areas
           }
         }
 
-      }else{ // updating chart with data by nuts
-        var payload: any;
+      }else { // updating chart with data by nuts
+        let payload: any;
         payload = {
         'year': this.buttons_date_type[0].date,
         'month': this.buttons_date_type[1].date,
