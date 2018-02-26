@@ -52,17 +52,11 @@ import { SelectionToolComponent } from '../../../features/selection-tools/compon
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
-<<<<<<< HEAD
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
 import {ExportDataService} from "../../../features/export-data/service/export-data.service";
-=======
 import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
 import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
-
->>>>>>> feature-duration-curve
-
-
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -87,11 +81,7 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-<<<<<<< HEAD
-        HeatLoadChartComponent, ChartComponent, ExportDataComponent
-=======
-        HeatLoadChartComponent, ChartComponent, DurationCurveComponent
->>>>>>> feature-duration-curve
+        HeatLoadChartComponent, ChartComponent, ExportDataComponent, DurationCurveComponent
       ],
       providers: [
         {

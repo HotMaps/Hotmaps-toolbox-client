@@ -5,6 +5,8 @@ import { Logger } from '../../shared/services/logger.service';
 import { Helper } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { constant_year_duration_curve, duration_curve_graph_options } from '../../shared/data.service';
+import { PlayloadStatNuts, PayloadStat, Area } from 'app/features/summary-result/class/payload.class';
+import { Layer} from './../summary-result/summary-result.class';
 
 
 @Component({
@@ -17,11 +19,11 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nutsIds;
   @Input() scaleLevel;
   @Input() heatloadStatus;
+  @Input() areas: Layer[];
 
   private datasets: DatasetChart[];
   private labels = [];
   private options: any;
-
   private subtitle = 'Duration curve';
   private loadingData = false;
   private showDurationCurve = false;
@@ -32,8 +34,8 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
 	}
 
   ngOnInit() {
-  	this.logger.log('DurationCurveComponent/ngOnInit');
-  	this.update()  	
+  	this.logger.log('DurationCurveComponent/ngOnInit');  		
+    this.update();
   }
 
   ngOnDestroy() {
@@ -42,21 +44,43 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('DurationCurveComponent/ngOnChanges');
-    this.update()
+    this.update();
   }
 
   update(){
   	this.logger.log('DurationCurveComponent/update');
 
-    const payload = {
+    var isHectare = false;
+
+    var payload: any;
+    if (this.scaleLevel === '-1'){ // updating chart with data by hectare
+      isHectare = true;
+      const area = this.areas;
+      const areas = [];
+      this.areas.map((layer: Layer) => {
+        const points = [];
+        if (layer instanceof L.Circle) {
+          areas.push({points: this.helper.getLocationsFromCicle(layer)})
+        } else {
+          areas.push({points: this.helper.getLocationsFromPolygon(layer)})
+        }
+      });
+
+      payload = {
+        'year': constant_year_duration_curve,
+        'areas': areas
+      }
+    }else{ // updating chart with data by nuts
+      payload = {
         'year': constant_year_duration_curve,
         'nuts': this.nutsIds
-    }
+      }
+    }    
 
     this.loadingData = true;
     this.showDurationCurve = false;
 
-    this.interactionService.getDurationCurveWithPayload(payload).then((result) => {
+    this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {
         this.datasets = this.interactionService.transformDurationCurveData(result);
 	  		this.labels = this.helper.createDurationCurveLabels(this.labels);
         this.options = duration_curve_graph_options;
@@ -65,5 +89,4 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
         this.showDurationCurve = true;
       });
   }
-
 }

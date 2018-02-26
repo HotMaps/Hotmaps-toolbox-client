@@ -16,13 +16,8 @@ import { MockBackend } from '@angular/http/testing';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderService } from 'app/shared';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
-<<<<<<< HEAD
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
-=======
 import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
->>>>>>> feature-duration-curve
-
-
 
 
 describe('InteractionService', () => {

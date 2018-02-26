@@ -10,18 +10,9 @@ import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { MockLoaderService } from 'app/shared/services/mock/loader.service';
 import { MockLoggerService } from 'app/shared/services/mock/logger.service';
-<<<<<<< HEAD
-import {InteractionService} from '../../../shared/services/interaction.service';
-import {SidePanelService} from "../../side-panel/side-panel.service";
-import {NavigationBarService} from "../../../pages/nav/service/navigation-bar.service";
-import {SummaryResultService} from "../../summary-result/summary-result.service";
-import {LayersService} from "../../layers/services/layers.service";
-import {ExportDataService} from "../../export-data/service/export-data.service";
-import {BusinessInterfaceRenderService} from "../../../shared/business/business.service";
-=======
 import { InteractionService } from '../../../shared/services/interaction.service';
 import { SidePanelService } from '../../../features/side-panel/side-panel.service';
-import { SelectionToolService } from '../../../features/selection-tools/selection-tool.service';
+import { SelectionToolService } from '../../../features/selection-tools/service/selection-tool.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
@@ -29,18 +20,15 @@ import { DurationCurveService } from "../../../features/duration-curve/duration-
 import { NavigationBarService } from '../../../pages/nav/service/navigation-bar.service';
 import { SummaryResultService } from '../../../features/summary-result/summary-result.service';
 import { LayersService } from '../../../features/layers/services/layers.service';
+import {ExportDataService} from "../../export-data/service/export-data.service";
 
-
->>>>>>> feature-duration-curve
 
 describe('HeatLoadChartComponent', () => {
   let component: HeatLoadChartComponent;
   let fixture: ComponentFixture<HeatLoadChartComponent>;
   let mockLoggerService: MockLoggerService;
-  let mockLoaderService: MockLoaderService;
   beforeEach(async(() => {
     mockLoggerService = new MockLoggerService();
-    mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({
       declarations: [HeatLoadChartComponent, ChartComponent],
       providers: [
@@ -55,7 +43,7 @@ describe('HeatLoadChartComponent', () => {
         { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: LayersService, useClass: LayersService },
         { provide: ExportDataService, useClass: ExportDataService },
-        { provide: LoaderService, useValue: mockLoaderService },
+        { provide: LoaderService, useClass: LoaderService },
         { provide: InteractionService, useClass: InteractionService},
         { provide: SidePanelService, useClass: SidePanelService},
         { provide: SelectionToolService, useClass: SelectionToolService},

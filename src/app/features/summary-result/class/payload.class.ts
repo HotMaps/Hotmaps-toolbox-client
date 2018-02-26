@@ -16,6 +16,10 @@ export interface PayloadStatHectar {
   areas: Area[],
   year: number
 }
+export interface PayloadDCHectar {
+  areas: Area[],
+  year: number
+}
 export interface Area {
   points: Location[]
 }

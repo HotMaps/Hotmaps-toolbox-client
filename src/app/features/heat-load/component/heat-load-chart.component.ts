@@ -10,6 +10,7 @@ import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_loa
 import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { Layer} from './../../summary-result/summary-result.class';
 
 @Component({
   selector: 'htm-heat-load-chart',
@@ -21,6 +22,9 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
+  @Input() heatloadStatus;
+  @Input() areas: Layer[];
+
   private dateHeatload = { year: 2010, month: 1, day: 1 }
   private buttons_date_type;
   private chart: Chart;
@@ -40,7 +44,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
     this.initComponent();
-    this.update()
+    
+    this.update();   
   }
 
   ngOnDestroy() {
@@ -50,7 +55,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('HeatLoadChartComponent/ngOnChanges');
-    this.update();
+    this.update();  
   }
   initComponent() {
     this.buttons_date_type = buttons_heat_load;
@@ -87,14 +92,14 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
   onSelectChange(event) {
     this.selectedButton.date = +event.target.value;
-    this.update()
+    this.update();  
   }
   changeHeatloadType(button) {
     this.unselectButtons();
     button.selected = true;
     this.selectedButton = button;
     this.setOptionsInButtons();
-    this.update()
+    this.update();  
   }
   unselectButtons() {
     this.buttons_date_type.map((but) => {
@@ -105,7 +110,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     if (this.selectedButton.api_ref === heat_load_api_year) {
     } else if (this.selectedButton.date !== 1) {
       this.selectedButton.date--;
-      this.update();
+      this.update();  
     }
   }
   incrementDate() {
@@ -114,7 +119,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     } else if (this.selectedButton.api_ref === heat_load_api_year) {
     } else {
       this.selectedButton.date++;
-      this.update();
+      this.update();  
     }
   }
 
@@ -128,19 +133,62 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       return button.name + ' ' + button.date;
     }
   }
-  update() {
+
+  update(){
     this.logger.log('HeatLoadComponent/update');
+    
     if (this.buttons_date_type !== undefined) {
+      var isHectare = false;
       this.loadingData = true;
       this.interactionService.displayButtonExportStats(!this.loadingData);
-      const payload = {
+
+      if (this.scaleLevel === '-1'){ // updating chart with data by hectare
+        isHectare = true;
+        const area = this.areas;
+        const areas = [];
+        this.areas.map((layer: Layer) => {
+          const points = [];
+          if (layer instanceof L.Circle) {
+            areas.push({points: this.helper.getLocationsFromCicle(layer)})
+          } else {
+            areas.push({points: this.helper.getLocationsFromPolygon(layer)})
+          }
+        });
+
+        var payload: any;
+        if(this.selectedButton.api_ref === 'day'){
+          payload = {
+          'year': this.buttons_date_type[0].date,
+          'month': this.buttons_date_type[1].date,
+          'day': this.buttons_date_type[2].date,
+          'areas': areas
+          }
+        }else if(this.selectedButton.api_ref === 'month'){
+          payload = {
+          'year': this.buttons_date_type[0].date,
+          'month': this.buttons_date_type[1].date,
+          'areas': areas
+          }
+        }else if(this.selectedButton.api_ref === 'year'){
+          payload = {
+          'year': this.buttons_date_type[0].date,
+          'areas': areas
+          }
+        }
+
+      }else{ // updating chart with data by nuts
+        var payload: any;
+        payload = {
         'year': this.buttons_date_type[0].date,
         'month': this.buttons_date_type[1].date,
         'day': this.buttons_date_type[2].date,
         'nuts': this.nutsIds,
         'nuts_level': this.scaleLevel
+        }
       }
-      this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref).then((result) => {
+
+      console.log(payload);
+      this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);

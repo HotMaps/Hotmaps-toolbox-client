@@ -37,6 +37,7 @@ import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../export-data/service/export-data.service';
+import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
 
 
 describe('SelectionToolService', () => {
@@ -49,11 +50,9 @@ describe('SelectionToolService', () => {
                 {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
                 {provide: SelectionToolUtils, useClass: SelectionToolUtils},
                 SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
-                BusinessInterfaceRenderService,
-                SidePanelService, InteractionService,
-                NavigationBarService, SummaryResultService,
-                LayersService,
-                MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService
+                BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService,
+                LayersService, MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, 
+                DataInteractionService, ExportDataService, DurationCurveService
             ]
         })
     }));
