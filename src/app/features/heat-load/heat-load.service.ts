@@ -8,7 +8,7 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import {apiUrl, postHeatLoadAggregate, heat_load_api_year} from './../../shared/data.service';
+import {apiUrl, postHeatLoadAggregate, heat_load_api_year, postHeatLoadAggregateHectares} from './../../shared/data.service';
 import { DatasetChart } from 'app/features/chart/chart';
 import { Helper } from 'app/shared';
 
@@ -32,9 +32,15 @@ export class HeatLoadAggregateService extends APIService {
     super(http, logger, loaderService, toasterService);
   }
 
-  getHeatLoad(payload, type_api_ref) {
-    this.logger.log(apiUrl + postHeatLoadAggregate + type_api_ref)
-    return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
+  getHeatLoad(payload, type_api_ref, isHectare) {
+    if (isHectare === false) {
+      this.logger.log('postHeatLoadAggregate ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+      return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
+    }else {
+      this.logger.log('postHeatLoadAggregateHectares ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+      this.logger.log(apiUrl + postHeatLoadAggregateHectares)
+      return super.POST(payload, apiUrl + postHeatLoadAggregateHectares);
+    }
   }
 
   heatLoadMultiDataset(data) {

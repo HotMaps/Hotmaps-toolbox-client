@@ -47,22 +47,16 @@ import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-
 import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-import {HeatLoadAggregateService} from '../../../features/heat-load/heat-load.service';
+import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
 import { SelectionToolComponent } from '../../../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
-
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import {ExportDataComponent} from '../../../features/export-data/component/export-data.component';
-import {ExportDataService} from '../../../features/export-data/service/export-data.service';
-
-import { DurationCurveService } from '../../../features/duration-curve/duration-curve.service';
-import { DurationCurveComponent } from '../../../features/duration-curve/duration-curve.component';
-
-
-
-
+import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
+import {ExportDataService} from "../../../features/export-data/service/export-data.service";
+import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
 
 describe('MapComponent', () => {
   let component: MapComponent;

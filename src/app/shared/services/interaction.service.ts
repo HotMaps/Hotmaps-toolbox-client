@@ -111,14 +111,14 @@ export class InteractionService {
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-    getHeatLoad(payload, type_api_ref): Promise<any>{
-        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref);
+    getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
     formatHeatLoadForChartjs(data, api_ref){
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     }
-    getDurationCurveWithPayload(payload): Promise<any>{
-        return this.durationCurveService.getDurationCurveWithPayload(payload);
+    getDurationCurveWithPayload(payload, isHectare): Promise<any>{
+        return this.durationCurveService.getDurationCurveWithPayload(payload, isHectare);
     }
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);

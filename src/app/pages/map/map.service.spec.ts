@@ -30,8 +30,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
-import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
-
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 
 
 
@@ -72,7 +71,7 @@ describe('mapService', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
-        { provide: ExportDataService, useClass: ExportDataService },
+        {provide: ExportDataService, useClass: ExportDataService },
         {provide: DurationCurveService, useClass: DurationCurveService}
       ],
     })

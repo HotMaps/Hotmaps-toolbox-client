@@ -579,9 +579,9 @@ var DataInteractionClass = (function () {
 
 var DataInteractionArray = [
     // {id: 11, name: 'Heat map', category: 'Comsumption'},
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* defaultLayer */], zoomLevel: 0 },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* zoomLevelDetectChange */] },
-    { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* populationLayerName */], zoomLevel: 0 },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* defaultLayer */], zoomLevel: 0 },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */] },
+    { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* populationLayerName */], zoomLevel: 0 },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -766,16 +766,38 @@ var DurationCurveComponent = (function () {
     DurationCurveComponent.prototype.update = function () {
         var _this = this;
         this.logger.log('DurationCurveComponent/update');
-        var payload = {
-            'year': __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_2" /* constant_year_duration_curve */],
-            'nuts': this.nutsIds
-        };
+        var isHectare = false;
+        var payload;
+        if (this.scaleLevel === '-1') {
+            isHectare = true;
+            var area = this.areas;
+            var areas_1 = [];
+            this.areas.map(function (layer) {
+                var points = [];
+                if (layer instanceof L.Circle) {
+                    areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
+                }
+                else {
+                    areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
+                }
+            });
+            payload = {
+                'year': __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_4" /* constant_year_duration_curve */],
+                'areas': areas_1
+            };
+        }
+        else {
+            payload = {
+                'year': __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_4" /* constant_year_duration_curve */],
+                'nuts': this.nutsIds
+            };
+        }
         this.loadingData = true;
         this.showDurationCurve = false;
-        this.interactionService.getDurationCurveWithPayload(payload).then(function (result) {
+        this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
             _this.datasets = _this.interactionService.transformDurationCurveData(result);
             _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
-            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_3" /* duration_curve_graph_options */];
+            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* duration_curve_graph_options */];
         }).then(function () {
             _this.loadingData = false;
             _this.showDurationCurve = true;
@@ -799,6 +821,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], DurationCurveComponent.prototype, "heatloadStatus", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], DurationCurveComponent.prototype, "areas", void 0);
 DurationCurveComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-duration-curve',
@@ -867,9 +893,15 @@ var DurationCurveService = (function (_super) {
         _this.formattedValues = [];
         return _this;
     }
-    DurationCurveService.prototype.getDurationCurveWithPayload = function (payload) {
-        this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postDurationCurve */]);
+    DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
+        if (isHectare == false) {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postDurationCurve */]);
+        }
+        else {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["c" /* postDurationCurveHectare */]);
+        }
     };
     DurationCurveService.prototype.formatDataset = function () {
         this.chartDataset[0].data = [];
@@ -950,7 +982,7 @@ var ExportDataComponent = (function () {
         this.exportDataService = exportDataService;
         this.logger = logger;
         this.isInSummary = true;
-        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["d" /* tab1 */];
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */];
     }
     ExportDataComponent.prototype.ngOnInit = function () {
         this.notifyService();
@@ -995,7 +1027,7 @@ var ExportDataComponent = (function () {
          */
         this.exportDataService.getTabsSelectedName().subscribe(function (val) {
             _this.logger.log('ExportDataComponent/getTabsSelectedName' + val);
-            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["d" /* tab1 */]) {
+            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */]) {
                 _this.isInSummary = true;
             }
             else {
@@ -1068,7 +1100,7 @@ var ExportDataService = (function () {
         this.dataSummary = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
         this.statusStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.dataStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
-        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["d" /* tab1 */]);
+        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["e" /* tab1 */]);
     }
     /**
      * subcribe summary result
@@ -1245,7 +1277,7 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_8" /* urlTaigaFeedback */],
+            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_10" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
@@ -1692,16 +1724,56 @@ var HeatLoadChartComponent = (function () {
         var _this = this;
         this.logger.log('HeatLoadComponent/update');
         if (this.buttons_date_type !== undefined) {
+            var isHectare = false;
             this.loadingData = true;
             this.interactionService.displayButtonExportStats(!this.loadingData);
-            var payload = {
-                'year': this.buttons_date_type[0].date,
-                'month': this.buttons_date_type[1].date,
-                'day': this.buttons_date_type[2].date,
-                'nuts': this.nutsIds,
-                'nuts_level': this.scaleLevel
-            };
-            this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref).then(function (result) {
+            var payload = void 0;
+            if (this.scaleLevel === '-1') {
+                isHectare = true;
+                var area = this.areas;
+                var areas_1 = [];
+                this.areas.map(function (layer) {
+                    var points = [];
+                    if (layer instanceof L.Circle) {
+                        areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
+                    }
+                    else {
+                        areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
+                    }
+                });
+                if (this.selectedButton.api_ref === 'day') {
+                    payload = {
+                        'year': this.buttons_date_type[0].date,
+                        'month': this.buttons_date_type[1].date,
+                        'day': this.buttons_date_type[2].date,
+                        'areas': areas_1
+                    };
+                }
+                else if (this.selectedButton.api_ref === 'month') {
+                    payload = {
+                        'year': this.buttons_date_type[0].date,
+                        'month': this.buttons_date_type[1].date,
+                        'areas': areas_1
+                    };
+                }
+                else if (this.selectedButton.api_ref === 'year') {
+                    payload = {
+                        'year': this.buttons_date_type[0].date,
+                        'areas': areas_1
+                    };
+                }
+            }
+            else {
+                payload = {
+                    'year': this.buttons_date_type[0].date,
+                    'month': this.buttons_date_type[1].date,
+                    'day': this.buttons_date_type[2].date,
+                    'nuts': this.nutsIds,
+                    'nuts_level': this.scaleLevel
+                };
+            }
+            console.log(payload);
+            this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then(function (result) {
                 _this.loadProfileData = [];
                 _this.interactionService.setDataStats(result);
                 _this.loadProfileData = _this.interactionService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
@@ -1739,6 +1811,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], HeatLoadChartComponent.prototype, "heatloadStatus", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], HeatLoadChartComponent.prototype, "areas", void 0);
 HeatLoadChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-heat-load-chart',
@@ -1824,9 +1900,16 @@ var HeatLoadAggregateService = (function (_super) {
         _this.labels = [];
         return _this;
     }
-    HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref) {
-        this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["j" /* postHeatLoadAggregate */] + type_api_ref);
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["j" /* postHeatLoadAggregate */] + type_api_ref);
+    HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
+        if (isHectare === false) {
+            this.logger.log('postHeatLoadAggregate ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postHeatLoadAggregate */] + type_api_ref);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postHeatLoadAggregate */] + type_api_ref);
+        }
+        else {
+            this.logger.log('postHeatLoadAggregateHectares ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postHeatLoadAggregate */] + type_api_ref);
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["l" /* postHeatLoadAggregateHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["l" /* postHeatLoadAggregateHectares */]);
+        }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
         var _this = this;
@@ -3047,13 +3130,13 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* formatImage */], transparent: true, version: '1.3.0',
-            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* idDefaultLayer */]
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* constant_year */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* formatImage */], transparent: true, version: '1.3.0',
+            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* idDefaultLayer */]
         };
         _this.layersArray = new __WEBPACK_IMPORTED_MODULE_7__shared_class_dictionary_class__["a" /* Dictionary */]([
             {
-                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
+                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
             },
         ]);
         _this.popup = L.popup();
@@ -3071,7 +3154,7 @@ var LayersService = (function (_super) {
         this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
     };
     LayersService.prototype.setupDefaultLayer = function () {
-        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */]);
+        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */]);
         this.logger.log(layer.toString());
         this.layers.addLayer(layer);
     };
@@ -3107,10 +3190,10 @@ var LayersService = (function (_super) {
     };
     LayersService.prototype.addLayerWithAction = function (action, map, order) {
         var layer;
-        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* wwtpLayerName */]) {
+        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */]) {
             var option = {
                 layers: 'hotmaps:' + action,
-                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* formatImage */],
+                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* formatImage */],
                 transparent: true,
                 version: '1.3.0',
                 // cql_filter : 'stat_levl_ = ' + nuts_level + '',
@@ -3122,8 +3205,8 @@ var LayersService = (function (_super) {
         else {
             // layer in Ha with date
             var option = {
-                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */],
-                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* formatImage */],
+                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* constant_year */],
+                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* formatImage */],
                 transparent: true,
                 version: '1.3.0',
                 srs: 'EPSG:4326',
@@ -3136,7 +3219,7 @@ var LayersService = (function (_super) {
         this.layersArray.add(action, layer);
     };
     LayersService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -3169,13 +3252,13 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
-        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */])) {
+        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -3196,7 +3279,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -3204,7 +3287,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -3213,8 +3296,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
     LayersService.prototype.showLayerDependingZoom = function (action, map, zoomLevel) {
@@ -3258,10 +3341,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -3383,7 +3466,7 @@ var PopulationService = (function (_super) {
     * Get the population with payloads
     */
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["Z" /* postPopulationDensityInArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_1" /* postPopulationDensityInArea */]);
     };
     /**
     * Show the population selected layer
@@ -3411,9 +3494,9 @@ var PopulationService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         // Improvement of coding style : (with codelyzer)
         // Line 73 exceeds maximum line length of 140
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_0" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_2" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["C" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["E" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -3478,7 +3561,7 @@ var SelectionScaleClassArray = [
 var action = 'population';
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -3487,7 +3570,7 @@ var hectareOption = {
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
@@ -3496,7 +3579,7 @@ var nuts0LayerOption = {
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -3505,7 +3588,7 @@ var nuts1LayerOption = {
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
@@ -3514,7 +3597,7 @@ var nuts2LayerOption = {
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
@@ -3522,8 +3605,8 @@ var nuts3LayerOption = {
     zIndex: 10
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["o" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["n" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["p" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     zIndex: 10
@@ -3592,9 +3675,9 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["k" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* initial_scale_value */];
         // scale value subject
-        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["l" /* nuts3 */]);
+        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* nuts3 */]);
         return _this;
     }
     SelectionScaleService.prototype.ngOnInit = function () {
@@ -3631,7 +3714,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -3663,7 +3746,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["k" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -3677,7 +3760,7 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["k" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["m" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -4086,7 +4169,7 @@ var SelectionToolService = (function (_super) {
         _this.nutsIds = new Set;
         _this.multiSelectionLayers = new L.FeatureGroup();
         _this.controlMultiLayer = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["k" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["m" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
         _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
@@ -4621,7 +4704,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Summary</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Energy Statistics</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [locationsSelection]=\"locationsSelection\"\n          ></htm-summary-result>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [nutsIds]=\"nutsIds\"\n      [layers]=\"layers\"\n      [scaleLevel]=\"scaleLevel\"\n      [locationsSelection]=\"locationsSelection\"\n      [areas]=\"areas\"\n      ></htm-summary-result>\n  </ng-template>\n  <htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data>\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Summary</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Energy Statistics</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [locationsSelection]=\"locationsSelection\"\n          [areas]=\"areas\"\n          ></htm-summary-result>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [nutsIds]=\"nutsIds\"\n      [layers]=\"layers\"\n      [scaleLevel]=\"scaleLevel\"\n      [locationsSelection]=\"locationsSelection\"\n      [areas]=\"areas\"\n      ></htm-summary-result>\n  </ng-template>\n  <htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data>\n</div>\n"
 
 /***/ }),
 
@@ -4674,7 +4757,7 @@ var RightSideComponent = (function (_super) {
     RightSideComponent.prototype.ngOnInit = function () { };
     RightSideComponent.prototype.ngOnDestroy = function () { };
     RightSideComponent.prototype.ngOnChanges = function () {
-        if ((this.scaleLevel === '3') || (this.scaleLevel === '2')) {
+        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
         }
         else {
@@ -5226,7 +5309,7 @@ var SummaryResultComponent = (function () {
         this.helper = helper;
         this.interactionService = interactionService;
         this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["e" /* round_value */];
+        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* round_value */];
         this.scale = 'Nuts 3';
         this.isDataAgregate = false;
         this.loadingData = false;
@@ -5236,7 +5319,7 @@ var SummaryResultComponent = (function () {
     SummaryResultComponent.prototype.ngOnChanges = function (changes) {
         this.logger.log('SummaryResultComponent/ngOnChanges');
         this.scale = this.mapService.getScaleValue();
-        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["w" /* hectare */]) {
+        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* hectare */]) {
             this.isDataAgregate = true;
             this.updateWithIds();
         }
@@ -5255,7 +5338,8 @@ var SummaryResultComponent = (function () {
         this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
         this.interactionService.displayButtonExport(!this.loadingData);
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* constant_year */], nuts: this.nutsIds };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["A" /* constant_year */], nuts: this.nutsIds };
+        console.log(payload);
         var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
             _this.summaryResult = result;
             _this.interactionService.setSummaryData(result);
@@ -5292,7 +5376,7 @@ var SummaryResultComponent = (function () {
         }
         ;
         ;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* constant_year */], areas: areas };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["A" /* constant_year */], areas: areas };
         var summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(function (result) {
             _this.summaryResult = result;
             _this.interactionService.setSummaryData(result);
@@ -5410,15 +5494,15 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithPayload = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithPayload = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["p" /* postStatsLayersArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["r" /* postStatsLayersArea */]);
     };
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["q" /* postStatsLayersNutsIds */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["s" /* postStatsLayersNutsIds */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["r" /* postStatsLayersHectareMulti */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postStatsLayersHectareMulti */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
@@ -5660,7 +5744,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["Y" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_0" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -5812,7 +5896,7 @@ var MapService = (function (_super) {
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.selectionToolButtonStateService = selectionToolButtonStateService;
-        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["G" /* defaultZoomLevel */]);
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["I" /* defaultZoomLevel */]);
         _this.layerArray = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
         // TODO: A modifier
         _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"](); // Observable source for click
@@ -5853,20 +5937,20 @@ var MapService = (function (_super) {
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["H" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["I" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
@@ -5921,7 +6005,7 @@ var MapService = (function (_super) {
         this.selectionScaleService.changeScale();
     };
     MapService.prototype.onClickEvent = function (self, e) {
-        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["w" /* hectare */]) {
+        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* hectare */]) {
             return;
         }
         self.logger.log('MapService/click');
@@ -5933,12 +6017,12 @@ var MapService = (function (_super) {
         }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["w" /* hectare */]) {
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* hectare */]) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
                 self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         }
-        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["v" /* lau2 */]) {
+        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["x" /* lau2 */]) {
             self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         }
@@ -5960,10 +6044,10 @@ var MapService = (function (_super) {
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* clickAccuracy */]).toBBoxString();
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* clickAccuracy */]).toBBoxString();
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
@@ -5971,16 +6055,16 @@ var MapService = (function (_super) {
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["o" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["q" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
     };
     MapService.prototype.postHectareCentroid = function (payload) {
-        return this.POST(payload, __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* postForOneHectareCentroid */]);
+        return this.POST(payload, __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* postForOneHectareCentroid */]);
     };
     MapService.prototype.getAreaFromScale = function (url) {
         var _this = this;
@@ -6840,12 +6924,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["s" /* nuts0 */], suffix: '_nuts0' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["t" /* nuts1 */], suffix: '_nuts1' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["u" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["l" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["v" /* lau2 */], suffix: '_lau2' },
-    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["w" /* hectare */], suffix: '_ha' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["u" /* nuts0 */], suffix: '_nuts0' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["v" /* nuts1 */], suffix: '_nuts1' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["w" /* nuts2 */], suffix: '_nuts2' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["n" /* nuts3 */], suffix: '_nuts3' },
+    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["x" /* lau2 */], suffix: '_lau2' },
+    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["y" /* hectare */], suffix: '_ha' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -7043,81 +7127,83 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return defaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return urlTaigaFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return defaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return formatImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return postPopulationDensityInArea; });
 /* unused harmony export postHectareCentroid */
 /* unused harmony export postNumberHectareCentroid */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return postForOneHectareCentroid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return postForOneHectareCentroid; });
 /* unused harmony export getGrid */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return postStatsLayersArea; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postHeatLoadAggregate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return postStatsLayersArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return postHeatLoadAggregate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return postHeatLoadAggregateHectares; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postDurationCurve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return postStatsLayersNutsIds; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return postStatsLayersHectareMulti; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return postDurationCurveHectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return postStatsLayersNutsIds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return postStatsLayersHectareMulti; });
 /* unused harmony export postStatsLayersPoint */
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return proj3035; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return proj3035; });
 /* unused harmony export proj4326 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return heat_load_api_day; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_api_year; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return heat_load_api_month; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return buttons_heat_load; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_api_day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return heat_load_api_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return heat_load_api_month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return buttons_heat_load; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return timeOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return constant_year_duration_curve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return constant_year_duration_curve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return defaultZoomLevel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return nuts2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return lau2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPOVERLAYADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return rightPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return leftPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return tab1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nuts3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lau2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return leftPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return tab1; });
 /* unused harmony export tab2 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return duration_curve_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return duration_curve_graph_options; });
 
 
 /**
@@ -7137,7 +7223,7 @@ var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = localApiUrl;
 var defaultLayer = 'heat_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
@@ -7157,7 +7243,9 @@ var postForOneHectareCentroid = '/raster/layers/hectare/centroid';
 var getGrid = '/grids/1km/area/';
 var postStatsLayersArea = '/stats/layers/area/';
 var postHeatLoadAggregate = '/load-profile/aggregate/';
+var postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
 var postDurationCurve = '/load-profile/aggregate/duration_curve';
+var postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
 var postStatsLayersNutsIds = '/stats/layers/nuts/';
 var postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
 var postStatsLayersPoint = '/stats/layers/point/';
@@ -7431,7 +7519,7 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["e" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["f" /* round_value */]);
     };
     Helper.prototype.formatDataLoadProfil = function (data) {
         var _this = this;
@@ -7473,7 +7561,7 @@ var Helper = (function () {
         return proj4(epsgString).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.transformLatLngToEpsg3035 = function (latlng) {
-        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["f" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
+        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["g" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.getTranformedBoundingBox = function (map, epsgString) {
         var coordinate = [];
@@ -7756,17 +7844,17 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["o"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["m"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["w"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_4"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_5"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_6"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_7"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_10"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["q"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["o"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["y"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_6"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_7"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_12"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_13"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -8093,7 +8181,7 @@ var APIService = (function () {
     APIService.prototype.POST = function (payload, url) {
         return this.http
             .post(url, JSON.stringify(payload), { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["c" /* timeOut */])
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["d" /* timeOut */])
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError.bind(this));
@@ -8101,7 +8189,7 @@ var APIService = (function () {
     APIService.prototype.POSTunStringify = function (payload, url) {
         return this.http
             .post(url, payload, { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["c" /* timeOut */])
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["d" /* timeOut */])
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError.bind(this));
@@ -8226,7 +8314,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["g" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["h" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -8254,9 +8342,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["h" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
@@ -8432,14 +8520,14 @@ var InteractionService = (function () {
     InteractionService.prototype.getSummaryResultWithPayload = function (payload) {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     };
-    InteractionService.prototype.getHeatLoad = function (payload, type_api_ref) {
-        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref);
+    InteractionService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     };
     InteractionService.prototype.formatHeatLoadForChartjs = function (data, api_ref) {
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     };
-    InteractionService.prototype.getDurationCurveWithPayload = function (payload) {
-        return this.durationCurveService.getDurationCurveWithPayload(payload);
+    InteractionService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
+        return this.durationCurveService.getDurationCurveWithPayload(payload, isHectare);
     };
     InteractionService.prototype.transformDurationCurveData = function (data) {
         return this.durationCurveService.transformData(data);

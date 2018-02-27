@@ -28,6 +28,7 @@
           [layers]="layers"
           [scaleLevel]="scaleLevel"
           [locationsSelection]="locationsSelection"
+          [areas]="areas"
           ></htm-summary-result>
       </li>
       <li>
@@ -37,12 +38,14 @@
           [nutsIds]="nutsIds"
           [layers]="layers"
           [scaleLevel]="scaleLevel"
+          [areas]="areas"
           [heatloadStatus]="heatloadStatus"></htm-heat-load-chart>
         <htm-duration-curve
           *ngIf="expanded"
           [expanded]="expanded"
           [nutsIds]="nutsIds"
           [scaleLevel]="scaleLevel"
+          [areas]="areas"
           [heatloadStatus]="heatloadStatus"></htm-duration-curve>
       </li>
   </ul>

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DurationCurveComponent } from './duration-curve.component';
-import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 import { Logger, Helper, LoaderService, ToasterService } from 'app/shared';
 import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +12,7 @@ import { MockLoaderService } from 'app/shared/services/mock/loader.service';
 import { MockLoggerService } from 'app/shared/services/mock/logger.service';
 import { InteractionService } from '../../shared/services/interaction.service';
 import { SidePanelService } from '../../features/side-panel/side-panel.service';
-import { SelectionToolService } from '../../features/selection-tools/service/selection-tool.service';
+import { SelectionToolService } from '../selection-tools/service/selection-tool.service';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
 import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
@@ -20,7 +20,7 @@ import { NavigationBarService } from '../../pages/nav/service/navigation-bar.ser
 import { SummaryResultService } from '../../features/summary-result/summary-result.service';
 import { LayersService } from '../../features/layers/services/layers.service';
 import { HeatLoadAggregateService } from '../heat-load/heat-load.service';
-import {ExportDataService} from "../export-data/service/export-data.service";
+import { ExportDataService } from "../export-data/service/export-data.service";
 
 
 describe('DurationCurveComponent', () => {
@@ -48,6 +48,7 @@ describe('DurationCurveComponent', () => {
         { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: LayersService, useClass: LayersService },
+        { provide: ExportDataService, useClass: ExportDataService },
         { provide: LoaderService, useValue: mockLoaderService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: Helper, useClass: Helper },
@@ -55,7 +56,6 @@ describe('DurationCurveComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
-        { provide: ExportDataService, useClass: ExportDataService },
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);

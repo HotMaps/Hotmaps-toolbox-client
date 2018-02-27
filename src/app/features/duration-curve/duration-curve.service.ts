@@ -8,7 +8,7 @@ import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import { Helper } from '../../shared';
-import {apiUrl, postDurationCurve} from '../../shared/data.service';
+import {apiUrl, postDurationCurve, postDurationCurveHectare} from '../../shared/data.service';
 
 
 @Injectable()
@@ -21,21 +21,26 @@ export class DurationCurveService extends APIService {
   private formattedValues = [];
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) { 
-  	super(http, logger, loaderService, toasterService);
+	super(http, logger, loaderService, toasterService);
   }
 
-	getDurationCurveWithPayload(payload: any): Promise<any>{
-		this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-		return super.POST(payload, apiUrl + postDurationCurve);
+	getDurationCurveWithPayload(payload: any, isHectare): Promise<any>{
+		if (isHectare == false){
+			this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+			return super.POST(payload, apiUrl + postDurationCurve);
+		}else{
+			this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+			return super.POST(payload, apiUrl + postDurationCurveHectare);
+		}		
 	}
 
-  formatDataset() {
-    this.chartDataset[0].data = [];
-    this.formattedValues = [];
-  }
+  	formatDataset() {
+		this.chartDataset[0].data = [];
+		this.formattedValues = [];
+  	}
 
 	transformData(data){
-    this.formatDataset();
+	this.formatDataset();
 		for (var i = 0; i < data["points"].length; ++i) {
 			this.formattedValues[i] = {
 				x: data["points"][i]['X'],
