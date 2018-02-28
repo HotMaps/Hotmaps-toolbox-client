@@ -157,5 +157,9 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       this.mapService.clearAll(this.mapService.getMap());
       this.cursorClick();
     }
+    if (this.nbElementsSelected == 0){
+      this.mapService.clearAll(this.mapService.getMap());
+      this.cursorClick();
+    }
   }
 }
