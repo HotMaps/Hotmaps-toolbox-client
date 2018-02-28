@@ -466,10 +466,79 @@ export class Helper {
   }
 
   createDurationCurveLabels(array) {
-    for (var i = 0; i <= 8760; ++i) {
+    for (let i = 0; i <= 8760; ++i) {
         array[i] = i;
     }
     return array;
+  }
+
+  createHLPayloadHectares(type, buttonArray, areas){
+    let payload;
+    if(type === 'day'){
+      payload = {
+        'year': buttonArray[0].date,
+        'month': buttonArray[1].date,
+        'day': buttonArray[2].date,
+        'areas': areas
+      }
+    }
+    if(type === 'month'){
+      payload = {
+        'year': buttonArray[0].date,
+        'month': buttonArray[1].date,
+        'areas': areas
+      }
+    }
+    if(type === 'year'){
+      payload = {
+        'year': buttonArray[0].date,
+        'areas': areas
+      }
+    }
+    return payload;
+  }
+
+  createHLPayloadNuts(type, buttonArray, nuts){
+    let payload;
+    if(type == 'day'){      
+      payload = {
+        'year': buttonArray[0].date,
+        'month': buttonArray[1].date,
+        'day': buttonArray[2].date,
+        'nuts': nuts
+      }
+    }
+    if(type == 'month'){
+      payload = {
+        'year': buttonArray[0].date,
+        'month': buttonArray[1].date,
+        'nuts': nuts
+      }
+    }
+    if(type == 'year'){
+      payload = {
+        'year': buttonArray[0].date,
+        'nuts': nuts
+      }
+    }
+    return payload;
+  }
+
+  createDCPayloadHectares(year, areas){
+    let payload = {
+      'year': year,
+      'areas': areas
+    }
+    return payload;
+
+  }
+
+  createDCPayloadNuts(year, nuts){
+    let payload = {
+      'year': year,
+      'nuts': nuts
+    }
+    return payload;
   }
 }
 

@@ -19,7 +19,7 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
@@ -42,6 +42,7 @@ export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregate = '/load-profile/aggregate/';
+export const postHeatLoadAggregateNormalized = '/load-profile/aggregate';
 export const postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
 export const postDurationCurve = '/load-profile/aggregate/duration_curve';
 export const postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
@@ -139,8 +140,31 @@ export const duration_curve_graph_options = {
       tooltips: {enabled: false},
       hover: {mode: null},
       scales:{
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Heat Power (MW)'
+              }
+            }],
             xAxes: [{
-                display: false
+              display:false,
+              scaleLabel: {
+                display: true,
+                labelString: 'Yearly duration'
+              }
             }]
-        }
+      }
   }
+
+// Heat Load graph data
+export const heat_load_graph_options = {
+      scales:{
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Heat Power (MW)'
+              }
+            }]
+      }
+  }
+

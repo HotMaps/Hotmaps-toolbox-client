@@ -7,6 +7,7 @@ import { Logger } from '../../../shared/services/logger.service';
 import { HeatLoadClass, Value } from '../heat-load.class';
 import { LoadProfile, Stock2 } from 'app/features/heat-load/shared';
 import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_load_api_month, heat_load_api_day } from 'app/shared';
+import { heat_load_graph_options } from '../../../shared/data.service';
 import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
@@ -29,6 +30,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private buttons_date_type;
   private chart: Chart;
   private labels;
+  private options: any;
   private loadProfileData: any;
   private subtitle = 'Heatload profil';
   private datasets: DatasetChart;
@@ -154,43 +156,19 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
           }
         });
 
-        if (this.selectedButton.api_ref === 'day') {
-          payload = {
-          'year': this.buttons_date_type[0].date,
-          'month': this.buttons_date_type[1].date,
-          'day': this.buttons_date_type[2].date,
-          'areas': areas
-          }
-        }else if (this.selectedButton.api_ref === 'month') {
-          payload = {
-          'year': this.buttons_date_type[0].date,
-          'month': this.buttons_date_type[1].date,
-          'areas': areas
-          }
-        }else if (this.selectedButton.api_ref === 'year') {
-          payload = {
-          'year': this.buttons_date_type[0].date,
-          'areas': areas
-          }
-        }
+        payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, areas);
 
       }else { // updating chart with data by nuts
-        payload = {
-        'year': this.buttons_date_type[0].date,
-        'month': this.buttons_date_type[1].date,
-        'day': this.buttons_date_type[2].date,
-        'nuts': this.nutsIds,
-        'nuts_level': this.scaleLevel
-        }
+        payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
       }
 
-      console.log(payload);
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
+        this.options = heat_load_graph_options;
       }).then(() => {
         this.loadingData = false;
         this.interactionService.displayButtonExportStats(!this.loadingData);

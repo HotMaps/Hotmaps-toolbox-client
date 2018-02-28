@@ -111,6 +111,9 @@ export class InteractionService {
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
+    /*getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
+    }*/
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }

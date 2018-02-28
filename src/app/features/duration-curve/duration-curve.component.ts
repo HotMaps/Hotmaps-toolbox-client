@@ -66,15 +66,9 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
         }
       });
 
-      payload = {
-        'year': constant_year_duration_curve,
-        'areas': areas
-      }
+      payload = this.helper.createDCPayloadHectares(constant_year_duration_curve, areas);
     }else{ // updating chart with data by nuts
-      payload = {
-        'year': constant_year_duration_curve,
-        'nuts': this.nutsIds
-      }
+      payload = this.helper.createDCPayloadNuts(constant_year_duration_curve, this.nutsIds);
     }    
 
     this.loadingData = true;
