@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { SelectionToolButtonStateService } from '../../../features/selection-tools/selection-tool-button-state.service';
-import { SelectionToolService } from '../../../features/selection-tools/selection-tool.service';
+import { SelectionToolButtonStateService } from '../../../features/selection-tools/service/selection-tool-button-state.service';
+import { SelectionToolService } from '../../../features/selection-tools/service/selection-tool.service';
 import { MapService } from '../../../pages/map/map.service';
 
 @Component({

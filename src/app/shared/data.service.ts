@@ -42,6 +42,10 @@ export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
 export const getGrid    = '/grids/1km/area/';
 export const postStatsLayersArea = '/stats/layers/area/';
 export const postHeatLoadAggregate = '/load-profile/aggregate/';
+export const postHeatLoadAggregateNormalized = '/load-profile/aggregate';
+export const postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
+export const postDurationCurve = '/load-profile/aggregate/duration_curve';
+export const postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
 export const postStatsLayersNutsIds = '/stats/layers/nuts/';
 export const postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
 export const postStatsLayersPoint = '/stats/layers/point/';
@@ -56,9 +60,9 @@ export const heat_load_api_day = 'day';
 export const heat_load_api_year = 'year';
 export const heat_load_api_month = 'month';
 export const buttons_heat_load = [
-  { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010 },
-  { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1 },
-  { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1 },
+  { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010, min: 2010, max: 2010, options: [] },
+  { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
+  { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 
 
@@ -69,6 +73,7 @@ export const clickAccuracy   = 100;
 export const zoomLevelDetectChange = 10;
 export const constant_year = 2012;
 export const constant_year_sp_wwtp = 2015;
+export const constant_year_duration_curve = 2010;
 export const business_name_wwtp = 'Waste Water treatment plants';
 export const business_name_population = 'Population';
 export const unit_capacity   = 'population equivalent';
@@ -115,3 +120,51 @@ export const MAPOVERLAYADD = 'overlayadd';
 
 export const rightPanelSize = 600;
 export const leftPanelSize = 350;
+
+// tab values
+
+export const tab1 = 'summary'
+
+export const tab2 = 'stats'
+
+// Duration curve graph data
+export const duration_curve_graph_options = {
+      legend: {
+          display: false
+      },
+      elements:{
+        point:{
+          radius:0
+        }
+      },
+      tooltips: {enabled: false},
+      hover: {mode: null},
+      scales:{
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Heat Power (MW)'
+              }
+            }],
+            xAxes: [{
+              display:false,
+              scaleLabel: {
+                display: true,
+                labelString: 'Yearly duration'
+              }
+            }]
+      }
+  }
+
+// Heat Load graph data
+export const heat_load_graph_options = {
+      scales:{
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Heat Power (MW)'
+              }
+            }]
+      }
+  }
+

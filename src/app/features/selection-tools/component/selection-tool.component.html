@@ -1,0 +1,21 @@
+<div class="containers">
+    <div id="selection-tools-box">
+      <div *ngFor="let button of stButtons">
+          <input id="radio-{{button.id}}" class="radio-custom" name="radio-group" type="radio" [checked]="button.isChecked" (click)="drawTool(button)">
+          <label id="{{button.type}}" for="radio-{{button.id}}" class="radio-custom-label"></label>
+      </div>
+    </div>
+    <div id="info-box">
+      <div class="uk-container uk-padding-remove">
+        <div>
+          <p>{{elementSelected}}<span>{{nbElementsSelected}}</span></p>
+          <p>Scale<span>{{scaleSelected}}</span></p>
+        </div>
+        <div class="divButtons">
+          <button id="loadBtn" class="uk-button uk-button-primary uk-button-small" [disabled]="isLoaBtnDisabled" (click)="loadResultsButton()">Load results</button>
+          <button id="clearBtn" class="uk-button uk-button-danger uk-button-small" [disabled]="isClearBtnDisabled" (click)="clearLayers()">{{setClearButtonText()}}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>

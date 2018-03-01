@@ -1,0 +1,44 @@
+.htm-card {
+    padding: 10px;
+}
+.spinner {
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    color: black; 
+}
+.activebutton{
+    background-color: #1e87f0;
+    color: white;
+}
+.waitingbox {
+    height: 150px;
+    width: 100%;
+    position: relative;
+}
+.title {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+.date-visu{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.right{
+    float: right;
+}
+.left{
+    float: left;
+}
+.date-visu > .right, .date-visu > .left {
+    cursor: pointer;
+}
+.date-visu > span {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

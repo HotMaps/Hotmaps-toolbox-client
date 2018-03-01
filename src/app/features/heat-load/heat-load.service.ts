@@ -8,7 +8,7 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import {apiUrl, postHeatLoadAggregate, heat_load_api_year} from './../../shared/data.service';
+import {apiUrl, postHeatLoadAggregate, heat_load_api_year, postHeatLoadAggregateHectares, postHeatLoadAggregateNormalized} from './../../shared/data.service';
 import { DatasetChart } from 'app/features/chart/chart';
 import { Helper } from 'app/shared';
 
@@ -26,19 +26,32 @@ export class HeatLoadAggregateService extends APIService {
   ]
   private formattedValues = [];
 
+
   private labels = [];
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 
-  getHeatLoadAggregateMonthWithPayload(payload: any, type_api_ref): Promise<any> {
-    this.logger.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ' + JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
-  }
+  /*getHeatLoad(payload, type_api_ref, isHectare) {
+    if (isHectare === false) {
+      this.logger.log('postHeatLoadAggregate ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+      return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
+    }else {
+      this.logger.log('postHeatLoadAggregateHectares ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+      this.logger.log(apiUrl + postHeatLoadAggregateHectares)
+      return super.POST(payload, apiUrl + postHeatLoadAggregateHectares);
+    }
+  }*/
 
-  getHeatLoad(payload, type_api_ref) {
-    this.logger.log(apiUrl + postHeatLoadAggregate + type_api_ref)
-    return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
+  getHeatLoad(payload, type_api_ref, isHectare) {
+    if (isHectare === false) {
+      this.logger.log('postHeatLoadAggregateNormalized ' + apiUrl + postHeatLoadAggregateNormalized +'/'+ type_api_ref)
+      return super.POST(payload, apiUrl + postHeatLoadAggregateNormalized);
+    }else {
+      this.logger.log('postHeatLoadAggregateHectares ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+      this.logger.log(apiUrl + postHeatLoadAggregateHectares)
+      return super.POST(payload, apiUrl + postHeatLoadAggregateHectares);
+    }
   }
 
   heatLoadMultiDataset(data) {

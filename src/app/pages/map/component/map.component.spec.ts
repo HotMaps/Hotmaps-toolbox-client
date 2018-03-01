@@ -1,6 +1,6 @@
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
@@ -24,7 +24,7 @@ import { LeftSideComponent } from '../../../features/side-panel/left-side-panel/
 import { SidePanelService } from '../../../features/side-panel/side-panel.service';
 import { RightSideComponent } from '../../../features/side-panel/right-side-panel/right-side-panel.component';
 import { ToasterService } from '../../../shared/services/toaster.service';
-import { SelectionToolButtonStateService } from './../../../features/selection-tools/selection-tool-button-state.service';
+import { SelectionToolButtonStateService } from '../../../features/selection-tools/service/selection-tool-button-state.service';
 import { NavigationBarService } from '../../nav/service/navigation-bar.service';
 import { BusinessNamePipe } from './../../../shared/pipes/business-name.pipe';
 import { LayerNamePipe } from './../../../shared/pipes/layer-name.pipe';
@@ -40,7 +40,7 @@ import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
 import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { SelectionToolService } from '../../../features/selection-tools/selection-tool.service';
+import { SelectionToolService } from '../../../features/selection-tools/service/selection-tool.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
 import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-side-panel.component';
@@ -48,12 +48,15 @@ import {FeedbackComponent} from '../../../features/feedback/component/feedback.c
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {HeatLoadAggregateService} from "../../../features/heat-load/heat-load.service";
-import { SelectionToolComponent } from '../../../features/selection-tools/selection-tool/selection-tool.component';
+import { SelectionToolComponent } from '../../../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
-
-
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
+import {ExportDataService} from "../../../features/export-data/service/export-data.service";
+import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -78,7 +81,7 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        HeatLoadChartComponent, ChartComponent
+        HeatLoadChartComponent, ChartComponent, ExportDataComponent, DurationCurveComponent
       ],
       providers: [
         {
@@ -86,8 +89,10 @@ describe('MapComponent', () => {
           return new Http(backend, defaultOptions);
         }, deps: [MockBackend, BaseRequestOptions]
         },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: InteractionService, useClass: InteractionService },
+        { provide: ExportDataService, useClass: ExportDataService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },
         { provide: ToasterService, useClass: ToasterService },
@@ -107,6 +112,8 @@ describe('MapComponent', () => {
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: DurationCurveService, useClass: DurationCurveService }
+
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,

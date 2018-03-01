@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { TestBed } from '@angular/core/testing';
@@ -16,8 +16,8 @@ import { MockBackend } from '@angular/http/testing';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderService } from 'app/shared';
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
-
-
+import {ExportDataService} from "../../features/export-data/service/export-data.service";
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 
 
 describe('InteractionService', () => {
@@ -39,6 +39,7 @@ describe('InteractionService', () => {
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: LayersService, useClass: LayersService },
         { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: ExportDataService, useClass: ExportDataService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
@@ -48,6 +49,7 @@ describe('InteractionService', () => {
         { provide: LoaderService, useValue: mockLoggerService },
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: DurationCurveService, useClass: DurationCurveService }
       ],
       imports: []
     }).compileComponents();

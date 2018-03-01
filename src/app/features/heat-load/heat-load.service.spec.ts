@@ -7,7 +7,7 @@ import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 
 
-import { postStatsLayersArea, apiUrl, postHeatLoadAggregate } from './../../shared/data.service';
+import { postStatsLayersArea, apiUrl, postHeatLoadAggregate, postHeatLoadAggregateNormalized } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { Payload } from './../population/payload.class';
 import { APIService } from './../../shared/services/api.service';
@@ -44,7 +44,7 @@ describe('HeatLoadAggregateService', () => {
     }));
     let subject: HeatLoadAggregateService = null;
     let backend: MockBackend = null;
-    const url = apiUrl + postHeatLoadAggregate
+    const url = apiUrl + postHeatLoadAggregateNormalized
     beforeEach(inject([HeatLoadAggregateService, MockBackend], (userService: HeatLoadAggregateService, mockBackend: MockBackend) => {
         subject = userService;
         backend = mockBackend;
@@ -63,20 +63,20 @@ describe('HeatLoadAggregateService', () => {
                     body: heatloaddataresponseday
                 });
                 connection.mockRespond(new Response(options));
-                expect(connection.request.url).toBe(url + 'day')
+                expect(connection.request.url).toBe(url)
                 console.log(connection)
             });
+            const isHectare = false;
             const payload = {
                 year: 2010,
                 month: 5,
                 day: 5,
                 nuts: [
                     'AT11'
-                ],
-                nuts_level: '2'
+                ]
             };
             console.log(payload);
-            subject.getHeatLoad(payload, 'day').then((response) => {
+            subject.getHeatLoad(payload, 'day', isHectare).then((response) => {
                 console.log(response);
                 expect(response).toEqual(heatloaddataresponseday);
                 done();
@@ -89,19 +89,19 @@ describe('HeatLoadAggregateService', () => {
                     body: heatloaddataresponseyear
                 });
                 connection.mockRespond(new Response(options));
-                expect(connection.request.url).toBe(url + 'year')
+                expect(connection.request.url).toBe(url)
             });
+            const isHectare = false;
             const payload = {
                 year: 2010,
                 month: 5,
                 day: 5,
                 nuts: [
                     'AT11'
-                ],
-                nuts_level: '2'
+                ] //d
             };
             console.log(JSON.stringify(payload));
-            subject.getHeatLoad(payload, 'year').then((response) => {
+            subject.getHeatLoad(payload, 'year', isHectare).then((response) => {
                 console.log(response);
                 expect(response).toEqual(heatloaddataresponseyear);
                 done();

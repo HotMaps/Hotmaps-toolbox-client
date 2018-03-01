@@ -97,10 +97,15 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__features_feedback_mail_service__ = __webpack_require__("../../../../../src/app/features/feedback/mail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_app_features_side_panel__ = __webpack_require__("../../../../../src/app/features/side-panel/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__features_selection_tools_selection_tool_selection_tool_component__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__features_selection_tools_component_selection_tool_component__ = __webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__features_heat_load_component___ = __webpack_require__("../../../../../src/app/features/heat-load/component/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__features_chart_chart_component__ = __webpack_require__("../../../../../src/app/features/chart/chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__features_duration_curve_duration_curve_component__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__features_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__features_export_data_component_export_data_component__ = __webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_app_features_selection_tools_service_selection_tool_utils_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-utils.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -115,6 +120,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
+
+
+
+
+
 
 
 
@@ -187,8 +197,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__shared__["BusinessNamePipe"],
             __WEBPACK_IMPORTED_MODULE_21__features_feedback___["FeedbackComponent"],
             __WEBPACK_IMPORTED_MODULE_36__features_heat_load_component___["a" /* HeatLoadChartComponent */],
-            __WEBPACK_IMPORTED_MODULE_35__features_selection_tools_selection_tool_selection_tool_component__["a" /* SelectionToolComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__features_chart_chart_component__["a" /* ChartComponent */]
+            __WEBPACK_IMPORTED_MODULE_35__features_selection_tools_component_selection_tool_component__["a" /* SelectionToolComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__features_chart_chart_component__["a" /* ChartComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__features_duration_curve_duration_curve_component__["a" /* DurationCurveComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__features_export_data_component_export_data_component__["a" /* ExportDataComponent */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_31__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */],
@@ -211,7 +223,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_33__features_feedback_mail_service__["a" /* MailService */],
             __WEBPACK_IMPORTED_MODULE_22__features_selection_scale__["a" /* SelectionScaleService */],
             __WEBPACK_IMPORTED_MODULE_32_app_shared_services_interaction_service__["a" /* InteractionService */],
-            __WEBPACK_IMPORTED_MODULE_37__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]
+            __WEBPACK_IMPORTED_MODULE_37__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */],
+            __WEBPACK_IMPORTED_MODULE_43_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */],
+            __WEBPACK_IMPORTED_MODULE_42__features_export_data_service_export_data_service__["a" /* ExportDataService */],
+            __WEBPACK_IMPORTED_MODULE_40__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */]
         ],
         schemas: [
             __WEBPACK_IMPORTED_MODULE_4__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]
@@ -238,6 +253,13 @@ exports.push([module.i, "\n\n\n/* Add a black background color to the top naviga
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/component/app.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet>\n  <span *ngIf=\"showLoader\" class=\"loader-app\">\n    <div uk-spinner=\"ratio:4\"></div>\n  </span>\n</router-outlet>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -275,7 +297,7 @@ var AppComponent = (function () {
      */
     AppComponent.prototype.notifyLoaderService = function () {
         var _this = this;
-        this.loaderService.status.subscribe(function (val) {
+        this.loaderService.getStatus().subscribe(function (val) {
             _this.showLoader = val;
         });
     };
@@ -289,7 +311,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
-        template: "<router-outlet><span *ngIf=\"showLoader\" class=\"loader-app\"><div uk-spinner=\"ratio:4\"></div></span></router-outlet>",
+        template: __webpack_require__("../../../../../src/app/component/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/app.component.css")],
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
@@ -379,7 +401,8 @@ var ChartComponent = (function () {
             data: {
                 labels: this.labels,
                 datasets: this.datasets
-            }
+            },
+            options: this.options
         });
     };
     ChartComponent.prototype.resetChart = function () {
@@ -410,6 +433,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], ChartComponent.prototype, "updateChart", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "options", void 0);
 ChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-chart',
@@ -552,9 +579,9 @@ var DataInteractionClass = (function () {
 
 var DataInteractionArray = [
     // {id: 11, name: 'Heat map', category: 'Comsumption'},
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* defaultLayer */], zoomLevel: 0 },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_0" /* zoomLevelDetectChange */] },
-    { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* populationLayerName */], zoomLevel: 0 },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* defaultLayer */], zoomLevel: 0 },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_4" /* zoomLevelDetectChange */] },
+    { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* populationLayerName */], zoomLevel: 0 },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -666,6 +693,486 @@ var _a, _b, _c, _d, _e, _f;
 
 /***/ }),
 
+/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.spinner {\n    position: absolute; \n    left: 50%; \n    top: 50%; \n    color: black; \n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n.waitingbox {\n    height: 150px;\n    width: 100%;\n    position: relative;\n}\n.title {\n    height: 50px;\n    width: 100%;\n    position: relative;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" [hidden]=\"!showDurationCurve\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DurationCurveComponent = (function () {
+    function DurationCurveComponent(logger, helper, interactionService) {
+        this.logger = logger;
+        this.helper = helper;
+        this.interactionService = interactionService;
+        this.labels = [];
+        this.subtitle = 'Duration curve';
+        this.loadingData = false;
+        this.showDurationCurve = false;
+    }
+    DurationCurveComponent.prototype.ngOnInit = function () {
+        this.logger.log('DurationCurveComponent/ngOnInit');
+        this.update();
+    };
+    DurationCurveComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('DurationCurveComponent/ngOnDestroy');
+    };
+    DurationCurveComponent.prototype.ngOnChanges = function (changes) {
+        this.logger.log('DurationCurveComponent/ngOnChanges');
+        this.update();
+    };
+    DurationCurveComponent.prototype.update = function () {
+        var _this = this;
+        this.logger.log('DurationCurveComponent/update');
+        var isHectare = false;
+        var payload;
+        if (this.scaleLevel === '-1') {
+            isHectare = true;
+            var area = this.areas;
+            var areas_1 = [];
+            this.areas.map(function (layer) {
+                var points = [];
+                if (layer instanceof L.Circle) {
+                    areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
+                }
+                else {
+                    areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
+                }
+            });
+            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], areas_1);
+        }
+        else {
+            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], this.nutsIds);
+        }
+        this.loadingData = true;
+        this.showDurationCurve = false;
+        this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
+            _this.datasets = _this.interactionService.transformDurationCurveData(result);
+            _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
+            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_6" /* duration_curve_graph_options */];
+        }).then(function () {
+            _this.loadingData = false;
+            _this.showDurationCurve = true;
+        });
+    };
+    return DurationCurveComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Boolean)
+], DurationCurveComponent.prototype, "expanded", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "nutsIds", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "scaleLevel", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "heatloadStatus", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], DurationCurveComponent.prototype, "areas", void 0);
+DurationCurveComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-duration-curve',
+        template: __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
+], DurationCurveComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=duration-curve.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/duration-curve/duration-curve.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var DurationCurveService = (function (_super) {
+    __extends(DurationCurveService, _super);
+    function DurationCurveService(http, logger, loaderService, toasterService, helper) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        _this.chartDataset = [
+            { label: 'HeatLoad', data: [], borderColor: '#2889DF', fill: true } // "fill: false" if the grey filling isn't good
+        ];
+        _this.formattedValues = [];
+        return _this;
+    }
+    DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
+        if (isHectare == false) {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postDurationCurve */]);
+        }
+        else {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["c" /* postDurationCurveHectare */]);
+        }
+    };
+    DurationCurveService.prototype.formatDataset = function () {
+        this.chartDataset[0].data = [];
+        this.formattedValues = [];
+    };
+    DurationCurveService.prototype.transformData = function (data) {
+        this.formatDataset();
+        for (var i = 0; i < data["points"].length; ++i) {
+            this.formattedValues[i] = {
+                x: data["points"][i]['X'],
+                y: data["points"][i]['Y']
+            };
+        }
+        this.chartDataset[0].data = this.formattedValues;
+        return this.chartDataset;
+    };
+    return DurationCurveService;
+}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
+DurationCurveService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"]) === "function" && _e || Object])
+], DurationCurveService);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=duration-curve.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/export-data/component/export-data.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".divButtonExport{\n  position:absolute;\n  bottom:0;\n  right:0;\n  margin-right: 10px;\n  margin-bottom: 10px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/export-data/component/export-data.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n<ng-template #energy_stat_content>\n\n  <!-- if we are on summary tabs-->\n\n  <div class=\"divButtonExport\" *ngIf=\"isInSummary && loadingSummary\"  >\n    <button id=\"exportSummary\" class=\"uk-button uk-button-secondary\"   (click)=\"export() \">Export</button>\n  </div>\n\n  <!-- if we are on stats tabs-->\n\n  <div class=\"divButtonExport\" *ngIf=\"!isInSummary && loadingStats\" >\n    <button id=\"exportstats\" class=\"uk-button uk-button-primary\"   (click)=\"export() \">Export</button>\n  </div>\n\n\n</ng-template>\n\n<ng-template #normal_content>\n  <div class=\"divButtonExport\" *ngIf=\"loadingSummary\">\n    <button id=\"exportBtn\" class=\"uk-button uk-button-secondary\"   (click)=\"export() \">Export</button>\n  </div>\n</ng-template>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/export-data/component/export-data.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExportDataComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ExportDataComponent = (function () {
+    function ExportDataComponent(exportDataService, logger) {
+        this.exportDataService = exportDataService;
+        this.logger = logger;
+        this.isInSummary = true;
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */];
+    }
+    ExportDataComponent.prototype.ngOnInit = function () {
+        this.notifyService();
+    };
+    ExportDataComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('ExportDataComponent/ngOnDestroy');
+    };
+    ExportDataComponent.prototype.notifyService = function () {
+        var _this = this;
+        /**
+         * subcribe the status of the summary result
+         *
+         */
+        this.exportDataService.getSummaryStatus().subscribe(function (val) {
+            _this.loadingSummary = val;
+        });
+        /**
+         * subcribe the data of the summary result
+         *
+         */
+        this.exportDataService.getDataSummary().subscribe(function (val) {
+            _this.dataSummary = val;
+        });
+        /**
+         * subcribe the status of the stats result
+         *
+         */
+        this.exportDataService.getStatsStatus().subscribe(function (val) {
+            _this.loadingStats = val;
+        });
+        /**
+         * subcribe the data of the stats result
+         *
+         */
+        this.exportDataService.getDataStats().subscribe(function (val) {
+            _this.logger.log('ExportDataComponent/getDataStats' + JSON.stringify(val));
+            _this.dataStats = val;
+        });
+        /**
+         * subcribe the status of the tabs on which tabs are we?
+         *
+         */
+        this.exportDataService.getTabsSelectedName().subscribe(function (val) {
+            _this.logger.log('ExportDataComponent/getTabsSelectedName' + val);
+            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */]) {
+                _this.isInSummary = true;
+            }
+            else {
+                _this.isInSummary = false;
+            }
+            _this.tabsSelectedName = val;
+        });
+    };
+    ExportDataComponent.prototype.export = function () {
+        if (this.isInSummary === true) {
+            this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName);
+        }
+        else {
+            this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName);
+        }
+    };
+    return ExportDataComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ExportDataComponent.prototype, "heatloadStatus", void 0);
+ExportDataComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-export-data',
+        template: __webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__["a" /* ExportDataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+], ExportDataComponent);
+
+var _a, _b;
+//# sourceMappingURL=export-data.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/export-data/service/export-data.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv__ = __webpack_require__("../../../../angular2-csv/Angular2-csv.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExportDataService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ExportDataService = (function () {
+    function ExportDataService(helper, logger) {
+        this.helper = helper;
+        this.logger = logger;
+        this.statusSummary = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        this.dataSummary = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.statusStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        this.dataStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["e" /* tab1 */]);
+    }
+    /**
+     * subcribe summary result
+     *
+     */
+    ExportDataService.prototype.displayButtonExport = function (value) {
+        this.statusSummary.next(value);
+    };
+    ExportDataService.prototype.setDataSummary = function (data) {
+        this.dataSummary.next(data);
+    };
+    ExportDataService.prototype.getSummaryStatus = function () {
+        return this.statusSummary;
+    };
+    ExportDataService.prototype.getDataSummary = function () {
+        return this.dataSummary;
+    };
+    /**
+     * subcribe stats result
+     *
+     */
+    ExportDataService.prototype.displayButtonExportStats = function (value) {
+        this.statusStats.next(value);
+    };
+    ExportDataService.prototype.setDataStats = function (data) {
+        this.dataStats.next(data);
+    };
+    ExportDataService.prototype.getStatsStatus = function () {
+        return this.statusStats;
+    };
+    ExportDataService.prototype.getDataStats = function () {
+        return this.dataStats;
+    };
+    /**
+     * subcribe tabs selected
+     *
+     */
+    ExportDataService.prototype.setTabsSelectedName = function (data) {
+        this.tabsSelectedName.next(data);
+    };
+    ExportDataService.prototype.getTabsSelectedName = function () {
+        return this.tabsSelectedName;
+    };
+    ExportDataService.prototype.exportData = function (data, concatenate, tabSelectedName) {
+        var options = {
+            fieldSeparator: ',',
+            quoteStrings: '"',
+            decimalseparator: '.',
+            showLabels: true,
+            showTitle: false,
+            useBom: true
+        };
+        var cpt = 0;
+        var dataFormated;
+        this.logger.log('ExportDataService/exportData');
+        this.logger.log('data' + JSON.stringify(data));
+        if (concatenate === true) {
+            dataFormated = this.helper.summaryResultToCSV(data);
+        }
+        else {
+            dataFormated = this.helper.resultToCSV(data);
+            cpt++;
+            this.logger.log('number of tap' + cpt);
+        }
+        new __WEBPACK_IMPORTED_MODULE_0_angular2_csv_Angular2_csv__["Angular2Csv"](dataFormated, 'report_' + tabSelectedName + this.helper.generateRandomName(), options);
+    };
+    return ExportDataService;
+}());
+ExportDataService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_helper__["a" /* Helper */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+], ExportDataService);
+
+var _a, _b;
+//# sourceMappingURL=export-data.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/features/feedback/component/feedback.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -764,7 +1271,7 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_5" /* urlTaigaFeedback */],
+            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_12" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
@@ -782,7 +1289,6 @@ var FeedbackComponent = (function () {
             },
             error: function (e) {
                 _this.showError();
-                console.log(e);
                 _this.feedbackLoader = false;
             },
             timeout: __WEBPACK_IMPORTED_MODULE_2_app_shared__["timeOutAjaxRequest"]
@@ -1062,7 +1568,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.spinner {\n    position: absolute; \n    left: 50%; \n    top: 50%; \n    color: black; \n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n.waitingbox {\n    height: 150px;\n    width: 100%;\n    position: relative;\n}\n.title {\n    height: 50px;\n    width: 100%;\n    position: relative;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}", ""]);
+exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.spinner {\n    position: absolute; \n    left: 50%; \n    top: 50%; \n    color: black; \n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n.waitingbox {\n    height: 36.7vh;\n    /*height: 150px;*/\n    width: 100%;\n    position: relative;\n}\n.title {\n    height: 50px;\n    width: 100%;\n    position: relative;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}", ""]);
 
 // exports
 
@@ -1075,7 +1581,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/heat-load/component/heat-load-chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\" \n        (click)=\"changeHeatloadType(button)\" \n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\" \n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"left\" (click)=\"decrementDate()\" [hidden]=\"selectedButton.api_ref=='year'\"><span uk-icon=\"icon:triangle-left\"></span>Previous {{selectedButton.api_ref}}</span>\n    <span class=\"center\">{{getCurrentDateFormated(selectedButton)}}</span>\n    <span class=\"right\" (click)=\"incrementDate()\" [hidden]=\"selectedButton.api_ref=='year'\">Next {{selectedButton.api_ref}} <span uk-icon=\"icon:triangle-right\"></span></span>\n  </div>\n  <div class=\"lineargraph\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\" \n        (click)=\"changeHeatloadType(button)\" \n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\" \n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"onSelectChange($event)\">\n          <option *ngFor=\"let option of selectedButton.options\" [selected]=\"selectedButton.date === option.id\" [value]=\"option.id\">{{option.name}}</option>\n      </select>\n    </span>\n  </div>\n  <div class=\"lineargraph\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
@@ -1086,7 +1592,8 @@ module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" [hidden]=\"load
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeatLoadChartComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1101,11 +1608,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HeatLoadChartComponent = (function () {
-    function HeatLoadChartComponent(logger, helper, heatLoadAggregateService) {
+    function HeatLoadChartComponent(logger, helper, interactionService) {
         this.logger = logger;
         this.helper = helper;
-        this.heatLoadAggregateService = heatLoadAggregateService;
+        this.interactionService = interactionService;
+        this.dateHeatload = { year: 2010, month: 1, day: 1 };
         this.subtitle = 'Heatload profil';
         this.type = 'barChart';
         this.default_year = 2010;
@@ -1119,7 +1628,7 @@ var HeatLoadChartComponent = (function () {
     HeatLoadChartComponent.prototype.ngOnDestroy = function () {
         this.logger.log('HeatLoadChartComponent/ngOnDestroy');
         this.unselectButtons();
-        this.initComponent();
+        // this.initComponent();
     };
     HeatLoadChartComponent.prototype.ngOnChanges = function (changes) {
         this.logger.log('HeatLoadChartComponent/ngOnChanges');
@@ -1130,11 +1639,45 @@ var HeatLoadChartComponent = (function () {
         this.selectedButton = this.buttons_date_type[0];
         this.titleDate = this.selectedButton.date;
         this.selectedButton.selected = true;
+        this.setOptionsInButtons();
+    };
+    HeatLoadChartComponent.prototype.setOptionsInButtons = function () {
+        var _this = this;
+        var month = this.buttons_date_type[1].date, year = this.buttons_date_type[0].date;
+        this.buttons_date_type.map(function (button) {
+            button.options = [];
+            var maxDate;
+            if (button.api_ref === __WEBPACK_IMPORTED_MODULE_2_app_shared__["heat_load_api_day"]) {
+                maxDate = _this.getDaysInMonth(month, year);
+            }
+            else {
+                maxDate = button.max;
+            }
+            for (var i = button.min; i <= maxDate; i++) {
+                var dateToPush = void 0;
+                if (button.api_ref === __WEBPACK_IMPORTED_MODULE_2_app_shared__["heat_load_api_month"]) {
+                    dateToPush = _this.helper.getMonthString(i, 0);
+                }
+                else {
+                    dateToPush = i;
+                }
+                button.options.push({ name: dateToPush, id: i });
+            }
+        });
+    };
+    HeatLoadChartComponent.prototype.getDaysInMonth = function (month, year) {
+        console.log(new Date(year, month, 0).getDate());
+        return new Date(year, month, 0).getDate();
+    };
+    HeatLoadChartComponent.prototype.onSelectChange = function (event) {
+        this.selectedButton.date = +event.target.value;
+        this.update();
     };
     HeatLoadChartComponent.prototype.changeHeatloadType = function (button) {
         this.unselectButtons();
         button.selected = true;
         this.selectedButton = button;
+        this.setOptionsInButtons();
         this.update();
     };
     HeatLoadChartComponent.prototype.unselectButtons = function () {
@@ -1177,21 +1720,42 @@ var HeatLoadChartComponent = (function () {
         var _this = this;
         this.logger.log('HeatLoadComponent/update');
         if (this.buttons_date_type !== undefined) {
+            var isHectare = false;
             this.loadingData = true;
-            var payload = {
-                'year': this.buttons_date_type[0].date,
-                'month': this.buttons_date_type[1].date,
-                'day': this.buttons_date_type[2].date,
-                'nuts': this.nutsIds,
-                'nuts_level': this.scaleLevel
-            };
-            this.heatLoadAggregateService.getHeatLoad(payload, this.selectedButton.api_ref).then(function (result) {
+            this.interactionService.displayButtonExportStats(!this.loadingData);
+            var payload = void 0;
+            if (this.scaleLevel === '-1') {
+                isHectare = true;
+                var area = this.areas;
+                var areas_1 = [];
+                this.areas.map(function (layer) {
+                    var points = [];
+                    if (layer instanceof L.Circle) {
+                        areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
+                    }
+                    else {
+                        areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
+                    }
+                });
+                payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, areas_1);
+            }
+            else {
+                payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
+            }
+            this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then(function (result) {
                 _this.loadProfileData = [];
-                _this.loadProfileData = _this.heatLoadAggregateService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
+                _this.interactionService.setDataStats(result);
+                _this.loadProfileData = _this.interactionService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
                 _this.datasets = _this.loadProfileData[0];
                 _this.labels = _this.loadProfileData[1];
+                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* heat_load_graph_options */];
             }).then(function () {
                 _this.loadingData = false;
+                _this.interactionService.displayButtonExportStats(!_this.loadingData);
+            }).catch(function (e) {
+                _this.logger.log(JSON.stringify(e));
+                _this.loadingData = false;
+                _this.interactionService.displayButtonExportStats(!_this.loadingData);
             });
         }
     };
@@ -1217,13 +1781,17 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], HeatLoadChartComponent.prototype, "heatloadStatus", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], HeatLoadChartComponent.prototype, "areas", void 0);
 HeatLoadChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-heat-load-chart',
         template: __webpack_require__("../../../../../src/app/features/heat-load/component/heat-load-chart.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/heat-load/component/heat-load-chart.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
 ], HeatLoadChartComponent);
 
 var _a, _b, _c;
@@ -1302,13 +1870,26 @@ var HeatLoadAggregateService = (function (_super) {
         _this.labels = [];
         return _this;
     }
-    HeatLoadAggregateService.prototype.getHeatLoadAggregateMonthWithPayload = function (payload, type_api_ref) {
-        this.logger.log('HeatLoadAggregateService/getHeatLoadAggregateMonthWithPayload = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadAggregate */] + type_api_ref);
-    };
-    HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref) {
-        this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadAggregate */] + type_api_ref);
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadAggregate */] + type_api_ref);
+    /*getHeatLoad(payload, type_api_ref, isHectare) {
+      if (isHectare === false) {
+        this.logger.log('postHeatLoadAggregate ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+        return super.POST(payload, apiUrl + postHeatLoadAggregate + type_api_ref);
+      }else {
+        this.logger.log('postHeatLoadAggregateHectares ' + apiUrl + postHeatLoadAggregate + type_api_ref)
+        this.logger.log(apiUrl + postHeatLoadAggregateHectares)
+        return super.POST(payload, apiUrl + postHeatLoadAggregateHectares);
+      }
+    }*/
+    HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
+        if (isHectare === false) {
+            this.logger.log('postHeatLoadAggregateNormalized ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postHeatLoadAggregateNormalized */] + '/' + type_api_ref);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postHeatLoadAggregateNormalized */]);
+        }
+        else {
+            this.logger.log('postHeatLoadAggregateHectares ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["l" /* postHeatLoadAggregate */] + type_api_ref);
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["m" /* postHeatLoadAggregateHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["m" /* postHeatLoadAggregateHectares */]);
+        }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
         var _this = this;
@@ -2529,13 +3110,13 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["g" /* formatImage */], transparent: true, version: '1.3.0',
-            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* idDefaultLayer */]
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */] + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* constant_year */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* formatImage */], transparent: true, version: '1.3.0',
+            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* idDefaultLayer */]
         };
         _this.layersArray = new __WEBPACK_IMPORTED_MODULE_7__shared_class_dictionary_class__["a" /* Dictionary */]([
             {
-                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
+                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
             },
         ]);
         _this.popup = L.popup();
@@ -2553,7 +3134,7 @@ var LayersService = (function (_super) {
         this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
     };
     LayersService.prototype.setupDefaultLayer = function () {
-        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */]);
+        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */]);
         this.logger.log(layer.toString());
         this.layers.addLayer(layer);
     };
@@ -2589,10 +3170,10 @@ var LayersService = (function (_super) {
     };
     LayersService.prototype.addLayerWithAction = function (action, map, order) {
         var layer;
-        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* wwtpLayerName */]) {
+        if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* wwtpLayerName */]) {
             var option = {
                 layers: 'hotmaps:' + action,
-                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["g" /* formatImage */],
+                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* formatImage */],
                 transparent: true,
                 version: '1.3.0',
                 // cql_filter : 'stat_levl_ = ' + nuts_level + '',
@@ -2604,8 +3185,8 @@ var LayersService = (function (_super) {
         else {
             // layer in Ha with date
             var option = {
-                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */],
-                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["g" /* formatImage */],
+                layers: 'hotmaps:' + action + '_ha' + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* constant_year */],
+                format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* formatImage */],
                 transparent: true,
                 version: '1.3.0',
                 srs: 'EPSG:4326',
@@ -2618,7 +3199,7 @@ var LayersService = (function (_super) {
         this.layersArray.add(action, layer);
     };
     LayersService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["f" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -2651,13 +3232,13 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
-        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* defaultLayer */])) {
+        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["y" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -2678,7 +3259,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -2686,7 +3267,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -2695,8 +3276,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
     LayersService.prototype.showLayerDependingZoom = function (action, map, zoomLevel) {
@@ -2740,10 +3321,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["f" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -2865,7 +3446,7 @@ var PopulationService = (function (_super) {
     * Get the population with payloads
     */
     PopulationService.prototype.getPopulationWithPayloads = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["Y" /* postPopulationDensityInArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_2" /* postPopulationDensityInArea */]);
     };
     /**
     * Show the population selected layer
@@ -2893,9 +3474,9 @@ var PopulationService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         // Improvement of coding style : (with codelyzer)
         // Line 73 exceeds maximum line length of 140
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["Z" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_3" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["B" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["F" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -2960,7 +3541,7 @@ var SelectionScaleClassArray = [
 var action = 'population';
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -2969,7 +3550,7 @@ var hectareOption = {
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
@@ -2978,7 +3559,7 @@ var nuts0LayerOption = {
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -2987,7 +3568,7 @@ var nuts1LayerOption = {
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
@@ -2996,7 +3577,7 @@ var nuts2LayerOption = {
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
@@ -3004,8 +3585,8 @@ var nuts3LayerOption = {
     zIndex: 10
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["h" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["g" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     zIndex: 10
@@ -3074,9 +3655,9 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */];
         // scale value subject
-        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["e" /* nuts3 */]);
+        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* nuts3 */]);
         return _this;
     }
     SelectionScaleService.prototype.ngOnInit = function () {
@@ -3113,7 +3694,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["f" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -3145,7 +3726,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -3159,7 +3740,7 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -3173,13 +3754,250 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
+/***/ "../../../../../src/app/features/selection-tools/component/selection-button.data.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return stButtons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return defaultElementSelected; });
+var stButtons = [
+    { id: '1', type: 'click', isChecked: true },
+    { id: '2', type: 'rectangle', isChecked: false },
+    { id: '3', type: 'circle', isChecked: false },
+    { id: '4', type: 'polygon', isChecked: false }
+];
+var defaultElementSelected = 'Elements selected';
+//# sourceMappingURL=selection-button.data.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/component/selection-tool.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}\n\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/component/selection-tool.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"containers\">\n    <div id=\"selection-tools-box\">\n      <div *ngFor=\"let button of stButtons\">\n          <input id=\"radio-{{button.id}}\" class=\"radio-custom\" name=\"radio-group\" type=\"radio\" [checked]=\"button.isChecked\" (click)=\"drawTool(button)\">\n          <label id=\"{{button.type}}\" for=\"radio-{{button.id}}\" class=\"radio-custom-label\"></label>\n      </div>\n    </div>\n    <div id=\"info-box\">\n      <div class=\"uk-container uk-padding-remove\">\n        <div>\n          <p>{{elementSelected}}<span>{{nbElementsSelected}}</span></p>\n          <p>Scale<span>{{scaleSelected}}</span></p>\n        </div>\n        <div class=\"divButtons\">\n          <button id=\"loadBtn\" class=\"uk-button uk-button-primary uk-button-small\" [disabled]=\"isLoaBtnDisabled\" (click)=\"loadResultsButton()\">Load results</button>\n          <button id=\"clearBtn\" class=\"uk-button uk-button-danger uk-button-small\" [disabled]=\"isClearBtnDisabled\" (click)=\"clearLayers()\">{{setClearButtonText()}}</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/component/selection-tool.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__ = __webpack_require__("../../../../../src/app/features/selection-tools/component/selection-button.data.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolComponent; });
+/**
+ * Created by Dany on 20.12.17.
+ */
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SelectionToolComponent = (function () {
+    function SelectionToolComponent(mapService, logger, helper) {
+        this.mapService = mapService;
+        this.logger = logger;
+        this.helper = helper;
+        this.nbElementsSelected = 0;
+        this.isHectarSelected = false;
+        this.isLoaBtnDisabled = true;
+        this.isClearBtnDisabled = true;
+        this.stButtons = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__["a" /* stButtons */];
+        this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__["b" /* defaultElementSelected */];
+    }
+    SelectionToolComponent.prototype.ngOnInit = function () {
+        this.subscribeMapService();
+        this.scaleSelected = this.mapService.getScaleValue();
+    };
+    SelectionToolComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('SelectionToolComponent/ngOnDestroy');
+        this.subscription.unsubscribe();
+        this.subscriptionNbNutsSelected.unsubscribe();
+    };
+    SelectionToolComponent.prototype.subscribeMapService = function () {
+        var _this = this;
+        if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
+            this.subscription = this.mapService.getScaleValueSubject().subscribe(function (value) {
+                _this.scaleSelected = value;
+                if (value === __WEBPACK_IMPORTED_MODULE_2_app_shared__["hectare"]) {
+                    _this.elementSelected = 'Zones selected';
+                }
+                else {
+                    _this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__["b" /* defaultElementSelected */];
+                }
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+            this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
+                _this.nbElementsSelected = value;
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
+            this.subscription = this.mapService.getScaleValueSubject().subscribe(function (value) {
+                _this.scaleSelected = value;
+                if (value === __WEBPACK_IMPORTED_MODULE_2_app_shared__["hectare"]) {
+                    _this.elementSelected = 'Zones selected';
+                }
+                else {
+                    _this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__["b" /* defaultElementSelected */];
+                }
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getNbOfLayersSelected())) {
+            this.mapService.getNbOfLayersSelected().subscribe(function (value) {
+                _this.layerSelected = value;
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+            this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
+                _this.nbElementsSelected = value;
+            });
+        }
+        // subscribing to click event subject of MapService
+        if (!this.helper.isNullOrUndefined(this.mapService.clickEventSubjectObs)) {
+            this.mapService.clickEventSubjectObs.subscribe(function () {
+                _this.cursorClick(); // call cursor click method when we click anywhere in the map
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.drawCreatedSubjectObs)) {
+            this.mapService.drawCreatedSubjectObs.subscribe(function () {
+                _this.cursorClick();
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getClearAllButtonSubject())) {
+            this.mapService.getClearAllButtonSubject().subscribe(function (value) {
+                _this.isClearBtnDisabled = !value;
+            });
+        }
+        if (!this.helper.isNullOrUndefined(this.mapService.getLoadResultbuttonState())) {
+            this.mapService.getLoadResultbuttonState().subscribe(function (value) {
+                _this.isLoaBtnDisabled = !value;
+            });
+        }
+    };
+    SelectionToolComponent.prototype.cursorClick = function () {
+        var map = this.mapService.getMap();
+        this.mapService.clickSelection(map);
+        this.stButtons[0].isChecked = true;
+    };
+    /**
+     * Draw method of the activated selection tool
+     */
+    SelectionToolComponent.prototype.drawTool = function (button) {
+        if (button.type === 'click') {
+            this.cursorClick();
+        }
+        else {
+            var map = this.mapService.getMap();
+            this.mapService.activateDrawTool(map, button.type);
+            this.stButtons[0].isChecked = false;
+        }
+    };
+    /**
+     * Load the results of the selection
+     */
+    SelectionToolComponent.prototype.loadResultsButton = function () {
+        var map = this.mapService.getMap();
+        this.mapService.loadResultNuts(map);
+    };
+    /**
+     * Clear all informations in the info box
+     */
+    SelectionToolComponent.prototype.clearAllButton = function () {
+        var map = this.mapService.getMap();
+        this.mapService.clearAll(map);
+        this.cursorClick();
+    };
+    SelectionToolComponent.prototype.setClearButtonText = function () {
+        var zoneString = ' zones';
+        if (this.layerSelected === 1 || this.nbElementsSelected === 1) {
+            zoneString = ' zone';
+        }
+        if (this.layerSelected >= 1) {
+            return 'Clear ' + this.layerSelected + zoneString;
+        }
+        else if (this.layerSelected === 0) {
+            return 'Clear ' + this.nbElementsSelected + zoneString;
+        }
+    };
+    SelectionToolComponent.prototype.clearLayers = function () {
+        if (this.layerSelected >= 1) {
+            this.mapService.deleteSelectedAreas();
+        }
+        else {
+            this.mapService.clearAll(this.mapService.getMap());
+            this.cursorClick();
+        }
+        if (this.nbElementsSelected == 0) {
+            this.mapService.clearAll(this.mapService.getMap());
+            this.cursorClick();
+        }
+    };
+    return SelectionToolComponent;
+}());
+SelectionToolComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-selection-tool',
+        template: __webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _c || Object])
+], SelectionToolComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=selection-tool.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/features/selection-tools/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__service___ = __webpack_require__("../../../../../src/app/features/selection-tools/service/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__service___["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__service___["b"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/service/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__selection_tool_button_state_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__selection_tool_service__["a"]; });
 
 
@@ -3187,7 +4005,7 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts":
+/***/ "../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3220,24 +4038,75 @@ SelectionToolButtonStateService = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/selection-tools/selection-tool.service.ts":
+/***/ "../../../../../src/app/features/selection-tools/service/selection-tool-utils.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolUtils; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SelectionToolUtils = (function () {
+    function SelectionToolUtils(helper) {
+        this.helper = helper;
+    }
+    SelectionToolUtils.prototype.getLocationsFromCicle = function (layer) {
+        return this.helper.getLocationsFromCicle(layer);
+    };
+    SelectionToolUtils.prototype.getIdSelectionFromLayer = function (layer) {
+        return this.getSelectionIdFromLayer(layer);
+    };
+    SelectionToolUtils.prototype.getSelectionIdFromLayer = function (layer) {
+        var id_selection = this.helper.getNUTSIDFromGeoJsonLayer(layer);
+        if (this.helper.isNullOrUndefined(id_selection) === true) {
+            id_selection = this.helper.getLAU2IDFromGeoJsonLayer(layer);
+        }
+        return id_selection;
+    };
+    SelectionToolUtils.prototype.layersAsLayer = function (layers) {
+        var hasLayer = false;
+        if (layers.getLayers().length > 0) {
+            hasLayer = true;
+        }
+        return hasLayer;
+    };
+    return SelectionToolUtils;
+}());
+SelectionToolUtils = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"]) === "function" && _a || Object])
+], SelectionToolUtils);
+
+var _a;
+//# sourceMappingURL=selection-tool-utils.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/selection-tools/service/selection-tool.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_proj4__ = __webpack_require__("../../../../proj4/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared___ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services__ = __webpack_require__("../../../../../src/app/shared/services/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject__);
-/* unused harmony export proj3035 */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services__ = __webpack_require__("../../../../../src/app/shared/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-utils.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -3265,7 +4134,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var proj4 = __WEBPACK_IMPORTED_MODULE_1_proj4__["default"];
 
-var proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 
 
 
@@ -3276,94 +4144,27 @@ var proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=
 
 var SelectionToolService = (function (_super) {
     __extends(SelectionToolService, _super);
-    // =======================
-    function SelectionToolService(http, logger, loaderService, toasterService, helper, businessInterfaceRenderService, interactionService) {
+    function SelectionToolService(http, logger, loaderService, toasterService, helper, businessInterfaceRenderService, interactionService, selectionToolUtils) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.interactionService = interactionService;
+        _this.selectionToolUtils = selectionToolUtils;
         _this.nutsIds = new Set;
-        _this.hectareCentroidNumber = 0;
-        _this.editableLayers = new L.FeatureGroup();
         _this.multiSelectionLayers = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["d" /* initial_scale_value */];
+        _this.controlMultiLayer = new L.FeatureGroup();
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["n" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
-        _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
-        _this.enableLoadResultSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
-        _this.enableLoadResultSubjectObs = _this.enableLoadResultSubject.asObservable();
-        _this.disableLoadResultSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
-        _this.disableLoadResultSubjectObs = _this.disableLoadResultSubject.asObservable();
-        _this.enableClearAllSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
-        _this.enableClearAllSubjectObs = _this.enableClearAllSubject.asObservable();
-        _this.disableClearAllSubject = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__["Subject"]();
-        _this.disbleClearAllSubjectObs = _this.disableClearAllSubject.asObservable();
-        _this.nutsIdsSubject = new __WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
-        _this.locationsSubject = new __WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
-        _this.areasSubject = new __WEBPACK_IMPORTED_MODULE_10_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
+        _this.buttonLoadResultStatus = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        _this.buttonClearAll = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        _this.nutsIdsSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        _this.locationsSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        _this.areasSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        _this.nbOfLayersSelected = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
         return _this;
     }
-    // ===============================================================================================================
-    // ONLY FOR HECTAR (POPUP)
-    SelectionToolService.prototype.createButtons = function (type) {
-        // this.logger.log('SelectionToolService/createButtons');
-        this.containerPopup = L.DomUtil.create('div');
-        this.popupTitle = L.DomUtil.create('h5', '', this.containerPopup);
-        this.cancelBtn = L.DomUtil.create('button', 'uk-button uk-button-danger uk-button-small uk-width-2-2', this.containerPopup);
-        this.setHTMLContent(this.popupTitle, 'Area Selected');
-        this.setHTMLContent(this.cancelBtn, 'Cancel');
-        if (type === 'click') {
-            this.validationBtnClick = L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
-            this.setHTMLContent(this.validationBtnClick, 'Validation');
-        }
-        else {
-            this.validationBtnSelection =
-                L.DomUtil.create('button', 'uk-button uk-button-primary uk-button-small uk-width-2-2', this.containerPopup);
-            this.setHTMLContent(this.validationBtnSelection, 'Validation');
-        }
-    };
-    SelectionToolService.prototype.loadPopup = function (map, layer) {
-        var _this = this;
-        this.createButtons('selection');
-        this.currentLayer.bindPopup(this.containerPopup, { closeOnClick: false }).openPopup();
-        // Set event bind on popup's buttons
-        L.DomEvent.on(this.cancelBtn, 'click', function () {
-            _this.clearAll(map);
-        });
-        // Set event bind on popup's buttons
-        L.DomEvent.on(this.validationBtnSelection, 'click', function () {
-            _this.interactionService.onPopupValidation();
-            var layerNameArray = [];
-            for (var i = 0; i < _this.interactionService.getLayerArray().keys().length; i++) {
-                layerNameArray.push(_this.interactionService.getLayerArray().keys()[i] +
-                    _this.businessInterfaceRenderService.getNutsTosuffix(_this.scaleValue));
-            }
-            _this.logger.log('layerNameArray' + layerNameArray);
-            if (_this.currentLayer instanceof L.Circle) {
-                _this.getStatisticsFromLayer(_this.getLocationsFromCicle(_this.currentLayer), layerNameArray, map);
-            }
-            else if (_this.currentLayer instanceof L.Polygon) {
-                _this.getStatisticsFromLayer(_this.getLocationsFromPolygon(_this.currentLayer), layerNameArray, map);
-            }
-            else if (_this.currentLayer instanceof L.latLng) {
-                _this.getStatisticsFromLayer(_this.getLocationsFromPolygon(_this.currentLayer), layerNameArray, map);
-            }
-            else {
-                var layerNutsArray = [];
-                for (var i = 0; i < _this.interactionService.getLayerArray().keys().length; i++) {
-                    if (_this.interactionService.getLayerArray().keys()[i] !== __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["v" /* wwtpLayerName */]) {
-                        // this.logger.log('array ' + this.interactionService.getLayerArray().keys()[i]
-                        //   + this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue) )
-                        layerNutsArray.push(_this.interactionService.getLayerArray().keys()[i] + '_ha');
-                    }
-                    else {
-                        layerNutsArray.push(_this.interactionService.getLayerArray().keys()[i]);
-                    }
-                }
-                _this.getStatisticsFromLayer(_this.getLocationsFromGeoJsonLayer(_this.currentLayer), layerNutsArray, map);
-            }
-        });
-    };
     SelectionToolService.prototype.setIsPolygonDrawer = function (value) {
         this.isPolygonDrawer = value;
     };
@@ -3373,149 +4174,67 @@ var SelectionToolService = (function (_super) {
     SelectionToolService.prototype.getMultiSelectionLayers = function () {
         return this.multiSelectionLayers;
     };
-    /**
-     * Enable button 'Load results'
-     */
-    SelectionToolService.prototype.enableButtonLoad = function () {
-        this.enableLoadResultSubject.next();
+    SelectionToolService.prototype.setLoadresultButton = function (value) {
+        this.buttonLoadResultStatus.next(value);
     };
-    /**
-     * Disable button 'Load results'
-     */
-    SelectionToolService.prototype.disableButtonLoad = function () {
-        this.disableLoadResultSubject.next();
+    SelectionToolService.prototype.getControlMultiLayer = function () {
+        return this.controlMultiLayer;
     };
-    /**
-     * Enable button 'Clear all'
-     */
-    SelectionToolService.prototype.enableButtonClearAll = function () {
-        this.enableClearAllSubject.next();
-    };
-    /**
-     * disable button 'Clear all'
-     */
-    SelectionToolService.prototype.disableButtonClearAll = function () {
-        this.disableClearAllSubject.next();
+    SelectionToolService.prototype.setButtonClearAll = function (value) {
+        this.buttonClearAll.next(value);
     };
     SelectionToolService.prototype.drawCreated = function (e, map, nuts_lvl) {
         var event = e;
         var type = event.layerType, layer = event.layer;
-        layer.on('click', function () {
-            if (layer.editing.enabled()) {
-                layer.editing.disable();
-                map.fire('draw:editstop');
-            }
-            else {
-                layer.editing.enable();
-                map.fire('draw:editstart');
-            }
-        });
-        var controlIntersectHectar = false;
+        var controlIntersectContainsHectar = false;
         this.isActivate = false;
         this.isPolygonDrawer = false;
-        // Clear the map before to show the new selection
-        // enable buttons when layer is created
         var location = '';
+        this.logger.log('scale lvl ' + nuts_lvl);
+        // enable buttons when layer is created
         if (nuts_lvl === 5) {
-            controlIntersectHectar = this.helper.controlDrawedLayer(this.multiSelectionLayers, layer);
-            if (!controlIntersectHectar) {
-                // lvl hectares lat lng is inverse
-                if (layer instanceof L.Circle) {
-                    location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromCicle(layer));
-                }
-                else if (layer instanceof L.Polygon) {
-                    location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer));
-                }
-                else if (layer instanceof L.latLng) {
-                    location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromPolygon(layer));
-                }
-                else {
-                    location = this.helper.convertPostGisLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer));
-                }
+            controlIntersectContainsHectar = this.helper.controlDrawedLayer(this.multiSelectionLayers, layer);
+            if (!controlIntersectContainsHectar) {
+                location = this.helper.convertPostGisLatLongToLocationString(this.helper.getLocationsFromLayer(layer));
+                this.drawHectaresLoadingResult(map, layer);
             }
         }
         else {
-            if (layer instanceof L.Circle) {
-                location = this.helper.convertLatLongToLocationString(this.getLocationsFromCicle(layer));
-            }
-            else if (layer instanceof L.Polygon) {
-                location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer));
-            }
-            else if (layer instanceof L.latLng) {
-                location = this.helper.convertLatLongToLocationString(this.getLocationsFromPolygon(layer));
-            }
-            else {
-                location = this.helper.convertLatLongToLocationString(this.getLocationsFromGeoJsonLayer(layer));
-            }
+            location = this.helper.convertLatLongToLocationString(this.helper.getLocationsFromLayer(layer));
         }
-        this.logger.log('nuts_lvl ' + nuts_lvl);
         if (nuts_lvl === 4) {
-            this.getLau2ID(location, map, nuts_lvl);
+            this.getNutID(location, map, nuts_lvl, __WEBPACK_IMPORTED_MODULE_2__shared__["lau2name"]);
         }
-        else if (nuts_lvl === 5) {
-            if (!controlIntersectHectar) {
-                this.getHectareCentroid(location, map, nuts_lvl, layer);
-            }
-        }
+        else if (nuts_lvl === 5) { }
         else {
-            this.getNutID(location, map, nuts_lvl);
+            this.getNutID(location, map, nuts_lvl, 'population');
         }
     };
     SelectionToolService.prototype.setScaleValue = function (scaleValue) {
         this.scaleValue = scaleValue;
     };
-    SelectionToolService.prototype.isLayerInMap = function () {
-        var hasLayer = false;
-        if (this.editableLayers.getLayers().length > 0) {
-            hasLayer = true;
-        }
-        return hasLayer;
-    };
-    SelectionToolService.prototype.setHTMLContent = function (el, str) {
-        el.innerHTML = str;
-    };
     SelectionToolService.prototype.loadResultNuts = function (map) {
-        this.interactionService.onPopupValidation();
         var layerNameArray = [];
         for (var i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
             layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
                 this.businessInterfaceRenderService.getNutsTosuffix(this.scaleValue));
         }
         this.logger.log('layerNameArray ' + layerNameArray);
-        this.getStatisticsFromIds();
-    };
-    SelectionToolService.prototype.heatloadRequest = function () {
-        if ((this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["s" /* nuts2 */]) || (this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* nuts3 */])) {
-            this.displayHeatLoad(true);
-        }
-        else {
-            this.displayHeatLoad(false);
-        }
-    };
-    SelectionToolService.prototype.getStatisticsFromIds = function () {
-        // Open the right panel will launch results of summary result and heat load profil
         this.getStatistics();
+        this.setAreas();
     };
-    SelectionToolService.prototype.enableNavigationService = function (map) {
+    SelectionToolService.prototype.enableNavigationService = function () {
         this.interactionService.enableButtonWithId('selection');
-    };
-    SelectionToolService.prototype.getSelectionIdFromLayer = function (layer) {
-        var id_selection = this.getNUTSIDFromGeoJsonLayer(layer);
-        if (this.helper.isNullOrUndefined(id_selection) === true) {
-            id_selection = this.getLAU2IDFromGeoJsonLayer(layer);
-        }
-        return id_selection;
     };
     SelectionToolService.prototype.removeLayerFromMultiSelectionLayers = function (layer) {
         this.logger.log('SelectionToolService/removeLayerFromMultiSelectionLayers');
         // if the nut
-        var id_selection = this.getSelectionIdFromLayer(layer);
-        this.nutsIds.delete(id_selection);
         var self = this;
+        var id_selection = self.selectionToolUtils.getSelectionIdFromLayer(layer);
+        this.nutsIds.delete(id_selection);
         var indexToRemove = 999;
         for (var i = 0; i < this.multiSelectionLayers.getLayers().length; i++) {
-            var layerInsideMultiSelectionLayer = this.multiSelectionLayers.getLayers()[i];
-            var iDInMultiSelectionLayers = self.getSelectionIdFromLayer(layerInsideMultiSelectionLayer);
+            var iDInMultiSelectionLayers = self.selectionToolUtils.getSelectionIdFromLayer(this.multiSelectionLayers.getLayers()[i]);
             if (id_selection === iDInMultiSelectionLayers) {
                 indexToRemove = i;
                 break;
@@ -3523,55 +4242,18 @@ var SelectionToolService = (function (_super) {
         }
         if (indexToRemove !== 999) {
             this.multiSelectionLayers.removeLayer(this.multiSelectionLayers.getLayers()[indexToRemove]);
+            this.controlMultiLayer.removeLayer(this.controlMultiLayer.getLayers()[indexToRemove]);
         }
         this.updateSelectionToolAction();
     };
     SelectionToolService.prototype.containLayer = function (layer) {
-        var id_selection = this.getSelectionIdFromLayer(layer);
-        return this.nutsIds.has(id_selection);
-    };
-    SelectionToolService.prototype.layerCreatedClick = function (layer, map) {
-        this.logger.log('SelectionToolService/layerCreatedClick');
-        this.currentLayer = layer;
-        this.editableLayers.clearLayers();
-        this.editableLayers.addLayer(this.currentLayer);
-        this.editableLayers.addTo(map);
-        this.enableNavigationService(map);
-        this.loadPopup(map, layer);
+        return this.nutsIds.has(this.selectionToolUtils.getIdSelectionFromLayer(layer));
     };
     SelectionToolService.prototype.toggleActivateTool = function (val) {
         this.isActivate = val;
     };
-    SelectionToolService.prototype.manageEditOrCreateLayer = function (layer, map) {
-        this.currentLayer = layer;
-        this.isActivate = true;
-        // we finich create the layer we go in edition mode
-        if (this.helper.isNullOrUndefined(this.currentLayer.editing) === false) {
-            this.currentLayer.editing.enable();
-        }
-        this.editableLayers.addLayer(this.currentLayer);
-        // then we launch the validate popup
-    };
-    SelectionToolService.prototype.getLocationsFromPolygon = function (layer) {
-        return this.helper.getLocationsFromPolygon(layer);
-    };
-    SelectionToolService.prototype.getLocationsFromGeoJsonLayer = function (layer) {
-        return this.helper.getLocationsFromGeoJsonLayer(layer);
-    };
-    SelectionToolService.prototype.getNUTSIDFromGeoJsonLayer = function (layer) {
-        return this.helper.getNUTSIDFromGeoJsonLayer(layer);
-    };
-    SelectionToolService.prototype.getLAU2IDFromGeoJsonLayer = function (layer) {
-        return this.helper.getLAU2IDFromGeoJsonLayer(layer);
-    };
-    SelectionToolService.prototype.getLocationsFromCicle = function (layer) {
-        return this.helper.getLocationsFromCicle(layer);
-    };
     SelectionToolService.prototype.clearAll = function (map) {
-        // ONLY HECTAR LEVEL
-        if (this.scaleValue === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["u" /* hectare */]) {
-            this.editableLayers.clearLayers();
-        }
+        this.nbOfLayersSelected.next(0);
         // ================
         if (this.isDrawer) {
             this.theDrawer.disable(); // Disable the actual drawer anyway and
@@ -3582,31 +4264,18 @@ var SelectionToolService = (function (_super) {
         this.interactionService.closeRightPanel();
         // remove all layers selected
         this.multiSelectionLayers.clearLayers();
+        this.controlMultiLayer.clearLayers();
         // remove all nutsID selected
         this.nutsIds.clear();
         this.updateSelectionToolAction();
-        this.displayHeatLoad(false);
     };
     // Summary result show result
     SelectionToolService.prototype.getStatisticsFromLayer = function (locations, layers, map) {
         var self = this;
-        this.locationsSubject.next(locations);
-        this.getStatistics();
-    };
-    SelectionToolService.prototype.displayHeatLoad = function (display) {
-        this.interactionService.lauchHeatloadCalculation(display);
-    };
-    SelectionToolService.prototype.openPopup = function () {
-        this.logger.log('SelectionToolService/openPopup');
-        this.currentLayer.openPopup();
+        self.locationsSubject.next(locations);
+        self.getStatistics();
     };
     SelectionToolService.prototype.getStatistics = function () {
-        this.interactionService.openRightPanel();
-        this.interactionService.enableButtonWithId('load_result');
-        this.interactionService.enableStateOpenWithFunction('right');
-        this.heatloadRequest();
-    };
-    SelectionToolService.prototype.displaySummaryResult = function (result) {
         this.interactionService.openRightPanel();
         this.interactionService.enableButtonWithId('load_result');
         this.interactionService.enableStateOpenWithFunction('right');
@@ -3619,24 +4288,17 @@ var SelectionToolService = (function (_super) {
             this.isDrawer = true;
         }
     };
-    /**
-     * Activate the click selection tool
-     */
-    SelectionToolService.prototype.clickSelection = function (map) {
+    SelectionToolService.prototype.activateClickSelectionTool = function () {
         if (this.isDrawer) {
             this.getDrawer().disable(); // disable the current drawer before creating a new one
         }
         this.isPolygonDrawer = false;
     };
-    /**
-     * Activate the drawing rectangle tool
-     */
-    SelectionToolService.prototype.drawTool = function (map, tool) {
-        map.addLayer(this.editableLayers);
-        this.editableLayers.clearLayers();
+    SelectionToolService.prototype.activateDrawTool = function (map, tool) {
         if (this.isDrawer) {
             this.getDrawer().disable(); // disable the current drawer before creating a new one
         }
+        // TODO: Modifier et mettre dans tableau
         switch (tool) {
             case 'rectangle':
                 this.theDrawer = new L.Draw.Rectangle(map);
@@ -3657,111 +4319,104 @@ var SelectionToolService = (function (_super) {
         this.isDrawer = true;
         this.isPolygonDrawer = true;
     };
-    /**
-     * Get the current drawer
-     */
     SelectionToolService.prototype.getDrawer = function () {
         return this.theDrawer;
     };
-    /**
-     * Return true if polygon drawer is selected (activated)
-     */
     SelectionToolService.prototype.getPolygonDrawerState = function () {
-        if (this.isPolygonDrawer) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return this.isPolygonDrawer;
     };
-    /**
-     * Get the current layer
-     */
-    SelectionToolService.prototype.getCurrentLayer = function () {
-        return this.currentLayer;
-    };
-    SelectionToolService.prototype.getLau2ID = function (location, map, nuts_lvl) {
+    SelectionToolService.prototype.getNutID = function (location, map, nuts_lvl, stringLayerType) {
         var _this = this;
         this.loaderService.display(true);
+        this.logger.log('getNutID');
         var epsg = '4326';
         var coordinate = location;
-        var url = __WEBPACK_IMPORTED_MODULE_7__shared__["geoserverUrl"] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared__["geoserverUrl"] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
             '&srsName=EPSG:' + epsg +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_7__shared__["lau2name"] +
+            '&typeNames=hotmaps:' + stringLayerType +
             '&outputFormat=application/json' +
             '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))';
-        this.logger.log('lau2 url ' + url);
+        if (nuts_lvl === 4) { }
+        else {
+            url += 'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z';
+        }
         this.GET(url).map(function (res) { return res.json(); })
             .subscribe(function (res) { return _this.drawResultBeforeLoadingResult(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
-    };
-    SelectionToolService.prototype.getNutID = function (location, map, nuts_lvl) {
-        var _this = this;
-        this.loaderService.display(true);
-        this.logger.log('getNutID');
-        var epsg = '4326';
-        var coordinate = location;
-        var url = __WEBPACK_IMPORTED_MODULE_7__shared__["geoserverUrl"] + '?service=wfs' +
-            '&version=2.0.0' +
-            '&request=GetFeature' +
-            '&srsName=EPSG:' + epsg +
-            '&typeNames=hotmaps:' + 'population' +
-            '&outputFormat=application/json' +
-            '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))' +
-            'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z';
-        this.GET(url).map(function (res) { return res.json(); })
-            .subscribe(function (res) { return _this.drawResultBeforeLoadingResult(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
-    };
-    SelectionToolService.prototype.postHectareCentroid = function (payload) {
-        return this.POST(payload, __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["w" /* postNumberHectareCentroid */]);
-    };
-    SelectionToolService.prototype.getHectareCentroid = function (location, map, nuts_lvl, layer) {
-        this.loaderService.display(true);
-        this.logger.log('getNutID');
-        this.logger.log('location ' + location);
-        var payload = {
-            centroids: location,
-        };
-        this.drawHectaresLoadingResult(map, layer);
     };
     SelectionToolService.prototype.updateSelectionToolAction = function () {
         if (this.nutsIds.size > 0) {
-            this.enableButtonLoad();
-            this.enableButtonClearAll();
+            this.setButtonsSelectionToolState(true);
         }
         else {
             // disable buttons after clear
-            this.disableButtonClearAll();
-            this.disableButtonLoad();
+            this.setButtonsSelectionToolState(false);
         }
         this.nbNutsSelectedSubject.next(this.nutsIds.size);
         this.nutsIdsSubject.next(Array.from(this.nutsIds));
     };
+    SelectionToolService.prototype.setButtonsSelectionToolState = function (value) {
+        this.setLoadresultButton(value);
+        this.setButtonClearAll(value);
+    };
     SelectionToolService.prototype.updateSelectionToolActionHectare = function () {
         if (this.areasSubject.getValue().length > 0) {
-            this.enableButtonLoad();
-            this.enableButtonClearAll();
+            this.setButtonsSelectionToolState(true);
         }
         else {
             // disable buttons after clear
-            this.disableButtonClearAll();
-            this.disableButtonLoad();
+            this.setButtonsSelectionToolState(false);
         }
-        // update the number of hectare selected
-        // we define result as multi-polygon
     };
     SelectionToolService.prototype.setAreas = function () {
         this.areasSubject.next(this.multiSelectionLayers.getLayers());
     };
+    SelectionToolService.prototype.setLayerDependingCircleForControl = function (layer) {
+        var layerInMultiSelection;
+        if (layer instanceof L.Circle) {
+            layerInMultiSelection = L.polygon([this.helper.getLocationsFromCicle(layer)]);
+        }
+        else {
+            layerInMultiSelection = layer;
+        }
+        layerInMultiSelection._leaflet_id = layer._leaflet_id;
+        return layerInMultiSelection;
+    };
     SelectionToolService.prototype.drawHectaresLoadingResult = function (map, layer) {
         if (this.multiSelectionLayers.hasLayer(layer) === false) {
+            var layerTemp = this.setLayerDependingCircleForControl(layer);
+            this.controlMultiLayer.addLayer(layerTemp);
             this.multiSelectionLayers.addLayer(layer);
             this.areasSubject.next(this.multiSelectionLayers.getLayers());
             this.logger.log('result is ' + this.areasSubject.getValue().length);
             this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
             this.updateSelectionToolActionHectare();
             this.loaderService.display(false);
+            var self_1 = this;
+            layer.on('click', function () {
+                if (layer.options.fillColor === null) {
+                    layer.setStyle({
+                        'fillColor': 'red'
+                    });
+                    self_1.nbOfLayersSelected.next(self_1.nbOfLayersSelected.value + 1);
+                }
+                else {
+                    layer.setStyle({
+                        'fillColor': null
+                    });
+                    self_1.nbOfLayersSelected.next(self_1.nbOfLayersSelected.value - 1);
+                }
+                /* const self = this;
+                if (layer.editing.enabled()) {
+                  layer.editing.disable();
+                  self.updateControlLayers(layer);
+                  map.fire('draw:editstop');
+                } else {
+                  layer.editing.enable();
+                  map.fire('draw:editstart');
+                } */
+            });
         }
     };
     SelectionToolService.prototype.drawResultBeforeLoadingResult = function (result) {
@@ -3793,7 +4448,7 @@ var SelectionToolService = (function (_super) {
     };
     SelectionToolService.prototype.addToMultiSelectionLayers = function (layer) {
         if (this.helper.isNullOrUndefined(layer) === false) {
-            var selection_id = this.getSelectionIdFromLayer(layer);
+            var selection_id = this.selectionToolUtils.getSelectionIdFromLayer(layer);
             if (this.nutsIds.has(selection_id) === false) {
                 this.nutsIds.add(selection_id);
                 this.multiSelectionLayers.addLayer(layer);
@@ -3806,187 +4461,27 @@ var SelectionToolService = (function (_super) {
             this.multiSelectionLayers.addLayer(layer);
         }
     };
+    SelectionToolService.prototype.deleteSelectedAreas = function () {
+        var _this = this;
+        this.multiSelectionLayers.getLayers().map(function (layer) {
+            if (layer.options.fillColor === 'red') {
+                _this.multiSelectionLayers.removeLayer(layer);
+                _this.controlMultiLayer.removeLayer(layer);
+            }
+        });
+        this.nbOfLayersSelected.next(0);
+        this.setAreas();
+        this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
+    };
     return SelectionToolService;
-}(__WEBPACK_IMPORTED_MODULE_8__shared_services__["f" /* APIService */]));
+}(__WEBPACK_IMPORTED_MODULE_6__shared_services__["f" /* APIService */]));
 SelectionToolService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services__["d" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared___["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared___["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */]) === "function" && _h || Object])
 ], SelectionToolService);
 
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=selection-tool.service.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-button.data.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return stButtons; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return defaultElementSelected; });
-var stButtons = [
-    { id: '1', type: 'click', isChecked: true },
-    { id: '2', type: 'rectangle', isChecked: false },
-    { id: '3', type: 'circle', isChecked: false },
-    { id: '4', type: 'polygon', isChecked: false }
-];
-var defaultElementSelected = 'Elements selected';
-//# sourceMappingURL=selection-button.data.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 260px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:120px;\n}\n\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"containers\">\n    <div id=\"selection-tools-box\">\n      <div *ngFor=\"let button of stButtons\">\n          <input id=\"radio-{{button.id}}\" class=\"radio-custom\" name=\"radio-group\" type=\"radio\" [checked]=\"button.isChecked\" (click)=\"drawTool(button)\">\n          <label id=\"{{button.type}}\" for=\"radio-{{button.id}}\" class=\"radio-custom-label\"></label>\n      </div>\n    </div>\n    <div *ngIf=\"!isHectarSelected\" id=\"info-box\">\n      <div class=\"uk-container uk-padding-remove\">\n        <div>\n          <p>{{elementSelected}}<span>{{nbElementsSelected}}</span></p>\n          <p>Scale<span>{{scaleSelected}}</span></p>\n        </div>\n        <div class=\"divButtons\">\n          <button id=\"loadBtn\" class=\"uk-button uk-button-primary uk-button-small\" [disabled]=\"isLoaBtnDisabled\" (click)=\"loadResultsButton()\">Load results</button>\n          <button id=\"clearBtn\" class=\"uk-button uk-button-danger uk-button-small\" [disabled]=\"isClearBtnDisabled\" (click)=\"clearAllButton()\">Clear all</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-button.data.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionToolComponent; });
-/**
- * Created by Dany on 20.12.17.
- */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var SelectionToolComponent = (function () {
-    function SelectionToolComponent(mapService, logger) {
-        this.mapService = mapService;
-        this.logger = logger;
-        this.nbElementsSelected = 0;
-        this.isHectarSelected = false;
-        this.isLoaBtnDisabled = true;
-        this.isClearBtnDisabled = true;
-        this.stButtons = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__["a" /* stButtons */];
-        this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__["b" /* defaultElementSelected */];
-    }
-    SelectionToolComponent.prototype.ngOnInit = function () {
-        this.subscribeMapService();
-        this.scaleSelected = this.mapService.getScaleValue();
-    };
-    SelectionToolComponent.prototype.ngOnDestroy = function () {
-        this.logger.log('SelectionToolComponent/ngOnDestroy');
-        this.subscription.unsubscribe();
-        this.subscriptionNbNutsSelected.unsubscribe();
-    };
-    SelectionToolComponent.prototype.subscribeMapService = function () {
-        var _this = this;
-        this.subscription = this.mapService.getScaleValueSubject().subscribe(function (value) {
-            _this.scaleSelected = value;
-            if (value === __WEBPACK_IMPORTED_MODULE_2_app_shared__["hectare"]) {
-                _this.elementSelected = 'Zones selected';
-            }
-            else {
-                _this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_selection_tool_selection_button_data__["b" /* defaultElementSelected */];
-            }
-        });
-        this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
-            _this.nbElementsSelected = value;
-        });
-        // subscribing to click event subject of MapService
-        this.mapService.clickEventSubjectObs.subscribe(function () {
-            _this.cursorClick(); // call cursor click method when we click anywhere in the map
-        });
-        this.mapService.drawCreatedSubjectObs.subscribe(function () {
-            _this.cursorClick();
-        });
-        this.mapService.getEnableLoadResultSubjectObs().subscribe(function () {
-            _this.isLoaBtnDisabled = false;
-        });
-        this.mapService.getEnableClearAllSubjectObs().subscribe(function () {
-            _this.isClearBtnDisabled = false;
-        });
-        this.mapService.getDisableLoadResultSubjectObs().subscribe(function () {
-            _this.isLoaBtnDisabled = true;
-        });
-        this.mapService.getDisbleClearAllSubjectObs().subscribe(function () {
-            _this.isClearBtnDisabled = true;
-        });
-    };
-    SelectionToolComponent.prototype.cursorClick = function () {
-        var map = this.mapService.getMap();
-        this.mapService.clickSelection(map);
-        this.stButtons[0].isChecked = true;
-    };
-    /**
-     * Draw method of the activated selection tool
-     */
-    SelectionToolComponent.prototype.drawTool = function (button) {
-        if (button.type === 'click') {
-            this.cursorClick();
-        }
-        else {
-            var map = this.mapService.getMap();
-            this.mapService.drawTool(map, button.type);
-            this.stButtons[0].isChecked = false;
-        }
-    };
-    /**
-     * Load the results of the selection
-     */
-    SelectionToolComponent.prototype.loadResultsButton = function () {
-        var map = this.mapService.getMap();
-        this.mapService.loadResultNuts(map);
-    };
-    /**
-     * Clear all informations in the info box
-     */
-    SelectionToolComponent.prototype.clearAllButton = function () {
-        var map = this.mapService.getMap();
-        this.mapService.clearAll(map);
-        this.cursorClick();
-    };
-    return SelectionToolComponent;
-}());
-SelectionToolComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'htm-selection-tool',
-        template: __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/selection-tools/selection-tool/selection-tool.component.css")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
-], SelectionToolComponent);
-
-var _a, _b;
-//# sourceMappingURL=selection-tool.component.js.map
 
 /***/ }),
 
@@ -4193,7 +4688,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\">\n      <li id=\"tab1\">\n        <a href=\"\">Summary</a>\n      </li>\n      <li id=\"tab2\">\n        <a href=\"\">Energy Statistics</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [locationsSelection]=\"locationsSelection\"\n          ></htm-summary-result>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [nutsIds]=\"nutsIds\"\n      [layers]=\"layers\"\n      [scaleLevel]=\"scaleLevel\"\n      [locationsSelection]=\"locationsSelection\"\n      [areas]=\"areas\"\n      ></htm-summary-result>\n  </ng-template>\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Summary</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Energy Statistics</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [locationsSelection]=\"locationsSelection\"\n          [areas]=\"areas\"\n          ></htm-summary-result>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [nutsIds]=\"nutsIds\"\n      [layers]=\"layers\"\n      [scaleLevel]=\"scaleLevel\"\n      [locationsSelection]=\"locationsSelection\"\n      [areas]=\"areas\"\n      ></htm-summary-result>\n  </ng-template>\n  <htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data>\n</div>\n"
 
 /***/ }),
 
@@ -4205,6 +4700,7 @@ module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"e
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RightSideComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4229,18 +4725,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RightSideComponent = (function (_super) {
     __extends(RightSideComponent, _super);
-    function RightSideComponent(interactionService) {
+    function RightSideComponent(interactionService, logger) {
         var _this = _super.call(this, interactionService) || this;
         _this.interactionService = interactionService;
+        _this.logger = logger;
         // Improvement of coding style :
         // place private members after public members, alphabetized
         _this.summaryResult = null;
+        _this.heatloadStatus = false;
         return _this;
     }
     RightSideComponent.prototype.ngOnInit = function () { };
     RightSideComponent.prototype.ngOnDestroy = function () { };
+    RightSideComponent.prototype.ngOnChanges = function () {
+        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+            this.heatloadStatus = true;
+        }
+        else {
+            this.heatloadStatus = false;
+        }
+    };
+    RightSideComponent.prototype.clickTab = function (id) {
+        this.logger.log('clickTab' + id);
+        this.interactionService.setTabsSelectedName(id);
+    };
     return RightSideComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__side_panel_component__["a" /* SideComponent */]));
 __decorate([
@@ -4255,10 +4766,6 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], RightSideComponent.prototype, "scaleLevel", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], RightSideComponent.prototype, "heatloadStatus", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
@@ -4336,10 +4843,10 @@ RightSideComponent = __decorate([
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
 ], RightSideComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=right-side-panel.component.js.map
 
 /***/ }),
@@ -4446,7 +4953,6 @@ var SidePanelService = (function () {
         this.rightPanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.topPanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.rightToggleExpandedStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
-        this.lauchHeatloadCalculationStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
     }
     SidePanelService.prototype.topPanelexpandedCollapsed = function () {
         this.topPanelStatus.next(true);
@@ -4471,16 +4977,6 @@ var SidePanelService = (function () {
     };
     SidePanelService.prototype.closeLeftPanel = function () {
         this.leftPanelStatus.next(false);
-    };
-    /*
-      setHeatLoadResultData(data: any) {
-        this.heatLoadResultStatus.next(data);
-      }
-      setPoiData(data) {
-        this.poiData.next(data);
-      } */
-    SidePanelService.prototype.setLauchHeatloadCalculation = function (value) {
-        this.lauchHeatloadCalculationStatus.next(value);
     };
     return SidePanelService;
 }());
@@ -4769,9 +5265,10 @@ module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__summary_result_service__ = __webpack_require__("../../../../../src/app/features/summary-result/summary-result.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__selection_scale_selection_scale_service__ = __webpack_require__("../../../../../src/app/features/selection-scale/selection-scale.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SummaryResultComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4788,14 +5285,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SummaryResultComponent = (function () {
-    function SummaryResultComponent(summaryResultService, selectionScaleService, logger, helper) {
-        this.summaryResultService = summaryResultService;
-        this.selectionScaleService = selectionScaleService;
+    function SummaryResultComponent(mapService, logger, helper, interactionService) {
+        this.mapService = mapService;
         this.logger = logger;
         this.helper = helper;
+        this.interactionService = interactionService;
         this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["l" /* round_value */];
+        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* round_value */];
         this.scale = 'Nuts 3';
         this.isDataAgregate = false;
         this.loadingData = false;
@@ -4804,8 +5302,8 @@ var SummaryResultComponent = (function () {
     };
     SummaryResultComponent.prototype.ngOnChanges = function (changes) {
         this.logger.log('SummaryResultComponent/ngOnChanges');
-        this.scale = this.selectionScaleService.getScaleValue();
-        if (this.selectionScaleService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["u" /* hectare */]) {
+        this.scale = this.mapService.getScaleValue();
+        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["z" /* hectare */]) {
             this.isDataAgregate = true;
             this.updateWithIds();
         }
@@ -4821,21 +5319,28 @@ var SummaryResultComponent = (function () {
     };
     SummaryResultComponent.prototype.updateWithIds = function () {
         var _this = this;
-        this.logger.log('SummaryResultComponent/updateWithIds()');
+        this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* constant_year */], nuts: this.nutsIds };
-        var summaryPromise = this.summaryResultService.getSummaryResultWithIds(payload).then(function (result) {
+        this.interactionService.displayButtonExport(!this.loadingData);
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["B" /* constant_year */], nuts: this.nutsIds };
+        console.log(payload);
+        var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
             _this.summaryResult = result;
-        }).then(function () { _this.loadingData = false; }).catch(function (e) {
+            _this.interactionService.setSummaryData(result);
+        }).then(function () {
+            _this.loadingData = false;
+            _this.interactionService.displayButtonExport(!_this.loadingData);
+        }).catch(function (e) {
             _this.logger.log(JSON.stringify(e));
             _this.loadingData = false;
+            _this.interactionService.displayButtonExport(!_this.loadingData);
         });
     };
     SummaryResultComponent.prototype.updateWithAreas = function () {
         var _this = this;
         this.logger.log('SummaryResultComponent/updateWithAreas()');
         this.loadingData = true;
-        var area = this.areas;
+        this.interactionService.displayButtonExport(!this.loadingData);
         var areas = [];
         this.areas.map(function (layer) {
             var points = [];
@@ -4846,12 +5351,27 @@ var SummaryResultComponent = (function () {
                 areas.push({ points: _this.helper.getLocationsFromPolygon(layer) });
             }
         });
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* constant_year */], areas: areas };
-        var summaryPromise = this.summaryResultService.getSummaryResultWithMultiAreas(payload).then(function (result) {
+        this.logger.log('SummaryResultComponent/areas()' + JSON.stringify(areas));
+        if (areas.length === 0) {
+            this.logger.log('SummaryResultComponent/areas().lenght === 0');
+            this.loadingData = false;
+            this.interactionService.displayButtonExport(!this.loadingData);
+            return;
+        }
+        ;
+        ;
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["B" /* constant_year */], areas: areas };
+        var summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(function (result) {
             _this.summaryResult = result;
-        }).then(function () { _this.loadingData = false; }).catch(function (e) {
+            _this.interactionService.setSummaryData(result);
+            // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
+        }).then(function () {
+            _this.loadingData = false;
+            _this.interactionService.displayButtonExport(!_this.loadingData);
+        }).catch(function (e) {
             _this.logger.log(JSON.stringify(e));
             _this.loadingData = false;
+            _this.interactionService.displayButtonExport(!_this.loadingData);
         });
     };
     return SummaryResultComponent;
@@ -4902,7 +5422,7 @@ SummaryResultComponent = __decorate([
             ]),
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__summary_result_service__["a" /* SummaryResultService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__selection_scale_selection_scale_service__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__selection_scale_selection_scale_service__["a" /* SelectionScaleService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["Helper"]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared__["Helper"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object])
 ], SummaryResultComponent);
 
 var _a, _b, _c, _d;
@@ -4958,15 +5478,15 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithPayload = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithPayload = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["i" /* postStatsLayersArea */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["s" /* postStatsLayersArea */]);
     };
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["j" /* postStatsLayersNutsIds */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postStatsLayersNutsIds */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["k" /* postStatsLayersHectareMulti */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["u" /* postStatsLayersHectareMulti */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
@@ -5045,7 +5565,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/pages/map/component/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"showHide\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel \n    [nutsIds]=\"nutsIds\" \n    [layers]=\"layers\" \n    [scaleLevel]=\"scaleLevel\" \n    [heatloadStatus]=\"heatloadStatus\" \n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\">\n  </htm-right-side-panel>\n</div>"
+module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool [hidden]=\"!selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel \n    [nutsIds]=\"nutsIds\" \n    [layers]=\"layers\" \n    [scaleLevel]=\"scaleLevel\" \n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\">\n  </htm-right-side-panel>\n</div>"
 
 /***/ }),
 
@@ -5113,7 +5633,7 @@ var MapComponent = (function () {
         this.selectionToolService = selectionToolService;
         this.interactionService = interactionService;
         this.isSelectionToolVisible = false;
-        this.showHide = false;
+        this.selectionToolShow = false;
         // management of initial status of sidebar
         this.openRightSidebar = false;
         this.openRightToggleExpanded = false;
@@ -5132,9 +5652,6 @@ var MapComponent = (function () {
     };
     MapComponent.prototype.notifySubscription = function () {
         var _this = this;
-        this.panelService.lauchHeatloadCalculationStatus.subscribe(function (value) {
-            _this.heatloadStatus = value;
-        });
         if (this.mapService.getScaleValueSubject() !== null) {
             this.mapService.getScaleValueSubject().subscribe(function (scaleLevel) {
                 _this.scaleLevel = _this.mapService.getNutsBusiness(scaleLevel);
@@ -5182,11 +5699,11 @@ var MapComponent = (function () {
             _this.logger.log('mapComponent/selectionTool: ' + val);
             if (val) {
                 _this.interactionService.enableStateOpenWithFunction('selection');
-                _this.showHide = true;
+                _this.selectionToolShow = true;
             }
             else {
                 _this.interactionService.disableStateOpenWithFunction('selection');
-                _this.showHide = false;
+                _this.selectionToolShow = false;
             }
         });
         this.panelService.rightPanelStatus.subscribe(function (val) {
@@ -5211,7 +5728,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["X" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -5312,7 +5829,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapService; });
 var __extends = (this && this.__extends) || (function () {
@@ -5363,8 +5880,9 @@ var MapService = (function (_super) {
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.selectionToolButtonStateService = selectionToolButtonStateService;
-        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["F" /* defaultZoomLevel */]);
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* defaultZoomLevel */]);
         _this.layerArray = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        // TODO: A modifier
         _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"](); // Observable source for click
         _this.clickEventSubjectObs = _this.clickEventSubject.asObservable(); // Observable stream
         _this.drawCreatedSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"]();
@@ -5381,6 +5899,9 @@ var MapService = (function (_super) {
     };
     MapService.prototype.getSubscribtionNutsIds = function () {
         return this.selectionToolService.nutsIdsSubject.asObservable();
+    };
+    MapService.prototype.getNbOfLayersSelected = function () {
+        return this.selectionToolService.nbOfLayersSelected;
     };
     /**
     * Update the clickCursorSubject
@@ -5400,28 +5921,20 @@ var MapService = (function (_super) {
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["G" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["H" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["I" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWEDITSTOP */], function () { self.onDrawEditStop(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
-        this.map.on('draw:editmove', function () { self.bla(self); });
-        this.map.on('draw:editresize', function () { self.blabla(self); });
-    };
-    MapService.prototype.bla = function (self) {
-        self.logger.log('MapService/draw:editmove');
-    };
-    MapService.prototype.blabla = function (self) {
-        self.logger.log('MapService/draw:editresize');
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
@@ -5437,13 +5950,13 @@ var MapService = (function (_super) {
     MapService.prototype.onDrawStart = function (self) {
         self.logger.log('MapService/DrawStart');
         self.selectionToolService.toggleActivateTool(true);
-        this.selectionToolService.enableButtonClearAll(); // enable button when the drawing starts
+        this.selectionToolService.setButtonClearAll(true); // enable button when the drawing starts
     };
     MapService.prototype.onDrawEditStart = function (self) {
         self.logger.log('MapService/DrawEditStart');
         self.selectionToolService.toggleActivateTool(true);
     };
-    MapService.prototype.onDrawEditStop = function (self) {
+    MapService.prototype.onDrawEditStop = function (self, e) {
         self.logger.log('MapService/DrawEditStop');
         self.selectionToolService.setAreas();
         self.selectionToolService.toggleActivateTool(false);
@@ -5462,10 +5975,7 @@ var MapService = (function (_super) {
         this.zoomlevel.next(self.map.getZoom());
     };
     MapService.prototype.onDidUpdateLayers = function (self, e) {
-        if (self.selectionToolService.isLayerInMap() === true) {
-            self.selectionToolService.openPopup();
-            self.logger.log('MapService/didUpdateLayers-----' + e);
-        }
+        self.logger.log('MapService/onDidUpdateLayers-----' + e);
     };
     MapService.prototype.onBaselayerChange = function (self, e) {
         self.logger.log('baselayerchange');
@@ -5475,14 +5985,13 @@ var MapService = (function (_super) {
         self.selectionScaleService.setScaleValue(scaleLevel);
         self.selectionToolService.setScaleValue(scaleLevel);
         self.layersService.setCurrentNutsLevel(scaleLevel);
-        if (self.selectionToolService.isLayerInMap() === true) {
-            self.selectionToolService.openPopup();
-            self.logger.log('MapService/didUpdateLayers-----' + e);
-        }
         // changes the actual scale
         this.selectionScaleService.changeScale();
     };
     MapService.prototype.onClickEvent = function (self, e) {
+        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["z" /* hectare */]) {
+            return;
+        }
         self.logger.log('MapService/click');
         self.selectionToolButtonStateService.enable(true); // opens the selection tools
         // automatic cursor tool selection doesn't work if polygon draw is activated
@@ -5492,30 +6001,26 @@ var MapService = (function (_super) {
         }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["u" /* hectare */]) {
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["z" /* hectare */]) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
                 self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         }
-        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["t" /* lau2 */]) {
-            self.selectionToolService.enableNavigationService(self.map);
+        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* lau2 */]) {
+            self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         }
         else {
-            self.selectionToolService.enableNavigationService(self.map);
+            self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
         }
     };
     MapService.prototype.getZoomLevel = function () {
         return this.zoomlevel;
     };
-    // Draw control management
-    /*addDrawControls() {
-        //this.selectionToolService.addDrawerControl(this.map);
-    }*/
-    /*removeDrawControls() {
-        this.selectionToolService.removeControls(this.map);
-    }*/
+    MapService.prototype.deleteSelectedAreas = function () {
+        this.selectionToolService.deleteSelectedAreas();
+    };
     MapService.prototype.toggleDrawControls = function () {
         this.selectionToolService.toggleControl(this.map);
     };
@@ -5523,10 +6028,10 @@ var MapService = (function (_super) {
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* clickAccuracy */]).toBBoxString();
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
@@ -5534,36 +6039,16 @@ var MapService = (function (_super) {
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["h" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["r" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
     };
     MapService.prototype.postHectareCentroid = function (payload) {
-        return this.POST(payload, __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* postForOneHectareCentroid */]);
-    };
-    MapService.prototype.getHectareGeometryFromClick = function (latlng, nuts_level) {
-        /*const bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-        const action = lau2name;
-        const payload = {
-          point: latlng.lng + ' ' + latlng.lat,
-        }
-        const url = apiUrl + postStatsLayersArea
-        this.postHectareCentroid(payload).then(result => {
-          this.loaderService.display(false);
-          this.logger.log('result' + JSON.stringify(result) );
-          this.selectAreaWithHectare(result);
-        }).then(() => { }).catch((e) => {
-          this.loaderService.display(false);
-  
-          this.logger.log(e);
-          this.logger.log('error in getHectareCentroid');
-  
-        });*/
-        // if point is inside layer group create the
+        return this.POST(payload, __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["_0" /* postForOneHectareCentroid */]);
     };
     MapService.prototype.getAreaFromScale = function (url) {
         var _this = this;
@@ -5587,15 +6072,6 @@ var MapService = (function (_super) {
             var selection_id = point;
             var layer = new L.Rectangle(point.toBounds(100));
             this.selectionToolService.addHectareToMultiSelectionLayers(layer);
-            // remove the layer if there is one
-            /*this.removeAreaSelectedlayer();
-            // create an other selection only if this is a new area or if no area is actually selected (highlighted)
-            const areaNutsSelectedLayer = L.geoJSON(areaSelected);
-            if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
-              this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
-            } else {
-              this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
-            }*/
         }
     };
     MapService.prototype.selectAreaWithNuts = function (areaSelected) {
@@ -5619,7 +6095,7 @@ var MapService = (function (_super) {
         }
     };
     MapService.prototype.createSelection = function () {
-        this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
+        // this.selectionToolService.manageEditOrCreateLayer(this.areaNutsSelectedLayer, this.map);
     };
     MapService.prototype.removeAreaSelectedlayer = function () {
         if (this.areaNutsSelectedLayer) {
@@ -5627,8 +6103,8 @@ var MapService = (function (_super) {
             this.map.removeLayer(this.areaNutsSelectedLayer);
             delete this.areaNutsSelectedLayer;
             // disable buttons when layer is removed
-            this.selectionToolService.disableButtonClearAll();
-            this.selectionToolService.disableButtonLoad();
+            this.selectionToolService.setButtonClearAll(false);
+            this.selectionToolService.setLoadresultButton(false);
         }
     };
     MapService.prototype.getSelectionScaleMenu = function () {
@@ -5653,14 +6129,14 @@ var MapService = (function (_super) {
     /**
      * Activate the drawing tool
      */
-    MapService.prototype.drawTool = function (map, tool) {
-        this.selectionToolService.drawTool(map, tool);
+    MapService.prototype.activateDrawTool = function (map, tool) {
+        this.selectionToolService.activateDrawTool(map, tool);
     };
     /**
      * Activate the selection tool
      */
     MapService.prototype.clickSelection = function (map) {
-        this.selectionToolService.clickSelection(map);
+        this.selectionToolService.activateClickSelectionTool();
     };
     /**
      * Load the nuts selection results
@@ -5683,26 +6159,14 @@ var MapService = (function (_super) {
     /**
      * Get the EnableLoadResultSubjectObs of SelectionToolService
      */
-    MapService.prototype.getEnableLoadResultSubjectObs = function () {
-        return this.selectionToolService.enableLoadResultSubjectObs;
-    };
-    /**
-     * Get the EnableClearAllSubjectObs of SelectionToolService
-     */
-    MapService.prototype.getEnableClearAllSubjectObs = function () {
-        return this.selectionToolService.enableClearAllSubjectObs;
-    };
-    /**
-     * Get the DisableLoadResultSubjectObs of SelectionToolService
-     */
-    MapService.prototype.getDisableLoadResultSubjectObs = function () {
-        return this.selectionToolService.disableLoadResultSubjectObs;
+    MapService.prototype.getLoadResultbuttonState = function () {
+        return this.selectionToolService.buttonLoadResultStatus;
     };
     /**
      * Get the DisbleClearAllSubjectObs of SelectionToolService
      */
-    MapService.prototype.getDisbleClearAllSubjectObs = function () {
-        return this.selectionToolService.disbleClearAllSubjectObs;
+    MapService.prototype.getClearAllButtonSubject = function () {
+        return this.selectionToolService.buttonClearAll;
     };
     /**
      * Get the ScaleValueSubject of SelectionScaleService
@@ -5731,7 +6195,7 @@ var MapService = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__["a" /* APIService */]));
 MapService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _k || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _k || Object])
 ], MapService);
 
 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
@@ -5771,8 +6235,8 @@ module.exports = "<div *ngFor=\"let button of navButtons\" class=\"icon-nav\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_side_panel__ = __webpack_require__("../../../../../src/app/features/side-panel/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool-button-state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/selection-tool.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_service_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_service_selection_tool_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavigationBarComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5855,7 +6319,7 @@ NavigationBarComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/pages/nav/component/navigation-bar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/nav/component/navigation-bar.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_selection_tool_service__["a" /* SelectionToolService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_service_selection_tool_service__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools_service_selection_tool_service__["a" /* SelectionToolService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__pages_map_map_service__["a" /* MapService */]) === "function" && _f || Object])
 ], NavigationBarComponent);
 
 var _a, _b, _c, _d, _e, _f;
@@ -6444,12 +6908,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["q" /* nuts0 */], suffix: '_nuts0' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["r" /* nuts1 */], suffix: '_nuts1' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["s" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["e" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["t" /* lau2 */], suffix: '_lau2' },
-    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["u" /* hectare */], suffix: '_ha' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["v" /* nuts0 */], suffix: '_nuts0' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["w" /* nuts1 */], suffix: '_nuts1' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["x" /* nuts2 */], suffix: '_nuts2' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["o" /* nuts3 */], suffix: '_nuts3' },
+    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["y" /* lau2 */], suffix: '_lau2' },
+    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["z" /* hectare */], suffix: '_ha' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -6516,15 +6980,15 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Helper"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["lau2name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["buttons_heat_load"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_year"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_day"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_month"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["timeOutAjaxRequest"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["rightPanelSize"]; });
@@ -6552,15 +7016,15 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Helper"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["lau2name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["buttons_heat_load"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_year"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_day"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_month"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["timeOutAjaxRequest"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["rightPanelSize"]; });
@@ -6647,76 +7111,85 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return defaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return urlTaigaFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return defaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return formatImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return postPopulationDensityInArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return postPopulationDensityInArea; });
 /* unused harmony export postHectareCentroid */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return postNumberHectareCentroid; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return postForOneHectareCentroid; });
+/* unused harmony export postNumberHectareCentroid */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return postForOneHectareCentroid; });
 /* unused harmony export getGrid */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return postStatsLayersArea; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postHeatLoadAggregate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postStatsLayersNutsIds; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return postStatsLayersHectareMulti; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return postStatsLayersArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return postHeatLoadAggregate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return postHeatLoadAggregateNormalized; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return postHeatLoadAggregateHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postDurationCurve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return postDurationCurveHectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return postStatsLayersNutsIds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return postStatsLayersHectareMulti; });
 /* unused harmony export postStatsLayersPoint */
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return proj3035; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return proj3035; });
 /* unused harmony export proj4326 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return heat_load_api_day; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return heat_load_api_year; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return heat_load_api_month; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return buttons_heat_load; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return heat_load_api_day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return heat_load_api_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return heat_load_api_month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return buttons_heat_load; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return timeOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return constant_year_duration_curve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return defaultZoomLevel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return nuts2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return lau2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPOVERLAYADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return rightPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return leftPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return nuts3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return lau2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return leftPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return tab1; });
+/* unused harmony export tab2 */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return duration_curve_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_graph_options; });
 
 
 /**
@@ -6756,6 +7229,10 @@ var postForOneHectareCentroid = '/raster/layers/hectare/centroid';
 var getGrid = '/grids/1km/area/';
 var postStatsLayersArea = '/stats/layers/area/';
 var postHeatLoadAggregate = '/load-profile/aggregate/';
+var postHeatLoadAggregateNormalized = '/load-profile/aggregate';
+var postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
+var postDurationCurve = '/load-profile/aggregate/duration_curve';
+var postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
 var postStatsLayersNutsIds = '/stats/layers/nuts/';
 var postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
 var postStatsLayersPoint = '/stats/layers/point/';
@@ -6768,9 +7245,9 @@ var heat_load_api_day = 'day';
 var heat_load_api_year = 'year';
 var heat_load_api_month = 'month';
 var buttons_heat_load = [
-    { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010 },
-    { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1 },
-    { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1 },
+    { name: 'Year', api_ref: heat_load_api_year, selected: true, date: 2010, min: 2010, max: 2010, options: [] },
+    { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
+    { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 // layers constant
 var timeOut = 200000;
@@ -6779,6 +7256,7 @@ var clickAccuracy = 100;
 var zoomLevelDetectChange = 10;
 var constant_year = 2012;
 var constant_year_sp_wwtp = 2015;
+var constant_year_duration_curve = 2010;
 var business_name_wwtp = 'Waste Water treatment plants';
 var business_name_population = 'Population';
 var unit_capacity = 'population equivalent';
@@ -6822,6 +7300,48 @@ var MAPDIDIUPDATELAYER = 'didUpdateLayers';
 var MAPOVERLAYADD = 'overlayadd';
 var rightPanelSize = 600;
 var leftPanelSize = 350;
+// tab values
+var tab1 = 'summary';
+var tab2 = 'stats';
+// Duration curve graph data
+var duration_curve_graph_options = {
+    legend: {
+        display: false
+    },
+    elements: {
+        point: {
+            radius: 0
+        }
+    },
+    tooltips: { enabled: false },
+    hover: { mode: null },
+    scales: {
+        yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Heat Power (MW)'
+                }
+            }],
+        xAxes: [{
+                display: false,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Yearly duration'
+                }
+            }]
+    }
+};
+// Heat Load graph data
+var heat_load_graph_options = {
+    scales: {
+        yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Heat Power (MW)'
+                }
+            }]
+    }
+};
 //# sourceMappingURL=data.service.js.map
 
 /***/ }),
@@ -6925,6 +7445,17 @@ var Helper = (function () {
         locations = locations + loc;
         return locations;
     };
+    Helper.prototype.convertPointToGeoJSONFormat = function (latlng) {
+        var n = 0;
+        var locations = [];
+        do {
+            var loc = [];
+            loc.push(latlng[n].lng, latlng[n].lat);
+            locations.push(loc);
+            n++;
+        } while (!this.isNullOrUndefined(latlng[n]));
+        return locations;
+    };
     Helper.prototype.createGeodesicPolygon = function (origin, radius, sides, rotation) {
         var latlon = origin; //leaflet equivalent
         var angle;
@@ -6996,7 +7527,7 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["l" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["f" /* round_value */]);
     };
     Helper.prototype.formatDataLoadProfil = function (data) {
         var _this = this;
@@ -7038,7 +7569,7 @@ var Helper = (function () {
         return proj4(epsgString).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.transformLatLngToEpsg3035 = function (latlng) {
-        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["m" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
+        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["g" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.getTranformedBoundingBox = function (map, epsgString) {
         var coordinate = [];
@@ -7060,6 +7591,20 @@ var Helper = (function () {
         var geoJson = geojsonLayer.toGeoJSON();
         var lau2_id = geoJson.features[0].properties.comm_id;
         return lau2_id;
+    };
+    Helper.prototype.getLocationsFromLayer = function (layer) {
+        if (layer instanceof L.Circle) {
+            return this.getLocationsFromCicle(layer);
+        }
+        else if (layer instanceof L.Polygon) {
+            return this.getLocationsFromPolygon(layer);
+        }
+        else if (layer instanceof L.latLng) {
+            return this.getLocationsFromPolygon(layer);
+        }
+        else {
+            return this.getLocationsFromGeoJsonLayer(layer);
+        }
     };
     Helper.prototype.getLocationsFromCicle = function (layer) {
         var circle = layer;
@@ -7163,19 +7708,13 @@ var Helper = (function () {
     };
     Helper.prototype.controlDrawedLayer = function (baseLayer, drawLayer) {
         var _this = this;
-        // console.log(baseLayer, drawLayer)
         var drawJson;
         if (drawLayer instanceof L.Circle) {
-            drawJson = {
-                "type": "Feature", "properties": {}, "geometry": {
-                    "type": "Polygon", "coordinates": this.getLocationsFromCicle(drawLayer)
-                }
-            };
+            drawJson = this.circleToGeoJSON(drawLayer);
         }
         else {
             drawJson = drawLayer.toGeoJSON();
         }
-        // console.log(drawJson)
         var baseJson = baseLayer.toGeoJSON(), baseLines = this.lineify(baseJson), drawLines = this.lineify(drawJson), pointCrossed = false;
         baseJson.features.map(function (feature) {
             if (_this.testSpatial(feature, drawJson) === true) {
@@ -7189,7 +7728,6 @@ var Helper = (function () {
                         return pointCrossed;
                     }
                     ;
-                    // console.log(baseLines.geometries[j], drawLines.geometries[i])
                     pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
                 }
             }
@@ -7199,11 +7737,136 @@ var Helper = (function () {
     Helper.prototype.testSpatial = function (baseJson, drawJson) {
         return __WEBPACK_IMPORTED_MODULE_6__turf_boolean_contains__["a" /* default */](drawJson, baseJson);
     };
+    Helper.prototype.circleToGeoJSON = function (layer) {
+        return {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [this.latLngsToCoords(this.getLocationsFromCicle(layer))]
+            }
+        };
+    };
+    Helper.prototype.summaryResultToCSV = function (input) {
+        var array = [];
+        var header = {
+            "1": "unit",
+            "2": "indicator",
+            "3": "value",
+        };
+        array.push(header);
+        for (var _i = 0, input_1 = input; _i < input_1.length; _i++) {
+            var entry = input_1[_i];
+            for (var _a = 0, _b = entry.values; _a < _b.length; _a++) {
+                var entry_in_entry = _b[_a];
+                array.push(entry_in_entry);
+            }
+        }
+        return array;
+    };
+    Helper.prototype.keysFromJson = function (jsonData) {
+        var val = jsonData[0];
+        var header = {};
+        for (var j in val) {
+            var sub_key = j;
+            var sub_val = val[j];
+            header[j] = j;
+        }
+        return header;
+    };
+    Helper.prototype.resultToCSV = function (input) {
+        this.logger.log('Helper/resultToCSV');
+        var csvResult = input;
+        var header = this.keysFromJson(input);
+        var array = [];
+        array.push(header);
+        for (var _i = 0, input_2 = input; _i < input_2.length; _i++) {
+            var entry = input_2[_i];
+            array.push(entry);
+        }
+        return array;
+    };
+    Helper.prototype.generateRandomName = function () {
+        // Math.random should be unique because of its seeding algorithm.
+        // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+        // after the decimal.
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
+    Helper.prototype.createDurationCurveLabels = function (array) {
+        for (var i = 0; i <= 8760; ++i) {
+            array[i] = i;
+        }
+        return array;
+    };
+    Helper.prototype.createHLPayloadHectares = function (type, buttonArray, areas) {
+        var payload;
+        if (type === 'day') {
+            payload = {
+                'year': buttonArray[0].date,
+                'month': buttonArray[1].date,
+                'day': buttonArray[2].date,
+                'areas': areas
+            };
+        }
+        if (type === 'month') {
+            payload = {
+                'year': buttonArray[0].date,
+                'month': buttonArray[1].date,
+                'areas': areas
+            };
+        }
+        if (type === 'year') {
+            payload = {
+                'year': buttonArray[0].date,
+                'areas': areas
+            };
+        }
+        return payload;
+    };
+    Helper.prototype.createHLPayloadNuts = function (type, buttonArray, nuts) {
+        var payload;
+        if (type == 'day') {
+            payload = {
+                'year': buttonArray[0].date,
+                'month': buttonArray[1].date,
+                'day': buttonArray[2].date,
+                'nuts': nuts
+            };
+        }
+        if (type == 'month') {
+            payload = {
+                'year': buttonArray[0].date,
+                'month': buttonArray[1].date,
+                'nuts': nuts
+            };
+        }
+        if (type == 'year') {
+            payload = {
+                'year': buttonArray[0].date,
+                'nuts': nuts
+            };
+        }
+        return payload;
+    };
+    Helper.prototype.createDCPayloadHectares = function (year, areas) {
+        var payload = {
+            'year': year,
+            'areas': areas
+        };
+        return payload;
+    };
+    Helper.prototype.createDCPayloadNuts = function (year, nuts) {
+        var payload = {
+            'year': year,
+            'nuts': nuts
+        };
+        return payload;
+    };
     return Helper;
 }());
 Helper = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services__["b" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services__["b" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["DecimalPipe"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["DecimalPipe"]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["DecimalPipe"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["DecimalPipe"]) === "function" && _b || Object])
 ], Helper);
 
 var _a, _b;
@@ -7228,15 +7891,15 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Helper"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["lau2name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["buttons_heat_load"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_year"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_day"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_month"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["timeOutAjaxRequest"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["rightPanelSize"]; });
@@ -7246,24 +7909,24 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "LayerNamePipe", function() { return __WEBPACK_IMPORTED_MODULE_2__pipes__["c"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "BusinessNamePipe", function() { return __WEBPACK_IMPORTED_MODULE_2__pipes__["d"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services__ = __webpack_require__("../../../../../src/app/shared/services/index.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GeocodingService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Logger", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GeocodingService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Logger", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "LoaderService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["c"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["d"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["m"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["u"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_1"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_2"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_3"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_4"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_6"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_7"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["r"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["p"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["z"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_10"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_13"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_14"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_15"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -7590,7 +8253,7 @@ var APIService = (function () {
     APIService.prototype.POST = function (payload, url) {
         return this.http
             .post(url, JSON.stringify(payload), { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["c" /* timeOut */])
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["d" /* timeOut */])
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError.bind(this));
@@ -7598,7 +8261,7 @@ var APIService = (function () {
     APIService.prototype.POSTunStringify = function (payload, url) {
         return this.http
             .post(url, payload, { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["c" /* timeOut */])
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["d" /* timeOut */])
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError.bind(this));
@@ -7723,7 +8386,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["n" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["h" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -7751,9 +8414,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["o" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["p" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
@@ -7786,7 +8449,7 @@ var _a, _b, _c;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__geocoding_service__ = __webpack_require__("../../../../../src/app/shared/services/geocoding.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__geocoding_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__geocoding_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__loader_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
@@ -7796,7 +8459,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__error_handler__ = __webpack_require__("../../../../../src/app/shared/services/error-handler.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__error_handler__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_5__logger_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_5__logger_service__["a"]; });
 
 
 
@@ -7818,6 +8481,8 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InteractionService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7828,9 +8493,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
+
+
 
 
 
@@ -7839,16 +8506,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var InteractionService = (function () {
-    function InteractionService(logger, sidePanelService, navigationBarService, summaryResultService, layerService, heatLoadAggregateService) {
+    function InteractionService(logger, sidePanelService, navigationBarService, summaryResultService, layerService, exportDataService, heatLoadAggregateService, durationCurveService) {
         this.logger = logger;
         this.sidePanelService = sidePanelService;
         this.navigationBarService = navigationBarService;
         this.summaryResultService = summaryResultService;
         this.layerService = layerService;
+        this.exportDataService = exportDataService;
         this.heatLoadAggregateService = heatLoadAggregateService;
+        this.durationCurveService = durationCurveService;
     }
     InteractionService.prototype.getLayerArray = function () {
         return this.layerService.getLayerArray();
+    };
+    // interface for export data service
+    InteractionService.prototype.displayButtonExportStats = function (value) {
+        this.exportDataService.displayButtonExportStats(value);
+    };
+    InteractionService.prototype.setDataStats = function (data) {
+        this.exportDataService.setDataStats(data);
+    };
+    InteractionService.prototype.setTabsSelectedName = function (data) {
+        this.exportDataService.setTabsSelectedName(data);
+    };
+    InteractionService.prototype.displayButtonExport = function (val) {
+        this.exportDataService.displayButtonExport(val);
+    };
+    InteractionService.prototype.setSummaryData = function (val) {
+        this.exportDataService.setDataSummary(val);
     };
     InteractionService.prototype.enableStateOpenWithFunction = function (functionString) {
         this.navigationBarService.enableOpenStateWithFunction(functionString);
@@ -7868,7 +8553,6 @@ var InteractionService = (function () {
     InteractionService.prototype.enableAllButtonsWithFunction = function (functionString) {
         this.navigationBarService.enableButtons(functionString);
     };
-    InteractionService.prototype.onPopupValidation = function () { };
     // RIGHT PANEL
     InteractionService.prototype.openRightPanel = function () {
         this.sidePanelService.openRightPanel();
@@ -7902,23 +8586,35 @@ var InteractionService = (function () {
     InteractionService.prototype.getSummaryResultWithIds = function (payload) {
         return this.summaryResultService.getSummaryResultWithIds(payload);
     };
+    InteractionService.prototype.getSummaryResultWithMultiAreas = function (payload) {
+        return this.summaryResultService.getSummaryResultWithMultiAreas(payload);
+    };
     InteractionService.prototype.getSummaryResultWithPayload = function (payload) {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     };
-    InteractionService.prototype.getLoadProfileAggregateResultWithPayload = function (payload, type_api_ref) {
-        return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
+    /*getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
+    }*/
+    InteractionService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     };
-    InteractionService.prototype.lauchHeatloadCalculation = function (value) {
-        this.sidePanelService.setLauchHeatloadCalculation(value);
+    InteractionService.prototype.formatHeatLoadForChartjs = function (data, api_ref) {
+        return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
+    };
+    InteractionService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
+        return this.durationCurveService.getDurationCurveWithPayload(payload, isHectare);
+    };
+    InteractionService.prototype.transformDurationCurveData = function (data) {
+        return this.durationCurveService.transformData(data);
     };
     return InteractionService;
 }());
 InteractionService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */]) === "function" && _h || Object])
 ], InteractionService);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=interaction.service.js.map
 
 /***/ }),
@@ -7948,6 +8644,9 @@ var LoaderService = (function () {
     }
     LoaderService.prototype.display = function (value) {
         this.status.next(value);
+    };
+    LoaderService.prototype.getStatus = function () {
+        return this.status;
     };
     return LoaderService;
 }());

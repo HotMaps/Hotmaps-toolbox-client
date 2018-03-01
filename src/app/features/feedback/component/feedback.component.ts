@@ -100,7 +100,6 @@ export class FeedbackComponent implements OnInit, OnDestroy {
             },
             error: (e) => {
                 this.showError();
-                console.log(e)
                 this.feedbackLoader = false;
             },
             timeout: timeOutAjaxRequest

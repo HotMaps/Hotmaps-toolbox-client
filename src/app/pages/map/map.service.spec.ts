@@ -1,10 +1,10 @@
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { ToasterService } from './../../shared/services/toaster.service';
 import { SummaryResultService } from './../../features/summary-result/summary-result.service';
 import { MailService } from './../../features/feedback/mail.service';
-import { SelectionToolButtonStateService } from './../../features/selection-tools/selection-tool-button-state.service';
+import { SelectionToolButtonStateService } from './../../features/selection-tools/service/selection-tool-button-state.service';
 import { NavigationBarService } from '../nav/service/navigation-bar.service';
 import { TestBed, inject, fakeAsync , ComponentFixture} from '@angular/core/testing';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
@@ -21,13 +21,16 @@ import { LayersService } from '../../features/layers/services/layers.service';
 
 import { MockPopulationService } from '../../features/population/services/mock/population.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
-import { SelectionToolService } from './../../features/selection-tools/selection-tool.service';
+import { SelectionToolService } from './../../features/selection-tools/service/selection-tool.service';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
 import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
 import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import {ExportDataService} from '../../features/export-data/service/export-data.service';
+import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
 
 
 
@@ -53,6 +56,7 @@ describe('mapService', () => {
         {provide: DataInteractionService, useClass: DataInteractionService},
         {provide: GeocodingService, useClass: GeocodingService},
         {provide: LayersService, useClass: LayersService},
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: Helper, useValue: Helper},
         {provide: PopulationService, useValue: populationService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
@@ -67,11 +71,8 @@ describe('mapService', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
-
-
-
-
-
+        {provide: ExportDataService, useClass: ExportDataService },
+        {provide: DurationCurveService, useClass: DurationCurveService}
       ],
     })
   });

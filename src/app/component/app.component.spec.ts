@@ -3,7 +3,7 @@
  * Created by lesly on 28.06.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
@@ -31,8 +31,8 @@ import {LayerNamePipe} from '../shared/pipes/layer-name.pipe';
 import {BusinessNamePipe} from '../shared/pipes/business-name.pipe';
 import {MapService} from '../pages/map/map.service';
 import {Logger} from '../shared/services/logger.service';
-import {SelectionToolButtonStateService} from '../features/selection-tools/selection-tool-button-state.service';
-import {SelectionToolService} from '../features/selection-tools/selection-tool.service';
+import {SelectionToolButtonStateService} from '../features/selection-tools/service/selection-tool-button-state.service';
+import {SelectionToolService} from '../features/selection-tools/service/selection-tool.service';
 import {Helper} from '../shared/helper';
 import {SidePanelService} from '../features/side-panel/side-panel.service';
 import {NavigationBarService} from '../pages/nav/service/navigation-bar.service';
@@ -55,10 +55,14 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
 import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
-import { SelectionToolComponent } from '../features/selection-tools/selection-tool/selection-tool.component';
+import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/heat-load/component';
 import { ChartComponent } from 'app/features/chart/chart.component';
-
+import {ExportDataComponent} from "../features/export-data/component/export-data.component";
+import {ExportDataService} from "../features/export-data/service/export-data.service";
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { DurationCurveComponent } from '../features/duration-curve/duration-curve.component';
+import { DurationCurveService } from "../features/duration-curve/duration-curve.service";
 
 
 describe('AppComponent: Router', () => {
@@ -76,13 +80,14 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
         {provide: SidePanelService, useClass: SidePanelService},
-
+        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
         {provide: SelectionScaleService, useClass: SelectionScaleService},
+        {provide: ExportDataService, useClass: ExportDataService},
         {provide: Logger, useClass: Logger},
         {provide: SelectionToolService, useClass: SelectionToolService},
         {provide: Helper, useClass: Helper},
@@ -93,6 +98,7 @@ describe('AppComponent: Router', () => {
         {provide: MailService, useClass: MailService},
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: InteractionService, useClass: InteractionService},
+        {provide: DurationCurveService, useClass: DurationCurveService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

@@ -15,7 +15,7 @@
   <htm-top-side-panel></htm-top-side-panel>
   <htm-left-side-panel></htm-left-side-panel>
   <div id="map">
-    <htm-selection-tool *ngIf="showHide" onclick="event.stopPropagation();"></htm-selection-tool>
+    <htm-selection-tool [hidden]="!selectionToolShow" onclick="event.stopPropagation();"></htm-selection-tool>
     <!--<hmt-toolbar></hmt-toolbar> -->
     <!-- <div class="zoom-level-box">
        {{zoomlevel}}
@@ -26,7 +26,6 @@
     [nutsIds]="nutsIds" 
     [layers]="layers" 
     [scaleLevel]="scaleLevel" 
-    [heatloadStatus]="heatloadStatus" 
     [locationsSelection]="locationsSelection"
     [areas]="areas">
   </htm-right-side-panel>

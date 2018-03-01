@@ -1,6 +1,6 @@
-// Improvement of coding style : 
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 
 import { LoaderService } from './loader.service';
@@ -16,6 +16,8 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
+import {ExportDataService} from '../../features/export-data/service/export-data.service';
+import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
 
 @Injectable()
 export class InteractionService {
@@ -24,12 +26,32 @@ export class InteractionService {
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
-        private layerService: LayersService, private heatLoadAggregateService: HeatLoadAggregateService
+        private layerService: LayersService, private exportDataService: ExportDataService
+        , private heatLoadAggregateService: HeatLoadAggregateService,
+        private durationCurveService: DurationCurveService
     ) { }
-    
+
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
+    // interface for export data service
+
+    displayButtonExportStats(value: boolean) {
+      this.exportDataService.displayButtonExportStats(value);
+    }
+    setDataStats(data: any) {
+      this.exportDataService.setDataStats(data);
+    }
+    setTabsSelectedName(data: string) {
+      this.exportDataService.setTabsSelectedName(data);
+    }
+    displayButtonExport(val: boolean) {
+      this.exportDataService.displayButtonExport(val);
+    }
+    setSummaryData(val: any) {
+        this.exportDataService.setDataSummary(val);
+    }
+
     enableStateOpenWithFunction(functionString: string) {
         this.navigationBarService.enableOpenStateWithFunction(functionString)
     }
@@ -48,7 +70,6 @@ export class InteractionService {
     enableAllButtonsWithFunction(functionString: string) {
         this.navigationBarService.enableButtons(functionString);
     }
-    onPopupValidation() {}
     // RIGHT PANEL
     openRightPanel() {
         this.sidePanelService.openRightPanel();
@@ -77,7 +98,6 @@ export class InteractionService {
     disableLeftPanel() {
         this.sidePanelService.closeLeftPanel();
     }
-
     getNavButtons() {
         return this.navigationBarService.getButtons();
     }
@@ -85,14 +105,26 @@ export class InteractionService {
     getSummaryResultWithIds(payload): Promise<any> {
       return this.summaryResultService.getSummaryResultWithIds(payload);
     }
+    getSummaryResultWithMultiAreas(payload: any): Promise<any> {
+      return this.summaryResultService.getSummaryResultWithMultiAreas(payload);
+    }
     getSummaryResultWithPayload(payload): Promise<any> {
         return this.summaryResultService.getSummaryResultWithPayload(payload);
     }
-    getLoadProfileAggregateResultWithPayload(payload, type_api_ref): Promise<any> {
-        return this.heatLoadAggregateService.getHeatLoadAggregateMonthWithPayload(payload, type_api_ref);
+    /*getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
+    }*/
+    getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
+        return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
-    lauchHeatloadCalculation(value) {
-        this.sidePanelService.setLauchHeatloadCalculation(value)
+    formatHeatLoadForChartjs(data, api_ref){
+        return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
+    }
+    getDurationCurveWithPayload(payload, isHectare): Promise<any>{
+        return this.durationCurveService.getDurationCurveWithPayload(payload, isHectare);
+    }
+    transformDurationCurveData(data){
+        return this.durationCurveService.transformData(data);
     }
 
 }
