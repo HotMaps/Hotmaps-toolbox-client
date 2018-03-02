@@ -40,7 +40,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private default_year = 2010;
   private loadingData = false;
 
-
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
   ngOnInit() {
@@ -163,7 +162,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
-        this.loadProfileData = [];
+        this.loadProfileData = [];  
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];

@@ -128,7 +128,7 @@ export const tab1 = 'summary'
 export const tab2 = 'stats'
 
 // Duration curve graph data
-export const duration_curve_graph_options = {
+export const duration_curve_graph_options = {      
       legend: {
           display: false
       },
@@ -147,10 +147,13 @@ export const duration_curve_graph_options = {
               }
             }],
             xAxes: [{
-              display:false,
+              ticks: {display: false},
               scaleLabel: {
                 display: true,
                 labelString: 'Yearly duration'
+              },
+              gridLines:{
+                color: "#FFFFFF"
               }
             }]
       }
