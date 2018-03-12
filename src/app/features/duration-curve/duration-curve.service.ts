@@ -8,7 +8,7 @@ import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import { Helper } from '../../shared';
-import {apiUrl, postDurationCurve, postDurationCurveHectare} from '../../shared/data.service';
+import {apiUrl, postDurationCurveNutsLau, postDurationCurveHectares} from '../../shared/data.service';
 
 
 @Injectable()
@@ -27,10 +27,10 @@ export class DurationCurveService extends APIService {
 	getDurationCurveWithPayload(payload: any, isHectare): Promise<any>{
 		if (isHectare == false){
 			this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-			return super.POST(payload, apiUrl + postDurationCurve);
+			return super.POST(payload, apiUrl + postDurationCurveNutsLau);
 		}else{
 			this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-			return super.POST(payload, apiUrl + postDurationCurveHectare);
+			return super.POST(payload, apiUrl + postDurationCurveHectares);
 		}		
 	}
 

@@ -8,10 +8,7 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import {
-  postStatsLayersArea, apiUrl, postStatsLayersNutsIds,
-  postStatsLayersHectareMulti
-} from './../../shared/data.service';
+import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares } from './../../shared/data.service';
 
 
 
@@ -22,19 +19,14 @@ export class SummaryResultService extends APIService {
     super(http, logger, loaderService, toasterService);
   }
 
-  getSummaryResultWithPayload(payload: any): Promise<any> {
-    this.logger.log('SummaryResultService/getSummaryResultWithPayload = ' + JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postStatsLayersArea);
-  }
-
   getSummaryResultWithIds(payload: any): Promise<any> {
     this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postStatsLayersNutsIds);
+    return super.POST(payload, apiUrl + postStatsLayersNutsLau);
   }
 
   getSummaryResultWithMultiAreas(payload: any): Promise<any> {
     this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-    return super.POST(payload, apiUrl + postStatsLayersHectareMulti);
+    return super.POST(payload, apiUrl + postStatsLayersHectares);
   }
 
 

@@ -14,9 +14,7 @@ declare const L: any;
 import { PayloadStat, PlayloadStatNuts } from '../../summary-result/class/payload.class';
 import {
   apiUrl,
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3, postHectareCentroid,
-  postNumberHectareCentroid,
-  postStatsLayersArea,
+  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3,
   wwtpLayerName
 } from '../../../shared/data.service';
 import { GeojsonClass } from '../../layers/class/geojson.class';

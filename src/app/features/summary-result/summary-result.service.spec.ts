@@ -12,7 +12,7 @@ import { SummaryResultService } from './summary-result.service';
 import {
   payloadStatData, summaryResultDataHeatPopulation,
   summaryResultDataPopu, summaryResultDataHeatPopulationWWTP } from './mock/summary-result.data';
-import { postStatsLayersArea, apiUrl } from './../../shared/data.service';
+import { apiUrl } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { PayloadStat } from './class/payload.class';
 import { Payload } from './../population/payload.class';
@@ -70,8 +70,8 @@ describe('SummaryResultService', () => {
       connection.mockRespond(new Response(options));
     });
     const payload: PayloadStat = payloadStatData;
-    payload.layers.push('population');
-    subject.getSummaryResultWithPayload(payload).then((response) => {
+    payload.layers.push('population_density_ha');
+    subject.getSummaryResultWithMultiAreas(payload).then((response) => {
       expect(response).toEqual(summaryResultDataPopu);
       done();
     });
@@ -86,9 +86,9 @@ describe('SummaryResultService', () => {
     });
     const payload: PayloadStat = payloadStatData;
     payload.layers.push('heat_density_ha');
-    payload.layers.push('population');
+    payload.layers.push('population_density_ha');
 
-    subject.getSummaryResultWithPayload(payload).then((response) => {
+    subject.getSummaryResultWithMultiAreas(payload).then((response) => {
       expect(response).toEqual(summaryResultDataHeatPopulation);
       done();
     });
@@ -103,10 +103,10 @@ describe('SummaryResultService', () => {
     });
     const payload: PayloadStat = payloadStatData;
     payload.layers.push('heat_density_ha');
-    payload.layers.push('population');
+    payload.layers.push('population_density_ha');
     payload.layers.push('wwtp');
 
-    subject.getSummaryResultWithPayload(payload).then((response) => {
+    subject.getSummaryResultWithMultiAreas(payload).then((response) => {
       expect(response).toEqual(summaryResultDataHeatPopulationWWTP);
       done();
     });

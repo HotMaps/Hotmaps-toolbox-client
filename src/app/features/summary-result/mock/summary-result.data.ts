@@ -2,217 +2,151 @@ export const summaryResultDataPopu: any =
 {
   "layers": [
     {
-      "name": "population",
       "values": [
         {
+          "unit": "person",
           "name": "population",
-          "value": "810763",
-          "unit": "person"
+          "value": "21287.0933805"
         },
         {
+          "unit": "person/ha",
           "name": "population_density",
-          "value": "810763.000000000000",
-          "unit": "person"
+          "value": "11.2689747911"
         },
         {
-          "name": "count",
-          "value": "1",
-          "unit": "nuts"
+          "unit": "cell",
+          "name": "count_cell_pop",
+          "value": "1889"
         }
-      ]
+      ],
+      "name": "population_density_ha"
     }
-  ],
-  "feature_collection": {
-    "type": null,
-    "crs": {
-      "type": null,
-      "properties": {
-        "name": null
-      }
-    },
-    "features": null,
-    "properties": null
-  }
+  ]
 };
 
 export const summaryResultDataHeatPopulation: any  =
 {
   "layers": [
     {
-      "name": "population",
       "values": [
         {
+          "unit": "person",
           "name": "population",
-          "value": "810763",
-          "unit": "person"
+          "value": "21287.0933805"
         },
         {
+          "unit": "person/ha",
           "name": "population_density",
-          "value": "810763.000000000000",
-          "unit": "person"
+          "value": "11.2689747911"
         },
         {
-          "name": "count",
-          "value": "1",
-          "unit": "nuts"
+          "unit": "cell",
+          "name": "count_cell_pop",
+          "value": "1889"
         }
-      ]
+      ],
+      "name": "population_density_ha"
     },
     {
-      "name": "heat_density_ha",
       "values": [
         {
+          "unit": "MWh",
           "name": "heat_consumption",
-          "value": "0",
-          "unit": "MWh"
+          "value": "167727.488041"
         },
         {
+          "unit": "MWh/ha",
           "name": "heat_density",
-          "value": "0",
-          "unit": "MWh/ha"
+          "value": "71.2521189639"
         },
         {
-          "name": "count",
-          "value": "0",
-          "unit": "cell"
+          "unit": "cell",
+          "name": "count_cell_heat",
+          "value": "2354"
+        },
+        {
+          "unit": "MWh/person",
+          "name": "consumption_per_citizen",
+          "value": "7.87930437674"
         }
-      ]
-    },
-    {
-      "name": "population",
-      "values": [
-        {
-          "name": "population",
-          "value": "810763",
-          "unit": "person"
-        },
-        {
-          "name": "population_density",
-          "value": "810763.000000000000",
-          "unit": "person"
-        },
-        {
-          "name": "count",
-          "value": "1",
-          "unit": "nuts"
-        }
-      ]
+      ],
+      "name": "heat_density_ha"
     }
-  ],
-  "feature_collection": {
-    "type": null,
-    "crs": {
-      "type": null,
-      "properties": {
-        "name": null
-      }
-    },
-    "features": null,
-    "properties": null
-  }
+  ]
 };
 
 export const summaryResultDataHeatPopulationWWTP: any =
 {
   "layers": [
     {
-      "name": "population",
       "values": [
         {
+          "unit": "person",
           "name": "population",
-          "value": "810763",
-          "unit": "person"
+          "value": "21287.0933805"
         },
         {
+          "unit": "person/ha",
           "name": "population_density",
-          "value": "810763.000000000000",
-          "unit": "person"
+          "value": "11.2689747911"
         },
         {
-          "name": "count",
-          "value": "1",
-          "unit": "nuts"
+          "unit": "cell",
+          "name": "count_cell_pop",
+          "value": "1889"
         }
-      ]
+      ],
+      "name": "population_density_ha"
     },
     {
-      "name": "heat_density_ha",
       "values": [
         {
+          "unit": "MWh",
           "name": "heat_consumption",
-          "value": "0",
-          "unit": "MWh"
+          "value": "167727.488041"
         },
         {
+          "unit": "MWh/ha",
           "name": "heat_density",
-          "value": "0",
-          "unit": "MWh/ha"
+          "value": "71.2521189639"
         },
         {
-          "name": "count",
-          "value": "0",
-          "unit": "cell"
+          "unit": "cell",
+          "name": "count_cell_heat",
+          "value": "2354"
+        },
+        {
+          "unit": "MWh/person",
+          "name": "consumption_per_citizen",
+          "value": "7.87930437674"
         }
-      ]
+      ],
+      "name": "heat_density_ha"
     },
     {
-      "name": "population",
       "values": [
         {
-          "name": "population",
-          "value": "810763",
-          "unit": "person"
-        },
-        {
-          "name": "population_density",
-          "value": "810763.000000000000",
-          "unit": "person"
-        },
-        {
-          "name": "count",
-          "value": "1",
-          "unit": "nuts"
-        }
-      ]
-    },
-    {
-      "name": "wwtp",
-      "values": [
-        {
+          "unit": "kW",
           "name": "power",
-          "value": "160437.215555279998647",
-          "unit": "kW"
+          "value": "1117.015555500000033"
         },
         {
+          "unit": "Person equivalent",
           "name": "capacity",
-          "value": "2489543",
-          "unit": "Person equivalent"
+          "value": "17333"
         }
-      ]
+      ],
+      "name": "wwtp_ha"
     }
-  ],
-  "feature_collection": {
-    "type": null,
-    "crs": {
-      "type": null,
-      "properties": {
-        "name": null
-      }
-    },
-    "features": null,
-    "properties": null
-  }
+  ]
 };
 
 export const payloadStatData: any  =
   {
-    "layers": [],
-    "year": 2015,
-    "points":
-      [
-        { "lat": 46.76996843356982, "lng": -1.6257268708432095 },
-        { "lat": 47.92403925788748, "lng": -1.6257268708432095 },
-        { "lat": 47.92403925788748, "lng": 1.0107421875000002 },
-        { "lat": 46.76996843356982, "lng": 1.0107421875000002 }
-      ]
-  };
+  "layers": [],
+  "year": 2012,
+  "areas": [{"points":[{"lat":47.09639290056144,"lng":0.9063720703125001},{"lat":47.21779007270318,"lng":0.9063720703125001},{"lat":47.21779007270318,"lng":1.1755371093750002},{"lat":47.09639290056144,"lng":1.1755371093750002}]},
+{"points":[{"lat":46.122057453303086,"lng":0.35602569580078125},{"lat":46.16368565509938,"lng":0.35602569580078125},{"lat":46.16368565509938,"lng":0.44254302978515625},{"lat":46.122057453303086,"lng":0.44254302978515625}]},
+{"points":[{"lat":46.336758214886466,"lng":0.4047775268554688},{"lat":46.37561836095007,"lng":0.4047775268554688},{"lat":46.37561836095007,"lng":0.4892349243164063},{"lat":46.336758214886466,"lng":0.4892349243164063}]}
+]
+};
