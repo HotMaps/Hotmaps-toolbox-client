@@ -63,5 +63,5 @@
       [areas]="areas"
       ></htm-summary-result>
   </ng-template>
-  <htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data>
+  <htm-export-data *ngIf="expanded" [heatloadStatus]="heatloadStatus"></htm-export-data>
 </div>
