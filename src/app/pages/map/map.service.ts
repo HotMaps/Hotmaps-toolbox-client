@@ -186,6 +186,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
         }
 
+
     }
     getZoomLevel(): BehaviorSubject<number> {
         return this.zoomlevel;

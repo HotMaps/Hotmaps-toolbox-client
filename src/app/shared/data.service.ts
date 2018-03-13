@@ -128,7 +128,7 @@ export const tab1 = 'summary'
 export const tab2 = 'stats'
 
 // Duration curve graph data
-export const duration_curve_graph_options = {
+export const duration_curve_graph_options = {      
       legend: {
           display: false
       },

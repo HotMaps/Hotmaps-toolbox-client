@@ -30,6 +30,7 @@
           [locationsSelection]="locationsSelection"
           [areas]="areas"
           ></htm-summary-result>
+          <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
       </li>
       <li>
         <htm-heat-load-chart
@@ -47,6 +48,7 @@
           [scaleLevel]="scaleLevel"
           [areas]="areas"
           [heatloadStatus]="heatloadStatus"></htm-duration-curve>
+          <div class="export-tab2"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
       </li>
   </ul>
   </ng-template>
@@ -62,6 +64,8 @@
       [locationsSelection]="locationsSelection"
       [areas]="areas"
       ></htm-summary-result>
+      <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
   </ng-template>
-  <htm-export-data *ngIf="expanded" [heatloadStatus]="heatloadStatus"></htm-export-data>
+
+
 </div>

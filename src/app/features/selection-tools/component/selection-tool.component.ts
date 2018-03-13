@@ -32,7 +32,6 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeMapService();
     this.scaleSelected = this.mapService.getScaleValue();
-
   }
   ngOnDestroy() {
     this.logger.log('SelectionToolComponent/ngOnDestroy');
