@@ -579,9 +579,40 @@ var DataInteractionClass = (function () {
 
 var DataInteractionArray = [
     // {id: 11, name: 'Heat map', category: 'Comsumption'},
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* idDefaultLayer */], name: 'Heat Map', category: 'Comsumption', isSelected: true, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* defaultLayer */], zoomLevel: 0 },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */], category: 'Ressources', isSelected: false, workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_4" /* zoomLevelDetectChange */] },
-    { id: 14, name: 'Population', category: 'Comsumption', isSelected: false, workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* populationLayerName */], zoomLevel: 0 },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
+        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* defaultLayer */], zoomLevel: 0 },
+    { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0 },
+    { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0 },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */], category: 'Res Potential', isSelected: false,
+        workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_4" /* zoomLevelDetectChange */] },
+    { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_tot_curr_density', zoomLevel: 0 },
+    { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_res_curr_density', zoomLevel: 0 },
+    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0 },
+    { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_res_curr_density', zoomLevel: 0 },
+    { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_tot_curr_density', zoomLevel: 0 },
+    { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_nonres_curr_density', zoomLevel: 0 },
+    { id: 20, name: 'Industrial Sites', category: 'Industrial', isSelected: false,
+        workspaceName: 'industrial_sites_Industrial_Database', zoomLevel: 0 },
+    { id: 14, name: 'Population total', category: 'Population', isSelected: false,
+        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* populationLayerName */], zoomLevel: 0 },
+    { id: 18, name: 'Biomass Potential', category: 'Res Potential', isSelected: false,
+        workspaceName: 'potential_biomass', zoomLevel: 0 },
+    { id: 19, name: 'Municipal solid waste', category: 'Res Potential', isSelected: false,
+        workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0 },
+    { id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
+        workspaceName: 'potential_wind', zoomLevel: 0 },
+    { id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
+        workspaceName: 'potential_solar', zoomLevel: 0 },
+    { id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0 },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -7296,7 +7327,7 @@ var MAPLAYERADD = 'layeradd';
 var MAPDIDIUPDATELAYER = 'didUpdateLayers';
 var MAPOVERLAYADD = 'overlayadd';
 var rightPanelSize = 600;
-var leftPanelSize = 350;
+var leftPanelSize = 400;
 // tab values
 var tab1 = 'summary';
 var tab2 = 'stats';
