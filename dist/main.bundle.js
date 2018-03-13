@@ -7195,11 +7195,11 @@ var MONTHNAME = [
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-var prodUrl = 'http://hotmaps.hevs.ch:9005/api';
-var devUrl = 'http://hotmaps.hevs.ch:9006/api';
+var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
+var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
-var geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverDevUrl;

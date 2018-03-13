@@ -9,11 +9,11 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
-const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
 export const geoserverUrl = geoserverDevUrl;
@@ -128,7 +128,7 @@ export const tab1 = 'summary'
 export const tab2 = 'stats'
 
 // Duration curve graph data
-export const duration_curve_graph_options = {      
+export const duration_curve_graph_options = {
       legend: {
           display: false
       },
