@@ -147,10 +147,13 @@ export const duration_curve_graph_options = {
               }
             }],
             xAxes: [{
-              display:false,
+              ticks: {display: false},
               scaleLabel: {
                 display: true,
                 labelString: 'Yearly duration'
+              },
+              gridLines:{
+                color: "#FFFFFF"
               }
             }]
       }
