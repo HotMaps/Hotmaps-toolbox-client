@@ -10,8 +10,7 @@ import { LoaderService } from '../../../shared/services/loader.service';
 import { Logger } from '../../../shared/services/logger.service';
 
 import { LayersService } from './layers.service';
-import {
-  postStatsLayersArea, apiUrl, defaultLayer, populationLayerName,
+import { apiUrl, defaultLayer, populationLayerName,
   wwtpLayerName
 } from '../../../shared/data.service';
 

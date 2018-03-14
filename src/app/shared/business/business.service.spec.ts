@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DecimalPipe } from '@angular/common';
@@ -40,7 +40,7 @@ describe('BusinessService', () => {
 
     it('should return the business name from the api_name', () => {
         const api_name = 'heat_density';
-        const business_name = 'Average heat density';
+        const business_name = 'Average Heat density';
         expect(service.getReadableName(api_name)).toBe(business_name);
     })
 });

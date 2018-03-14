@@ -35,20 +35,13 @@ export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
 export const populationLayerName = 'pop_tot_curr_density'
-export const postPopulationDensityInArea    = '/population/density/area';
-export const postHectareCentroid    = '/raster/layers/area/centroids';
-export const postNumberHectareCentroid    = '/raster/layers/hectare/count';
-export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
-export const getGrid    = '/grids/1km/area/';
-export const postStatsLayersArea = '/stats/layers/area/';
-export const postHeatLoadAggregate = '/load-profile/aggregate/';
-export const postHeatLoadAggregateNormalized = '/load-profile/aggregate';
-export const postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
-export const postDurationCurve = '/load-profile/aggregate/duration_curve';
-export const postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
-export const postStatsLayersNutsIds = '/stats/layers/nuts/';
-export const postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
-export const postStatsLayersPoint = '/stats/layers/point/';
+export const postStatsLayersHectares = '/stats/layers/hectares';
+export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
+export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
+export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
+export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
+export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
+
 export const set404url   = 'set404url';
 
 // Projection data string
