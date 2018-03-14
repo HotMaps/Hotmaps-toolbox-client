@@ -2,7 +2,7 @@
  * Created by Dany on 20.12.17.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
 import { hectare, Helper } from 'app/shared';
@@ -14,7 +14,26 @@ import {Logger} from '../../../shared/services/logger.service';
 @Component({
   selector: 'htm-selection-tool',
   templateUrl: './selection-tool.component.html',
-  styleUrls: ['./selection-tool.component.css']
+  styleUrls: ['./selection-tool.component.css'],
+  animations: [
+        trigger('containerTrigger', [
+            transition(":enter", [
+              style({ opacity: 0 }),
+              animate(250, style({ opacity: 1 }))
+            ]),
+            transition(":leave", [
+              animate(250, style({ opacity: 0 }))
+            ])
+        ]),
+        trigger('elementsTrigger', [
+            state('in', style({ opacity: '1' })),
+            transition('void => *', [style({ opacity: '0' }),
+            animate('100ms 200ms')
+            ]),
+            transition('* => void', [
+                animate('50ms', style({ opacity: '0' }))
+            ])
+        ])]
 })
 export class SelectionToolComponent implements OnInit, OnDestroy {
   nbElementsSelected = 0;
@@ -27,6 +46,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private stButtons = stButtons;
   private layerSelected;
   private elementSelected = defaultElementSelected;
+
   constructor(private mapService: MapService, private logger: Logger, private helper: Helper) {}
 
   ngOnInit() {
@@ -104,6 +124,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       })
     }
   }
+
   cursorClick() {
     const map = this.mapService.getMap();
     this.mapService.clickSelection(map);
