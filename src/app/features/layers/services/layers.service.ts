@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { wwtp_data } from './../mock/wwtp.data';
@@ -31,13 +31,13 @@ const proj4 = (proj4x as any).default;
 @Injectable()
 export class LayersService extends APIService {
 
-  // Improvement of coding style : 
+  // Improvement of coding style :
   // place private members after public members, alphabetized
   private layers = new L.FeatureGroup();
   private zoom_layerGroup: L.LayerGroup;
   private current_nuts_level = '0';
   private heatmapOption = {
-    layers: 'hotmaps:' + defaultLayer + '_ha' +  '_' + constant_year,
+    layers: 'hotmaps:' + defaultLayer,
     format: formatImage, transparent: true, version: '1.3.0',
     zIndex: idDefaultLayer
   };
@@ -50,7 +50,7 @@ export class LayersService extends APIService {
   ]);
   private popup = L.popup();
 
-  // Improvement of coding style : 
+  // Improvement of coding style :
   // put constructor in top of all methods
   public getLayers(): any {
     return this.layers;
@@ -111,29 +111,15 @@ export class LayersService extends APIService {
 
   addLayerWithAction(action: string, map: any, order: number) {
     let layer;
-    if (action === wwtpLayerName) {
       const option = {
         layers: 'hotmaps:' + action ,
         format: formatImage,
         transparent: true,
         version: '1.3.0',
-        // cql_filter : 'stat_levl_ = ' + nuts_level + '',
         srs: 'EPSG:4326',
         zIndex: order
       }
-      layer = this.getTilayer(option, this.loaderService);
-    }else {
-      // layer in Ha with date
-      const option = {
-        layers: 'hotmaps:' + action + '_ha' + '_' + constant_year ,
-        format: formatImage,
-        transparent: true,
-        version: '1.3.0',
-        srs: 'EPSG:4326',
-        zIndex: order
-      }
-     layer = this.getTilayer(option, this.loaderService);
-    };
+    layer = this.getTilayer(option, this.loaderService);
     this.layers.addLayer(layer);
     this.layersArray.add(action, layer);
   }

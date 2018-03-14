@@ -19,8 +19,8 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
-export const defaultLayer = 'heat_density';
+export const apiUrl = localApiUrl;
+export const defaultLayer = 'heat_tot_curr_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
 
@@ -34,7 +34,7 @@ export const formatImage = 'image/png8';
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
-export const populationLayerName = 'population_density'
+export const populationLayerName = 'pop_tot_curr_density'
 export const postPopulationDensityInArea    = '/population/density/area';
 export const postHectareCentroid    = '/raster/layers/area/centroids';
 export const postNumberHectareCentroid    = '/raster/layers/hectare/count';
