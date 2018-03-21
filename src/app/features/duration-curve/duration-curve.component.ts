@@ -26,7 +26,6 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   private options: any;
   private subtitle = 'Duration curve';
   private loadingData = false;
-  private showDurationCurve = false;
 
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) { 
@@ -72,7 +71,6 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
     }    
 
     this.loadingData = true;
-    this.showDurationCurve = false;
 
     this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {
         this.datasets = this.interactionService.transformDurationCurveData(result);
@@ -80,7 +78,6 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
         this.options = duration_curve_graph_options;
       }).then(() => {
         this.loadingData = false;
-        this.showDurationCurve = true;
       });
   }
 }

@@ -2,13 +2,13 @@ import {BusinessInterfaceRenderClass } from './business.class'
 import {hectare, nuts0, nuts1, nuts2, nuts3} from '../data.service';
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
-  {id: 17, api_name: 'heat_density', business_name: 'Average heat density'},
-  {id: 172, api_name: 'heat_density_lau2', business_name: 'Heat map / aggregrated from Hectares to LAU2'},
-  {id: 172, api_name: 'heat_density_nuts3', business_name: 'Heat map / aggregrated from Hectares to NUTS3'},
-  {id: 174, api_name: 'heat_density_nuts2', business_name: 'Heat map  / aggregrated from Hectares to NUTS2'},
-  {id: 175, api_name: 'heat_density_nuts1', business_name: 'Heat map / aggregrated from Hectares to NUTS1'},
-  {id: 176, api_name: 'heat_density_nuts0', business_name: 'Heat map  / aggregrated from Hectares to NUTS0'},
-  {id: 177, api_name: 'heat_density_ha', business_name: 'Heat map'},
+  {id: 17, api_name: 'heat_density', business_name: 'Average Heat density'},
+  {id: 172, api_name: 'heat_tot_curr_density_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2'},
+  {id: 172, api_name: 'heat_tot_curr_density_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3'},
+  {id: 174, api_name: 'heat_tot_curr_density_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2'},
+  {id: 175, api_name: 'heat_tot_curr_density_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1'},
+  {id: 176, api_name: 'heat_tot_curr_density_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0'},
+  {id: 177, api_name: 'heat_tot_curr_density_ha', business_name: 'Heat density total'},
 
   {id: 172, api_name: 'wwtp_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2'},
   {id: 172, api_name: 'wwtp_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3'},

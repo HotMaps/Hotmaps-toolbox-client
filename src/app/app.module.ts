@@ -1,7 +1,6 @@
 
 
 import 'leaflet';
-import 'leaflet.vectorgrid';
 import 'reflect-metadata';
 import 'jquery';
 

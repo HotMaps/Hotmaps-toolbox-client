@@ -7,7 +7,7 @@ import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 
 
-import { postStatsLayersArea, apiUrl, postHeatLoadAggregate } from './../../shared/data.service';
+import { apiUrl } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { Payload } from './../population/payload.class';
 import { APIService } from './../../shared/services/api.service';

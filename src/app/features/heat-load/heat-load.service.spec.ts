@@ -7,7 +7,7 @@ import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 
 
-import { postStatsLayersArea, apiUrl, postHeatLoadAggregate, postHeatLoadAggregateNormalized } from './../../shared/data.service';
+import { apiUrl, postHeatLoadProfileNutsLau } from './../../shared/data.service';
 import { Location } from '../../shared/class/location/location';
 import { Payload } from './../population/payload.class';
 import { APIService } from './../../shared/services/api.service';
@@ -44,7 +44,7 @@ describe('HeatLoadAggregateService', () => {
     }));
     let subject: HeatLoadAggregateService = null;
     let backend: MockBackend = null;
-    const url = apiUrl + postHeatLoadAggregateNormalized
+    const url = apiUrl + postHeatLoadProfileNutsLau
     beforeEach(inject([HeatLoadAggregateService, MockBackend], (userService: HeatLoadAggregateService, mockBackend: MockBackend) => {
         subject = userService;
         backend = mockBackend;

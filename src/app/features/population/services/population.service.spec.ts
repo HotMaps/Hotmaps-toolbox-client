@@ -13,7 +13,6 @@ import {MockPopulation } from './mock/population.data.mock';
 import {Payload} from '../payload.class'
 import {PopulationService } from './population.service';
 import {Population } from '../population.class';
-import {postPopulationDensityInArea } from '../../../shared/data.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
 describe('PopulationService', () => {
 
@@ -57,32 +56,6 @@ describe('PopulationService', () => {
 
     expect(service).toBeTruthy();
   }));
-  it('#getPopulationWithPayloads should call endpoint and return it\'s result', (done) => {
-    backend.connections.subscribe((connection: MockConnection) => {
-      const options = new ResponseOptions({
-        body: JSON.stringify(MockPopulation)
-      });
-      connection.mockRespond(new Response(options));
-    });
-    const locations: Location[] =   [
-      { lat: 46.90524554642923, lng: 5.701904296875 },
-      { lat: 46.98025235521883, lng: 11.436767578125002 },
-      { lat: 45.359865333959746, lng: 11.195068359375002 },
-      { lat: 44.68427737181225, lng: 5.833740234375001 },
-      { lat:  44.68427737181225, lng: 5.822753906250001 },
-    ];
-    const payload: Payload = {
-      nuts_level: 3,
-      year: 2015,
-      points: locations,
-    }
-    subject.getPopulationWithPayloads(payload).then((response) => {
-
-
-        expect(response).toEqual(MockPopulation );
-        done();
-      });
-  });
 
 
 });

@@ -9,18 +9,18 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://hotmaps.hevs.ch:9005/api';
-const devUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
-export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9090/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserverDevUrl;
+export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
-export const defaultLayer = 'heat_density';
+export const apiUrl = prodUrl;
+export const defaultLayer = 'heat_tot_curr_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
 
@@ -34,21 +34,14 @@ export const formatImage = 'image/png8';
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
-export const populationLayerName = 'population_density'
-export const postPopulationDensityInArea    = '/population/density/area';
-export const postHectareCentroid    = '/raster/layers/area/centroids';
-export const postNumberHectareCentroid    = '/raster/layers/hectare/count';
-export const postForOneHectareCentroid    = '/raster/layers/hectare/centroid';
-export const getGrid    = '/grids/1km/area/';
-export const postStatsLayersArea = '/stats/layers/area/';
-export const postHeatLoadAggregate = '/load-profile/aggregate/';
-export const postHeatLoadAggregateNormalized = '/load-profile/aggregate';
-export const postHeatLoadAggregateHectares = '/load-profile/aggregate/hectares';
-export const postDurationCurve = '/load-profile/aggregate/duration_curve';
-export const postDurationCurveHectare = '/load-profile/aggregate/duration_curve/hectares';
-export const postStatsLayersNutsIds = '/stats/layers/nuts/';
-export const postStatsLayersHectareMulti = '/stats/layers/hectares/multi';
-export const postStatsLayersPoint = '/stats/layers/point/';
+export const populationLayerName = 'pop_tot_curr_density'
+export const postStatsLayersHectares = '/stats/layers/hectares';
+export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
+export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
+export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
+export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
+export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
+
 export const set404url   = 'set404url';
 
 // Projection data string
@@ -119,7 +112,7 @@ export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
 export const MAPOVERLAYADD = 'overlayadd';
 
 export const rightPanelSize = 600;
-export const leftPanelSize = 350;
+export const leftPanelSize = 400;
 
 // tab values
 
@@ -147,10 +140,13 @@ export const duration_curve_graph_options = {
               }
             }],
             xAxes: [{
-              display:false,
+              ticks: {display: false},
               scaleLabel: {
                 display: true,
                 labelString: 'Yearly duration'
+              },
+              gridLines:{
+                color: "#FFFFFF"
               }
             }]
       }

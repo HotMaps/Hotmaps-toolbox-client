@@ -8,7 +8,7 @@ import 'rxjs/add/operator/mergeMap';
 
 
 import {
-  apiUrl, business_name_population, postPopulationDensityInArea, unit_population,
+  apiUrl, business_name_population, unit_population,
   unit_shape_area
 } from '../../../shared/data.service'
 
@@ -36,9 +36,9 @@ export class PopulationService extends APIService {
   /**
   * Get the population with payloads
   */
-  getPopulationWithPayloads(payload: Payload): Promise<Population> {
+  /*getPopulationWithPayloads(payload: Payload): Promise<Population> {
     return super.POST(payload, apiUrl + postPopulationDensityInArea);
-  }
+  }*/
 
   /**
   * Show the population selected layer

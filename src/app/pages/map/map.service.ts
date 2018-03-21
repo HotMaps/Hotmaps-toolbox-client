@@ -9,8 +9,7 @@ import {
   lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART,
   MAPDRAWDELETED,
   MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
-  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD, apiUrl, postPopulationDensityInArea,
-  postStatsLayersArea, postForOneHectareCentroid
+  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD, apiUrl,
 } from './../../shared/data.service';
 import { basemap } from './basemap';
 
@@ -186,6 +185,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             self.getNutsGeometryFromNuts(e.latlng, self.selectionScaleService.getScaleValue());
         }
 
+
     }
     getZoomLevel(): BehaviorSubject<number> {
         return this.zoomlevel;
@@ -221,10 +221,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
     }
-    postHectareCentroid(payload: any): Promise<any> {
-
+    
+    /*postHectareCentroid(payload: any): Promise<any> {
       return this.POST(payload, apiUrl + postForOneHectareCentroid);
-    }
+    }*/
 
     getAreaFromScale(url): any {
         return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
