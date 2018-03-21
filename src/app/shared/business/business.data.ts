@@ -19,11 +19,11 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
 
 
-  {id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3'},
-  {id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2'},
-  {id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1'},
-  {id: 157, api_name: 'population_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\''},
-  {id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2'},
+  {id: 178, api_name: 'pop_tot_curr_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3'},
+  {id: 179, api_name: 'pop_tot_curr_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2'},
+  {id: 147, api_name: 'pop_tot_curr_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1'},
+  {id: 157, api_name: 'pop_tot_curr_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\''},
+  {id: 157, api_name: 'pop_tot_curr_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2'},
   {id: 157, api_name: 'population_density', business_name: 'Average population density'},
   {id: 167, api_name: 'population_density_ha', business_name: 'population density'},
   {id: 168, api_name: 'count_cell_pop', business_name: 'Counting cells with values'},
