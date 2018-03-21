@@ -13,7 +13,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_nonres_curr_density', zoomLevel: 0},
 
-  {id: 12, name: business_name_wwtp, category: 'Res Potential', isSelected: false,
+  {id: 12, name: business_name_wwtp, category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'wwtp', zoomLevel: zoomLevelDetectChange},
 
 
@@ -49,7 +49,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'potential_wind', zoomLevel: 0},
   {id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_solar', zoomLevel: 0},*/
-  {id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
+  {id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'potential_shallowgeothermal', zoomLevel: 0},
 
 ];
