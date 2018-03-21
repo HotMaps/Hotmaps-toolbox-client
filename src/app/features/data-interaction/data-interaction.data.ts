@@ -34,21 +34,21 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'vol_tot_curr_density', zoomLevel: 0},
   {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0},
-
+  /*
   {id: 20, name: 'Industrial Sites', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_sites_Industrial_Database', zoomLevel: 0},
-
+*/
   {id: 14, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: populationLayerName, zoomLevel: 0},
 
-  {id: 18, name: 'Biomass Potential', category: 'Res Potential', isSelected: false,
+  /*{id: 18, name: 'Biomass Potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_biomass', zoomLevel: 0},
   {id: 19, name: 'Municipal solid waste', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0},
   {id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_wind', zoomLevel: 0},
   {id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
-    workspaceName: 'potential_solar', zoomLevel: 0},
+    workspaceName: 'potential_solar', zoomLevel: 0},*/
   {id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_shallowgeothermal', zoomLevel: 0},
 

@@ -32,7 +32,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private labels;
   private options: any;
   private loadProfileData: any;
-  private subtitle = 'Heatload profil';
+  private subtitle = 'Heat load profiles';
   private datasets: DatasetChart;
   private type = 'barChart';
   private selectedButton;
@@ -162,7 +162,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
-        this.loadProfileData = [];  
+        this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
