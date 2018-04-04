@@ -36,7 +36,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0},
 
   {id: 20, name: 'Industrial Sites', category: 'Industrial', isSelected: false,
-    workspaceName: 'industrial_sites_Industrial_Database', zoomLevel: 0},
+    workspaceName: 'industrial_database', zoomLevel: 0},
 
   {id: 14, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: populationLayerName, zoomLevel: 0},

@@ -3,6 +3,8 @@ import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
+declare const L: any;
+
 
 import { basemap } from '../basemap'
 import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
@@ -12,6 +14,8 @@ import { SearchBarComponent } from '../../searchbar';
 import { SelectionToolButtonStateService, SelectionToolService } from 'app/features/selection-tools';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
+
+import {geoserverUrl} from '../../../shared/data.service';
 
 @Component({
   selector: 'htm-map',
@@ -164,6 +168,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     L.control.scale().addTo(this.map);
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
+
     return this.map;
   }
   /*showControls() {
