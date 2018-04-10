@@ -82,6 +82,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   updateWithIds() {
     this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
     this.loadingData = true;
+    this.interactionService.setSummaryResultState(this.loadingData);
     this.interactionService.displayButtonExport(!this.loadingData)
 
     const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
@@ -91,16 +92,19 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
       this.interactionService.setSummaryData(result);
     }).then(() => {
       this.loadingData = false;
+      this.interactionService.setSummaryResultState(this.loadingData);
       this.interactionService.displayButtonExport(!this.loadingData)
     }).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;
+      this.interactionService.setSummaryResultState(this.loadingData);
       this.interactionService.displayButtonExport(!this.loadingData)
     });
   }
   updateWithAreas() {
     this.logger.log('SummaryResultComponent/updateWithAreas()');
     this.loadingData = true;
+    this.interactionService.setSummaryResultState(this.loadingData);
     this.interactionService.displayButtonExport(!this.loadingData);
     const areas = [];
     this.areas.map((layer: Layer) => {
@@ -115,6 +119,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     if (areas.length === 0) {
       this.logger.log('SummaryResultComponent/areas().lenght === 0')
       this.loadingData = false;
+      this.interactionService.setSummaryResultState(this.loadingData);
       this.interactionService.displayButtonExport(!this.loadingData)
       return
     };
@@ -126,9 +131,11 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
       this.interactionService.setSummaryData(result);
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => { this.loadingData = false;
+      this.interactionService.setSummaryResultState(this.loadingData);
       this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;
+      this.interactionService.setSummaryResultState(this.loadingData);
       this.interactionService.displayButtonExport(!this.loadingData)
     });
   }

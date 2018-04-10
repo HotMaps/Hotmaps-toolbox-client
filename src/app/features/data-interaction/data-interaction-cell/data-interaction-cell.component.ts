@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { LayersService } from './../../layers/services/layers.service';
@@ -15,6 +15,8 @@ import {
 
 import {MapService} from '../../../pages/map/map.service'
 import { DataInteractionClass } from '../data-interaction.class';
+import {LoaderService} from '../../../shared/services/loader.service';
+import {InteractionService} from "../../../shared/services/interaction.service";
 @Component({
     moduleId: module.id,
     selector: 'data-interaction-cell',
@@ -41,9 +43,10 @@ export class DataInteractionCellComponent implements OnInit {
     @Input() expanded: boolean;
 
 
-    constructor(private mapService: MapService) { }
+    constructor(private mapService: MapService, private interactionService: InteractionService) { }
 
     showRemoveLayer(e, action, order) {
+      if (this.interactionService.getSummaryResultState() === false) {
         this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
         if (this.dataInteraction.isSelected) {
 
@@ -55,6 +58,7 @@ export class DataInteractionCellComponent implements OnInit {
             this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel)
         }
         this.mapService.setLayersSubject()
+      }
     }
     ngOnInit() {
     }

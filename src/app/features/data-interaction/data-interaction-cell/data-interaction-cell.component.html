@@ -3,10 +3,10 @@
     <!--  <form class="uk-form">
      <label > -->
        <div>
-        
+
         <button type="button" name={{dataInteraction.workspaceName}} class="uk-button uk-button-default uk-width-1-1"
         (click)="showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)" [class.uk-button-secondary]="dataInteraction.isSelected">
-          <input class="uk-checkbox" type="checkbox" [checked]="dataInteraction.isSelected">
+          <input class="uk-checkbox" type="checkbox"  [checked]="dataInteraction.isSelected" >
           {{dataInteraction.name}}
         </button>
        </div>

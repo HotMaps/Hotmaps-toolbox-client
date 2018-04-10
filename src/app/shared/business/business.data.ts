@@ -10,6 +10,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: 'heat_tot_curr_density_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0'},
   {id: 177, api_name: 'heat_tot_curr_density_ha', business_name: 'Heat density total'},
 
+
   {id: 172, api_name: 'wwtp_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2'},
   {id: 172, api_name: 'wwtp_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3'},
   {id: 174, api_name: 'wwtp_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2'},

@@ -35,8 +35,10 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0},
 
-  {id: 20, name: 'Industrial Sites', category: 'Industrial', isSelected: false,
-    workspaceName: 'industrial_database', zoomLevel: 0},
+  {id: 20, name: 'Industrial Sites Emmissions', category: 'Industrial', isSelected: false,
+    workspaceName: 'industrial_database_emissions', zoomLevel: 0},
+  {id: 20, name: 'Industrial Sites Excess Heat', category: 'Industrial', isSelected: false,
+    workspaceName: 'industrial_database_excess_heat', zoomLevel: 0},
 
   {id: 14, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: populationLayerName, zoomLevel: 0},
