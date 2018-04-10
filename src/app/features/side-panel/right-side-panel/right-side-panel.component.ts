@@ -17,11 +17,20 @@ import {
   OnChanges
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
-import { SummaryResultClass } from './../../summary-result/summary-result.class';
+import { SummaryResultClass, Layer } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize, nuts2 } from 'app/shared';
 import {Logger} from "../../../shared/services/logger.service";
+import { DataInteractionService } from '../../data-interaction/data-interaction.service';
+
+import {SummaryResultService} from '../../summary-result/summary-result.service';
+import {MapService} from '../../../pages/map/map.service';
+import { Helper } from 'app/shared';
+import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
+import {hectare, round_value, constant_year} from '../../../shared/data.service';
+
+
 
 
 @Component({
@@ -100,31 +109,214 @@ import {Logger} from "../../../shared/services/logger.service";
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     // Improvement of coding style :
     // place private members after public members, alphabetized
-    private summaryResult: SummaryResultClass = null;
+    //private summaryResult: SummaryResultClass = null;
     private poiTitle;
     @Input() nutsIds;
-    @Input() layers;
+    @Input() layers;    
     @Input() scaleLevel;
     private heatloadStatus = false;
     @Input() locationsSelection;
     @Input() areas;
 
+    private layersTab1;
+    private layersTab2;
 
-    constructor(protected interactionService: InteractionService, private logger: Logger) {
+    private scale = 'Nuts 3';
+    private isDataAgregate = false;
+    private loadingData = false;
+
+    private summaryResult;
+    private sr;
+    private sr2;
+    private temp = [];
+
+    private srTest = {
+        "layers":[
+            {
+                "values":[
+                    {
+                        "unit":"MWh",
+                        "name":"heat_consumption",
+                        "value":"2904211.87"
+                    },
+                    {
+                        "unit":"MWh/ha",
+                        "name":"heat_density",
+                        "value":"58.4925151557873960"
+                    },
+                    {
+                        "unit":"cells",
+                        "name":"count_cell_heat",
+                        "value":"49651"
+                    }
+                ],
+                "name":"heat_tot_curr_density"
+            },
+            {
+                "values":[
+                    {
+                        "unit":"kW",
+                        "name":"power",
+                        "value":"16545.079999700000055"
+                    },
+                    {
+                        "unit":"Person equivalent",
+                        "name":"capacity",
+                        "value":"256734"
+                    }
+                ],
+                "name":"wwtp"
+            }
+        ],
+        "no_data_layers":[
+            "vol_nonres_curr_density",
+            "potential_biomass"
+        ]
+    }
+
+    private srTest2 = {
+        "layers":[
+            {
+                "values":[
+                    {
+                        "unit":"MWh",
+                        "name":"heat_consumption",
+                        "value":"2904211.87"
+                    },
+                    {
+                        "unit":"MWh/ha",
+                        "name":"heat_density",
+                        "value":"58.4925151557873960"
+                    },
+                    {
+                        "unit":"cells",
+                        "name":"count_cell_heat",
+                        "value":"49651"
+                    }
+                ],
+                "name":"heat_tot_curr_density"
+            },
+            {
+                "values":[
+                    {
+                        "unit":"kW",
+                        "name":"power",
+                        "value":"16545.079999700000055"
+                    },
+                    {
+                        "unit":"Person equivalent",
+                        "name":"capacity",
+                        "value":"256734"
+                    }
+                ],
+                "name":"wwtp"
+            }
+        ],
+        "no_data_layers":[
+            "potential_biomass"
+        ]
+    }
+
+    constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
+        private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
     }
-    ngOnInit() { }
+    ngOnInit() { 
+    }
     ngOnDestroy() { }
     ngOnChanges() {
+        
+        //this.layersTab1 = this.interactionService.firstTabLayers(this.layers);
+        //this.layersTab2 = this.interactionService.secondTabLayers(this.layers);
         if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
+
         } else {
             this.heatloadStatus = false;
         }
+
+        this.logger.log('SummaryResultComponent/ngOnChanges');
+        this.scale = this.mapService.getScaleValue();
+        if (this.mapService.getScaleValue() !== hectare && this.expanded == true) {
+            this.isDataAgregate = true;
+            this.updateWithIds();
+        } else if (this.mapService.getScaleValue() === hectare && this.expanded == true){
+            this.isDataAgregate = false;
+            this.updateWithAreas()
+        }
     }
     clickTab(id: string) {
-      this.logger.log('clickTab' + id);
-      this.interactionService.setTabsSelectedName(id);
+        this.logger.log('clickTab' + id);
+        this.interactionService.setTabsSelectedName(id);
+    }
+
+    getData(data: any) {
+        this.summaryResult = data;
+    }
+
+    updateWithIds() {
+        const self = this;
+
+        this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
+        this.loadingData = true;
+        this.interactionService.displayButtonExport(!this.loadingData)
+
+        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }    
+
+        const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
+                   
+          self.summaryResult = result;
+          /*self.sr2 = result;
+          let copy = JSON.parse(JSON.stringify(result))
+          copy = this.dataInteractionService.secondTabLayers(copy);
+          self.summaryResult = copy;*/
+          self.interactionService.setSummaryData(result);
+          
+        }).then(() => {        
+          self.loadingData = false;
+          self.interactionService.displayButtonExport(!self.loadingData);
+        }).catch((e) => {
+          self.logger.log(JSON.stringify(e));
+          self.loadingData = false;
+          self.interactionService.displayButtonExport(!self.loadingData)
+        });
+
+        //this.sr2 = this.dataInteractionService.secondTabLayers(this.summaryResult);
+    }
+
+    updateWithAreas() {
+        this.logger.log('SummaryResultComponent/updateWithAreas()');
+        this.loadingData = true;
+        this.interactionService.displayButtonExport(!this.loadingData);
+        const areas = [];
+        this.areas.map((layer: Layer) => {
+          const points = [];
+          if (layer instanceof L.Circle) {
+            areas.push({points: this.helper.getLocationsFromCicle(layer)})
+          } else {
+            areas.push({points: this.helper.getLocationsFromPolygon(layer)})
+          }
+        });
+        this.logger.log('SummaryResultComponent/areas()' +   JSON.stringify(areas) )
+        if (areas.length === 0) {
+          this.logger.log('SummaryResultComponent/areas().lenght === 0')
+          this.loadingData = false;
+          this.interactionService.displayButtonExport(!this.loadingData)
+          return
+        };
+       ;
+        const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
+
+        const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
+          this.summaryResult = result;
+          this.interactionService.setSummaryData(result);
+          // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
+        }).then(() => { this.loadingData = false;
+          this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
+          this.logger.log(JSON.stringify(e))
+          this.loadingData = false;
+          this.interactionService.displayButtonExport(!this.loadingData)
+        });
     }
 
 

@@ -15,6 +15,50 @@ import {BusinessInterfaceRenderService} from '../../shared/business/business.ser
 @Injectable()
 export class DataInteractionService extends APIService {
 
+  private srTest = {
+        "layers":[
+            {
+                "values":[
+                    {
+                        "unit":"MWh",
+                        "name":"heat_consumption",
+                        "value":"2904211.87"
+                    },
+                    {
+                        "unit":"MWh/ha",
+                        "name":"heat_density",
+                        "value":"58.4925151557873960"
+                    },
+                    {
+                        "unit":"cells",
+                        "name":"count_cell_heat",
+                        "value":"49651"
+                    }
+                ],
+                "name":"heat_tot_curr_density"
+            },
+            {
+                "values":[
+                    {
+                        "unit":"kW",
+                        "name":"power",
+                        "value":"16545.079999700000055"
+                    },
+                    {
+                        "unit":"Person equivalent",
+                        "name":"capacity",
+                        "value":"256734"
+                    }
+                ],
+                "name":"wwtp"
+            }
+        ],
+        "no_data_layers":[
+            "vol_nonres_curr_density",
+            "potential_biomass"
+        ]
+    }
+
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
     private helper: Helper, private business: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
@@ -63,7 +107,103 @@ export class DataInteractionService extends APIService {
     });
   }
 
+  getTabsFromLayerName(name: string): any[]{
+    const layer  =  this.getLayersTabs().filter(x => x.name === name)[0];
+    if (this.helper.isNullOrUndefined(layer)) {return []}
+    return layer.tabs;
+
+  }
+ 
 
 
+  getLayersTabs(): DataInteractionClass[] {
+      return DataInteractionArray;
+  }
+
+
+  /*firstTabLayers(layers){
+    let listLayers = this.getDataArrayServices();
+    let newLayers = [];
+    for (let i = 0; i<layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (layers[i].includes(listLayers[j].workspaceName) && listLayers[j].tabs.includes('summary')){
+          newLayers.push(layers[i])
+        }
+      }
+    }
+    return newLayers;
+  }
+
+  secondTabLayers(layers){
+    let listLayers = this.getDataArrayServices();
+    let newLayers = [];
+    for (let i = 0; i<layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (layers[i].includes(listLayers[j].workspaceName) && listLayers[j].tabs.includes('demand')){
+          newLayers.push(layers[i])
+        }
+      }
+    }
+    return newLayers;
+  }*/
+
+  firstTabLayers(results){
+    let listLayers = this.getDataArrayServices();
+
+    let newResults = results;
+
+    for (let i = 0; i<results.layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (results.layers[i].name.includes(listLayers[j].workspaceName) && listLayers[j].tabs.includes('summary')){
+          newResults.layers.splice(i, 1);
+          //console.log(newResults);
+        }
+      }
+    }
+
+    for (let i = 0; i<results.no_data_layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (results.no_data_layers[i].includes(listLayers[j].workspaceName) && listLayers[j].tabs.includes('summary')){
+          newResults.no_data_layers.splice(i, 1);
+          //console.log(newResults);
+        }
+      }
+    }
+
+    return newResults;
+
+  }
+
+  secondTabLayers(results){
+    console.log('newResults')
+
+    let listLayers = this.getDataArrayServices();
+
+    let newResults = results;
+    console.log(newResults)
+
+    for (let i = 0; i<results.layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (results.layers[i].name.includes(listLayers[j].workspaceName) && !listLayers[j].tabs.includes('demand')){
+          newResults.layers.splice(i, 1);
+          console.log(newResults);
+        }
+      }
+    }
+    console.log(newResults)
+
+
+    for (let i = 0; i<results.no_data_layers.length; i++){
+      for (let j = 0; j<listLayers.length; j++) {
+        if (results.no_data_layers[i].includes(listLayers[j].workspaceName) && !listLayers[j].tabs.includes('demand')){
+          newResults.no_data_layers.splice(i, 1);
+          console.log(newResults);
+        }
+      }
+    }
+    console.log(newResults)
+    return newResults;
+
+  }
 
 }

@@ -22,6 +22,10 @@ import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/feat
 import { Helper } from 'app/shared';
 import {InteractionService} from '../../shared/services/interaction.service';
 import {MapService} from '../../pages/map/map.service';
+import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Component({
 
@@ -53,33 +57,41 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
   expandedState = 'collapsed';
   private round = round_value;
-  private summaryResult: any;
+  @Input() summaryResult;  
+  
   private scale = 'Nuts 3';
   private isDataAgregate = false;
   private loadingData = false;
 
   constructor(private mapService: MapService,
-              private logger: Logger, private helper: Helper, private interactionService: InteractionService) {}
+              private logger: Logger, private helper: Helper, private interactionService: InteractionService, 
+              private summaryResultService: SummaryResultService, private dataInteractionService: DataInteractionService) {}
 
   ngOnInit() {
+
   }
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    /*this.summaryResultService.setChat("test");
     this.logger.log('SummaryResultComponent/ngOnChanges');
     this.scale = this.mapService.getScaleValue();
     if (this.mapService.getScaleValue() !== hectare) {
       this.isDataAgregate = true;
       this.updateWithIds();
-    } else {
+    } else if (this.mapService.getScaleValue() === hectare){
       this.isDataAgregate = false;
       this.updateWithAreas()
-    }
+    } else{
+      console.log("summary result 2")
+    }*/
   }
   ngOnDestroy() {
   }
-  getData(data: any) {
+  /*getData(data: any) {
     this.summaryResult = data;
-  }
-  updateWithIds() {
+  }*/
+  
+  /*updateWithIds() {
     this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
     this.loadingData = true;
     this.interactionService.displayButtonExport(!this.loadingData)
@@ -87,7 +99,11 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
     console.log(payload)
     const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
+      //this.dataInteractionService.filterEverything(result);
       this.summaryResult = result;
+
+
+      //this.summaryResult = this.dataInteractionService.filterEverything(result);
       this.interactionService.setSummaryData(result);
     }).then(() => {
       this.loadingData = false;
@@ -131,5 +147,5 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
       this.loadingData = false;
       this.interactionService.displayButtonExport(!this.loadingData)
     });
-  }
+  }*/
 }
