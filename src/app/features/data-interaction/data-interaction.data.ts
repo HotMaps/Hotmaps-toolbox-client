@@ -12,46 +12,38 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'heat_res_curr_density', zoomLevel: 0},
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_nonres_curr_density', zoomLevel: 0},
-
   {id: 12, name: business_name_wwtp, category: 'Res Potential', isSelected: false,
     workspaceName: 'wwtp', zoomLevel: zoomLevelDetectChange},
-
-
-
-
-
-  {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
+  {id: 1434, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_tot_curr_density', zoomLevel: 0},
-  {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
+  {id: 132769, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_res_curr_density', zoomLevel: 0},
-  {id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
+  {id: 27650, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0},
-
-
-  {id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
+  {id: 15458, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_res_curr_density', zoomLevel: 0},
-  {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
+  {id: 65, name: 'Building volumes total', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_tot_curr_density', zoomLevel: 0},
-  {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+  {id: 7656543, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0},
 
-  {id: 20, name: 'Industrial Sites Emmissions', category: 'Industrial', isSelected: false,
+  {id: 45345, name: 'Industrial Sites Emmissions', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_database_emissions', zoomLevel: 0},
   {id: 20, name: 'Industrial Sites Excess Heat', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_database_excess_heat', zoomLevel: 0},
 
-  {id: 14, name: 'Population total', category: 'Population', isSelected: false,
+  {id: 565, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: populationLayerName, zoomLevel: 0},
 
-  {id: 18, name: 'Biomass Potential', category: 'Res Potential', isSelected: false,
+  {id: 565, name: 'Biomass Potential', category: 'R.E.S Potential', isSelected: false,
     workspaceName: 'potential_biomass', zoomLevel: 0},
-  {id: 19, name: 'Municipal solid waste', category: 'Res Potential', isSelected: false,
+  {id: 6556, name: 'Municipal solid waste', category: 'R.E.S Potential', isSelected: false,
     workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0},
-  {id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
+  {id: 3454, name: 'Wind potential', category: 'R.E.S Potential', isSelected: false,
     workspaceName: 'potential_wind', zoomLevel: 0},
-  {id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
+  {id: 656443, name: 'Solar potential', category: 'R.E.S Potential', isSelected: false,
     workspaceName: 'potential_solar', zoomLevel: 0},
-  {id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
+  {id: 345, name: 'Geothermal Potential', category: 'R.E.S Potential', isSelected: false,
     workspaceName: 'potential_shallowgeothermal', zoomLevel: 0},
 
 ];
