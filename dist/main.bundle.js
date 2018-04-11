@@ -7208,11 +7208,11 @@ var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = geoserverDevUrl;
+var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = localApiUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
