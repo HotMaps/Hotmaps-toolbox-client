@@ -7212,7 +7212,7 @@ var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = localApiUrl;
+var apiUrl = devUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var idDefaultLayer = 17;
 var wwtpLayerName = 'wwtp';
@@ -7267,7 +7267,7 @@ var map_options = {
     minZoom: 4,
     maxZoom: 17,
     zoomAnimationThreshold: 3,
-    layers: [__WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Esri, __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Hybrid,]
+    layers: [__WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].OSM, __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Hybrid,]
 };
 var lau2name = 'tbl_lau1_2';
 // Scale Value
