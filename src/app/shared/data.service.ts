@@ -82,7 +82,7 @@ export const map_options =  {
   minZoom: 4,
   maxZoom: 17,
   zoomAnimationThreshold: 3,
-  layers: [basemap.Esri, basemap.Hybrid]
+  layers: [basemap.Esri , basemap.Hybrid, ]
 }
 export const lau2name = 'tbl_lau1_2';
 

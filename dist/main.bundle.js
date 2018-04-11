@@ -469,7 +469,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n    <!--  <form class=\"uk-form\">\n     <label > -->\n       <div>\n        \n        <button type=\"button\" name={{dataInteraction.workspaceName}} class=\"uk-button uk-button-default uk-width-1-1\"\n        (click)=\"showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n          <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"dataInteraction.isSelected\">\n          {{dataInteraction.name}}\n        </button>\n       </div>\n      <!-- </label>\n    </form>-->\n</div>\n"
+module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n    <!--  <form class=\"uk-form\">\n     <label > -->\n       <div>\n\n        <button type=\"button\" name={{dataInteraction.workspaceName}} class=\"uk-button uk-button-default uk-width-1-1\"\n        (click)=\"showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n          <input class=\"uk-checkbox\" type=\"checkbox\"  [checked]=\"dataInteraction.isSelected\" >\n          {{dataInteraction.name}}\n        </button>\n       </div>\n      <!-- </label>\n    </form>-->\n</div>\n"
 
 /***/ }),
 
@@ -480,6 +480,7 @@ module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" clas
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_interaction_class__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionCellComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -493,21 +494,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var DataInteractionCellComponent = (function () {
-    function DataInteractionCellComponent(mapService) {
+    function DataInteractionCellComponent(mapService, interactionService) {
         this.mapService = mapService;
+        this.interactionService = interactionService;
     }
     DataInteractionCellComponent.prototype.showRemoveLayer = function (e, action, order) {
-        this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-        if (this.dataInteraction.isSelected) {
+        if (this.interactionService.getSummaryResultState() === false) {
+            this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
+            if (this.dataInteraction.isSelected) {
+            }
+            else {
+            }
+            this.mapService.showOrRemoveLayer(action, order);
+            if (this.dataInteraction.zoomLevel > 0) {
+                this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel);
+            }
+            this.mapService.setLayersSubject();
         }
-        else {
-        }
-        this.mapService.showOrRemoveLayer(action, order);
-        if (this.dataInteraction.zoomLevel > 0) {
-            this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel);
-        }
-        this.mapService.setLayersSubject();
     };
     DataInteractionCellComponent.prototype.ngOnInit = function () {
     };
@@ -542,10 +547,10 @@ DataInteractionCellComponent = __decorate([
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
 ], DataInteractionCellComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=data-interaction-cell.component.js.map
 
 /***/ }),
@@ -582,35 +587,35 @@ var DataInteractionArray = [
         workspaceName: 'heat_res_curr_density', zoomLevel: 0 },
     { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
         workspaceName: 'heat_nonres_curr_density', zoomLevel: 0 },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* business_name_wwtp */], category: 'R.E.S. Potential', isSelected: false,
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* business_name_wwtp */], category: 'Res Potential', isSelected: false,
         workspaceName: 'wwtp', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_0" /* zoomLevelDetectChange */] },
-    { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
+    { id: 1434, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
         workspaceName: 'gfa_tot_curr_density', zoomLevel: 0 },
-    { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
+    { id: 132769, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
         workspaceName: 'gfa_res_curr_density', zoomLevel: 0 },
-    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
+    { id: 27650, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
         workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0 },
-    { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
+    { id: 15458, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
         workspaceName: 'vol_res_curr_density', zoomLevel: 0 },
-    { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
+    { id: 65, name: 'Building volumes total', category: 'Buildings', isSelected: false,
         workspaceName: 'vol_tot_curr_density', zoomLevel: 0 },
-    { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+    { id: 7656543, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
         workspaceName: 'vol_nonres_curr_density', zoomLevel: 0 },
-    /*
-    {id: 20, name: 'Industrial Sites', category: 'Industrial', isSelected: false,
-      workspaceName: 'industrial_sites_Industrial_Database', zoomLevel: 0},
-  */
-    { id: 14, name: 'Population total', category: 'Population', isSelected: false,
+    { id: 45345, name: 'Industrial Sites Emmissions', category: 'Industrial', isSelected: false,
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0 },
+    { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industrial', isSelected: false,
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0 },
+    { id: 565, name: 'Population total', category: 'Population', isSelected: false,
         workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* populationLayerName */], zoomLevel: 0 },
-    /*{id: 18, name: 'Biomass Potential', category: 'Res Potential', isSelected: false,
-      workspaceName: 'potential_biomass', zoomLevel: 0},
-    {id: 19, name: 'Municipal solid waste', category: 'Res Potential', isSelected: false,
-      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0},
-    {id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
-      workspaceName: 'potential_wind', zoomLevel: 0},
-    {id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
-      workspaceName: 'potential_solar', zoomLevel: 0},*/
-    { id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
+    /* {id: 565, name: 'Biomass Potential', category: 'R.E.S Potential', isSelected: false,
+       workspaceName: 'potential_biomass', zoomLevel: 0},
+     {id: 6556, name: 'Municipal solid waste', category: 'R.E.S Potential', isSelected: false,
+       workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0},
+     {id: 3454, name: 'Wind potential', category: 'R.E.S Potential', isSelected: false,
+       workspaceName: 'potential_wind', zoomLevel: 0},
+     {id: 656443, name: 'Solar potential', category: 'R.E.S Potential', isSelected: false,
+       workspaceName: 'potential_solar', zoomLevel: 0},*/
+    { id: 345, name: 'Geothermal Potential', category: 'R.E.S Potential', isSelected: false,
         workspaceName: 'potential_shallowgeothermal', zoomLevel: 0 },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
@@ -1060,6 +1065,7 @@ var ExportDataComponent = (function () {
     ExportDataComponent.prototype.export = function () {
         if (this.isInSummary === true) {
             this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName);
+            console.log(this.dataSummary.no_data_layers);
         }
         else {
             this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName);
@@ -3195,6 +3201,7 @@ var LayersService = (function (_super) {
             srs: 'EPSG:4326',
             zIndex: order
         };
+        this.logger.log('action' + action);
         layer = this.getTilayer(option, this.loaderService);
         this.layers.addLayer(layer);
         this.layersArray.add(action, layer);
@@ -3780,7 +3787,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}\n\n", ""]);
+exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}", ""]);
 
 // exports
 
@@ -3793,7 +3800,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/selection-tools/component/selection-tool.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"containers\">\n    <div id=\"selection-tools-box\">\n      <div *ngFor=\"let button of stButtons\">\n          <input id=\"radio-{{button.id}}\" class=\"radio-custom\" name=\"radio-group\" type=\"radio\" [checked]=\"button.isChecked\" (click)=\"drawTool(button)\">\n          <label id=\"{{button.type}}\" for=\"radio-{{button.id}}\" class=\"radio-custom-label\"></label>\n      </div>\n    </div>\n    <div id=\"info-box\">\n      <div class=\"uk-container uk-padding-remove\">\n        <div>\n          <p>{{elementSelected}}<span>{{nbElementsSelected}}</span></p>\n          <p>Scale<span>{{scaleSelected}}</span></p>\n        </div>\n        <div class=\"divButtons\">\n          <button id=\"loadBtn\" class=\"uk-button uk-button-primary uk-button-small\" [disabled]=\"isLoaBtnDisabled\" (click)=\"loadResultsButton()\">Load results</button>\n          <button id=\"clearBtn\" class=\"uk-button uk-button-danger uk-button-small\" [disabled]=\"isClearBtnDisabled\" (click)=\"clearLayers()\">{{setClearButtonText()}}</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n"
+module.exports = "<div class=\"containers\" [@containerTrigger]>\n    <div id=\"selection-tools-box\">\n      <div *ngFor=\"let button of stButtons\">\n          <input id=\"radio-{{button.id}}\" class=\"radio-custom\" name=\"radio-group\" type=\"radio\" [checked]=\"button.isChecked\" (click)=\"drawTool(button)\">\n          <label [@elementsTrigger]=\"'in'\" id=\"{{button.type}}\" for=\"radio-{{button.id}}\" class=\"radio-custom-label\"></label>\n      </div>\n    </div>\n    <div id=\"info-box\">\n      <div class=\"uk-container uk-padding-remove\">\n        <div>\n          <p [@elementsTrigger]=\"'in'\">{{elementSelected}}<span>{{nbElementsSelected}}</span></p>\n          <p [@elementsTrigger]=\"'in'\">Scale<span>{{scaleSelected}}</span></p>\n        </div>\n        <div class=\"divButtons\">\n          <button id=\"loadBtn\" class=\"uk-button uk-button-primary uk-button-small\" [disabled]=\"isLoaBtnDisabled\" \n          [@elementsTrigger]=\"'in'\" (click)=\"loadResultsButton()\">Load results</button>\n          <button id=\"clearBtn\" class=\"uk-button uk-button-danger uk-button-small\" [disabled]=\"isClearBtnDisabled\" \n          [@elementsTrigger]=\"'in'\" (click)=\"clearLayers()\">{{setClearButtonText()}}</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n"
 
 /***/ }),
 
@@ -3970,7 +3977,27 @@ SelectionToolComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-selection-tool',
         template: __webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.css")],
+        animations: [
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('containerTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(":enter", [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: 0 }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])(250, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: 1 }))
+                ]),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])(":leave", [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])(250, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: 0 }))
+                ])
+            ]),
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('elementsTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('100ms 200ms')
+                ]),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => void', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('50ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))
+                ])
+            ])
+        ]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _c || Object])
 ], SelectionToolComponent);
@@ -4541,7 +4568,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of category\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let n of layers\" >\n              <span *ngIf=\"i === n.category\">\n                <data-interaction-cell [dataInteraction]=\"n\" [expanded]=\"expanded\"></data-interaction-cell>\n              </span>\n            </ng-container>\n          </div>\n\n        </li>\n      </ul>\n    </span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of category\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let n of layers\" >\n              <span *ngIf=\"i === n.category\">\n                <data-interaction-cell [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></data-interaction-cell>\n              </span>\n            </ng-container>\n          </div>\n\n        </li>\n      </ul>\n    </span>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -4676,7 +4703,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow:auto;\n  max-height: 94vh;\n}\n\n.content-right-panel{\n    max-height: 89vh;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\ni {\n    font-size: 1.5em;\n}\n\n.uk-tab{\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n    margin-bottom: 5px;\n}\n.container-panel-right {\n    /*flex: 1;\n    display: flex;*/\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 5vh;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 5vh;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n\n.export-tab1{\n  position: absolute;\n  bottom: 0;\n  right: 0;\n}\n\n.export-tab2{\n  bottom: 0;\n  float: right;\n}\n", ""]);
+exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow:auto;\n  max-height: 94vh;\n}\n\n.content-right-panel{\n    max-height: 89vh;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\ni {\n    font-size: 1.5em;\n}\n\n.uk-tab{\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n    margin-bottom: 5px;\n}\n.container-panel-right {\n    /*flex: 1;\n    display: flex;*/\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 5vh;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 5vh;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n\n.export-tab1{\n  bottom: 0;\n  right: 0;\n}\n\n.export-tab2{\n  bottom: 0;\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -5242,7 +5269,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.uk-table{\n  margin-top: 0px;\n}\n.waitingbox {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n/* .wait-graph-container{\n  background-color: rgba(71, 71, 71, 0.3);\n  position: relative;\n} */\n.spinner {\n  position: absolute; \n  left: 50%; \n  top: 50%; \n  color: black;\n  margin: 15px 15px 15px -25px;\n}\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}", ""]);
+exports.push([module.i, "\n:host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.uk-table{\n  margin-top: 0px;\n}\n.waitingbox {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n/* .wait-graph-container{\n  background-color: rgba(71, 71, 71, 0.3);\n  position: relative;\n} */\n.spinner {\n  position: absolute; \n  left: 50%; \n  top: 50%; \n  color: black;\n  margin: 15px 15px 15px -25px;\n}\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}\n.table-level-two-nodata{\n  border-right: 1px solid #f5f5f5;\n  text-align: center;\n  font-style: italic;\n}", ""]);
 
 // exports
 
@@ -5255,7 +5282,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"summaryResult\">\n          <ng-container *ngFor=\"let i of summaryResult.layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"summaryResult\">\n          <ng-container *ngFor=\"let i of summaryResult.layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n        <ng-container *ngIf=\"summaryResult\">\n          <ng-container *ngFor=\"let l of summaryResult.no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
@@ -5322,18 +5349,30 @@ var SummaryResultComponent = (function () {
         var _this = this;
         this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
         this.interactionService.displayButtonExport(!this.loadingData);
         var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["C" /* constant_year */], nuts: this.nutsIds };
         console.log(payload);
         var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
             _this.summaryResult = result;
+            _this.logger.log('SummaryResultComponent/result to JSON() +' + JSON.stringify(result));
+            for (var _i = 0, _a = _this.summaryResult.layers; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                _this.logger.log('SummaryResultComponent/entry() +' + JSON.stringify(entry));
+            }
+            for (var _b = 0, _c = _this.summaryResult.layers; _b < _c.length; _b++) {
+                var entry = _c[_b];
+                _this.logger.log('SummaryResultComponent/entry() +' + JSON.stringify(entry));
+            }
             _this.interactionService.setSummaryData(result);
         }).then(function () {
             _this.loadingData = false;
+            _this.interactionService.setSummaryResultState(_this.loadingData);
             _this.interactionService.displayButtonExport(!_this.loadingData);
         }).catch(function (e) {
             _this.logger.log(JSON.stringify(e));
             _this.loadingData = false;
+            _this.interactionService.setSummaryResultState(_this.loadingData);
             _this.interactionService.displayButtonExport(!_this.loadingData);
         });
     };
@@ -5341,6 +5380,7 @@ var SummaryResultComponent = (function () {
         var _this = this;
         this.logger.log('SummaryResultComponent/updateWithAreas()');
         this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
         this.interactionService.displayButtonExport(!this.loadingData);
         var areas = [];
         this.areas.map(function (layer) {
@@ -5356,6 +5396,7 @@ var SummaryResultComponent = (function () {
         if (areas.length === 0) {
             this.logger.log('SummaryResultComponent/areas().lenght === 0');
             this.loadingData = false;
+            this.interactionService.setSummaryResultState(this.loadingData);
             this.interactionService.displayButtonExport(!this.loadingData);
             return;
         }
@@ -5368,10 +5409,12 @@ var SummaryResultComponent = (function () {
             // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(function () {
             _this.loadingData = false;
+            _this.interactionService.setSummaryResultState(_this.loadingData);
             _this.interactionService.displayButtonExport(!_this.loadingData);
         }).catch(function (e) {
             _this.logger.log(JSON.stringify(e));
             _this.loadingData = false;
+            _this.interactionService.setSummaryResultState(_this.loadingData);
             _this.interactionService.displayButtonExport(!_this.loadingData);
         });
     };
@@ -5525,7 +5568,7 @@ var _a, _b, _c, _d;
 /**
  * Created by lesly on 14.06.17.
  */ var basemap = {
-    OpenStreetMap: L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
             ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
     }),
@@ -5562,7 +5605,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/pages/map/component/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool [hidden]=\"!selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel \n    [nutsIds]=\"nutsIds\" \n    [layers]=\"layers\" \n    [scaleLevel]=\"scaleLevel\" \n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\">\n  </htm-right-side-panel>\n</div>"
+module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel \n    [nutsIds]=\"nutsIds\" \n    [layers]=\"layers\" \n    [scaleLevel]=\"scaleLevel\" \n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\">\n  </htm-right-side-panel>\n</div>"
 
 /***/ }),
 
@@ -5574,7 +5617,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  min-height: 6vh;\n  height: 6vh;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  min-height: 94vh;\n  height: 94vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  /*min-height: 6vh;*/\n  height: 48px;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  min-height: 94vh;\n  height: 94vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 // exports
 
@@ -6771,20 +6814,54 @@ var BusinessInterfaceRenderClass = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessInterfaceRenderArray; });
+var heat_tot_curr_density = 'heat_tot_curr_density';
+var wwtp = 'wwtp';
+var gfa_tot_curr_density = 'gfa_tot_curr_density';
+var gfa_tot_curr_density_indicator_name = 'Heated Gross Floor Area';
+var gfa_res_curr_density = 'gfa_res_curr_density';
+var gfa_res_curr_density_indicator_name = 'Heated Gross Floor Area -Residential Buildings';
+var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
+var gfa_nonres_curr_density_indicator_name = 'Heated Gross Floor Area -Non-Residential Buildings';
+var heat_res_curr_density = 'heat_res_curr_density';
+var heat_res_curr_density_indicator_name = 'Heat consumption - Residential Buildings';
+var heat_nonres_curr_density = 'heat_nonres_curr_density';
+var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
 var BusinessInterfaceRenderArray = [
     { id: 17, api_name: 'heat_density', business_name: 'Average Heat density' },
-    { id: 172, api_name: 'heat_tot_curr_density_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
-    { id: 172, api_name: 'heat_tot_curr_density_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3' },
-    { id: 174, api_name: 'heat_tot_curr_density_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2' },
-    { id: 175, api_name: 'heat_tot_curr_density_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1' },
-    { id: 176, api_name: 'heat_tot_curr_density_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0' },
-    { id: 177, api_name: 'heat_tot_curr_density_ha', business_name: 'Heat density total' },
-    { id: 172, api_name: 'wwtp_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
-    { id: 172, api_name: 'wwtp_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
-    { id: 174, api_name: 'wwtp_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2' },
-    { id: 175, api_name: 'wwtp_nuts1', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS1' },
-    { id: 176, api_name: 'wwtp_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0' },
-    { id: 176, api_name: 'wwtp_ha', business_name: 'Waste Water treatment plants' },
+    { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
+    { id: 172, api_name: heat_tot_curr_density + '_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3' },
+    { id: 174, api_name: heat_tot_curr_density + '_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2' },
+    { id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1' },
+    { id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0' },
+    { id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total' },
+    { id: 17, api_name: gfa_tot_curr_density, business_name: 'Heated Gross Floor Area' },
+    { id: 172, api_name: gfa_tot_curr_density + '_lau2', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to LAU2' },
+    { id: 172, api_name: gfa_tot_curr_density + '_nuts3', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS3' },
+    { id: 174, api_name: gfa_tot_curr_density + '_nuts2', business_name: 'Heated Gross Floor Area total  / aggregrated from Hectares to NUTS2' },
+    { id: 175, api_name: gfa_tot_curr_density + '_nuts1', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS1' },
+    { id: 176, api_name: gfa_tot_curr_density + '_nuts0', business_name: 'Heated Gross Floor Area  / aggregrated from Hectares to NUTS0' },
+    { id: 177, api_name: gfa_tot_curr_density + '_ha', business_name: 'Heated Gross Floor Area' },
+    { id: 175, api_name: gfa_tot_curr_density + '_value', business_name: gfa_tot_curr_density_indicator_name + ' value' },
+    { id: 176, api_name: gfa_tot_curr_density + '_density', business_name: gfa_tot_curr_density_indicator_name },
+    { id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: gfa_tot_curr_density_indicator_name + ' cells' },
+    { id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name + ' value' },
+    { id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name },
+    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: gfa_res_curr_density_indicator_name + ' cells' },
+    { id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name },
+    { id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
+    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: gfa_nonres_curr_density_indicator_name + ' cells' },
+    { id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings' },
+    { id: 176, api_name: heat_res_curr_density + '_density', business_name: 'Average heat density - Residential Buildings' },
+    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: heat_res_curr_density_indicator_name + ' cells' },
+    { id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name },
+    { id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings' },
+    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: heat_nonres_curr_density_indicator_name + ' cells' },
+    { id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
+    { id: 172, api_name: wwtp + '_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
+    { id: 174, api_name: wwtp + '_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2' },
+    { id: 175, api_name: wwtp + '_nuts1', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS1' },
+    { id: 176, api_name: wwtp + '_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0' },
+    { id: 176, api_name: wwtp + '_ha', business_name: 'Waste Water treatment plants' },
     { id: 178, api_name: 'pop_tot_curr_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3' },
     { id: 179, api_name: 'pop_tot_curr_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2' },
     { id: 147, api_name: 'pop_tot_curr_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1' },
@@ -7253,7 +7330,7 @@ var map_options = {
     minZoom: 4,
     maxZoom: 17,
     zoomAnimationThreshold: 3,
-    layers: [__WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Esri, __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Hybrid]
+    layers: [__WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Esri, __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__["a" /* basemap */].Hybrid,]
 };
 var lau2name = 'tbl_lau1_2';
 // Scale Value
@@ -8028,6 +8105,7 @@ DateFormatPipe = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayerNamePipe; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8038,19 +8116,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 
 
+
 var LayerNamePipe = (function () {
-    function LayerNamePipe(dataInteractionService) {
+    function LayerNamePipe(dataInteractionService, logger) {
         this.dataInteractionService = dataInteractionService;
+        this.logger = logger;
     }
     LayerNamePipe.prototype.transform = function (value, args) {
+        this.logger.log('LayerNamePipe/transform value ? ' + value);
         if (value === null) {
             return 'Nothing to transform';
         }
-        return this.dataInteractionService.getReadableName(value);
+        var valueTransformed = this.dataInteractionService.getReadableName(value);
+        this.logger.log('LayerNamePipe/transform valueTransformed ? ' + valueTransformed);
+        return valueTransformed;
     };
     return LayerNamePipe;
 }());
@@ -8058,10 +8141,10 @@ LayerNamePipe = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
         name: 'layername'
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
 ], LayerNamePipe);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=layer-name.pipe.js.map
 
 /***/ }),
@@ -8499,6 +8582,7 @@ var InteractionService = (function () {
         this.exportDataService = exportDataService;
         this.heatLoadAggregateService = heatLoadAggregateService;
         this.durationCurveService = durationCurveService;
+        this.summaryResultState = false;
     }
     InteractionService.prototype.getLayerArray = function () {
         return this.layerService.getLayerArray();
@@ -8515,6 +8599,12 @@ var InteractionService = (function () {
     };
     InteractionService.prototype.displayButtonExport = function (val) {
         this.exportDataService.displayButtonExport(val);
+    };
+    InteractionService.prototype.setSummaryResultState = function (val) {
+        this.summaryResultState = val;
+    };
+    InteractionService.prototype.getSummaryResultState = function () {
+        return this.summaryResultState;
     };
     InteractionService.prototype.setSummaryData = function (val) {
         this.exportDataService.setDataSummary(val);

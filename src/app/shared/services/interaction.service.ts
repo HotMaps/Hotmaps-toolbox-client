@@ -21,6 +21,7 @@ import { DurationCurveService } from '../../features/duration-curve/duration-cur
 
 @Injectable()
 export class InteractionService {
+    private summaryResultState = false;
 
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
@@ -47,6 +48,12 @@ export class InteractionService {
     }
     displayButtonExport(val: boolean) {
       this.exportDataService.displayButtonExport(val);
+    }
+    setSummaryResultState(val: boolean) {
+      this.summaryResultState = val;
+    }
+    getSummaryResultState() {
+      return this.summaryResultState;
     }
     setSummaryData(val: any) {
         this.exportDataService.setDataSummary(val);
