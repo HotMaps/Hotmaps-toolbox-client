@@ -122,11 +122,8 @@ export class InteractionService {
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
     }
-    firstTabLayers(layers){
-        return this.dataInteractionService.firstTabLayers(layers);
-    }
-    secondTabLayers(layers){
-        return this.dataInteractionService.secondTabLayers(layers);
+    getSplittedResults(results){
+        return this.dataInteractionService.getSplittedResults(results);
     }
 
 }

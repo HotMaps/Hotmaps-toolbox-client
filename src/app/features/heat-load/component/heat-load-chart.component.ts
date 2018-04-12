@@ -88,7 +88,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
   getDaysInMonth(month, year) {
-    console.log(new Date(year, month, 0).getDate())
     return new Date(year, month, 0).getDate();
   }
   onSelectChange(event) {

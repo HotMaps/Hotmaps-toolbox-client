@@ -1,7 +1,15 @@
 
 <span *ngIf="expanded" [@tableOpacityTrigger]="'in'">
   <div class="uk-card uk-card-body htm-card" [hidden]="loadingData">
-    <table class="uk-table uk-table-divider uk-table-small">
+
+    <div class="date-visu">
+    <span class="center">
+      <select class="uk-select" (change)="changeResultsDisplay($event)">
+          <option *ngFor="let button of dropdown_btns" [value]="button.ref">{{button.name}}</option>
+      </select>
+    </span>
+  </div>
+    <table class="uk-table uk-table-divider uk-table-small">      
       <thead>
         <tr class="header-summary">
           <th class="uk-table-shrink">Information</th>
@@ -9,8 +17,8 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="summaryResult">
-          <ng-container *ngFor="let i of summaryResult.layers">
+        <ng-container *ngIf="splittedResults">
+          <ng-container *ngFor="let i of splittedResults[ref].layers">
             <tr class="table-level-one">
               <th colspan="2">{{i.name | layername}}</th>
             </tr>
@@ -30,8 +38,8 @@
             <td>{{poiData.features[0].properties.heat_density | number: round}} </td>
           </tr>
         </ng-container>
-        <ng-container *ngIf="summaryResult">
-          <ng-container *ngFor="let l of summaryResult.no_data_layers">
+        <ng-container *ngIf="splittedResults">
+          <ng-container *ngFor="let l of splittedResults[ref].no_data_layers">
             <tr class="table-level-one">
               <th colspan="2">{{l}}</th>
             </tr>

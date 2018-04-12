@@ -99,7 +99,7 @@ import {hectare, round_value, constant_year} from '../../../shared/data.service'
         //
         trigger('iconTrigger', [
             // state('collapsed', style({ transform: 'rotate(0deg)' })),
-            //  state('expanded', style({ transform: 'rotate(180deg)' })),
+            // state('expanded', style({ transform: 'rotate(180deg)' })),
 
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
@@ -118,104 +118,11 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() locationsSelection;
     @Input() areas;
 
-    private layersTab1;
-    private layersTab2;
-
     private scale = 'Nuts 3';
     private isDataAgregate = false;
     private loadingData = false;
 
     private summaryResult;
-    private sr;
-    private sr2;
-    private temp = [];
-
-    private srTest = {
-        "layers":[
-            {
-                "values":[
-                    {
-                        "unit":"MWh",
-                        "name":"heat_consumption",
-                        "value":"2904211.87"
-                    },
-                    {
-                        "unit":"MWh/ha",
-                        "name":"heat_density",
-                        "value":"58.4925151557873960"
-                    },
-                    {
-                        "unit":"cells",
-                        "name":"count_cell_heat",
-                        "value":"49651"
-                    }
-                ],
-                "name":"heat_tot_curr_density"
-            },
-            {
-                "values":[
-                    {
-                        "unit":"kW",
-                        "name":"power",
-                        "value":"16545.079999700000055"
-                    },
-                    {
-                        "unit":"Person equivalent",
-                        "name":"capacity",
-                        "value":"256734"
-                    }
-                ],
-                "name":"wwtp"
-            }
-        ],
-        "no_data_layers":[
-            "vol_nonres_curr_density",
-            "potential_biomass"
-        ]
-    }
-
-    private srTest2 = {
-        "layers":[
-            {
-                "values":[
-                    {
-                        "unit":"MWh",
-                        "name":"heat_consumption",
-                        "value":"2904211.87"
-                    },
-                    {
-                        "unit":"MWh/ha",
-                        "name":"heat_density",
-                        "value":"58.4925151557873960"
-                    },
-                    {
-                        "unit":"cells",
-                        "name":"count_cell_heat",
-                        "value":"49651"
-                    }
-                ],
-                "name":"heat_tot_curr_density"
-            },
-            {
-                "values":[
-                    {
-                        "unit":"kW",
-                        "name":"power",
-                        "value":"16545.079999700000055"
-                    },
-                    {
-                        "unit":"Person equivalent",
-                        "name":"capacity",
-                        "value":"256734"
-                    }
-                ],
-                "name":"wwtp"
-            }
-        ],
-        "no_data_layers":[
-            "potential_biomass"
-        ]
-    }
 
     constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
@@ -225,9 +132,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
     ngOnDestroy() { }
     ngOnChanges() {
-        
-        //this.layersTab1 = this.interactionService.firstTabLayers(this.layers);
-        //this.layersTab2 = this.interactionService.secondTabLayers(this.layers);
         if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
 
@@ -235,7 +139,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
             this.heatloadStatus = false;
         }
 
-        this.logger.log('SummaryResultComponent/ngOnChanges');
+        this.logger.log('RightSidePanelComponent/ngOnChanges');
         this.scale = this.mapService.getScaleValue();
         if (this.mapService.getScaleValue() !== hectare && this.expanded == true) {
             this.isDataAgregate = true;
@@ -257,19 +161,15 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     updateWithIds() {
         const self = this;
 
-        this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
+        this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
         this.interactionService.displayButtonExport(!this.loadingData)
 
-        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }    
+        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
                    
           self.summaryResult = result;
-          /*self.sr2 = result;
-          let copy = JSON.parse(JSON.stringify(result))
-          copy = this.dataInteractionService.secondTabLayers(copy);
-          self.summaryResult = copy;*/
           self.interactionService.setSummaryData(result);
           
         }).then(() => {        
@@ -280,12 +180,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
           self.loadingData = false;
           self.interactionService.displayButtonExport(!self.loadingData)
         });
-
-        //this.sr2 = this.dataInteractionService.secondTabLayers(this.summaryResult);
     }
 
     updateWithAreas() {
-        this.logger.log('SummaryResultComponent/updateWithAreas()');
+        this.logger.log('RightSidePanelComponent/updateWithAreas()');
         this.loadingData = true;
         this.interactionService.displayButtonExport(!this.loadingData);
         const areas = [];
@@ -297,9 +195,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
             areas.push({points: this.helper.getLocationsFromPolygon(layer)})
           }
         });
-        this.logger.log('SummaryResultComponent/areas()' +   JSON.stringify(areas) )
+        this.logger.log('RightSidePanelComponent/areas()' +   JSON.stringify(areas) )
         if (areas.length === 0) {
-          this.logger.log('SummaryResultComponent/areas().lenght === 0')
+          this.logger.log('RightSidePanelComponent/areas().lenght === 0')
           this.loadingData = false;
           this.interactionService.displayButtonExport(!this.loadingData)
           return
