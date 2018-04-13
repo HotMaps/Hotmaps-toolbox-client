@@ -18,6 +18,7 @@ import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderServic
 import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
 import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
+import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
 
 
 describe('InteractionService', () => {
@@ -49,7 +50,8 @@ describe('InteractionService', () => {
         { provide: LoaderService, useValue: mockLoggerService },
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
-        { provide: DurationCurveService, useClass: DurationCurveService }
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: DataInteractionService, useClass: DataInteractionService }
       ],
       imports: []
     }).compileComponents();
