@@ -17,7 +17,7 @@ import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
 import { Helper, summay_drop_down_buttons, default_drop_down_button } from 'app/shared';
-import {InteractionService} from '../../shared/services/interaction.service';
+import { InteractionService } from '../../shared/services/interaction.service';
 
 
 
@@ -56,7 +56,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   
   private scale = 'Nuts 3';
   private isDataAgregate = false;
-  private loadingData = false;
+  @Input() loadingData;
 
   private dropdown_btns;
   private selectedButton;
