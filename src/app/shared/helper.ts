@@ -474,36 +474,18 @@ export class Helper {
   }
 
   createSplittedResultsModel(){
-    let splittedResultsArray = {
-      "summary":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "demand":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "potential":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "climate":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "heat_supply":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "industry":{
-        "layers":[],
-        "no_data_layers":[]
-      },
-      "load_profile":{
-        "layers":[],
-        "no_data_layers":[]
+    let splittedResultsArray = [] ;
+
+    for (let j = 0; j<summay_drop_down_buttons.length; j++){
+      const refName = summay_drop_down_buttons[j]["ref"];
+      const p = {
+          "layers": [],
+          "no_data_layers": []
       }
-    };
+
+      splittedResultsArray[refName] = [];
+      splittedResultsArray[refName] = p;
+    }
 
     return splittedResultsArray;
   }
