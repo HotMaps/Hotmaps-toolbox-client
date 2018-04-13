@@ -5,7 +5,7 @@
     justify-content: center;
     min-height: 0;
     min-width: 0;
-    max-height: 48px;
+    /*max-height: 48px;*/
     padding: 3px;
     font-family: 'Hind', sans-serif;
 
@@ -24,10 +24,20 @@
   flex: 1;
   overflow-y: auto;
 }
-
+.legend {
+  text-align: center;
+}
+.legend-div {
+  padding: 5px;
+}
+.uk-accordion-content, .uk-accordion{
+  margin: 0px !important;
+}
 .icon {
 }
-
+.flaticon-signs-1::before {
+  margin: 0px;
+}
 .message {
 
 }

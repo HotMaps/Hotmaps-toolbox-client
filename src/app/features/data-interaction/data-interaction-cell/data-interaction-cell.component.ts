@@ -41,16 +41,21 @@ import {InteractionService} from "../../../shared/services/interaction.service";
 export class DataInteractionCellComponent implements OnInit {
     @Input() dataInteraction: DataInteractionClass;
     @Input() expanded: boolean;
-
+    private loading = true;
 
     constructor(private mapService: MapService, private interactionService: InteractionService) { }
-
+    ngOnInit() {
+    }
+    endLoad() {
+      this.loading = false;
+    }
     showRemoveLayer(e, action, order) {
+      if (this.dataInteraction.isSelected) {
+
+      }
       if (this.interactionService.getSummaryResultState() === false) {
         this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
         if (this.dataInteraction.isSelected) {
-
-        }else {
 
         }
         this.mapService.showOrRemoveLayer(action, order);
@@ -60,6 +65,5 @@ export class DataInteractionCellComponent implements OnInit {
         this.mapService.setLayersSubject()
       }
     }
-    ngOnInit() {
-    }
+
 }

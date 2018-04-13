@@ -47,14 +47,15 @@ describe('SelectionToolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
+      imports: [HttpModule, BrowserAnimationsModule, NoopAnimationsModule ],
       declarations: [SelectionToolComponent],
       providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
         BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-        MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService,
+        MapService, SelectionToolButtonStateService,
+        MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService,
         DurationCurveService]
     })
     .compileComponents();
