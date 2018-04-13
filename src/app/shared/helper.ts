@@ -247,14 +247,22 @@ export class Helper {
   getNUTSIDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    const nuts_id: string = geoJson.features[0].properties.nuts_id;
-    return nuts_id;
+    if (!this.isNullOrUndefined(geoJson.features[0])){
+      const nuts_id: string = geoJson.features[0].properties.nuts_id;
+      return nuts_id;
+    }else{
+      return null;
+    }    
   }
   getLAU2IDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    const lau2_id: string = geoJson.features[0].properties.comm_id;
-    return lau2_id;
+    if (!this.isNullOrUndefined(geoJson.features[0])){
+      const lau2_id: string = geoJson.features[0].properties.comm_id;
+      return lau2_id;
+    }else{
+      return null;
+    }
   }
   getLocationsFromLayer(layer) {
     if (layer instanceof L.Circle) {

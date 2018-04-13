@@ -145,8 +145,14 @@ export class SelectionToolService extends APIService {
     this.updateSelectionToolAction();
   }
 
-  containLayer(layer: any): boolean {
-    return this.nutsIds.has(this.selectionToolUtils.getIdSelectionFromLayer(layer))
+  containLayer(layer: any): number {
+    if (!this.helper.isNullOrUndefined(layer._leaflet_id)){
+      if (this.nutsIds.has(this.selectionToolUtils.getIdSelectionFromLayer(layer))){
+        return 0;
+      }else{return 1;}
+    }
+    else{return 2;}
+    
   }
 
   toggleActivateTool(val: boolean) {

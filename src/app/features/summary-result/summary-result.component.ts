@@ -88,7 +88,6 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     this.interactionService.displayButtonExport(!this.loadingData);
 
     const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
-    console.log(payload)
     const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
       this.summaryResult = result;
       this.logger.log('SummaryResultComponent/result to JSON() +' + JSON.stringify(result));
