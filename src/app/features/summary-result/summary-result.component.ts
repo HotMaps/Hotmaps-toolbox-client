@@ -77,7 +77,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     this.logger.log('SummaryResultComponent/ngOnChanges');
 
     if(this.summaryResult){
-      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);    
     }
   }
 

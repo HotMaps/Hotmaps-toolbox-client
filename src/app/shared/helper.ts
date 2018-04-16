@@ -490,6 +490,14 @@ export class Helper {
     return splittedResultsArray;
   }
 
+  isResultEmpty(result){
+    if (this.isNullOrUndefined(result.layers) && this.isNullOrUndefined(result.no_data_layers)){
+      return true;
+    }
+    else{ return false; }
+
+  }
+
   createHLPayloadHectares(type, buttonArray, areas){
     let payload;
     if(type === 'day'){

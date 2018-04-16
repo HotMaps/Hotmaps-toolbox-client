@@ -124,6 +124,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     private summaryResult;
 
+    private emptyResult = false;
+
     constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
@@ -148,6 +150,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
             this.isDataAgregate = false;
             this.updateWithAreas()
         }
+
+
     }
     clickTab(id: string) {
         this.logger.log('clickTab' + id);
@@ -169,8 +173,12 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
                    
-          self.summaryResult = result;
-          self.interactionService.setSummaryData(result);
+        self.summaryResult = result;
+        self.interactionService.setSummaryData(result);
+
+        if(this.helper.isResultEmpty(result)){
+            this.emptyResult = true;
+        }
           
         }).then(() => {        
           self.loadingData = false;
@@ -208,6 +216,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
           this.summaryResult = result;
           this.interactionService.setSummaryData(result);
+          if(this.helper.isResultEmpty(result)){
+            this.emptyResult = true;
+          }
           // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(() => { this.loadingData = false;
           this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
