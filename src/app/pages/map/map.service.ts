@@ -162,6 +162,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
     onClickEvent(self, e: MouseEvent) {
         if (self.getScaleValue() === hectare) { return; }
+        if (self.selectionToolService.getPolygonDrawerState()) { return; }
+
+        self.selectionToolService.activateClickSelectionTool();
+
         self.logger.log('MapService/click');
         self.selectionToolButtonStateService.enable(true); // opens the selection tools
 
