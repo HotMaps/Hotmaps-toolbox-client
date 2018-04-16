@@ -265,10 +265,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             this.removeAreaSelectedlayer();
             // create an other selection only if this is a new area or if no area is actually selected (highlighted)
             const areaNutsSelectedLayer = L.geoJSON(areaSelected);
-            if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
-                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
-            } else {
-                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
+            if (this.selectionToolService.containLayer(areaNutsSelectedLayer) == 0) {
+                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer);
+            } else if (this.selectionToolService.containLayer(areaNutsSelectedLayer) == 1){
+                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer);
+            }else{
+                return;
             }
         }
     }

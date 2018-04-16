@@ -9,15 +9,19 @@ export class SelectionToolUtils {
         return this.helper.getLocationsFromCicle(layer);
     }
 
-    getIdSelectionFromLayer(layer: any): boolean {
-        return this.getSelectionIdFromLayer(layer)
+    getIdSelectionFromLayer(layer: any): any {        
+        return this.getSelectionIdFromLayer(layer);
     }
     getSelectionIdFromLayer(layer): any {
         let id_selection = this.helper.getNUTSIDFromGeoJsonLayer(layer);
         if (this.helper.isNullOrUndefined(id_selection) === true) {
             id_selection = this.helper.getLAU2IDFromGeoJsonLayer(layer);
+            if (this.helper.isNullOrUndefined(id_selection) === true){
+                return null;
+            }
+            return id_selection;
         }
-        return id_selection
+        return id_selection;
     }
 
     layersAsLayer(layers): boolean {
