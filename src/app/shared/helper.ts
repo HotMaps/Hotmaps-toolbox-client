@@ -499,11 +499,17 @@ export class Helper {
   }
 
   isResultEmpty(result){
-    if (this.isNullOrUndefined(result.layers) && this.isNullOrUndefined(result.no_data_layers)){
+    if (result.layers == 0 && result.no_data_layers == 0){
       return true;
     }
     else{ return false; }
+  }
 
+  isResultDataEmpty(result){
+    if (result.layers == 0){
+      return true;
+    }
+    else{ return false; }
   }
 
   createHLPayloadHectares(type, buttonArray, areas){
