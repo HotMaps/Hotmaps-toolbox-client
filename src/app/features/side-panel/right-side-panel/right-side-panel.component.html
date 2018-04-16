@@ -25,6 +25,7 @@
           [poiTitle]="poiTitle"
           [expanded]="expanded"
           [summaryResult]="summaryResult"
+          [loadingData]="loadingData"
           ></htm-summary-result>
           <div *ngIf="!emptyResult" class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
       </li>
@@ -55,6 +56,7 @@
       [poiTitle]="poiTitle"
       [expanded]="expanded"
       [summaryResult]="summaryResult"
+      [loadingData]="loadingData"
       ></htm-summary-result>
       <div *ngIf="!emptyResult" class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
   </ng-template>

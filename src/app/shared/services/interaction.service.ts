@@ -128,9 +128,12 @@ export class InteractionService {
     }
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
-    }
+    } 
     getSplittedResults(results){
         return this.dataInteractionService.getSplittedResults(results);
+    }   
+    getChien(r){
+        return this.dataInteractionService.getSplittedResults(r);
     }
 
 }

@@ -110,9 +110,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     // Improvement of coding style :
     // place private members after public members, alphabetized
     //private summaryResult: SummaryResultClass = null;
+
     private poiTitle;
     @Input() nutsIds;
-    @Input() layers;    
+    @Input() layers;
     @Input() scaleLevel;
     private heatloadStatus = false;
     @Input() locationsSelection;
@@ -130,7 +131,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
     }
-    ngOnInit() { 
+    ngOnInit() {
     }
     ngOnDestroy() { }
     ngOnChanges() {
@@ -167,25 +168,25 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
         this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
         this.interactionService.displayButtonExport(!this.loadingData)
 
         const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
-                   
         self.summaryResult = result;
         self.interactionService.setSummaryData(result);
-
-        if(this.helper.isResultEmpty(result)){
+        if (this.helper.isResultEmpty(result)) {
             this.emptyResult = true;
         }
-          
-        }).then(() => {        
+        }).then(() => {
           self.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
           self.interactionService.displayButtonExport(!self.loadingData);
         }).catch((e) => {
           self.logger.log(JSON.stringify(e));
           self.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
           self.interactionService.displayButtonExport(!self.loadingData)
         });
     }
@@ -193,6 +194,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     updateWithAreas() {
         this.logger.log('RightSidePanelComponent/updateWithAreas()');
         this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
         this.interactionService.displayButtonExport(!this.loadingData);
         const areas = [];
         this.areas.map((layer: Layer) => {
@@ -207,6 +209,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         if (areas.length === 0) {
           this.logger.log('RightSidePanelComponent/areas().lenght === 0')
           this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
           this.interactionService.displayButtonExport(!this.loadingData)
           return
         };
@@ -221,9 +224,11 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
           }
           // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(() => { this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
           this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
           this.logger.log(JSON.stringify(e))
           this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
           this.interactionService.displayButtonExport(!this.loadingData)
         });
     }
