@@ -9,6 +9,7 @@ import { DatasetChart } from 'app/features/chart/chart';
 import * as proj4x from 'proj4';
 import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
+import { summay_drop_down_buttons } from './data.service';
 
 const proj4 = (proj4x as any).default;
 
@@ -470,6 +471,41 @@ export class Helper {
         array[i] = i;
     }
     return array;
+  }
+
+  createSplittedResultsModel(){
+    let splittedResultsArray = {
+      "summary":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "demand":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "potential":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "climate":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "heat_supply":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "industry":{
+        "layers":[],
+        "no_data_layers":[]
+      },
+      "load_profile":{
+        "layers":[],
+        "no_data_layers":[]
+      }
+    };
+
+    return splittedResultsArray;
   }
 
   createHLPayloadHectares(type, buttonArray, areas){

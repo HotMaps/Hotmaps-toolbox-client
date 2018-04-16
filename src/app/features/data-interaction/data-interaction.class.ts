@@ -5,4 +5,5 @@ export class DataInteractionClass {
   isSelected: boolean;
   workspaceName: string;
   zoomLevel: number;
+  ref: any[];
 }

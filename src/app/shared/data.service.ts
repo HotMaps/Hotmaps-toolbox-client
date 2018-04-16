@@ -58,6 +58,17 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 
+export const summay_drop_down_buttons = [
+  { name: 'Summary', ref: 'summary', selected: true},
+  { name: 'Demand', ref: 'demand', selected: false},
+  { name: 'Potentials', ref: 'potential', selected: false},
+  { name: 'Climate', ref: 'climate', selected: false},
+  { name: 'Heat Supply', ref: 'heat_supply', selected: false},
+  { name: 'Industry', ref: 'industry', selected: false},
+  { name: 'Load Profile', ref: 'load_profile', selected: false}
+]
+export const default_drop_down_button = 'summary';
+
 
 // layers constant
 export const timeOut   = 200000;
@@ -82,7 +93,7 @@ export const map_options =  {
   minZoom: 4,
   maxZoom: 17,
   zoomAnimationThreshold: 3,
-  layers: [basemap.OSM , basemap.Hybrid, ]
+  layers: [basemap.Esri , basemap.Hybrid, ]
 }
 export const lau2name = 'tbl_lau1_2';
 
