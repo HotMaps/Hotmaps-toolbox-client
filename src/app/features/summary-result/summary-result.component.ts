@@ -13,7 +13,6 @@ import {
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass, Layer} from './summary-result.class';
 import {hectare, round_value, constant_year} from '../../shared/data.service';
-import {SelectionScaleService} from '../selection-scale/selection-scale.service';
 import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
@@ -80,9 +79,8 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     if(this.summaryResult){
       this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
     }
-    
-    
   }
+
   ngOnDestroy() {
   }
 
