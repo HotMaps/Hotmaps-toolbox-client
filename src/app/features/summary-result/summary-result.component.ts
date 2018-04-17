@@ -10,18 +10,16 @@ import {
   animate, Input, AfterViewInit, OnChanges
 } from '@angular/core';
 
-
-
 import {SummaryResultService} from './summary-result.service';
 import {SummaryResultClass, Layer} from './summary-result.class';
 import {hectare, round_value, constant_year} from '../../shared/data.service';
-import {SelectionScaleService} from '../selection-scale/selection-scale.service';
 import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
-import { Helper } from 'app/shared';
-import {InteractionService} from '../../shared/services/interaction.service';
-import {MapService} from '../../pages/map/map.service';
+import { Helper, summay_drop_down_buttons, default_drop_down_button } from 'app/shared';
+import { InteractionService } from '../../shared/services/interaction.service';
+
+
 
 @Component({
 
@@ -45,109 +43,69 @@ import {MapService} from '../../pages/map/map.service';
 export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   @Input() expanded: boolean;
   @Input() poiTitle;
-  @Input() locationsSelection;
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
-  @Input() areas: Layer[];
+  @Input() locationsSelection;
+  @Input() areas;
+
+  @Input() summaryResult;
 
   expandedState = 'collapsed';
   private round = round_value;
-  private summaryResult: any;
+  
   private scale = 'Nuts 3';
   private isDataAgregate = false;
-  private loadingData = false;
+  @Input() loadingData;
 
-  constructor(private mapService: MapService,
-              private logger: Logger, private helper: Helper, private interactionService: InteractionService) {}
+  private dropdown_btns;
+  private selectedButton;
+
+  private ref = default_drop_down_button;
+
+  private splittedResults;
+
+  
+  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
+  }
 
   ngOnInit() {
+    this.initComponent();
+    this.logger.log('SummaryResultComponent/ngOnInit');
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
-    this.scale = this.mapService.getScaleValue();
-    if (this.mapService.getScaleValue() !== hectare) {
-      this.isDataAgregate = true;
-      this.updateWithIds();
-    } else {
-      this.isDataAgregate = false;
-      this.updateWithAreas()
+
+    if(this.summaryResult){
+      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+
+      this.loadExportData(this.ref);
     }
   }
+
   ngOnDestroy() {
   }
-  getData(data: any) {
-    this.summaryResult = data;
+
+  initComponent() {
+    this.dropdown_btns = summay_drop_down_buttons;
+    this.selectedButton = this.dropdown_btns[0];
+    this.selectedButton.selected = true;
   }
-  updateWithIds() {
 
+  changeResultsDisplay(event){
+    this.logger.log('SummaryResultComponent/changeResultsDisplay');
+    this.ref = event.target.value;
 
-    this.logger.log('SummaryResultComponent/updateWithIds() +' + this.layers);
-    this.loadingData = true;
-    this.interactionService.setSummaryResultState(this.loadingData);
+    this.loadExportData(this.ref);
+  }
+
+  loadExportData(ref){
+    const indicatorResults = this.splittedResults[ref];
+    this.interactionService.setSummaryData(indicatorResults);
     this.interactionService.displayButtonExport(!this.loadingData);
 
-    const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
-    console.log(payload)
-    const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
-      this.summaryResult = result;
-      this.logger.log('SummaryResultComponent/result to JSON() +' + JSON.stringify(result));
-      for (const entry of this.summaryResult.layers) {
-        this.logger.log('SummaryResultComponent/entry() +' + JSON.stringify(entry));
-      }
-      for (const entry of this.summaryResult.layers) {
-        this.logger.log('SummaryResultComponent/entry() +' + JSON.stringify(entry));
-      }
-
-
-      this.interactionService.setSummaryData(result);
-    }).then(() => {
-      this.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
-      this.interactionService.displayButtonExport(!this.loadingData)
-    }).catch((e) => {
-      this.logger.log(JSON.stringify(e))
-      this.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
-      this.interactionService.displayButtonExport(!this.loadingData)
-    });
-  }
-  updateWithAreas() {
-    this.logger.log('SummaryResultComponent/updateWithAreas()');
-    this.loadingData = true;
-    this.interactionService.setSummaryResultState(this.loadingData);
-    this.interactionService.displayButtonExport(!this.loadingData);
-    const areas = [];
-    this.areas.map((layer: Layer) => {
-      const points = [];
-      if (layer instanceof L.Circle) {
-        areas.push({points: this.helper.getLocationsFromCicle(layer)})
-      } else {
-        areas.push({points: this.helper.getLocationsFromPolygon(layer)})
-      }
-    });
-    this.logger.log('SummaryResultComponent/areas()' +   JSON.stringify(areas) )
-    if (areas.length === 0) {
-      this.logger.log('SummaryResultComponent/areas().lenght === 0')
-      this.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
-      this.interactionService.displayButtonExport(!this.loadingData)
-      return
-    };
-   ;
-    const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
-
-    const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
-      this.summaryResult = result;
-      this.interactionService.setSummaryData(result);
-      // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
-    }).then(() => { this.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
-      this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
-      this.logger.log(JSON.stringify(e))
-      this.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
-      this.interactionService.displayButtonExport(!this.loadingData)
-    });
+    if (this.helper.isResultDataEmpty(indicatorResults)){
+      this.interactionService.displayButtonExport(false)
+    }
   }
 }

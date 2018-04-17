@@ -162,6 +162,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     }
     onClickEvent(self, e: MouseEvent) {
         if (self.getScaleValue() === hectare) { return; }
+        if (self.selectionToolService.getPolygonDrawerState()) { return; }
+
+        self.selectionToolService.activateClickSelectionTool();
+
         self.logger.log('MapService/click');
         self.selectionToolButtonStateService.enable(true); // opens the selection tools
 
@@ -221,7 +225,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.logger.log('lau2name url' + url);
         return this.getAreaFromScale(url);
     }
-    
+
     /*postHectareCentroid(payload: any): Promise<any> {
       return this.POST(payload, apiUrl + postForOneHectareCentroid);
     }*/
@@ -265,10 +269,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
             this.removeAreaSelectedlayer();
             // create an other selection only if this is a new area or if no area is actually selected (highlighted)
             const areaNutsSelectedLayer = L.geoJSON(areaSelected);
-            if (this.selectionToolService.containLayer(areaNutsSelectedLayer)) {
-                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer)
-            } else {
-                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer)
+            if (this.selectionToolService.containLayer(areaNutsSelectedLayer) == 0) {
+                this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer);
+            } else if (this.selectionToolService.containLayer(areaNutsSelectedLayer) == 1){
+                this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer);
+            }else{
+                return;
             }
         }
     }
@@ -304,12 +310,34 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         // set the map to the services that needs to get an instance
         this.map = map;
         this.getSelectionScaleMenu();
+        this.addLayersControl();
         this.retriveMapEvent();
         this.layersService.getLayers().addTo(this.map);
         this.selectionToolService.getMultiSelectionLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();
     }
-    checkZoomLevelLayer(action, zoomLevel) {
+
+  addLayersControl() {
+    const overlayMaps = {
+    };
+    const baseLayers = {
+      OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+        ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+      }),
+      // Improvement of coding style : (with codelyzer)
+      // Exceeds maximum line length of 140
+      Satellite: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
+        ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
+      }),
+    };
+    const control = L.control.layers(baseLayers, null, {collapsed: false});
+    control.addTo(this.map);
+    this.map.addLayer(baseLayers.Satellite);
+  }
+
+  checkZoomLevelLayer(action, zoomLevel) {
         // this.layersService.showLayerDependingZoom(action, this.map, zoomLevel);
     }
 

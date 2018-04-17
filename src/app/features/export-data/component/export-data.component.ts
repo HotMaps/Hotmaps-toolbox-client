@@ -74,7 +74,6 @@ export class ExportDataComponent implements OnInit, OnDestroy {
   export() {
     if (this.isInSummary === true) {
       this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName)
-      console.log(this.dataSummary.no_data_layers)
     } else {
       this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName)
     }

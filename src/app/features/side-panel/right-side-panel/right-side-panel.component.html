@@ -24,13 +24,10 @@
           *ngIf="expanded"
           [poiTitle]="poiTitle"
           [expanded]="expanded"
-          [nutsIds]="nutsIds"
-          [layers]="layers"
-          [scaleLevel]="scaleLevel"
-          [locationsSelection]="locationsSelection"
-          [areas]="areas"
+          [summaryResult]="summaryResult"
+          [loadingData]="loadingData"
           ></htm-summary-result>
-          <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
+          <div *ngIf="!emptyResult" class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
       </li>
       <li>
         <htm-heat-load-chart
@@ -48,7 +45,7 @@
           [scaleLevel]="scaleLevel"
           [areas]="areas"
           [heatloadStatus]="heatloadStatus"></htm-duration-curve>
-          <div class="export-tab2"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
+          <div *ngIf="!emptyResult" class="export-tab2"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
       </li>
   </ul>
   </ng-template>
@@ -58,13 +55,10 @@
       *ngIf="expanded"
       [poiTitle]="poiTitle"
       [expanded]="expanded"
-      [nutsIds]="nutsIds"
-      [layers]="layers"
-      [scaleLevel]="scaleLevel"
-      [locationsSelection]="locationsSelection"
-      [areas]="areas"
+      [summaryResult]="summaryResult"
+      [loadingData]="loadingData"
       ></htm-summary-result>
-      <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
+      <div *ngIf="!emptyResult" class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
   </ng-template>
 
 

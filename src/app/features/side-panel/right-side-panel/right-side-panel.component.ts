@@ -17,11 +17,20 @@ import {
   OnChanges
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
-import { SummaryResultClass } from './../../summary-result/summary-result.class';
+import { SummaryResultClass, Layer } from './../../summary-result/summary-result.class';
 import { HeatLoadClass } from '../../heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize, nuts2 } from 'app/shared';
 import {Logger} from "../../../shared/services/logger.service";
+import { DataInteractionService } from '../../data-interaction/data-interaction.service';
+
+import {SummaryResultService} from '../../summary-result/summary-result.service';
+import {MapService} from '../../../pages/map/map.service';
+import { Helper } from 'app/shared';
+import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
+import {hectare, round_value, constant_year} from '../../../shared/data.service';
+
+
 
 
 @Component({
@@ -90,7 +99,7 @@ import {Logger} from "../../../shared/services/logger.service";
         //
         trigger('iconTrigger', [
             // state('collapsed', style({ transform: 'rotate(0deg)' })),
-            //  state('expanded', style({ transform: 'rotate(180deg)' })),
+            // state('expanded', style({ transform: 'rotate(180deg)' })),
 
             transition('collapsed => expanded', animate('200ms ease-in')),
             transition('expanded => collapsed', animate('200ms ease-out'))
@@ -100,7 +109,8 @@ import {Logger} from "../../../shared/services/logger.service";
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     // Improvement of coding style :
     // place private members after public members, alphabetized
-    private summaryResult: SummaryResultClass = null;
+    //private summaryResult: SummaryResultClass = null;
+
     private poiTitle;
     @Input() nutsIds;
     @Input() layers;
@@ -109,22 +119,102 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() locationsSelection;
     @Input() areas;
 
+    private scale = 'Nuts 3';
+    private isDataAgregate = false;
+    private loadingData = false;
 
-    constructor(protected interactionService: InteractionService, private logger: Logger) {
+    private summaryResult;
+
+    constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
+        private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
     }
-    ngOnInit() { }
+    ngOnInit() {
+    }
     ngOnDestroy() { }
     ngOnChanges() {
         if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
+
         } else {
             this.heatloadStatus = false;
         }
+
+        this.logger.log('RightSidePanelComponent/ngOnChanges');
+        this.scale = this.mapService.getScaleValue();
+        if (this.mapService.getScaleValue() !== hectare && this.expanded == true) {
+            this.isDataAgregate = true;
+            this.updateWithIds();
+        } else if (this.mapService.getScaleValue() === hectare && this.expanded == true){
+            this.isDataAgregate = false;
+            this.updateWithAreas()
+        }
+
+
     }
     clickTab(id: string) {
-      this.logger.log('clickTab' + id);
-      this.interactionService.setTabsSelectedName(id);
+        this.logger.log('clickTab' + id);
+        this.interactionService.setTabsSelectedName(id);
+    }
+
+    getData(data: any) {
+        this.summaryResult = data;
+    }
+
+    updateWithIds() {
+        const self = this;
+
+        this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
+        this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
+
+        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
+
+        const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
+        self.summaryResult = result;
+        }).then(() => {
+          self.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
+        }).catch((e) => {
+          self.logger.log(JSON.stringify(e));
+          self.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
+        });
+    }
+
+    updateWithAreas() {
+        this.logger.log('RightSidePanelComponent/updateWithAreas()');
+        this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
+        const areas = [];
+        this.areas.map((layer: Layer) => {
+          const points = [];
+          if (layer instanceof L.Circle) {
+            areas.push({points: this.helper.getLocationsFromCicle(layer)})
+          } else {
+            areas.push({points: this.helper.getLocationsFromPolygon(layer)})
+          }
+        });
+        this.logger.log('RightSidePanelComponent/areas()' +   JSON.stringify(areas) )
+        if (areas.length === 0) {
+          this.logger.log('RightSidePanelComponent/areas().lenght === 0')
+          this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
+          return
+        };
+       ;
+        const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
+
+        const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
+          this.summaryResult = result;
+          // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
+        }).then(() => { this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
+        }).catch((e) => {
+          this.logger.log(JSON.stringify(e))
+          this.loadingData = false;
+          this.interactionService.setSummaryResultState(this.loadingData);
+        });
     }
 
 

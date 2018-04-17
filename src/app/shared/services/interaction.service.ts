@@ -18,6 +18,7 @@ import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
+import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
 
 @Injectable()
 export class InteractionService {
@@ -27,9 +28,10 @@ export class InteractionService {
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
-        private layerService: LayersService, private exportDataService: ExportDataService
-        , private heatLoadAggregateService: HeatLoadAggregateService,
-        private durationCurveService: DurationCurveService
+        private layerService: LayersService, private exportDataService: ExportDataService, 
+        private heatLoadAggregateService: HeatLoadAggregateService,
+        private durationCurveService: DurationCurveService,
+        private dataInteractionService: DataInteractionService
     ) { }
 
     getLayerArray(): Dictionary {
@@ -126,6 +128,12 @@ export class InteractionService {
     }
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
+    } 
+    getSplittedResults(results){
+        return this.dataInteractionService.getSplittedResults(results);
+    }   
+    getChien(r){
+        return this.dataInteractionService.getSplittedResults(r);
     }
 
 }

@@ -12,6 +12,9 @@ import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
+import { summay_drop_down_buttons } from '../../shared/data.service';
+
+
 @Injectable()
 export class DataInteractionService extends APIService {
 
@@ -63,7 +66,45 @@ export class DataInteractionService extends APIService {
     });
   }
 
+  getRefFromLayerName(name: string): any[]{
+    const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
 
+    if (this.helper.isNullOrUndefined(layer)) {return ["no layer with this name"]}
+    return layer.ref;
+  }
 
+  getLayersTabs(): DataInteractionClass[] {
+      return DataInteractionArray;
+  }
+
+  getSplittedResults(results){
+    let newResults = this.helper.createSplittedResultsModel();
+    const rLayers=results.layers
+    const rNoDataLayers=results.no_data_layers
+
+    // returns null if results is empty
+    if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)){
+      return null;
+    }
+
+    for (let j = 0; j<summay_drop_down_buttons.length; j++){
+      for (let i = 0; i<rLayers.length; i++){
+        if (this.getRefFromLayerName(results.layers[i].name).includes(summay_drop_down_buttons[j]["ref"])){
+          const ref = summay_drop_down_buttons[j]["ref"];
+          newResults[ref]["layers"].push(results.layers[i]);
+
+        }
+      }
+      for (let i = 0; i<rNoDataLayers.length; i++){
+        if (this.getRefFromLayerName(results.no_data_layers[i]).includes(summay_drop_down_buttons[j]["ref"])){
+          const ref = summay_drop_down_buttons[j]["ref"];
+          newResults[ref]["no_data_layers"].push(results.no_data_layers[i]);
+        }
+      }
+
+    }
+
+    return newResults;
+  }
 
 }

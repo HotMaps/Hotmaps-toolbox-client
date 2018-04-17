@@ -9,6 +9,7 @@ import { DatasetChart } from 'app/features/chart/chart';
 import * as proj4x from 'proj4';
 import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
+import { summay_drop_down_buttons } from './data.service';
 
 const proj4 = (proj4x as any).default;
 
@@ -247,14 +248,22 @@ export class Helper {
   getNUTSIDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    const nuts_id: string = geoJson.features[0].properties.nuts_id;
-    return nuts_id;
+    if (!this.isNullOrUndefined(geoJson.features[0])){
+      const nuts_id: string = geoJson.features[0].properties.nuts_id;
+      return nuts_id;
+    }else{
+      return null;
+    }    
   }
   getLAU2IDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    const lau2_id: string = geoJson.features[0].properties.comm_id;
-    return lau2_id;
+    if (!this.isNullOrUndefined(geoJson.features[0])){
+      const lau2_id: string = geoJson.features[0].properties.comm_id;
+      return lau2_id;
+    }else{
+      return null;
+    }
   }
   getLocationsFromLayer(layer) {
     if (layer instanceof L.Circle) {
@@ -470,6 +479,37 @@ export class Helper {
         array[i] = i;
     }
     return array;
+  }
+
+  createSplittedResultsModel(){
+    let splittedResultsArray = [] ;
+
+    for (let j = 0; j<summay_drop_down_buttons.length; j++){
+      const refName = summay_drop_down_buttons[j]["ref"];
+      const p = {
+          "layers": [],
+          "no_data_layers": []
+      }
+
+      splittedResultsArray[refName] = [];
+      splittedResultsArray[refName] = p;
+    }
+
+    return splittedResultsArray;
+  }
+
+  isResultEmpty(result){
+    if (result.layers == 0 && result.no_data_layers == 0){
+      return true;
+    }
+    else{ return false; }
+  }
+
+  isResultDataEmpty(result){
+    if (result.layers == 0){
+      return true;
+    }
+    else{ return false; }
   }
 
   createHLPayloadHectares(type, buttonArray, areas){

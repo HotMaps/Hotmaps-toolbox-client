@@ -13,6 +13,7 @@ import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares } from './../..
 
 
 @Injectable()
+
 export class SummaryResultService extends APIService {
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
@@ -28,10 +29,5 @@ export class SummaryResultService extends APIService {
     this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsLayersHectares);
   }
-
-
-
-
-
 
 }

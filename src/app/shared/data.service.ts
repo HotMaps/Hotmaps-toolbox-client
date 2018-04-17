@@ -18,9 +18,10 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 
 export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
-export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
+export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9006/api/';
 export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_tot_curr_density';
+export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 17;
 export const wwtpLayerName   = 'wwtp';
 
@@ -58,6 +59,17 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 
+export const summay_drop_down_buttons = [
+  { name: 'Summary', ref: 'summary', selected: true},
+  { name: 'Demand', ref: 'demand', selected: false},
+  { name: 'Potentials', ref: 'potential', selected: false},
+  { name: 'Climate', ref: 'climate', selected: false},
+  { name: 'Heat Supply', ref: 'heat_supply', selected: false},
+  { name: 'Industry', ref: 'industry', selected: false},
+  { name: 'Load Profile', ref: 'load_profile', selected: false}
+]
+export const default_drop_down_button = 'summary';
+
 
 // layers constant
 export const timeOut   = 200000;
@@ -82,7 +94,7 @@ export const map_options =  {
   minZoom: 4,
   maxZoom: 17,
   zoomAnimationThreshold: 3,
-  layers: [basemap.Esri , basemap.Hybrid, ]
+  layers: [basemap.Esri ]
 }
 export const lau2name = 'tbl_lau1_2';
 

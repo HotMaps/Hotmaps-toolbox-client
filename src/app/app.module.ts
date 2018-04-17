@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms
 import {BrowserModule} from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent  } from './';
 
 
@@ -64,6 +64,7 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
