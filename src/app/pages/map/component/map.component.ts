@@ -3,6 +3,7 @@ import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
+let leafletProviders = require('leaflet-providers')
 declare const L: any;
 
 
@@ -145,6 +146,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
     // L.control.layers(this.mapService.baseMaps).addTo(this.map);
+    this.addLayersControl();
 
     L.Map = L.Map.extend({
       openPopup: function(popup) {
@@ -156,6 +158,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
+
     L.Control = L.Control.extend({
       delete: function(popup) {
         this._popup = popup;
@@ -174,6 +177,28 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   /*showControls() {
     this.mapService.addDrawControls();
   }*/
+
+  addLayersControl() {
+    const overlayMaps = {
+    };
+
+    const baseLayers = {
+      OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+        ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+      }),
+      // Improvement of coding style : (with codelyzer)
+      // Exceeds maximum line length of 140
+      Satellite: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
+        ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
+      }),
+
+    };
+    const control = L.control.layers(baseLayers, null, {collapsed: false, position: 'topleft'});
+    control.addTo(this.map);
+
+  }
   getMap(): Map {
     return this.map;
   }
