@@ -65,3 +65,7 @@ input{
 .uk-button-secondary{
     background-color: #333333;
 }
+
+.uk-accordion-title::after {
+  display: none;
+}
