@@ -163,12 +163,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     updateWithIds() {
         const self = this;
+        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
+
+        if (this.helper.isPayloadIncomplete(payload)){
+            this.interactionService.closeRightPanel();
+            return;            
+        }
 
         this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
         this.interactionService.setSummaryResultState(this.loadingData);
-
-        const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
         self.summaryResult = result;
@@ -184,8 +188,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     updateWithAreas() {
         this.logger.log('RightSidePanelComponent/updateWithAreas()');
-        this.loadingData = true;
-        this.interactionService.setSummaryResultState(this.loadingData);
         const areas = [];
         this.areas.map((layer: Layer) => {
           const points = [];
@@ -204,6 +206,14 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         };
        ;
         const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
+
+        if (this.helper.isPayloadIncomplete(payload)){
+            this.interactionService.closeRightPanel();
+            return;            
+        }
+
+        this.loadingData = true;
+        this.interactionService.setSummaryResultState(this.loadingData);
 
         const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
           this.summaryResult = result;
