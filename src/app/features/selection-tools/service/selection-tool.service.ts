@@ -231,7 +231,7 @@ export class SelectionToolService extends APIService {
 
     this.theDrawer.enable();
     this.isDrawer = true;
-    this.isPolygonDrawer = true;
+    //this.isPolygonDrawer = true;
   }
 
   getDrawer() {
