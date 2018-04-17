@@ -125,8 +125,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     private summaryResult;
 
-    private emptyResult = false;
-
     constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
@@ -169,25 +167,18 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
         this.interactionService.setSummaryResultState(this.loadingData);
-        this.interactionService.displayButtonExport(!this.loadingData)
 
         const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
         self.summaryResult = result;
-        self.interactionService.setSummaryData(result);
-        if (this.helper.isResultEmpty(result)) {
-            this.emptyResult = true;
-        }
         }).then(() => {
           self.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
-          self.interactionService.displayButtonExport(!self.loadingData);
         }).catch((e) => {
           self.logger.log(JSON.stringify(e));
           self.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
-          self.interactionService.displayButtonExport(!self.loadingData)
         });
     }
 
@@ -195,7 +186,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.logger.log('RightSidePanelComponent/updateWithAreas()');
         this.loadingData = true;
         this.interactionService.setSummaryResultState(this.loadingData);
-        this.interactionService.displayButtonExport(!this.loadingData);
         const areas = [];
         this.areas.map((layer: Layer) => {
           const points = [];
@@ -210,7 +200,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
           this.logger.log('RightSidePanelComponent/areas().lenght === 0')
           this.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
-          this.interactionService.displayButtonExport(!this.loadingData)
           return
         };
        ;
@@ -218,18 +207,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
         const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
           this.summaryResult = result;
-          this.interactionService.setSummaryData(result);
-          if(this.helper.isResultEmpty(result)){
-            this.emptyResult = true;
-          }
           // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(() => { this.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
-          this.interactionService.displayButtonExport(!this.loadingData)}).catch((e) => {
+        }).catch((e) => {
           this.logger.log(JSON.stringify(e))
           this.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
-          this.interactionService.displayButtonExport(!this.loadingData)
         });
     }
 

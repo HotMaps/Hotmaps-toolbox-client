@@ -77,7 +77,9 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     this.logger.log('SummaryResultComponent/ngOnChanges');
 
     if(this.summaryResult){
-      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);    
+      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+
+      this.loadExportData(this.ref);
     }
   }
 
@@ -93,5 +95,17 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   changeResultsDisplay(event){
     this.logger.log('SummaryResultComponent/changeResultsDisplay');
     this.ref = event.target.value;
+
+    this.loadExportData(this.ref);
+  }
+
+  loadExportData(ref){
+    const indicatorResults = this.splittedResults[ref];
+    this.interactionService.setSummaryData(indicatorResults);
+    this.interactionService.displayButtonExport(!this.loadingData);
+
+    if (this.helper.isResultDataEmpty(indicatorResults)){
+      this.interactionService.displayButtonExport(false)
+    }
   }
 }
