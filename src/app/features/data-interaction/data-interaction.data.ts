@@ -53,7 +53,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
   {id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
-    workspaceName: 'potential_solar', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
+    workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
   {id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
     workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['potential'], styleName: 'Geothermal Heat Conductivity [W/mK]'},
 
