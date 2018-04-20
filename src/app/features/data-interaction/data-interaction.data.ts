@@ -8,7 +8,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
   {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
-    workspaceName: defaultLayer, zoomLevel: 0, ref:['summary', 'demand',], styleName: styleNameHeat},
+    workspaceName: defaultLayer, zoomLevel: 0, ref:['summary', 'demand'], styleName: styleNameHeat},
   {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['summary', 'demand'], styleName: styleNameHeat},
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
@@ -32,13 +32,10 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: 'vol_tot_curr_density'},
-
-
   {id: 45345, name: 'Industrial Sites Emissions', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014'},
   {id: 20, name: 'Industrial Sites Excess Heat', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014'},
-
   {id: 45345, name: 'Industrial Sites Compagny Name', category: 'Industrial', isSelected: false,
     workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector_name'},
   {id: 20, name: 'Industrial Sites Subsector', category: 'Industrial', isSelected: false,
