@@ -609,13 +609,13 @@ var DataInteractionArray = [
         workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['demand'], styleName: 'vol_tot_curr_density' },
     { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
         workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: 'vol_tot_curr_density' },
-    { id: 45345, name: 'Industrial Sites Emissions', category: 'Industrial', isSelected: false,
+    { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
-    { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industrial', isSelected: false,
+    { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
-    { id: 45345, name: 'Industrial Sites Compagny Name', category: 'Industrial', isSelected: false,
+    { id: 45345, name: 'Industrial Sites Compagny Name', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector_name' },
-    { id: 20, name: 'Industrial Sites Subsector', category: 'Industrial', isSelected: false,
+    { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector' },
     { id: 14, name: 'Population total', category: 'Population', isSelected: false,
         workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* populationLayerName */], zoomLevel: 0, ref: ['summary', 'demand'], styleName: 'pop_tot_curr_density_V2' },
@@ -623,12 +623,12 @@ var DataInteractionArray = [
         workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Wind potential', category: 'Res Potential', isSelected: false,
+    { id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Solar potential', category: 'Res Potential', isSelected: false,
+    { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Geothermal Potential', category: 'Res Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['potential'], styleName: 'Geothermal Heat Conductivity [W/mK]' },
+    { id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['R.E.S. Potential'], styleName: 'Geothermal Heat Conductivity [W/mK]' },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -4776,7 +4776,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Summary</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Energy Statistics</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          ></htm-summary-result>\n          <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n          <div class=\"export-tab2\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [summaryResult]=\"summaryResult\"\n      [loadingData]=\"loadingData\"\n      ></htm-summary-result>\n      <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n  </ng-template>\n\n\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Overview</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Load profile</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          ></htm-summary-result>\n          <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n          <div class=\"export-tab2\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [summaryResult]=\"summaryResult\"\n      [loadingData]=\"loadingData\"\n      ></htm-summary-result>\n      <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n  </ng-template>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -5774,7 +5774,7 @@ var MapComponent = (function () {
     MapComponent.prototype.ngAfterContentInit = function () {
         this.notifySubscription();
         this.leftPanelComponent.setTitle('Layers');
-        this.rightPanelComponent.setTitle('Load Result');
+        this.rightPanelComponent.setTitle('Results');
         this.topSideComponent.setTitle('Feedback');
         // this.mapService.getGridTest();
     };
@@ -6588,10 +6588,10 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return navigationButtons; });
 var navigationButtons = [
-    { id: 'layers', title: 'Layer', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false },
-    { id: 'selection', title: 'Selection', buttonFunction: 'selection', iconClass: 'flaticon-vector', enable: true, stateOpen: false },
+    { id: 'layers', title: 'Layers', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false },
+    { id: 'selection', title: 'Selection tool', buttonFunction: 'selection', iconClass: 'flaticon-vector', enable: true, stateOpen: false },
     { id: 'folder', title: 'Folder', buttonFunction: '', iconClass: 'flaticon-folder-2', enable: false, stateOpen: false },
-    { id: 'load_result', title: 'Load result', buttonFunction: 'right', iconClass: 'flaticon-pie-chart-1', enable: false, stateOpen: false },
+    { id: 'load_result', title: 'Show results', buttonFunction: 'right', iconClass: 'flaticon-pie-chart-1', enable: false, stateOpen: false },
     { id: 'import_data', title: 'Import data', buttonFunction: '', iconClass: 'flaticon-cloud-computing', enable: false, stateOpen: false },
     { id: 'calculation_modules', title: 'Calculation modules', buttonFunction: 'left', iconClass: 'flaticon-interface-1',
         enable: false, stateOpen: false },
@@ -6941,8 +6941,10 @@ var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
 var gfa_nonres_curr_density_indicator_name = 'Heated Gross Floor Area -Non-Residential Buildings';
 var heat_res_curr_density = 'heat_res_curr_density';
 var heat_res_curr_density_indicator_name = 'Heat consumption - Residential Buildings';
-var heat_nonres_curr_density = 'heat_nonres_curr_density';
+var heat_nonres_curr_density = 'solar_optimal_total_value';
 var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
+var solar_optimal_total = 'solar_optimal_total';
+var solar_optimal_total_indicator_name = 'potential of solar energy';
 var BusinessInterfaceRenderArray = [
     { id: 17, api_name: 'heat_density', business_name: 'Average Heat density' },
     { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
@@ -6980,6 +6982,14 @@ var BusinessInterfaceRenderArray = [
     { id: 176, api_name: wwtp + '_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0' },
     { id: 176, api_name: wwtp + '_ha', business_name: 'Waste Water treatment plants' },
     { id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3' },
+    { id: 175, api_name: solar_optimal_total + '_value', business_name: solar_optimal_total_indicator_name },
+    { id: 176, api_name: solar_optimal_total + '_density', business_name: 'Average ' + solar_optimal_total_indicator_name + ' density' },
+    { id: 177, api_name: solar_optimal_total + '_cells', business_name: solar_optimal_total_indicator_name + ' cells' },
+    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'emissions of non energy-intensive industries' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value', business_name: 'excess heat potential of energy-intensive industries [100°C - 200°C]' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential of energy-intensive industries [200°C - 500°C]' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential of energy-intensive industries [ > 500°C]' },
+    { id: 178, api_name: 'total', business_name: 'excess heat potential of energy-intensive industries total [°C]' },
     { id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2' },
     { id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1' },
     { id: 157, api_name: 'population_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\'' },
@@ -7395,11 +7405,11 @@ var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = geoserverDevUrl;
+var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = prodUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var idDefaultLayer = 17;

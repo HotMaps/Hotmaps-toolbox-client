@@ -56,7 +56,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   ngAfterContentInit(): void {
     this.notifySubscription();
     this.leftPanelComponent.setTitle('Layers');
-    this.rightPanelComponent.setTitle('Load Result');
+    this.rightPanelComponent.setTitle('Results');
     this.topSideComponent.setTitle('Feedback');
     // this.mapService.getGridTest();
   }
