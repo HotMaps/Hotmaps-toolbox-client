@@ -68,8 +68,8 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
       payload = this.helper.createDCPayloadHectares(constant_year_duration_curve, areas);
     }else{ // updating chart with data by nuts
       payload = this.helper.createDCPayloadNuts(constant_year_duration_curve, this.nutsIds);
-    }    
-
+    }
+    
     this.loadingData = true;
 
     this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {

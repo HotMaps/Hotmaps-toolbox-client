@@ -14,8 +14,12 @@ const gfa_nonres_curr_density_indicator_name  = 'Heated Gross Floor Area -Non-Re
 const heat_res_curr_density  =  'heat_res_curr_density';
 const heat_res_curr_density_indicator_name  = 'Heat consumption - Residential Buildings'
 
-const heat_nonres_curr_density  =  'heat_nonres_curr_density';
+const heat_nonres_curr_density  =  'solar_optimal_total_value';
 const heat_nonres_curr_density_indicator_name  = 'Heat consumption - Non-Residential Buildings'
+
+const solar_optimal_total  =  'solar_optimal_total';
+const solar_optimal_total_indicator_name  = 'potential of solar energy'
+
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 17, api_name: 'heat_density', business_name: 'Average Heat density'},
@@ -61,14 +65,21 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 175, api_name: wwtp + '_nuts1', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS1'},
   {id: 176, api_name: wwtp + '_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0'},
   {id: 176, api_name: wwtp + '_ha', business_name: 'Waste Water treatment plants'},
+  {id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3'},
 
+  {id: 175, api_name: solar_optimal_total + '_value', business_name: solar_optimal_total_indicator_name},
+  {id: 176, api_name: solar_optimal_total + '_density', business_name: 'Average ' + solar_optimal_total_indicator_name + ' density'},
+  {id: 177, api_name: solar_optimal_total + '_cells', business_name: solar_optimal_total_indicator_name + ' cells'},
 
-
-  {id: 178, api_name: 'pop_tot_curr_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3'},
-  {id: 179, api_name: 'pop_tot_curr_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2'},
-  {id: 147, api_name: 'pop_tot_curr_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1'},
-  {id: 157, api_name: 'pop_tot_curr_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\''},
-  {id: 157, api_name: 'pop_tot_curr_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2'},
+  {id: 178, api_name: 'industrial_database_emissions_value', business_name: 'emissions of non energy-intensive industries'},
+  {id: 178, api_name: 'industrial_database_excess_heat_value', business_name: 'excess heat potential of energy-intensive industries [100°C - 200°C]'},
+  {id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential of energy-intensive industries [200°C - 500°C]'},
+  {id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential of energy-intensive industries [ > 500°C]'},
+  {id: 178, api_name: 'total', business_name: 'excess heat potential of energy-intensive industries total [°C]'},
+  {id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2'},
+  {id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1'},
+  {id: 157, api_name: 'population_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\''},
+  {id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2'},
   {id: 157, api_name: 'population_density', business_name: 'Average population density'},
   {id: 167, api_name: 'population_density_ha', business_name: 'population density'},
   {id: 168, api_name: 'count_cell_pop', business_name: 'Counting cells with values'},

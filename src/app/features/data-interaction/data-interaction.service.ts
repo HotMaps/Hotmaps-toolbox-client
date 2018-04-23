@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
@@ -87,15 +87,15 @@ export class DataInteractionService extends APIService {
       return null;
     }
 
-    for (let j = 0; j<summay_drop_down_buttons.length; j++){
-      for (let i = 0; i<rLayers.length; i++){
+    for (let j = 0; j < summay_drop_down_buttons.length; j++){
+      for (let i = 0; i< rLayers.length; i++){
         if (this.getRefFromLayerName(results.layers[i].name).includes(summay_drop_down_buttons[j]["ref"])){
           const ref = summay_drop_down_buttons[j]["ref"];
           newResults[ref]["layers"].push(results.layers[i]);
 
         }
       }
-      for (let i = 0; i<rNoDataLayers.length; i++){
+      for (let i = 0; i < rNoDataLayers.length; i++){
         if (this.getRefFromLayerName(results.no_data_layers[i]).includes(summay_drop_down_buttons[j]["ref"])){
           const ref = summay_drop_down_buttons[j]["ref"];
           newResults[ref]["no_data_layers"].push(results.no_data_layers[i]);

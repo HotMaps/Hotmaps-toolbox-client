@@ -512,6 +512,16 @@ export class Helper {
     else{ return false; }
   }
 
+  isPayloadIncomplete(payload){
+    console.log("fsgfdf");
+    for (let key in payload){
+      if (payload[key] == 0){
+        return true;
+      }
+    }
+    return false;
+  }
+
   createHLPayloadHectares(type, buttonArray, areas){
     let payload;
     if(type === 'day'){
