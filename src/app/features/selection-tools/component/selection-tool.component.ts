@@ -60,16 +60,6 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
 
   }
   subscribeMapService() {
-    if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
-      this.subscription = this.mapService.getScaleValueSubject().subscribe((value) => {
-        this.scaleSelected = value;
-        if (value === hectare) {
-          this.elementSelected = 'Zones selected'
-        } else {
-          this.elementSelected = defaultElementSelected;
-        }
-      })
-    }
 
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
@@ -89,16 +79,17 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     }
     if (!this.helper.isNullOrUndefined(this.mapService.getNbOfLayersSelected())) {
       this.mapService.getNbOfLayersSelected().subscribe((value) => {
+        this.logger.log('layerSelected =' + value )
         this.layerSelected = value;
       })
     }
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.logger.log('nbElementsSelected =' + value )
         this.nbElementsSelected = value;
       })
 
     }
-
     // subscribing to click event subject of MapService
     if (!this.helper.isNullOrUndefined(this.mapService.clickEventSubjectObs)) {
         this.mapService.clickEventSubjectObs.subscribe(() => {
@@ -160,7 +151,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   }
 
   setClearButtonText() {
-    
+
     let zoneString = ' zones';
     if (this.layerSelected === 1 || this.nbElementsSelected === 1) {
       zoneString = ' zone';

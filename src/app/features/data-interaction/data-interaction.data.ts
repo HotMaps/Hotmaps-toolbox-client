@@ -36,7 +36,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014'},
   {id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
     workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014'},
-  {id: 45345, name: 'Industrial Sites Compagny Name', category: 'Industry', isSelected: false,
+  {id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
     workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector_name'},
   {id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
     workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector'},

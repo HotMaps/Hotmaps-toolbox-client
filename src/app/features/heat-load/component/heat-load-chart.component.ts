@@ -32,7 +32,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private labels;
   private options: any;
   private loadProfileData: any;
-  private subtitle = 'Heat load profiles';
+  private subtitle = 'Heatload profile';
   private datasets: DatasetChart;
   private type = 'barChart';
   private selectedButton;
