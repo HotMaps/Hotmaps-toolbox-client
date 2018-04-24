@@ -613,7 +613,7 @@ var DataInteractionArray = [
         workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
     { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
-    { id: 45345, name: 'Industrial Sites Compagny Name', category: 'Industry', isSelected: false,
+    { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector_name' },
     { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector' },
@@ -1695,7 +1695,7 @@ var HeatLoadChartComponent = (function () {
         this.helper = helper;
         this.interactionService = interactionService;
         this.dateHeatload = { year: 2010, month: 1, day: 1 };
-        this.subtitle = 'Heatload profil';
+        this.subtitle = 'Heatload profile';
         this.type = 'barChart';
         this.default_year = 2010;
         this.loadingData = false;
@@ -3900,17 +3900,6 @@ var SelectionToolComponent = (function () {
     };
     SelectionToolComponent.prototype.subscribeMapService = function () {
         var _this = this;
-        if (!this.helper.isNullOrUndefined(this.mapService.getScaleValueSubject())) {
-            this.subscription = this.mapService.getScaleValueSubject().subscribe(function (value) {
-                _this.scaleSelected = value;
-                if (value === __WEBPACK_IMPORTED_MODULE_2_app_shared__["hectare"]) {
-                    _this.elementSelected = 'Zones selected';
-                }
-                else {
-                    _this.elementSelected = __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools_component_selection_button_data__["b" /* defaultElementSelected */];
-                }
-            });
-        }
         if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
             this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
                 _this.nbElementsSelected = value;
@@ -3929,11 +3918,13 @@ var SelectionToolComponent = (function () {
         }
         if (!this.helper.isNullOrUndefined(this.mapService.getNbOfLayersSelected())) {
             this.mapService.getNbOfLayersSelected().subscribe(function (value) {
+                _this.logger.log('layerSelected =' + value);
                 _this.layerSelected = value;
             });
         }
         if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
             this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe(function (value) {
+                _this.logger.log('nbElementsSelected =' + value);
                 _this.nbElementsSelected = value;
             });
         }
@@ -6112,10 +6103,13 @@ var MapService = (function (_super) {
         self.logger.log('baselayerchange');
         // in this part we manage the selection scale then we refresh the layers
         var scaleLevel = e.name;
-        self.selectionToolService.clearAll(self.map);
-        self.selectionScaleService.setScaleValue(scaleLevel);
-        self.selectionToolService.setScaleValue(scaleLevel);
-        self.layersService.setCurrentNutsLevel(scaleLevel);
+        self.logger.log('baselayerchange ' + scaleLevel);
+        if (scaleLevel !== 'OSM' && scaleLevel !== 'Satellite') {
+            self.selectionToolService.clearAll(self.map);
+            self.selectionScaleService.setScaleValue(scaleLevel);
+            self.selectionToolService.setScaleValue(scaleLevel);
+            self.layersService.setCurrentNutsLevel(scaleLevel);
+        }
         // changes the actual scale
         this.selectionScaleService.changeScale();
     };

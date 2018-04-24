@@ -152,10 +152,14 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.logger.log('baselayerchange');
         // in this part we manage the selection scale then we refresh the layers
         const scaleLevel = e.name;
-        self.selectionToolService.clearAll(self.map);
-        self.selectionScaleService.setScaleValue(scaleLevel);
-        self.selectionToolService.setScaleValue(scaleLevel);
-        self.layersService.setCurrentNutsLevel(scaleLevel);
+        self.logger.log('baselayerchange ' + scaleLevel );
+        if (scaleLevel !== 'OSM' && scaleLevel !== 'Satellite')
+        {
+          self.selectionToolService.clearAll(self.map);
+          self.selectionScaleService.setScaleValue(scaleLevel);
+          self.selectionToolService.setScaleValue(scaleLevel);
+          self.layersService.setCurrentNutsLevel(scaleLevel);
+        }
 
         // changes the actual scale
         this.selectionScaleService.changeScale();
