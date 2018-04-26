@@ -14,11 +14,14 @@ const gfa_nonres_curr_density_indicator_name  = 'Heated Gross Floor Area -Non-Re
 const heat_res_curr_density  =  'heat_res_curr_density';
 const heat_res_curr_density_indicator_name  = 'Heat consumption - Residential Buildings'
 
-const heat_nonres_curr_density  =  'solar_optimal_total_value';
+const heat_nonres_curr_density  =  'heat_nonres_curr_density';
 const heat_nonres_curr_density_indicator_name  = 'Heat consumption - Non-Residential Buildings'
 
 const solar_optimal_total  =  'solar_optimal_total';
 const solar_optimal_total_indicator_name  = 'potential of solar energy'
+const potential_shallowgeothermal  =  'potential_shallowgeothermal';
+const potential_shallowgeothermal_indicator_name  = 'potential of shallow geothermal energy'
+
 
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
@@ -45,19 +48,23 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name  + ' value'},
   {id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name},
-  {id: 177, api_name: gfa_res_curr_density + '_cells', business_name: gfa_res_curr_density_indicator_name + ' cells'},
+  {id: 177, api_name: gfa_res_curr_density + '_cells', business_name: 'cells'},
 
   {id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name},
   {id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
-  {id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: gfa_nonres_curr_density_indicator_name + ' cells'},
+  {id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: 'cells'},
 
   {id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings'},
   {id: 176, api_name: heat_res_curr_density + '_density', business_name:  'Average heat density - Residential Buildings'},
-  {id: 177, api_name: heat_res_curr_density + '_cells', business_name: heat_res_curr_density_indicator_name + ' cells'},
+  {id: 177, api_name: heat_res_curr_density + '_cells', business_name:  'cells'},
 
   {id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name},
   {id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings'},
-  {id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: heat_nonres_curr_density_indicator_name + ' cells'},
+  {id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells'},
+
+  {id: 175, api_name: potential_shallowgeothermal + '_value', business_name: potential_shallowgeothermal_indicator_name},
+
+  {id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2'},
 
   {id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2'},
   {id: 172, api_name: wwtp + '_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3'},
@@ -87,7 +94,9 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption'},
   {id: 13, api_name: 'density', business_name: 'Total population'},
-  {id: 16, api_name: 'consumption_per_citizen', business_name: 'Heat consumption per person'},
+  {id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person'},
+  {id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings'},
+  {id: 16, api_name: 'heat_nonres_curr_density_value_per_population', business_name: 'Heat consumption per person - Nonresidential Buildings'},
   {id: 25, api_name: 'population_density_sum', business_name: 'Population'},
   {id: 19, api_name: 'population_density_avg', business_name: 'Average population density'},
   {id: 179, api_name: 'Inhabitants', business_name: 'person'},
