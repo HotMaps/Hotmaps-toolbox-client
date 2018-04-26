@@ -10,9 +10,9 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
     workspaceName: defaultLayer, zoomLevel: 0, ref:['summary', 'demand'], styleName: styleNameHeat},
   {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['summary', 'demand'], styleName: styleNameHeat},
+    workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['summary', 'demand'], styleName: styleNameHeat},
+    workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},
 
   {id: 12, name: business_name_wwtp + ' Power', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'wwtp_power', zoomLevel: zoomLevelDetectChange, ref: ['potential'], styleName: styleNameHeat},
@@ -52,7 +52,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
   {id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['R.E.S. Potential'], styleName: 'Geothermal Heat Conductivity [W/mK]'},
+    workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['potential'], styleName: 'Geothermal Heat Conductivity [W/mK]'},
 
 ];
 

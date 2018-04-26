@@ -590,9 +590,9 @@ var DataInteractionArray = [
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
         workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* defaultLayer */], zoomLevel: 0, ref: ['summary', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['summary', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['summary', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* business_name_wwtp */] + ' Power', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* zoomLevelDetectChange */], ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
@@ -628,7 +628,7 @@ var DataInteractionArray = [
     { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['R.E.S. Potential'], styleName: 'Geothermal Heat Conductivity [W/mK]' },
+        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['potential'], styleName: 'Geothermal Heat Conductivity [W/mK]' },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -3238,6 +3238,7 @@ var LayersService = (function (_super) {
         map.fireEvent('didUpdateLayers', this.layersArray);
     };
     LayersService.prototype.addLayerWithAction = function (action, map, order) {
+        this.logger.log('action' + action);
         var layer;
         var option = {
             layers: 'hotmaps:' + action,
@@ -3245,7 +3246,7 @@ var LayersService = (function (_super) {
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
-            zIndex: order
+            zIndex: 17
         };
         this.logger.log('action' + action);
         layer = this.getTilayer(option, this.loaderService);
@@ -3618,7 +3619,7 @@ var nuts1LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
     srs: 'EPSG:4326',
-    zIndex: 10
+    zIndex: 100
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
@@ -3627,7 +3628,7 @@ var nuts2LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
     srs: 'EPSG:4326',
-    zIndex: 10
+    zIndex: -1
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
@@ -6935,10 +6936,12 @@ var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
 var gfa_nonres_curr_density_indicator_name = 'Heated Gross Floor Area -Non-Residential Buildings';
 var heat_res_curr_density = 'heat_res_curr_density';
 var heat_res_curr_density_indicator_name = 'Heat consumption - Residential Buildings';
-var heat_nonres_curr_density = 'solar_optimal_total_value';
+var heat_nonres_curr_density = 'heat_nonres_curr_density';
 var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
 var solar_optimal_total = 'solar_optimal_total';
 var solar_optimal_total_indicator_name = 'potential of solar energy';
+var potential_shallowgeothermal = 'potential_shallowgeothermal';
+var potential_shallowgeothermal_indicator_name = 'potential of shallow geothermal energy';
 var BusinessInterfaceRenderArray = [
     { id: 17, api_name: 'heat_density', business_name: 'Average Heat density' },
     { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
@@ -6959,16 +6962,18 @@ var BusinessInterfaceRenderArray = [
     { id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: gfa_tot_curr_density_indicator_name + ' cells' },
     { id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name + ' value' },
     { id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name },
-    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: gfa_res_curr_density_indicator_name + ' cells' },
+    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: 'cells' },
     { id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name },
     { id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
-    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: gfa_nonres_curr_density_indicator_name + ' cells' },
+    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: 'cells' },
     { id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings' },
     { id: 176, api_name: heat_res_curr_density + '_density', business_name: 'Average heat density - Residential Buildings' },
-    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: heat_res_curr_density_indicator_name + ' cells' },
+    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: 'cells' },
     { id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name },
     { id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings' },
-    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: heat_nonres_curr_density_indicator_name + ' cells' },
+    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells' },
+    { id: 175, api_name: potential_shallowgeothermal + '_value', business_name: potential_shallowgeothermal_indicator_name },
+    { id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2' },
     { id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
     { id: 172, api_name: wwtp + '_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
     { id: 174, api_name: wwtp + '_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2' },
@@ -6994,7 +6999,9 @@ var BusinessInterfaceRenderArray = [
     { id: 169, api_name: 'count_cell_heat', business_name: 'Counting cells with values' },
     { id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption' },
     { id: 13, api_name: 'density', business_name: 'Total population' },
-    { id: 16, api_name: 'consumption_per_citizen', business_name: 'Heat consumption per person' },
+    { id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person' },
+    { id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings' },
+    { id: 16, api_name: 'heat_nonres_curr_density_value_per_population', business_name: 'Heat consumption per person - Nonresidential Buildings' },
     { id: 25, api_name: 'population_density_sum', business_name: 'Population' },
     { id: 19, api_name: 'population_density_avg', business_name: 'Average population density' },
     { id: 179, api_name: 'Inhabitants', business_name: 'person' },

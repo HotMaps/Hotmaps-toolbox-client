@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { SelectionScaleClass  } from './class/selection-scale.class';
@@ -42,7 +42,7 @@ export const nuts1LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
-  zIndex: 10
+  zIndex: 100
 }
 export const nuts2LayerOption = {
   layers: 'hotmaps:' + action,
@@ -51,7 +51,7 @@ export const nuts2LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 2 + '',
   srs: 'EPSG:4326',
-  zIndex: 10
+  zIndex: -1
 }
 export const nuts3LayerOption = {
   layers: 'hotmaps:' + action,

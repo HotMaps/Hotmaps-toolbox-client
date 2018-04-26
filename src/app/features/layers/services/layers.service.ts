@@ -23,6 +23,7 @@ import Layer = L.Layer;
 import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
+import {logger} from "codelyzer/util/logger";
 const proj4 = (proj4x as any).default;
 
 
@@ -110,6 +111,7 @@ export class LayersService extends APIService {
   }
 
   addLayerWithAction(action: string, map: any, order: number) {
+    this.logger.log('action' + action);
     let layer;
       const option = {
         layers: 'hotmaps:' + action ,
@@ -117,7 +119,7 @@ export class LayersService extends APIService {
         transparent: true,
         version: '1.3.0',
         srs: 'EPSG:4326',
-        zIndex: order
+        zIndex: 17
       }
     this.logger.log('action' + action);
     layer = this.getTilayer(option, this.loaderService);
