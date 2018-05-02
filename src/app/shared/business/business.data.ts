@@ -19,8 +19,8 @@ const heat_nonres_curr_density_indicator_name  = 'Heat consumption - Non-Residen
 
 const solar_optimal_total  =  'solar_optimal_total';
 const solar_optimal_total_indicator_name  = 'potential of solar energy'
-const potential_shallowgeothermal  =  'potential_shallowgeothermal';
-const potential_shallowgeothermal_indicator_name  = 'potential of shallow geothermal energy'
+const potential_shallowgeothermal_heat_cond  =  'potential_shallowgeothermal_heat_cond';
+const potential_shallowgeothermal_heat_cond_indicator_name  = 'Average potential of shallow geothermal energy'
 
 
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
@@ -62,7 +62,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings'},
   {id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells'},
 
-  {id: 175, api_name: potential_shallowgeothermal + '_value', business_name: potential_shallowgeothermal_indicator_name},
+  {id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name},
 
   {id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2'},
 

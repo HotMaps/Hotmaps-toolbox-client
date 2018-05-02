@@ -70,7 +70,7 @@ export class SelectionScaleService extends APIService implements OnInit {
   }
   getTilayer(option: any, loader): any {
     const wms_request = L.tileLayer.wms(geoserverUrl, option);
-    wms_request.on('load', function() {
+    wms_request.on('load', function(e) {
       // loader.display(false)
     });
     wms_request.on('tileunload', function() {  });
@@ -103,6 +103,7 @@ export class SelectionScaleService extends APIService implements OnInit {
     };
 
    const control = L.control.layers(SelectionScale, overlayMaps, {collapsed: false});
+
    control.addTo(map);
     map.addLayer(SelectionScale[initial_scale_value]);  // # Add this if you want to show, comment this if you want to hide it.-
 
