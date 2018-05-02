@@ -9,10 +9,10 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://localhost:9006/api';
+const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
 const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
-export const geoserverProdUrl = 'http://localhost:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
