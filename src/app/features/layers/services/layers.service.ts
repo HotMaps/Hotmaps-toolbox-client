@@ -119,7 +119,7 @@ export class LayersService extends APIService {
         transparent: true,
         version: '1.3.0',
         srs: 'EPSG:4326',
-        zIndex: 17
+        zIndex: 1
       }
     this.logger.log('action' + action);
     layer = this.getTilayer(option, this.loaderService);
