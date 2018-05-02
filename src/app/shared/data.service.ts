@@ -22,7 +22,7 @@ export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
-export const idDefaultLayer = 17;
+export const idDefaultLayer = 1;
 export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';

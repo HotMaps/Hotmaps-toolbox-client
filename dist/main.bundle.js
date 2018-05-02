@@ -619,12 +619,12 @@ var DataInteractionArray = [
         workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector' },
     { id: 14, name: 'Population total', category: 'Population', isSelected: false,
         workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* populationLayerName */], zoomLevel: 0, ref: ['summary', 'demand'], styleName: 'pop_tot_curr_density_V2' },
-    { id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
+    /*{id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
+    {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
+    {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
     { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
@@ -3248,7 +3248,7 @@ var LayersService = (function (_super) {
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
-            zIndex: 17
+            zIndex: 1
         };
         this.logger.log('action' + action);
         layer = this.getTilayer(option, this.loaderService);
@@ -3752,7 +3752,7 @@ var SelectionScaleService = (function (_super) {
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
         var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
-        wms_request.on('load', function (e) {
+        wms_request.on('load', function () {
             // loader.display(false)
         });
         wms_request.on('tileunload', function () { });
@@ -7421,7 +7421,7 @@ var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
 var apiUrl = prodUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
-var idDefaultLayer = 17;
+var idDefaultLayer = 1;
 var wwtpLayerName = 'wwtp';
 var urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 var timeOutAjaxRequest = 10000;
