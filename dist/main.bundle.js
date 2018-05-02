@@ -627,8 +627,10 @@ var DataInteractionArray = [
         workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
     { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Geothermal Potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['potential'], styleName: 'Geothermal Heat Conductivity [W/mK]' },
+    { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond' },
+    { id: 20, name: 'Geothermal Potential HC CLASS ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_hc_class' },
 ];
 //# sourceMappingURL=data-interaction.data.js.map
 
@@ -3601,7 +3603,7 @@ var hectareOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
     srs: 'EPSG:4326',
-    zIndex: 10
+    zIndex: 99
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
@@ -3610,7 +3612,7 @@ var nuts0LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
     srs: 'EPSG:4326',
-    zIndex: 10
+    zIndex: 99
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
@@ -3619,7 +3621,7 @@ var nuts1LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
     srs: 'EPSG:4326',
-    zIndex: 100
+    zIndex: 99
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
@@ -3628,7 +3630,7 @@ var nuts2LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
     srs: 'EPSG:4326',
-    zIndex: -1
+    zIndex: 99
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
@@ -3637,14 +3639,14 @@ var nuts3LayerOption = {
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
     srs: 'EPSG:4326',
-    zIndex: 10
+    zIndex: 99
 };
 var lau2LayerOption = {
     layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* lau2name */],
     format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    zIndex: 10
+    zIndex: 99
 };
 /*
 * loading  Event  Fired when the grid layer starts loading tiles.
@@ -3750,7 +3752,7 @@ var SelectionScaleService = (function (_super) {
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
         var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
-        wms_request.on('load', function () {
+        wms_request.on('load', function (e) {
             // loader.display(false)
         });
         wms_request.on('tileunload', function () { });
@@ -5421,7 +5423,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n\n    <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"changeResultsDisplay($event)\">\n          <option *ngFor=\"let button of dropdown_btns\" [value]=\"button.ref\">{{button.name}}</option>\n      </select>\n    </span>\n  </div>\n    <table class=\"uk-table uk-table-divider uk-table-small\">      \n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let i of splittedResults[ref].layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let l of splittedResults[ref].no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>  \n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>"
+module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n\n    <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"changeResultsDisplay($event)\">\n          <option *ngFor=\"let button of dropdown_btns\" [value]=\"button.ref\">{{button.name}}</option>\n      </select>\n    </span>\n  </div>\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let i of splittedResults[ref].layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let l of splittedResults[ref].no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
@@ -5700,7 +5702,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  /*min-height: 6vh;*/\n  height: 48px;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  min-height: 94vh;\n  height: 94vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  /*min-height: 6vh;*/\n  height: 48px;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  height: calc(100vh - 48px);\n  min-height: calc(100vh - 48px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 // exports
 
@@ -6049,7 +6051,7 @@ var MapService = (function (_super) {
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERADD */], function () { self.onLayerAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
         this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
@@ -6089,7 +6091,13 @@ var MapService = (function (_super) {
         self.selectionToolService.clearAll(self.map);
     };
     MapService.prototype.onLayersControlEvent = function (self) { };
-    MapService.prototype.onLayerAdd = function (self) { };
+    MapService.prototype.onLayerAdd = function (self, e) {
+        // const name = e.layer.wmsParams.layers;
+        // self.logger.log('MapService/onLayerAdd '+ name);
+        //  self.logger.log(e);
+        //e.layer.bringToFront();
+        self.logger.logObj(e);
+    };
     MapService.prototype.onOverLayAdd = function (self) { };
     MapService.prototype.onMeasureStart = function (self) { };
     MapService.prototype.onZoomStart = function (self) {
@@ -6940,8 +6948,8 @@ var heat_nonres_curr_density = 'heat_nonres_curr_density';
 var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
 var solar_optimal_total = 'solar_optimal_total';
 var solar_optimal_total_indicator_name = 'potential of solar energy';
-var potential_shallowgeothermal = 'potential_shallowgeothermal';
-var potential_shallowgeothermal_indicator_name = 'potential of shallow geothermal energy';
+var potential_shallowgeothermal_heat_cond = 'potential_shallowgeothermal_heat_cond';
+var potential_shallowgeothermal_heat_cond_indicator_name = 'Average potential of shallow geothermal energy';
 var BusinessInterfaceRenderArray = [
     { id: 17, api_name: 'heat_density', business_name: 'Average Heat density' },
     { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
@@ -6972,7 +6980,7 @@ var BusinessInterfaceRenderArray = [
     { id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name },
     { id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings' },
     { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells' },
-    { id: 175, api_name: potential_shallowgeothermal + '_value', business_name: potential_shallowgeothermal_indicator_name },
+    { id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name },
     { id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2' },
     { id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
     { id: 172, api_name: wwtp + '_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
@@ -7399,17 +7407,17 @@ var MONTHNAME = [
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
+var prodUrl = 'http://localhost:9006/api';
 var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
-var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+var geoserverProdUrl = 'http://localhost:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
-var getLocationFromIp = 'http://hotmaps.hevs.ch:9006/api/';
+var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
 var apiUrl = prodUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
@@ -8978,6 +8986,15 @@ var Logger = (function () {
     Logger.prototype.logJson = function (obj) {
         if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["isDevMode"])() === true) {
             this.logs.push('JSON representation: ' + JSON.stringify(obj));
+        }
+    };
+    Logger.prototype.describeProperties = function (object) {
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["isDevMode"])() === true) {
+            for (var prop in object) {
+                // object[prop]
+                this.logs.push(object[prop]);
+                break;
+            }
         }
     };
     return Logger;

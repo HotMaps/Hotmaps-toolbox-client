@@ -95,7 +95,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
         this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
         this.map.on(MAPLAYERSCONTROLEVENT, () => { self.onLayersControlEvent(self) });
-        this.map.on(MAPLAYERADD, () => { self.onLayerAdd(self) });
+        this.map.on(MAPLAYERADD, (e) => { self.onLayerAdd(self, e) });
         this.map.on(MAPDIDIUPDATELAYER, (event) => { self.onDidUpdateLayers(self, event) });
         this.map.on(MAPOVERLAYADD, () => { self.onOverLayAdd(self) });
         this.map.on(MAPDRAWCREATED, (e) => { self.onDrawCreated(self, e) });
@@ -137,7 +137,17 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         self.selectionToolService.clearAll(self.map);
     }
     onLayersControlEvent(self) { }
-    onLayerAdd(self) { }
+    onLayerAdd(self, e ) {
+
+
+     // const name = e.layer.wmsParams.layers;
+     // self.logger.log('MapService/onLayerAdd '+ name);
+    //  self.logger.log(e);
+      //e.layer.bringToFront();
+      self.logger.logObj(e );
+
+
+    }
     onOverLayAdd(self) { }
     onMeasureStart(self) { }
     onZoomStart(self) {
@@ -277,7 +287,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
                 this.selectionToolService.removeLayerFromMultiSelectionLayers(areaNutsSelectedLayer);
             } else if (this.selectionToolService.containLayer(areaNutsSelectedLayer) == 1){
                 this.selectionToolService.addToMultiSelectionLayers(areaNutsSelectedLayer);
-            }else{
+            }else {
                 return;
             }
         }

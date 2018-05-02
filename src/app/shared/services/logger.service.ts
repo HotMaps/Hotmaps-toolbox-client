@@ -33,4 +33,16 @@ export class Logger {
     }
   }
 
+  describeProperties(object: any) {
+    if (isDevMode() === true) {
+      for (const prop in object) {
+        // object[prop]
+        this.logs.push(object[prop]);
+        break;
+      }
+
+    }
+  }
+
+
 }

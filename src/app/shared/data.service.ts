@@ -9,16 +9,16 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
+const prodUrl    = 'http://localhost:9006/api';
 const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
-export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl = 'http://localhost:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
 export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
-export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9006/api/';
+export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
