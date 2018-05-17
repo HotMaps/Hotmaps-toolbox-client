@@ -5,10 +5,10 @@ const heat_tot_curr_density  =  'heat_tot_curr_density';
 const wwtp  =  'wwtp';
 const gfa_tot_curr_density  =  'gfa_tot_curr_density';
 const gfa_tot_curr_density_indicator_name  =  'Heated Gross Floor Area';
-const gfa_res_curr_density  =  'gfa_res_curr_density';
+const gfa_res_curr_density  =  'gfa_res_curr_density_tif';
 const gfa_res_curr_density_indicator_name  = 'Heated Gross Floor Area -Residential Buildings'
 
-const gfa_nonres_curr_density  =  'gfa_nonres_curr_density';
+const gfa_nonres_curr_density  =  'gfa_nonres_curr_density_tif';
 const gfa_nonres_curr_density_indicator_name  = 'Heated Gross Floor Area -Non-Residential Buildings'
 
 const heat_res_curr_density  =  'heat_res_curr_density';
@@ -21,6 +21,13 @@ const solar_optimal_total  =  'solar_optimal_total';
 const solar_optimal_total_indicator_name  = 'potential of solar energy'
 const potential_shallowgeothermal_heat_cond  =  'potential_shallowgeothermal_heat_cond';
 const potential_shallowgeothermal_heat_cond_indicator_name  = 'Average potential of shallow geothermal energy'
+const cdd_curr_tif_density  =  'cdd_curr_tif';
+const cdd_curr_tif_density_indicator_name  = 'Average cooling degree days'
+const hdd_curr_tif_density  =  'hdd_curr_tif';
+const hdd_curr_tif_density_indicator_name  = 'Average heating degree days'
+
+
+
 
 
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
@@ -44,23 +51,32 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 175, api_name: gfa_tot_curr_density + '_value', business_name: gfa_tot_curr_density_indicator_name + ' value'},
   {id: 176, api_name: gfa_tot_curr_density + '_density', business_name: gfa_tot_curr_density_indicator_name },
-  {id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: gfa_tot_curr_density_indicator_name + ' cells'},
+  {id: 177, api_name: gfa_tot_curr_density + '_cells', business_name:  'Counting cells with values'},
 
   {id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name  + ' value'},
   {id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name},
-  {id: 177, api_name: gfa_res_curr_density + '_cells', business_name: 'cells'},
+  {id: 177, api_name: gfa_res_curr_density + '_cells', business_name: 'Counting cells with values'},
 
   {id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name},
   {id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
-  {id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: 'cells'},
+  {id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: 'Counting cells with values'},
 
   {id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings'},
   {id: 176, api_name: heat_res_curr_density + '_density', business_name:  'Average heat density - Residential Buildings'},
-  {id: 177, api_name: heat_res_curr_density + '_cells', business_name:  'cells'},
+  {id: 177, api_name: heat_res_curr_density + '_cells', business_name:  'Counting cells with values'},
 
   {id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name},
   {id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings'},
-  {id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells'},
+  {id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'Counting cells with values'},
+
+  {id: 175, api_name: cdd_curr_tif_density + '_value', business_name: cdd_curr_tif_density_indicator_name},
+  {id: 176, api_name: cdd_curr_tif_density + '_density', business_name: cdd_curr_tif_density_indicator_name},
+  {id: 177, api_name: cdd_curr_tif_density + '_cells', business_name: 'Counting cells with values'},
+
+  {id: 175, api_name: hdd_curr_tif_density + '_value', business_name: hdd_curr_tif_density_indicator_name},
+  {id: 176, api_name: hdd_curr_tif_density + '_density', business_name: hdd_curr_tif_density_indicator_name},
+  {id: 177, api_name: hdd_curr_tif_density + '_cells', business_name: 'Counting cells with values'},
+
 
   {id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name},
 
