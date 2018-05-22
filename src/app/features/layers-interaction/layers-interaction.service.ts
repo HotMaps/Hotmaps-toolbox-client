@@ -4,8 +4,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { DataInteractionClass } from './data-interaction.class';
-import { DataInteractionArray } from './data-interaction.data';
+import { DataInteractionClass } from './layers-interaction.class';
+import { DataInteractionArray } from './layers-interaction.data';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';

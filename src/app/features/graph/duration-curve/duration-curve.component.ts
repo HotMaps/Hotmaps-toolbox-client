@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, ViewChild, SimpleChanges } from '@angular/core';
 
-import { DatasetChart } from 'app/features/chart/chart';
-import { Logger } from '../../shared/services/logger.service';
+import { DatasetChart } from 'app/features/graph/chart/chart';
+import { Logger } from '../../../shared/services/logger.service';
 import { Helper } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { constant_year_duration_curve, duration_curve_graph_options } from '../../shared/data.service';
+import { constant_year_duration_curve, duration_curve_graph_options } from '../../../shared/data.service';
 import { PlayloadStatNuts, PayloadStat, Area } from 'app/features/summary-result/class/payload.class';
-import { Layer} from './../summary-result/summary-result.class';
+import { Layer} from '../../summary-result/summary-result.class';
 
 
 @Component({
@@ -20,20 +20,19 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   @Input() scaleLevel;
   @Input() heatloadStatus;
   @Input() areas: Layer[];
-
+  private type = 'line';
   private datasets: DatasetChart[];
   private labels = [];
   private options: any;
-  private subtitle = 'Duration curve';
+  private subtitle = 'Heat duration curve';
   private loadingData = false;
 
 
-  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) { 
-	  
+  constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
 	}
 
   ngOnInit() {
-  	this.logger.log('DurationCurveComponent/ngOnInit');  		
+  	this.logger.log('DurationCurveComponent/ngOnInit');
     this.update();
   }
 
@@ -46,12 +45,10 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
     this.update();
   }
 
-  update(){
+  update() {
   	this.logger.log('DurationCurveComponent/update');
-
-    var isHectare = false;
-
-    var payload: any;
+    let isHectare = false;
+    let payload: any;
     if (this.scaleLevel === '-1'){ // updating chart with data by hectare
       isHectare = true;
       const area = this.areas;
@@ -69,7 +66,7 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
     }else{ // updating chart with data by nuts
       payload = this.helper.createDCPayloadNuts(constant_year_duration_curve, this.nutsIds);
     }
-    
+
     this.loadingData = true;
 
     this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {

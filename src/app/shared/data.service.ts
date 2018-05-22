@@ -42,6 +42,7 @@ export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
 export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
+export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
 
 export const set404url   = 'set404url';
 
@@ -175,4 +176,12 @@ export const heat_load_graph_options = {
             }]
       }
   }
+
+export const energy_mix_options = {
+  position : 'right',
+  legend: {
+    display: true,
+    position : 'right'
+  }
+}
 

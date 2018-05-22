@@ -1,6 +1,6 @@
 // Improvement of coding style :
 // listing import lines alphabetized by the module
-import { DataInteractionClass } from './data-interaction.class';
+import { DataInteractionClass } from './layers-interaction.class';
 import { business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer } from '../../shared/data.service';
 import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.service';
 

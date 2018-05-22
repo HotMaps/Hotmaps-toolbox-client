@@ -5,22 +5,22 @@ import { HeatLoadAggregateService } from '../heat-load.service';
 import { Logger, Helper, LoaderService, ToasterService } from 'app/shared';
 import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ChartComponent } from 'app/features/chart/chart.component';
+import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { MockLoaderService } from 'app/shared/services/mock/loader.service';
 import { MockLoggerService } from 'app/shared/services/mock/logger.service';
-import { InteractionService } from '../../../shared/services/interaction.service';
-import { SidePanelService } from '../../../features/side-panel/side-panel.service';
-import { SelectionToolService } from '../../../features/selection-tools/service/selection-tool.service';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
-import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
-import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
-import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
-import { NavigationBarService } from '../../../pages/nav/service/navigation-bar.service';
-import { SummaryResultService } from '../../../features/summary-result/summary-result.service';
-import { LayersService } from '../../../features/layers/services/layers.service';
-import {ExportDataService} from "../../export-data/service/export-data.service";
+import { InteractionService } from '../../../../shared/services/interaction.service';
+import { SidePanelService } from '../../../side-panel/side-panel.service';
+import { SelectionToolService } from '../../../selection-tools/service/selection-tool.service';
+import {BusinessInterfaceRenderService} from '../../../../shared/business/business.service';
+import {SelectionScaleService} from '../../../selection-scale/selection-scale.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import { DurationCurveService } from "../../duration-curve/duration-curve.service";
+import { NavigationBarService } from '../../../../pages/nav/service/navigation-bar.service';
+import { SummaryResultService } from '../../../summary-result/summary-result.service';
+import { LayersService } from '../../../layers/services/layers.service';
+import {ExportDataService} from "../../../export-data/service/export-data.service";
 
 
 describe('HeatLoadChartComponent', () => {

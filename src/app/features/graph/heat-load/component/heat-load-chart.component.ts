@@ -2,16 +2,18 @@ import { Component, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, ViewChil
 
 import { Stocks, load_profile_data, load_profile_data2 } from '../shared/data';
 import { Stock } from '../shared/data';
-import { SummaryResultClass } from '../../summary-result/summary-result.class';
-import { Logger } from '../../../shared/services/logger.service';
+import { SummaryResultClass } from '../../../summary-result/summary-result.class';
+import { Logger } from '../../../../shared/services/logger.service';
 import { HeatLoadClass, Value } from '../heat-load.class';
-import { LoadProfile, Stock2 } from 'app/features/heat-load/shared';
+import { LoadProfile, Stock2 } from 'app/features/graph/heat-load/shared';
 import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_load_api_month, heat_load_api_day } from 'app/shared';
-import { heat_load_graph_options } from '../../../shared/data.service';
+import { heat_load_graph_options } from '../../../../shared/data.service';
 import { Chart } from 'chart.js';
-import { DatasetChart } from 'app/features/chart/chart';
+import { DatasetChart } from 'app/features/graph/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { Layer} from './../../summary-result/summary-result.class';
+import { Layer} from '../../../summary-result/summary-result.class';
+
+
 
 @Component({
   selector: 'htm-heat-load-chart',
@@ -34,7 +36,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private loadProfileData: any;
   private subtitle = 'Heatload profile';
   private datasets: DatasetChart;
-  private type = 'barChart';
+  private type = 'line';
   private selectedButton;
   private titleDate;
   private default_year = 2010;
@@ -135,7 +137,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   update() {
-    this.logger.log('HeatLoadComponent/update');
+
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;
       this.loadingData = true;
@@ -161,6 +163,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
+        this.logger.log('HeatLoadComponent/update = ' + result);
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);

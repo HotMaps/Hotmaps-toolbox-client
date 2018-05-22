@@ -39,23 +39,25 @@ import { RightSideComponent } from './features/side-panel/right-side-panel/right
 import { LeftSideComponent} from './features/side-panel/left-side-panel/left-side-panel.component';
 import { NavigationBarComponent } from './pages/nav/component/navigation-bar.component';
 import { NavigationBarService } from './pages/nav/service/navigation-bar.service';
-import { DataInteractionCellComponent} from './features/data-interaction/data-interaction-cell/data-interaction-cell.component';
+import { DataInteractionCellComponent} from './features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component';
 import { SummaryResultService } from './features/summary-result/summary-result.service';
 
-import {DataInteractionService} from './features/data-interaction/data-interaction.service';
+import {DataInteractionService} from './features/layers-interaction/layers-interaction.service';
 
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { MailService } from './features/feedback/mail.service';
 import { TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/component/selection-tool.component';
-import { HeatLoadChartComponent } from './features/heat-load/component/';
-import { HeatLoadAggregateService } from './features/heat-load/heat-load.service';
-import { ChartComponent } from './features/chart/chart.component';
-import { DurationCurveComponent } from './features/duration-curve/duration-curve.component';
-import { DurationCurveService } from './features/duration-curve/duration-curve.service'
+import { HeatLoadChartComponent } from './features/graph/heat-load/component/';
+import { HeatLoadAggregateService } from './features/graph/heat-load/heat-load.service';
+import { ChartComponent } from './features/graph/chart/chart.component';
+import { DurationCurveComponent } from './features/graph/duration-curve/duration-curve.component';
+import { DurationCurveService } from './features/graph/duration-curve/duration-curve.service'
 import { ExportDataComponent } from './features/export-data/component/export-data.component';
 import { ExportDataService} from './features/export-data/service/export-data.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { ElectricityMixComponent } from './features/graph/electricity-mix/component/electricity-mix.component';
+import { ElectricityMixService } from './features/graph/electricity-mix/service/electricity-mix.service';
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
     SelectionToolComponent,
     ChartComponent,
     DurationCurveComponent,
-    ExportDataComponent
+    ExportDataComponent,
+    ElectricityMixComponent
   ],
 
   providers: [
@@ -121,7 +124,8 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
     HeatLoadAggregateService,
     SelectionToolUtils,
     ExportDataService,
-    DurationCurveService
+    DurationCurveService,
+    ElectricityMixService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

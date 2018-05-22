@@ -8,10 +8,10 @@ import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 
 
-import { DataInteractionCellComponent } from './../../data-interaction/data-interaction-cell/data-interaction-cell.component';
+import { DataInteractionCellComponent } from '../../layers-interaction/layers-interaction-cell/layers-interaction-cell.component';
 import { SidePanelService } from './../side-panel.service';
 import { LeftSideComponent } from './left-side-panel.component';
-import { DataInteractionService } from './../../data-interaction/data-interaction.service';
+import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { Logger } from './../../../shared/services/logger.service';
 import { LoaderService } from './../../../shared/services/loader.service';
 import { Helper } from './../../../shared/helper';
@@ -21,10 +21,10 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
-import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
+import {HeatLoadAggregateService} from "../../graph/heat-load/heat-load.service";
 import {ExportDataService} from "../../export-data/service/export-data.service";
-import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
-import { DurationCurveComponent } from "../../../features/duration-curve/duration-curve.component";
+import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from "../../graph/duration-curve/duration-curve.component";
 
 
 describe('LeftSideComponent', () => {

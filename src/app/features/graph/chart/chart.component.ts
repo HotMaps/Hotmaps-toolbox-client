@@ -31,6 +31,9 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
   createChart() {
     this.resetChart();
+    this.logger.log('this.type =' + this.type);
+    if (this.type === 'line') {
+      this.logger.log('this.type = line');
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
       type: 'line',
       data: {
@@ -38,7 +41,14 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
         datasets: this.datasets
       },
       options: this.options
-    });
+    }); } else
+      if (this.type === 'pie') {
+        this.logger.log('this.type = pie');
+      this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
+        type: 'pie',
+        data: this.datasets,
+        options: this.options
+      }); }
   }
   resetChart() {
     if (this.chart) {

@@ -2,22 +2,22 @@ import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions,
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';
 
-import { ToasterService } from './../../shared/services/toaster.service';
-import { LoaderService } from './../../shared/services/loader.service';
-import { Logger } from './../../shared/services/logger.service';
+import { ToasterService } from '../../../shared/services/toaster.service';
+import { LoaderService } from '../../../shared/services/loader.service';
+import { Logger } from '../../../shared/services/logger.service';
 
 
-import { apiUrl } from './../../shared/data.service';
-import { Location } from '../../shared/class/location/location';
-import { Payload } from './../population/payload.class';
-import { APIService } from './../../shared/services/api.service';
-import { Helper } from './../../shared/helper';
-import { MockPopulation } from '../population/services/mock/population.data.mock';
-import { HeatLoadAggregateService } from 'app/features/heat-load/heat-load.service';
-import { heatloaddataresponseyear, heatloaddataresponseday } from 'app/features/heat-load/mock/data';
+import { apiUrl } from '../../../shared/data.service';
+import { Location } from '../../../shared/class/location/location';
+import { Payload } from '../../population/payload.class';
+import { APIService } from '../../../shared/services/api.service';
+import { Helper } from '../../../shared/helper';
+import { MockPopulation } from '../../population/services/mock/population.data.mock';
+import { HeatLoadAggregateService } from 'app/features/graph/heat-load/heat-load.service';
+import { heatloaddataresponseyear, heatloaddataresponseday } from 'app/features/graph/heat-load/mock/data';
 
 import { DurationCurveService } from './duration-curve.service';
-import {ExportDataService} from "../export-data/service/export-data.service";
+import {ExportDataService} from "../../export-data/service/export-data.service";
 
 describe('DurationCurveService', () => {
 

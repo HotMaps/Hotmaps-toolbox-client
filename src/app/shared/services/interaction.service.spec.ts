@@ -15,10 +15,10 @@ import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { LoaderService } from 'app/shared/services/loader.service';
 import { GeocodingService, ToasterService, Helper, BusinessInterfaceRenderService } from 'app/shared';
-import {HeatLoadAggregateService} from "../../features/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from "../../features/graph/heat-load/heat-load.service";
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
-import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
-import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
+import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
+import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
 
 
 describe('InteractionService', () => {

@@ -53,7 +53,6 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
   expandedState = 'collapsed';
   private round = round_value;
-  
   private scale = 'Nuts 3';
   private isDataAgregate = false;
   @Input() loadingData;
@@ -65,7 +64,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
   private splittedResults;
 
-  
+
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
 
@@ -92,7 +91,7 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
     this.selectedButton.selected = true;
   }
 
-  changeResultsDisplay(event){
+  changeResultsDisplay(event) {
     this.logger.log('SummaryResultComponent/changeResultsDisplay');
     this.ref = event.target.value;
 

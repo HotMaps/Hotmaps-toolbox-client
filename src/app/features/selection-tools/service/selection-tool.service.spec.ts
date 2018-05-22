@@ -27,17 +27,17 @@ import {SelectionToolButtonStateService} from './selection-tool-button-state.ser
 import {MailService} from '../../feedback/mail.service';
 import {PopulationService} from '../../population/services/population.service';
 import {GeocodingService} from '../../../shared/services/geocoding.service';
-import {DataInteractionService} from '../../data-interaction/data-interaction.service';
+import {DataInteractionService} from '../../layers-interaction/layers-interaction.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {TopSideComponent} from '../../side-panel/top-side-panel/top-side-panel.component';
 import {FeedbackComponent} from '../../feedback/component/feedback.component';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
+import {HeatLoadAggregateService} from '../../graph/heat-load/heat-load.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../export-data/service/export-data.service';
-import { DurationCurveService } from "../../../features/duration-curve/duration-curve.service";
+import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
 
 
 describe('SelectionToolService', () => {
@@ -51,7 +51,7 @@ describe('SelectionToolService', () => {
                 {provide: SelectionToolUtils, useClass: SelectionToolUtils},
                 SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
                 BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService,
-                LayersService, MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, 
+                LayersService, MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService,
                 DataInteractionService, ExportDataService, DurationCurveService
             ]
         })

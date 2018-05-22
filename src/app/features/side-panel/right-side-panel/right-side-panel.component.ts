@@ -18,11 +18,11 @@ import {
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
 import { SummaryResultClass, Layer } from './../../summary-result/summary-result.class';
-import { HeatLoadClass } from '../../heat-load/heat-load.class';
+import { HeatLoadClass } from '../../graph/heat-load/heat-load.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize, nuts2 } from 'app/shared';
-import {Logger} from "../../../shared/services/logger.service";
-import { DataInteractionService } from '../../data-interaction/data-interaction.service';
+import {Logger} from '../../../shared/services/logger.service';
+import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 
 import {SummaryResultService} from '../../summary-result/summary-result.service';
 import {MapService} from '../../../pages/map/map.service';
@@ -116,14 +116,17 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     @Input() layers;
     @Input() scaleLevel;
     private heatloadStatus = false;
+    private nust0Selected = false;
     @Input() locationsSelection;
     @Input() areas;
 
     private scale = 'Nuts 3';
     private isDataAgregate = false;
     private loadingData = false;
+    private electricitMixLoadingState = false;
 
     private summaryResult;
+    private electricitMixResult;
 
     constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
@@ -139,13 +142,19 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         } else {
             this.heatloadStatus = false;
         }
+        if ((this.scaleLevel === '0')) {
+          this.nust0Selected = true;
+        } else {
+          this.nust0Selected = false;
+        }
+
 
         this.logger.log('RightSidePanelComponent/ngOnChanges');
         this.scale = this.mapService.getScaleValue();
-        if (this.mapService.getScaleValue() !== hectare && this.expanded == true) {
+        if (this.mapService.getScaleValue() !== hectare && this.expanded === true) {
             this.isDataAgregate = true;
             this.updateWithIds();
-        } else if (this.mapService.getScaleValue() === hectare && this.expanded == true){
+        } else if (this.mapService.getScaleValue() === hectare && this.expanded === true) {
             this.isDataAgregate = false;
             this.updateWithAreas()
         }
@@ -165,9 +174,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         const self = this;
         const payload: PlayloadStatNuts = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
 
-        if (this.helper.isPayloadIncomplete(payload)){
+        if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
-            return;            
+            return;
         }
 
         this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
@@ -184,6 +193,23 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
           self.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
         });
+        // only for nuts 0 electricity generation mix is allowed
+      if (this.scaleLevel === '0') {
+        self.electricitMixLoadingState = true;
+        const payloadElec = { nuts: this.nutsIds }
+        self.logger.log(' electricitMix:payloadElec = ' + self.nutsIds)
+        const electricityGenerationMixPromise =  this.interactionService.getElectricityMixFromNuts0(payloadElec).then(result => {
+          self.electricitMixResult = result;
+          self.logger.log('electricitMix: Result = ' + JSON.stringify(self.electricitMixResult))
+        }).then(() => {
+          self.electricitMixLoadingState = false;
+          this.interactionService.setElectricityGenerationMixResultState(this.electricitMixLoadingState);
+        }).catch((e) => {
+          self.logger.log(JSON.stringify(e));
+          self.electricitMixLoadingState = false;
+          this.interactionService.setElectricityGenerationMixResultState(this.electricitMixLoadingState);
+        });
+      }
     }
 
     updateWithAreas() {
@@ -207,9 +233,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
        ;
         const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
 
-        if (this.helper.isPayloadIncomplete(payload)){
+        if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
-            return;            
+            return;
         }
 
         this.loadingData = true;

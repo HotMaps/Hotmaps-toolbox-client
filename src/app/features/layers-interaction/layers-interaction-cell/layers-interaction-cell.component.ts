@@ -14,14 +14,14 @@ import {
 } from '@angular/core';
 
 import {MapService} from '../../../pages/map/map.service'
-import { DataInteractionClass } from '../data-interaction.class';
+import { DataInteractionClass } from '../layers-interaction.class';
 import {LoaderService} from '../../../shared/services/loader.service';
-import {InteractionService} from "../../../shared/services/interaction.service";
+import {InteractionService} from '../../../shared/services/interaction.service';
 @Component({
     moduleId: module.id,
-    selector: 'data-interaction-cell',
-    templateUrl: 'data-interaction-cell.component.html',
-    styleUrls: ['data-interaction-cell.component.css'],
+    selector: 'layers-interaction-cell',
+    templateUrl: 'layers-interaction-cell.component.html',
+    styleUrls: ['layers-interaction-cell.component.css'],
     animations: [
         // Define an animation that adjusts the opactiy when a new item is created
         //  in the DOM. We use the 'visible' string as the hard-coded value in the

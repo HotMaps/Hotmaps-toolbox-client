@@ -1,7 +1,7 @@
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 import { Pipe, PipeTransform } from '@angular/core';
-import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
+import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
 import {Logger} from '../services/logger.service';
 @Pipe({
   name: 'layername'

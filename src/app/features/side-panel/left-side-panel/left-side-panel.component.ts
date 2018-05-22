@@ -12,8 +12,8 @@ import {
 
 import { SideComponent } from '../side-panel.component';
 import { Chart } from 'chart.js'
-import { DataInteractionService } from '../../data-interaction/data-interaction.service';
-import { DataInteractionClass } from '../../data-interaction/data-interaction.class';
+import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
+import { DataInteractionClass } from '../../layers-interaction/layers-interaction.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
 @Component({

@@ -4,12 +4,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Logger} from '../../shared/services/logger.service';
-import { LoaderService } from '../../shared/services/loader.service';
-import {APIService} from '../../shared/services/api.service';
-import {ToasterService} from '../../shared/services/toaster.service';
-import {apiUrl, heat_load_api_year, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from './../../shared/data.service';
-import { DatasetChart } from 'app/features/chart/chart';
+import {Logger} from '../../../shared/services/logger.service';
+import { LoaderService } from '../../../shared/services/loader.service';
+import {APIService} from '../../../shared/services/api.service';
+import {ToasterService} from '../../../shared/services/toaster.service';
+import {apiUrl, heat_load_api_year, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
+import { DatasetChart } from 'app/features/graph/chart/chart';
 import { Helper } from 'app/shared';
 
 
