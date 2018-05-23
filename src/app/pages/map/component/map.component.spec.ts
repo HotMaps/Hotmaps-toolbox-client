@@ -57,6 +57,8 @@ import {ExportDataComponent} from "../../../features/export-data/component/expor
 import {ExportDataService} from "../../../features/export-data/service/export-data.service";
 import { DurationCurveService } from "../../../features/graph/duration-curve/duration-curve.service";
 import { DurationCurveComponent } from "../../../features/graph/duration-curve/duration-curve.component";
+import {ElectricityMixService} from "../../../features/graph/electricity-mix/service/electricity-mix.service";
+import {ElectricityMixComponent} from "../../../features/graph/electricity-mix/component/electricity-mix.component";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -81,7 +83,7 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        HeatLoadChartComponent, ChartComponent, ExportDataComponent, DurationCurveComponent
+        HeatLoadChartComponent, ChartComponent, ExportDataComponent, DurationCurveComponent, ElectricityMixComponent
       ],
       providers: [
         {
@@ -110,6 +112,8 @@ describe('MapComponent', () => {
         { provide: MailService, useClass: MailService },
         { provide: Helper, useClass: Helper },
         { provide: DecimalPipe, useClass: DecimalPipe },
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
+
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: DurationCurveService, useClass: DurationCurveService }

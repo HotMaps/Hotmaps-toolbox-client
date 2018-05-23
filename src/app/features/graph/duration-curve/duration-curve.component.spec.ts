@@ -21,6 +21,7 @@ import { SummaryResultService } from '../../summary-result/summary-result.servic
 import { LayersService } from '../../layers/services/layers.service';
 import { HeatLoadAggregateService } from '../heat-load/heat-load.service';
 import { ExportDataService } from "../../export-data/service/export-data.service";
+import {ElectricityMixService} from "../electricity-mix/service/electricity-mix.service";
 
 
 describe('DurationCurveComponent', () => {
@@ -55,6 +56,7 @@ describe('DurationCurveComponent', () => {
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        {provide: ElectricityMixService, useClass: ElectricityMixService},
         { provide: MockBackend, useClass: MockBackend },
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

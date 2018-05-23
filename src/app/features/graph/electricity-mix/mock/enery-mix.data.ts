@@ -80,3 +80,6 @@ export const chartJsEx = {
     "Wind "]
 };
 
+
+
+export const electricityMixresponse = {}

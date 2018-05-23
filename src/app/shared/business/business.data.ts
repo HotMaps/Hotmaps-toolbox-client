@@ -25,6 +25,9 @@ const cdd_curr_tif_density  =  'cdd_curr_tif';
 const cdd_curr_tif_density_indicator_name  = 'Average cooling degree days'
 const hdd_curr_tif_density  =  'hdd_curr_tif';
 const hdd_curr_tif_density_indicator_name  = 'Average heating degree days'
+const yearly_co2_emission_density  =  'yearly_co2_emission';
+const yearly_co2_emission_density_indicator_name  = 'average CO2 emissions for electricity'
+
 
 
 
@@ -77,6 +80,9 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: hdd_curr_tif_density + '_density', business_name: hdd_curr_tif_density_indicator_name},
   {id: 177, api_name: hdd_curr_tif_density + '_cells', business_name: 'Counting cells with values'},
 
+  {id: 175, api_name: yearly_co2_emission_density + '_value', business_name: yearly_co2_emission_density_indicator_name},
+  {id: 176, api_name: yearly_co2_emission_density + '_density', business_name: yearly_co2_emission_density_indicator_name},
+  {id: 177, api_name: yearly_co2_emission_density + '_cells', business_name: 'Counting cells with values'},
 
   {id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name},
 

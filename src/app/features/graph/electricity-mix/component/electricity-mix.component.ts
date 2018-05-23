@@ -10,7 +10,7 @@ import {energy_mix_options} from '../../../../shared/data.service';
   styleUrls: ['./electricity-mix.component.css']
 })
 export class ElectricityMixComponent implements OnInit, OnChanges {
-  private subtitle = 'Energy generation mix';
+  private subtitle = 'Electricity generation mix';
 
   private type = 'pie';
   @Input() expanded: boolean;

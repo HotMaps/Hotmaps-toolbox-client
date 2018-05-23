@@ -51,12 +51,15 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
   {id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-  {id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond'},
+  /*{id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond'},*/
   {id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
     workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['climate'], styleName: 'cdd_curr_tif'},
   {id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
     workspaceName: 'hdd_curr_tif', zoomLevel: 0, ref: ['climate'], styleName: 'hdd_curr_tif'},
+
+  {id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
+    workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['electricity'], styleName: 'yearly_co2_emission'},
 
 ];
 

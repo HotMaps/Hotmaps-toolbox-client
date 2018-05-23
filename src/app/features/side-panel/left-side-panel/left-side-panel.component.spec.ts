@@ -25,6 +25,7 @@ import {HeatLoadAggregateService} from "../../graph/heat-load/heat-load.service"
 import {ExportDataService} from "../../export-data/service/export-data.service";
 import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
 import { DurationCurveComponent } from "../../graph/duration-curve/duration-curve.component";
+import {ElectricityMixService} from "../../graph/electricity-mix/service/electricity-mix.service";
 
 
 describe('LeftSideComponent', () => {
@@ -57,6 +58,8 @@ describe('LeftSideComponent', () => {
                 { provide: DurationCurveService, useClass: DurationCurveService },
                 { provide: ToasterService },
                 { provide: Helper },
+                { provide: ElectricityMixService, useClass: ElectricityMixService },
+
                 { provide: MockBackend, useClass: MockBackend },
                 { provide: BaseRequestOptions, useClass: BaseRequestOptions },
                 { provide: Logger, useValue: loggerStub },

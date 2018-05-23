@@ -67,7 +67,7 @@ export const summay_drop_down_buttons = [
   { name: 'Climate', ref: 'climate', selected: false},
   { name: 'Heat Supply', ref: 'heat_supply', selected: false},
   { name: 'Industry', ref: 'industry', selected: false},
-  { name: 'Load Profile', ref: 'load_profile', selected: false}
+  { name: 'Electricity', ref: 'electricity', selected: false}
 ]
 export const default_drop_down_button = 'summary';
 
@@ -179,9 +179,11 @@ export const heat_load_graph_options = {
 
 export const energy_mix_options = {
   position : 'right',
+  responsive: true,
   legend: {
     display: true,
     position : 'right'
+
   }
 }
 

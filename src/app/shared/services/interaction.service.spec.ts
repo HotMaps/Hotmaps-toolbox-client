@@ -19,6 +19,7 @@ import {HeatLoadAggregateService} from "../../features/graph/heat-load/heat-load
 import {ExportDataService} from "../../features/export-data/service/export-data.service";
 import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
 import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
+import {ElectricityMixService} from "../../features/graph/electricity-mix/service/electricity-mix.service";
 
 
 describe('InteractionService', () => {
@@ -51,7 +52,8 @@ describe('InteractionService', () => {
         { provide: SidePanelService, useValue: mockSidePanelService },
         { provide: NavigationBarService, useClass: NavigationBarService },
         { provide: DurationCurveService, useClass: DurationCurveService },
-        { provide: DataInteractionService, useClass: DataInteractionService }
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: ElectricityMixService, useClass: ElectricityMixService }
       ],
       imports: []
     }).compileComponents();

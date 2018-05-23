@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ElectricityMixComponent } from './electricity-mix.component';
-import {MockLoggerService} from "../../../../shared/services/mock/logger.service";
-import {ChartComponent} from "../../chart/chart.component";
-import {HeatLoadAggregateService} from "../../heat-load/heat-load.service";
-import {BusinessInterfaceRenderService} from "../../../../shared/business/business.service";
-import {Logger} from "../../../../shared/services/logger.service";
-import {ToasterService} from "../../../../shared/services/toaster.service";
-import {InteractionService} from "../../../../shared/services/interaction.service";
+import {MockLoggerService} from '../../../../shared/services/mock/logger.service';
+import {ChartComponent} from '../../chart/chart.component';
+import {HeatLoadAggregateService} from '../../heat-load/heat-load.service';
+import {BusinessInterfaceRenderService} from '../../../../shared/business/business.service';
+import {Logger} from '../../../../shared/services/logger.service';
+import {ToasterService} from '../../../../shared/services/toaster.service';
+import {InteractionService} from '../../../../shared/services/interaction.service';
 import {SidePanelService} from "../../../side-panel/side-panel.service";
 import {NavigationBarService} from "../../../../pages/nav/service/navigation-bar.service";
 import {SummaryResultService} from "../../../summary-result/summary-result.service";
@@ -23,29 +23,7 @@ import {APP_BASE_HREF, DecimalPipe} from "@angular/common";
 import {BaseRequestOptions, ConnectionBackend, Http} from "@angular/http";
 import {MockBackend} from "@angular/http/testing";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-
-describe('ElectricityMixComponent', () => {
-  let component: ElectricityMixComponent;
-  let fixture: ComponentFixture<ElectricityMixComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ElectricityMixComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ElectricityMixComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-});
-
+import {ElectricityMixService} from "../service/electricity-mix.service";
 
 
 
@@ -85,6 +63,7 @@ describe('ElectricityMixComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
+        {provide: ElectricityMixService, useClass: ElectricityMixService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

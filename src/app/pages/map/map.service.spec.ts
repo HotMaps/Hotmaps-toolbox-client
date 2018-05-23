@@ -31,6 +31,7 @@ import {HeatLoadAggregateService} from '../../features/graph/heat-load/heat-load
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
+import {ElectricityMixService} from "../../features/graph/electricity-mix/service/electricity-mix.service";
 
 
 
@@ -72,7 +73,8 @@ describe('mapService', () => {
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
         {provide: ExportDataService, useClass: ExportDataService },
-        {provide: DurationCurveService, useClass: DurationCurveService}
+        {provide: DurationCurveService, useClass: DurationCurveService},
+        { provide: ElectricityMixService, useClass: ElectricityMixService }
       ],
     })
   });

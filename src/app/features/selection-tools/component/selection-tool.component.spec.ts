@@ -39,6 +39,7 @@ import {HeatLoadAggregateService} from '../../graph/heat-load/heat-load.service'
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from "../../export-data/service/export-data.service";
 import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
+import {ElectricityMixService} from "../../graph/electricity-mix/service/electricity-mix.service";
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -52,7 +53,7 @@ describe('SelectionToolComponent', () => {
       providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
-        SelectionScaleService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
+        SelectionScaleService, ElectricityMixService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
         BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
         MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService,
         DurationCurveService]

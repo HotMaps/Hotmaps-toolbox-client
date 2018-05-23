@@ -43,3 +43,10 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.header-energy-mix > th{
+  color:white;
+  background-color:black;
+  text-align: center;
+  border-right: 1px solid #f5f5f5;
+}

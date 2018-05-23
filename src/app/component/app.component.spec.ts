@@ -63,6 +63,8 @@ import {ExportDataService} from "../features/export-data/service/export-data.ser
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import { DurationCurveComponent } from '../features/graph/duration-curve/duration-curve.component';
 import { DurationCurveService } from "../features/graph/duration-curve/duration-curve.service";
+import {ElectricityMixComponent} from "../features/graph/electricity-mix/component/electricity-mix.component";
+import {ElectricityMixService} from "../features/graph/electricity-mix/service/electricity-mix.service";
 
 
 describe('AppComponent: Router', () => {
@@ -80,7 +82,7 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent, ElectricityMixComponent ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -99,6 +101,7 @@ describe('AppComponent: Router', () => {
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: InteractionService, useClass: InteractionService},
         {provide: DurationCurveService, useClass: DurationCurveService},
+        {provide: ElectricityMixService, useClass: ElectricityMixService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

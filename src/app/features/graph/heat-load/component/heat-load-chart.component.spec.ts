@@ -21,6 +21,7 @@ import { NavigationBarService } from '../../../../pages/nav/service/navigation-b
 import { SummaryResultService } from '../../../summary-result/summary-result.service';
 import { LayersService } from '../../../layers/services/layers.service';
 import {ExportDataService} from "../../../export-data/service/export-data.service";
+import {ElectricityMixService} from "../../electricity-mix/service/electricity-mix.service";
 
 
 describe('HeatLoadChartComponent', () => {
@@ -55,6 +56,7 @@ describe('HeatLoadChartComponent', () => {
         { provide: SummaryResultService, useClass: SummaryResultService},
         { provide: LayersService, useClass: LayersService},
         { provide: Logger, useValue: mockLoggerService },
+        { provide: ElectricityMixService },
         { provide: Helper, useClass: Helper },
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: APP_BASE_HREF, useValue: '/' },
