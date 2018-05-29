@@ -59,9 +59,10 @@ export const buttons_heat_load = [
   { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
+export const default_drop_down_button = 'overall';
 
 export const summay_drop_down_buttons = [
-  { name: 'Summary', ref: 'summary', selected: true},
+  { name: 'Overall', ref: default_drop_down_button, selected: true},
   { name: 'Demand', ref: 'demand', selected: false},
   { name: 'Potentials', ref: 'potential', selected: false},
   { name: 'Climate', ref: 'climate', selected: false},
@@ -69,7 +70,6 @@ export const summay_drop_down_buttons = [
   { name: 'Industry', ref: 'industry', selected: false},
   { name: 'Electricity', ref: 'electricity', selected: false}
 ]
-export const default_drop_down_button = 'summary';
 
 
 // layers constant
