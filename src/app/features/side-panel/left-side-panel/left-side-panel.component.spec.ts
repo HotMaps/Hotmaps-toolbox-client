@@ -1,3 +1,7 @@
+import { SelectionToolButtonStateService } from './../../selection-tools/service/selection-tool-button-state.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { SelectionToolService } from 'app/features/selection-tools';
+import { MapService } from './../../../pages/map/map.service';
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,12 +25,12 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
-import {HeatLoadAggregateService} from "../../graph/heat-load/heat-load.service";
-import {ExportDataService} from "../../export-data/service/export-data.service";
-import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
-import { DurationCurveComponent } from "../../graph/duration-curve/duration-curve.component";
-import {ElectricityMixService} from "../../graph/electricity-mix/service/electricity-mix.service";
-
+import {HeatLoadAggregateService} from '../../graph/heat-load/heat-load.service';
+import {ExportDataService} from '../../export-data/service/export-data.service';
+import { DurationCurveService } from '../../graph/duration-curve/duration-curve.service';
+import { DurationCurveComponent } from '../../graph/duration-curve/duration-curve.component';
+import {ElectricityMixService} from '../../graph/electricity-mix/service/electricity-mix.service';
+import { SelectionScaleService } from 'app/features/selection-scale';
 
 describe('LeftSideComponent', () => {
     let component: LeftSideComponent;
@@ -64,6 +68,12 @@ describe('LeftSideComponent', () => {
                 { provide: BaseRequestOptions, useClass: BaseRequestOptions },
                 { provide: Logger, useValue: loggerStub },
                 { provide: LoaderService, useValue: loaderServiceStub },
+                { provide: MapService, useClass: MapService },
+                { provide: SelectionScaleService, useClass: SelectionScaleService },
+                { provide: SelectionToolService, useClass: SelectionToolService },
+                { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+                { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+
             ],
             imports: [
                 BrowserAnimationsModule,

@@ -5,16 +5,17 @@ import { NavigationBarService } from './../../../pages/nav/service/navigation-ba
 import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
 import { GeojsonClass } from './../../layers/class/geojson.class';
 import {
-    Component,
-    OnInit,
-    OnDestroy,
-    trigger,
-    state,
-    style,
-    transition,
-    animate,
-    Input,
-  OnChanges
+  Component,
+  OnInit,
+  OnDestroy,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  Input,
+  OnChanges,
+  ViewChild
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
 import { SummaryResultClass, Layer } from './../../summary-result/summary-result.class';
@@ -28,7 +29,8 @@ import {SummaryResultService} from '../../summary-result/summary-result.service'
 import {MapService} from '../../../pages/map/map.service';
 import { Helper } from 'app/shared';
 import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
-import {hectare, round_value, constant_year} from '../../../shared/data.service';
+import {hectare, round_value, constant_year, default_drop_down_button, summay_drop_down_buttons} from '../../../shared/data.service';
+import { SummaryResultComponent } from './../../summary-result/summary-result.component';
 
 
 
@@ -109,57 +111,89 @@ import {hectare, round_value, constant_year} from '../../../shared/data.service'
 export class RightSideComponent extends SideComponent implements OnInit, OnDestroy, OnChanges {
     // Improvement of coding style :
     // place private members after public members, alphabetized
-    //private summaryResult: SummaryResultClass = null;
+    // private summaryResult: SummaryResultClass = null;
 
-    private poiTitle;
     @Input() nutsIds;
     @Input() layers;
     @Input() scaleLevel;
-    private heatloadStatus = false;
-    private nust0Selected = false;
     @Input() locationsSelection;
     @Input() areas;
+    private poiTitle;
+    private heatloadStatus = false;
+    private nust0Selected = false;
+    private dropdown_btns;
+    private buttonRef = default_drop_down_button;
 
     private scale = 'Nuts 3';
     private isDataAgregate = false;
     private loadingData = false;
     private electricitMixLoadingState = false;
-
+    private splittedResults;
     private summaryResult;
     private electricitMixResult;
+    private selectedButton;
 
     constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
         private mapService: MapService, private dataInteractionService: DataInteractionService) {
         super(interactionService);
     }
     ngOnInit() {
+      this.initButtons();
     }
     ngOnDestroy() { }
     ngOnChanges() {
-        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
-            this.heatloadStatus = true;
-
-        } else {
-            this.heatloadStatus = false;
-        }
-        if ((this.scaleLevel === '0')) {
-          this.nust0Selected = true;
-        } else {
-          this.nust0Selected = false;
-        }
+      console.log('RightSidePanelComponent/ngOnChanges')
+      console.log(this.splittedResults)
 
 
-        this.logger.log('RightSidePanelComponent/ngOnChanges');
-        this.scale = this.mapService.getScaleValue();
-        if (this.mapService.getScaleValue() !== hectare && this.expanded === true) {
-            this.isDataAgregate = true;
-            this.updateWithIds();
-        } else if (this.mapService.getScaleValue() === hectare && this.expanded === true) {
-            this.isDataAgregate = false;
-            this.updateWithAreas()
-        }
+
+      if (this.summaryResult) {
+        this.updateResult();
+      }
+      if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+          this.heatloadStatus = true;
+
+      } else {
+          this.heatloadStatus = false;
+      }
+      if ((this.scaleLevel === '0')) {
+        this.nust0Selected = true;
+      } else {
+        this.nust0Selected = false;
+      }
 
 
+/*       this.logger.log('RightSidePanelComponent/ngOnChanges');
+ */
+      this.scale = this.mapService.getScaleValue();
+      if (this.mapService.getScaleValue() !== hectare && this.expanded === true) {
+          this.isDataAgregate = true;
+          this.updateWithIds();
+      } else if (this.mapService.getScaleValue() === hectare && this.expanded === true) {
+          this.isDataAgregate = false;
+          this.updateWithAreas()
+      }
+    }
+    initButtons() {
+      this.dropdown_btns = summay_drop_down_buttons;
+      this.selectedButton = this.dropdown_btns[0];
+      this.selectedButton.selected = true;
+    }
+    loadExportData(buttonRef) {
+      const indicatorResults = this.splittedResults[buttonRef];
+      this.interactionService.setSummaryData(indicatorResults);
+      this.interactionService.displayButtonExport(!this.loadingData);
+
+      if (this.helper.isResultDataEmpty(indicatorResults)) {
+        this.interactionService.displayButtonExport(false)
+      }
+    }
+    changeResultsDisplay(event) {
+      this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
+      this.buttonRef = event.target.value;
+      console.log(this.buttonRef)
+      console.log(this.splittedResults)
+      this.loadExportData(this.buttonRef);
     }
     clickTab(id: string) {
         this.logger.log('clickTab' + id);
@@ -184,8 +218,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.interactionService.setSummaryResultState(this.loadingData);
 
         const summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(result => {
-        self.summaryResult = result;
+          self.summaryResult = result;
         }).then(() => {
+          self.updateResult()
           self.loadingData = false;
           this.interactionService.setSummaryResultState(this.loadingData);
         }).catch((e) => {
@@ -211,7 +246,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         });
       }
     }
-
+    updateResult() {
+      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+      this.loadExportData(this.buttonRef);
+    }
     updateWithAreas() {
         this.logger.log('RightSidePanelComponent/updateWithAreas()');
         const areas = [];

@@ -48,63 +48,31 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   @Input() scaleLevel;
   @Input() locationsSelection;
   @Input() areas;
-
   @Input() summaryResult;
+  @Input() loadingData;
+  @Input() buttonRef;
+  @Input() splittedResults;
 
   expandedState = 'collapsed';
   private round = round_value;
   private scale = 'Nuts 3';
   private isDataAgregate = false;
-  @Input() loadingData;
-
-  private dropdown_btns;
-  private selectedButton;
-
-  private ref = default_drop_down_button;
-
-  private splittedResults;
 
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
 
   ngOnInit() {
-    this.initComponent();
     this.logger.log('SummaryResultComponent/ngOnInit');
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
-
-    if(this.summaryResult){
-      this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
-
-      this.loadExportData(this.ref);
-    }
   }
 
   ngOnDestroy() {
   }
 
-  initComponent() {
-    this.dropdown_btns = summay_drop_down_buttons;
-    this.selectedButton = this.dropdown_btns[0];
-    this.selectedButton.selected = true;
-  }
 
-  changeResultsDisplay(event) {
-    this.logger.log('SummaryResultComponent/changeResultsDisplay');
-    this.ref = event.target.value;
 
-    this.loadExportData(this.ref);
-  }
 
-  loadExportData(ref){
-    const indicatorResults = this.splittedResults[ref];
-    this.interactionService.setSummaryData(indicatorResults);
-    this.interactionService.displayButtonExport(!this.loadingData);
-
-    if (this.helper.isResultDataEmpty(indicatorResults)){
-      this.interactionService.displayButtonExport(false)
-    }
-  }
 }

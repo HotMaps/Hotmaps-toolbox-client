@@ -9,9 +9,11 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    ViewChild
 } from '@angular/core';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { SummaryResultComponent } from 'app/features/summary-result';
 
 
 @Component({
@@ -39,6 +41,7 @@ export class SideComponent implements OnInit, OnDestroy {
     }
     ngOnInit() {
     }
+
     ngOnDestroy() {
     }
 
