@@ -69,3 +69,7 @@ input{
 .uk-accordion-title::after {
   display: none;
 }
+
+.wait {
+  cursor: wait;
+}
