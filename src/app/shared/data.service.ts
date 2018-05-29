@@ -19,7 +19,7 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;
@@ -43,6 +43,10 @@ export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
 export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
+
+// title
+export const heatloadprofile = 'Heatload profile';
+export const Durationcurve = 'Duration curve';
 
 export const set404url   = 'set404url';
 

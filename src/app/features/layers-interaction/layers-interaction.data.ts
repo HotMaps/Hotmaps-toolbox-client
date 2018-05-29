@@ -9,17 +9,20 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
     workspaceName: defaultLayer, zoomLevel: 0, ref:['summary', 'demand'], styleName: styleNameHeat},
-  {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},
-  {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},
+
+  /*{id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+    workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
+
+  /*{id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+    workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
 
   {id: 12, name: business_name_wwtp + ' Power', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'wwtp_power', zoomLevel: zoomLevelDetectChange, ref: ['potential'], styleName: styleNameHeat},
   {id: 12, name: business_name_wwtp + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'wwtp_capacity',  zoomLevel: zoomLevelDetectChange, ref: ['potential'], styleName: styleNameHeat},
+
   {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['summary'], styleName: 'gfa_tot_curr_density_tif'},
+    workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['summary'], styleName: 'gfa_tot_curr_density_tif'},
   {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['demand'], styleName: 'gfa_res_curr_density_tif'},
   {id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
@@ -51,8 +54,11 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
   {id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-  /*{id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond'},*/
+  {id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond'},
+
+  {id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_hc_class'},
   {id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
     workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['climate'], styleName: 'cdd_curr_tif'},
   {id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
