@@ -8,10 +8,10 @@
 
   </div>
   <span class="center">
-      <div *ngIf="splittedResults">
+      <div *ngIf="splittedResults" style="padding: 10px;">
         <select class="uk-select" (change)="changeResultsDisplay($event)">
             <ng-container *ngFor="let button of dropdown_btns">
-              <option *ngIf="splittedResults[button.ref].layers.length !== 0" [value]="button.ref">
+              <option *ngIf="splittedResults[button.ref].layers.length !== 0" [selected]="button.ref == buttonRef" [value]="button.ref">
                 {{button.name}}
               </option>
             </ng-container>
@@ -24,7 +24,7 @@
 
   <ng-template #energy_stat_content>
     <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
-      <li id="tab1" (click)="clickTab('summary')">
+      <li id="tab1" (click)="clickTab('overall')">
         <a href="">INDICATORS</a>
       </li>
       <li id="tab2" (click)="clickTab('stats')">
@@ -84,7 +84,7 @@
 
   <ng-template #energy_mix_content>
     <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
-      <li id="tab1bis" (click)="clickTab('summary')">
+      <li id="tab1bis" (click)="clickTab('overall')">
         <a href="">Overview</a>
       </li>
       <li id="tab2bis" (click)="clickTab('stats')">

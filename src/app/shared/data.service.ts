@@ -129,7 +129,7 @@ export const leftPanelSize = 400;
 
 // tab values
 
-export const tab1 = 'summary'
+export const tab1 = 'overall'
 
 export const tab2 = 'stats'
 
