@@ -26,7 +26,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['demand'], styleName: 'gfa_res_curr_density_tif'},
   {id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_nonres_curr_density_tif', zoomLevel: 0, ref: ['demand'], styleName: 'gfa_nonres_curr_density_tif'},
+    workspaceName: 'gfa_nonres_curr_density_tif', zoomLevel: 0, ref: ['summary', 'demand'], styleName: 'gfa_nonres_curr_density_tif'},
   {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_tot_curr_density_tif', zoomLevel: 0, ref: ['summary'], styleName: 'vol_tot_curr_density'},
 
