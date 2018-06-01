@@ -7726,7 +7726,7 @@ var devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
 var prodGeoserverDockerUrl = 'http://172.17.0.9:8080/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = prodGeoserverDockerUrl;
+var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
