@@ -7719,7 +7719,7 @@ var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
 var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
 var devServiceDockerUrl = 'http://172.17.0.7/api';
-var prodServiceDockerUrl = 'http://0.0.0.0:9006/api';
+var prodServiceDockerUrl = 'http://172.17.0.4/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
@@ -7730,7 +7730,7 @@ var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = prodServiceDockerUrl;
+var apiUrl = prodUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var idDefaultLayer = 1;
