@@ -7723,7 +7723,7 @@ var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
 var devGeoserverDockerUrl = 'http://172.17.0.5:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = devGeoserverDockerUrl;
+var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';

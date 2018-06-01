@@ -22,7 +22,7 @@ export const devGeoserverDockerUrl = 'http://172.17.0.5:9009/geoserver/hotmaps/w
 
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = devGeoserverDockerUrl;
+export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devServiceDockerUrl;
