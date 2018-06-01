@@ -7730,7 +7730,7 @@ var geoserverUrl = geoserverProdUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = prodUrl;
+var apiUrl = prodServiceDockerUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var idDefaultLayer = 1;
