@@ -24,13 +24,14 @@ import { SidePanelService } from './../../features/side-panel/side-panel.service
 import { SelectionToolService } from './../../features/selection-tools/service/selection-tool.service';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
 import {SelectionScaleService} from '../../features/selection-scale/selection-scale.service';
-import { DataInteractionService } from 'app/features/data-interaction/data-interaction.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { GeocodingService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {HeatLoadAggregateService} from '../../features/heat-load/heat-load.service';
+import {HeatLoadAggregateService} from '../../features/graph/heat-load/heat-load.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
-import { DurationCurveService } from "../../features/duration-curve/duration-curve.service";
+import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
+import {ElectricityMixService} from "../../features/graph/electricity-mix/service/electricity-mix.service";
 
 
 
@@ -72,7 +73,8 @@ describe('mapService', () => {
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: ToasterService, useClass: ToasterService},
         {provide: ExportDataService, useClass: ExportDataService },
-        {provide: DurationCurveService, useClass: DurationCurveService}
+        {provide: DurationCurveService, useClass: DurationCurveService},
+        { provide: ElectricityMixService, useClass: ElectricityMixService }
       ],
     })
   });

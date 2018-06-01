@@ -1,21 +1,24 @@
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
-    Component,
-    OnInit,
-    OnDestroy,
-    trigger,
-    state,
-    style,
-    transition,
-    animate
+  Component,
+  OnInit,
+  OnDestroy,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+
 } from '@angular/core';
 
 import { SideComponent } from '../side-panel.component';
 import { Chart } from 'chart.js'
-import { DataInteractionService } from '../../data-interaction/data-interaction.service';
-import { DataInteractionClass } from '../../data-interaction/data-interaction.class';
+import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
+import { DataInteractionClass } from '../../layers-interaction/layers-interaction.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
+import {Logger} from "../../../shared/services/logger.service";
+import {MapService} from "../../../pages/map/map.service";
 @Component({
     moduleId: module.id,
     selector: 'htm-left-side-panel',
@@ -70,14 +73,21 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     layers: DataInteractionClass[];
     category: DataInteractionClass[];
 
-    constructor(private dataInteractionService: DataInteractionService, protected interactionService: InteractionService) {
+    constructor(private dataInteractionService: DataInteractionService, private logger: Logger, protected interactionService: InteractionService, protected mapservice: MapService) {
         super(interactionService);
     }
 
     ngOnInit() {
+
+
         this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
     }
+
+
     getLayerAndCategory(layers: any) {
+
+       this.logger.log (' layerr = ' + JSON.stringify(layers))
+
         this.layers = layers
         this.category = layers.map(item => item.category)
             .filter((value, index, self) => self.indexOf(value) === index);

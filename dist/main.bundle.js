@@ -89,21 +89,23 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__features_side_panel_left_side_panel_left_side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_nav_component_navigation_bar_component__ = __webpack_require__("../../../../../src/app/pages/nav/component/navigation-bar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_nav_service_navigation_bar_service__ = __webpack_require__("../../../../../src/app/pages/nav/service/navigation-bar.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__features_data_interaction_data_interaction_cell_data_interaction_cell_component__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__features_layers_interaction_layers_interaction_cell_layers_interaction_cell_component__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__features_summary_result_summary_result_service__ = __webpack_require__("../../../../../src/app/features/summary-result/summary-result.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__features_data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__features_feedback_mail_service__ = __webpack_require__("../../../../../src/app/features/feedback/mail.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_app_features_side_panel__ = __webpack_require__("../../../../../src/app/features/side-panel/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__features_selection_tools_component_selection_tool_component__ = __webpack_require__("../../../../../src/app/features/selection-tools/component/selection-tool.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__features_heat_load_component___ = __webpack_require__("../../../../../src/app/features/heat-load/component/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__features_chart_chart_component__ = __webpack_require__("../../../../../src/app/features/chart/chart.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__features_duration_curve_duration_curve_component__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__features_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__features_graph_heat_load_component___ = __webpack_require__("../../../../../src/app/features/graph/heat-load/component/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__features_graph_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/graph/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__features_graph_chart_chart_component__ = __webpack_require__("../../../../../src/app/features/graph/chart/chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__features_graph_duration_curve_duration_curve_component__ = __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__features_graph_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__features_export_data_component_export_data_component__ = __webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42_app_features_selection_tools_service_selection_tool_utils_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-utils.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__features_graph_electricity_mix_component_electricity_mix_component__ = __webpack_require__("../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__features_graph_electricity_mix_service_electricity_mix_service__ = __webpack_require__("../../../../../src/app/features/graph/electricity-mix/service/electricity-mix.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -117,6 +119,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
+
+
 
 
 
@@ -187,7 +191,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_26__pages_nav_component_navigation_bar_component__["a" /* NavigationBarComponent */],
             __WEBPACK_IMPORTED_MODULE_22__features_summary_result_summary_result_component__["a" /* SummaryResultComponent */],
             __WEBPACK_IMPORTED_MODULE_23__features_summary_result_summary_result_cell__["a" /* SummaryResultCellComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__features_data_interaction_data_interaction_cell_data_interaction_cell_component__["a" /* DataInteractionCellComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__features_layers_interaction_layers_interaction_cell_layers_interaction_cell_component__["a" /* DataInteractionCellComponent */],
             __WEBPACK_IMPORTED_MODULE_25__features_side_panel_left_side_panel_left_side_panel_component__["a" /* LeftSideComponent */],
             __WEBPACK_IMPORTED_MODULE_33_app_features_side_panel__["a" /* TopSideComponent */],
             __WEBPACK_IMPORTED_MODULE_13__shared__["UppercaseFirstLetterPipe"],
@@ -195,14 +199,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__shared__["LayerNamePipe"],
             __WEBPACK_IMPORTED_MODULE_13__shared__["BusinessNamePipe"],
             __WEBPACK_IMPORTED_MODULE_20__features_feedback___["FeedbackComponent"],
-            __WEBPACK_IMPORTED_MODULE_35__features_heat_load_component___["a" /* HeatLoadChartComponent */],
+            __WEBPACK_IMPORTED_MODULE_35__features_graph_heat_load_component___["a" /* HeatLoadChartComponent */],
             __WEBPACK_IMPORTED_MODULE_34__features_selection_tools_component_selection_tool_component__["a" /* SelectionToolComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__features_chart_chart_component__["a" /* ChartComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__features_duration_curve_duration_curve_component__["a" /* DurationCurveComponent */],
-            __WEBPACK_IMPORTED_MODULE_40__features_export_data_component_export_data_component__["a" /* ExportDataComponent */]
+            __WEBPACK_IMPORTED_MODULE_37__features_graph_chart_chart_component__["a" /* ChartComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__features_graph_duration_curve_duration_curve_component__["a" /* DurationCurveComponent */],
+            __WEBPACK_IMPORTED_MODULE_40__features_export_data_component_export_data_component__["a" /* ExportDataComponent */],
+            __WEBPACK_IMPORTED_MODULE_43__features_graph_electricity_mix_component_electricity_mix_component__["a" /* ElectricityMixComponent */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_30__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */],
+            __WEBPACK_IMPORTED_MODULE_30__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */],
             __WEBPACK_IMPORTED_MODULE_17__features_population_services_population_service__["a" /* PopulationService */],
             __WEBPACK_IMPORTED_MODULE_13__shared__["GeocodingService"],
             __WEBPACK_IMPORTED_MODULE_12__pages_map__["b" /* MapService */],
@@ -222,10 +227,11 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_32__features_feedback_mail_service__["a" /* MailService */],
             __WEBPACK_IMPORTED_MODULE_21__features_selection_scale__["a" /* SelectionScaleService */],
             __WEBPACK_IMPORTED_MODULE_31_app_shared_services_interaction_service__["a" /* InteractionService */],
-            __WEBPACK_IMPORTED_MODULE_36__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */],
+            __WEBPACK_IMPORTED_MODULE_36__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */],
             __WEBPACK_IMPORTED_MODULE_42_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */],
             __WEBPACK_IMPORTED_MODULE_41__features_export_data_service_export_data_service__["a" /* ExportDataService */],
-            __WEBPACK_IMPORTED_MODULE_39__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */]
+            __WEBPACK_IMPORTED_MODULE_39__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */],
+            __WEBPACK_IMPORTED_MODULE_44__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */]
         ],
         schemas: [
             __WEBPACK_IMPORTED_MODULE_3__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]
@@ -332,680 +338,6 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/chart/chart.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ":host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 100%;\n    height: 100%;\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/chart/chart.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<canvas #canvas></canvas>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/chart/chart.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js__ = __webpack_require__("../../../../chart.js/src/chart.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var ChartComponent = (function () {
-    function ChartComponent(logger) {
-        this.logger = logger;
-        this.type = 'line';
-    }
-    ChartComponent.prototype.ngOnInit = function () {
-        this.logger.log('ChartComponent/ngOnInit()');
-    };
-    ChartComponent.prototype.ngOnChanges = function () {
-        this.logger.log('ChartComponent/ngOnChange()');
-        this.createChart();
-    };
-    ChartComponent.prototype.ngAfterViewInit = function () {
-        this.createChart();
-    };
-    ChartComponent.prototype.createChart = function () {
-        this.resetChart();
-        this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: this.labels,
-                datasets: this.datasets
-            },
-            options: this.options
-        });
-    };
-    ChartComponent.prototype.resetChart = function () {
-        if (this.chart) {
-            this.chart.destroy();
-            this.chart = void 0;
-        }
-    };
-    return ChartComponent;
-}());
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('canvas'),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "canvas", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "datasets", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "labels", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "type", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "updateChart", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ChartComponent.prototype, "options", void 0);
-ChartComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'htm-chart',
-        template: __webpack_require__("../../../../../src/app/features/chart/chart.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/chart/chart.component.css")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Logger"]) === "function" && _a || Object])
-], ChartComponent);
-
-var _a;
-//# sourceMappingURL=chart.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n:host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    min-height: 0;\n    min-width: 0;\n    /*max-height: 48px;*/\n    padding: 3px;\n    font-family: 'Hind', sans-serif;\n\n}\n.isSelected{\n    color:white;\n    background-color: #2889DF;\n}\n.details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-left: 2px;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.legend {\n  text-align: center;\n}\n.legend-div {\n  padding: 5px;\n}\n.uk-accordion-content, .uk-accordion{\n  margin: 0px !important;\n}\n.icon {\n}\n.flaticon-signs-1::before {\n  margin: 0px;\n}\n.message {\n\n}\n\n.date {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    font-size: 0.6em;\n    color: #444444;\n}\nbutton{\n    padding: 0 5px;\n    text-align: left;\n    /* font-size: 0.675rem; */\n}\n\ninput:checked{\n    border-color: green !important;\n}\n\ninput{\n    margin: 0px 5px;\n}\n.uk-button-secondary{\n    background-color: #333333;\n}\n\n.uk-accordion-title::after {\n  display: none;\n}\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n    <!--  <form class=\"uk-form\">\n     <label > -->\n       <div>\n\n        <button type=\"button\" name={{dataInteraction.workspaceName}} class=\"uk-button uk-button-default uk-width-1-1\"\n        (click)=\"showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n          <input class=\"uk-checkbox\" type=\"checkbox\"  [checked]=\"dataInteraction.isSelected\" >\n          {{dataInteraction.name}}\n        </button>\n\n       </div>\n      <!-- </label>\n    </form>-->\n    <div [class.legend]=\"loading\" class=\"legend-div\" *ngIf=\"dataInteraction.isSelected && dataInteraction.wo !== 'null'\">\n        <div *ngIf=\"loading\" class=\"loader\" uk-spinner></div>\n        <ul uk-accordion [hidden]=\"loading\">\n          <li>\n            <div class=\"uk-accordion-title\" href=\"#\">\n              <i class=\"flaticon-signs-1\"></i>\n            </div>\n            <div class=\"uk-accordion-content\">\n                <img src=\"http://hotmaps.hevs.ch:9009/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style={{dataInteraction.workspaceName}}\" (load)=\"endLoad()\"/>\n            </div>\n          </li>\n        </ul>\n    </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_interaction_class__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionCellComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var DataInteractionCellComponent = (function () {
-    function DataInteractionCellComponent(mapService, interactionService) {
-        this.mapService = mapService;
-        this.interactionService = interactionService;
-        this.loading = true;
-    }
-    DataInteractionCellComponent.prototype.ngOnInit = function () {
-    };
-    DataInteractionCellComponent.prototype.endLoad = function () {
-        this.loading = false;
-    };
-    DataInteractionCellComponent.prototype.showRemoveLayer = function (e, action, order) {
-        if (this.dataInteraction.isSelected) {
-        }
-        if (this.interactionService.getSummaryResultState() === false) {
-            this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-            if (this.dataInteraction.isSelected) {
-            }
-            this.mapService.showOrRemoveLayer(action, order);
-            if (this.dataInteraction.zoomLevel > 0) {
-                this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel);
-            }
-            this.mapService.setLayersSubject();
-        }
-    };
-    return DataInteractionCellComponent;
-}());
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__data_interaction_class__["a" /* DataInteractionClass */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_interaction_class__["a" /* DataInteractionClass */]) === "function" && _a || Object)
-], DataInteractionCellComponent.prototype, "dataInteraction", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Boolean)
-], DataInteractionCellComponent.prototype, "expanded", void 0);
-DataInteractionCellComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'data-interaction-cell',
-        template: __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/data-interaction/data-interaction-cell/data-interaction-cell.component.css")],
-        animations: [
-            // Define an animation that adjusts the opactiy when a new item is created
-            //  in the DOM. We use the 'visible' string as the hard-coded value in the
-            //  trigger.
-            //
-            // When an item is added we wait for 300ms, and then increase the opacity to 1
-            //  over a 200ms time interval. When the item is removed we don't delay anything
-            //  and use a 200ms interval.
-            //
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('visible', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 300ms')]),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => void', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))])
-            ])
-        ]
-    }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
-], DataInteractionCellComponent);
-
-var _a, _b, _c;
-//# sourceMappingURL=data-interaction-cell.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction.class.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionClass; });
-var DataInteractionClass = (function () {
-    function DataInteractionClass() {
-    }
-    return DataInteractionClass;
-}());
-
-//# sourceMappingURL=data-interaction.class.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction.data.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
-
-
-var DataInteractionArray = [
-    // {id: 11, name: 'Heat map', category: 'Comsumption'},
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
-        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["z" /* defaultLayer */], zoomLevel: 0, ref: ['summary', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* business_name_wwtp */] + ' Power', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* zoomLevelDetectChange */], ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* zoomLevelDetectChange */], ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['summary'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_res_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['summary'], styleName: 'vol_tot_curr_density' },
-    { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['demand'], styleName: 'vol_tot_curr_density' },
-    { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['demand'], styleName: 'vol_tot_curr_density' },
-    { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
-    { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_emissions_ets_2014' },
-    { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector_name' },
-    { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['industry'], styleName: 'industrial_database_sector' },
-    { id: 14, name: 'Population total', category: 'Population', isSelected: false,
-        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* populationLayerName */], zoomLevel: 0, ref: ['summary', 'demand'], styleName: 'pop_tot_curr_density_V2' },
-    /*{id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-    {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-    {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
-    { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_1" /* styleNameHeat */] },
-    { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_heat_cond' },
-    { id: 20, name: 'Geothermal Potential HC CLASS ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['potential'], styleName: 'potential_shallowgeothermal_hc_class' },
-];
-//# sourceMappingURL=data-interaction.data.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/data-interaction/data-interaction.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_interaction_data__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.data.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionService; });
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
-
-
-
-
-
-
-
-
-
-
-
-var DataInteractionService = (function (_super) {
-    __extends(DataInteractionService, _super);
-    function DataInteractionService(http, logger, loaderService, toasterService, helper, business) {
-        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.helper = helper;
-        _this.business = business;
-        return _this;
-    }
-    /* getModulesServices(): Promise<ModulesService[]> {
-      return this.http.get(this.servicesUrl)
-        .toPromise()
-        .then(response => response.json().data as ModulesService[])
-        .catch(this.handleError);
-    }*/
-    DataInteractionService.prototype.getDataInteractionServices = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__data_interaction_data__["a" /* DataInteractionArray */]);
-    };
-    DataInteractionService.prototype.getDataArrayServices = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__data_interaction_data__["a" /* DataInteractionArray */];
-    };
-    DataInteractionService.prototype.getReadableName = function (layerName) {
-        this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
-        var layer = this.getDataArrayServices().filter(function (x) { return x.workspaceName === layerName; })[0];
-        if (this.helper.isNullOrUndefined(layer)) {
-            var layer_new = this.business.getReadableName(layerName);
-            if (this.helper.isNullOrUndefined(layer_new)) {
-                return layerName;
-            }
-            else {
-                return layer_new;
-            }
-        }
-        return layer.name;
-    };
-    DataInteractionService.prototype.getModulesServicesWithNewService = function (newService) {
-        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__data_interaction_data__["a" /* DataInteractionArray */];
-        servicesArray.push(newService);
-        return Promise.resolve(servicesArray);
-    };
-    DataInteractionService.prototype.getModulesServicesSlowly = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            // Simulate server latency with 2 second delay
-            setTimeout(function () { return resolve(_this.getDataInteractionServices()); }, 2000);
-        });
-    };
-    DataInteractionService.prototype.getRefFromLayerName = function (name) {
-        var layer = this.getLayersTabs().filter(function (x) { return x.workspaceName === name; })[0];
-        if (this.helper.isNullOrUndefined(layer)) {
-            return ["no layer with this name"];
-        }
-        return layer.ref;
-    };
-    DataInteractionService.prototype.getLayersTabs = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__data_interaction_data__["a" /* DataInteractionArray */];
-    };
-    DataInteractionService.prototype.getSplittedResults = function (results) {
-        var newResults = this.helper.createSplittedResultsModel();
-        var rLayers = results.layers;
-        var rNoDataLayers = results.no_data_layers;
-        // returns null if results is empty
-        if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)) {
-            return null;
-        }
-        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */].length; j++) {
-            for (var i = 0; i < rLayers.length; i++) {
-                if (this.getRefFromLayerName(results.layers[i].name).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"])) {
-                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
-                    newResults[ref]["layers"].push(results.layers[i]);
-                }
-            }
-            for (var i = 0; i < rNoDataLayers.length; i++) {
-                if (this.getRefFromLayerName(results.no_data_layers[i]).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"])) {
-                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
-                    newResults[ref]["no_data_layers"].push(results.no_data_layers[i]);
-                }
-            }
-        }
-        return newResults;
-    };
-    return DataInteractionService;
-}(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
-DataInteractionService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
-], DataInteractionService);
-
-var _a, _b, _c, _d, _e, _f;
-//# sourceMappingURL=data-interaction.service.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.spinner {\n    position: absolute; \n    left: 50%; \n    top: 50%; \n    color: black; \n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n.waitingbox {\n    height: 290px;\n    width: 100%;\n    position: relative;\n}\n.title {\n    height: 50px;\n    width: 100%;\n    position: relative;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/duration-curve/duration-curve.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var DurationCurveComponent = (function () {
-    function DurationCurveComponent(logger, helper, interactionService) {
-        this.logger = logger;
-        this.helper = helper;
-        this.interactionService = interactionService;
-        this.labels = [];
-        this.subtitle = 'Duration curve';
-        this.loadingData = false;
-    }
-    DurationCurveComponent.prototype.ngOnInit = function () {
-        this.logger.log('DurationCurveComponent/ngOnInit');
-        this.update();
-    };
-    DurationCurveComponent.prototype.ngOnDestroy = function () {
-        this.logger.log('DurationCurveComponent/ngOnDestroy');
-    };
-    DurationCurveComponent.prototype.ngOnChanges = function (changes) {
-        this.logger.log('DurationCurveComponent/ngOnChanges');
-        this.update();
-    };
-    DurationCurveComponent.prototype.update = function () {
-        var _this = this;
-        this.logger.log('DurationCurveComponent/update');
-        var isHectare = false;
-        var payload;
-        if (this.scaleLevel === '-1') {
-            isHectare = true;
-            var area = this.areas;
-            var areas_1 = [];
-            this.areas.map(function (layer) {
-                var points = [];
-                if (layer instanceof L.Circle) {
-                    areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
-                }
-                else {
-                    areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
-                }
-            });
-            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_3" /* constant_year_duration_curve */], areas_1);
-        }
-        else {
-            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_3" /* constant_year_duration_curve */], this.nutsIds);
-        }
-        this.loadingData = true;
-        this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
-            _this.datasets = _this.interactionService.transformDurationCurveData(result);
-            _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
-            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_4" /* duration_curve_graph_options */];
-        }).then(function () {
-            _this.loadingData = false;
-        });
-    };
-    return DurationCurveComponent;
-}());
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Boolean)
-], DurationCurveComponent.prototype, "expanded", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], DurationCurveComponent.prototype, "nutsIds", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], DurationCurveComponent.prototype, "scaleLevel", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], DurationCurveComponent.prototype, "heatloadStatus", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Array)
-], DurationCurveComponent.prototype, "areas", void 0);
-DurationCurveComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'htm-duration-curve',
-        template: __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.component.css")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
-], DurationCurveComponent);
-
-var _a, _b, _c;
-//# sourceMappingURL=duration-curve.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/features/duration-curve/duration-curve.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveService; });
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-var DurationCurveService = (function (_super) {
-    __extends(DurationCurveService, _super);
-    function DurationCurveService(http, logger, loaderService, toasterService, helper) {
-        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.helper = helper;
-        _this.chartDataset = [
-            { label: 'HeatLoad', data: [], borderColor: '#2889DF', fill: true } // "fill: false" if the grey filling isn't good
-        ];
-        _this.formattedValues = [];
-        return _this;
-    }
-    DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
-        if (isHectare == false) {
-            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* postDurationCurveNutsLau */]);
-        }
-        else {
-            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["c" /* postDurationCurveHectares */]);
-        }
-    };
-    DurationCurveService.prototype.formatDataset = function () {
-        this.chartDataset[0].data = [];
-        this.formattedValues = [];
-    };
-    DurationCurveService.prototype.transformData = function (data) {
-        this.formatDataset();
-        for (var i = 0; i < data["points"].length; ++i) {
-            this.formattedValues[i] = {
-                x: data["points"][i]['X'],
-                y: data["points"][i]['Y']
-            };
-        }
-        this.chartDataset[0].data = this.formattedValues;
-        return this.chartDataset;
-    };
-    return DurationCurveService;
-}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
-DurationCurveService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"]) === "function" && _e || Object])
-], DurationCurveService);
-
-var _a, _b, _c, _d, _e;
-//# sourceMappingURL=duration-curve.service.js.map
-
-/***/ }),
-
 /***/ "../../../../../src/app/features/export-data/component/export-data.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1058,7 +390,7 @@ var ExportDataComponent = (function () {
         this.exportDataService = exportDataService;
         this.logger = logger;
         this.isInSummary = true;
-        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */];
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["g" /* tab1 */];
     }
     ExportDataComponent.prototype.ngOnInit = function () {
         this.notifyService();
@@ -1103,12 +435,13 @@ var ExportDataComponent = (function () {
          */
         this.exportDataService.getTabsSelectedName().subscribe(function (val) {
             _this.logger.log('ExportDataComponent/getTabsSelectedName' + val);
-            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* tab1 */]) {
+            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["g" /* tab1 */]) {
                 _this.isInSummary = true;
             }
             else {
                 _this.isInSummary = false;
             }
+            _this.logger.log('setisinsummary:' + _this.isInSummary);
             _this.tabsSelectedName = val;
         });
     };
@@ -1176,7 +509,7 @@ var ExportDataService = (function () {
         this.dataSummary = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
         this.statusStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.dataStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
-        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["e" /* tab1 */]);
+        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["g" /* tab1 */]);
     }
     /**
      * subcribe summary result
@@ -1353,7 +686,7 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_10" /* urlTaigaFeedback */],
+            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_13" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
@@ -1642,7 +975,550 @@ var platforms = {
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/heat-load/component/heat-load-chart.component.css":
+/***/ "../../../../../src/app/features/graph/chart/chart.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 100%;\n    height: 100%;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/chart/chart.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<canvas #canvas></canvas>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/chart/chart.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js__ = __webpack_require__("../../../../chart.js/src/chart.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chart_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ChartComponent = (function () {
+    function ChartComponent(logger) {
+        this.logger = logger;
+        this.type = 'line';
+    }
+    ChartComponent.prototype.ngOnInit = function () {
+        this.logger.log('ChartComponent/ngOnInit()');
+    };
+    ChartComponent.prototype.ngOnChanges = function () {
+        this.logger.log('ChartComponent/ngOnChange()');
+        this.createChart();
+    };
+    ChartComponent.prototype.ngAfterViewInit = function () {
+        this.createChart();
+    };
+    ChartComponent.prototype.createChart = function () {
+        this.resetChart();
+        this.logger.log('this.type =' + this.type);
+        if (this.type === 'line') {
+            this.logger.log('this.type = line');
+            this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: this.labels,
+                    datasets: this.datasets
+                },
+                options: this.options
+            });
+        }
+        else if (this.type === 'pie') {
+            this.logger.log('this.type = pie');
+            this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
+                type: 'pie',
+                data: this.datasets,
+                options: this.options
+            });
+        }
+    };
+    ChartComponent.prototype.resetChart = function () {
+        if (this.chart) {
+            this.chart.destroy();
+            this.chart = void 0;
+        }
+    };
+    return ChartComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('canvas'),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "canvas", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "datasets", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "labels", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "type", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "updateChart", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "options", void 0);
+ChartComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-chart',
+        template: __webpack_require__("../../../../../src/app/features/graph/chart/chart.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/graph/chart/chart.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Logger"]) === "function" && _a || Object])
+], ChartComponent);
+
+var _a;
+//# sourceMappingURL=chart.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/duration-curve/duration-curve.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".htm-card {\n    padding: 10px;\n}\n.spinner {\n    position: absolute; \n    left: 50%; \n    top: 50%; \n    color: black; \n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n.waitingbox {\n    height: 290px;\n    width: 100%;\n    position: relative;\n}\n.title {\n    height: 50px;\n    width: 100%;\n    position: relative;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/duration-curve/duration-curve.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/duration-curve/duration-curve.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DurationCurveComponent = (function () {
+    function DurationCurveComponent(logger, helper, interactionService) {
+        this.logger = logger;
+        this.helper = helper;
+        this.interactionService = interactionService;
+        this.type = 'line';
+        this.labels = [];
+        this.subtitle = 'Duration curve';
+        this.loadingData = false;
+    }
+    DurationCurveComponent.prototype.ngOnInit = function () {
+        this.logger.log('DurationCurveComponent/ngOnInit');
+        this.update();
+    };
+    DurationCurveComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('DurationCurveComponent/ngOnDestroy');
+    };
+    DurationCurveComponent.prototype.ngOnChanges = function (changes) {
+        this.logger.log('DurationCurveComponent/ngOnChanges');
+        this.update();
+    };
+    DurationCurveComponent.prototype.update = function () {
+        var _this = this;
+        this.logger.log('DurationCurveComponent/update');
+        var isHectare = false;
+        var payload;
+        if (this.scaleLevel === '-1') {
+            isHectare = true;
+            var area = this.areas;
+            var areas_1 = [];
+            this.areas.map(function (layer) {
+                var points = [];
+                if (layer instanceof L.Circle) {
+                    areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
+                }
+                else {
+                    areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
+                }
+            });
+            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], areas_1);
+        }
+        else {
+            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], this.nutsIds);
+        }
+        this.loadingData = true;
+        this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
+            _this.datasets = _this.interactionService.transformDurationCurveData(result);
+            _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
+            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_6" /* duration_curve_graph_options */];
+        }).then(function () {
+            _this.loadingData = false;
+        });
+    };
+    return DurationCurveComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Boolean)
+], DurationCurveComponent.prototype, "expanded", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "nutsIds", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "scaleLevel", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], DurationCurveComponent.prototype, "heatloadStatus", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], DurationCurveComponent.prototype, "areas", void 0);
+DurationCurveComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-duration-curve',
+        template: __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
+], DurationCurveComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=duration-curve.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/duration-curve/duration-curve.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DurationCurveService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var DurationCurveService = (function (_super) {
+    __extends(DurationCurveService, _super);
+    function DurationCurveService(http, logger, loaderService, toasterService, helper) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        _this.chartDataset = [
+            { label: 'HeatLoad', data: [], borderColor: '#2889DF', fill: true } // "fill: false" if the grey filling isn't good
+        ];
+        _this.formattedValues = [];
+        return _this;
+    }
+    DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
+        if (isHectare === false) {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["e" /* postDurationCurveNutsLau */]);
+        }
+        else {
+            this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["f" /* postDurationCurveHectares */]);
+        }
+    };
+    DurationCurveService.prototype.formatDataset = function () {
+        this.chartDataset[0].data = [];
+        this.formattedValues = [];
+    };
+    DurationCurveService.prototype.transformData = function (data) {
+        this.formatDataset();
+        for (var i = 0; i < data["points"].length; ++i) {
+            this.formattedValues[i] = {
+                x: data["points"][i]['X'],
+                y: data["points"][i]['Y']
+            };
+        }
+        this.chartDataset[0].data = this.formattedValues;
+        return this.chartDataset;
+    };
+    return DurationCurveService;
+}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
+DurationCurveService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"]) === "function" && _e || Object])
+], DurationCurveService);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=duration-curve.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".htm-card {\n  padding: 10px;\n}\n.spinner {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  color: black;\n}\n.activebutton{\n  background-color: #1e87f0;\n  color: white;\n}\n.waitingbox {\n  /*height: 30.05vh;*/\n  height: 290px;\n  width: 100%;\n  position: relative;\n}\n.title {\n  height: 50px;\n  width: 100%;\n  position: relative;\n}\n.date-visu{\n  text-align: center;\n  margin-bottom: 10px;\n}\n.right{\n  float: right;\n}\n.left{\n  float: left;\n}\n.date-visu > .right, .date-visu > .left {\n  cursor: pointer;\n}\n.date-visu > span {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n\n.header-energy-mix > th{\n  color:white;\n  background-color:black;\n  text-align: center;\n  border-right: 1px solid #f5f5f5;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<table class=\"uk-table uk-table-divider uk-table-small\">\n<thead>\n<tr class=\"header-energy-mix\">\n  <th class=\"uk-table-shrink\">Data on NUTS0</th>\n</tr>\n</thead>\n  </table>\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n\n\n\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElectricityMixComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ElectricityMixComponent = (function () {
+    function ElectricityMixComponent(logger, interactionService) {
+        this.logger = logger;
+        this.interactionService = interactionService;
+        this.subtitle = 'Electricity generation mix';
+        this.type = 'pie';
+    }
+    ElectricityMixComponent.prototype.ngOnInit = function () {
+        this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_4" /* energy_mix_options */];
+        this.update();
+    };
+    ElectricityMixComponent.prototype.ngOnChanges = function (changes) {
+        // this.logger.log('HeatLoadChartComponent/ngOnChanges');
+        this.update();
+    };
+    ElectricityMixComponent.prototype.update = function () {
+        var _this = this;
+        if (this.scaleLevel === '0') {
+            this.loadingData = true;
+            var payloadElec = { nuts: this.nutsIds };
+            this.logger.log(' electricitMix:payloadElec = ' + this.nutsIds);
+            var self_1 = this;
+            var electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(function (result) {
+                self_1.datasets = result;
+            }).then(function () {
+                self_1.loadingData = false;
+                _this.interactionService.setElectricityGenerationMixResultState(_this.loadingData);
+            }).catch(function (e) {
+                self_1.logger.log(JSON.stringify(e));
+                self_1.loadingData = false;
+                self_1.interactionService.setElectricityGenerationMixResultState(_this.loadingData);
+            });
+        }
+    };
+    return ElectricityMixComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Boolean)
+], ElectricityMixComponent.prototype, "expanded", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "datasets", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "nutsIds", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "loadingData", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "scaleLevel", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "electricityGenerationResultState", void 0);
+ElectricityMixComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-electricity-mix',
+        template: __webpack_require__("../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _b || Object])
+], ElectricityMixComponent);
+
+var _a, _b;
+//# sourceMappingURL=electricity-mix.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/electricity-mix/service/electricity-mix.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElectricityMixService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var ElectricityMixService = (function (_super) {
+    __extends(ElectricityMixService, _super);
+    function ElectricityMixService(http, logger, loaderService, toasterService, helper) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        return _this;
+    }
+    ElectricityMixService.prototype.getElectricityMixFromNuts0 = function (payload) {
+        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["b" /* postHeatLoadProfileHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["c" /* getElectricityMixFromNuts0 */]);
+    };
+    return ElectricityMixService;
+}(__WEBPACK_IMPORTED_MODULE_1__shared_services_api_service__["a" /* APIService */]));
+ElectricityMixService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"]) === "function" && _e || Object])
+], ElectricityMixService);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=electricity-mix.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -1660,14 +1536,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/heat-load/component/heat-load-chart.component.html":
+/***/ "../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\" \n        (click)=\"changeHeatloadType(button)\" \n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\" \n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"onSelectChange($event)\">\n          <option *ngFor=\"let option of selectedButton.options\" [selected]=\"selectedButton.date === option.id\" [value]=\"option.id\">{{option.name}}</option>\n      </select>\n    </span>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>"
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\"\n        (click)=\"changeHeatloadType(button)\"\n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\"\n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"onSelectChange($event)\">\n          <option *ngFor=\"let option of selectedButton.options\" [selected]=\"selectedButton.date === option.id\" [value]=\"option.id\">{{option.name}}</option>\n      </select>\n    </span>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/heat-load/component/heat-load-chart.component.ts":
+/***/ "../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1697,8 +1573,8 @@ var HeatLoadChartComponent = (function () {
         this.helper = helper;
         this.interactionService = interactionService;
         this.dateHeatload = { year: 2010, month: 1, day: 1 };
-        this.subtitle = 'Heatload profile';
-        this.type = 'barChart';
+        this.subtitle = __WEBPACK_IMPORTED_MODULE_2_app_shared__["heatloadprofile"];
+        this.type = 'line';
         this.default_year = 2010;
         this.loadingData = false;
     }
@@ -1799,7 +1675,6 @@ var HeatLoadChartComponent = (function () {
     };
     HeatLoadChartComponent.prototype.update = function () {
         var _this = this;
-        this.logger.log('HeatLoadComponent/update');
         if (this.buttons_date_type !== undefined) {
             var isHectare = false;
             this.loadingData = true;
@@ -1824,12 +1699,13 @@ var HeatLoadChartComponent = (function () {
                 payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
             }
             this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then(function (result) {
+                _this.logger.log('HeatLoadComponent/update = ' + result);
                 _this.loadProfileData = [];
                 _this.interactionService.setDataStats(result);
                 _this.loadProfileData = _this.interactionService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
                 _this.datasets = _this.loadProfileData[0];
                 _this.labels = _this.loadProfileData[1];
-                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_5" /* heat_load_graph_options */];
+                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* heat_load_graph_options */];
             }).then(function () {
                 _this.loadingData = false;
                 _this.interactionService.displayButtonExportStats(!_this.loadingData);
@@ -1869,8 +1745,8 @@ __decorate([
 HeatLoadChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-heat-load-chart',
-        template: __webpack_require__("../../../../../src/app/features/heat-load/component/heat-load-chart.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/features/heat-load/component/heat-load-chart.component.css")]
+        template: __webpack_require__("../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
 ], HeatLoadChartComponent);
@@ -1880,18 +1756,18 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/heat-load/component/index.ts":
+/***/ "../../../../../src/app/features/graph/heat-load/component/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__heat_load_chart_component__ = __webpack_require__("../../../../../src/app/features/heat-load/component/heat-load-chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__heat_load_chart_component__ = __webpack_require__("../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__heat_load_chart_component__["a"]; });
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/heat-load/heat-load.service.ts":
+/***/ "../../../../../src/app/features/graph/heat-load/heat-load.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1953,13 +1829,13 @@ var HeatLoadAggregateService = (function (_super) {
     }
     HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         if (isHectare === false) {
-            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["l" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["l" /* postHeatLoadProfileNutsLau */]);
+            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* postHeatLoadProfileNutsLau */]);
         }
         else {
-            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["m" /* postHeatLoadProfileHectares */] + type_api_ref);
-            this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["m" /* postHeatLoadProfileHectares */]);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["m" /* postHeatLoadProfileHectares */]);
+            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadProfileHectares */] + type_api_ref);
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadProfileHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["b" /* postHeatLoadProfileHectares */]);
         }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
@@ -2030,6 +1906,343 @@ HeatLoadAggregateService = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=heat-load.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n:host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    min-height: 0;\n    min-width: 0;\n    /*max-height: 48px;*/\n    padding: 3px;\n    font-family: 'Hind', sans-serif;\n\n}\n.isSelected{\n    color:white;\n    background-color: #2889DF;\n}\n.details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-left: 2px;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.legend {\n  text-align: center;\n}\n.legend-div {\n  padding: 5px;\n}\n.uk-accordion-content, .uk-accordion{\n  margin: 0px !important;\n}\n.icon {\n}\n.flaticon-signs-1::before {\n  margin: 0px;\n}\n.message {\n\n}\n\n.date {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    font-size: 0.6em;\n    color: #444444;\n}\nbutton{\n    padding: 0 5px;\n    text-align: left;\n    /* font-size: 0.675rem; */\n}\n\ninput:checked{\n    border-color: green !important;\n}\n\ninput{\n    margin: 0px 5px;\n}\n.uk-button-secondary{\n    background-color: #333333;\n}\n\n.uk-accordion-title::after {\n  display: none;\n}\n\n.wait {\n  cursor: wait;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n    <!--  <form class=\"uk-form\">\n     <label > -->\n       <div>\n\n        <button type=\"button\" [class.wait]=\"interactionService.getSummaryResultState()\" name={{dataInteraction.workspaceName}} class=\"uk-button uk-button-default uk-width-1-1\"\n        (click)=\"showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n          <input class=\"uk-checkbox\" type=\"checkbox\"  [checked]=\"dataInteraction.isSelected\" >\n          {{dataInteraction.name}}\n        </button>\n\n       </div>\n      <!-- </label>\n    </form>-->\n    <div [class.legend]=\"loading\" class=\"legend-div\" *ngIf=\"dataInteraction.isSelected && dataInteraction.wo !== 'null'\">\n        <div *ngIf=\"loading\" class=\"loader\" uk-spinner></div>\n        <ul uk-accordion [hidden]=\"loading\">\n          <li>\n            <div class=\"uk-accordion-title\" href=\"#\">\n              <i class=\"flaticon-signs-1\"></i>\n            </div>\n            <div class=\"uk-accordion-content\">\n                <img src=\"http://hotmaps.hevs.ch:9009/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style={{dataInteraction.workspaceName}}\" (load)=\"endLoad()\"/>\n            </div>\n          </li>\n        </ul>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionCellComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DataInteractionCellComponent = (function () {
+    function DataInteractionCellComponent(mapService, interactionService) {
+        this.mapService = mapService;
+        this.interactionService = interactionService;
+        this.loading = true;
+        this.imageUrl = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["q" /* geoserverUrl */];
+    }
+    DataInteractionCellComponent.prototype.ngOnInit = function () {
+    };
+    DataInteractionCellComponent.prototype.endLoad = function () {
+        this.loading = false;
+    };
+    DataInteractionCellComponent.prototype.showRemoveLayer = function (e, action, order) {
+        if (this.dataInteraction.isSelected) {
+        }
+        if (this.interactionService.getSummaryResultState() === false) {
+            this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
+            if (this.dataInteraction.isSelected) {
+            }
+            this.mapService.showOrRemoveLayer(action, order);
+            if (this.dataInteraction.zoomLevel > 0) {
+                this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel);
+            }
+            this.mapService.setLayersSubject();
+        }
+    };
+    return DataInteractionCellComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__["a" /* DataInteractionClass */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__["a" /* DataInteractionClass */]) === "function" && _a || Object)
+], DataInteractionCellComponent.prototype, "dataInteraction", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Boolean)
+], DataInteractionCellComponent.prototype, "expanded", void 0);
+DataInteractionCellComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'layers-interaction-cell',
+        template: __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.css")],
+        animations: [
+            // Define an animation that adjusts the opactiy when a new item is created
+            //  in the DOM. We use the 'visible' string as the hard-coded value in the
+            //  trigger.
+            //
+            // When an item is added we wait for 300ms, and then increase the opacity to 1
+            //  over a 200ms time interval. When the item is removed we don't delay anything
+            //  and use a 200ms interval.
+            //
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('visible', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 300ms')]),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => void', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))])
+            ])
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
+], DataInteractionCellComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=layers-interaction-cell.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction.class.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionClass; });
+var DataInteractionClass = (function () {
+    function DataInteractionClass() {
+    }
+    return DataInteractionClass;
+}());
+
+//# sourceMappingURL=layers-interaction.class.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction.data.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
+
+
+var DataInteractionArray = [
+    // {id: 11, name: 'Heat map', category: 'Comsumption'},
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
+        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* defaultLayer */], zoomLevel: 0, ref: ['overall', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
+    /*{id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+      workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
+    /*{id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+      workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */] + ' Power', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
+    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
+    { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'], styleName: 'gfa_tot_curr_density_tif' },
+    { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_res_curr_density_tif' },
+    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_nonres_curr_density_tif' },
+    { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'], styleName: 'vol_tot_curr_density' },
+    { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'vol_res_curr_density_tif' },
+    /* {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+       workspaceName: 'vol_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'vol_res_curr_density_tif'},*/
+    { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_emissions_ets_2014' },
+    { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_emissions_ets_2014' },
+    { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
+        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_sector_name' },
+    { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
+        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_sector' },
+    { id: 14, name: 'Population total', category: 'Population', isSelected: false,
+        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* populationLayerName */], zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density_V2' },
+    /*{id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
+    {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
+    {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
+      workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
+    { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
+    { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_heat_cond' },
+    { id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class' },
+    /*{id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
+      workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif'},*/
+    { id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
+        workspaceName: 'hdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd_curr_tif' },
+    { id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
+        workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission' },
+];
+//# sourceMappingURL=layers-interaction.data.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layers-interaction/layers-interaction.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.data.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// Improvement of coding style :
+// leaving one empty line between third party imports and application imports
+// listing import lines alphabetized by the module
+
+
+
+
+
+
+
+
+
+
+
+var DataInteractionService = (function (_super) {
+    __extends(DataInteractionService, _super);
+    function DataInteractionService(http, logger, loaderService, toasterService, helper, business) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        _this.business = business;
+        return _this;
+    }
+    /* getModulesServices(): Promise<ModulesService[]> {
+      return this.http.get(this.servicesUrl)
+        .toPromise()
+        .then(response => response.json().data as ModulesService[])
+        .catch(this.handleError);
+    }*/
+    DataInteractionService.prototype.getDataInteractionServices = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */]);
+    };
+    DataInteractionService.prototype.getDataArrayServices = function () {
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+    };
+    DataInteractionService.prototype.getReadableName = function (layerName) {
+        this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
+        var layer = this.getDataArrayServices().filter(function (x) { return x.workspaceName === layerName; })[0];
+        if (this.helper.isNullOrUndefined(layer)) {
+            var layer_new = this.business.getReadableName(layerName);
+            if (this.helper.isNullOrUndefined(layer_new)) {
+                return layerName;
+            }
+            else {
+                return layer_new;
+            }
+        }
+        return layer.name;
+    };
+    DataInteractionService.prototype.getModulesServicesWithNewService = function (newService) {
+        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+        servicesArray.push(newService);
+        return Promise.resolve(servicesArray);
+    };
+    DataInteractionService.prototype.getModulesServicesSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            // Simulate server latency with 2 second delay
+            setTimeout(function () { return resolve(_this.getDataInteractionServices()); }, 2000);
+        });
+    };
+    DataInteractionService.prototype.getRefFromLayerName = function (name) {
+        var layer = this.getLayersTabs().filter(function (x) { return x.workspaceName === name; })[0];
+        if (this.helper.isNullOrUndefined(layer)) {
+            return ["no layer with this name"];
+        }
+        return layer.ref;
+    };
+    DataInteractionService.prototype.getLayersTabs = function () {
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+    };
+    DataInteractionService.prototype.getSplittedResults = function (results) {
+        var newResults = this.helper.createSplittedResultsModel();
+        var rLayers = results.layers;
+        var rNoDataLayers = results.no_data_layers;
+        // returns null if results is empty
+        if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)) {
+            return null;
+        }
+        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["j" /* summay_drop_down_buttons */].length; j++) {
+            for (var i = 0; i < rLayers.length; i++) {
+                if (this.getRefFromLayerName(results.layers[i].name).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["j" /* summay_drop_down_buttons */][j]["ref"])) {
+                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["j" /* summay_drop_down_buttons */][j]["ref"];
+                    newResults[ref]["layers"].push(results.layers[i]);
+                }
+            }
+            for (var i = 0; i < rNoDataLayers.length; i++) {
+                if (this.getRefFromLayerName(results.no_data_layers[i]).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["j" /* summay_drop_down_buttons */][j]["ref"])) {
+                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["j" /* summay_drop_down_buttons */][j]["ref"];
+                    newResults[ref]["no_data_layers"].push(results.no_data_layers[i]);
+                }
+            }
+        }
+        return newResults;
+    };
+    return DataInteractionService;
+}(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
+DataInteractionService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
+], DataInteractionService);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=layers-interaction.service.js.map
 
 /***/ }),
 
@@ -3181,13 +3394,13 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* formatImage */], transparent: true, version: '1.3.0',
-            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* idDefaultLayer */]
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* formatImage */], transparent: true, version: '1.3.0',
+            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* idDefaultLayer */]
         };
         _this.layersArray = new __WEBPACK_IMPORTED_MODULE_7__shared_class_dictionary_class__["a" /* Dictionary */]([
             {
-                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
+                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
             },
         ]);
         _this.popup = L.popup();
@@ -3205,7 +3418,7 @@ var LayersService = (function (_super) {
         this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
     };
     LayersService.prototype.setupDefaultLayer = function () {
-        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */]);
+        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */]);
         this.logger.log(layer.toString());
         this.layers.addLayer(layer);
     };
@@ -3244,7 +3457,7 @@ var LayersService = (function (_super) {
         var layer;
         var option = {
             layers: 'hotmaps:' + action,
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* formatImage */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* formatImage */],
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
@@ -3256,7 +3469,7 @@ var LayersService = (function (_super) {
         this.layersArray.add(action, layer);
     };
     LayersService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -3289,13 +3502,13 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
-        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["z" /* defaultLayer */])) {
+        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -3316,7 +3529,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -3324,7 +3537,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -3333,8 +3546,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
     LayersService.prototype.showLayerDependingZoom = function (action, map, zoomLevel) {
@@ -3378,10 +3591,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -3531,9 +3744,9 @@ var PopulationService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         // Improvement of coding style : (with codelyzer)
         // Line 73 exceeds maximum line length of 140
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_0" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_1" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["E" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["F" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -3598,7 +3811,7 @@ var SelectionScaleClassArray = [
 var action = 'population';
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -3607,7 +3820,7 @@ var hectareOption = {
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
@@ -3616,7 +3829,7 @@ var nuts0LayerOption = {
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -3625,7 +3838,7 @@ var nuts1LayerOption = {
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
@@ -3634,7 +3847,7 @@ var nuts2LayerOption = {
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
@@ -3642,8 +3855,8 @@ var nuts3LayerOption = {
     zIndex: 99
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["s" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     zIndex: 99
@@ -3712,9 +3925,9 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* initial_scale_value */];
         // scale value subject
-        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* nuts3 */]);
+        _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* nuts3 */]);
         return _this;
     }
     SelectionScaleService.prototype.ngOnInit = function () {
@@ -3751,7 +3964,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -3783,7 +3996,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -3797,7 +4010,7 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["o" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -4225,7 +4438,7 @@ var SelectionToolService = (function (_super) {
         _this.nutsIds = new Set;
         _this.multiSelectionLayers = new L.FeatureGroup();
         _this.controlMultiLayer = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["n" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["o" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
         _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
@@ -4622,7 +4835,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of category\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let n of layers\" >\n              <span *ngIf=\"i === n.category\">\n                <data-interaction-cell [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></data-interaction-cell>\n              </span>\n            </ng-container>\n          </div>\n\n        </li>\n      </ul>\n    </span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of category\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let n of layers\" >\n              <span *ngIf=\"i === n.category\">\n                <layers-interaction-cell [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></layers-interaction-cell>\n              </span>\n            </ng-container>\n          </div>\n\n        </li>\n      </ul>\n    </span>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -4632,9 +4845,11 @@ module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"exp
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeftSideComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4660,12 +4875,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var LeftSideComponent = (function (_super) {
     __extends(LeftSideComponent, _super);
-    function LeftSideComponent(dataInteractionService, interactionService) {
+    function LeftSideComponent(dataInteractionService, logger, interactionService, mapservice) {
         var _this = _super.call(this, interactionService) || this;
         _this.dataInteractionService = dataInteractionService;
+        _this.logger = logger;
         _this.interactionService = interactionService;
+        _this.mapservice = mapservice;
         _this.expanded = false;
         _this.expandedState = 'collapsed';
         return _this;
@@ -4675,6 +4894,7 @@ var LeftSideComponent = (function (_super) {
         this.dataInteractionService.getDataInteractionServices().then(function (layers) { return _this.getLayerAndCategory(layers); });
     };
     LeftSideComponent.prototype.getLayerAndCategory = function (layers) {
+        this.logger.log(' layerr = ' + JSON.stringify(layers));
         this.layers = layers;
         this.category = layers.map(function (item) { return item.category; })
             .filter(function (value, index, self) { return self.indexOf(value) === index; });
@@ -4728,12 +4948,12 @@ LeftSideComponent = __decorate([
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-out'))
             ])
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_2__data_interaction_data_interaction_service__["a" /* DataInteractionService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_2__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */]) === "function" && _d || Object])
 ], LeftSideComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=left-side-panel.component.js.map
 
 /***/ }),
@@ -4770,7 +4990,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('summary')\">\n        <a href=\"\">Overview</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">Load profile</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          ></htm-summary-result>\n          <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n          <div class=\"export-tab2\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [summaryResult]=\"summaryResult\"\n      [loadingData]=\"loadingData\"\n      ></htm-summary-result>\n      <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n  </ng-template>\n\n\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <span class=\"center\">\n      <div *ngIf=\"splittedResults\" style=\"padding: 10px;\">\n        <select class=\"uk-select\" (change)=\"changeResultsDisplay($event)\">\n            <ng-container *ngFor=\"let button of dropdown_btns\">\n              <option *ngIf=\"splittedResults[button.ref].layers.length !== 0\" [selected]=\"button.ref == buttonRef\" [value]=\"button.ref\">\n                {{button.name}}\n              </option>\n            </ng-container>\n        </select>\n      </div>\n    </span>\n  <div *ngIf=\"heatloadStatus && !nust0Selected;then energy_stat_content\" class=\"energy-statistic\"></div>\n  <div *ngIf=\"!heatloadStatus && !nust0Selected;then normal_content\" class=\"energy-statistic\"></div>\n  <div *ngIf=\"nust0Selected && !heatloadStatus;then energy_mix_content\" class=\"energy-statistic\"></div>\n\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('overall')\">\n        <a href=\"\">INDICATORS</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">GRAPHICS</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          [splittedResults]=\"splittedResults\"\n          [buttonRef]=\"buttonRef\"\n\n          ></htm-summary-result>\n          <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n          <div class=\"export-tab2\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [summaryResult]=\"summaryResult\"\n      [loadingData]=\"loadingData\"\n      [splittedResults]=\"splittedResults\"\n      [buttonRef]=\"buttonRef\"\n\n      ></htm-summary-result>\n      <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n  </ng-template>\n\n\n  <ng-template #energy_mix_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1bis\" (click)=\"clickTab('overall')\">\n        <a href=\"\">Overview</a>\n      </li>\n      <li id=\"tab2bis\" (click)=\"clickTab('stats')\">\n        <a href=\"\">GRAPHICS</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3bis\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          [splittedResults]=\"splittedResults\"\n          [buttonRef]=\"buttonRef\"\n        ></htm-summary-result>\n        <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-electricity-mix\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [datasets]=\"electricitMixResult\"\n          [nutsIds]=\"nutsIds\"\n          [loadingData]=\"electricitMixLoadingState\"\n          [electricityGenerationResultState]=\"electricityGenerationResultState\"></htm-electricity-mix>\n      </li>\n    </ul>\n  </ng-template>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -4783,10 +5003,13 @@ module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"e
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RightSideComponent; });
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -4825,31 +5048,67 @@ var RightSideComponent = (function (_super) {
         _this.mapService = mapService;
         _this.dataInteractionService = dataInteractionService;
         _this.heatloadStatus = false;
+        _this.nust0Selected = false;
+        _this.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
         _this.scale = 'Nuts 3';
         _this.isDataAgregate = false;
         _this.loadingData = false;
+        _this.electricitMixLoadingState = false;
         return _this;
     }
     RightSideComponent.prototype.ngOnInit = function () {
+        this.initButtons();
     };
     RightSideComponent.prototype.ngOnDestroy = function () { };
     RightSideComponent.prototype.ngOnChanges = function () {
+        console.log('RightSidePanelComponent/ngOnChanges');
+        console.log(this.dropdown_btns);
+        if (this.summaryResult) {
+            this.updateResult();
+        }
         if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
         }
         else {
             this.heatloadStatus = false;
         }
-        this.logger.log('RightSidePanelComponent/ngOnChanges');
+        if ((this.scaleLevel === '0')) {
+            this.nust0Selected = true;
+        }
+        else {
+            this.nust0Selected = false;
+        }
+        /*       this.logger.log('RightSidePanelComponent/ngOnChanges');
+         */
         this.scale = this.mapService.getScaleValue();
-        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["y" /* hectare */] && this.expanded == true) {
+        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["z" /* hectare */] && this.expanded === true) {
             this.isDataAgregate = true;
             this.updateWithIds();
         }
-        else if (this.mapService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["y" /* hectare */] && this.expanded == true) {
+        else if (this.mapService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["z" /* hectare */] && this.expanded === true) {
             this.isDataAgregate = false;
             this.updateWithAreas();
         }
+    };
+    RightSideComponent.prototype.initButtons = function () {
+        this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["j" /* summay_drop_down_buttons */];
+        this.selectedButton = this.dropdown_btns[0];
+        this.selectedButton.selected = true;
+    };
+    RightSideComponent.prototype.loadExportData = function (buttonRef) {
+        var indicatorResults = this.splittedResults[buttonRef];
+        this.interactionService.displayButtonExport(!this.loadingData);
+        this.interactionService.setSummaryData(indicatorResults);
+        if (this.helper.isResultDataEmpty(indicatorResults)) {
+            this.interactionService.displayButtonExport(false);
+        }
+    };
+    RightSideComponent.prototype.changeResultsDisplay = function (event) {
+        this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
+        this.buttonRef = event.target.value;
+        console.log(this.buttonRef);
+        console.log(this.splittedResults);
+        this.loadExportData(this.buttonRef);
     };
     RightSideComponent.prototype.clickTab = function (id) {
         this.logger.log('clickTab' + id);
@@ -4858,10 +5117,14 @@ var RightSideComponent = (function (_super) {
     RightSideComponent.prototype.getData = function (data) {
         this.summaryResult = data;
     };
+    RightSideComponent.prototype.setExportButtonState = function (val) {
+        this.interactionService.setSummaryResultState(!val);
+        this.interactionService.displayButtonExport(val);
+    };
     RightSideComponent.prototype.updateWithIds = function () {
         var _this = this;
         var self = this;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["D" /* constant_year */], nuts: this.nutsIds };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["E" /* constant_year */], nuts: this.nutsIds };
         if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
             return;
@@ -4869,16 +5132,40 @@ var RightSideComponent = (function (_super) {
         this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
         this.loadingData = true;
         this.interactionService.setSummaryResultState(this.loadingData);
+        this.setExportButtonState(false);
         var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
             self.summaryResult = result;
+            self.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
         }).then(function () {
+            self.updateResult();
             self.loadingData = false;
-            _this.interactionService.setSummaryResultState(_this.loadingData);
+            self.setExportButtonState(true);
         }).catch(function (e) {
             self.logger.log(JSON.stringify(e));
             self.loadingData = false;
             _this.interactionService.setSummaryResultState(_this.loadingData);
         });
+        // only for nuts 0 electricity generation mix is allowed
+        if (this.scaleLevel === '0') {
+            self.electricitMixLoadingState = true;
+            var payloadElec = { nuts: this.nutsIds };
+            self.logger.log(' electricitMix:payloadElec = ' + self.nutsIds);
+            var electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(function (result) {
+                self.electricitMixResult = result;
+                self.logger.log('electricitMix: Result = ' + JSON.stringify(self.electricitMixResult));
+            }).then(function () {
+                self.electricitMixLoadingState = false;
+                _this.interactionService.setElectricityGenerationMixResultState(_this.electricitMixLoadingState);
+            }).catch(function (e) {
+                self.logger.log(JSON.stringify(e));
+                self.electricitMixLoadingState = false;
+                _this.interactionService.setElectricityGenerationMixResultState(_this.electricitMixLoadingState);
+            });
+        }
+    };
+    RightSideComponent.prototype.updateResult = function () {
+        this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+        this.loadExportData(this.buttonRef);
     };
     RightSideComponent.prototype.updateWithAreas = function () {
         var _this = this;
@@ -4902,7 +5189,7 @@ var RightSideComponent = (function (_super) {
         }
         ;
         ;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["D" /* constant_year */], areas: areas };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["E" /* constant_year */], areas: areas };
         if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
             return;
@@ -5012,7 +5299,7 @@ RightSideComponent = __decorate([
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _e || Object])
 ], RightSideComponent);
 
 var _a, _b, _c, _d, _e;
@@ -5036,7 +5323,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 
@@ -5044,7 +5331,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SideComponent = (function () {
     function SideComponent(interactionService) {
         this.interactionService = interactionService;
-        // Improvement of coding style : 
+        // Improvement of coding style :
         // place private members after public members, alphabetized
         this.expanded = false;
         this.title = 'SideComponent title';
@@ -5066,7 +5353,7 @@ var SideComponent = (function () {
     };
     SideComponent.prototype.disableButtons = function (functionString) {
     };
-    // Improvement of coding style : 
+    // Improvement of coding style :
     // display what ? The name of the method should describes his intent
     SideComponent.prototype.display = function (val) {
         if (val) {
@@ -5423,7 +5710,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n\n    <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"changeResultsDisplay($event)\">\n          <option *ngFor=\"let button of dropdown_btns\" [value]=\"button.ref\">{{button.name}}</option>\n      </select>\n    </span>\n  </div>\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let i of splittedResults[ref].layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let l of splittedResults[ref].no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let i of splittedResults[buttonRef].layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n      <!--  <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let l of splittedResults[buttonRef].no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container> -->\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
@@ -5459,41 +5746,17 @@ var SummaryResultComponent = (function () {
         this.helper = helper;
         this.interactionService = interactionService;
         this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* round_value */];
+        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["h" /* round_value */];
         this.scale = 'Nuts 3';
         this.isDataAgregate = false;
-        this.ref = __WEBPACK_IMPORTED_MODULE_4_app_shared__["default_drop_down_button"];
     }
     SummaryResultComponent.prototype.ngOnInit = function () {
-        this.initComponent();
         this.logger.log('SummaryResultComponent/ngOnInit');
     };
     SummaryResultComponent.prototype.ngOnChanges = function (changes) {
         this.logger.log('SummaryResultComponent/ngOnChanges');
-        if (this.summaryResult) {
-            this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
-            this.loadExportData(this.ref);
-        }
     };
     SummaryResultComponent.prototype.ngOnDestroy = function () {
-    };
-    SummaryResultComponent.prototype.initComponent = function () {
-        this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_4_app_shared__["summay_drop_down_buttons"];
-        this.selectedButton = this.dropdown_btns[0];
-        this.selectedButton.selected = true;
-    };
-    SummaryResultComponent.prototype.changeResultsDisplay = function (event) {
-        this.logger.log('SummaryResultComponent/changeResultsDisplay');
-        this.ref = event.target.value;
-        this.loadExportData(this.ref);
-    };
-    SummaryResultComponent.prototype.loadExportData = function (ref) {
-        var indicatorResults = this.splittedResults[ref];
-        this.interactionService.setSummaryData(indicatorResults);
-        this.interactionService.displayButtonExport(!this.loadingData);
-        if (this.helper.isResultDataEmpty(indicatorResults)) {
-            this.interactionService.displayButtonExport(false);
-        }
     };
     return SummaryResultComponent;
 }());
@@ -5533,6 +5796,14 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], SummaryResultComponent.prototype, "loadingData", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], SummaryResultComponent.prototype, "buttonRef", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], SummaryResultComponent.prototype, "splittedResults", void 0);
 SummaryResultComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-summary-result',
@@ -5607,11 +5878,11 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["s" /* postStatsLayersNutsLau */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postStatsLayersNutsLau */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postStatsLayersHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["u" /* postStatsLayersHectares */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
@@ -5853,7 +6124,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["Z" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_0" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -6005,7 +6276,7 @@ var MapService = (function (_super) {
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.selectionToolButtonStateService = selectionToolButtonStateService;
-        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["I" /* defaultZoomLevel */]);
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* defaultZoomLevel */]);
         _this.layerArray = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
         // TODO: A modifier
         _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"](); // Observable source for click
@@ -6046,20 +6317,20 @@ var MapService = (function (_super) {
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
@@ -6123,7 +6394,7 @@ var MapService = (function (_super) {
         this.selectionScaleService.changeScale();
     };
     MapService.prototype.onClickEvent = function (self, e) {
-        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* hectare */]) {
+        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["z" /* hectare */]) {
             return;
         }
         if (self.selectionToolService.getPolygonDrawerState()) {
@@ -6139,12 +6410,12 @@ var MapService = (function (_super) {
         }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* hectare */]) {
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["z" /* hectare */]) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
                 self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         }
-        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["x" /* lau2 */]) {
+        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["y" /* lau2 */]) {
             self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         }
@@ -6166,10 +6437,10 @@ var MapService = (function (_super) {
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
         this.logger.log('MapService/getNutsGeometryFromNuts()');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* clickAccuracy */]).toBBoxString();
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
@@ -6177,9 +6448,9 @@ var MapService = (function (_super) {
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["r" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["s" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
@@ -6936,28 +7207,43 @@ var BusinessInterfaceRenderClass = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessInterfaceRenderArray; });
 var heat_tot_curr_density = 'heat_tot_curr_density';
 var wwtp = 'wwtp';
-var gfa_tot_curr_density = 'gfa_tot_curr_density';
-var gfa_tot_curr_density_indicator_name = 'Heated Gross Floor Area';
-var gfa_res_curr_density = 'gfa_res_curr_density';
-var gfa_res_curr_density_indicator_name = 'Heated Gross Floor Area -Residential Buildings';
-var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
-var gfa_nonres_curr_density_indicator_name = 'Heated Gross Floor Area -Non-Residential Buildings';
+var gfa_tot_curr_density = 'gfa_tot_curr_density_tif';
+var gfa_tot_curr_density_indicator_name = 'Heated gross floor area';
+var gfa_res_curr_density = 'gfa_res_curr_density_tif';
+var gfa_res_curr_density_indicator_name = 'Heated gross floor area -residential buildings';
+var gfa_nonres_curr_density = 'gfa_nonres_curr_density_tif';
+var gfa_nonres_curr_density_indicator_name = 'Heated gross floor Area -non residential buildings';
 var heat_res_curr_density = 'heat_res_curr_density';
 var heat_res_curr_density_indicator_name = 'Heat consumption - Residential Buildings';
 var heat_nonres_curr_density = 'heat_nonres_curr_density';
 var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
 var solar_optimal_total = 'solar_optimal_total';
-var solar_optimal_total_indicator_name = 'potential of solar energy';
+var solar_optimal_total_indicator_name = 'solar energy ';
 var potential_shallowgeothermal_heat_cond = 'potential_shallowgeothermal_heat_cond';
 var potential_shallowgeothermal_heat_cond_indicator_name = 'Average potential of shallow geothermal energy';
+var cdd_curr_tif_density = 'cdd_curr_tif';
+var cdd_curr_tif_density_indicator_name = 'Average cooling degree days';
+var hdd_curr_tif_density = 'hdd_curr_tif';
+var hdd_curr_tif_density_indicator_name = 'Average heating degree days';
+var yearly_co2_emission_density = 'yearly_co2_emission';
+var yearly_co2_emission_density_indicator_name = 'average CO2 emissions for electricity';
+var cell = 'Counted cells with values';
+var vol_tot_curr_density = 'vol_tot_curr_density_tif';
+var vol_tot_curr_density_indicator_name = 'Building volumes';
+var vol_res_curr_density = 'vol_res_curr_density_tif';
+var vol_res_curr_density_indicator_name = 'Building volumes - residential buildings';
+var vol_nonres_curr_density = 'vol_nonres_curr_density_tif';
+var vol_nonres_curr_density_indicator_name = 'Building volumes - non-residential buildings';
 var BusinessInterfaceRenderArray = [
-    { id: 17, api_name: 'heat_density', business_name: 'Average Heat density' },
+    { id: 17, api_name: 'heat_density', business_name: 'Average heat density' },
     { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
     { id: 172, api_name: heat_tot_curr_density + '_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3' },
     { id: 174, api_name: heat_tot_curr_density + '_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2' },
     { id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1' },
     { id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0' },
     { id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total' },
+    { id: 177, api_name: 'power', business_name: 'Average thermal power potential' },
+    { id: 177, api_name: 'capacity', business_name: 'Waste treatment capacity' },
     { id: 17, api_name: gfa_tot_curr_density, business_name: 'Heated Gross Floor Area' },
     { id: 172, api_name: gfa_tot_curr_density + '_lau2', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to LAU2' },
     { id: 172, api_name: gfa_tot_curr_density + '_nuts3', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS3' },
@@ -6967,19 +7253,37 @@ var BusinessInterfaceRenderArray = [
     { id: 177, api_name: gfa_tot_curr_density + '_ha', business_name: 'Heated Gross Floor Area' },
     { id: 175, api_name: gfa_tot_curr_density + '_value', business_name: gfa_tot_curr_density_indicator_name + ' value' },
     { id: 176, api_name: gfa_tot_curr_density + '_density', business_name: gfa_tot_curr_density_indicator_name },
-    { id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: gfa_tot_curr_density_indicator_name + ' cells' },
+    { id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: cell },
     { id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name + ' value' },
     { id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name },
-    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: 'cells' },
+    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: cell },
     { id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name },
     { id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
-    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: 'cells' },
+    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: cell },
     { id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings' },
     { id: 176, api_name: heat_res_curr_density + '_density', business_name: 'Average heat density - Residential Buildings' },
-    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: 'cells' },
+    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: cell },
     { id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name },
     { id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings' },
-    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'cells' },
+    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'Counting cells with values' },
+    { id: 175, api_name: cdd_curr_tif_density + '_value', business_name: cdd_curr_tif_density_indicator_name },
+    { id: 176, api_name: cdd_curr_tif_density + '_density', business_name: cdd_curr_tif_density_indicator_name },
+    { id: 177, api_name: cdd_curr_tif_density + '_cells', business_name: cell },
+    { id: 175, api_name: hdd_curr_tif_density + '_value', business_name: hdd_curr_tif_density_indicator_name },
+    { id: 176, api_name: hdd_curr_tif_density + '_density', business_name: hdd_curr_tif_density_indicator_name },
+    { id: 177, api_name: hdd_curr_tif_density + '_cells', business_name: cell },
+    { id: 175, api_name: vol_tot_curr_density + '_value', business_name: vol_tot_curr_density_indicator_name },
+    { id: 176, api_name: vol_tot_curr_density + '_density', business_name: vol_tot_curr_density_indicator_name + ' density' },
+    { id: 177, api_name: vol_tot_curr_density + '_cells', business_name: cell },
+    { id: 175, api_name: vol_res_curr_density + '_value', business_name: vol_res_curr_density_indicator_name },
+    { id: 176, api_name: vol_res_curr_density + '_density', business_name: vol_res_curr_density_indicator_name + ' density' },
+    { id: 177, api_name: vol_res_curr_density + '_cells', business_name: cell },
+    { id: 175, api_name: vol_nonres_curr_density + '_value', business_name: vol_nonres_curr_density_indicator_name },
+    { id: 176, api_name: vol_nonres_curr_density + '_density', business_name: vol_nonres_curr_density_indicator_name + ' density' },
+    { id: 177, api_name: vol_nonres_curr_density + '_cells', business_name: cell },
+    { id: 175, api_name: yearly_co2_emission_density + '_value', business_name: yearly_co2_emission_density_indicator_name },
+    { id: 176, api_name: yearly_co2_emission_density + '_density', business_name: yearly_co2_emission_density_indicator_name },
+    { id: 177, api_name: yearly_co2_emission_density + '_cells', business_name: cell },
     { id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name },
     { id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2' },
     { id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
@@ -6991,11 +7295,11 @@ var BusinessInterfaceRenderArray = [
     { id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3' },
     { id: 175, api_name: solar_optimal_total + '_value', business_name: solar_optimal_total_indicator_name },
     { id: 176, api_name: solar_optimal_total + '_density', business_name: 'Average ' + solar_optimal_total_indicator_name + ' density' },
-    { id: 177, api_name: solar_optimal_total + '_cells', business_name: solar_optimal_total_indicator_name + ' cells' },
-    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'emissions of non energy-intensive industries' },
-    { id: 178, api_name: 'industrial_database_excess_heat_value', business_name: 'excess heat potential of energy-intensive industries [100°C - 200°C]' },
-    { id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential of energy-intensive industries [200°C - 500°C]' },
-    { id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential of energy-intensive industries [ > 500°C]' },
+    { id: 177, api_name: solar_optimal_total + '_cells', business_name: cell },
+    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO_2 emissions of energy intensive industries' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value', business_name: 'excess heat potential [100°C - 200°C]' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential [200°C - 500°C]' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential [ > 500°C]' },
     { id: 178, api_name: 'total', business_name: 'excess heat potential of energy-intensive industries total [°C]' },
     { id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2' },
     { id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1' },
@@ -7003,9 +7307,9 @@ var BusinessInterfaceRenderArray = [
     { id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2' },
     { id: 157, api_name: 'population_density', business_name: 'Average population density' },
     { id: 167, api_name: 'population_density_ha', business_name: 'population density' },
-    { id: 168, api_name: 'count_cell_pop', business_name: 'Counting cells with values' },
-    { id: 169, api_name: 'count_cell_heat', business_name: 'Counting cells with values' },
-    { id: 12, api_name: 'heat_consumption', business_name: 'Heat consumption' },
+    { id: 168, api_name: 'count_cell_pop', business_name: cell },
+    { id: 169, api_name: 'count_cell_heat', business_name: cell },
+    { id: 12, api_name: 'heat_consumption', business_name: 'Heat demand' },
     { id: 13, api_name: 'density', business_name: 'Total population' },
     { id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person' },
     { id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings' },
@@ -7118,12 +7422,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["u" /* nuts0 */], suffix: '_nuts0' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["v" /* nuts1 */], suffix: '_nuts1' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["w" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["o" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["x" /* lau2 */], suffix: '_lau2' },
-    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["y" /* hectare */], suffix: '_ha' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["v" /* nuts0 */], suffix: '_nuts0' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["w" /* nuts1 */], suffix: '_nuts1' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["x" /* nuts2 */], suffix: '_nuts2' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["p" /* nuts3 */], suffix: '_nuts3' },
+    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["y" /* lau2 */], suffix: '_lau2' },
+    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["z" /* hectare */], suffix: '_ha' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -7195,13 +7499,12 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["buttons_heat_load"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_day"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["timeOutAjaxRequest"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "default_drop_down_button")) __webpack_require__.d(__webpack_exports__, "default_drop_down_button", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["default_drop_down_button"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "summay_drop_down_buttons")) __webpack_require__.d(__webpack_exports__, "summay_drop_down_buttons", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["summay_drop_down_buttons"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dictionary_class__ = __webpack_require__("../../../../../src/app/shared/class/dictionary.class.ts");
@@ -7233,13 +7536,12 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["buttons_heat_load"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_day"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["timeOutAjaxRequest"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "default_drop_down_button")) __webpack_require__.d(__webpack_exports__, "default_drop_down_button", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["default_drop_down_button"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "summay_drop_down_buttons")) __webpack_require__.d(__webpack_exports__, "summay_drop_down_buttons", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["summay_drop_down_buttons"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__location__ = __webpack_require__("../../../../../src/app/shared/class/location/location.ts");
@@ -7325,80 +7627,86 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getLocationFromIp; });
+/* unused harmony export devGeoserverDockerUrl */
+/* unused harmony export prodGeoserverDockerUrl */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return defaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return styleNameHeat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return urlTaigaFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return defaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return styleNameHeat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return formatImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return postStatsLayersHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return postStatsLayersNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return postHeatLoadProfileHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return postHeatLoadProfileNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return postDurationCurveHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postDurationCurveNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return postStatsLayersHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return postStatsLayersNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postHeatLoadProfileHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return postHeatLoadProfileNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return postDurationCurveHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return postDurationCurveNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getElectricityMixFromNuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return heatloadprofile; });
+/* unused harmony export Durationcurve */
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return proj3035; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return proj3035; });
 /* unused harmony export proj4326 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_api_day; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return heat_load_api_year; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return heat_load_api_month; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return buttons_heat_load; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return summay_drop_down_buttons; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return default_drop_down_button; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return heat_load_api_day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return heat_load_api_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return heat_load_api_month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return buttons_heat_load; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return default_drop_down_button; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return summay_drop_down_buttons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return constant_year_duration_curve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return constant_year_duration_curve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return defaultZoomLevel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return nuts2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lau2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPOVERLAYADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return rightPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return leftPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return tab1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return nuts3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return lau2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return leftPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return tab1; });
 /* unused harmony export tab2 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return duration_curve_graph_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return heat_load_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return duration_curve_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return energy_mix_options; });
 
 
 /**
@@ -7410,15 +7718,19 @@ var MONTHNAME = [
 var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
 var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
+var devServiceDockerUrl = 'http://172.17.0.7/api';
+var prodServiceDockerUrl = 'http://172.17.0.4/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
+var devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
+var prodGeoserverDockerUrl = 'http://172.17.0.9:8080/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
-var geoserverUrl = geoserverProdUrl;
+var geoserverUrl = prodGeoserverDockerUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = prodUrl;
+var apiUrl = prodServiceDockerUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var idDefaultLayer = 1;
@@ -7438,6 +7750,10 @@ var postHeatLoadProfileHectares = '/heat-load-profile/hectares';
 var postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 var postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 var postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
+var getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
+// title
+var heatloadprofile = 'Heatload profile';
+var Durationcurve = 'Duration curve';
 var set404url = 'set404url';
 // Projection data string
 var proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
@@ -7451,16 +7767,16 @@ var buttons_heat_load = [
     { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
     { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
+var default_drop_down_button = 'overall';
 var summay_drop_down_buttons = [
-    { name: 'Summary', ref: 'summary', selected: true },
+    { name: 'Overall', ref: default_drop_down_button, selected: true },
     { name: 'Demand', ref: 'demand', selected: false },
     { name: 'Potentials', ref: 'potential', selected: false },
     { name: 'Climate', ref: 'climate', selected: false },
     { name: 'Heat Supply', ref: 'heat_supply', selected: false },
     { name: 'Industry', ref: 'industry', selected: false },
-    { name: 'Load Profile', ref: 'load_profile', selected: false }
+    { name: 'Electricity', ref: 'electricity', selected: false }
 ];
-var default_drop_down_button = 'summary';
 // layers constant
 var timeOut = 200000;
 // layers constant
@@ -7513,7 +7829,7 @@ var MAPOVERLAYADD = 'overlayadd';
 var rightPanelSize = 600;
 var leftPanelSize = 400;
 // tab values
-var tab1 = 'summary';
+var tab1 = 'overall';
 var tab2 = 'stats';
 // Duration curve graph data
 var duration_curve_graph_options = {
@@ -7555,6 +7871,14 @@ var heat_load_graph_options = {
                     labelString: 'Heat Power (MW)'
                 }
             }]
+    }
+};
+var energy_mix_options = {
+    position: 'right',
+    responsive: true,
+    legend: {
+        display: true,
+        position: 'right'
     }
 };
 //# sourceMappingURL=data.service.js.map
@@ -7743,7 +8067,7 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["f" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* round_value */]);
     };
     Helper.prototype.formatDataLoadProfil = function (data) {
         var _this = this;
@@ -7785,7 +8109,7 @@ var Helper = (function () {
         return proj4(epsgString).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.transformLatLngToEpsg3035 = function (latlng) {
-        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["g" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
+        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["i" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.getTranformedBoundingBox = function (map, epsgString) {
         var coordinate = [];
@@ -8026,8 +8350,8 @@ var Helper = (function () {
     };
     Helper.prototype.createSplittedResultsModel = function () {
         var splittedResultsArray = [];
-        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* summay_drop_down_buttons */].length; j++) {
-            var refName = __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
+        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_3__data_service__["j" /* summay_drop_down_buttons */].length; j++) {
+            var refName = __WEBPACK_IMPORTED_MODULE_3__data_service__["j" /* summay_drop_down_buttons */][j]["ref"];
             var p = {
                 "layers": [],
                 "no_data_layers": []
@@ -8097,14 +8421,14 @@ var Helper = (function () {
                 'nuts': nuts
             };
         }
-        if (type == 'month') {
+        if (type === 'month') {
             payload = {
                 'year': buttonArray[0].date,
                 'month': buttonArray[1].date,
                 'nuts': nuts
             };
         }
-        if (type == 'year') {
+        if (type === 'year') {
             payload = {
                 'year': buttonArray[0].date,
                 'nuts': nuts
@@ -8160,13 +8484,12 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["proj3035"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["hectare"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["buttons_heat_load"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_day")) __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_day"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_month")) __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_month"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heat_load_api_year")) __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heat_load_api_year"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "timeOutAjaxRequest")) __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["timeOutAjaxRequest"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "default_drop_down_button")) __webpack_require__.d(__webpack_exports__, "default_drop_down_button", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["default_drop_down_button"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "summay_drop_down_buttons")) __webpack_require__.d(__webpack_exports__, "summay_drop_down_buttons", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["summay_drop_down_buttons"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pipes__ = __webpack_require__("../../../../../src/app/shared/pipes/index.ts");
@@ -8182,19 +8505,18 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["r"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["p"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["y"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_6"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_7"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_drop_down_button", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_12"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "summay_drop_down_buttons", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_13"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_14"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["s"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["q"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["z"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_10"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_12"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_14"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_15"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_17"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -8223,7 +8545,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 
@@ -8311,7 +8633,7 @@ DateFormatPipe = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayerNamePipe; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -8348,7 +8670,7 @@ LayerNamePipe = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
         name: 'layername'
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
 ], LayerNamePipe);
 
 var _a, _b;
@@ -8660,7 +8982,7 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* geocodeUrl */] + encodeURIComponent(address))
             .map(function (res) { return res.json(); })
             .map(function (result) {
             _this.logger.log('GeocodingService/geocode()/result' + result);
@@ -8688,9 +9010,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["l" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["m" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
@@ -8754,10 +9076,11 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/graph/heat-load/heat-load.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/duration-curve/duration-curve.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__features_data_interaction_data_interaction_service__ = __webpack_require__("../../../../../src/app/features/data-interaction/data-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__ = __webpack_require__("../../../../../src/app/features/graph/electricity-mix/service/electricity-mix.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InteractionService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8781,8 +9104,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var InteractionService = (function () {
-    function InteractionService(logger, sidePanelService, navigationBarService, summaryResultService, layerService, exportDataService, heatLoadAggregateService, durationCurveService, dataInteractionService) {
+    function InteractionService(logger, sidePanelService, navigationBarService, summaryResultService, layerService, exportDataService, heatLoadAggregateService, durationCurveService, dataInteractionService, electricityMixService) {
         this.logger = logger;
         this.sidePanelService = sidePanelService;
         this.navigationBarService = navigationBarService;
@@ -8792,7 +9116,9 @@ var InteractionService = (function () {
         this.heatLoadAggregateService = heatLoadAggregateService;
         this.durationCurveService = durationCurveService;
         this.dataInteractionService = dataInteractionService;
+        this.electricityMixService = electricityMixService;
         this.summaryResultState = false;
+        this.electricityGenerationResultState = false;
     }
     InteractionService.prototype.getLayerArray = function () {
         return this.layerService.getLayerArray();
@@ -8812,6 +9138,12 @@ var InteractionService = (function () {
     };
     InteractionService.prototype.setSummaryResultState = function (val) {
         this.summaryResultState = val;
+    };
+    InteractionService.prototype.setElectricityGenerationMixResultState = function (val) {
+        this.electricityGenerationResultState = val;
+    };
+    InteractionService.prototype.getElectricityGenerationMixResultState = function () {
+        return this.electricityGenerationResultState;
     };
     InteractionService.prototype.getSummaryResultState = function () {
         return this.summaryResultState;
@@ -8891,14 +9223,17 @@ var InteractionService = (function () {
     InteractionService.prototype.getChien = function (r) {
         return this.dataInteractionService.getSplittedResults(r);
     };
+    InteractionService.prototype.getElectricityMixFromNuts0 = function (payload) {
+        return this.electricityMixService.getElectricityMixFromNuts0(payload);
+    };
     return InteractionService;
 }());
 InteractionService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__features_duration_curve_duration_curve_service__["a" /* DurationCurveService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__features_data_interaction_data_interaction_service__["a" /* DataInteractionService */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */]) === "function" && _k || Object])
 ], InteractionService);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 //# sourceMappingURL=interaction.service.js.map
 
 /***/ }),

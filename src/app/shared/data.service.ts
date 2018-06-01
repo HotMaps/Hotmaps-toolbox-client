@@ -12,14 +12,25 @@ import 'leaflet-draw';
 const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
 const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
+const devServiceDockerUrl    = 'http://172.17.0.7/api';
+
+const prodServiceDockerUrl    = 'http://172.17.0.4/api';
+
+
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
+export const devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
+
+export const prodGeoserverDockerUrl = 'http://172.17.0.9:8080/geoserver/hotmaps/wms';
+
+
+
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserverProdUrl;
+export const geoserverUrl = prodGeoserverDockerUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = prodUrl;
+export const apiUrl = prodServiceDockerUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;
@@ -42,6 +53,11 @@ export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
 export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
+export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
+
+// title
+export const heatloadprofile = 'Heatload profile';
+export const Durationcurve = 'Duration curve';
 
 export const set404url   = 'set404url';
 
@@ -58,17 +74,17 @@ export const buttons_heat_load = [
   { name: 'Month', api_ref: heat_load_api_month, selected: false, date: 1, min: 1, max: 12, options: [] },
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
+export const default_drop_down_button = 'overall';
 
 export const summay_drop_down_buttons = [
-  { name: 'Summary', ref: 'summary', selected: true},
+  { name: 'Overall', ref: default_drop_down_button, selected: true},
   { name: 'Demand', ref: 'demand', selected: false},
   { name: 'Potentials', ref: 'potential', selected: false},
   { name: 'Climate', ref: 'climate', selected: false},
   { name: 'Heat Supply', ref: 'heat_supply', selected: false},
   { name: 'Industry', ref: 'industry', selected: false},
-  { name: 'Load Profile', ref: 'load_profile', selected: false}
+  { name: 'Electricity', ref: 'electricity', selected: false}
 ]
-export const default_drop_down_button = 'summary';
 
 
 // layers constant
@@ -128,7 +144,7 @@ export const leftPanelSize = 400;
 
 // tab values
 
-export const tab1 = 'summary'
+export const tab1 = 'overall'
 
 export const tab2 = 'stats'
 
@@ -175,4 +191,14 @@ export const heat_load_graph_options = {
             }]
       }
   }
+
+export const energy_mix_options = {
+  position : 'right',
+  responsive: true,
+  legend: {
+    display: true,
+    position : 'right'
+
+  }
+}
 

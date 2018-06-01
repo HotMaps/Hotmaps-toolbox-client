@@ -5,7 +5,7 @@ import { DecimalPipe } from '@angular/common';
 import {proj3035, round_value} from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import {GeojsonClass} from '../features/layers/class/geojson.class';
-import { DatasetChart } from 'app/features/chart/chart';
+import { DatasetChart } from 'app/features/graph/chart/chart';
 import * as proj4x from 'proj4';
 import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
@@ -253,7 +253,7 @@ export class Helper {
       return nuts_id;
     }else{
       return null;
-    }    
+    }
   }
   getLAU2IDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
@@ -550,7 +550,7 @@ export class Helper {
 
   createHLPayloadNuts(type, buttonArray, nuts){
     let payload;
-    if(type == 'day'){      
+    if(type == 'day'){
       payload = {
         'year': buttonArray[0].date,
         'month': buttonArray[1].date,
@@ -558,14 +558,14 @@ export class Helper {
         'nuts': nuts
       }
     }
-    if(type == 'month'){
+    if (type === 'month') {
       payload = {
         'year': buttonArray[0].date,
         'month': buttonArray[1].date,
         'nuts': nuts
       }
     }
-    if(type == 'year'){
+    if (type === 'year') {
       payload = {
         'year': buttonArray[0].date,
         'nuts': nuts
@@ -575,7 +575,7 @@ export class Helper {
   }
 
   createDCPayloadHectares(year, areas){
-    let payload = {
+    const payload = {
       'year': year,
       'areas': areas
     }
@@ -583,8 +583,8 @@ export class Helper {
 
   }
 
-  createDCPayloadNuts(year, nuts){
-    let payload = {
+  createDCPayloadNuts(year, nuts) {
+    const payload = {
       'year': year,
       'nuts': nuts
     }

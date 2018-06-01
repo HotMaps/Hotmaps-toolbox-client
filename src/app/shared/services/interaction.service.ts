@@ -15,23 +15,25 @@ import { LayersService } from 'app/features/layers';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
-import { HeatLoadAggregateService } from '../../features/heat-load/heat-load.service';
+import { HeatLoadAggregateService } from '../../features/graph/heat-load/heat-load.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
-import { DurationCurveService } from '../../features/duration-curve/duration-curve.service';
-import { DataInteractionService } from '../../features/data-interaction/data-interaction.service';
+import { DurationCurveService } from '../../features/graph/duration-curve/duration-curve.service';
+import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
+import {ElectricityMixService} from '../../features/graph/electricity-mix/service/electricity-mix.service';
 
 @Injectable()
 export class InteractionService {
     private summaryResultState = false;
+    private electricityGenerationResultState = false;
 
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
-        private layerService: LayersService, private exportDataService: ExportDataService, 
+        private layerService: LayersService, private exportDataService: ExportDataService,
         private heatLoadAggregateService: HeatLoadAggregateService,
         private durationCurveService: DurationCurveService,
-        private dataInteractionService: DataInteractionService
+        private dataInteractionService: DataInteractionService, private electricityMixService: ElectricityMixService
     ) { }
 
     getLayerArray(): Dictionary {
@@ -53,6 +55,12 @@ export class InteractionService {
     }
     setSummaryResultState(val: boolean) {
       this.summaryResultState = val;
+    }
+    setElectricityGenerationMixResultState(val: boolean) {
+      this.electricityGenerationResultState = val;
+    }
+    getElectricityGenerationMixResultState(): boolean {
+      return this.electricityGenerationResultState ;
     }
     getSummaryResultState() {
       return this.summaryResultState;
@@ -128,12 +136,16 @@ export class InteractionService {
     }
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
-    } 
+    }
     getSplittedResults(results){
         return this.dataInteractionService.getSplittedResults(results);
-    }   
-    getChien(r){
+    }
+    getChien(r) {
         return this.dataInteractionService.getSplittedResults(r);
+    }
+
+    getElectricityMixFromNuts0(payload): Promise<any> {
+    return this.electricityMixService.getElectricityMixFromNuts0(payload);
     }
 
 }

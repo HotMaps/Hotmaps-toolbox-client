@@ -68,6 +68,7 @@ export class ExportDataComponent implements OnInit, OnDestroy {
       } else {
         this.isInSummary = false;
       }
+      this.logger.log('setisinsummary:' + this.isInSummary)
       this.tabsSelectedName = val;
     });
   }

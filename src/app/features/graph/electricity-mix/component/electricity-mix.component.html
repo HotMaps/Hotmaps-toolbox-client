@@ -1,0 +1,21 @@
+<table class="uk-table uk-table-divider uk-table-small">
+<thead>
+<tr class="header-energy-mix">
+  <th class="uk-table-shrink">Data on NUTS0</th>
+</tr>
+</thead>
+  </table>
+<div class="uk-card uk-card-body htm-card" *ngIf="!nodata">
+
+
+
+  <div class="title">
+    <h5 class="uk-card-title" style="float:left;margin-bottom: 0px;">{{subtitle}} </h5>
+  </div>
+  <div class="lineargraph" *ngIf="!loadingData">
+    <htm-chart [datasets]="datasets" [options]="options" [type]="type"></htm-chart>
+  </div>
+</div>
+<div *ngIf="loadingData" class="waitingbox">
+  <div class="spinner" uk-spinner></div>
+</div>

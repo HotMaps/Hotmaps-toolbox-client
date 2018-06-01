@@ -1,0 +1,27 @@
+
+<div class="uk-card uk-card-body htm-card" *ngIf="!nodata">
+  <div class="title">
+    <h5 class="uk-card-title" style="float:left;margin-bottom: 0px;">{{subtitle}} </h5>
+    <div class="uk-button-group date-buttons" style="float:right;">
+      <button *ngFor="let button of buttons_date_type"
+        (click)="changeHeatloadType(button)"
+        class="uk-button uk-button-default uk-button-small" [class.activebutton]="button.selected"
+        [class.uk-active]="button.selected">
+        {{button.name}}
+      </button>
+    </div>
+  </div>
+  <div class="date-visu">
+    <span class="center">
+      <select class="uk-select" (change)="onSelectChange($event)">
+          <option *ngFor="let option of selectedButton.options" [selected]="selectedButton.date === option.id" [value]="option.id">{{option.name}}</option>
+      </select>
+    </span>
+  </div>
+  <div class="lineargraph" *ngIf="!loadingData">
+    <htm-chart [datasets]="datasets" [labels]="labels" [options]="options" [type]="type"></htm-chart>
+  </div>
+</div>
+<div *ngIf="loadingData" class="waitingbox">
+  <div class="spinner" uk-spinner></div>
+</div>

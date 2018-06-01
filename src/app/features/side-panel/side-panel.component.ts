@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import {
@@ -9,9 +9,11 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    ViewChild
 } from '@angular/core';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { SummaryResultComponent } from 'app/features/summary-result';
 
 
 @Component({
@@ -20,7 +22,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 })
 export class SideComponent implements OnInit, OnDestroy {
 
-    // Improvement of coding style : 
+    // Improvement of coding style :
+
     // place private members after public members, alphabetized
     protected expanded = false;
     protected title = 'SideComponent title';
@@ -38,6 +41,7 @@ export class SideComponent implements OnInit, OnDestroy {
     }
     ngOnInit() {
     }
+
     ngOnDestroy() {
     }
 
@@ -48,7 +52,7 @@ export class SideComponent implements OnInit, OnDestroy {
     disableButtons(functionString: string) {
     }
 
-    // Improvement of coding style : 
+    // Improvement of coding style :
     // display what ? The name of the method should describes his intent
     display(val: boolean) {
         if (val) {

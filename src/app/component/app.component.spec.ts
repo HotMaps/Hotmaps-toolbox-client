@@ -18,7 +18,7 @@ import { LoaderService } from '../shared/services/loader.service'
 import {Router} from '@angular/router';
 import {routes} from '../routes';
 import {DecimalPipe, Location, APP_BASE_HREF} from '@angular/common';
-import {DataInteractionCellComponent} from '../features/data-interaction/data-interaction-cell/data-interaction-cell.component';
+import {DataInteractionCellComponent} from '../features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component';
 import {RightSideComponent} from '../features/side-panel/right-side-panel/right-side-panel.component';
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
 import {NavigationBarComponent} from '../pages/nav/component/navigation-bar.component';
@@ -44,7 +44,7 @@ import {ToasterService} from '../shared/services/toaster.service';
 import {LayersService} from '../features/layers/services/layers.service';
 import {PopulationService} from '../features/population/services/population.service';
 import {GeocodingService} from '../shared/services/geocoding.service';
-import {DataInteractionService} from '../features/data-interaction/data-interaction.service';
+import {DataInteractionService} from '../features/layers-interaction/layers-interaction.service';
 import {BusinessInterfaceRenderService} from '../shared/business/business.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
@@ -54,15 +54,17 @@ import {FeedbackComponent} from '../features/feedback/component/feedback.compone
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {HeatLoadAggregateService} from "../features/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from "../features/graph/heat-load/heat-load.service";
 import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
-import { HeatLoadChartComponent } from 'app/features/heat-load/component';
-import { ChartComponent } from 'app/features/chart/chart.component';
+import { HeatLoadChartComponent } from 'app/features/graph/heat-load/component';
+import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import {ExportDataComponent} from "../features/export-data/component/export-data.component";
 import {ExportDataService} from "../features/export-data/service/export-data.service";
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import { DurationCurveComponent } from '../features/duration-curve/duration-curve.component';
-import { DurationCurveService } from "../features/duration-curve/duration-curve.service";
+import { DurationCurveComponent } from '../features/graph/duration-curve/duration-curve.component';
+import { DurationCurveService } from "../features/graph/duration-curve/duration-curve.service";
+import {ElectricityMixComponent} from "../features/graph/electricity-mix/component/electricity-mix.component";
+import {ElectricityMixService} from "../features/graph/electricity-mix/service/electricity-mix.service";
 
 
 describe('AppComponent: Router', () => {
@@ -80,7 +82,7 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent, ElectricityMixComponent ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -99,6 +101,7 @@ describe('AppComponent: Router', () => {
         {provide: SummaryResultService, useClass: SummaryResultService},
         {provide: InteractionService, useClass: InteractionService},
         {provide: DurationCurveService, useClass: DurationCurveService},
+        {provide: ElectricityMixService, useClass: ElectricityMixService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);
