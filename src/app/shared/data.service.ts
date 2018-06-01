@@ -14,7 +14,7 @@ const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
 const devServiceDockerUrl    = 'http://172.17.0.7/api';
 
-const prodServiceDockerUrl    = 'http://172.17.0.4/api';
+const prodServiceDockerUrl    = 'http://0.0.0.0:9006/api';
 
 
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
