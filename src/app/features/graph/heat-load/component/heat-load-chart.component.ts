@@ -6,7 +6,15 @@ import { SummaryResultClass } from '../../../summary-result/summary-result.class
 import { Logger } from '../../../../shared/services/logger.service';
 import { HeatLoadClass, Value } from '../heat-load.class';
 import { LoadProfile, Stock2 } from 'app/features/graph/heat-load/shared';
-import { rightPanelSize, Helper, buttons_heat_load, heat_load_api_year, heat_load_api_month, heat_load_api_day } from 'app/shared';
+import {
+  rightPanelSize,
+  Helper,
+  buttons_heat_load,
+  heat_load_api_year,
+  heat_load_api_month,
+  heat_load_api_day,
+  heatloadprofile
+} from 'app/shared';
 import { heat_load_graph_options } from '../../../../shared/data.service';
 import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/graph/chart/chart';
@@ -34,7 +42,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private labels;
   private options: any;
   private loadProfileData: any;
-  private subtitle = 'Heatload profile';
+  private subtitle = heatloadprofile;
   private datasets: DatasetChart;
   private type = 'line';
   private selectedButton;

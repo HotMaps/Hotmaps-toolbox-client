@@ -24,7 +24,7 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   private datasets: DatasetChart[];
   private labels = [];
   private options: any;
-  private subtitle = 'Heat duration curve';
+  private subtitle = 'Duration curve';
   private loadingData = false;
 
 

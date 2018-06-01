@@ -12,14 +12,20 @@ import 'leaflet-draw';
 const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
 const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
+const devServiceDockerUrl    = 'http://172.17.0.7:9006/api';
+
+
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
+export const devGeoserverDockerUrl = 'http://172.17.0.5:9009/geoserver/hotmaps/wms';
+
+
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserverDevUrl;
+export const geoserverUrl = devGeoserverDockerUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = devServiceDockerUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;
@@ -43,6 +49,10 @@ export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
 export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
+
+// title
+export const heatloadprofile = 'Heatload profile';
+export const Durationcurve = 'Duration curve';
 
 export const set404url   = 'set404url';
 
