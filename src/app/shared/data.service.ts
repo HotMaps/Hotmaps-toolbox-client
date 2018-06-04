@@ -12,14 +12,11 @@ import 'leaflet-draw';
 const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
 const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
-const devServiceDockerUrl    = 'http://172.17.0.7/api';
 
-const prodServiceDockerUrl    = 'http://172.17.0.4/api';
 
 
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-
 
 
 

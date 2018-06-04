@@ -147,9 +147,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
 
-    if (this.summaryResult) {
-      this.updateResult();
-    }
+
     if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
       this.heatloadStatus = true;
 
@@ -173,6 +171,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.isDataAgregate = false;
       this.updateWithAreas()
     }
+    /*if (this.summaryResult) {
+      this.updateResult();
+    }*/
   }
   initButtons() {
     this.dropdown_btns = summay_drop_down_buttons;
@@ -284,10 +285,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
+      this.buttonRef = default_drop_down_button;
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => {
+      this.updateResult()
     this.loadingData = false;
       this.interactionService.setSummaryResultState(this.loadingData);
+      this.setExportButtonState(true)
     }).catch((e) => {
       this.logger.log(JSON.stringify(e))
       this.loadingData = false;
