@@ -2093,8 +2093,8 @@ var DataInteractionArray = [
         workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_heat_cond' },
     { id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class' },
-    /*{id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
-      workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif'},*/
+    { id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
+        workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif' },
     { id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
         workspaceName: 'hdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd_curr_tif' },
     { id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
