@@ -5063,9 +5063,6 @@ var RightSideComponent = (function (_super) {
     RightSideComponent.prototype.ngOnChanges = function () {
         console.log('RightSidePanelComponent/ngOnChanges');
         console.log(this.dropdown_btns);
-        if (this.summaryResult) {
-            this.updateResult();
-        }
         if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
         }
@@ -5089,6 +5086,9 @@ var RightSideComponent = (function (_super) {
             this.isDataAgregate = false;
             this.updateWithAreas();
         }
+        /*if (this.summaryResult) {
+          this.updateResult();
+        }*/
     };
     RightSideComponent.prototype.initButtons = function () {
         this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["j" /* summay_drop_down_buttons */];
@@ -5198,10 +5198,13 @@ var RightSideComponent = (function (_super) {
         this.interactionService.setSummaryResultState(this.loadingData);
         var summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(function (result) {
             _this.summaryResult = result;
+            _this.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
             // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
         }).then(function () {
+            _this.updateResult();
             _this.loadingData = false;
             _this.interactionService.setSummaryResultState(_this.loadingData);
+            _this.setExportButtonState(true);
         }).catch(function (e) {
             _this.logger.log(JSON.stringify(e));
             _this.loadingData = false;
@@ -7627,7 +7630,6 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* unused harmony export devGeoserverDockerUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return geoserverUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getIpUrl; });
@@ -7717,10 +7719,8 @@ var MONTHNAME = [
 var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
 var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
-var devServiceDockerUrl = 'http://172.17.0.7:9006/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-var devGeoserverDockerUrl = 'http://172.17.0.5:9009/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverDevUrl;
