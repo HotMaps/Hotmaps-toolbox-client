@@ -19,9 +19,7 @@ const prodServiceDockerUrl    = 'http://172.17.0.4/api';
 
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-export const devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
 
-export const prodGeoserverDockerUrl = 'http://172.17.0.9:8080/geoserver/hotmaps/wms';
 
 
 

@@ -20,7 +20,7 @@ export class Logger {
     // for (... in ...) statements must be filtered with an if statement
     // Identifier 'property' is never reassigned; use 'const' instead of 'let'
     for (let property in obj) {
-      console.log(output);
+
       output += property + ': ' + obj[property] + '; ';
     }
     this.logs.push(output);

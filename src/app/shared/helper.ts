@@ -513,7 +513,7 @@ export class Helper {
   }
 
   isPayloadIncomplete(payload){
-    console.log("fsgfdf");
+
     for (let key in payload){
       if (payload[key] == 0){
         return true;

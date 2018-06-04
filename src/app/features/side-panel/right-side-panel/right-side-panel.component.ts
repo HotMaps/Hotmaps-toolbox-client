@@ -143,8 +143,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
   ngOnDestroy() { }
   ngOnChanges() {
-    console.log('RightSidePanelComponent/ngOnChanges')
-    console.log(this.dropdown_btns)
+
 
 
 
@@ -192,8 +191,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   changeResultsDisplay(event) {
     this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
     this.buttonRef = event.target.value;
-    console.log(this.buttonRef)
-    console.log(this.splittedResults)
     this.loadExportData(this.buttonRef);
   }
   clickTab(id: string) {
