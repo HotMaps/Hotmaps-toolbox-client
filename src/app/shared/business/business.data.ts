@@ -144,7 +144,11 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 13, api_name: 'density', business_name: 'Total population'},
   {id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person'},
   {id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings'},
-  {id: 16, api_name: 'heat_nonres_curr_density_value_per_population', business_name: 'Heat consumption per person - Nonresidential Buildings'},
+
+  {id: 16, api_name: 'heat_consumption_per_gfa_tot_curr_density_tif_density', business_name: 'Heat demand per m2'},
+
+
+
   {id: 25, api_name: 'population_density_sum', business_name: 'Population'},
   {id: 19, api_name: 'population_density_avg', business_name: 'Average population density'},
   {id: 179, api_name: 'Inhabitants', business_name: 'person'},

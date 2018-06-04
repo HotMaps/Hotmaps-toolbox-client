@@ -22,7 +22,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'wwtp_capacity',  zoomLevel: zoomLevelDetectChange, ref: ['overall', 'potential'], styleName: styleNameHeat},
 
   {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'], styleName: 'gfa_tot_curr_density_tif'},
+    workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_tot_curr_density_tif'},
   {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_res_curr_density_tif'},
   {id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,

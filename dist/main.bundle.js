@@ -2060,7 +2060,7 @@ var DataInteractionArray = [
     { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'], styleName: 'gfa_tot_curr_density_tif' },
+        workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_tot_curr_density_tif' },
     { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
         workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_res_curr_density_tif' },
     { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
@@ -5061,8 +5061,6 @@ var RightSideComponent = (function (_super) {
     };
     RightSideComponent.prototype.ngOnDestroy = function () { };
     RightSideComponent.prototype.ngOnChanges = function () {
-        console.log('RightSidePanelComponent/ngOnChanges');
-        console.log(this.dropdown_btns);
         if (this.summaryResult) {
             this.updateResult();
         }
@@ -5106,8 +5104,6 @@ var RightSideComponent = (function (_super) {
     RightSideComponent.prototype.changeResultsDisplay = function (event) {
         this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
         this.buttonRef = event.target.value;
-        console.log(this.buttonRef);
-        console.log(this.splittedResults);
         this.loadExportData(this.buttonRef);
     };
     RightSideComponent.prototype.clickTab = function (id) {
@@ -7313,7 +7309,7 @@ var BusinessInterfaceRenderArray = [
     { id: 13, api_name: 'density', business_name: 'Total population' },
     { id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person' },
     { id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings' },
-    { id: 16, api_name: 'heat_nonres_curr_density_value_per_population', business_name: 'Heat consumption per person - Nonresidential Buildings' },
+    { id: 16, api_name: 'heat_consumption_per_gfa_tot_curr_density_tif_density', business_name: 'Heat demand per m2' },
     { id: 25, api_name: 'population_density_sum', business_name: 'Population' },
     { id: 19, api_name: 'population_density_avg', business_name: 'Average population density' },
     { id: 179, api_name: 'Inhabitants', business_name: 'person' },
@@ -7627,8 +7623,6 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* unused harmony export devGeoserverDockerUrl */
-/* unused harmony export prodGeoserverDockerUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return geocodeUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return geoserverUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getIpUrl; });
@@ -7722,8 +7716,6 @@ var devServiceDockerUrl = 'http://172.17.0.7/api';
 var prodServiceDockerUrl = 'http://172.17.0.4/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-var devGeoserverDockerUrl = 'http://172.17.0.5:8080/geoserver/hotmaps/wms';
-var prodGeoserverDockerUrl = 'http://172.17.0.9:8080/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverProdUrl;
@@ -8378,7 +8370,6 @@ var Helper = (function () {
         }
     };
     Helper.prototype.isPayloadIncomplete = function (payload) {
-        console.log("fsgfdf");
         for (var key in payload) {
             if (payload[key] == 0) {
                 return true;
@@ -9312,7 +9303,6 @@ var Logger = (function () {
         // for (... in ...) statements must be filtered with an if statement
         // Identifier 'property' is never reassigned; use 'const' instead of 'let'
         for (var property in obj) {
-            console.log(output);
             output += property + ': ' + obj[property] + '; ';
         }
         this.logs.push(output);
