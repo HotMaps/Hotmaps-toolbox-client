@@ -147,5 +147,10 @@ export class InteractionService {
     getElectricityMixFromNuts0(payload): Promise<any> {
     return this.electricityMixService.getElectricityMixFromNuts0(payload);
     }
-
+    enableOpenStateWithId(id) {
+        this.navigationBarService.enableOpenStateWithId(id);
+    }
+    disableOpenStateWithId(id) {
+      this.navigationBarService.disableOpenStateWithId(id);
+    }
 }

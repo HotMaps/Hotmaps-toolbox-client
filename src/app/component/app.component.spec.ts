@@ -1,10 +1,11 @@
+import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
  */
 
  // Improvement of coding style :
-// leaving one empty line between third party imports and application imports
+ // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
 import {ComponentFixture, TestBed, async, inject, tick, fakeAsync} from '@angular/core/testing';
@@ -54,17 +55,19 @@ import {FeedbackComponent} from '../features/feedback/component/feedback.compone
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {HeatLoadAggregateService} from "../features/graph/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from '../features/graph/heat-load/heat-load.service';
 import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/graph/heat-load/component';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
-import {ExportDataComponent} from "../features/export-data/component/export-data.component";
-import {ExportDataService} from "../features/export-data/service/export-data.service";
+import {ExportDataComponent} from '../features/export-data/component/export-data.component';
+import {ExportDataService} from '../features/export-data/service/export-data.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import { DurationCurveComponent } from '../features/graph/duration-curve/duration-curve.component';
-import { DurationCurveService } from "../features/graph/duration-curve/duration-curve.service";
-import {ElectricityMixComponent} from "../features/graph/electricity-mix/component/electricity-mix.component";
-import {ElectricityMixService} from "../features/graph/electricity-mix/service/electricity-mix.service";
+import { DurationCurveService } from '../features/graph/duration-curve/duration-curve.service';
+import {ElectricityMixComponent} from '../features/graph/electricity-mix/component/electricity-mix.component';
+import {ElectricityMixService} from '../features/graph/electricity-mix/service/electricity-mix.service';
+import { CalculationModuleService } from './../features/calculation-module/service/calculation-module.service';
+import { CalculationModuleComponent } from './../features/calculation-module/component/calculation-module.component';
 
 
 describe('AppComponent: Router', () => {
@@ -82,7 +85,8 @@ describe('AppComponent: Router', () => {
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
-        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent, DurationCurveComponent, ElectricityMixComponent ],
+        HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -102,6 +106,8 @@ describe('AppComponent: Router', () => {
         {provide: InteractionService, useClass: InteractionService},
         {provide: DurationCurveService, useClass: DurationCurveService},
         {provide: ElectricityMixService, useClass: ElectricityMixService},
+        {provide: CalculationModuleService, useClass: CalculationModuleService},
+        {provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

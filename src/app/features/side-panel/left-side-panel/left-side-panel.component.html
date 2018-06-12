@@ -7,22 +7,33 @@
     </div>
 
   <div class="notifications">
-    <span *ngIf="expanded" [@titleTextTrigger]="'in'">
-      <ul uk-accordion *ngFor="let i of category">
-        <li class="uk-open">
-          <h3 class="uk-accordion-title">
-            {{i}}
-          </h3>
-          <div class="uk-accordion-content">
-            <ng-container *ngFor="let n of layers" >
-              <span *ngIf="i === n.category">
-                <layers-interaction-cell [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
-              </span>
-            </ng-container>
-          </div>
+    <ul class="uk-flex-center" uk-tab>
+      <li class="uk-active layers-tab"><a href="">layers</a></li>
+      <li [class.uk-disabled]="zoneSelected"><a href="">Calculation modules</a></li>
+    </ul>
+    <ul id="my-id3" class="uk-switcher">
+      <li>
+          <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+              <ul uk-accordion *ngFor="let i of category">
+                <li class="uk-open">
+                  <h3 class="uk-accordion-title">
+                    {{i}}
+                  </h3>
+                  <div class="uk-accordion-content">
+                    <ng-container *ngFor="let n of layers" >
+                      <span *ngIf="i === n.category">
+                        <layers-interaction-cell [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
+                      </span>
+                    </ng-container>
+                  </div>
 
-        </li>
-      </ul>
-    </span>
+                </li>
+              </ul>
+            </span>
+      </li>
+      <li>
+          <htm-cms [expandedState]="expandedState" [expanded]="expanded"></htm-cms>
+      </li>
+    </ul>
   </div>
 </div>

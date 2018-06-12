@@ -144,7 +144,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   ngOnDestroy() { }
   ngOnChanges() {
     console.log('RightSidePanelComponent/ngOnChanges')
-    console.log(this.dropdown_btns)
 
 
 

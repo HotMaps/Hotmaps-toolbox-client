@@ -25,7 +25,7 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = localApiUrl;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;
@@ -33,7 +33,7 @@ export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const timeOutAjaxRequest = 10000;
-export const unit_heatload_profil = 'kW'
+export const unit_heatload_profil = 'kW';
 
 export const formatImage = 'image/png8';
 // layer_name
