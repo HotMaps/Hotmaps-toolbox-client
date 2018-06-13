@@ -1,11 +1,10 @@
-import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
  */
 
- // Improvement of coding style :
- // leaving one empty line between third party imports and application imports
+// Improvement of coding style :
+// leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
 import {ComponentFixture, TestBed, async, inject, tick, fakeAsync} from '@angular/core/testing';
@@ -68,6 +67,8 @@ import {ElectricityMixComponent} from '../features/graph/electricity-mix/compone
 import {ElectricityMixService} from '../features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationModuleService } from './../features/calculation-module/service/calculation-module.service';
 import { CalculationModuleComponent } from './../features/calculation-module/component/calculation-module.component';
+import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
+import { CalculationHeatLoadDividedService } from './../features/calculation-module/service/calculation-test.service';
 
 
 describe('AppComponent: Router', () => {
@@ -108,6 +109,7 @@ describe('AppComponent: Router', () => {
         {provide: ElectricityMixService, useClass: ElectricityMixService},
         {provide: CalculationModuleService, useClass: CalculationModuleService},
         {provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

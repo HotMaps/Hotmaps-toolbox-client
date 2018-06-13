@@ -35,6 +35,8 @@ import { SelectionToolButtonStateService } from './../../selection-tools/service
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import { SelectionToolService } from 'app/features/selection-tools';
 import { MapService } from './../../../pages/map/map.service';
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -53,8 +55,9 @@ describe('LeftSideComponent', () => {
                     return new Http(backend, defaultOptions);
                     }, deps: [ MockBackend, BaseRequestOptions ]
                 },
+                { provide: Helper, useClass: Helper},
+                { provide: DecimalPipe, useClass: DecimalPipe },
                 { provide: InteractionService, useClass: InteractionService },
-                {provide: SidePanelService, useClass: SidePanelService },
                 { provide: ExportDataService, useClass: ExportDataService },
                 { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
                 { provide: SidePanelService, useClass: SidePanelService },
@@ -65,7 +68,6 @@ describe('LeftSideComponent', () => {
                 { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
                 { provide: DurationCurveService, useClass: DurationCurveService },
                 { provide: ToasterService },
-                { provide: Helper },
                 { provide: ElectricityMixService, useClass: ElectricityMixService },
 
                 { provide: MockBackend, useClass: MockBackend },
@@ -73,12 +75,14 @@ describe('LeftSideComponent', () => {
                 { provide: Logger, useValue: loggerStub },
                 { provide: LoaderService, useValue: loaderServiceStub },
                 { provide: MapService, useClass: MapService },
+                { provide: SidePanelService, useClass: SidePanelService },
                 { provide: SelectionScaleService, useClass: SelectionScaleService },
                 { provide: SelectionToolService, useClass: SelectionToolService },
                 { provide: SelectionToolUtils, useClass: SelectionToolUtils },
                 { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
                 { provide: CalculationModuleService, useClass: CalculationModuleService },
                 { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+                { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
             ],
             imports: [
                 BrowserAnimationsModule,

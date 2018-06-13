@@ -20,6 +20,9 @@ import {ExportDataService} from '../../features/export-data/service/export-data.
 import { DurationCurveService } from '../../features/graph/duration-curve/duration-curve.service';
 import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
 import {ElectricityMixService} from '../../features/graph/electricity-mix/service/electricity-mix.service';
+import { CalculationHeatLoadDividedService } from './../../features/calculation-module/service/calculation-test.service';
+import { CalculationModuleService } from './../../features/calculation-module/service/calculation-module.service';
+import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 
 @Injectable()
 export class InteractionService {
@@ -33,7 +36,11 @@ export class InteractionService {
         private layerService: LayersService, private exportDataService: ExportDataService,
         private heatLoadAggregateService: HeatLoadAggregateService,
         private durationCurveService: DurationCurveService,
-        private dataInteractionService: DataInteractionService, private electricityMixService: ElectricityMixService
+        private dataInteractionService: DataInteractionService, private electricityMixService: ElectricityMixService,
+        private calculationModuleStatusService: CalculationModuleStatusService,
+        private calculationModuleService: CalculationModuleService,
+        private calculationHeatLoadDividedService: CalculationHeatLoadDividedService
+
     ) { }
 
     getLayerArray(): Dictionary {
@@ -152,5 +159,11 @@ export class InteractionService {
     }
     disableOpenStateWithId(id) {
       this.navigationBarService.disableOpenStateWithId(id);
+    }
+    getCMResult(summaryResult, cm): Promise<any> {
+      return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
+    }
+    getCMRunned() {
+      return this.calculationModuleStatusService.getCmRunned()
     }
 }

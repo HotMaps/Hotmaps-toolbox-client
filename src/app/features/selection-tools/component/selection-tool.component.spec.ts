@@ -40,6 +40,9 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
 import {ExportDataService} from "../../export-data/service/export-data.service";
 import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
 import {ElectricityMixService} from "../../graph/electricity-mix/service/electricity-mix.service";
+import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -55,8 +58,13 @@ describe('SelectionToolComponent', () => {
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         SelectionScaleService, ElectricityMixService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
         BusinessInterfaceRenderService, InteractionService, NavigationBarService, SummaryResultService, SidePanelService, LayersService,
-        MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService, DataInteractionService, ExportDataService,
-        DurationCurveService]
+        MapService, SelectionToolButtonStateService, MailService,
+        PopulationService, GeocodingService, DataInteractionService, ExportDataService,
+        DurationCurveService,
+        { provide: CalculationModuleService, useClass: CalculationModuleService},
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService}
+      ]
     })
     .compileComponents();
   }));

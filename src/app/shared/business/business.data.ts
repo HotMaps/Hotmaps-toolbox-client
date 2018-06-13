@@ -48,6 +48,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1'},
   {id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0'},
   {id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total'},
+  {id: 15, api_name: 'calculation_module_1', business_name: 'CM - Heat demand reduction'},
 
 
 

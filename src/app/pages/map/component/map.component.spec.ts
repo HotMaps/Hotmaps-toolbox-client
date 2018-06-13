@@ -63,6 +63,7 @@ import {ElectricityMixComponent} from '../../../features/graph/electricity-mix/c
 import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -123,7 +124,8 @@ describe('MapComponent', () => {
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-        { provide: DurationCurveService, useClass: DurationCurveService }
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
 
       ],
       imports: [

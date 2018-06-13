@@ -31,3 +31,20 @@
 .waitingboxcomponents > .spinner {
   color: white !important;
 }
+#box-components {
+  width: 0 !important;
+}
+.values {
+  font-size: 12px;
+}
+.cm_title{
+  color: white;
+  margin-bottom: 0;
+}
+.description {
+  font-style: italic;
+}
+.component_title {
+  color: white;
+  font-size: 18px;
+}

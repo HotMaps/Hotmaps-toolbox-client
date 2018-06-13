@@ -1,3 +1,4 @@
+import { Helper } from './../../../shared/helper';
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
   Component,
@@ -20,6 +21,8 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
 import { Logger } from "../../../shared/services/logger.service";
 import { MapService } from "../../../pages/map/map.service";
+import * as uikit from 'uikit'
+
 @Component({
   moduleId: module.id,
   selector: 'htm-left-side-panel',
@@ -70,29 +73,47 @@ import { MapService } from "../../../pages/map/map.service";
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
   @Input() areas;
-
-  expanded = false;
-  expandedState = 'collapsed';
+  private layersSelected = [];
+  private nbElementsSelected = 0;
   layers: DataInteractionClass[];
   category: DataInteractionClass[];
-  zoneSelected;
-  constructor(
+  private isZoneSelected = false;
+  expanded = false;
+  expandedState = 'collapsed';
+  constructor(private helper: Helper,
     private dataInteractionService: DataInteractionService, private logger: Logger,
-    protected interactionService: InteractionService, protected mapservice: MapService) {
+    protected interactionService: InteractionService, protected mapService: MapService) {
     super(interactionService);
   }
 
   ngOnInit() {
 
+    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        if (value === 0) {
+          uikit.tab('#uk-tab-left-panel').show(0);
+          this.isZoneSelected = false;
+        } else {
+          this.isZoneSelected = true;
+        }
+        this.nbElementsSelected = value;
+        console.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
+      })
+    }
+    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      this.mapService.getLayerArray().subscribe(() => {
+        this.layersSelected = this.mapService.setLayerWithoutSuffix();
+        console.log('LeftSideComponent/this.layersSelected = ', this.layersSelected)
+      })
+    }
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }
 
-
   getLayerAndCategory(layers: any) {
 
     this.logger.log(' layerr = ' + JSON.stringify(layers))
-
+    console.log(layers)
     this.layers = layers
     this.category = layers.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);

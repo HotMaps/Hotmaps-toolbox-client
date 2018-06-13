@@ -40,8 +40,9 @@ export class CalculationModuleService extends APIService {
     return cm;
   }
   getCalculationModuleCategories() {
+    this.categories.clear()
     this.getCalculationModuleServices().forEach((cm) => {
-      this.categories.add(cm.category)
+      if (cm.isReadable) { this.categories.add(cm.category) }
     });
     return Promise.resolve(this.categories);
   }

@@ -61,6 +61,7 @@ import { GeocodingService, Logger, LoaderService, ToasterService,
   import { CalculationModuleComponent } from './features/calculation-module/component/calculation-module.component';
   import { CalculationModuleService } from './features/calculation-module/service/calculation-module.service';
   import { CalculationModuleStatusService } from './features/calculation-module/service/calcultation-module-status.service';
+import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
 
 
   @NgModule({
@@ -131,7 +132,8 @@ import { GeocodingService, Logger, LoaderService, ToasterService,
     DurationCurveService,
     ElectricityMixService,
     CalculationModuleService,
-    CalculationModuleStatusService
+    CalculationModuleStatusService,
+    CalculationHeatLoadDividedService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
