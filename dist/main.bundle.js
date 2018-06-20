@@ -8327,17 +8327,17 @@ var MONTHNAME = [
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
-var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
+var devUrl = 'http://api.hotmapsdev.hevs.ch/api'; //'http://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
+var geoserverDevUrl = 'http://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
 // prefer
 var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = localApiUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var idDefaultLayer = 1;
