@@ -1,0 +1,49 @@
+<div [@cmTrigger]="expandedState">
+  <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+    <ul uk-accordion *ngFor="let i of categories">
+      <li class="uk-open">
+        <h3 class="uk-accordion-title">
+          {{i}}
+        </h3>
+        <div class="uk-accordion-content">
+          <ng-container *ngFor="let cm of calculationModules">
+              <span *ngIf="i === cm.category && cm.isReadable">
+                <div class="uk-container">
+                  <div class="uk-offcanvas-content">
+                    <button class="uk-button uk-button-default uk-margin-small-right" type="button" (click)="selectCM(cm)">{{cm.cm_name}}</button>
+                  </div>
+                </div>
+              </span>
+          </ng-container>
+        </div>
+      </li>
+    </ul>
+  </span>
+</div>
+<div *ngIf="waitingCM" class="waitingbox">
+  <div class="spinner" uk-spinner></div>
+</div>
+
+<div class="uk-offcanvas-content">
+  <div id="box-components" uk-offcanvas="overlay: false; bg-close: false;esc-close:false;">
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" (click)="closeCMpage()" uk-close></button>
+      <h3 class="cm_title" *ngIf="cmSelected">{{cmSelected.cm_name}}</h3>
+      <span class="uk-margin description" *ngIf="cmSelected">{{cmSelected.cm_description}}</span>
+      <div *ngIf="waitingCM" class="waitingboxcomponents">
+        <div class="spinner" uk-spinner></div>
+      </div>
+      <ng-container *ngIf="!waitingCM">
+        <div class="component uk-margin" *ngFor="let component of components">
+          <span class="component_title">{{component.component_name}} - (value: {{component.value}}{{component.unit}})</span>
+          <div class="uk-form-controls">
+            <input class="uk-{{component.component_type}}" id="{{component.parameter_name}}" value="{{component.value}}" type="{{component.component_type}}"
+              min="{{component.min}}" max="{{component.max}}" placeholder="{{component.component_name}}" (change)="changeValue($event, component)">
+          </div>
+          <span class="values">Min: {{component.min}}{{component.unit}}; Max: {{component.max}}{{component.unit}};</span>
+        </div>
+        <button class="uk-button uk-button-primary" (click)="runCM()">Run CM</button>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -48,6 +48,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1'},
   {id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0'},
   {id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total'},
+  {id: 15, api_name: 'calculation_module_1', business_name: 'CM - Heat demand reduction'},
 
 
 
@@ -155,6 +156,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 1543, api_name: 'MWh/ha', business_name: 'MWh/ha'},
   {id: 1545, api_name: 'MWh/Inhabitants', business_name: 'MWh/person'},
   {id: 152, api_name: 'Inhabitants/ha', business_name: 'person/ha'},
+  {id: 16, api_name: 'heat_consumption_per_gfa_tot_curr_density_tif_density', business_name: 'Heat demand per m2'},
 ];
 
 

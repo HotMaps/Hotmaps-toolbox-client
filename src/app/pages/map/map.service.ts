@@ -1,3 +1,4 @@
+
 import { Http, Response } from '@angular/http';
 
 /**
@@ -428,4 +429,15 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     getLayerArray() {
         return this.layerArray;
     }
+    setLayerWithoutSuffix() {
+      const layers = [];
+      this.layersService.getLayerArray().keys().map((layerName) => {
+        layers.push(layerName.replace(this.businessInterfaceRenderService.getNutsTosuffix(this.selectionScaleService.getScaleValue()), ''))
+      })
+      return layers
+    }
 }
+
+
+
+

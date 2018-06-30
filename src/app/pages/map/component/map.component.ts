@@ -33,6 +33,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private map: Map;
   private layers;
   private scaleLevel;
+  private cmRunned;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -70,6 +71,10 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.mapService.setLayersSubject();
       });
     }
+    this.interactionService.getCMRunned().subscribe((value) => {
+      this.interactionService.openRightPanel()
+      this.cmRunned = value
+    })
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {
         this.layers = data;

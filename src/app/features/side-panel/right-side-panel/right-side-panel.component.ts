@@ -119,6 +119,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() scaleLevel;
   @Input() locationsSelection;
   @Input() areas;
+  @Input() cmRunned;
+
+
   private poiTitle;
   private heatloadStatus = false;
   private nust0Selected = false;
@@ -131,8 +134,14 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private electricitMixLoadingState = false;
   private splittedResults;
   private summaryResult;
+
+
   private electricitMixResult;
   private selectedButton;
+
+  // ONLY FOR DEMO !!
+  private cmResult;
+
 
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private mapService: MapService, private dataInteractionService: DataInteractionService) {
@@ -143,7 +152,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
   ngOnDestroy() { }
   ngOnChanges() {
-
+    console.log('RightSidePanelComponent/ngOnChanges')
 
 
 
@@ -164,6 +173,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     /*       this.logger.log('RightSidePanelComponent/ngOnChanges');
      */
     this.scale = this.mapService.getScaleValue();
+    console.log(this.cmRunned);
     if (this.mapService.getScaleValue() !== hectare && this.expanded === true) {
       this.isDataAgregate = true;
       this.updateWithIds();
@@ -171,6 +181,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.isDataAgregate = false;
       this.updateWithAreas()
     }
+
     /*if (this.summaryResult) {
       this.updateResult();
     }*/
@@ -192,6 +203,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   changeResultsDisplay(event) {
     this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
     this.buttonRef = event.target.value;
+    console.log(this.buttonRef)
+    console.log(this.splittedResults)
     this.loadExportData(this.buttonRef);
   }
   clickTab(id: string) {
@@ -224,13 +237,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       self.summaryResult = result;
       self.buttonRef = default_drop_down_button;
     }).then(() => {
+      this.updateCMResult();
+    }).then(() => {
       self.updateResult()
+      self.updateCMResult();
       self.loadingData = false;
       self.setExportButtonState(true)
     }).catch((e) => {
       self.logger.log(JSON.stringify(e));
       self.loadingData = false;
-      this.interactionService.setSummaryResultState(this.loadingData);
+      self.interactionService.setSummaryResultState(self.loadingData);
     });
     // only for nuts 0 electricity generation mix is allowed
     if (this.scaleLevel === '0') {
@@ -240,6 +256,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       const electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(result => {
         self.electricitMixResult = result;
         self.logger.log('electricitMix: Result = ' + JSON.stringify(self.electricitMixResult))
+      }).then(() => {
       }).then(() => {
         self.electricitMixLoadingState = false;
         this.interactionService.setElectricityGenerationMixResultState(this.electricitMixLoadingState);
@@ -252,6 +269,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
   updateResult() {
     this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
+
     this.loadExportData(this.buttonRef);
   }
   updateWithAreas() {
@@ -288,6 +306,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.buttonRef = default_drop_down_button;
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => {
+      this.updateCMResult();
+    }).then(() => {
       this.updateResult()
     this.loadingData = false;
       this.interactionService.setSummaryResultState(this.loadingData);
@@ -298,6 +318,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.interactionService.setSummaryResultState(this.loadingData);
     });
   }
-
+  updateCMResult() {
+    if (!this.helper.isNullOrUndefined(this.cmRunned)) {
+      this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
+        this.summaryResult.layers.push(value)
+      })
+      console.log(this.summaryResult)
+    }
+  }
 
 }

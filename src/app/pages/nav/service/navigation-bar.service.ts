@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 
@@ -12,7 +12,7 @@ import { Logger} from '../../../shared';
 
 @Injectable()
 export class NavigationBarService {
-  // Improvement of coding style : 
+  // Improvement of coding style :
   // place private members after public members, alphabetized
   properties: Properties = {};
   platform: Platform;
@@ -23,6 +23,14 @@ export class NavigationBarService {
     }
     getButtonWithFunction(functionString) {
       return this.getButtons().filter(x => x.buttonFunction === functionString).filter(x => x.enable === true);
+    }
+    enableOpenStateWithId(buttonid) {
+      const button: NavigationButton =  this.getButtonWithId(buttonid);
+      button.stateOpen = true
+    }
+    disableOpenStateWithId(buttonid) {
+      const button: NavigationButton =  this.getButtonWithId(buttonid);
+      button.stateOpen = false
     }
     enableOpenStateWithFunction(functionString) {
       const buttons: NavigationButton[] =  this.getButtonWithFunction(functionString);

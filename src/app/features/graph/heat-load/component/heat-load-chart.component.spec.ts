@@ -22,6 +22,9 @@ import { SummaryResultService } from '../../../summary-result/summary-result.ser
 import { LayersService } from '../../../layers/services/layers.service';
 import {ExportDataService} from "../../../export-data/service/export-data.service";
 import {ElectricityMixService} from "../../electricity-mix/service/electricity-mix.service";
+import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 
 describe('HeatLoadChartComponent', () => {
@@ -62,6 +65,9 @@ describe('HeatLoadChartComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
+        { provide: CalculationModuleService, useClass: CalculationModuleService},
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);

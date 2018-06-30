@@ -1,3 +1,5 @@
+import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
+import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DurationCurveComponent } from './duration-curve.component';
@@ -22,6 +24,7 @@ import { LayersService } from '../../layers/services/layers.service';
 import { HeatLoadAggregateService } from '../heat-load/heat-load.service';
 import { ExportDataService } from "../../export-data/service/export-data.service";
 import {ElectricityMixService} from "../electricity-mix/service/electricity-mix.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 
 
 describe('DurationCurveComponent', () => {
@@ -56,8 +59,11 @@ describe('DurationCurveComponent', () => {
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
-        {provide: ElectricityMixService, useClass: ElectricityMixService},
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
         { provide: MockBackend, useClass: MockBackend },
+        { provide: CalculationModuleService, useClass: CalculationModuleService},
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);

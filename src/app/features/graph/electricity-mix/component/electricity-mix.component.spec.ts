@@ -24,6 +24,9 @@ import {BaseRequestOptions, ConnectionBackend, Http} from "@angular/http";
 import {MockBackend} from "@angular/http/testing";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {ElectricityMixService} from "../service/electricity-mix.service";
+import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 
 
@@ -64,6 +67,9 @@ describe('ElectricityMixComponent', () => {
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
         {provide: ElectricityMixService, useClass: ElectricityMixService},
+        { provide: CalculationModuleService, useClass: CalculationModuleService},
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);

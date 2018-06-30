@@ -20,6 +20,9 @@ import {ExportDataService} from "../../features/export-data/service/export-data.
 import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
 import { DataInteractionService } from '../../features/layers-interaction/layers-interaction.service';
 import {ElectricityMixService} from "../../features/graph/electricity-mix/service/electricity-mix.service";
+import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 
 
 describe('InteractionService', () => {
@@ -53,7 +56,10 @@ describe('InteractionService', () => {
         { provide: NavigationBarService, useClass: NavigationBarService },
         { provide: DurationCurveService, useClass: DurationCurveService },
         { provide: DataInteractionService, useClass: DataInteractionService },
-        { provide: ElectricityMixService, useClass: ElectricityMixService }
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
       ],
       imports: []
     }).compileComponents();

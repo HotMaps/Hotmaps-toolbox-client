@@ -62,3 +62,9 @@ a:hover {
 .uk-accordion-content{
     margin-top:10px;
 }
+.uk-tab > * > a {
+  color: black !important;
+}
+.uk-tab > .uk-disabled > a {
+  color: rgba(214, 56, 56, 0.32) !important;
+}

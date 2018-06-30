@@ -40,7 +40,7 @@ describe('BusinessService', () => {
 
     it('should return the business name from the api_name', () => {
         const api_name = 'heat_density';
-        const business_name = 'Average Heat density';
+        const business_name = 'Average heat density';
         expect(service.getReadableName(api_name)).toBe(business_name);
     })
 });

@@ -1,7 +1,4 @@
-import { SelectionToolButtonStateService } from './../../selection-tools/service/selection-tool-button-state.service';
-import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import { SelectionToolService } from 'app/features/selection-tools';
-import { MapService } from './../../../pages/map/map.service';
+import { discardPeriodicTasks } from '@angular/core/testing';
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,26 +28,36 @@ import { DurationCurveService } from '../../graph/duration-curve/duration-curve.
 import { DurationCurveComponent } from '../../graph/duration-curve/duration-curve.component';
 import {ElectricityMixService} from '../../graph/electricity-mix/service/electricity-mix.service';
 import { SelectionScaleService } from 'app/features/selection-scale';
+import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
+import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { CalculationModuleComponent } from './../../calculation-module/component/calculation-module.component';
+import { SelectionToolButtonStateService } from './../../selection-tools/service/selection-tool-button-state.service';
+import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { SelectionToolService } from 'app/features/selection-tools';
+import { MapService } from './../../../pages/map/map.service';
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 
 describe('LeftSideComponent', () => {
-    let component: LeftSideComponent;
-    let fixture: ComponentFixture<LeftSideComponent>;
-    let debugEl: DebugElement;
+  let component: LeftSideComponent;
+  let fixture: ComponentFixture<LeftSideComponent>;
+  let debugEl: DebugElement;
     let loggerStub: Logger;
     let loaderServiceStub: LoaderService;
     beforeEach(async(() => {
-        loggerStub = new Logger();
+      loggerStub = new Logger();
         loaderServiceStub = new LoaderService();
         TestBed.configureTestingModule({
-            declarations: [ LeftSideComponent, DataInteractionCellComponent ],
+            declarations: [ LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent ],
             providers: [
                 {
-                    provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backend, defaultOptions);
+                  provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                    return new Http(backend, defaultOptions);
                     }, deps: [ MockBackend, BaseRequestOptions ]
                 },
+                { provide: Helper, useClass: Helper},
+                { provide: DecimalPipe, useClass: DecimalPipe },
                 { provide: InteractionService, useClass: InteractionService },
-                {provide: SidePanelService, useClass: SidePanelService },
                 { provide: ExportDataService, useClass: ExportDataService },
                 { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
                 { provide: SidePanelService, useClass: SidePanelService },
@@ -61,7 +68,6 @@ describe('LeftSideComponent', () => {
                 { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
                 { provide: DurationCurveService, useClass: DurationCurveService },
                 { provide: ToasterService },
-                { provide: Helper },
                 { provide: ElectricityMixService, useClass: ElectricityMixService },
 
                 { provide: MockBackend, useClass: MockBackend },
@@ -69,11 +75,14 @@ describe('LeftSideComponent', () => {
                 { provide: Logger, useValue: loggerStub },
                 { provide: LoaderService, useValue: loaderServiceStub },
                 { provide: MapService, useClass: MapService },
+                { provide: SidePanelService, useClass: SidePanelService },
                 { provide: SelectionScaleService, useClass: SelectionScaleService },
                 { provide: SelectionToolService, useClass: SelectionToolService },
                 { provide: SelectionToolUtils, useClass: SelectionToolUtils },
                 { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
-
+                { provide: CalculationModuleService, useClass: CalculationModuleService },
+                { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+                { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
             ],
             imports: [
                 BrowserAnimationsModule,
@@ -99,6 +108,7 @@ describe('LeftSideComponent', () => {
         fixture.detectChanges();
         tick();
         expect(component.layers).toBeDefined();
+        tick();
         expect(component.category).toBeDefined();
     }));
 })

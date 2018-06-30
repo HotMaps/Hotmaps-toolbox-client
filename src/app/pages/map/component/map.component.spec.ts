@@ -3,6 +3,7 @@
 // TODO: listing import lines alphabetized by the module
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { fakeAsync } from '@angular/core/testing';
 
 import { MockMapService } from '../../../shared/services/mock/map.service';
 
@@ -47,18 +48,22 @@ import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-
 import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-import {HeatLoadAggregateService} from "../../../features/graph/heat-load/heat-load.service";
+import {HeatLoadAggregateService} from '../../../features/graph/heat-load/heat-load.service';
 import { SelectionToolComponent } from '../../../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/graph/heat-load/component';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import {ExportDataComponent} from "../../../features/export-data/component/export-data.component";
-import {ExportDataService} from "../../../features/export-data/service/export-data.service";
-import { DurationCurveService } from "../../../features/graph/duration-curve/duration-curve.service";
-import { DurationCurveComponent } from "../../../features/graph/duration-curve/duration-curve.component";
-import {ElectricityMixService} from "../../../features/graph/electricity-mix/service/electricity-mix.service";
-import {ElectricityMixComponent} from "../../../features/graph/electricity-mix/component/electricity-mix.component";
+import {ExportDataComponent} from '../../../features/export-data/component/export-data.component';
+import {ExportDataService} from '../../../features/export-data/service/export-data.service';
+import { DurationCurveService } from '../../../features/graph/duration-curve/duration-curve.service';
+import { DurationCurveComponent } from '../../../features/graph/duration-curve/duration-curve.component';
+import {ElectricityMixService} from '../../../features/graph/electricity-mix/service/electricity-mix.service';
+import {ElectricityMixComponent} from '../../../features/graph/electricity-mix/component/electricity-mix.component';
+import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
+import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
+import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -83,7 +88,8 @@ describe('MapComponent', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
-        HeatLoadChartComponent, ChartComponent, ExportDataComponent, DurationCurveComponent, ElectricityMixComponent
+        HeatLoadChartComponent, ChartComponent, ExportDataComponent,
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent
       ],
       providers: [
         {
@@ -113,10 +119,13 @@ describe('MapComponent', () => {
         { provide: Helper, useClass: Helper },
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: ElectricityMixService, useClass: ElectricityMixService },
-
+        { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-        { provide: DurationCurveService, useClass: DurationCurveService }
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
 
       ],
       imports: [
@@ -134,7 +143,7 @@ describe('MapComponent', () => {
   });
 
   // test map created
-  it('map should be created', async((element) => {
+  it('map should be created', fakeAsync((element) => {
     expect(component.getMap()).toBeDefined();
   }));
 });

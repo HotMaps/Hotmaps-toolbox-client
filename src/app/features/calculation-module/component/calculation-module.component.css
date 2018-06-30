@@ -1,0 +1,50 @@
+.uk-container {
+  margin: 5px;
+  padding: 5px;
+}
+
+.component > input {
+  width: 100%;
+}
+
+.uk-offcanvas-bar {
+  width: 401px;
+  top: 48px;
+  background-color:#333333;
+}
+.uk-button {
+  width: 100%;
+}
+.waitingbox, .waitingboxcomponents {
+  height: 150px;
+  width: 100%;
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: black;
+  margin: 15px 15px 15px -25px;
+}
+.waitingboxcomponents > .spinner {
+  color: white !important;
+}
+#box-components {
+  width: 0 !important;
+}
+.values {
+  font-size: 12px;
+}
+.cm_title{
+  color: white;
+  margin-bottom: 0;
+}
+.description {
+  font-style: italic;
+}
+.component_title {
+  color: white;
+  font-size: 18px;
+}
