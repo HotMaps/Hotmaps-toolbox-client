@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class CalculationModuleStatusService {
   private waitingCM: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private cmRunned: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private panelIsOpen: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   getWaitingSatus() {
     return this.waitingCM;
   }
@@ -20,5 +21,11 @@ export class CalculationModuleStatusService {
   }
   undefinedCmRunned() {
     this.cmRunned.next(null);
+  }
+  getStatusCMPanel() {
+    return this.panelIsOpen;
+  }
+  setStatusCMPanel(value) {
+    this.panelIsOpen.next(value)
   }
 }

@@ -55,6 +55,7 @@ export class DataInteractionCellComponent implements OnInit {
       if (this.dataInteraction.isSelected) {
 
       }
+
       if (this.interactionService.getSummaryResultState() === false) {
         this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
         if (this.dataInteraction.isSelected) {

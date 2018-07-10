@@ -72,8 +72,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       });
     }
     this.interactionService.getCMRunned().subscribe((value) => {
-      this.interactionService.openRightPanel()
       this.cmRunned = value
+      if (value !== null) {
+        this.interactionService.openRightPanel()
+      }
+
     })
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {
@@ -136,6 +139,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     this.initializeNavigator();
     this.map.invalidateSize();
+
   }
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();

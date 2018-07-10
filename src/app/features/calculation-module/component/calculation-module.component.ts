@@ -1,3 +1,4 @@
+import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { Helper } from './../../../shared/helper';
 
@@ -47,30 +48,17 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
+    private mapService: MapService,
     private helper: Helper) { }
 
   ngOnInit() {
     this.subscribeEvents()
+    this.updateCMs()
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
  */
-    if (!this.helper.isNullOrUndefined(this.calculationModules)) {
-      this.calculationModules.map((cm) => {
-        for (const layer of cm.layer_needed) {
-          console.log(layer)
-          if (this.layersSelected.filter(lay => lay === layer).length === 0) {
-            cm.isReadable = false;
-            break
-          } else {
-            cm.isReadable = true;
-          }
-          console.log(layer)
-        }
-
-      })
-    }
-    this.updateCMs()
+    this.isCmsReadable();
     console.log(this.calculationModules, this.categories)
     // this.layersSelected.includes(this.calculationModules.layer_needed)
   }
@@ -81,39 +69,64 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
       self.waitingCM = value;
     });
-    // Event trigger for the cm panel
-    uikit.util.on('#box-components', 'show', function () {
-      console.log('cm box is shown')
-    });
-    uikit.util.on('#box-components', 'hide', function () {
-      self.calculationModuleStatusService.undefinedCmRunned()
-      self.setWaiting(false);
-      self.cmSelected = undefined;
-      console.log('cm box is hided')
-    });
+    this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
+      if (value === true) {
+        uikit.offcanvas('#box-components').show()
+        console.log('cm box is shown')
+      } else if (value === false) {
+        uikit.offcanvas('#box-components').hide()
+        this.cmHidePanel()
+      }
+    })
+  }
+  isCmsReadable() {
+    if (!this.helper.isNullOrUndefined(this.calculationModules)) {
+      this.calculationModules.map((cm) => {
+        for (const layer of cm.layers_needed) {
+          console.log(layer)
+          if (this.layersSelected.filter(lay => lay === layer).length === 0) {
+            cm['isReadable'] = true;
+            break
+          } else {
+            cm['isReadable'] = true;
+          }
+          console.log(layer)
+        }
+
+      })
+    }
+  }
+  resetCM() {
+    console.log(this.cmSelected)
+    this.mapService.removeCmLayer(this.cmSelected.cm_id)
+    this.cmSelected.status_id = '';
+    this.cmSelected.isApiRequestInTreatment = false;
+    this.calculationModuleStatusService.undefinedCmRunned()
   }
   updateCMs() {
-    this.calculationModuleService.getcalculationModuleServicesPromise().then((result) => {
+
+    this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
       this.setWaiting(false);
+    }).then(() => {
+      this.isCmsReadable()
+      this.calculationModuleService.getCalculationModuleCategories(this.calculationModules).then((categories) => {
+        this.categories = []
+        this.categories = categories;
+      })
     });
-    this.calculationModuleService.getCalculationModuleCategories().then((categories) => {
-      this.categories = {}
-      this.categories = categories;
-    });
-
   }
   changeValue(event, component) {
     const newValue = event.target.value
-    if ((newValue >= component.min) && (newValue <= component.max)) {
-      component.value = event.target.value
+    if ((newValue >= component.input_min) && (newValue <= component.input_max)) {
+      component.input_value = event.target.value
     } else {
-      event.target.value = component.value
+      event.target.value = component.input_value
     }
   }
   runCM() {
-    if (this.cmSelected.id === 'calculation_module_1') {
+    if (this.cmSelected.cm_name === 'calculation_module_1') {
       this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
     }
   }
@@ -123,15 +136,21 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
   selectCM(cm) {
     this.cmSelected = cm
-    uikit.offcanvas('#box-components').show()
+    this.toggleCMPanel(true)
     this.cmName = cm.cm_name;
     this.setWaiting(true)
-    this.calculationModuleService.getComponentsByCMIdSlowly(cm.id).then((values) => {
+    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
       this.setWaiting(false)
     })
   }
-  closeCMpage() {
-    uikit.offcanvas('#box-components').hide()
+  cmHidePanel() {
+    this.calculationModuleStatusService.undefinedCmRunned()
+    this.setWaiting(false);
+    this.cmSelected = undefined;
+    console.log('cm box is hided')
+  }
+  toggleCMPanel(value) {
+    this.calculationModuleStatusService.setStatusCMPanel(value);
   }
 }

@@ -1,5 +1,6 @@
 <div [@cmTrigger]="expandedState">
-  <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+  <span *ngIf="expanded && calculationModules" [@titleTextTrigger]="'in'">
+    {{errorMessage}}
     <ul uk-accordion *ngFor="let i of categories">
       <li class="uk-open">
         <h3 class="uk-accordion-title">
@@ -10,7 +11,8 @@
               <span *ngIf="i === cm.category && cm.isReadable">
                 <div class="uk-container">
                   <div class="uk-offcanvas-content">
-                    <button class="uk-button uk-button-default uk-margin-small-right" type="button" (click)="selectCM(cm)">{{cm.cm_name}}</button>
+
+                    <button class="uk-button uk-button-default uk-margin-small-right" [class.api-inprogress]="cm.isApiRequestInTreatment" type="button" (click)="selectCM(cm)"><ng-container *ngIf="cm.isApiRequestInTreatment">Refresh</ng-container> {{cm.cm_name}}</button>
                   </div>
                 </div>
               </span>
@@ -27,23 +29,29 @@
 <div class="uk-offcanvas-content">
   <div id="box-components" uk-offcanvas="overlay: false; bg-close: false;esc-close:false;">
     <div class="uk-offcanvas-bar">
-      <button class="uk-offcanvas-close" type="button" (click)="closeCMpage()" uk-close></button>
+      <button class="uk-offcanvas-close" type="button" (click)="toggleCMPanel(false)" uk-close></button>
       <h3 class="cm_title" *ngIf="cmSelected">{{cmSelected.cm_name}}</h3>
-      <span class="uk-margin description" *ngIf="cmSelected">{{cmSelected.cm_description}}</span>
+      <span class="uk-margin description" *ngIf="cmSelected">{{cmSelected.cm_description}}</span><br />
+      <span class="uk-margin" *ngIf="cmSelected && cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
       <div *ngIf="waitingCM" class="waitingboxcomponents">
         <div class="spinner" uk-spinner></div>
       </div>
       <ng-container *ngIf="!waitingCM">
         <div class="component uk-margin" *ngFor="let component of components">
-          <span class="component_title">{{component.component_name}} - (value: {{component.value}}{{component.unit}})</span>
+          <span class="input_title">{{component.input_name}} - (value: {{component.input_value}}{{component.input_unit}})</span>
           <div class="uk-form-controls">
-            <input class="uk-{{component.component_type}}" id="{{component.parameter_name}}" value="{{component.value}}" type="{{component.component_type}}"
-              min="{{component.min}}" max="{{component.max}}" placeholder="{{component.component_name}}" (change)="changeValue($event, component)">
+            <input class="uk-{{component.input_type}}" id="{{component.input_parameter_name}}" value="{{component.input_value}}" type="{{component.input_type}}"
+              min="{{component.input_min}}" max="{{component.input_max}}" placeholder="{{component.input_name}}" (change)="changeValue($event, component)">
           </div>
-          <span class="values">Min: {{component.min}}{{component.unit}}; Max: {{component.max}}{{component.unit}};</span>
+          <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max: {{component.input_max}} {{component.input_unit}};</span>
         </div>
-        <button class="uk-button uk-button-primary" (click)="runCM()">Run CM</button>
-      </ng-container>
+        <button class="uk-button uk-button-primary" (click)="runCM()">
+          <ng-container *ngIf="cmSelected && cmSelected.isApiRequestInTreatment; else runcm">Refresh CM</ng-container>
+          <ng-template #runcm>Run CM</ng-template>
+        </button>
+        <div class="uk-margin"></div>
+        <!--<button class="uk-button uk-button-danger" (click)="resetCM()">Reset CM</button>-->
+    </ng-container>
     </div>
   </div>
 </div>

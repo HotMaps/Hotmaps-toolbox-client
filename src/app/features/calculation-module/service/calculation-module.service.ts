@@ -5,22 +5,18 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CalculationModuleClass } from './calculation-module.class';
-import { calculationModuleClassArray, calculation_module_components } from './calculation-module.data';
-import {Logger} from '../../../shared/services/logger.service';
+import { Logger } from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
-import {APIService} from '../../../shared/services/api.service';
-import {ToasterService} from '../../../shared/services/toaster.service';
-import {Helper} from '../../../shared/helper';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
-import { ComponentClass } from './../component/component.class';
+import { APIService } from '../../../shared/services/api.service';
+import { apiUrl } from 'app/shared/data.service';
+import { ToasterService } from '../../../shared/services/toaster.service';
 
 
 
 @Injectable()
 export class CalculationModuleService extends APIService {
   categories = new Set();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-    private helper: Helper, private business: BusinessInterfaceRenderService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 
@@ -28,39 +24,57 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(this.getCalculationModuleServices());
   }
 
-  getCalculationModuleServices(): CalculationModuleClass[] {
-    return calculationModuleClassArray;
+  getCalculationModuleServices(): Promise<any> {
+    return super.POST('', apiUrl + '/cm/list')
   }
-  getCalculationModuleComponents(): ComponentClass[] {
-    return calculation_module_components;
+  getCalculationModuleComponents(cmId): Promise<any> {
+    console.log(cmId)
+    const payload = { cm_id: '' + cmId }
+    return super.POST(payload, apiUrl + '/cm/user-interface/')
   }
-  getcalculationModuleServicesByName(cm_name: string): CalculationModuleClass {
 
-    const cm  =  this.getCalculationModuleServices().filter(x => x.cm_name === cm_name)[0];
-    return cm;
-  }
-  getCalculationModuleCategories() {
+  getCalculationModuleCategories(cms) {
     this.categories.clear()
-    this.getCalculationModuleServices().forEach((cm) => {
+    cms.forEach((cm) => {
+      console.log(cm)
       if (cm.isReadable) { this.categories.add(cm.category) }
     });
-    return Promise.resolve(this.categories);
+    return Promise.resolve(Array.from(this.categories.values()));
   }
-  getCalculationModuleServicesSlowly(): Promise<CalculationModuleClass[]> {
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getCalculationModuleServices()), 2000);
-    });
-  }
-  getComponentsByCMId(cmId): ComponentClass[] {
-    const components = this.getCalculationModuleComponents().filter(x => x.cmId === cmId)
-    return components
-  }
-  getComponentsByCMIdSlowly(cmId) {
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getComponentsByCMId(cmId)), 2000);
-    });
+  getCMInformations(payload, cm) {
 
+    if (!cm.isApiRequestInTreatment) {
+
+      // URL to check status
+      super.POST(payload, apiUrl + '/cm/compute/').then((data) => {
+        console.log(data)
+        cm.status_id = data.status_id;
+        cm.isApiRequestInTreatment = true;
+      }).then(() => {
+        return this.getStatusOfCM(cm)
+      }).catch(() => {
+        console.log('error');
+      })
+    } else {
+      const result = this.getStatusOfCM(cm);
+      if (result !== null) {
+        return new Promise(() => this.getStatusOfCM(cm))
+      }
+    }
+    return
+  }
+  getStatusOfCM(cm) {
+    console.log('getStatusOfCM()')
+    super.GET('/cm/status/' + cm.status_id).toPromise().then((data) => {
+      if (data['state'] === 'SUCCESS') {
+        return data['status'];
+      } else {
+        setTimeout(() => {
+          this.getStatusOfCM(cm);
+        }, 2000);
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }

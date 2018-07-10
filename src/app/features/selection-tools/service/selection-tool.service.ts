@@ -152,7 +152,7 @@ export class SelectionToolService extends APIService {
       }else{return 1;}
     }
     else{return 2;}
-    
+
   }
 
   toggleActivateTool(val: boolean) {
@@ -175,6 +175,8 @@ export class SelectionToolService extends APIService {
     // remove all nutsID selected
     this.nutsIds.clear();
     this.updateSelectionToolAction();
+    // close opened CM
+    this.interactionService.setStatusCMPanel(false)
   }
 
   // Summary result show result

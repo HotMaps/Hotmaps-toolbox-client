@@ -2,9 +2,6 @@
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
 
-import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
-import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
-import { GeojsonClass } from './../../layers/class/geojson.class';
 import {
   Component,
   OnInit,
@@ -15,23 +12,19 @@ import {
   transition,
   animate,
   Input,
-  OnChanges,
-  ViewChild
+  OnChanges
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
-import { SummaryResultClass, Layer } from './../../summary-result/summary-result.class';
-import { HeatLoadClass } from '../../graph/heat-load/heat-load.class';
+import { Layer } from './../../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { rightPanelSize, nuts2 } from 'app/shared';
+import { rightPanelSize } from 'app/shared';
 import { Logger } from '../../../shared/services/logger.service';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 
-import { SummaryResultService } from '../../summary-result/summary-result.service';
 import { MapService } from '../../../pages/map/map.service';
 import { Helper } from 'app/shared';
-import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
-import { hectare, round_value, constant_year, default_drop_down_button, summay_drop_down_buttons } from '../../../shared/data.service';
-import { SummaryResultComponent } from './../../summary-result/summary-result.component';
+import { PlayloadStatNuts, PayloadStatHectar } from 'app/features/summary-result/class/payload.class';
+import { hectare, constant_year, default_drop_down_button, summay_drop_down_buttons } from '../../../shared/data.service';
 
 
 
@@ -237,10 +230,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       self.summaryResult = result;
       self.buttonRef = default_drop_down_button;
     }).then(() => {
-      this.updateCMResult();
+      self.updateCMResult(this.nutsIds);
     }).then(() => {
       self.updateResult()
-      self.updateCMResult();
       self.loadingData = false;
       self.setExportButtonState(true)
     }).catch((e) => {
@@ -256,7 +248,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       const electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(result => {
         self.electricitMixResult = result;
         self.logger.log('electricitMix: Result = ' + JSON.stringify(self.electricitMixResult))
-      }).then(() => {
       }).then(() => {
         self.electricitMixLoadingState = false;
         this.interactionService.setElectricityGenerationMixResultState(this.electricitMixLoadingState);
@@ -292,7 +283,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     };
     ;
     const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
-
+    console.log(payload)
     if (this.helper.isPayloadIncomplete(payload)) {
       this.interactionService.closeRightPanel();
       return;
@@ -300,16 +291,15 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
     this.loadingData = true;
     this.interactionService.setSummaryResultState(this.loadingData);
-
     const summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(result => {
       this.summaryResult = result;
       this.buttonRef = default_drop_down_button;
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => {
-      this.updateCMResult();
+      this.updateCMResult(areas);
     }).then(() => {
       this.updateResult()
-    this.loadingData = false;
+      this.loadingData = false;
       this.interactionService.setSummaryResultState(this.loadingData);
       this.setExportButtonState(true)
     }).catch((e) => {
@@ -318,12 +308,30 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.interactionService.setSummaryResultState(this.loadingData);
     });
   }
-  updateCMResult() {
+  updateCMResult(areas) {
     if (!this.helper.isNullOrUndefined(this.cmRunned)) {
       this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
         this.summaryResult.layers.push(value)
       })
-      console.log(this.summaryResult)
+      console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
+      const payload = {
+        layers: this.layers,
+        year: constant_year,
+        areas: areas,
+        url_file: 0,
+        inputs: this.cmRunned.component,
+        cm_id: '' + this.cmRunned.cm.cm_id
+      }
+      console.log('updateCMResult/Payload: ', JSON.stringify(payload))
+      this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
+        console.log(data)
+        /* if (!this.helper.isNullOrUndefined(url)) {
+          console.log('this.cmRunned.cm.cm_url: ' + url)
+          this.mapService.displayCustomLayerFromCM(this.cmRunned.cm);
+        } */
+      });
+
+      console.log(this.summaryResult, this.cmRunned)
     }
   }
 
