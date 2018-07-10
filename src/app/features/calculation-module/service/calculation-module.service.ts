@@ -42,11 +42,9 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(Array.from(this.categories.values()));
   }
   getCMInformations(payload, cm) {
-
     if (!cm.isApiRequestInTreatment) {
-
       // URL to check status
-      super.POST(payload, apiUrl + '/cm/compute/').then((data) => {
+      super.POST(payload, apiUrl + '/cm/compute-async/').then((data) => {
         console.log(data)
         cm.status_id = data.status_id;
         cm.isApiRequestInTreatment = true;

@@ -325,7 +325,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       console.log('updateCMResult/Payload: ', JSON.stringify(payload))
       this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
         console.log(data)
-        /* if (!this.helper.isNullOrUndefined(url)) {
+        /*this.cmRunned.cm_url = data.tiff_url
+        if (!this.helper.isNullOrUndefined(url)) {
           console.log('this.cmRunned.cm.cm_url: ' + url)
           this.mapService.displayCustomLayerFromCM(this.cmRunned.cm);
         } */
