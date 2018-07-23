@@ -20,6 +20,7 @@ import { CalculationModuleService } from '../service/calculation-module.service'
 import { CalculationModuleStatusService } from '../service/calcultation-module-status.service';
 import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
+import {Logger} from "../../../shared/services";
 
 @Component({
   selector: 'htm-cms',
@@ -49,7 +50,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
     private mapService: MapService,
-    private helper: Helper) { }
+    private helper: Helper, private logger: Logger) { }
 
   ngOnInit() {
     this.subscribeEvents()
@@ -80,6 +81,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   isCmsReadable() {
+
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
         for (const layer of cm.layers_needed) {
@@ -126,7 +128,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-    if (this.cmSelected.cm_name === 'calculation_module_1') {
+    if (this.cmSelected.cm_name === 'calculation_module_test') {
       this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
     }
   }

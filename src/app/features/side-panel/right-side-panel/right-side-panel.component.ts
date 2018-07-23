@@ -24,7 +24,13 @@ import { DataInteractionService } from '../../layers-interaction/layers-interact
 import { MapService } from '../../../pages/map/map.service';
 import { Helper } from 'app/shared';
 import { PlayloadStatNuts, PayloadStatHectar } from 'app/features/summary-result/class/payload.class';
-import { hectare, constant_year, default_drop_down_button, summay_drop_down_buttons } from '../../../shared/data.service';
+import {
+  hectare,
+  constant_year,
+  default_drop_down_button,
+  summay_drop_down_buttons,
+  apiUrl
+} from '../../../shared/data.service';
 
 
 
@@ -144,7 +150,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.initButtons();
   }
   ngOnDestroy() { }
-  ngOnChanges() {
+
+  upDateAll(){
+
     console.log('RightSidePanelComponent/ngOnChanges')
 
 
@@ -175,6 +183,12 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.updateWithAreas()
     }
 
+  }
+  ngOnChanges() {
+    console.log('RightSidePanelComponent/ngOnChanges')
+
+
+    this.upDateAll()
     /*if (this.summaryResult) {
       this.updateResult();
     }*/
@@ -311,6 +325,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   updateCMResult(areas) {
     if (!this.helper.isNullOrUndefined(this.cmRunned)) {
       this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
+        this.logger.log('getCMResult ' + JSON.stringify(payload))
         this.summaryResult.layers.push(value)
       })
       console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
@@ -322,18 +337,66 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         inputs: this.cmRunned.component,
         cm_id: '' + this.cmRunned.cm.cm_id
       }
-      console.log('updateCMResult/Payload: ', JSON.stringify(payload))
+
+
+
       this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
-        console.log(data)
-        /*this.cmRunned.cm_url = data.tiff_url
-        if (!this.helper.isNullOrUndefined(url)) {
-          console.log('this.cmRunned.cm.cm_url: ' + url)
+        this.logger.log('ata.status_id ' + data.status_id)
+        this.logger.log('this.interactionService' + this.interactionService)
+
+        const status_id = data.status_id
+
+        const  response = this.getStatusOfCM(status_id, this.cmRunned)
+
+       this.cmRunned.cm_url = data.tiff_url
+         if (!this.helper.isNullOrUndefined(data.tiff_url)) {
+          console.log('this.cmRunned.cm.cm_url: ' + data.tiff_url)
           this.mapService.displayCustomLayerFromCM(this.cmRunned.cm);
-        } */
+        }
+      }).catch((err) => {
+        this.logger.log('there is an error ' )
+        console.log(err);
       });
 
       console.log(this.summaryResult, this.cmRunned)
     }
+  }
+
+
+  getStatusOfCM(status_id, cmRunned ) {
+    this.interactionService.getStatusAndCMResult(status_id).then((data) => {
+
+
+      const response = JSON.parse(data["_body"])
+      this.logger.log('state' + response["state"] )
+      if (response["state"] === 'SUCCESS') {
+        this.logger.log('SUCCESS ' )
+        this.logger.log( response)
+        this.logger.log('status' + response["status"])
+        this.summaryResult.layers.push(response["status"])
+
+       const cmResult = {
+            values: [
+              {unit: 'MWh', name: 'heat_consumption', value: String(1000)},
+              {unit: 'MWh/ha', name: 'heat_density', value: String(1000)},
+              {unit: 'cells', name: 'count_cell_heat', value: String(1000)}],
+            name: 'cm.test'
+          }
+        this.summaryResult.layers.push(cmResult)
+
+        this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
+          this.logger.log('layers' + JSON.stringify(this.summaryResult.layers))
+          this.summaryResult.layers.push(value)
+          this.updateResult();
+        })
+
+      } else {
+        setTimeout(() => {
+          this.logger.log('retry getStatusOfCM' )
+          this.getStatusOfCM(status_id, cmRunned);
+        }, 1000);
+      }
+    })
   }
 
 }

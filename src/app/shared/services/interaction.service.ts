@@ -163,8 +163,16 @@ export class InteractionService {
     getCMResult(summaryResult, cm): Promise<any> {
       return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
     }
+
+    setCMResult(summaryResult, cm): Promise<any> {
+      return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
+    }
     getCMInformations(payload, cmRunned): Promise<any> {
       return this.calculationModuleService.getCMInformations(payload, cmRunned)
+    }
+    getStatusAndCMResult(id): Promise<any> {
+
+      return this.calculationModuleService.getStatusOfCM(id)
     }
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()

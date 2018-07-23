@@ -69,6 +69,14 @@ export class APIService {
   GET(url): any {
     return this.http.get(url, this.headers)
   }
+  async pGET(url): Promise<any>  {
+    return await this.http
+      .get(url, this.headers)
+      .toPromise()
+      .then( response => response  )
+
+      .catch(this.handleError.bind(this));
+  }
 
   public async getJSONFromFille(url: string): Promise<any> {
     return this.http.get(url)

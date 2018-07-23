@@ -16,7 +16,7 @@ import { ToasterService } from '../../../shared/services/toaster.service';
 @Injectable()
 export class CalculationModuleService extends APIService {
   categories = new Set();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 
@@ -42,37 +42,25 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(Array.from(this.categories.values()));
   }
   getCMInformations(payload, cm) {
-    if (!cm.isApiRequestInTreatment) {
+    // if (!cm.isApiRequestInTreatment) {
+      this.logger.log( 'data ' + JSON.stringify(payload) )
       // URL to check status
-      super.POST(payload, apiUrl + '/cm/compute-async/').then((data) => {
-        console.log(data)
-        cm.status_id = data.status_id;
-        cm.isApiRequestInTreatment = true;
-      }).then(() => {
-        return this.getStatusOfCM(cm)
-      }).catch(() => {
-        console.log('error');
-      })
-    } else {
+     return super.POST(payload, apiUrl + '/cm/compute-async/')
+    /*} else {
+      this.logger.log('promise')
       const result = this.getStatusOfCM(cm);
       if (result !== null) {
         return new Promise(() => this.getStatusOfCM(cm))
       }
     }
-    return
+    return*/
   }
-  getStatusOfCM(cm) {
-    console.log('getStatusOfCM()')
-    super.GET('/cm/status/' + cm.status_id).toPromise().then((data) => {
-      if (data['state'] === 'SUCCESS') {
-        return data['status'];
-      } else {
-        setTimeout(() => {
-          this.getStatusOfCM(cm);
-        }, 2000);
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
+  getStatusOfCM(status_id) {
+    this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
+    return super.pGET(apiUrl + '/cm/status/' + status_id)
   }
+
+
+
+
 }
