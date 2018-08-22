@@ -48,3 +48,6 @@
   color: white;
   font-size: 18px;
 }
+.api-inprogress {
+  background: rgb(255, 0, 0);
+}

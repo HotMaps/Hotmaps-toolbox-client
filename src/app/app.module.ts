@@ -62,6 +62,7 @@ import { GeocodingService, Logger, LoaderService, ToasterService,
   import { CalculationModuleService } from './features/calculation-module/service/calculation-module.service';
   import { CalculationModuleStatusService } from './features/calculation-module/service/calcultation-module-status.service';
 import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
+import { CMLayersService } from './features/calculation-module/cm-layers.service';
 
 
   @NgModule({
@@ -133,7 +134,8 @@ import { CalculationHeatLoadDividedService } from './features/calculation-module
     ElectricityMixService,
     CalculationModuleService,
     CalculationModuleStatusService,
-    CalculationHeatLoadDividedService
+    CalculationHeatLoadDividedService,
+    CMLayersService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

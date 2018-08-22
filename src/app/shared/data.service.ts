@@ -9,24 +9,23 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
-const api_prod_Url    = 'http://api.hotmaps.hevs.ch';
-const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
+const prodUrl    = 'http://api.hotmaps.hevs.ch/api'; // 'http://hotmaps.hevs.ch:9006/api';
+const devUrl    = 'http://api.hotmapsdev.hevs.ch/api'  // 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
 
 
 
 export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserver_prod_Url = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
+export const geoserverDevUrl = 'http://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
+
 
 
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserver_prod_Url;
+export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = api_prod_Url;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;

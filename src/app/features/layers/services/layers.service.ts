@@ -1,3 +1,4 @@
+import { Dictionary } from './../../../shared/class/dictionary.class';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -10,7 +11,6 @@ import 'rxjs/add/operator/mergeMap';
 import 'proj4leaflet';
 import 'proj4';
 
-import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
@@ -23,7 +23,6 @@ import Layer = L.Layer;
 import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
-import {logger} from "codelyzer/util/logger";
 const proj4 = (proj4x as any).default;
 
 
@@ -49,6 +48,7 @@ export class LayersService extends APIService {
     },
 
   ]);
+
   private popup = L.popup();
 
   // Improvement of coding style :
@@ -107,9 +107,7 @@ export class LayersService extends APIService {
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray);
-
   }
-
   addLayerWithAction(action: string, map: any, order: number) {
     this.logger.log('action' + action);
     let layer;

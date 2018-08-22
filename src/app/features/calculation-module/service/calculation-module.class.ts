@@ -10,4 +10,7 @@ export class CalculationModuleClass {
   isReadable: boolean;
   cm_url: string;
   cm_description: string;
+  isApiRequestInTreatment: boolean;
+  status_id: string;
+  layerDisplayed: any;
 }
