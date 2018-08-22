@@ -13,7 +13,7 @@ import { CalculationModuleService } from 'app/features/calculation-module/servic
 export class CMLayersService extends APIService {
 
 
-  private layers = new L.LayerGroup();
+  private layersCM = new L.FeatureGroup();
   private cmLayersArray: Dictionary;
 
 
@@ -26,35 +26,30 @@ export class CMLayersService extends APIService {
     super(http, logger, loaderService, toasterService);
     this.cmLayersArray = new Dictionary([{key: null, value: null}]);
   }
-  getLayers(): any {
-    return this.layers;
+  getLayersCM(): any {
+    return this.layersCM;
   }
 
   getLayerArray(): Dictionary {
     return this.cmLayersArray;
   }
-  addLayerWithAction(cm, map: any, order: number) {
-    this.logger.log('CMLayerService/addLayerWithAction cm.id: ' + cm.id);
-    const layer = L.tileLayer(cm.cm_url + '/{z}/{x}/{y}.png', {
+  addLayerWithAction(cm_url, map: any, order: number) {
+
+    const layer = L.tileLayer(cm_url + '/{z}/{x}/{y}/', {
       minZoom: 4,
       maxZoom: 15,
-      tms: true
+      tms: true,
     })
     // this.registerToEvents(map, layer)
-    layer.addTo(this.layers)
+    layer.addTo(this.layersCM)
     // layer.addTo(map)
-    console.log(cm)
-    this.layers.addLayer(layer);
-    this.cmLayersArray.add(cm.id, layer);
-    console.log(this.cmLayersArray)
+
+    this.layersCM.addLayer(layer);
+
   }
-  removelayer(cmid) {
+  removelayer() {
     // we get the layer we want to remove
-    const layer = this.cmLayersArray.value(cmid);
-    // we remove this layer from map
-    this.layers.removeLayer(layer);
-    // we destroy the layer
-    this.cmLayersArray.remove(cmid);
+    this.layersCM.clearLayers();
   }
 
 

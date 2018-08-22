@@ -30,7 +30,7 @@ export class CalculationHeatLoadDividedService extends APIService {
         {
           values: [
             {unit: 'MWh', name: 'heat_consumption', value: String((layerResult.values[0].value / cm.component[0].value))},
-            {unit: 'MWh/ha', name: 'heat_density', value: String(((layerResult.values[0].value / cm.component[0].value)/layerResult.values[2].value))},
+            {unit: 'MWh/ha', name: 'heat_density', value: String(((layerResult.values[0].value / cm.component[0].value)/ layerResult.values[2].value))},
             {unit: 'cells', name: 'count_cell_heat', value: String(layerResult.values[2].value)}],
           name: cm.cm.id
         }
@@ -41,5 +41,5 @@ export class CalculationHeatLoadDividedService extends APIService {
     return Promise.resolve(cmResult)
   }
 
-  
+
 }

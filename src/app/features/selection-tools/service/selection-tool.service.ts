@@ -260,6 +260,8 @@ export class SelectionToolService extends APIService {
       if (nuts_lvl === 4) {} else {
         url += 'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z'
       }
+
+      this.logger.log(url)
     this.GET(url).map((res: Response) => res.json() as any)
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
   }

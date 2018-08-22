@@ -41,7 +41,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   private areaNutsSelectedLayer: any;
   private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
   public layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  public cmLayers;
+
   private tempAreaSelected;
 
 
@@ -64,7 +64,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.logger.log('MapService/ngOnInit()');
     this.layerArray.next(this.layersService.getLayerArray().keys())
-    this.cmLayers = this.cmLayerService.getLayers()
+
   }
 
   ngOnDestroy(): void {
@@ -322,9 +322,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   showOrRemoveLayer(action: string, order: number) {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
-  removeCmLayer(cmid) {
-    this.cmLayerService.removelayer(cmid)
-  }
+
   setupMapservice(map: Map) {
     this.logger.log('MapService/setupMapservice');
     // set the map to the services that needs to get an instance
@@ -333,7 +331,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.addLayersControl();
     this.retriveMapEvent();
     this.layersService.getLayers().addTo(this.map);
-    this.cmLayerService.getLayers().addTo(this.map);
+    this.cmLayerService.getLayersCM().addTo(this.map);
     this.selectionToolService.getMultiSelectionLayers().addTo(this.map);
     this.layersService.setupDefaultLayer();
   }
@@ -388,6 +386,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
    */
   clearAll(map: Map) {
     this.selectionToolService.clearAll(map);
+    this.cmLayerService.removelayer();
   }
 
   /**
@@ -435,9 +434,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   getLayerArray() {
     return this.layerArray;
   }
-  getCMLayers() {
-    return this.cmLayers;
-  }
+
   setLayerWithoutSuffix() {
     const layers = [];
     this.layersService.getLayerArray().keys().map((layerName) => {
@@ -448,9 +445,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   displayCustomLayerFromCM(cm) {
     this.cmLayerService.addLayerWithAction(cm, this.map, 150)
   }
-  deleteCMlayer(cm) {
-    this.cmLayerService.removelayer(cm)
-  }
+
 }
 
 

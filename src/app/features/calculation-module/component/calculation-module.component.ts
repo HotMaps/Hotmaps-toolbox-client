@@ -20,6 +20,7 @@ import { CalculationModuleService } from '../service/calculation-module.service'
 import { CalculationModuleStatusService } from '../service/calcultation-module-status.service';
 import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
+import {Logger} from "../../../shared/services";
 
 @Component({
   selector: 'htm-cms',
@@ -39,6 +40,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
+  @Input() progress = 10;
   private calculationModules;
   private categories;
   private components;
@@ -49,11 +51,22 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
     private mapService: MapService,
-    private helper: Helper) { }
+    private helper: Helper, private logger: Logger) { }
 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs()
+    var bar = document.getElementById('js-progressbar');
+
+    let animate = setInterval(function () {
+
+      this.progress += 10;
+
+      if (this.progress >= 100) {
+        clearInterval(animate);
+      }
+
+    }, 1000);
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
@@ -80,6 +93,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   isCmsReadable() {
+
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
         for (const layer of cm.layers_needed) {
@@ -97,11 +111,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   resetCM() {
-    console.log(this.cmSelected)
+    /*console.log(this.cmSelected)
     this.mapService.removeCmLayer(this.cmSelected.cm_id)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
-    this.calculationModuleStatusService.undefinedCmRunned()
+    this.calculationModuleStatusService.undefinedCmRunned()*/
   }
   updateCMs() {
 
@@ -126,9 +140,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-    if (this.cmSelected.cm_name === 'calculation_module_1') {
+
       this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-    }
+
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
