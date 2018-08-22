@@ -78,9 +78,12 @@ export class DataInteractionService extends APIService {
   }
 
   getSplittedResults(results){
+    this.logger.log('go inside  getSplittedResults+ '+ results)
     let newResults = this.helper.createSplittedResultsModel();
     const rLayers=results.layers
-    const rNoDataLayers=results.no_data_layers
+    this.logger.log('rLayers '+rLayers)
+    this.logger.log('rLayers ' + JSON.stringify(rLayers));
+    const rNoDataLayers = results.no_data_layers
 
     // returns null if results is empty
     if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)){
@@ -92,6 +95,7 @@ export class DataInteractionService extends APIService {
         if (this.getRefFromLayerName(results.layers[i].name).includes(summay_drop_down_buttons[j]["ref"])){
           const ref = summay_drop_down_buttons[j]["ref"];
           newResults[ref]["layers"].push(results.layers[i]);
+          this.logger.log('rLayers '+rLayers)
 
         }
       }
@@ -103,7 +107,8 @@ export class DataInteractionService extends APIService {
       }
 
     }
-
+    this.logger.log(' newResults rLayers ' + JSON.stringify(newResults));
+    this.logger.log(' newResults rLayers ' + newResults);
     return newResults;
   }
 

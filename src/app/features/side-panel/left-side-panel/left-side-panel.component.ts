@@ -22,6 +22,7 @@ import { leftPanelSize } from 'app/shared';
 import { Logger } from "../../../shared/services/logger.service";
 import { MapService } from "../../../pages/map/map.service";
 import * as uikit from 'uikit'
+import {hectare} from "../../../shared/data.service";
 
 @Component({
   moduleId: module.id,
@@ -78,6 +79,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   layers: DataInteractionClass[];
   category: DataInteractionClass[];
   private isZoneSelected = false;
+
   expanded = false;
   expandedState = 'collapsed';
   constructor(private helper: Helper,
@@ -94,7 +96,11 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
           uikit.tab('#uk-tab-left-panel').show(0);
           this.isZoneSelected = false;
         } else {
-          this.isZoneSelected = true;
+          if (this.mapService.getScaleValue() === hectare) {
+            this.isZoneSelected = true;
+          } else {
+            this.isZoneSelected = false;
+          }
         }
         this.nbElementsSelected = value;
         console.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)

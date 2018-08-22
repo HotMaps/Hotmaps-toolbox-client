@@ -142,6 +142,25 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private cmResult;
 
 
+  private animate;
+  animateProgress(clear) {
+   this.animate = setInterval(function () {
+   const bar: any = document.getElementById('js-progressbar');
+   bar.value += 10;
+     if (bar.value === 100) {
+       bar.value = 0
+
+     }
+
+    if (clear === true) {
+      bar.value = 100
+      clearInterval(this.animate);
+    }
+
+
+  }, 1000);
+
+  }
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private mapService: MapService, private dataInteractionService: DataInteractionService) {
     super(interactionService);
@@ -295,7 +314,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.interactionService.setSummaryResultState(this.loadingData);
       return
     };
-    ;
+
     const payload: PayloadStatHectar = { layers: this.layers, year: constant_year, areas: areas }
     console.log(payload)
     if (this.helper.isPayloadIncomplete(payload)) {
@@ -323,11 +342,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     });
   }
   updateCMResult(areas) {
+    this.runAnimation()
     if (!this.helper.isNullOrUndefined(this.cmRunned)) {
-      this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
+      this.logger.log('cmRunned ' + this.cmRunned.cm.name)
+      /*this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
         this.logger.log('getCMResult ' + JSON.stringify(payload))
         this.summaryResult.layers.push(value)
-      })
+      })*/
       console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
       const payload = {
         layers: this.layers,
@@ -340,6 +361,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
 
+
       this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
         this.logger.log('ata.status_id ' + data.status_id)
         this.logger.log('this.interactionService' + this.interactionService)
@@ -348,55 +370,80 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
         const  response = this.getStatusOfCM(status_id, this.cmRunned)
 
-       this.cmRunned.cm_url = data.tiff_url
-         if (!this.helper.isNullOrUndefined(data.tiff_url)) {
-          console.log('this.cmRunned.cm.cm_url: ' + data.tiff_url)
-          this.mapService.displayCustomLayerFromCM(this.cmRunned.cm);
-        }
+
+
       }).catch((err) => {
         this.logger.log('there is an error ' )
         console.log(err);
       });
 
-      console.log(this.summaryResult, this.cmRunned)
+
     }
   }
 
+  runAnimation() {
 
+    let bar: any = document.getElementById('js-progressbar');
+    bar.value += 10;
+    var animate = setInterval(function () {
+      if (bar.value >= bar.max) {
+
+      }
+      if (bar.value === 100) {
+        bar.value = 0
+
+      }
+
+    }, 1000);
+  }
+  stopAnimation() {
+    const bar: any = document.getElementById('js-progressbar');
+    const animate = setInterval(function () {
+      if (bar.value >= bar.max) {
+        bar.value = 0;
+      } else {
+
+        bar.value = 100;
+        clearInterval(animate);
+      }
+    }, 100);
+
+  }
   getStatusOfCM(status_id, cmRunned ) {
+
     this.interactionService.getStatusAndCMResult(status_id).then((data) => {
-
-
       const response = JSON.parse(data["_body"])
-      this.logger.log('state' + response["state"] )
       if (response["state"] === 'SUCCESS') {
-        this.logger.log('SUCCESS ' )
-        this.logger.log( response)
+        this.stopAnimation()
         this.logger.log('status' + response["status"])
-        this.summaryResult.layers.push(response["status"])
-
-       const cmResult = {
-            values: [
-              {unit: 'MWh', name: 'heat_consumption', value: String(1000)},
-              {unit: 'MWh/ha', name: 'heat_density', value: String(1000)},
-              {unit: 'cells', name: 'count_cell_heat', value: String(1000)}],
-            name: 'cm.test'
+        this.summaryResult.layers.map((layerResult) => {
+          if (layerResult.name === 'heat_tot_curr_density') {
+            for (const i of response.status.values) {
+              layerResult.values.push(i)
+            }
           }
-        this.summaryResult.layers.push(cmResult)
-
-        this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then((value) => {
-          this.logger.log('layers' + JSON.stringify(this.summaryResult.layers))
-          this.summaryResult.layers.push(value)
-          this.updateResult();
         })
+        this.updateResult();
+        if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
+          this.cmRunned.cm_url = response.status.tile_directory
+          this.mapService.displayCustomLayerFromCM(response.status.tile_directory);
+        }
 
       } else {
         setTimeout(() => {
-          this.logger.log('retry getStatusOfCM' )
           this.getStatusOfCM(status_id, cmRunned);
+          this.runAnimation();
+
         }, 1000);
       }
-    })
+    }).catch((err) => {
+      this.stopAnimation()
+      this.logger.log('there is an error ' )
+      console.log(err);
+
+    });
   }
+
+
 
 }

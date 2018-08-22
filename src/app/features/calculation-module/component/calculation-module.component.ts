@@ -40,6 +40,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
+  @Input() progress = 10;
   private calculationModules;
   private categories;
   private components;
@@ -55,6 +56,17 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs()
+    var bar = document.getElementById('js-progressbar');
+
+    let animate = setInterval(function () {
+
+      this.progress += 10;
+
+      if (this.progress >= 100) {
+        clearInterval(animate);
+      }
+
+    }, 1000);
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
@@ -99,11 +111,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   resetCM() {
-    console.log(this.cmSelected)
+    /*console.log(this.cmSelected)
     this.mapService.removeCmLayer(this.cmSelected.cm_id)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
-    this.calculationModuleStatusService.undefinedCmRunned()
+    this.calculationModuleStatusService.undefinedCmRunned()*/
   }
   updateCMs() {
 
@@ -128,9 +140,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-    if (this.cmSelected.cm_name === 'calculation_module_test') {
+
       this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-    }
+
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
