@@ -59,6 +59,11 @@ export class CalculationModuleService extends APIService {
     this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
     return super.pGET(apiUrl + '/cm/status/' + status_id)
   }
+  deleteCM(status_id) {
+    this.logger.log('deleteCM():' + apiUrl + '/cm/status/' + status_id)
+
+    return super.DELETE(apiUrl + 'cm/delete/' + status_id)
+  }
 
 
 

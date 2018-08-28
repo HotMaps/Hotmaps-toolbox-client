@@ -31,6 +31,8 @@ import {
   summay_drop_down_buttons,
   apiUrl
 } from '../../../shared/data.service';
+import { Observable } from 'rxjs';
+import { timer } from 'rxjs/observable/timer';
 
 
 
@@ -120,6 +122,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() areas;
   @Input() cmRunned;
 
+  private cmTimeout;
+
 
   private poiTitle;
   private heatloadStatus = false;
@@ -143,30 +147,21 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
   private animate;
-  animateProgress(clear) {
-   this.animate = setInterval(function () {
-   const bar: any = document.getElementById('js-progressbar');
-   bar.value += 10;
-     if (bar.value === 100) {
-       bar.value = 0
 
-     }
-
-    if (clear === true) {
-      bar.value = 100
-      clearInterval(this.animate);
-    }
-
-
-  }, 1000);
-
-  }
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private mapService: MapService, private dataInteractionService: DataInteractionService) {
     super(interactionService);
   }
   ngOnInit() {
     this.initButtons();
+    this.interactionService.getStatusID().subscribe((value) => {
+      console.log('rightSidePanel/StatusID:' + value)
+      if (this.helper.isNullOrUndefined(value)) {
+        this.stopCMRunned()
+      }
+
+      console.log(value)
+    })
   }
   ngOnDestroy() { }
 
@@ -382,7 +377,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
   runAnimation() {
-
     let bar: any = document.getElementById('js-progressbar');
     bar.value += 10;
     var animate = setInterval(function () {
@@ -409,12 +403,23 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }, 100);
 
   }
+  stopCMRunned() {
+    // this.interactionService.setStatusIdCM(null)
+    if (!this.helper.isNullOrUndefined(this.cmTimeout)) {
+      this.cmTimeout.unsubscribe();
+    }
+    this.stopAnimation();
+  }
+  deleteCMID(status_id) {
+    this.interactionService.setStatusIdCM(null)
+    this.interactionService.deleteCM(status_id);
+  }
   getStatusOfCM(status_id, cmRunned ) {
-
+    this.interactionService.setStatusIdCM(status_id)
     this.interactionService.getStatusAndCMResult(status_id).then((data) => {
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {
-        this.stopAnimation()
+        this.deleteCMID(status_id)
         this.logger.log('status' + response["status"])
         this.summaryResult.layers.map((layerResult) => {
           if (layerResult.name === 'heat_tot_curr_density') {
@@ -430,14 +435,14 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         }
 
       } else {
-        setTimeout(() => {
+        this.cmTimeout = timer(1000).subscribe(() => {
           this.getStatusOfCM(status_id, cmRunned);
           this.runAnimation();
-
-        }, 1000);
+          this.cmTimeout.unsubscribe()
+        })
       }
     }).catch((err) => {
-      this.stopAnimation()
+      this.deleteCMID(status_id)
       this.logger.log('there is an error ' )
       console.log(err);
 

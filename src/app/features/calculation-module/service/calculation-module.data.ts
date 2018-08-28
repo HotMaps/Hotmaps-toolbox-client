@@ -49,7 +49,7 @@ export const calculation_module_components: ComponentClass[] = [
 ];
 
 export const calculationModuleClassArray: CalculationModuleClass[] = [
-  {
+  /* {
     id: 'calculation_module_1',
     cm_name: 'Heat demand reduction',
     cm_url: '',
@@ -60,7 +60,7 @@ export const calculationModuleClassArray: CalculationModuleClass[] = [
     status_id: '',
     isReadable: false,
     layerDisplayed: undefined
-  }
+  }, */
   /* ,
   {
     id: 'calculation_module_2',
