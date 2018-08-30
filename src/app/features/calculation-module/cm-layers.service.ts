@@ -1,4 +1,4 @@
-import { Helper } from 'app/shared';
+import {apiUrl, Helper} from 'app/shared';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 
@@ -33,9 +33,9 @@ export class CMLayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.cmLayersArray;
   }
-  addLayerWithAction(cm_url, map: any, order: number) {
+  addLayerWithAction(directory, map: any, order: number) {
 
-    const layer = L.tileLayer(cm_url + '/{z}/{x}/{y}/', {
+    const layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
       minZoom: 4,
       maxZoom: 15,
       tms: true,

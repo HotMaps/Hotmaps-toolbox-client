@@ -4,7 +4,7 @@
 
 /tmp
 /out-tsc
-
+projectFilesBackup/
 # dependencies
 /node_modules
 
