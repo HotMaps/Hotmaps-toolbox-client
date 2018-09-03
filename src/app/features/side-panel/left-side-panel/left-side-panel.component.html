@@ -23,7 +23,7 @@
                     <div class="uk-accordion-content">
                       <ng-container *ngFor="let n of layers" >
                         <span *ngIf="i === n.category">
-                          <layers-interaction-cell [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
+                          <layers-interaction-cell (click)="updateCmss()" [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
                         </span>
                       </ng-container>
                     </div>

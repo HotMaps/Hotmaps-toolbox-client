@@ -93,13 +93,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   isCmsReadable() {
-
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
         for (const layer of cm.layers_needed) {
           console.log(layer)
           if (this.layersSelected.filter(lay => lay === layer).length === 0) {
-            cm['isReadable'] = true;
+            cm['isReadable'] = false;
             break
           } else {
             cm['isReadable'] = true;
@@ -118,7 +117,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned()*/
   }
   updateCMs() {
-
+    this.logger.log('updateCMs/')
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;

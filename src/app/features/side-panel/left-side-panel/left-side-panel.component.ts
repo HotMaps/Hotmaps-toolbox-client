@@ -1,3 +1,4 @@
+import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
 import { Helper } from './../../../shared/helper';
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
@@ -10,6 +11,7 @@ import {
   transition,
   animate,
   Input,
+  ViewChild,
 
 } from '@angular/core';
 
@@ -74,6 +76,7 @@ import {hectare} from "../../../shared/data.service";
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
   @Input() areas;
+  @ViewChild(CalculationModuleComponent) calculationModuleComponent: CalculationModuleComponent;
   private layersSelected = [];
   private nbElementsSelected = 0;
   layers: DataInteractionClass[];
@@ -115,9 +118,10 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }
-
+  updateCmss() {
+    this.calculationModuleComponent.updateCMs()
+  }
   getLayerAndCategory(layers: any) {
-
     this.logger.log(' layerr = ' + JSON.stringify(layers))
     console.log(layers)
     this.layers = layers
