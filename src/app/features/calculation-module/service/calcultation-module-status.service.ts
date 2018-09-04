@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class CalculationModuleStatusService {
   private waitingCM: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private cmRunned: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private panelIsOpen: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private status_id: Subject<any> = new Subject<any>();
   getWaitingSatus() {
     return this.waitingCM;
   }
@@ -27,5 +29,11 @@ export class CalculationModuleStatusService {
   }
   setStatusCMPanel(value) {
     this.panelIsOpen.next(value)
+  }
+  setStatusIdCM(status_id) {
+    this.status_id.next(status_id)
+  }
+  getStatusIdCM() {
+    return this.status_id
   }
 }

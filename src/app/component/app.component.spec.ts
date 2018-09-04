@@ -1,3 +1,4 @@
+import { CMLayersService } from './../features/calculation-module/cm-layers.service';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -79,6 +80,7 @@ describe('AppComponent: Router', () => {
 
   let location, router;
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     mockLoaderService = new MockLoaderService();
     loaderServiceStub = new LoaderService();
 
@@ -125,7 +127,8 @@ describe('AppComponent: Router', () => {
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
         {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
-        {provide: APP_BASE_HREF, useValue : '/' }
+        {provide: APP_BASE_HREF, useValue : '/' },
+        {provide: CMLayersService, useClass : CMLayersService },
       ],
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
@@ -152,7 +155,7 @@ describe('AppComponent: Router', () => {
   }));
 
 
-  it('should /map go map', async(() => {
+  it('should /map go map', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
@@ -160,9 +163,9 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
 
     });
-  }));
+  });
 
-  it('should empty path go map', async(() => {
+  it('should empty path go map', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
@@ -170,5 +173,5 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
 
     });
-  }));
+  });
 });

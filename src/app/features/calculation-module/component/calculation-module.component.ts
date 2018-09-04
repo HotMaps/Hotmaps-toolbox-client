@@ -47,6 +47,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   private cmName;
   private waitingCM = false;
   private cmSelected;
+  private cmSelectedStatusId;
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
@@ -84,10 +85,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
       self.waitingCM = value;
     });
+    this.calculationModuleStatusService.getStatusIdCM().subscribe((value) => {
+      self.cmSelectedStatusId = value;
+      console.log(value)
+    })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
         uikit.offcanvas('#box-components').show()
-        console.log('cm box is shown')
+        console.log('cm box is shown',this.cmSelectedStatusId,this.cmSelected)
+
       } else if (value === false) {
         uikit.offcanvas('#box-components').hide()
         this.cmHidePanel()
@@ -111,13 +117,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       })
     }
   }
-  resetCM() {
+
     /*console.log(this.cmSelected)
     this.mapService.removeCmLayer(this.cmSelected.cm_id)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
     this.calculationModuleStatusService.undefinedCmRunned()*/
-  }
   updateCMs() {
     this.logger.log('updateCMs/')
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
@@ -142,9 +147,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-
       this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
@@ -161,12 +164,16 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   cmHidePanel() {
+    this.calculationModuleService.deleteCM(this.cmSelectedStatusId)
+    this.calculationModuleStatusService.setStatusIdCM(null)
     this.calculationModuleStatusService.undefinedCmRunned()
     this.setWaiting(false);
     this.cmSelected = undefined;
-    console.log('cm box is hided')
+
+    console.log('cm box is hided',this.cmSelectedStatusId,this.cmSelected)
   }
   toggleCMPanel(value) {
     this.calculationModuleStatusService.setStatusCMPanel(value);
   }
+
 }
