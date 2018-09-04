@@ -21,7 +21,7 @@
               <i class="flaticon-signs-1"></i>
             </div>
             <div class="uk-accordion-content">
-                <img src="http://geoserver.hotmaps.hevs.ch/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style={{dataInteraction.workspaceName}}" (load)="endLoad()"/>
+                <img src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoad()"/>
             </div>
           </li>
         </ul>
