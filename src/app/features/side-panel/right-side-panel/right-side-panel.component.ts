@@ -408,19 +408,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   }
   getStatusOfCM(status_id, cmRunned ) {
-
+    console.log(this.summaryResult)
     this.interactionService.getStatusAndCMResult(status_id).then((data) => {
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {
         this.stopAnimation()
         this.logger.log('status' + response["status"])
-        this.summaryResult.layers.map((layerResult) => {
-          if (layerResult.name === 'heat_tot_curr_density') {
-            for (const i of response.status.values) {
-              layerResult.values.push(i)
-            }
-          }
-        })
+        this.summaryResult.layers.push({name: cmRunned.cm.cm_name, values: response.status.values});
         this.updateResult();
         if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
           this.cmRunned.cm_url = response.status.tile_directory

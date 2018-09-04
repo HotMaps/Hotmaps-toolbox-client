@@ -71,7 +71,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
  */
-    this.isCmsReadable();
+    this.updateCMs()
+
+    // this.isCmsReadable();
     console.log(this.calculationModules, this.categories)
     // this.layersSelected.includes(this.calculationModules.layer_needed)
   }
@@ -98,7 +100,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
         for (const layer of cm.layers_needed) {
           console.log(layer)
           if (this.layersSelected.filter(lay => lay === layer).length === 0) {
-            cm['isReadable'] = false;
+            cm['isReadable'] = true;
             break
           } else {
             cm['isReadable'] = true;
@@ -119,6 +121,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   updateCMs() {
     this.logger.log('updateCMs/')
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
+      console.log('CMList:', result)
       this.calculationModules = []
       this.calculationModules = result;
       this.setWaiting(false);
