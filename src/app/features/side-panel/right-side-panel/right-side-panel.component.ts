@@ -1,3 +1,4 @@
+import { Payload } from './../../population/payload.class';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -263,7 +264,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       self.summaryResult = result;
       self.buttonRef = default_drop_down_button;
     }).then(() => {
-      self.updateCMResult(this.nutsIds);
+      self.updateCMResult(payload);
     }).then(() => {
       self.updateResult()
       self.loadingData = false;
@@ -329,7 +330,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.buttonRef = default_drop_down_button;
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => {
-      this.updateCMResult(areas);
+      this.updateCMResult(payload);
     }).then(() => {
       this.updateResult()
       this.loadingData = false;
@@ -341,7 +342,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.interactionService.setSummaryResultState(this.loadingData);
     });
   }
-  updateCMResult(areas) {
+  updateCMResult(payload) {
     this.runAnimation()
     if (!this.helper.isNullOrUndefined(this.cmRunned)) {
       this.logger.log('cmRunned ' + this.cmRunned.cm.name)
@@ -350,10 +351,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.summaryResult.layers.push(value)
       })*/
       console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
-      const payload = {
-        layers: this.layers,
-        year: constant_year,
-        areas: areas,
+      const pload = {
+        payload: payload,
         url_file: 0,
         inputs: this.cmRunned.component,
         cm_id: '' + this.cmRunned.cm.cm_id
@@ -361,8 +360,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
 
-
-      this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
+      this.interactionService.getCMInformations(pload, this.cmRunned).then((data) => {
         this.logger.log('ata.status_id ' + data.status_id)
         this.logger.log('this.interactionService' + this.interactionService)
 
