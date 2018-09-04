@@ -413,7 +413,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.interactionService.deleteCM(status_id);
   }
   getStatusOfCM(status_id, cmRunned ) {
-    console.log(this.summaryResult)
+    this.interactionService.setStatusIdCM(status_id)
     this.interactionService.getStatusAndCMResult(status_id).then((data) => {
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {

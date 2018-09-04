@@ -87,7 +87,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     });
     this.calculationModuleStatusService.getStatusIdCM().subscribe((value) => {
       self.cmSelectedStatusId = value;
-      console.log(value)
+      console.log('getStatusIdCM()/' + value)
     })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
