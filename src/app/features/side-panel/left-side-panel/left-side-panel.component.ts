@@ -96,11 +96,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
           uikit.tab('#uk-tab-left-panel').show(0);
           this.isZoneSelected = false;
         } else {
-          if (this.mapService.getScaleValue() === hectare) {
-            this.isZoneSelected = true;
-          } else {
-            this.isZoneSelected = false;
-          }
+          this.isZoneSelected = true;
         }
         this.nbElementsSelected = value;
         console.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
