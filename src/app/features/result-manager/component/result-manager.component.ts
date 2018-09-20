@@ -1,7 +1,7 @@
 import { energy_mix_options, summay_drop_down_buttons, default_drop_down_button, energy_mix_title } from './../../../shared/data.service';
 import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { Graphics } from './../service/result-manager';
+import { Graphics, IndicatorResult } from './../service/result-manager';
 import { Helper } from 'app/shared';
 import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
 import { ResultManagerPayload } from '../service/result-manager';
@@ -103,6 +103,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         // this.stopAnimation()
         this.logger.log('status' + response["status"])
         console.log(response)
+        const layer: IndicatorResult = { layers: [{name: response.status.name, values: response.status.values}]}
+        this.result.indicators.push(layer)
         /* this.summaryResult.layers.map((layerResult) => {
           if (layerResult.name === 'heat_tot_curr_density') {
             for (const i of response.status.values) {

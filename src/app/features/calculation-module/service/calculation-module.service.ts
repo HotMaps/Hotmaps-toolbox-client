@@ -60,7 +60,4 @@ export class CalculationModuleService extends APIService {
     return super.pGET(apiUrl + '/cm/status/' + status_id)
   }
 
-
-
-
 }

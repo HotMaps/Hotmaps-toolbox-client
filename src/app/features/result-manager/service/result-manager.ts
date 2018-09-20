@@ -9,8 +9,8 @@ export interface ResultManagerPayload {
 }
 export interface IndicatorResult {
   layers: Layer[],
-  no_data_layers: Value [],
-  no_table_layers: Value []
+  no_data_layers?: Value [],
+  no_table_layers?: Value []
 }
 export interface LayerResult {
   name: string,
