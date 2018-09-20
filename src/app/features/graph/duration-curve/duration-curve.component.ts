@@ -16,7 +16,7 @@ import { Layer} from '../../summary-result/summary-result.class';
 })
 export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   @Input() expanded: boolean;
-  @Input() nutsIds;
+  @Input() durationCurvePayload;
   @Input() scaleLevel;
   @Input() heatloadStatus;
   @Input() areas: Layer[];
@@ -33,7 +33,7 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
   	this.logger.log('DurationCurveComponent/ngOnInit');
-    this.update();
+    // this.update();
   }
 
   ngOnDestroy() {
@@ -51,22 +51,12 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
     let payload: any;
     if (this.scaleLevel === '-1'){ // updating chart with data by hectare
       isHectare = true;
-      const area = this.areas;
-      const areas = [];
-      this.areas.map((layer: Layer) => {
-        const points = [];
-        if (layer instanceof L.Circle) {
-          areas.push({points: this.helper.getLocationsFromCicle(layer)})
-        } else {
-          areas.push({points: this.helper.getLocationsFromPolygon(layer)})
-        }
-      });
 
-      payload = this.helper.createDCPayloadHectares(constant_year_duration_curve, areas);
+      payload = this.helper.createDCPayloadHectares(constant_year_duration_curve, this.durationCurvePayload.areas);
     }else{ // updating chart with data by nuts
-      payload = this.helper.createDCPayloadNuts(constant_year_duration_curve, this.nutsIds);
+      payload = this.helper.createDCPayloadNuts(constant_year_duration_curve, this.durationCurvePayload.nuts);
     }
-
+    console.log('durationCurvePayload', payload)
     this.loadingData = true;
 
     this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {

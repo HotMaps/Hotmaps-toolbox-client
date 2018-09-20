@@ -151,8 +151,8 @@ export class InteractionService {
         return this.dataInteractionService.getSplittedResults(r);
     }
 
-    getElectricityMixFromNuts0(payload): Promise<any> {
-    return this.electricityMixService.getElectricityMixFromNuts0(payload);
+    getElectricityMix(payload): Promise<any> {
+    return this.electricityMixService.getElectricityMix(payload);
     }
     enableOpenStateWithId(id) {
         this.navigationBarService.enableOpenStateWithId(id);
@@ -167,8 +167,8 @@ export class InteractionService {
     setCMResult(summaryResult, cm): Promise<any> {
       return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
     }
-    getCMInformations(payload, cmRunned): Promise<any> {
-      return this.calculationModuleService.getCMInformations(payload, cmRunned)
+    getCMInformations(payload): Promise<any> {
+      return this.calculationModuleService.getCMInformations(payload)
     }
   getStatusAndCMResult(id): Promise<any> {
 

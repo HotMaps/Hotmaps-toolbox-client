@@ -41,7 +41,7 @@ export class CalculationModuleService extends APIService {
     });
     return Promise.resolve(Array.from(this.categories.values()));
   }
-  getCMInformations(payload, cm) {
+  getCMInformations(payload) {
     // if (!cm.isApiRequestInTreatment) {
       this.logger.log( 'data ' + JSON.stringify(payload) )
       // URL to check status

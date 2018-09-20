@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Logger } from 'app/shared';
+import { Logger, energy_mix_options } from 'app/shared';
 
 @Component({
   selector: 'htm-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
+export class ChartComponent implements OnInit, OnChanges {
   @ViewChild('canvas') canvas;
   @Input() datasets;
   @Input() labels;
   @Input() type = 'line';
-  @Input() updateChart;
-  @Input() options;
+  // @Input() updateChart;
+  @Input() options = energy_mix_options;
 
   private chart: Chart;
 
@@ -26,29 +26,18 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
     this.logger.log('ChartComponent/ngOnChange()');
     this.createChart();
   }
-  ngAfterViewInit() {
+  /* ngAfterViewInit() {
     this.createChart();
-  }
+  } */
   createChart() {
     this.resetChart();
     this.logger.log('this.type =' + this.type);
-    if (this.type === 'line') {
-      this.logger.log('this.type = line');
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
-      type: 'line',
-      data: {
-        labels:  this.labels,
-        datasets: this.datasets
-      },
+      type: this.type,
+      data: this.datasets,
       options: this.options
-    }); } else
-      if (this.type === 'pie') {
-        this.logger.log('this.type = pie');
-      this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
-        type: 'pie',
-        data: this.datasets,
-        options: this.options
-      }); }
+    });
+    console.log(this.datasets, this.labels, this.options, this.chart)
   }
   resetChart() {
     if (this.chart) {

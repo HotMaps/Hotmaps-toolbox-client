@@ -29,12 +29,13 @@ import { Layer} from '../../../summary-result/summary-result.class';
   styleUrls: ['./heat-load-chart.component.css']
 })
 export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() expanded: boolean;
+  /* @Input() expanded: boolean;
   @Input() nutsIds;
   @Input() layers;
   @Input() scaleLevel;
   @Input() heatloadStatus;
-  @Input() areas: Layer[];
+  @Input() areas: Layer[]; */
+  @Input() heatLoadPayload;
 
   private dateHeatload = { year: 2010, month: 1, day: 1 }
   private buttons_date_type;
@@ -55,7 +56,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
     this.initComponent();
-
     this.update();
   }
 
@@ -150,28 +150,17 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       let isHectare = false;
       this.loadingData = true;
       this.interactionService.displayButtonExportStats(!this.loadingData);
+      console.log(this.heatLoadPayload)
       let payload: any;
-      if (this.scaleLevel === '-1') { // updating chart with data by hectare
+      if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
         isHectare = true;
-        const area = this.areas;
-        const areas = [];
-        this.areas.map((layer: Layer) => {
-          const points = [];
-          if (layer instanceof L.Circle) {
-            areas.push({points: this.helper.getLocationsFromCicle(layer)})
-          } else {
-            areas.push({points: this.helper.getLocationsFromPolygon(layer)})
-          }
-        });
-
-        payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, areas);
-
+        payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.areas);
       }else { // updating chart with data by nuts
-        payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
+        payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
       }
-
+      console.log('heatloadPayloadInComponent: ', JSON.stringify(payload))
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
-        this.logger.log('HeatLoadComponent/update = ' + result);
+        console.log('HeatLoadComponent/update = ', result);
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);

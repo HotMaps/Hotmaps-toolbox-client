@@ -1,0 +1,48 @@
+<span class="center">
+  <div style="padding: 10px;">
+    <select class="uk-select" (ngModelChange)="changeResultsDisplay($event)" [(ngModel)]="selectedButton">
+      <ng-container *ngFor="let button of dropdown_btns">
+        <option *ngIf="button.display" [selected]="button.ref === selectedButton.ref"  [ngValue]="button">{{button.name}}</option>
+
+      </ng-container>
+    </select>
+  </div>
+</span>
+<ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
+  <li id="tab1">
+    <a href="">INDICATORS</a>
+  </li>
+  <li id="tab2" [class.uk-disabled]="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload">
+    <a href="">GRAPHICS</a>
+  </li>
+
+</ul>
+<ul id="my-id3" class="uk-switcher">
+  <li>
+    <div *ngIf="result.indicators">
+      <htm-summary-result [summaryResult]="result.indicators" [refSelected]="selectedButton.ref"></htm-summary-result>
+    </div>
+    <div class="spinner" *ngIf="result.indicators?.length == 0" uk-spinner="ratio: 3"></div>
+  </li>
+  <li class="charts-tab">
+    <ng-container *ngIf="heatLoadPayload">
+      <htm-heat-load-chart [heatLoadPayload]="heatLoadPayload"></htm-heat-load-chart>
+    </ng-container>
+
+
+    <ng-container *ngIf="durationCurvePayload">
+      <htm-duration-curve [durationCurvePayload]="durationCurvePayload"></htm-duration-curve>
+    </ng-container>
+    <div *ngIf="result.graphics">
+      <div *ngFor="let graphic of result.graphics">
+        <ng-container *ngIf="graphic.category == 'energy_mix'">
+          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.data.labels"></htm-electricity-mix>
+        </ng-container>
+        <ng-container *ngIf="graphic.category == 'calculation_module'">
+          <htm-chart [datasets]="graphic.data" [type]="graphic.type" [labels]="graphic.data.labels"></htm-chart>
+        </ng-container>
+      </div>
+    </div>
+    <div class="spinner" *ngIf="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" uk-spinner="ratio: 3"></div>
+  </li>
+</ul>

@@ -14,7 +14,7 @@ export class ElectricityMixService extends APIService {
     super(http, logger, loaderService, toasterService);
   }
 
-  getElectricityMixFromNuts0(payload) {
+  getElectricityMix(payload) {
       this.logger.log(apiUrl + postHeatLoadProfileHectares)
       return super.POST(payload, apiUrl + getElectricityMixFromNuts0);
   }

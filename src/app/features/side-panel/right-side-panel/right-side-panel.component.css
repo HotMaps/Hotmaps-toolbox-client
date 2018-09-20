@@ -36,7 +36,7 @@ i {
     justify-content: flex-end;
     color: #d3d3d3;;
     padding: 0 8px 0 8px;
-    height: 5vh;
+    height: 50px;
     background-color: #333333;
 }
 
@@ -46,7 +46,7 @@ i {
     font-size: 1.5em;
     text-align: center;
     text-transform: uppercase;
-    line-height: 5vh;
+    line-height: 50px;
 }
 
 .title-panel-right --collapsed {
