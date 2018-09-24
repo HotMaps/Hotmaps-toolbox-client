@@ -2,7 +2,7 @@ import { Value, Layer } from '../../summary-result/summary-result.class';
 
 
 export interface ResultManagerPayload {
-  indicators: IndicatorResult[],
+  indicators: IndicatorResult,
   raster_layers: LayerResult[],
   vector_layers: LayerResult[],
   graphics: Graphics[]

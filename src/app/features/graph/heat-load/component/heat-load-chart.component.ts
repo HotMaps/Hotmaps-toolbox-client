@@ -29,17 +29,12 @@ import { Layer} from '../../../summary-result/summary-result.class';
   styleUrls: ['./heat-load-chart.component.css']
 })
 export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
-  /* @Input() expanded: boolean;
-  @Input() nutsIds;
-  @Input() layers;
-  @Input() scaleLevel;
-  @Input() heatloadStatus;
-  @Input() areas: Layer[]; */
   @Input() heatLoadPayload;
 
+  private isLoading = true;
   private dateHeatload = { year: 2010, month: 1, day: 1 }
   private buttons_date_type;
-  private chart: Chart;
+  // private chart: Chart;
   private labels;
   private options: any;
   private loadProfileData: any;
@@ -49,7 +44,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private selectedButton;
   private titleDate;
   private default_year = 2010;
-  private loadingData = false;
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
@@ -148,8 +142,8 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;
-      this.loadingData = true;
-      this.interactionService.displayButtonExportStats(!this.loadingData);
+      this.isLoading = true;
+      this.interactionService.displayButtonExportStats(!this.isLoading);
       console.log(this.heatLoadPayload)
       let payload: any;
       if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
@@ -169,12 +163,12 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         this.options = heat_load_graph_options;
         console.log(this.datasets, this.options, result, this.selectedButton)
       }).then(() => {
-        this.loadingData = false;
-        this.interactionService.displayButtonExportStats(!this.loadingData);
+        this.isLoading = false;
+        this.interactionService.displayButtonExportStats(!this.isLoading);
       }).catch((e) => {
         this.logger.log(JSON.stringify(e))
-        this.loadingData = false;
-        this.interactionService.displayButtonExportStats(!this.loadingData)
+        this.isLoading = false;
+        this.interactionService.displayButtonExportStats(!this.isLoading)
       });
     }
   }

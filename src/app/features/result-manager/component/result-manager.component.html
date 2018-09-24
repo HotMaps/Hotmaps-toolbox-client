@@ -24,9 +24,7 @@
     <div class="spinner" *ngIf="result.indicators?.length == 0" uk-spinner="ratio: 3"></div>
   </li>
   <li class="charts-tab">
-    <ng-container *ngIf="heatLoadPayload">
-      <htm-heat-load-chart [heatLoadPayload]="heatLoadPayload"></htm-heat-load-chart>
-    </ng-container>
+    
 
 
     <!-- <ng-container *ngIf="durationCurvePayload">
@@ -34,6 +32,9 @@
     </ng-container> -->
     <div *ngIf="result.graphics">
       <div *ngFor="let graphic of result.graphics">
+        <ng-container *ngIf="graphic.category == 'heatload'">
+          <htm-heat-load-chart [heatLoadPayload]="heatLoadPayload"></htm-heat-load-chart>
+        </ng-container>
         <ng-container *ngIf="graphic.category == 'energy_mix'">
           <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.labels"></htm-electricity-mix>
         </ng-container>
