@@ -167,6 +167,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
         this.options = heat_load_graph_options;
+        console.log(this.datasets, this.options, result, this.selectedButton)
       }).then(() => {
         this.loadingData = false;
         this.interactionService.displayButtonExportStats(!this.loadingData);

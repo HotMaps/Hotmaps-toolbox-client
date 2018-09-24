@@ -145,15 +145,18 @@ export const tab1 = 'overall'
 export const tab2 = 'stats'
 
 // Duration curve graph data
+export const duration_curve_graph_title = 'Duration curve';
+export const duration_curve_graph_category = 'duration_curve';
+
 export const duration_curve_graph_options = {
       legend: {
           display: false
       },
-      elements:{
+      /* elements:{
         point:{
           radius:0
         }
-      },
+      }, */
       tooltips: {enabled: false},
       hover: {mode: null},
       scales:{
@@ -187,14 +190,13 @@ export const heat_load_graph_options = {
             }]
       }
   }
-
+export const energy_mix_graph_category = 'duration_curve';
 export const energy_mix_options = {
   position : 'right',
   responsive: true,
   legend: {
     display: true,
     position : 'right'
-
   }
 }
 

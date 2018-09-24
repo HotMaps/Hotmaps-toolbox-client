@@ -21,7 +21,9 @@ export interface Graphics {
   name: string,
   data: GraphicData,
   options: any,
-  category: string
+  category: string,
+  labels: string[],
+  isLoading: boolean
 }
 export interface GraphicData {
   labels: string[],

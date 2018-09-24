@@ -93,6 +93,7 @@ export class HeatLoadAggregateService extends APIService {
       this.heatLoadMultiDataset(data);
     }
     this.formattedValues.push(this.labels);
+    console.log(this.formattedValues)
     return this.formattedValues;
   }
 

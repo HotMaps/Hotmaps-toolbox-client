@@ -1,3 +1,8 @@
+<div class="title">
+  <h5 class="uk-card-title" style="float:left;margin: 10px;">{{title}}</h5>
+</div>
 <div>
   <canvas #canvas></canvas>
 </div>
+<div class="spinner" *ngIf="isLoading" uk-spinner="ratio: 3"></div>
+

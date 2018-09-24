@@ -144,6 +144,10 @@ export class InteractionService {
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
     }
+    getDefaultDatasetDurationCurve() {
+      return this.durationCurveService.getDefaultDatasetDurationCurve();
+
+    }
     getSplittedResults(results){
         return this.dataInteractionService.getSplittedResults(results);
     }

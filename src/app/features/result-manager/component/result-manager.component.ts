@@ -1,4 +1,4 @@
-import { energy_mix_options, summay_drop_down_buttons, default_drop_down_button, energy_mix_title } from './../../../shared/data.service';
+import { energy_mix_options, summay_drop_down_buttons, default_drop_down_button, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category } from './../../../shared/data.service';
 import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Graphics, IndicatorResult } from './../service/result-manager';
@@ -25,6 +25,13 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() scaleLevel;
 
 
+  /* private cmPromise: Promise<any>;
+  private summaryPromise: Promise<any>;
+  private energyMixPromise: Promise<any>;
+  private heatLoadPromise: Promise<any>;
+  private durationCurvePromise: Promise<any>; */
+
+  private noIndicator = true
   private dropdown_btns = summay_drop_down_buttons;
   private selectedButton = this.dropdown_btns[0];
   private result: ResultManagerPayload= { indicators: [], graphics: [], raster_layers: [], vector_layers: [] };
@@ -39,11 +46,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     // console.log(changes);
     console.log(changes)
     this.resetResult()
-    if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
-    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
+    if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
+    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
 
   }
   updateCMResult() {
@@ -52,7 +59,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     this.interactionService.getCMInformations(this.cmPayload).then((data) => {
       this.logger.log('data.status_id ' + data.status_id)
       const status_id = data.status_id
-      const response = this.getStatusOfCM(status_id)
+      this.getStatusOfCM(status_id)
     }).catch((err) => {
       this.logger.log('there is an error ')
       console.log(err);
@@ -60,13 +67,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateSummaryResult() {
     const self = this;
-    console.log(self.summaryPayload)
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
         console.log(result)
         self.result.indicators.push(result)
         self.getIndicatorsCatergories()
-
       }).catch((e) => {
         self.logger.log(JSON.stringify(e));
       });
@@ -79,9 +84,12 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateEnergyMixResult() {
     const self = this;
+    const graphic = self.addGraphic(energy_mix_title, 'pie', [], [], energy_mix_options, energy_mix_graph_category, true);
     self.interactionService.getElectricityMix(self.energyMixPayload).then(result => {
       console.log('updateEnergyMixResult():', result)
-      self.addGraphic(energy_mix_title, 'pie', result, energy_mix_options, 'energy_mix')
+      graphic.isLoading = false;
+      graphic.data = result.datasets;
+      graphic.labels = result.labels;
       console.log(self.result)
     }).catch((e) => {
       console.log('error')
@@ -92,7 +100,28 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     console.log(this.heatLoadPayload)
   }
   updateDurationCurveResult() {
-    console.log(this.durationCurvePayload)
+    const self = this;
+    const graphic = self.addGraphic(duration_curve_graph_title, 'line',  [], [], duration_curve_graph_options, duration_curve_graph_category, true);
+    let isHectare;
+    if (this.scaleLevel === '-1') {
+      isHectare = true
+    } else {
+      isHectare = false
+    }
+    self.interactionService.getDurationCurveWithPayload(this.durationCurvePayload, isHectare).then((result) => {
+      console.log(result.points)
+      const dataset = this.interactionService.getDefaultDatasetDurationCurve()
+      const labels = []
+      result.points.map((point) => {
+        dataset.data.push(point.Y)
+        labels.push('')
+      });
+      // console.log(data, labels)
+      graphic.isLoading = false;
+      graphic.data = [dataset];
+      graphic.labels = labels;
+      console.log(graphic);
+    })
   }
 
   getStatusOfCM(status_id) {
@@ -102,19 +131,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       if (response["state"] === 'SUCCESS') {
         // this.stopAnimation()
         this.logger.log('status' + response["status"])
-        console.log(response)
-        const layer: IndicatorResult = { layers: [{name: response.status.name, values: response.status.values}]}
-        this.result.indicators.push(layer)
-        /* this.summaryResult.layers.map((layerResult) => {
-          if (layerResult.name === 'heat_tot_curr_density') {
-            for (const i of response.status.values) {
-              layerResult.values.push(i)
-            }
-          }
-        }) */
+        console.log('cm response:' + response)
+
         if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
-          // this.cmRunned.cm_url = response.status.tile_directory
           this.mapService.displayCustomLayerFromCM(response.status.tile_directory);
+          // this.cmRunned.cm_url = response.status.tile_directory
         }
 
       } else {
@@ -141,11 +162,18 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
         })
       })
+      if (indicator.layers.length === 0) {
+        this.noIndicator = true
+      } else {
+        this.noIndicator = false
+      }
     })
   }
 
-  addGraphic(name, type, result, options, category) {
-    this.result.graphics.push({name: name, type: type, data: result, options: options, category: category })
+  addGraphic(name, type, data, labels, options, category, isLoading) {
+    const graphic = {name: name, type: type, data: data, labels: labels, options: options, category: category, isLoading: isLoading }
+    this.result.graphics.push(graphic)
+    return graphic
   }
   changeResultsDisplay(button) {
     console.log(button)

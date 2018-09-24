@@ -7,13 +7,14 @@ import { Logger, energy_mix_options } from 'app/shared';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit, OnChanges {
+export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('canvas') canvas;
   @Input() datasets;
   @Input() labels;
   @Input() type = 'line';
-  // @Input() updateChart;
-  @Input() options = energy_mix_options;
+  @Input() title;
+  @Input() options;
+  @Input() isLoading = true;
 
   private chart: Chart;
 
@@ -26,18 +27,21 @@ export class ChartComponent implements OnInit, OnChanges {
     this.logger.log('ChartComponent/ngOnChange()');
     this.createChart();
   }
-  /* ngAfterViewInit() {
+  ngAfterViewInit() {
     this.createChart();
-  } */
+  }
   createChart() {
     this.resetChart();
     this.logger.log('this.type =' + this.type);
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
       type: this.type,
-      data: this.datasets,
+      data: {
+        labels:  this.labels,
+        datasets: this.datasets
+      },
+      labels: this.labels,
       options: this.options
     });
-    console.log(this.datasets, this.labels, this.options, this.chart)
   }
   resetChart() {
     if (this.chart) {

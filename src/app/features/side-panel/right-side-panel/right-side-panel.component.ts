@@ -28,7 +28,8 @@ import {
   constant_year,
   default_drop_down_button,
   summay_drop_down_buttons,
-  apiUrl
+  apiUrl,
+  constant_year_duration_curve
 } from '../../../shared/data.service';
 
 
@@ -169,8 +170,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
   // Create payloads
   setCMPayload() {
+    this.cmPayload = Object.assign({ url_file: 0, inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id}, {payload: this.summaryPayload})
 
-    this.cmPayload = Object.assign({ url_file: 0, inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id}, this.summaryPayload)
   }
 
   setSummaryPayloadIds() {
@@ -204,10 +205,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.heatLoadPayload = { nuts: this.nutsIds }
   }
   setDurationCurveIds() {
-    this.durationCurvePayload = { nuts: this.nutsIds }
+    this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve }
   }
   setDurationCurveAreas() {
-    this.heatLoadPayload = { areas: this.getAreas()}
+    this.heatLoadPayload = { areas: this.getAreas(), year: constant_year_duration_curve}
   }
 
 

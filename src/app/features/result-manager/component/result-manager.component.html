@@ -1,9 +1,8 @@
 <span class="center">
-  <div style="padding: 10px;">
+  <div *ngIf="!noIndicator" style="padding: 10px;">
     <select class="uk-select" (ngModelChange)="changeResultsDisplay($event)" [(ngModel)]="selectedButton">
       <ng-container *ngFor="let button of dropdown_btns">
         <option *ngIf="button.display" [selected]="button.ref === selectedButton.ref"  [ngValue]="button">{{button.name}}</option>
-
       </ng-container>
     </select>
   </div>
@@ -30,16 +29,16 @@
     </ng-container>
 
 
-    <ng-container *ngIf="durationCurvePayload">
+    <!-- <ng-container *ngIf="durationCurvePayload">
       <htm-duration-curve [durationCurvePayload]="durationCurvePayload"></htm-duration-curve>
-    </ng-container>
+    </ng-container> -->
     <div *ngIf="result.graphics">
       <div *ngFor="let graphic of result.graphics">
         <ng-container *ngIf="graphic.category == 'energy_mix'">
-          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.data.labels"></htm-electricity-mix>
+          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.labels"></htm-electricity-mix>
         </ng-container>
-        <ng-container *ngIf="graphic.category == 'calculation_module'">
-          <htm-chart [datasets]="graphic.data" [type]="graphic.type" [labels]="graphic.data.labels"></htm-chart>
+        <ng-container *ngIf="graphic.category == 'calculation_module' || graphic.category == 'duration_curve'">
+          <htm-chart [datasets]="graphic.data" [type]="graphic.type" [title]="graphic.name" [labels]="graphic.labels" [options]="graphic.options" [isLoading]="graphic.isLoading"></htm-chart>
         </ng-container>
       </div>
     </div>

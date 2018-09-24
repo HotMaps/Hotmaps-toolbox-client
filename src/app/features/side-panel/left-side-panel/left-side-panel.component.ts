@@ -99,7 +99,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
           if (this.mapService.getScaleValue() === hectare) {
             this.isZoneSelected = true;
           } else {
-            this.isZoneSelected = false;
+            this.isZoneSelected = true;
           }
         }
         this.nbElementsSelected = value;

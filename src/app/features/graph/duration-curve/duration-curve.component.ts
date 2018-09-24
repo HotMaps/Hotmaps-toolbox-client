@@ -60,7 +60,7 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
     this.loadingData = true;
 
     this.interactionService.getDurationCurveWithPayload(payload, isHectare).then((result) => {
-        this.datasets = this.interactionService.transformDurationCurveData(result);
+        // this.datasets = this.interactionService.transformDurationCurveData(result);
 	  		this.labels = this.helper.createDurationCurveLabels(this.labels);
         this.options = duration_curve_graph_options;
       }).then(() => {

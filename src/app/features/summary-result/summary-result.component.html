@@ -27,6 +27,16 @@
 
               </ng-container>
             </ng-container>
+            <ng-container *ngFor="let layer of indicator.no_data_layers">
+              <tr class="table-level-one warning">
+                <th colspan="2"><span uk-icon="warning"></span> No data for "{{layer | layername}}"</th>
+              </tr>
+            </ng-container>
+            <ng-container *ngFor="let layer of indicator.no_table_layers">
+              <tr class="table-level-one warning">
+                <th colspan="2"><span uk-icon="warning"></span> No table for "{{layer | layername}}"</th>
+              </tr>
+            </ng-container>
           </ng-container>
 
 
