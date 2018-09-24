@@ -348,6 +348,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
       const pload = {
         payload: payload,
+        scalevalue: this.helper.getScaleLevelPaylaod(this.mapService.getScaleValue()) ,
         url_file: 0,
         inputs: this.cmRunned.component,
         cm_id: '' + this.cmRunned.cm.cm_id

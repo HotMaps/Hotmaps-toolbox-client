@@ -590,6 +590,20 @@ export class Helper {
     }
     return payload;
   }
+
+  getScaleLevelPaylaod(scaleLevel): string {
+    let payloadScale = ''
+
+    if (scaleLevel.startsWith('NUTS')){
+      payloadScale = 'nuts'
+    }else if (scaleLevel.startsWith('LAU')){
+      payloadScale = 'lau'
+    }else {
+      payloadScale = 'hectare'
+    }
+      return payloadScale
+    }
+
 }
 
 

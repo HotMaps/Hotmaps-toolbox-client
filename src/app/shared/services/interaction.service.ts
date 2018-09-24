@@ -170,10 +170,10 @@ export class InteractionService {
     getCMInformations(payload, cmRunned): Promise<any> {
       return this.calculationModuleService.getCMInformations(payload, cmRunned)
     }
-  getStatusAndCMResult(id): Promise<any> {
+    getStatusAndCMResult(id): Promise<any> {
 
-      return this.calculationModuleService.getStatusOfCM(id)
-    }
+        return this.calculationModuleService.getStatusOfCM(id)
+      }
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
