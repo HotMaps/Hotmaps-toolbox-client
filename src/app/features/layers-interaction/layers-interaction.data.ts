@@ -1,7 +1,7 @@
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { DataInteractionClass } from './layers-interaction.class';
-import { business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer } from '../../shared/data.service';
+import { business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer, calculation_module_category } from '../../shared/data.service';
 import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.service';
 
 export const DataInteractionArray: DataInteractionClass[] = [
@@ -67,8 +67,8 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
     workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission'},
-  {id: 20, name: 'CM - Heat demand reduction', category: 'CM', isSelected: false,
-    workspaceName: 'calculation_module_1', zoomLevel: 0, ref: ['overall', 'demand'], styleName: ''},
+  {id: 20, name: 'CM District Heating Potential', category: 'Calculation module', isSelected: false,
+    workspaceName: 'CM District Heating Potential', zoomLevel: 0, ref: ['overall', 'demand', calculation_module_category], styleName: ''},
 ];
 
 

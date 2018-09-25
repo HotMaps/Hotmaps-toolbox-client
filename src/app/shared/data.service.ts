@@ -27,8 +27,8 @@ export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
-export const defaultLayer = 'heat_tot_curr_density';
-export const styleNameHeat = 'heat_tot_curr_density';
+export const defaultLayer = 'heat_tot_curr_density_tif';
+export const styleNameHeat = 'heat_tot_curr_density_tif';
 export const idDefaultLayer = 1;
 export const wwtpLayerName   = 'wwtp';
 
@@ -42,7 +42,7 @@ export const formatImage = 'image/png8';
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
-export const populationLayerName = 'pop_tot_curr_density'
+export const populationLayerName = 'pop_tot_curr_density_tif'
 export const postStatsLayersHectares = '/stats/layers/hectares';
 export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
 export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
@@ -71,6 +71,7 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 export const default_drop_down_button = 'overall';
+export const calculation_module_category = 'calculation_module'
 
 export const summay_drop_down_buttons = [
   { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
@@ -79,7 +80,8 @@ export const summay_drop_down_buttons = [
   { name: 'Climate', ref: 'climate', selected: false, display: false},
   { name: 'Heat Supply', ref: 'heat_supply', selected: false, display: false},
   { name: 'Industry', ref: 'industry', selected: false, display: false},
-  { name: 'Electricity', ref: 'electricity', selected: false, display: false}
+  { name: 'Electricity', ref: 'electricity', selected: false, display: false},
+  { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false}
 ]
 
 
@@ -139,10 +141,11 @@ export const rightPanelSize = 600;
 export const leftPanelSize = 400;
 
 // tab values
+export const default_tab_datapanel = 'indicator'
+export const tab1_datapanel = default_tab_datapanel
 
-export const tab1 = 'overall'
+export const tab2_datapanel = 'charts'
 
-export const tab2 = 'stats'
 
 // Duration curve graph data
 export const duration_curve_graph_title = 'Duration curve';

@@ -1,3 +1,4 @@
+import { CMLayersService } from './../../features/calculation-module/cm-layers.service';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -81,6 +82,7 @@ describe('mapService', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: CMLayersService, useClass: CMLayersService },
       ],
     })
   });

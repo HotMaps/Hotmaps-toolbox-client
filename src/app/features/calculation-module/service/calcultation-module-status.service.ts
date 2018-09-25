@@ -6,6 +6,7 @@ export class CalculationModuleStatusService {
   private waitingCM: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private cmRunned: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private panelIsOpen: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private cmAnimationStatus: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   getWaitingSatus() {
     return this.waitingCM;
   }
@@ -27,5 +28,11 @@ export class CalculationModuleStatusService {
   }
   setStatusCMPanel(value) {
     this.panelIsOpen.next(value)
+  }
+  setCmAnimationStatus(value) {
+    this.cmAnimationStatus.next(value)
+  }
+  getCmAnimationStatus() {
+    return this.cmAnimationStatus
   }
 }

@@ -103,13 +103,13 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
           }
         }
         this.nbElementsSelected = value;
-        console.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
+        this.logger.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
       })
     }
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.mapService.getLayerArray().subscribe(() => {
         this.layersSelected = this.mapService.setLayerWithoutSuffix();
-        console.log('LeftSideComponent/this.layersSelected = ', this.layersSelected)
+        this.logger.log('LeftSideComponent/this.layersSelected = ' + this.layersSelected)
       })
     }
 
@@ -119,7 +119,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   getLayerAndCategory(layers: any) {
 
     this.logger.log(' layerr = ' + JSON.stringify(layers))
-    console.log(layers)
     this.layers = layers
     this.category = layers.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);

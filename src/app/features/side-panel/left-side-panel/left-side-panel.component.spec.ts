@@ -37,6 +37,7 @@ import { SelectionToolService } from 'app/features/selection-tools';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
+import { CMLayersService } from '../../calculation-module/cm-layers.service';
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -69,6 +70,7 @@ describe('LeftSideComponent', () => {
                 { provide: DurationCurveService, useClass: DurationCurveService },
                 { provide: ToasterService },
                 { provide: ElectricityMixService, useClass: ElectricityMixService },
+                { provide: CMLayersService, useClass: CMLayersService},
 
                 { provide: MockBackend, useClass: MockBackend },
                 { provide: BaseRequestOptions, useClass: BaseRequestOptions },
@@ -110,5 +112,6 @@ describe('LeftSideComponent', () => {
         expect(component.layers).toBeDefined();
         tick();
         expect(component.category).toBeDefined();
+        discardPeriodicTasks();
     }));
 })

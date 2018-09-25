@@ -144,24 +144,24 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       let isHectare = false;
       this.isLoading = true;
       this.interactionService.displayButtonExportStats(!this.isLoading);
-      console.log(this.heatLoadPayload)
       let payload: any;
-      if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
-        isHectare = true;
-        payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.areas);
-      }else { // updating chart with data by nuts
-        payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
+      if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
+        if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
+          isHectare = true;
+          payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.areas);
+        }else { // updating chart with data by nuts
+          payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
+        }
       }
       console.log('heatloadPayloadInComponent: ', JSON.stringify(payload))
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
-        console.log('HeatLoadComponent/update = ', result);
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
         this.options = heat_load_graph_options;
-        console.log(this.datasets, this.options, result, this.selectedButton)
+        this.interactionService.setHeatLoadData({dataset: this.datasets, labels: this.labels})
       }).then(() => {
         this.isLoading = false;
         this.interactionService.displayButtonExportStats(!this.isLoading);

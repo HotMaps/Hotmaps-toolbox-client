@@ -25,7 +25,6 @@ export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges() {
     this.logger.log('ChartComponent/ngOnChange()');
-    console.log(this.title, this.isLoading)
     this.createChart();
   }
   ngAfterViewInit() {

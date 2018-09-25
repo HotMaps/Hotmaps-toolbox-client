@@ -28,7 +28,6 @@ export class CalculationModuleService extends APIService {
     return super.POST('', apiUrl + '/cm/list')
   }
   getCalculationModuleComponents(cmId): Promise<any> {
-    console.log(cmId)
     const payload = { cm_id: '' + cmId }
     return super.POST(payload, apiUrl + '/cm/user-interface/')
   }
@@ -36,7 +35,6 @@ export class CalculationModuleService extends APIService {
   getCalculationModuleCategories(cms) {
     this.categories.clear()
     cms.forEach((cm) => {
-      console.log(cm)
       if (cm.isReadable) { this.categories.add(cm.category) }
     });
     return Promise.resolve(Array.from(this.categories.values()));
@@ -60,7 +58,7 @@ export class CalculationModuleService extends APIService {
     return super.pGET(apiUrl + '/cm/status/' + status_id)
   }
   getCMResultMockData(payload) {
-    return this.http.get('http://localhost:4200/assets/mockdata_graphic.txt').toPromise()
+    return this.http.get('http://albain-hotmaps:4200/assets/mockdata_graphic.txt').toPromise()
 
   }
 }

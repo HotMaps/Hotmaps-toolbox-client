@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {Helper} from '../../../shared/helper';
 import {Logger} from '../../../shared/services/logger.service';
-import {tab1} from '../../../shared/data.service';
+import { tab1_datapanel } from '../../../shared';
 
 
 @Injectable()
@@ -12,7 +12,7 @@ export class ExportDataService {
   private dataSummary: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private statusStats: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private dataStats: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private tabsSelectedName: BehaviorSubject<string> = new BehaviorSubject<string>(tab1);
+  private tabsSelectedName: BehaviorSubject<string> = new BehaviorSubject<string>(tab1_datapanel);
   constructor(private helper: Helper, private logger: Logger) {}
   /**
    * subcribe summary result

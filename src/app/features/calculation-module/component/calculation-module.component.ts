@@ -40,7 +40,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
-  @Input() progress = 10;
+
+  private progress = 10;
   private calculationModules;
   private categories;
   private components;
@@ -55,24 +56,16 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
   ngOnInit() {
     this.subscribeEvents()
-    this.updateCMs()
-    var bar = document.getElementById('js-progressbar');
-
-    let animate = setInterval(function () {
-
-      this.progress += 10;
-
-      if (this.progress >= 100) {
-        clearInterval(animate);
-      }
-
-    }, 1000);
+    this.updateCMs();
+    this.calculationModuleStatusService.getCmAnimationStatus().subscribe((data) => {
+      this.progress = data;
+      console.log('progress', this.progress)
+    })
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
  */
     this.isCmsReadable();
-    console.log(this.calculationModules, this.categories)
     // this.layersSelected.includes(this.calculationModules.layer_needed)
   }
   ngOnDestroy() { }
@@ -85,7 +78,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
         uikit.offcanvas('#box-components').show()
-        console.log('cm box is shown')
+        this.logger.log('cm box is shown')
       } else if (value === false) {
         uikit.offcanvas('#box-components').hide()
         this.cmHidePanel()
@@ -97,14 +90,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
         for (const layer of cm.layers_needed) {
-          console.log(layer)
           if (this.layersSelected.filter(lay => lay === layer).length === 0) {
             cm['isReadable'] = true;
             break
           } else {
             cm['isReadable'] = true;
           }
-          console.log(layer)
         }
 
       })
@@ -162,7 +153,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned()
     this.setWaiting(false);
     this.cmSelected = undefined;
-    console.log('cm box is hided')
+    this.logger.log('cm box is hided')
   }
   toggleCMPanel(value) {
     this.calculationModuleStatusService.setStatusCMPanel(value);

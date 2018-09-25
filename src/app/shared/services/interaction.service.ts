@@ -135,6 +135,12 @@ export class InteractionService {
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
+    getHeatLoadData() {
+      return this.heatLoadAggregateService.getHeatLoadData()
+    }
+    setHeatLoadData(data) {
+      return this.heatLoadAggregateService.setHeatLoadData(data)
+    }
     formatHeatLoadForChartjs(data, api_ref){
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     }
@@ -188,5 +194,7 @@ export class InteractionService {
     setStatusCMPanel(value) {
       return this.calculationModuleStatusService.setStatusCMPanel(value)
     }
-
+    setCMAnimationStatus(value) {
+      this.calculationModuleStatusService.setCmAnimationStatus(value);
+    }
 }

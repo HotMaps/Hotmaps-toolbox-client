@@ -116,13 +116,20 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   ngOnInit() { }
   ngOnDestroy() { }
   ngOnChanges(changes) {
-    console.log('RightSidePanelComponent/ngOnChanges')
-
-    console.log(changes)
+    this.logger.log('RightSidePanelComponent/ngOnChanges')
     if (this.expanded === true) {
       this.setSatusResults();
       this.updateAll()
+    } else {
+      this.resetPayloads()
     }
+  }
+  resetPayloads() {
+    this.cmPayload = null;
+    this.summaryPayload = null;
+    this.energyMixPayload = null;
+    this.heatLoadPayload = null;
+    this.durationCurvePayload = null;
   }
   setSatusResults() {
     if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
@@ -146,34 +153,62 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.setHeatloadPayloadIds()
     } else if (this.heatloadStatus && this.scaleLevel === '-1') {
       this.setHeatloadPayloadAreas()
+    } else {
+      this.heatLoadPayload = null
     }
-
     if (this.durationCurveStatus && this.scaleLevel !== '-1') {
       this.setDurationCurveIds()
     } else if (this.durationCurveStatus && this.scaleLevel === '-1') {
       this.setDurationCurveAreas()
+    } else {
+      this.durationCurvePayload = null;
     }
+
+
     if (this.electricityMixStatus) {
       this.setElectricityMixPayload()
+    } else {
+      this.energyMixPayload = null
     }
 
     if (this.summaryResultStatus && this.scaleLevel !== '-1') {
       this.setSummaryPayloadIds()
     } else if (this.summaryResultStatus && this.scaleLevel === '-1') {
       this.setSummaryPayloadArea();
+    } else {
+      this.summaryPayload = null
     }
 
     if (this.cmRunned) {
       this.setCMPayload()
+    } else {
+      this.cmPayload = null
     }
 
   }
   // Create payloads
   setCMPayload() {
-    this.cmPayload = Object.assign({ url_file: 0, inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id}, {payload: this.summaryPayload})
-
+    this.cmPayload = Object.assign(
+      {
+        url_file: 0, scalelevel: this.getScaleLevelPaylaod(this.scaleLevel),
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id
+      },
+      { payload: this.summaryPayload }
+    )
+    //  console.log(this.getScaleLevelPaylaod(this.scaleLevel))
   }
+  getScaleLevelPaylaod(scaleLevel): string {
+    let payloadScale = ''
 
+    if (scaleLevel === '2' || scaleLevel === '3' || scaleLevel === '0' || scaleLevel === '1'){
+      payloadScale = 'nuts'
+    }else if (scaleLevel === '4'){
+      payloadScale = 'lau'
+    }else {
+      payloadScale = 'hectare'
+    }
+      return payloadScale
+    }
   setSummaryPayloadIds() {
     const payload = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
     if (this.helper.isPayloadIncomplete(payload)) {
@@ -196,7 +231,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
   setElectricityMixPayload() {
     this.energyMixPayload = { nuts: this.nutsIds }
-    console.log('setElectricityMixPayload()', this.energyMixPayload)
   }
   setHeatloadPayloadAreas() {
     this.heatLoadPayload = { areas: this.getAreas()}
@@ -208,7 +242,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve }
   }
   setDurationCurveAreas() {
-    this.heatLoadPayload = { areas: this.getAreas(), year: constant_year_duration_curve}
+    this.durationCurvePayload = { areas: this.getAreas(), year: constant_year_duration_curve}
   }
 
 
@@ -227,7 +261,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
 
-  loadExportData(buttonRef) {
+  /* loadExportData(buttonRef) {
     const indicatorResults = this.splittedResults[buttonRef];
     this.interactionService.displayButtonExport(!this.loadingData);
     this.interactionService.setSummaryData(indicatorResults);
@@ -235,85 +269,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     if (this.helper.isResultDataEmpty(indicatorResults)) {
       this.interactionService.displayButtonExport(false)
     }
-  }
-  clickTab(id: string) {
+  } */
+
+ /*  clickTab(id: string) {
     this.logger.log('clickTab' + id);
     this.interactionService.setTabsSelectedName(id);
-  }
+  } */
 
-  setExportButtonState(val: boolean) {
-    this.interactionService.setSummaryResultState(!val);
-    this.interactionService.displayButtonExport(val);
-  }
-
-  setSummaryResultState(val) {
-    this.loadingData = val;
-    this.interactionService.setSummaryResultState(val);
-  }
-  setIsDataRunning(val) {
-    this.setSummaryResultState(val);
-    this.setExportButtonState(!val)
-  }
-  update(payload) {
-    if (this.helper.isPayloadIncomplete(payload)) {
-      this.interactionService.closeRightPanel();
-      return;
-    }
-    this.setIsDataRunning(true);
-    const self = this;
-  }
-
-  updateCMResult(areas) {
-    this.runAnimation()
-    if (!this.helper.isNullOrUndefined(this.cmRunned)) {
-      this.logger.log('cmRunned ' + this.cmRunned.cm.name)
-      console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
-      const payload = {
-        layers: this.layers,
-        year: constant_year,
-        areas: areas,
-        url_file: 0,
-        inputs: this.cmRunned.component,
-        cm_id: '' + this.cmRunned.cm.cm_id
-      }
-
-
-
-
-
-
-
-    }
-  }
-
-  runAnimation() {
-
-    let bar: any = document.getElementById('js-progressbar');
-    bar.value += 10;
-    var animate = setInterval(function () {
-      if (bar.value >= bar.max) {
-
-      }
-      if (bar.value === 100) {
-        bar.value = 0
-
-      }
-
-    }, 1000);
-  }
-  stopAnimation() {
-    const bar: any = document.getElementById('js-progressbar');
-    const animate = setInterval(function () {
-      if (bar.value >= bar.max) {
-        bar.value = 0;
-      } else {
-
-        bar.value = 100;
-        clearInterval(animate);
-      }
-    }, 100);
-
-  }
 
 
 }
