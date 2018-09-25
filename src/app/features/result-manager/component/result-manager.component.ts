@@ -169,18 +169,17 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           this.mapService.displayCustomLayerFromCM(response.status.tile_directory);
           // this.cmRunned.cm_url = response.status.tile_directory
         } */
-        if (response.result.indicator.length >= 1) {
+        if (response.status.result.indicator.length >= 1) {
           this.result.indicators.layers.push({
-            name: response.result.name, values: response.result.indicator, category: ['overall', calculation_module_category]
+            name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
           })
           this.displayExportDataStatus = true;
 
         }
         this.indicatorLoading = false
-        if (response.result.graphics.length >= 1) {
-          response.result.graphics.map((graphic) => {
-
-            const graph = this.addGraphic(response.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, heat_load_graph_options, calculation_module_category, false)
+        if (response.status.result.graphics.length >= 1) {
+          response.status.result.graphics.map((graphic) => {
+            const graph = this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, heat_load_graph_options, calculation_module_category, false)
           })
           this.displayExportDataStatus = true;
 
@@ -212,6 +211,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }
   stopAnimation() {
+    this.interactionService.undefinedCmRunned()
     this.progressCmAnimation = 0;
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }

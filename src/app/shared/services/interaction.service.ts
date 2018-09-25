@@ -197,4 +197,7 @@ export class InteractionService {
     setCMAnimationStatus(value) {
       this.calculationModuleStatusService.setCmAnimationStatus(value);
     }
+    undefinedCmRunned() {
+      this.calculationModuleStatusService.undefinedCmRunned()
+    }
 }

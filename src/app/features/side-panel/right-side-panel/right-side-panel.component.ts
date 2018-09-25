@@ -190,7 +190,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setCMPayload() {
     this.cmPayload = Object.assign(
       {
-        url_file: 0, scalelevel: this.getScaleLevelPaylaod(this.scaleLevel),
+        url_file: 0, scalevalue: this.getScaleLevelPaylaod(this.scaleLevel),
         inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id
       },
       { payload: this.summaryPayload }

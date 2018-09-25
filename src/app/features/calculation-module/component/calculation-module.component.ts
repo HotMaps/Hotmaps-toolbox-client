@@ -102,11 +102,10 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   resetCM() {
-    /*console.log(this.cmSelected)
-    this.mapService.removeCmLayer(this.cmSelected.cm_id)
+    console.log(this.cmSelected)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
-    this.calculationModuleStatusService.undefinedCmRunned()*/
+    this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
 
