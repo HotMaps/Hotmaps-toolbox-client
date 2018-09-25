@@ -17,7 +17,7 @@ import {MapService} from '../../../pages/map/map.service'
 import { DataInteractionClass } from '../layers-interaction.class';
 import {LoaderService} from '../../../shared/services/loader.service';
 import {InteractionService} from '../../../shared/services/interaction.service';
-import {geoserverUrl} from "../../../shared/data.service";
+import {geoserverUrl, urlLegend} from "../../../shared/data.service";
 @Component({
     moduleId: module.id,
     selector: 'layers-interaction-cell',
@@ -43,7 +43,7 @@ export class DataInteractionCellComponent implements OnInit {
     @Input() dataInteraction: DataInteractionClass;
     @Input() expanded: boolean;
     private loading = true;
-    private imageUrl = geoserverUrl
+    private imageUrl = urlLegend
 
     constructor(private mapService: MapService, private interactionService: InteractionService) { }
     ngOnInit() {

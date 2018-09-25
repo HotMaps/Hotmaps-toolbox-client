@@ -68,7 +68,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
     workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission'},
   {id: 20, name: 'CM - Heat demand reduction', category: 'CM', isSelected: false,
-    workspaceName: 'calculation_module_1', zoomLevel: 0, ref: ['overall', 'demand'], styleName: ''},
+    workspaceName: 'calculation_module_test', zoomLevel: 0, ref: ['overall', 'demand'], styleName: ''},
 ];
 
 

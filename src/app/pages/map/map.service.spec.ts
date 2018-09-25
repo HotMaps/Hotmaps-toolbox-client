@@ -35,6 +35,7 @@ import {ElectricityMixService} from "../../features/graph/electricity-mix/servic
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
+import { CMLayersService } from '../../features/calculation-module/cm-layers.service';
 
 
 
@@ -81,6 +82,8 @@ describe('mapService', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        {provide: CMLayersService, useClass : CMLayersService },
+
       ],
     })
   });

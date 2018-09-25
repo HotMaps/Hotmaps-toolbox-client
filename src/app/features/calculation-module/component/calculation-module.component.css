@@ -51,3 +51,7 @@
 .api-inprogress {
   background: rgb(255, 0, 0);
 }
+
+.unclickable{
+  cursor: wait;
+}

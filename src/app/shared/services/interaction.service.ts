@@ -180,5 +180,13 @@ export class InteractionService {
     setStatusCMPanel(value) {
       return this.calculationModuleStatusService.setStatusCMPanel(value)
     }
-
+    setStatusIdCM(status_id) {
+      this.calculationModuleStatusService.setStatusIdCM(status_id)
+    }
+    deleteCM(status_id) {
+      this.calculationModuleService.deleteCM(status_id)
+    }
+    getStatusID() {
+      return this.calculationModuleStatusService.getStatusIdCM()
+    }
 }

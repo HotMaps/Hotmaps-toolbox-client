@@ -1,3 +1,4 @@
+import { Payload } from './../../population/payload.class';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -31,6 +32,8 @@ import {
   summay_drop_down_buttons,
   apiUrl
 } from '../../../shared/data.service';
+import { Observable } from 'rxjs';
+import { timer } from 'rxjs/observable/timer';
 
 
 
@@ -120,6 +123,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() areas;
   @Input() cmRunned;
 
+  private cmTimeout;
+
 
   private poiTitle;
   private heatloadStatus = false;
@@ -143,30 +148,21 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
   private animate;
-  animateProgress(clear) {
-   this.animate = setInterval(function () {
-   const bar: any = document.getElementById('js-progressbar');
-   bar.value += 10;
-     if (bar.value === 100) {
-       bar.value = 0
 
-     }
-
-    if (clear === true) {
-      bar.value = 100
-      clearInterval(this.animate);
-    }
-
-
-  }, 1000);
-
-  }
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private mapService: MapService, private dataInteractionService: DataInteractionService) {
     super(interactionService);
   }
   ngOnInit() {
     this.initButtons();
+    this.interactionService.getStatusID().subscribe((value) => {
+      console.log('rightSidePanel/StatusID:' + value)
+      if (this.helper.isNullOrUndefined(value)) {
+        this.stopCMRunned()
+      }
+
+      console.log(value)
+    })
   }
   ngOnDestroy() { }
 
@@ -263,7 +259,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       self.summaryResult = result;
       self.buttonRef = default_drop_down_button;
     }).then(() => {
-      self.updateCMResult(this.nutsIds);
+      self.updateCMResult(payload);
     }).then(() => {
       self.updateResult()
       self.loadingData = false;
@@ -329,7 +325,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.buttonRef = default_drop_down_button;
       // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
     }).then(() => {
-      this.updateCMResult(areas);
+      this.updateCMResult(payload);
     }).then(() => {
       this.updateResult()
       this.loadingData = false;
@@ -341,7 +337,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.interactionService.setSummaryResultState(this.loadingData);
     });
   }
-  updateCMResult(areas) {
+  updateCMResult(payload) {
     this.runAnimation()
     if (!this.helper.isNullOrUndefined(this.cmRunned)) {
       this.logger.log('cmRunned ' + this.cmRunned.cm.name)
@@ -350,10 +346,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         this.summaryResult.layers.push(value)
       })*/
       console.log(this.nutsIds, this.layers, this.scaleLevel, this.locationsSelection, this.areas, this.cmRunned)
-      const payload = {
-        layers: this.layers,
-        year: constant_year,
-        areas: areas,
+      const pload = {
+        payload: payload,
         url_file: 0,
         inputs: this.cmRunned.component,
         cm_id: '' + this.cmRunned.cm.cm_id
@@ -361,8 +355,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
 
 
-
-      this.interactionService.getCMInformations(payload, this.cmRunned).then((data) => {
+      this.interactionService.getCMInformations(pload, this.cmRunned).then((data) => {
         this.logger.log('ata.status_id ' + data.status_id)
         this.logger.log('this.interactionService' + this.interactionService)
 
@@ -382,7 +375,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
   runAnimation() {
-
     let bar: any = document.getElementById('js-progressbar');
     bar.value += 10;
     var animate = setInterval(function () {
@@ -409,20 +401,25 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }, 100);
 
   }
+  stopCMRunned() {
+    // this.interactionService.setStatusIdCM(null)
+    if (!this.helper.isNullOrUndefined(this.cmTimeout)) {
+      this.cmTimeout.unsubscribe();
+    }
+    this.stopAnimation();
+  }
+  deleteCMID(status_id) {
+    this.interactionService.setStatusIdCM(null)
+    this.interactionService.deleteCM(status_id);
+  }
   getStatusOfCM(status_id, cmRunned ) {
-
+    this.interactionService.setStatusIdCM(status_id)
     this.interactionService.getStatusAndCMResult(status_id).then((data) => {
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {
-        this.stopAnimation()
+        this.deleteCMID(status_id)
         this.logger.log('status' + response["status"])
-        this.summaryResult.layers.map((layerResult) => {
-          if (layerResult.name === 'heat_tot_curr_density') {
-            for (const i of response.status.values) {
-              layerResult.values.push(i)
-            }
-          }
-        })
+        this.summaryResult.layers.push({name: cmRunned.cm.cm_name, values: response.status.values});
         this.updateResult();
         if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
           this.cmRunned.cm_url = response.status.tile_directory
@@ -430,15 +427,15 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         }
 
       } else {
-        setTimeout(() => {
+        this.cmTimeout = timer(1000).subscribe(() => {
           this.getStatusOfCM(status_id, cmRunned);
           this.runAnimation();
-
-        }, 1000);
+          this.cmTimeout.unsubscribe()
+        })
       }
     }).catch((err) => {
-      this.stopAnimation()
-      this.logger.log('there is an error ' )
+      this.deleteCMID(status_id)
+      this.logger.log('there is an error with this UUID:' + status_id)
       console.log(err);
 
     });
