@@ -55,10 +55,14 @@ export class CalculationModuleService extends APIService {
   }
   getStatusOfCM(status_id) {
     this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
-    return super.pGET(apiUrl + '/cm/status/' + status_id)
+    return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
+    .catch(this.handleError.bind(this));
   }
-  getCMResultMockData(payload) {
+  /* getCMResultMockData(payload) {
     return this.http.get('http://albain-hotmaps:4200/assets/mockdata_graphic.txt').toPromise()
 
+  } */
+  deleteCM(id) {
+    return super.DELETE(apiUrl + '/cm/delete/' + id)
   }
 }

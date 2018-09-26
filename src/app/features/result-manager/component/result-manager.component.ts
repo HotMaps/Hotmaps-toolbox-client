@@ -23,7 +23,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() durationCurvePayload;
 
   @Input() scaleLevel;
-
+  private animationTimeout;
+  private status_id;
   private progressCmAnimation = 0;
   private noIndicator = true
   private indicatorLoading = true
@@ -54,14 +55,18 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
-
+    this.interactionService.getCMRunned().subscribe((data) => {
+      if (this.helper.isNullOrUndefined(data)) {
+        this.stopAnimation()
+      }
+    })
   }
   updateCMResult() {
     const self = this;
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
-      const status_id = data.status_id
-      self.getStatusOfCM(status_id)
+      self.status_id = data.status_id
+      self.getStatusOfCM()
     }).catch((err) => {
       self.logger.log('there is an error ')
       self.logger.log(err);
@@ -155,10 +160,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
 
-  getStatusOfCM(status_id) {
+  getStatusOfCM() {
+    const self = this;
     this.indicatorLoading = true
 
-    this.interactionService.getStatusAndCMResult(status_id).then((data) => {
+    this.interactionService.getStatusAndCMResult(this.status_id).then((data) => {
       // this.interactionService.getCMResultMockData(status_id).then((data) => {
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {
@@ -186,8 +192,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         }
         this.getIndicatorsCatergories()
       } else {
-        const animationTimeout = setTimeout(() => {
-          this.getStatusOfCM(status_id);
+        this.animationTimeout = setTimeout(() => {
+          this.getStatusOfCM();
           this.runAnimation();
 
         }, 1000);
@@ -204,14 +210,15 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   runAnimation() {
     if (this.progressCmAnimation === 100) {
-      this.progressCmAnimation = 0
+      this.progressCmAnimation = 10
     } else {
       this.progressCmAnimation += 10;
     }
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }
   stopAnimation() {
-    this.interactionService.undefinedCmRunned()
+    clearTimeout(this.animationTimeout)
+    this.interactionService.deleteCM(this.status_id)
     this.progressCmAnimation = 0;
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }

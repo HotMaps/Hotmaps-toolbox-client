@@ -184,10 +184,10 @@ export class InteractionService {
 
       return this.calculationModuleService.getStatusOfCM(id)
     }
-    getCMResultMockData(payload) {
+    /* getCMResultMockData(payload) {
       return this.calculationModuleService.getCMResultMockData(payload)
 
-    }
+    } */
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
@@ -199,5 +199,8 @@ export class InteractionService {
     }
     undefinedCmRunned() {
       this.calculationModuleStatusService.undefinedCmRunned()
+    }
+    deleteCM(id) {
+      return this.calculationModuleService.deleteCM(id)
     }
 }

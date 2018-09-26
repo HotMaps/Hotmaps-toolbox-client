@@ -69,6 +69,9 @@ export class APIService {
   GET(url): any {
     return this.http.get(url, this.headers)
   }
+  DELETE(url): any {
+    return this.http.delete(url)
+  }
   async pGET(url): Promise<any>  {
     return await this.http
       .get(url, this.headers)

@@ -41,13 +41,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() expanded;
   @Input() expandedState;
 
-  private progress = 10;
+  private progress = 0;
   private calculationModules;
   private categories;
   private components;
   private cmName;
   private waitingCM = false;
   private cmSelected;
+  private cmRunning;
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
@@ -57,10 +58,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs();
-    this.calculationModuleStatusService.getCmAnimationStatus().subscribe((data) => {
-      this.progress = data;
-      console.log('progress', this.progress)
-    })
+
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
@@ -75,6 +73,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
       self.waitingCM = value;
     });
+    this.calculationModuleStatusService.getCmAnimationStatus().subscribe((data) => {
+      this.progress = data;
+      if (this.progress !== 0) {
+        this.cmRunning = true;
+      } else {
+        this.cmRunning = false;
+      }
+      console.log('progress', this.progress)
+    })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
         uikit.offcanvas('#box-components').show()
@@ -130,8 +137,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-
-      this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
+    this.cmRunning = true;
+    this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
 
   }
   setWaiting(val) {
