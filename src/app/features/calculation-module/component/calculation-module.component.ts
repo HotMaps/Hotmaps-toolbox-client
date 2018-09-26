@@ -40,14 +40,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
-  @Input() progress = 10;
+
+  private progress = 0;
   private calculationModules;
   private categories;
   private components;
   private cmName;
   private waitingCM = false;
   private cmSelected;
-  private cmSelectedStatusId;
+  private cmRunning;
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
@@ -56,26 +57,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
   ngOnInit() {
     this.subscribeEvents()
-    this.updateCMs()
-    var bar = document.getElementById('js-progressbar');
+    this.updateCMs();
 
-    let animate = setInterval(function () {
-
-      this.progress += 10;
-
-      if (this.progress >= 100) {
-        clearInterval(animate);
-      }
-
-    }, 1000);
   }
   ngOnChanges(changes: SimpleChanges): void {
 /*     console.log(changes.layersSelected.currentValue)
  */
-    this.updateCMs()
-
-    // this.isCmsReadable();
-    console.log(this.calculationModules, this.categories)
+    this.isCmsReadable();
     // this.layersSelected.includes(this.calculationModules.layer_needed)
   }
   ngOnDestroy() { }
@@ -85,15 +73,19 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
       self.waitingCM = value;
     });
-    this.calculationModuleStatusService.getStatusIdCM().subscribe((value) => {
-      self.cmSelectedStatusId = value;
-      console.log('getStatusIdCM()/' + value)
+    this.calculationModuleStatusService.getCmAnimationStatus().subscribe((data) => {
+      this.progress = data;
+      if (this.progress !== 0) {
+        this.cmRunning = true;
+      } else {
+        this.cmRunning = false;
+      }
+      console.log('progress', this.progress)
     })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
         uikit.offcanvas('#box-components').show()
-        console.log('cm box is shown',this.cmSelectedStatusId,this.cmSelected)
-
+        this.logger.log('cm box is shown')
       } else if (value === false) {
         uikit.offcanvas('#box-components').hide()
         this.cmHidePanel()
@@ -101,32 +93,30 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   isCmsReadable() {
+
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
         for (const layer of cm.layers_needed) {
-          console.log(layer)
           if (this.layersSelected.filter(lay => lay === layer).length === 0) {
             cm['isReadable'] = true;
             break
           } else {
             cm['isReadable'] = true;
           }
-          console.log(layer)
         }
 
       })
     }
   }
-
-    /*console.log(this.cmSelected)
-    this.mapService.removeCmLayer(this.cmSelected.cm_id)
+  resetCM() {
+    console.log(this.cmSelected)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
-    this.calculationModuleStatusService.undefinedCmRunned()*/
+    this.calculationModuleStatusService.undefinedCmRunned();
+  }
   updateCMs() {
-    this.logger.log('updateCMs/')
+
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
-      console.log('CMList:', result)
       this.calculationModules = []
       this.calculationModules = result;
       this.setWaiting(false);
@@ -147,7 +137,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
-      this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
+    this.cmRunning = true;
+    this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
+
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
@@ -164,16 +156,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     })
   }
   cmHidePanel() {
-    this.calculationModuleService.deleteCM(this.cmSelectedStatusId)
-    this.calculationModuleStatusService.setStatusIdCM(null)
     this.calculationModuleStatusService.undefinedCmRunned()
     this.setWaiting(false);
     this.cmSelected = undefined;
-
-    console.log('cm box is hided',this.cmSelectedStatusId,this.cmSelected)
+    this.logger.log('cm box is hided')
   }
   toggleCMPanel(value) {
     this.calculationModuleStatusService.setStatusCMPanel(value);
   }
-
 }

@@ -1,121 +1,13 @@
 <div class="container-panel-right " [@panelWidthTrigger]="expandedState">
 
-  <div class="title-panel-right " [@titleColorTrigger]="expandedState">
+  <div class="title-panel-right" [@titleColorTrigger]="expandedState">
     <a [@iconTrigger]="expandedState" class="link" (click)="toggleExpandedState('right'); closePanel('right')">
       <i class="flaticon-cross" aria-hidden="true"></i>
     </a>
     <span *ngIf="expanded" [@titleTextTrigger]="'in'">{{title}}</span>
-
   </div>
-  <span class="center">
-      <div *ngIf="splittedResults" style="padding: 10px;">
-        <select class="uk-select" (change)="changeResultsDisplay($event)">
-            <ng-container *ngFor="let button of dropdown_btns">
-              <option *ngIf="splittedResults[button.ref].layers.length !== 0" [selected]="button.ref == buttonRef" [value]="button.ref">
-                {{button.name}}
-              </option>
-            </ng-container>
-        </select>
-      </div>
-    </span>
-  <div *ngIf="heatloadStatus && !nust0Selected;then energy_stat_content" class="energy-statistic"></div>
-  <div *ngIf="!heatloadStatus && !nust0Selected;then normal_content" class="energy-statistic"></div>
-  <div *ngIf="nust0Selected && !heatloadStatus;then energy_mix_content" class="energy-statistic"></div>
 
-  <ng-template #energy_stat_content>
-    <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
-      <li id="tab1" (click)="clickTab('overall')">
-        <a href="">INDICATORS</a>
-      </li>
-      <li id="tab2" (click)="clickTab('stats')">
-        <a href="">GRAPHICS</a>
-      </li>
-
-    </ul>
-    <ul id="my-id3" class="uk-switcher">
-      <li>
-        <htm-summary-result
-          *ngIf="expanded"
-          [poiTitle]="poiTitle"
-          [expanded]="expanded"
-          [summaryResult]="summaryResult"
-          [loadingData]="loadingData"
-          [splittedResults]="splittedResults"
-          [buttonRef]="buttonRef"
-
-          ></htm-summary-result>
-          <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data>
-          </div>
-      </li>
-      <li>
-        <htm-heat-load-chart
-          *ngIf="expanded"
-          [expanded]="expanded"
-          [nutsIds]="nutsIds"
-          [layers]="layers"
-          [scaleLevel]="scaleLevel"
-          [areas]="areas"
-          [heatloadStatus]="heatloadStatus"></htm-heat-load-chart>
-        <htm-duration-curve
-          *ngIf="expanded"
-          [expanded]="expanded"
-          [nutsIds]="nutsIds"
-          [scaleLevel]="scaleLevel"
-          [areas]="areas"
-          [heatloadStatus]="heatloadStatus"></htm-duration-curve>
-          <div class="export-tab2"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
-      </li>
-  </ul>
-  </ng-template>
-
-  <ng-template #normal_content>
-    <htm-summary-result
-      *ngIf="expanded"
-      [poiTitle]="poiTitle"
-      [expanded]="expanded"
-      [summaryResult]="summaryResult"
-      [loadingData]="loadingData"
-      [splittedResults]="splittedResults"
-      [buttonRef]="buttonRef"
-
-      ></htm-summary-result>
-      <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
-  </ng-template>
-
-
-  <ng-template #energy_mix_content>
-    <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}" (toggle)="didSwicth()">
-      <li id="tab1bis" (click)="clickTab('overall')">
-        <a href="">Overview</a>
-      </li>
-      <li id="tab2bis" (click)="clickTab('stats')">
-        <a href="">GRAPHICS</a>
-      </li>
-
-    </ul>
-    <ul id="my-id3bis" class="uk-switcher">
-      <li>
-        <htm-summary-result
-          *ngIf="expanded"
-          [poiTitle]="poiTitle"
-          [expanded]="expanded"
-          [summaryResult]="summaryResult"
-          [loadingData]="loadingData"
-          [splittedResults]="splittedResults"
-          [buttonRef]="buttonRef"
-        ></htm-summary-result>
-        <div class="export-tab1"><htm-export-data [heatloadStatus]="heatloadStatus"></htm-export-data></div>
-      </li>
-      <li>
-        <htm-electricity-mix
-          *ngIf="expanded"
-          [expanded]="expanded"
-          [datasets]="electricitMixResult"
-          [nutsIds]="nutsIds"
-          [loadingData]="electricitMixLoadingState"
-          [electricityGenerationResultState]="electricityGenerationResultState"></htm-electricity-mix>
-      </li>
-    </ul>
-  </ng-template>
-
+  <div>
+    <htm-result-manager [summaryPayload]="summaryPayload" [cmPayload]="cmPayload" [energyMixPayload]="energyMixPayload" [heatLoadPayload]="heatLoadPayload" [durationCurvePayload]="durationCurvePayload" [scaleLevel]="scaleLevel"></htm-result-manager>
+  </div>
 </div>

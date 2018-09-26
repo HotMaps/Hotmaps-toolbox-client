@@ -15,17 +15,18 @@ const localApiUrl    = 'http://localhost:5000/api';
 
 
 
-export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
 export const geoserverDevUrl = 'http://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 
 
 
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserverDevUrl;
+export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = localApiUrl;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density_tif';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const idDefaultLayer = 1;
@@ -54,7 +55,7 @@ export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
 // title
 export const heatloadprofile = 'Heatload profile';
 export const Durationcurve = 'Duration curve';
-
+export const energy_mix_title = 'Electricity generation mix';
 export const set404url   = 'set404url';
 
 // Projection data string
@@ -71,15 +72,17 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 export const default_drop_down_button = 'overall';
+export const calculation_module_category = 'calculation_module'
 
 export const summay_drop_down_buttons = [
-  { name: 'Overall', ref: default_drop_down_button, selected: true},
-  { name: 'Demand', ref: 'demand', selected: false},
-  { name: 'Potentials', ref: 'potential', selected: false},
-  { name: 'Climate', ref: 'climate', selected: false},
-  { name: 'Heat Supply', ref: 'heat_supply', selected: false},
-  { name: 'Industry', ref: 'industry', selected: false},
-  { name: 'Electricity', ref: 'electricity', selected: false}
+  { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
+  { name: 'Demand', ref: 'demand', selected: false, display: false},
+  { name: 'Potentials', ref: 'potential', selected: false, display: false},
+  { name: 'Climate', ref: 'climate', selected: false, display: false},
+  { name: 'Heat Supply', ref: 'heat_supply', selected: false, display: false},
+  { name: 'Industry', ref: 'industry', selected: false, display: false},
+  { name: 'Electricity', ref: 'electricity', selected: false, display: false},
+  { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false}
 ]
 
 
@@ -139,21 +142,25 @@ export const rightPanelSize = 600;
 export const leftPanelSize = 400;
 
 // tab values
+export const default_tab_datapanel = 'indicator'
+export const tab1_datapanel = default_tab_datapanel
 
-export const tab1 = 'overall'
+export const tab2_datapanel = 'charts'
 
-export const tab2 = 'stats'
 
 // Duration curve graph data
+export const duration_curve_graph_title = 'Duration curve';
+export const duration_curve_graph_category = 'duration_curve';
+
 export const duration_curve_graph_options = {
       legend: {
           display: false
       },
-      elements:{
+      /* elements:{
         point:{
           radius:0
         }
-      },
+      }, */
       tooltips: {enabled: false},
       hover: {mode: null},
       scales:{
@@ -187,14 +194,28 @@ export const heat_load_graph_options = {
             }]
       }
   }
-
+export const energy_mix_graph_category = 'duration_curve';
 export const energy_mix_options = {
   position : 'right',
   responsive: true,
   legend: {
     display: true,
     position : 'right'
-
   }
 }
-
+export const clculation_module_graph_options = {
+  scales:{
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: ''
+          }
+        }],
+        xAxes: [{
+          scaleLabel : {
+            display: true,
+            labelString: ''
+          }
+        }]
+  }
+}

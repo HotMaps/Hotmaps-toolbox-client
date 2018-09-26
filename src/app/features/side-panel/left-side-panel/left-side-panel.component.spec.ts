@@ -1,4 +1,3 @@
-import { discardPeriodicTasks } from '@angular/core/testing';
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,6 +6,7 @@ import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { TestBed, ComponentFixture, async, inject, fakeAsync, tick } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
+import { discardPeriodicTasks } from '@angular/core/testing';
 
 
 import { DataInteractionCellComponent } from '../../layers-interaction/layers-interaction-cell/layers-interaction-cell.component';
@@ -104,10 +104,13 @@ describe('LeftSideComponent', () => {
     expect(debugEl).toBeTruthy();
   });
 
-  /* it('should have layer in layers array', () => {
+  it('should have layer in layers array', fakeAsync(() => {
     expect(component.layers).toBeUndefined();
     fixture.detectChanges();
+    tick();
     expect(component.layers).toBeDefined();
+    tick();
     expect(component.category).toBeDefined();
-  }); */
+    discardPeriodicTasks();
+  }));
 })

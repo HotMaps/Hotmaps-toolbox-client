@@ -41,22 +41,13 @@ import { InteractionService } from '../../shared/services/interaction.service';
   ]
 })
 export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
-  @Input() expanded: boolean;
-  @Input() poiTitle;
-  @Input() nutsIds;
-  @Input() layers;
-  @Input() scaleLevel;
-  @Input() locationsSelection;
-  @Input() areas;
+  // @Input() expanded: boolean;
   @Input() summaryResult;
-  @Input() loadingData;
-  @Input() buttonRef;
-  @Input() splittedResults;
+  @Input() refSelected;
 
-  expandedState = 'collapsed';
-  private round = round_value;
-  private scale = 'Nuts 3';
-  private isDataAgregate = false;
+  // @Input() loadingData;
+  // private buttonRef = default_drop_down_button;
+
 
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
@@ -67,12 +58,12 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
+    console.log('SummaryResultComponent/ngOnChanges', this.refSelected);
+    console.log('SummaryResultComponent/ngOnChanges', this.summaryResult);
+
   }
 
   ngOnDestroy() {
   }
-
-
-
 
 }

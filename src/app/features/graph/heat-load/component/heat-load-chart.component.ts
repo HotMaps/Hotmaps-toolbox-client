@@ -29,16 +29,12 @@ import { Layer} from '../../../summary-result/summary-result.class';
   styleUrls: ['./heat-load-chart.component.css']
 })
 export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() expanded: boolean;
-  @Input() nutsIds;
-  @Input() layers;
-  @Input() scaleLevel;
-  @Input() heatloadStatus;
-  @Input() areas: Layer[];
+  @Input() heatLoadPayload;
 
+  private isLoading = true;
   private dateHeatload = { year: 2010, month: 1, day: 1 }
   private buttons_date_type;
-  private chart: Chart;
+  // private chart: Chart;
   private labels;
   private options: any;
   private loadProfileData: any;
@@ -48,14 +44,12 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   private selectedButton;
   private titleDate;
   private default_year = 2010;
-  private loadingData = false;
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {
   }
   ngOnInit() {
     this.logger.log('HeatLoadChartComponent/ngOnInit');
     this.initComponent();
-
     this.update();
   }
 
@@ -148,43 +142,33 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;
-      this.loadingData = true;
-      this.interactionService.displayButtonExportStats(!this.loadingData);
+      this.isLoading = true;
+      this.interactionService.displayButtonExportStats(!this.isLoading);
       let payload: any;
-      if (this.scaleLevel === '-1') { // updating chart with data by hectare
-        isHectare = true;
-        const area = this.areas;
-        const areas = [];
-        this.areas.map((layer: Layer) => {
-          const points = [];
-          if (layer instanceof L.Circle) {
-            areas.push({points: this.helper.getLocationsFromCicle(layer)})
-          } else {
-            areas.push({points: this.helper.getLocationsFromPolygon(layer)})
-          }
-        });
-
-        payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, areas);
-
-      }else { // updating chart with data by nuts
-        payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
+      if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
+        if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
+          isHectare = true;
+          payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.areas);
+        }else { // updating chart with data by nuts
+          payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
+        }
       }
-
+      console.log('heatloadPayloadInComponent: ', JSON.stringify(payload))
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
-        this.logger.log('HeatLoadComponent/update = ' + result);
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
         this.options = heat_load_graph_options;
+        this.interactionService.setHeatLoadData({dataset: this.datasets, labels: this.labels})
       }).then(() => {
-        this.loadingData = false;
-        this.interactionService.displayButtonExportStats(!this.loadingData);
+        this.isLoading = false;
+        this.interactionService.displayButtonExportStats(!this.isLoading);
       }).catch((e) => {
         this.logger.log(JSON.stringify(e))
-        this.loadingData = false;
-        this.interactionService.displayButtonExportStats(!this.loadingData)
+        this.isLoading = false;
+        this.interactionService.displayButtonExportStats(!this.isLoading)
       });
     }
   }

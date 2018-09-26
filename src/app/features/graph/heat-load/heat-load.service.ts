@@ -8,7 +8,7 @@ import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
 import {APIService} from '../../../shared/services/api.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
-import {apiUrl, heat_load_api_year, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
+import {apiUrl, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import { Helper } from 'app/shared';
 
@@ -25,11 +25,17 @@ export class HeatLoadAggregateService extends APIService {
     {label: 'Value', data: [], borderColor: '#2889DF', fill: false}
   ]
   private formattedValues = [];
-
+  private heatLoadData = new BehaviorSubject<any>(null);
 
   private labels = [];
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
+  }
+  setHeatLoadData(data) {
+    this.heatLoadData.next(data)
+  }
+  getHeatLoadData() {
+    return this.heatLoadData;
   }
 
   getHeatLoad(payload, type_api_ref, isHectare) {

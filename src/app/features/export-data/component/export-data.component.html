@@ -1,16 +1,16 @@
-
+<!--
 <div *ngIf="heatloadStatus;then energy_stat_content else normal_content" class="energy-statistic"></div>
-<ng-template #energy_stat_content>
+<ng-template #energy_stat_content> -->
 
   <!-- if we are on summary tabs-->
-
+<!--
   <div class="divButtonExport" *ngIf="isInSummary && loadingSummary"  >
     <button id="exportSummary" class="uk-button uk-button-secondary"   (click)="export() ">Export</button>
-  </div>
+  </div> -->
 
   <!-- if we are on stats tabs-->
 
-  <div class="divButtonExport" *ngIf="!isInSummary && loadingStats" >
+  <!-- <div class="divButtonExport" *ngIf="!isInSummary && loadingStats" >
     <button id="exportstats" class="uk-button uk-button-secondary"   (click)="export() ">Export</button>
   </div>
 
@@ -21,4 +21,8 @@
   <div class="divButtonExport" *ngIf="loadingSummary">
     <button id="exportBtn" class="uk-button uk-button-secondary"   (click)="export() ">Export</button>
   </div>
-</ng-template>
+</ng-template> -->
+<div *ngIf="displayButton">
+  <button id="exportBtn" class="uk-button uk-button-secondary"   (click)="export()">Export</button>
+</div>
+

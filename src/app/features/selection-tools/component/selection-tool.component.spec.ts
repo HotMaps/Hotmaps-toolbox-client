@@ -65,8 +65,7 @@ describe('SelectionToolComponent', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
-        {provide: CMLayersService, useClass : CMLayersService },
-
+        { provide: CMLayersService, useClass: CMLayersService}
       ]
     })
     .compileComponents();
