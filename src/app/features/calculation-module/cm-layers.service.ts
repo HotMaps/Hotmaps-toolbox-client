@@ -15,7 +15,7 @@ export class CMLayersService extends APIService {
 
   private layersCM = new L.FeatureGroup();
   private cmLayersArray: Dictionary;
-
+  private layerAdded;
 
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
@@ -35,16 +35,16 @@ export class CMLayersService extends APIService {
   }
   addLayerWithAction(directory, map: any, order: number) {
 
-    const layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+    this.layerAdded = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
       minZoom: 4,
       maxZoom: 15,
       tms: true,
     })
     // this.registerToEvents(map, layer)
-    layer.addTo(this.layersCM)
+    this.layerAdded.addTo(this.layersCM)
     // layer.addTo(map)
 
-    this.layersCM.addLayer(layer);
+    this.layersCM.addLayer(this.layerAdded);
 
   }
   removelayer() {

@@ -63,6 +63,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateCMResult() {
     const self = this;
+    console.log('updateCMResult()')
+    self.interactionService.deleteCM(this.status_id);
+    self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
@@ -171,10 +174,12 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.stopAnimation()
         this.logger.log('status' + response["status"])
 
-        /* if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
-          this.mapService.displayCustomLayerFromCM(response.status.tile_directory);
+        if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
+          response.status.result.raster_layers.map((raster) => {
+            this.mapService.displayCustomLayerFromCM(raster.path);
+          })
           // this.cmRunned.cm_url = response.status.tile_directory
-        } */
+        }
         if (response.status.result.indicator.length >= 1) {
           this.result.indicators.layers.push({
             name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
