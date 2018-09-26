@@ -354,6 +354,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
         cm_id: '' + this.cmRunned.cm.cm_id
       }
 
+      this.logger.log('payload ' + pload)
+
 
 
       this.interactionService.getCMInformations(pload, this.cmRunned).then((data) => {
@@ -419,7 +421,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       const response = JSON.parse(data["_body"])
       if (response["state"] === 'SUCCESS') {
         this.deleteCMID(status_id)
-        this.logger.log('status' + response["status"])
+        this.logger.log('status' +  JSON.stringify(response["status"]) )
+
         this.summaryResult.layers.push({name: cmRunned.cm.cm_name, values: response.status.values});
         this.updateResult();
         if (!this.helper.isNullOrUndefined(response.status.tile_directory)) {
