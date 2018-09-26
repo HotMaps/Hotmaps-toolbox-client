@@ -45,15 +45,14 @@
           </div>
           <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max: {{component.input_max}} {{component.input_unit}};</span>
         </div>
-        <button  class="uk-button uk-button-primary" [class.unclickable]="cmSelectedStatusId" (click)="!cmSelectedStatusId ? runCM() : null">
-          <span *ngIf="!cmSelectedStatusId">Run CM</span>
-          <span *ngIf="cmSelectedStatusId" uk-spinner></span>
+
+        <button  class="uk-button uk-button-primary" [class.unclickable]="cmRunning" (click)="!cmRunning ? runCM() : null">
+          <span *ngIf="!cmRunning">Run CM</span>
+          <span *ngIf="cmRunning" uk-spinner></span>
         </button>
-<!--         <button  *ngIf="cmSelectedStatusId" class="uk-button uk-button-primary" (click)="resetCM()">Reset CM</button>
- -->
+
         <div class="uk-margin"></div>
-        <progress id="js-progressbar" class="uk-progress" value="0" max="100"></progress>
-        <!--<button class="uk-button uk-button-danger" (click)="resetCM()">Reset CM</button>-->
+        <progress id="js-progressbar" class="uk-progress" value="{{progress}}" max="100"></progress>
 
 
 

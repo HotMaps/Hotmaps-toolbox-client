@@ -135,6 +135,12 @@ export class InteractionService {
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
+    getHeatLoadData() {
+      return this.heatLoadAggregateService.getHeatLoadData()
+    }
+    setHeatLoadData(data) {
+      return this.heatLoadAggregateService.setHeatLoadData(data)
+    }
     formatHeatLoadForChartjs(data, api_ref){
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     }
@@ -144,6 +150,10 @@ export class InteractionService {
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
     }
+    getDefaultDatasetDurationCurve() {
+      return this.durationCurveService.getDefaultDatasetDurationCurve();
+
+    }
     getSplittedResults(results){
         return this.dataInteractionService.getSplittedResults(results);
     }
@@ -151,8 +161,8 @@ export class InteractionService {
         return this.dataInteractionService.getSplittedResults(r);
     }
 
-    getElectricityMixFromNuts0(payload): Promise<any> {
-    return this.electricityMixService.getElectricityMixFromNuts0(payload);
+    getElectricityMix(payload): Promise<any> {
+    return this.electricityMixService.getElectricityMix(payload);
     }
     enableOpenStateWithId(id) {
         this.navigationBarService.enableOpenStateWithId(id);
@@ -167,26 +177,30 @@ export class InteractionService {
     setCMResult(summaryResult, cm): Promise<any> {
       return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
     }
-    getCMInformations(payload, cmRunned): Promise<any> {
-      return this.calculationModuleService.getCMInformations(payload, cmRunned)
+    getCMInformations(payload): Promise<any> {
+      return this.calculationModuleService.getCMInformations(payload)
     }
     getStatusAndCMResult(id): Promise<any> {
 
-        return this.calculationModuleService.getStatusOfCM(id)
-      }
+      return this.calculationModuleService.getStatusOfCM(id)
+    }
+    /* getCMResultMockData(payload) {
+      return this.calculationModuleService.getCMResultMockData(payload)
+
+    } */
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
     setStatusCMPanel(value) {
       return this.calculationModuleStatusService.setStatusCMPanel(value)
     }
-    setStatusIdCM(status_id) {
-      this.calculationModuleStatusService.setStatusIdCM(status_id)
+    setCMAnimationStatus(value) {
+      this.calculationModuleStatusService.setCmAnimationStatus(value);
     }
-    deleteCM(status_id) {
-      this.calculationModuleService.deleteCM(status_id)
+    undefinedCmRunned() {
+      this.calculationModuleStatusService.undefinedCmRunned()
     }
-    getStatusID() {
-      return this.calculationModuleStatusService.getStatusIdCM()
+    deleteCM(id) {
+      return this.calculationModuleService.deleteCM(id)
     }
 }

@@ -28,7 +28,6 @@ export class CalculationModuleService extends APIService {
     return super.POST('', apiUrl + '/cm/list')
   }
   getCalculationModuleComponents(cmId): Promise<any> {
-    console.log(cmId)
     const payload = { cm_id: '' + cmId }
     return super.POST(payload, apiUrl + '/cm/user-interface/')
   }
@@ -36,12 +35,11 @@ export class CalculationModuleService extends APIService {
   getCalculationModuleCategories(cms) {
     this.categories.clear()
     cms.forEach((cm) => {
-      console.log(cm)
       if (cm.isReadable) { this.categories.add(cm.category) }
     });
     return Promise.resolve(Array.from(this.categories.values()));
   }
-  getCMInformations(payload, cm) {
+  getCMInformations(payload) {
     // if (!cm.isApiRequestInTreatment) {
       this.logger.log( 'data ' + JSON.stringify(payload) )
       // URL to check status
@@ -57,15 +55,14 @@ export class CalculationModuleService extends APIService {
   }
   getStatusOfCM(status_id) {
     this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
-    return super.pGET(apiUrl + '/cm/status/' + status_id)
+    return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
+    .catch(this.handleError.bind(this));
   }
-  deleteCM(status_id) {
-    this.logger.log('deleteCM():' + apiUrl + '/cm/status/' + status_id)
+  /* getCMResultMockData(payload) {
+    return this.http.get('http://albain-hotmaps:4200/assets/mockdata_graphic.txt').toPromise()
 
-    return super.DELETE(apiUrl + 'cm/delete/' + status_id)
+  } */
+  deleteCM(id) {
+    return super.DELETE(apiUrl + '/cm/delete/' + id)
   }
-
-
-
-
 }

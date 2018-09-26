@@ -1,3 +1,4 @@
+import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -89,7 +90,7 @@ describe('MapComponent', () => {
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent
       ],
       providers: [
         {

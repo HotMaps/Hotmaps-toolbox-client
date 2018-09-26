@@ -1,26 +1,56 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Helper } from './../../../shared/helper';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 
 import { ExportDataService} from '../service/export-data.service';
 import {Logger} from '../../../shared/services/logger.service';
-import {tab1} from '../../../shared/data.service';
+import { tab1_datapanel, tab2_datapanel} from '../../../shared/data.service';
 
 @Component({
   selector: 'htm-export-data',
   templateUrl: './export-data.component.html',
   styleUrls: ['./export-data.component.css']
 })
-export class ExportDataComponent implements OnInit, OnDestroy {
+export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
   private loadingSummary: boolean;
   private loadingStats: boolean;
   private dataSummary: any;
   private dataStats: any;
   private isInSummary = true;
-  private tabsSelectedName = tab1;
-  @Input() heatloadStatus;
-  constructor(private exportDataService: ExportDataService, private logger: Logger) { }
+  private tabsSelectedName = tab1_datapanel;
+  /* @Input() heatloadStatus; */
+  @Input() graphics;
+  @Input() indicators;
+  @Input() heatLoadData;
+  @Input() tab = tab1_datapanel;
+  @Input() updateStatus;
+  private displayButton = true;
+  constructor(private exportDataService: ExportDataService, private logger: Logger, private helper: Helper) { }
 
   ngOnInit() {
     this.notifyService();
+  }
+  ngOnChanges(changes) {
+    console.log(changes);
+    if (!this.helper.isNullOrUndefined(changes.updateStatus)) {
+      // this.displayButton = !this.updateStatus
+      this.changeButtonState()
+    }
+  }
+  changeButtonState() {
+    console.log(this.indicators.layers, this.graphics)
+    if ((this.tab === tab1_datapanel) && (this.indicators.layers.length >= 1)) {
+      this.displayButton = true;
+    } else if (this.tab === tab2_datapanel && this.graphics.length >= 1 ) {
+      this.graphics.map((graphic) => {
+        if (graphic.data.length === 0) {
+          this.displayButton = false;
+        }
+      })
+
+    } else {
+      this.displayButton = false
+    }
+    console.log(this.displayButton)
   }
   ngOnDestroy() {
     this.logger.log('ExportDataComponent/ngOnDestroy')
@@ -63,7 +93,7 @@ export class ExportDataComponent implements OnInit, OnDestroy {
      */
     this.exportDataService.getTabsSelectedName().subscribe((val: string) => {
       this.logger.log('ExportDataComponent/getTabsSelectedName' + val)
-      if (val === tab1) {
+      if (val === tab1_datapanel) {
         this.isInSummary = true;
       } else {
         this.isInSummary = false;

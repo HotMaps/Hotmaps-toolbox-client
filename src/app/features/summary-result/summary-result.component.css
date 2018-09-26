@@ -18,10 +18,13 @@
   background-color: rgba(71, 71, 71, 0.3);
   position: relative;
 } */
+.warning > th {
+  color: red
+}
 .spinner {
-  position: absolute; 
-  left: 50%; 
-  top: 50%; 
+  position: absolute;
+  left: 50%;
+  top: 50%;
   color: black;
   margin: 15px 15px 15px -25px;
 }

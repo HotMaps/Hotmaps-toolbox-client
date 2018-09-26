@@ -15,6 +15,7 @@ export interface Value {
 export interface Layer {
   name: string;
   values: Value[];
+  category?: string[];
 }
 
 export interface Properties {

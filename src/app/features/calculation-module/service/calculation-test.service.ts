@@ -22,7 +22,6 @@ export class CalculationHeatLoadDividedService extends APIService {
 
 
   getCMResult(summaryResult, cm) {
-    console.log(summaryResult, cm);
     let cmResult = {}
     summaryResult.layers.map((layerResult) => {
       if (layerResult.name === 'heat_tot_curr_density') {
@@ -35,7 +34,6 @@ export class CalculationHeatLoadDividedService extends APIService {
           name: cm.cm.id
         }
         // layerResult.values[0].value
-        console.log(cmResult);
       }
     })
     return Promise.resolve(cmResult)

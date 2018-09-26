@@ -10,6 +10,7 @@ import * as proj4x from 'proj4';
 import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
 import { summay_drop_down_buttons } from './data.service';
+import { Layer } from 'leaflet';
 
 const proj4 = (proj4x as any).default;
 
@@ -291,7 +292,18 @@ export class Helper {
     }
     return locations
   }
-
+  getAreasForPayload(areas){
+    const ar = [];
+    areas.map((layer: Layer) => {
+      const points = [];
+      if (layer instanceof L.Circle) {
+        ar.push({ points: this.getLocationsFromCicle(layer) })
+      } else {
+        ar.push({ points: this.getLocationsFromPolygon(layer) })
+      }
+    });
+    return ar
+  }
   checkIntersect(l1, l2) {
     var intersects = false;
     for (var i = 0; i <= l1.coordinates.length - 2; ++i) {
@@ -412,6 +424,18 @@ export class Helper {
     }
     return pointCrossed;
   }
+  getScaleLevelPay(scaleLevel): string {
+    let payloadScale = ''
+
+    if (scaleLevel === '2' || scaleLevel === '3' || scaleLevel === '0' || scaleLevel === '1'){
+      payloadScale = 'nuts'
+    }else if (scaleLevel === '4'){
+      payloadScale = 'lau'
+    }else {
+      payloadScale = 'hectare'
+    }
+      return payloadScale
+    }
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }

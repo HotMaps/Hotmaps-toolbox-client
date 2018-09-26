@@ -43,52 +43,66 @@ describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
   let fixture: ComponentFixture<LeftSideComponent>;
   let debugEl: DebugElement;
-  let loggerStub: Logger;
-  let loaderServiceStub: LoaderService;
-  beforeEach(async(() => {
-    loggerStub = new Logger();
-    loaderServiceStub = new LoaderService();
-    TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent],
-      providers: [
-        {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
-        },
-        { provide: Helper, useClass: Helper },
-        { provide: DecimalPipe, useClass: DecimalPipe },
-        { provide: InteractionService, useClass: InteractionService },
-        { provide: ExportDataService, useClass: ExportDataService },
-        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
-        { provide: SidePanelService, useClass: SidePanelService },
-        { provide: SummaryResultService, useClass: SummaryResultService },
-        { provide: LayersService, useClass: LayersService },
-        { provide: NavigationBarService, useClass: NavigationBarService },
-        { provide: DataInteractionService, useClass: DataInteractionService },
-        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-        { provide: DurationCurveService, useClass: DurationCurveService },
-        { provide: ToasterService },
-        { provide: ElectricityMixService, useClass: ElectricityMixService },
-        { provide: CMLayersService, useClass: CMLayersService },
-        { provide: MockBackend, useClass: MockBackend },
-        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
-        { provide: Logger, useValue: loggerStub },
-        { provide: LoaderService, useValue: loaderServiceStub },
-        { provide: MapService, useClass: MapService },
-        { provide: SidePanelService, useClass: SidePanelService },
-        { provide: SelectionScaleService, useClass: SelectionScaleService },
-        { provide: SelectionToolService, useClass: SelectionToolService },
-        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
-        { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
-        { provide: CalculationModuleService, useClass: CalculationModuleService },
-        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        NoopAnimationsModule
-      ]
+    let loggerStub: Logger;
+    let loaderServiceStub: LoaderService;
+    beforeEach(async(() => {
+      loggerStub = new Logger();
+        loaderServiceStub = new LoaderService();
+        TestBed.configureTestingModule({
+            declarations: [ LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent ],
+            providers: [
+                {
+                  provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                    return new Http(backend, defaultOptions);
+                    }, deps: [ MockBackend, BaseRequestOptions ]
+                },
+                { provide: Helper, useClass: Helper},
+                { provide: DecimalPipe, useClass: DecimalPipe },
+                { provide: InteractionService, useClass: InteractionService },
+                { provide: ExportDataService, useClass: ExportDataService },
+                { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+                { provide: SidePanelService, useClass: SidePanelService },
+                { provide: SummaryResultService, useClass: SummaryResultService },
+                { provide: LayersService, useClass: LayersService },
+                { provide: NavigationBarService, useClass: NavigationBarService },
+                { provide: DataInteractionService, useClass: DataInteractionService },
+                { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+                { provide: DurationCurveService, useClass: DurationCurveService },
+                { provide: ToasterService },
+                { provide: ElectricityMixService, useClass: ElectricityMixService },
+                { provide: CMLayersService, useClass: CMLayersService},
+
+                { provide: MockBackend, useClass: MockBackend },
+                { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+                { provide: Logger, useValue: loggerStub },
+                { provide: LoaderService, useValue: loaderServiceStub },
+                { provide: MapService, useClass: MapService },
+                { provide: SidePanelService, useClass: SidePanelService },
+                { provide: SelectionScaleService, useClass: SelectionScaleService },
+                { provide: SelectionToolService, useClass: SelectionToolService },
+                { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+                { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+                { provide: CalculationModuleService, useClass: CalculationModuleService },
+                { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+                { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+            ],
+            imports: [
+                BrowserAnimationsModule,
+                NoopAnimationsModule
+            ]
+        });
+        fixture = TestBed.createComponent(LeftSideComponent);
+        component = fixture.componentInstance;
+        debugEl = fixture.debugElement;
+    }));
+    beforeEach(inject([MockBackend], (mockBackend: MockBackend) => {
+        backend = mockBackend;
+      }));
+    let backend: MockBackend = null;
+    it('should create left panel component', () => {
+        expect(component).toBeTruthy();
+        expect(fixture).toBeTruthy();
+        expect(debugEl).toBeTruthy();
     });
     fixture = TestBed.createComponent(LeftSideComponent);
     component = fixture.componentInstance;
@@ -104,10 +118,22 @@ describe('LeftSideComponent', () => {
     expect(debugEl).toBeTruthy();
   });
 
+<<<<<<< HEAD
   /* it('should have layer in layers array', () => {
     expect(component.layers).toBeUndefined();
     fixture.detectChanges();
     expect(component.layers).toBeDefined();
     expect(component.category).toBeDefined();
   }); */
+=======
+    it('should have layer in layers array', fakeAsync(() => {
+        expect(component.layers).toBeUndefined();
+        fixture.detectChanges();
+        tick();
+        expect(component.layers).toBeDefined();
+        tick();
+        expect(component.category).toBeDefined();
+        discardPeriodicTasks();
+    }));
+>>>>>>> clean-rightpanel
 })
