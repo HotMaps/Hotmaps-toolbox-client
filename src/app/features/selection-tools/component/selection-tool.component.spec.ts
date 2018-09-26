@@ -1,4 +1,3 @@
-import { CMLayersService } from './../../calculation-module/cm-layers.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
