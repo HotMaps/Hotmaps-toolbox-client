@@ -5615,9 +5615,9 @@ var SelectionToolService = (function (_super) {
     SelectionToolService.prototype.drawResultBeforeLoadingResult = function (result) {
         this.logger.log('result is ' + result);
         this.logger.log('result is ' + result.features);
-        if (result.features.length === 0) {
-            this.toasterService.showToaster('We encountered a problem, there is no data for this area');
-        }
+        /*if (result.features.length === 0) {
+          this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+        }*/
         if (this.helper.isNullOrUndefined(result) === false) {
             for (var _i = 0, _a = result.features; _i < _a.length; _i++) {
                 var feature = _a[_i];
@@ -9791,13 +9791,31 @@ var APIService = (function () {
     APIService.prototype.handleError = function (error) {
         this.loaderService.display(false);
         var message = error.message;
-        if (error.name === 'TimeoutError') {
-            message = 'Timeout has occurred';
+        var status = error.status;
+        var statusText = error.statusText;
+        if (this.isNullOrUndefined(message)) {
+            message = ' ';
         }
-        this.toasterService.showToaster('We encountered a problem' + ', please try again later');
+        else {
+            message = ',' + message;
+        }
+        this.toasterService.showToaster(statusText + ' ' + message);
         this.logger.log('APIService/handleError');
         this.logger.log('An error occurred: ' + error.message); // for demo purposes only
         return Promise.reject(error.message || error);
+    };
+    APIService.prototype.isNullOrUndefined = function (x) {
+        var result = false;
+        if (x == null) {
+            result = true;
+        }
+        if (x === null) {
+            result = true;
+        }
+        if (typeof x === 'undefined') {
+            result = true;
+        }
+        return result;
     };
     APIService.prototype.POST = function (payload, url) {
         return this.http

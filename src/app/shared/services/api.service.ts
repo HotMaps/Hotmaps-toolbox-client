@@ -25,6 +25,7 @@ import {Logger} from './logger.service';
 
 
 import {ToasterService} from './toaster.service';
+
 export class APIService {
   public headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
@@ -38,15 +39,37 @@ export class APIService {
   handleError(error: any) {
     this.loaderService.display(false);
     let message = error.message;
-    if (error.name === 'TimeoutError') {
-       message = 'Timeout has occurred';
+    const status = error.status;
+    const statusText = error.statusText;
+
+    if (this.isNullOrUndefined(message)) {
+       message = ' ';
+    }
+    else {
+      message = ',' + message;
     }
 
-    this.toasterService.showToaster('We encountered a problem' + ', please try again later');
+    this.toasterService.showToaster(statusText + ' ' + message);
     this.logger.log('APIService/handleError');
     this.logger.log('An error occurred: ' + error.message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
+
+  isNullOrUndefined(x: any) {
+    let result = false;
+    if (x == null) {
+      result = true;
+    }
+
+    if (x === null) {
+      result = true;
+    }
+    if (typeof x === 'undefined') {
+      result = true;
+    }
+    return result;
+  }
+
   POST(payload, url): Promise<any> {
 
     return this.http

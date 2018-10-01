@@ -347,9 +347,9 @@ export class SelectionToolService extends APIService {
   drawResultBeforeLoadingResult(result: any) {
     this.logger.log('result is ' + result);
     this.logger.log('result is ' + result.features);
-    if (result.features.length === 0) {
+    /*if (result.features.length === 0) {
       this.toasterService.showToaster('We encountered a problem, there is no data for this area');
-    }
+    }*/
     if (this.helper.isNullOrUndefined(result) === false) {
       for (const feature of result.features) {
         let selection_id;
