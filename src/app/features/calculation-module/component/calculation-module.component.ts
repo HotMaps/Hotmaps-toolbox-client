@@ -119,13 +119,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
-      this.calculationModules.map((cm) => {
+/*       this.calculationModules.map((cm) => {
         if (cm.cm_id === 1) {
           cm['type_layer_needed'] = [defaultLayerType, population_type]
         } else {
           cm['type_layer_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
         }
-      })
+      }) */
       this.setWaiting(false);
     }).then(() => {
       this.isCmsReadable()
