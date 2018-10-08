@@ -121,9 +121,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       this.calculationModules = result;
       this.calculationModules.map((cm) => {
         if (cm.cm_id === 1) {
-          cm['type_needed'] = [defaultLayerType, population_type]
+          cm['type_layer_needed'] = [defaultLayerType, population_type]
         } else {
-          cm['type_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
+          cm['type_layer_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
         }
       })
       this.setWaiting(false);
@@ -146,7 +146,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   runCM() {
     this.cmRunning = true;
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
@@ -154,14 +153,16 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   selectCM(cm) {
-    this.layersFromType = []
-    cm.type_needed.map((layerType) => {
-      this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-        this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
-      }).then(() => {
-        this.setLayerNeeded()
+    this.layersFromType = [];
+    if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
+      cm.type_layer_needed.map((layerType) => {
+        this.dataInteractionService.getLayersFromType(layerType).then((data) => {
+          this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
+        }).then(() => {
+          this.setLayerNeeded()
+        })
       })
-    })
+    }
     this.cmSelected = cm;
 
     this.toggleCMPanel(true)
