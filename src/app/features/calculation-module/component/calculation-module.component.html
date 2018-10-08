@@ -8,14 +8,17 @@
         </h3>
         <div class="uk-accordion-content">
           <ng-container *ngFor="let cm of calculationModules">
-              <span *ngIf="i === cm.category && cm.isReadable">
-                <div class="uk-container">
-                  <div class="uk-offcanvas-content">
+            <span *ngIf="i === cm.category && cm.isReadable">
+              <div class="uk-container">
+                <div class="uk-offcanvas-content">
 
-                    <button class="uk-button uk-button-default uk-margin-small-right" [class.api-inprogress]="cm.isApiRequestInTreatment" type="button" (click)="selectCM(cm)"><ng-container *ngIf="cm.isApiRequestInTreatment">Refresh</ng-container> {{cm.cm_name}}</button>
-                  </div>
+                  <button class="uk-button uk-button-default uk-margin-small-right" [class.api-inprogress]="cm.isApiRequestInTreatment"
+                    type="button" (click)="selectCM(cm)">
+                    <ng-container *ngIf="cm.isApiRequestInTreatment">Refresh</ng-container> {{cm.cm_name}}
+                  </button>
                 </div>
-              </span>
+              </div>
+            </span>
           </ng-container>
         </div>
       </li>
@@ -29,34 +32,54 @@
 <div class="uk-offcanvas-content">
   <div id="box-components" uk-offcanvas="overlay: false; bg-close: false;esc-close:false;">
     <div class="uk-offcanvas-bar">
-      <button class="uk-offcanvas-close" type="button" (click)="toggleCMPanel(false)" uk-close></button>
-      <h3 class="cm_title" *ngIf="cmSelected">{{cmSelected.cm_name}}</h3>
-      <span class="uk-margin description" *ngIf="cmSelected">{{cmSelected.cm_description}}</span><br />
-      <span class="uk-margin" *ngIf="cmSelected && cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
-      <div *ngIf="waitingCM" class="waitingboxcomponents">
-        <div class="spinner" uk-spinner></div>
-      </div>
-      <ng-container *ngIf="!waitingCM">
-        <div class="component uk-margin" *ngFor="let component of components">
-          <span class="input_title">{{component.input_name}} - (value: {{component.input_value}}{{component.input_unit}})</span>
-          <div class="uk-form-controls">
-            <input class="uk-{{component.input_type}}" id="{{component.input_parameter_name}}" value="{{component.input_value}}" type="{{component.input_type}}"
-              min="{{component.input_min}}" max="{{component.input_max}}" placeholder="{{component.input_name}}" (change)="changeValue($event, component)">
-          </div>
-          <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max: {{component.input_max}} {{component.input_unit}};</span>
+      <div *ngIf="cmSelected">
+        <button class="uk-offcanvas-close" type="button" (click)="toggleCMPanel(false)" uk-close></button>
+        <h3 class="cm_title">{{cmSelected.cm_name}}</h3>
+        <span class="uk-margin description">{{cmSelected.cm_description}}</span><br />
+        <span class="uk-margin" *ngIf="cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
+        <div *ngIf="waitingCM" class="waitingboxcomponents">
+          <div class="spinner" uk-spinner></div>
         </div>
 
-        <button  class="uk-button uk-button-primary" [class.unclickable]="cmRunning" (click)="!cmRunning ? runCM() : null">
-          <span *ngIf="!cmRunning">Run CM</span>
-          <span *ngIf="cmRunning" uk-spinner></span>
-        </button>
+        <ng-container *ngIf="!waitingCM">
+          <div class="component uk-margin" *ngFor="let component of components">
+            <span class="input_title">{{component.input_name}} - (value:
+              {{component.input_value}}{{component.input_unit}})</span>
+            <div class="uk-form-controls">
+              <input class="uk-{{component.input_type}}" id="{{component.input_parameter_name}}" value="{{component.input_value}}"
+                type="{{component.input_type}}" min="{{component.input_min}}" max="{{component.input_max}}" placeholder="{{component.input_name}}"
+                (change)="changeValue($event, component)">
+            </div>
+            <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max: {{component.input_max}}
+              {{component.input_unit}};</span>
+          </div>
 
-        <div class="uk-margin"></div>
-        <progress id="js-progressbar" class="uk-progress" value="{{progress}}" max="100"></progress>
+          <div *ngIf="layersFromType.length >= 1" class="uk-margin">
+            <div *ngFor="let layersTable of layersFromType">
+              <span class="input_title">Input type ({{layersTable.layerType}}) selection</span>
+              <select class="uk-select" [(ngModel)]="layersTable.layerSelected" (change)="setLayerNeeded()">
+                <ng-container *ngFor="let layer of layersTable.layers;">
+                  <option [ngValue]="layer.workspaceName">
+                    {{layer.name}}
+                  </option>
+
+                </ng-container>
+              </select>
+            </div>
+          </div>
+          <button class="uk-button uk-button-primary" [class.unclickable]="cmRunning" (click)="!cmRunning ? runCM() : null">
+            <span *ngIf="!cmRunning">Run CM</span>
+            <span *ngIf="cmRunning" uk-spinner></span>
+          </button>
+
+          <div class="uk-margin"></div>
+          <progress id="js-progressbar" class="uk-progress" value="{{progress}}" max="100"></progress>
 
 
 
-    </ng-container>
+        </ng-container>
+      </div>
     </div>
+
   </div>
 </div>

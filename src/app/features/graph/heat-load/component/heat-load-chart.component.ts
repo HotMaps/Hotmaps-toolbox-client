@@ -153,7 +153,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
           payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
         }
       }
-      console.log('heatloadPayloadInComponent: ', JSON.stringify(payload))
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
         this.loadProfileData = [];
         this.interactionService.setDataStats(result);

@@ -38,6 +38,7 @@ import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 import { CMLayersService } from '../../calculation-module/cm-layers.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -87,7 +88,9 @@ describe('LeftSideComponent', () => {
       ],
       imports: [
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule
       ]
     });
     fixture = TestBed.createComponent(LeftSideComponent);

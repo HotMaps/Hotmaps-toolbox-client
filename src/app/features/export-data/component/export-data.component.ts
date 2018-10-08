@@ -30,14 +30,12 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
     this.notifyService();
   }
   ngOnChanges(changes) {
-    console.log(changes);
     if (!this.helper.isNullOrUndefined(changes.updateStatus)) {
       // this.displayButton = !this.updateStatus
       this.changeButtonState()
     }
   }
   changeButtonState() {
-    console.log(this.indicators.layers, this.graphics)
     if ((this.tab === tab1_datapanel) && (this.indicators.layers.length >= 1)) {
       this.displayButton = true;
     } else if (this.tab === tab2_datapanel && this.graphics.length >= 1 ) {
@@ -50,7 +48,6 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
     } else {
       this.displayButton = false
     }
-    console.log(this.displayButton)
   }
   ngOnDestroy() {
     this.logger.log('ExportDataComponent/ngOnDestroy')

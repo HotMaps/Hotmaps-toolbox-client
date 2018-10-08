@@ -63,7 +63,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateCMResult() {
     const self = this;
-    console.log('updateCMResult()')
     self.interactionService.deleteCM(this.status_id);
     self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {

@@ -9,12 +9,12 @@ import 'jquery';
 // listing import lines alphabetized by the module
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent } from './';
+import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 
 
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
