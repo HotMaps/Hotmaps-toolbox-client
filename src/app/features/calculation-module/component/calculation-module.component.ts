@@ -116,7 +116,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
   updateCMs() {
 
-    this.calculationModuleService.getMockCalculationModules().then((result) => {
+    this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
       this.calculationModules.map((cm) => {
