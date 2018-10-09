@@ -3,7 +3,6 @@
 import { DataInteractionClass } from './layers-interaction.class';
 import { business_name_wwtp, defaultLayer, populationLayerName, idDefaultLayer, calculation_module_category } from '../../shared/data.service';
 import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.service';
-
 export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
@@ -67,9 +66,18 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
     workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission'},
-  {id: 20, name: 'CM District Heating Potential', category: 'Calculation module', isSelected: false,
+  {id: 20, name: 'CM District Heating Potential', category: calculation_module_category, isSelected: false,
     workspaceName: 'CM District Heating Potential', zoomLevel: 0, ref: ['overall', 'demand', calculation_module_category], styleName: ''},
 ];
+export const cm_default_layer = {
+    id: 21, name: '',
+    category: calculation_module_category,
+    isSelected: true,
+    workspaceName: '',
+    zoomLevel: 0, ref: ['overall', calculation_module_category],
+    styleName: ''
+}
+
 
 
 
