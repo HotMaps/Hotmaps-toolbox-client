@@ -66,7 +66,14 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.layerArray.next(this.layersService.getLayerArray().keys())
 
   }
-
+  addGeoJsonLayer() {
+    /* this.http.get('http://albain-hotmaps:4200/assets/geojson_test.geojson').toPromise().then((data:any) => {
+      L.geoJSON(data).addTo(this.map);
+    })
+    this.http.get('http://albain-hotmaps:4200/assets/geojson_test2.geojson').toPromise().then((data:any) => {
+      L.geoJSON(data).addTo(this.map);
+    }) */
+  }
   ngOnDestroy(): void {
     this.logger.log('MapService/ngOnDestroy()');
   }
