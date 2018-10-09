@@ -148,12 +148,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       layerName: 'rivers_tiles'
     }).addTo(this.map); */
 
-    /* shpjs('http://albain-hotmaps:4200/assets/Shapefiles.zip').then((geojson) => {
+    /* shpjs('http://albain-hotmaps:4200/assets/shape.zip').then((geojson) => {
       L.geoJSON(geojson).addTo(this.map);
       // console.log()
     }) */
-    L.geoJSON('../../../../assets/geojson_test.geojson').addTo(this.map);
-    L.geoJSON('../../../../assets/geojson_test2.geojson').addTo(this.map);
+    this.mapService.addGeoJsonLayer()
 
     // console.log(L.Shapefile('http://albain-hotmaps:4200/assets/shape_test.zip'))
 

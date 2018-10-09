@@ -67,12 +67,32 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
   }
   addGeoJsonLayer() {
-    /* this.http.get('http://albain-hotmaps:4200/assets/geojson_test.geojson').toPromise().then((data:any) => {
-      L.geoJSON(data).addTo(this.map);
+    this.http.get('http://albain-hotmaps:4200/assets/geojson_test.geojson').toPromise().then((data) => {
+      console.log('geojsonlayer1', data.json())
+      const geojsonlayer = L.geoJSON(data.json(), {
+        style: function (feature:any) {
+          console.log(feature)
+          return { "color": feature.properties.color,
+          "weight": 5,
+          "opacity": 1 };
+      }
+      }).addTo(this.map)
+      // this.map.addLayer(geojsonlayer)
+      this.map.fitBounds(geojsonlayer.getBounds())
     })
-    this.http.get('http://albain-hotmaps:4200/assets/geojson_test2.geojson').toPromise().then((data:any) => {
-      L.geoJSON(data).addTo(this.map);
-    }) */
+    this.http.get('http://albain-hotmaps:4200/assets/geojson_test2.geojson').toPromise().then((data) => {
+      console.log('geojsonlayer2', data.json())
+      const geojsonlayer = L.geoJSON(data.json(), {
+        style: function (feature) {
+          console.log(feature)
+          return { color: 'green' };
+        }
+      }).addTo(this.map)
+      // this.map.addLayer(geojsonlayer)
+    })
+  }
+  onEachFeature(event) {
+    console.log(event)
   }
   ngOnDestroy(): void {
     this.logger.log('MapService/ngOnDestroy()');
