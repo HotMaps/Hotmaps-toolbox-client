@@ -67,7 +67,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
   }
   addGeoJsonLayer() {
-    this.http.get('http://albain-hotmaps:4200/assets/geojson_test.geojson').toPromise().then((data) => {
+    /* this.http.get('http://albain-hotmaps:4200/assets/geojson_test.geojson').toPromise().then((data) => {
       console.log('geojsonlayer1', data.json())
       const geojsonlayer = L.geoJSON(data.json(), {
         style: function (feature:any) {
@@ -89,7 +89,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
         }
       }).addTo(this.map)
       // this.map.addLayer(geojsonlayer)
-    })
+    }) */
   }
   onEachFeature(event) {
     console.log(event)

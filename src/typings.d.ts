@@ -28,6 +28,7 @@ declare namespace L {
      */
   }
 }
+
 declare namespace L {
   export class EditToolbar {
 

@@ -4,6 +4,7 @@ import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angul
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
 declare const L: any;
+import '@ngageoint/leaflet-geopackage';
 
 
 
@@ -20,7 +21,6 @@ import {geoserverUrl} from '../../../shared/data.service';
 /* import '../../../../assets/plugin/leaflet.shapefile/catiline.js';
  */
 import * as shpjs from 'shpjs';
-// import '@ngageoint/leaflet-geopackage';
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -153,7 +153,10 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       // console.log()
     }) */
     this.mapService.addGeoJsonLayer()
-
+    L.geoPackageTileLayer({
+      geoPackageUrl: 'http://ngageoint.github.io/GeoPackage/examples/rivers.gpkg',
+      layerName: 'rivers_tiles'
+  }).addTo(this.map);
     // console.log(L.Shapefile('http://albain-hotmaps:4200/assets/shape_test.zip'))
 
   }
