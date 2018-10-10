@@ -139,6 +139,9 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   update() {
+    this.interactionService.setHeatLoadData(null)
+    this.interactionService.setDataStats(null);
+
 
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;

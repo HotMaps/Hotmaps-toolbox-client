@@ -1,5 +1,5 @@
 import { Helper } from './../../../shared/helper';
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 
 import { ExportDataService} from '../service/export-data.service';
 import {Logger} from '../../../shared/services/logger.service';
@@ -11,34 +11,53 @@ import { tab1_datapanel, tab2_datapanel} from '../../../shared/data.service';
   styleUrls: ['./export-data.component.css']
 })
 export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() indicators;
+  @Input() graphics;
+  @Input() tabSelected;
+  @Input() displayExportDataStatus;
+
+
   private loadingSummary: boolean;
-  private loadingStats: boolean;
   private dataSummary: any;
   private dataStats: any;
   private isInSummary = true;
   private tabsSelectedName = tab1_datapanel;
+  private isChartValue = false;
   /* @Input() heatloadStatus; */
-  @Input() graphics;
+  /* @Input() graphics;
   @Input() indicators;
   @Input() heatLoadData;
   @Input() tab = tab1_datapanel;
-  @Input() updateStatus;
+  @Input() updateStatus; */
   private displayButton = true;
   constructor(private exportDataService: ExportDataService, private logger: Logger, private helper: Helper) { }
 
   ngOnInit() {
     this.notifyService();
   }
+  /* ngDoCheck(): void {
+    if (this.graphics.length >= 1) {
+      console.log(this.graphics)
+    }
+
+    if (this.indicators.layers.length >= 1) {
+      console.log(this.indicators.layers)
+    }
+  } */
   ngOnChanges(changes) {
     console.log(changes);
-    if (!this.helper.isNullOrUndefined(changes.updateStatus)) {
+    // this.changeButtonState()
+    /* if (!this.helper.isNullOrUndefined(changes.updateStatus)) {
       // this.displayButton = !this.updateStatus
       this.changeButtonState()
-    }
+    } */
   }
   changeButtonState() {
-    console.log(this.indicators.layers, this.graphics)
-    if ((this.tab === tab1_datapanel) && (this.indicators.layers.length >= 1)) {
+
+    // console.log(this.displayExportDataStatus)
+    /*console.log(this.indicators.layers, this.graphics)
+     if ((this.tab === tab1_datapanel) && (this.indicators.layers.length >= 1)) {
       this.displayButton = true;
     } else if (this.tab === tab2_datapanel && this.graphics.length >= 1 ) {
       this.graphics.map((graphic) => {
@@ -49,8 +68,8 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
 
     } else {
       this.displayButton = false
-    }
-    console.log(this.displayButton)
+    } */
+    // console.log(this.displayButton)
   }
   ngOnDestroy() {
     this.logger.log('ExportDataComponent/ngOnDestroy')
@@ -72,42 +91,36 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     /**
-     * subcribe the status of the stats result
-     *
-     */
-    this.exportDataService.getStatsStatus().subscribe((val: boolean) => {
-      this.loadingStats = val;
-    });
-
-    /**
      * subcribe the data of the stats result
      *
      */
     this.exportDataService.getDataStats().subscribe((val: any) => {
       this.logger.log('ExportDataComponent/getDataStats' + JSON.stringify(val))
-      this.dataStats = val;
-    });
-    /**
-     * subcribe the status of the tabs on which tabs are we?
-     *
-     */
-    this.exportDataService.getTabsSelectedName().subscribe((val: string) => {
-      this.logger.log('ExportDataComponent/getTabsSelectedName' + val)
-      if (val === tab1_datapanel) {
-        this.isInSummary = true;
+      if (!this.helper.isNullOrUndefined(val)) {
+        this.isChartValue = true;
+        this.dataStats = val;
       } else {
-        this.isInSummary = false;
+        this.isChartValue = false;
       }
-      this.logger.log('setisinsummary:' + this.isInSummary)
-      this.tabsSelectedName = val;
     });
   }
   export() {
-    if (this.isInSummary === true) {
+    if (this.tabSelected === tab1_datapanel) {
+      if (!this.helper.isNullOrUndefined(this.indicators.layers)) {
+        this.exportDataService.exportData(this.indicators.layers, true, this.tabSelected)
+
+      }
+    } else if (this.tabSelected === tab2_datapanel) {
+      if (!this.helper.isNullOrUndefined(this.dataStats)) {
+        this.exportDataService.exportData(this.dataStats.values, false, this.tabSelected)
+      }
+    }
+    console.log(JSON.stringify(this.graphics), JSON.stringify(this.indicators), this.tabSelected)
+    /* if (this.isInSummary === true) {
       this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName)
     } else {
       this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName)
-    }
+    } */
   }
 
 

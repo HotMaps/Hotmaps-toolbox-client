@@ -144,7 +144,6 @@ export const leftPanelSize = 400;
 // tab values
 export const default_tab_datapanel = 'indicator'
 export const tab1_datapanel = default_tab_datapanel
-
 export const tab2_datapanel = 'charts'
 
 

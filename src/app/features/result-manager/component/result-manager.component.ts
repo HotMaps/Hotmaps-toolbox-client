@@ -1,4 +1,4 @@
-import { energy_mix_options, summay_drop_down_buttons, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category, heatloadprofile, calculation_module_category } from './../../../shared/data.service';
+import { energy_mix_options, summay_drop_down_buttons, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category, heatloadprofile, calculation_module_category, tab2_datapanel, tab1_datapanel } from './../../../shared/data.service';
 import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Graphics, IndicatorResult } from './../service/result-manager';
@@ -26,12 +26,16 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private animationTimeout;
   private status_id;
   private progressCmAnimation = 0;
+  private updateExportButton=false;
   private noIndicator = true
   private indicatorLoading = true
-  private tabSelected = 'indicator';
+  private tab1=tab1_datapanel;
+  private tab2=tab2_datapanel;
+  private tabSelected = this.tab1;
   private exportbuttonDisplay;
   private dropdown_btns = summay_drop_down_buttons;
   private selectedButton = this.dropdown_btns[0];
+  private heatloadGraph;
   private result: ResultManagerPayload = {
     indicators: { layers: null, no_data_layers: null, no_table_layers: null },
     graphics: null, raster_layers: null, vector_layers: null
@@ -44,7 +48,15 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.interactionService.getHeatLoadData().subscribe((heatload) => {
-      this.heatLoadData = heatload;
+      if (!this.helper.isNullOrUndefined(heatload)) {
+        this.heatLoadData = heatload;
+        this.heatloadGraph.data = this.heatLoadData.dataset
+        this.heatloadGraph.labels = this.heatLoadData.labels
+        this.displayExportDataStatus = Object.assign({}, true);
+      } else {
+        this.displayExportDataStatus = false;
+
+      }
     })
   }
   ngOnDestroy() { }
@@ -133,7 +145,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
   updateHeatLoadResult() {
-    this.addGraphic(heatloadprofile, 'line', [], [], heat_load_graph_options, 'heatload', true)
+    this.heatloadGraph = this.addGraphic(heatloadprofile, 'line', [], [], heat_load_graph_options, 'heatload', true)
   }
   updateDurationCurveResult() {
     const self = this;

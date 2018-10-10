@@ -8,10 +8,10 @@
   </div>
 </span>
 <ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
-  <li id="tab1" (click)="tabSwitch('indicator')">
+  <li id="tab1" (click)="tabSwitch(tab1)">
     <a href="">INDICATORS</a>
   </li>
-  <li id="tab2" [class.uk-disabled]="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" (click)="tabSwitch('charts')">
+  <li id="tab2" [class.uk-disabled]="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" (click)="tabSwitch(tab2)">
     <a href="">GRAPHICS</a>
   </li>
 
@@ -41,7 +41,9 @@
     <!-- <div class="spinner" *ngIf="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" uk-spinner="ratio: 3"></div> -->
   </li>
 </ul>
-<!-- <div *ngIf="result.graphics.length !== 0 || result.indicators.length !== 0">
-  <htm-export-data [updateStatus]="displayExportDataStatus" [indicators]="result.indicators" [graphics]="result.graphics" [tab]="tabSelected" [heatLoadData]="heatLoadData"></htm-export-data>
-</div> -->
+<div>
+  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators" [tabSelected]="tabSelected" [displayExportDataStatus]="displayExportDataStatus"></htm-export-data>
+<!--   <htm-export-data [updateStatus]="displayExportDataStatus" [indicators]="result.indicators" [graphics]="result.graphics" [tab]="tabSelected" [heatLoadData]="heatLoadData"></htm-export-data>
+ -->
+</div>
 
