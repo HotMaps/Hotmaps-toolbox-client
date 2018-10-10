@@ -38,8 +38,9 @@ export class DataInteractionService extends APIService {
   }
   addNewLayer(name, id) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
-    DataInteractionArray[newLayerAdded - 1].name = name + ' - ' + id.substring(0, 5)
-    DataInteractionArray[newLayerAdded - 1].workspaceName = id;
+    DataInteractionArray[newLayerAdded - 1].name = name + ' - ' + id.substring(0, 5);
+    DataInteractionArray[newLayerAdded - 1].workspaceName = name;
+    DataInteractionArray[newLayerAdded - 1].cm_id = id;
     // console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {

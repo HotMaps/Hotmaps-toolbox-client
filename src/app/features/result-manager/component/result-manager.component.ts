@@ -75,11 +75,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateCMResult() {
     const self = this;
-<<<<<<< HEAD
-    console.log('updateCMResult()')
-    // this.dataInteractionService.addNewLayer(this.cmPayload.cm.cm_name, this.status_id)
-=======
->>>>>>> feature-typelayer
     self.interactionService.deleteCM(this.status_id);
     // self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
@@ -256,6 +251,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.noIndicator = true
     } else {
       this.result.indicators.layers.map((layer) => {
+        console.log(layer)
         if (!this.helper.isNullOrUndefined(layer.name)) {
           const refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
           layer.category = refToDisplay

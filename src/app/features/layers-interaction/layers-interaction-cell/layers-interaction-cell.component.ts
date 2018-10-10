@@ -45,7 +45,7 @@ export class DataInteractionCellComponent implements OnInit {
   @Input() expanded: boolean;
   private loading = true;
   private imageUrl = urlLegend
-
+  private cm_cat = calculation_module_category;
   constructor(private mapService: MapService, private interactionService: InteractionService) { }
   ngOnInit() {
   }
@@ -57,7 +57,7 @@ export class DataInteractionCellComponent implements OnInit {
     if (this.interactionService.getSummaryResultState() === false) {
       this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
       if (this.dataInteraction.category === calculation_module_category) {
-        this.mapService.displayCustomLayerFromCM(this.dataInteraction.workspaceName)
+        this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id)
       } else {
         this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, this.dataInteraction.id);
         if (this.dataInteraction.zoomLevel > 0) {
@@ -67,5 +67,7 @@ export class DataInteractionCellComponent implements OnInit {
       }
     }
   }
-
+  getIdSubtringing(id) {
+    return id.substring(0, 5)
+  }
 }

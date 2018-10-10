@@ -1,3 +1,4 @@
+import { calculation_module_category } from './../../../shared/data.service';
 import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
 import { Helper } from './../../../shared/helper';
 import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
@@ -80,7 +81,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   private layersSelected = [];
   private nbElementsSelected = 0;
   layers: DataInteractionClass[];
-  category: DataInteractionClass[];
+  category = [];
   private isZoneSelected = false;
 
   expanded = false;
@@ -126,6 +127,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     this.layers = layers
     this.category = layers.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
+    this.category.push(calculation_module_category)
   }
 
   ngOnDestroy() {

@@ -8,4 +8,5 @@ export class DataInteractionClass {
   styleName: string;
   ref: any[];
   layer_type: string;
+  cm_id?: string;
 }

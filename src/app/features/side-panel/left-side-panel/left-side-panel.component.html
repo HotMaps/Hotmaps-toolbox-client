@@ -15,7 +15,6 @@
       <li>
           <span *ngIf="expanded" [@titleTextTrigger]="'in'">
               <ul uk-accordion *ngFor="let i of category">
-                <ng-container *ngIf="i !== 'CM'">
                   <li class="uk-open">
                     <h3 class="uk-accordion-title">
                       {{i}}
@@ -29,7 +28,6 @@
                     </div>
 
                   </li>
-              </ng-container>
               </ul>
             </span>
       </li>

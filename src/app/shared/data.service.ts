@@ -75,7 +75,7 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 export const default_drop_down_button = 'overall';
-export const calculation_module_category = 'calculation_module'
+export const calculation_module_category = 'Calculation module'
 
 export const summay_drop_down_buttons = [
   { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
