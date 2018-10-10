@@ -117,5 +117,9 @@ export class DataInteractionService extends APIService {
     this.logger.log(' newResults rLayers ' + newResults);
     return newResults;
   }
-
+  getLayersFromType(layer) {
+    return this.getDataInteractionServices().then((data) => {
+      return data.filter(x => x.layer_type === layer)
+    })
+  }
 }

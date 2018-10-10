@@ -1,3 +1,4 @@
+import { cms } from './../component/mock-calculation.data';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -26,6 +27,9 @@ export class CalculationModuleService extends APIService {
 
   getCalculationModuleServices(): Promise<any> {
     return super.POST('', apiUrl + '/cm/list')
+  }
+  getMockCalculationModules(): Promise<any> {
+    return Promise.resolve(cms)
   }
   getCalculationModuleComponents(cmId): Promise<any> {
     const payload = { cm_id: '' + cmId }

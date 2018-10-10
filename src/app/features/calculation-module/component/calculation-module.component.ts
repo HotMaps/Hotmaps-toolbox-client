@@ -1,3 +1,5 @@
+import { defaultLayerType } from './../../../shared/data.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { Helper } from './../../../shared/helper';
@@ -21,6 +23,7 @@ import { CalculationModuleStatusService } from '../service/calcultation-module-s
 import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
 import {Logger} from "../../../shared/services";
+import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
 
 @Component({
   selector: 'htm-cms',
@@ -45,14 +48,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   private calculationModules;
   private categories;
   private components;
-  private cmName;
   private waitingCM = false;
   private cmSelected;
   private cmRunning;
+  private layersFromType = [];
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
-    private mapService: MapService,
+    private dataInteractionService: DataInteractionService,
     private helper: Helper, private logger: Logger) { }
 
   ngOnInit() {
@@ -61,8 +64,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-/*     console.log(changes.layersSelected.currentValue)
- */
     this.isCmsReadable();
     // this.layersSelected.includes(this.calculationModules.layer_needed)
   }
@@ -80,7 +81,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       } else {
         this.cmRunning = false;
       }
-      console.log('progress', this.progress)
+      this.logger.log('CM progress:' + this.progress)
     })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
@@ -109,7 +110,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   resetCM() {
-    console.log(this.cmSelected)
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
     this.calculationModuleStatusService.undefinedCmRunned();
@@ -119,6 +119,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
+/*       this.calculationModules.map((cm) => {
+        if (cm.cm_id === 1) {
+          cm['type_layer_needed'] = [defaultLayerType, population_type]
+        } else {
+          cm['type_layer_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
+        }
+      }) */
       this.setWaiting(false);
     }).then(() => {
       this.isCmsReadable()
@@ -139,16 +146,26 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   runCM() {
     this.cmRunning = true;
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
 
   }
+
   selectCM(cm) {
-    this.cmSelected = cm
+    this.layersFromType = [];
+    if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
+      cm.type_layer_needed.map((layerType) => {
+        this.dataInteractionService.getLayersFromType(layerType).then((data) => {
+          this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
+        }).then(() => {
+          this.setLayerNeeded()
+        })
+      })
+    }
+    this.cmSelected = cm;
+
     this.toggleCMPanel(true)
-    this.cmName = cm.cm_name;
     this.setWaiting(true)
     this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
@@ -163,5 +180,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
   toggleCMPanel(value) {
     this.calculationModuleStatusService.setStatusCMPanel(value);
+  }
+  getLayersFromType(layer) {
+    this.dataInteractionService.getLayersFromType(layer)
+  }
+
+  setLayerNeeded() {
+    this.cmSelected.layers_needed = []
+    this.layersFromType.map((layer) => {
+      this.cmSelected.layers_needed.push(layer.layerSelected)
+    })
   }
 }

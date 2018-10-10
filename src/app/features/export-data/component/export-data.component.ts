@@ -46,7 +46,6 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
     }
   } */
   ngOnChanges(changes) {
-    console.log(changes);
     // this.changeButtonState()
     /* if (!this.helper.isNullOrUndefined(changes.updateStatus)) {
       // this.displayButton = !this.updateStatus
@@ -115,7 +114,6 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
         this.exportDataService.exportData(this.dataStats.values, false, this.tabSelected)
       }
     }
-    console.log(JSON.stringify(this.graphics), JSON.stringify(this.indicators), this.tabSelected)
     /* if (this.isInSummary === true) {
       this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName)
     } else {

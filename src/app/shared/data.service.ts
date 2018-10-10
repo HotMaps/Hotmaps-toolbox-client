@@ -29,6 +29,9 @@ export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density_tif';
 export const styleNameHeat = 'heat_tot_curr_density';
+export const heat_type = 'heat';
+export const defaultLayerType = heat_type;
+
 export const idDefaultLayer = 1;
 export const wwtpLayerName   = 'wwtp';
 

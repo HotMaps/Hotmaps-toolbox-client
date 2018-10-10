@@ -33,8 +33,9 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
 import { SelectionToolService } from 'app/features/selection-tools';
 import { MapService } from '../../../pages/map/map.service';
 import { DecimalPipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe('LeftSideComponent', () => {
+describe('ResultManagerComponent', () => {
   /* let component: LeftSideComponent;
   let fixture: ComponentFixture<LeftSideComponent>;
   let debugEl: DebugElement; */
@@ -78,8 +79,10 @@ describe('LeftSideComponent', () => {
                 { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
             ],
             imports: [
-                BrowserAnimationsModule,
-                NoopAnimationsModule
+              BrowserAnimationsModule,
+              NoopAnimationsModule,
+              FormsModule,
+              ReactiveFormsModule
             ]
         });
     }));
@@ -87,11 +90,4 @@ describe('LeftSideComponent', () => {
         backend = mockBackend;
       }));
     let backend: MockBackend = null;
-    it('should create left panel component', () => {
-
-    });
-
-    it('should have layer in layers array', fakeAsync(() => {
-
-    }));
 })
