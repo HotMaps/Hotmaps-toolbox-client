@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { DataInteractionClass } from './layers-interaction.class';
-import { DataInteractionArray } from './layers-interaction.data';
+import { DataInteractionArray, cm_default_layer } from './layers-interaction.data';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
@@ -35,6 +35,12 @@ export class DataInteractionService extends APIService {
 
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
+  }
+  addNewLayer(name, id) {
+    const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
+    DataInteractionArray[newLayerAdded - 1].name = name + ' - ' + id.substring(0, 5)
+    DataInteractionArray[newLayerAdded - 1].workspaceName = id;
+    // console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {
 

@@ -33,24 +33,36 @@ export class CMLayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.cmLayersArray;
   }
-  addLayerWithAction(directory, map: any, order: number) {
-
+  addOrRemoveLayerWithAction(directory, map: any, order: number) {
+    console.log(directory);
+    if (!this.cmLayersArray.containsKey(directory)) {
+      this.addLayerWithAction(directory, map, order);
+    } else {
+      this.removelayer(directory);
+    }
+  }
+  addLayerWithAction(directory, map, order) {
     this.layerAdded = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
       minZoom: 4,
       maxZoom: 15,
       tms: true,
     })
-    // this.registerToEvents(map, layer)
-    this.layerAdded.addTo(this.layersCM)
-    // layer.addTo(map)
-
+    this.cmLayersArray.add(directory, this.layerAdded)
     this.layersCM.addLayer(this.layerAdded);
 
   }
-  removelayer() {
+  removelayer(id) {
     // we get the layer we want to remove
-    this.layersCM.clearLayers();
+    const layer = this.cmLayersArray.value(id);
+    // we remove this layer from map
+    this.layersCM.removeLayer(layer);
+    // we destroy the layer
+    this.cmLayersArray.remove(id);
   }
-
+  clearAll() {
+    this.cmLayersArray._keys.map(key => {
+      this.removelayer(key)
+    })
+  }
 
 }

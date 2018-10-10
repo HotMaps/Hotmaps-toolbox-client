@@ -76,8 +76,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   updateCMResult() {
     const self = this;
     console.log('updateCMResult()')
+    // this.dataInteractionService.addNewLayer(this.cmPayload.cm.cm_name, this.status_id)
     self.interactionService.deleteCM(this.status_id);
-    self.mapService.removeCMLayer();
+    // self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
@@ -188,6 +189,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
         if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
           response.status.result.raster_layers.map((raster) => {
+            this.dataInteractionService.addNewLayer(response.status.result.name, raster.path)
+            // console.log(raster);
             this.mapService.displayCustomLayerFromCM(raster.path);
           })
           // this.cmRunned.cm_url = response.status.tile_directory
