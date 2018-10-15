@@ -19,8 +19,6 @@ export class CMLayersService extends APIService {
 
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-    // private interactionService: InteractionService,
-    // private populationService: PopulationService,
     private helper: Helper,
     private calculationModuleService: CalculationModuleService) {
     super(http, logger, loaderService, toasterService);
@@ -48,13 +46,23 @@ export class CMLayersService extends APIService {
         tms: true,
       })
     } else if (type === vector_type_name) {
-      /* shpjs(apiUrl + '/cm/files/' + directory).then(data => {
-        this.layerAdded = L.geoJson(data)
-      }) */
+      shpjs(apiUrl + '/cm/files/' + directory).then(data => {
+        this.layerAdded = L.geoJson(data, {
+          oneachfeature: this.onEachFeature
+        })
+      })
     }
     this.cmLayersArray.add(directory, this.layerAdded)
     this.layersCM.addLayer(this.layerAdded);
 
+  }
+  onEachFeature(feature, layer) {
+    let html = ''
+    Object.keys(feature.properties).map((prop) => {
+      html += '<bold>' + prop + ':</bold>';
+      html += '<span>' + feature.properties[prop] + '</span><br />';
+    })
+    layer.bindPopup(html);
   }
   removelayer(id) {
     // we get the layer we want to remove
@@ -64,6 +72,7 @@ export class CMLayersService extends APIService {
     // we destroy the layer
     this.cmLayersArray.remove(id);
   }
+
   clearAll() {
     this.cmLayersArray._keys.map(key => {
       this.removelayer(key)

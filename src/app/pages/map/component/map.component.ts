@@ -16,7 +16,6 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
 
 import {geoserverUrl} from '../../../shared/data.service';
-
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
