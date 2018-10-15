@@ -63,11 +63,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.updateCMs();
 
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isCmsReadable();
-    // this.layersSelected.includes(this.calculationModules.layer_needed)
+  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnDestroy() {
+    // this.toggleCMPanel(false);
+    // this.resetCM()
+    // console.log('destroy cms')
   }
-  ngOnDestroy() { }
 
   subscribeEvents() {
     const self = this;
@@ -97,15 +98,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
     if (!this.helper.isNullOrUndefined(this.calculationModules)) {
       this.calculationModules.map((cm) => {
-        for (const layer of cm.layers_needed) {
-          if (this.layersSelected.filter(lay => lay === layer).length === 0) {
-            cm['isReadable'] = true;
-            break
-          } else {
-            cm['isReadable'] = true;
-          }
-        }
-
+        cm['isReadable'] = true;
       })
     }
   }
@@ -115,7 +108,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
-
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
@@ -168,6 +160,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.toggleCMPanel(true)
     this.setWaiting(true)
     this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+      console.log(this.components)
       this.components = values;
       this.setWaiting(false)
     })

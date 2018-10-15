@@ -195,14 +195,15 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setCMPayload() {
     let payloadTmp;
     if (this.scaleLevel !== '-1') {
-      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers: this.cmRunned.cm.layers_needed};
+      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layer_needed: this.cmRunned.cm.layers_needed};
     } else if (this.scaleLevel === '-1') {
-      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers: this.cmRunned.cm.layers_needed};
+      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layer_needed: this.cmRunned.cm.layers_needed};
     }
     this.cmPayload = Object.assign(
       {
         url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id,
+        layers_needed: this.cmRunned.cm.layers_needed
       },
       { payload: payloadTmp }
     )
