@@ -154,6 +154,14 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   }
   updateAll() {
+    if (this.summaryResultStatus && this.scaleLevel !== '-1') {
+      this.setSummaryPayloadIds()
+    } else if (this.summaryResultStatus && this.scaleLevel === '-1') {
+      this.setSummaryPayloadArea();
+    } else {
+      this.summaryPayload = null
+    }
+
     if (this.heatloadStatus && this.scaleLevel !== '-1') {
       this.setHeatloadPayloadIds()
     } else if (this.heatloadStatus && this.scaleLevel === '-1') {
@@ -176,13 +184,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.energyMixPayload = null
     }
 
-    if (this.summaryResultStatus && this.scaleLevel !== '-1') {
-      this.setSummaryPayloadIds()
-    } else if (this.summaryResultStatus && this.scaleLevel === '-1') {
-      this.setSummaryPayloadArea();
-    } else {
-      this.summaryPayload = null
-    }
+
 
     if (this.cmRunned) {
       this.setCMPayload()
@@ -206,7 +208,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       },
       { payload: payloadTmp }
     )
-    console.log(JSON.stringify(this.cmPayload), this.summaryPayload)
   }
 
   setSummaryPayloadIds() {

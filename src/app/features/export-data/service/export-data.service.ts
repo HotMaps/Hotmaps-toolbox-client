@@ -59,7 +59,6 @@ export class ExportDataService {
 
 
   exportData(data: any, concatenate: boolean, tabSelectedName: string) {
-    console.log(data)
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',

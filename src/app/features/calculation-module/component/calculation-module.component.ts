@@ -64,11 +64,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
   }
   ngOnChanges(changes: SimpleChanges): void {}
-  ngOnDestroy() {
-    // this.toggleCMPanel(false);
-    // this.resetCM()
-    // console.log('destroy cms')
-  }
+  ngOnDestroy() {}
 
   subscribeEvents() {
     const self = this;

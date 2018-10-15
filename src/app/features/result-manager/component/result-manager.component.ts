@@ -77,7 +77,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   updateCMResult() {
     const self = this;
     if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
-    // self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
@@ -194,18 +193,14 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
           response.status.result.raster_layers.map((raster) => {
             this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
-            // console.log(raster);
             this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
           })
-          // this.cmRunned.cm_url = response.status.tile_directory
         }
         if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
           response.status.result.vector_layers.map((vector) => {
             this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
-            // console.log(raster);
             this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
           })
-          // this.cmRunned.cm_url = response.status.tile_directory
         }
         if (response.status.result.indicator.length >= 1) {
           this.result.indicators.layers.push({

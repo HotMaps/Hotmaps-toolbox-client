@@ -44,8 +44,7 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(Array.from(this.categories.values()));
   }
   getCMInformations(payload) {
-    console.log(payload, 'compute-async')
-    this.logger.log( 'data ' + JSON.stringify(payload) )
+    this.logger.log( 'compute-async/data ' + JSON.stringify(payload) )
     return super.POST(payload, apiUrl + '/cm/compute-async/')
 
   }
