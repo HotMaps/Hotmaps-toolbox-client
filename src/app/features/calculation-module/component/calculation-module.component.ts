@@ -80,6 +80,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       if (this.progress !== 0) {
         this.cmRunning = true;
       } else {
+        if (!this.helper.isNullOrUndefined(this.cmSelected)) {
+          this.calculationModuleStatusService.undefinedCmRunned();
+        }
         this.cmRunning = false;
       }
       this.logger.log('CM progress:' + this.progress)
@@ -160,7 +163,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.toggleCMPanel(true)
     this.setWaiting(true)
     this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
-      console.log(this.components)
       this.components = values;
       this.setWaiting(false)
     })
@@ -168,6 +170,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   cmHidePanel() {
     this.calculationModuleStatusService.undefinedCmRunned()
     this.setWaiting(false);
+    this.cmRunning = false
     this.cmSelected = undefined;
     this.logger.log('cm box is hided')
   }

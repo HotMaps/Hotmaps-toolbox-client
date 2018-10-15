@@ -68,11 +68,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
-    this.interactionService.getCMRunned().subscribe((data) => {
+    /* this.interactionService.getCMRunned().subscribe((data) => {
       if (this.helper.isNullOrUndefined(data)) {
         this.stopAnimation()
       }
-    })
+    }) */
   }
   updateCMResult() {
     const self = this;

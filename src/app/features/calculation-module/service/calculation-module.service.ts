@@ -44,28 +44,20 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(Array.from(this.categories.values()));
   }
   getCMInformations(payload) {
-    // if (!cm.isApiRequestInTreatment) {
-      this.logger.log( 'data ' + JSON.stringify(payload) )
-      // URL to check status
-     return super.POST(payload, apiUrl + '/cm/compute-async/')
-    /*} else {
-      this.logger.log('promise')
-      const result = this.getStatusOfCM(cm);
-      if (result !== null) {
-        return new Promise(() => this.getStatusOfCM(cm))
-      }
-    }
-    return*/
+    console.log(payload, 'compute-async')
+    this.logger.log( 'data ' + JSON.stringify(payload) )
+    return super.POST(payload, apiUrl + '/cm/compute-async/')
+
   }
   getStatusOfCM(status_id) {
     this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
     return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
     .catch(this.handleError.bind(this));
   }
-  getCMResultMockData() {
+  /* getCMResultMockData() {
     return this.http.get('http://albain-hotmaps:4200/assets/mockdata_graphic.txt').toPromise()
 
-  }
+  } */
   deleteCM(id) {
     return super.DELETE(apiUrl + '/cm/delete/' + id)
   }

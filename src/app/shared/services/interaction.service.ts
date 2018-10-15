@@ -184,10 +184,10 @@ export class InteractionService {
 
       return this.calculationModuleService.getStatusOfCM(id)
     }
-    getCMResultMockData() {
+    /* getCMResultMockData() {
       return this.calculationModuleService.getCMResultMockData()
 
-    }
+    } */
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
