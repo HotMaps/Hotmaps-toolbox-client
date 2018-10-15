@@ -80,9 +80,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       if (this.progress !== 0) {
         this.cmRunning = true;
       } else {
-        if (!this.helper.isNullOrUndefined(this.cmSelected)) {
+        /* if (!this.helper.isNullOrUndefined(this.cmSelected)) {
           this.calculationModuleStatusService.undefinedCmRunned();
-        }
+        } */
         this.cmRunning = false;
       }
       this.logger.log('CM progress:' + this.progress)

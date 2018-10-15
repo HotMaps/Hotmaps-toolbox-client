@@ -48,9 +48,9 @@ export class CMLayersService extends APIService {
         tms: true,
       })
     } else if (type === vector_type_name) {
-      shpjs(apiUrl + '/cm/files/' + directory).then(data => {
+      /* shpjs(apiUrl + '/cm/files/' + directory).then(data => {
         this.layerAdded = L.geoJson(data)
-      })
+      }) */
     }
     this.cmLayersArray.add(directory, this.layerAdded)
     this.layersCM.addLayer(this.layerAdded);
