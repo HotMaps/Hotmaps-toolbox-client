@@ -1,4 +1,4 @@
-import { energy_mix_options, summay_drop_down_buttons, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category, heatloadprofile, calculation_module_category, tab2_datapanel, tab1_datapanel } from './../../../shared/data.service';
+import { energy_mix_options, summay_drop_down_buttons, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category, heatloadprofile, calculation_module_category, tab2_datapanel, tab1_datapanel, raster_type_name, vector_type_name } from './../../../shared/data.service';
 import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Graphics, IndicatorResult } from './../service/result-manager';
@@ -26,11 +26,12 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private animationTimeout;
   private status_id;
   private progressCmAnimation = 0;
-  private updateExportButton=false;
+  private updateExportButton = false;
   private noIndicator = true
   private indicatorLoading = true
   private tab1=tab1_datapanel;
   private tab2=tab2_datapanel;
+  private cm_catedory = calculation_module_category;
   private tabSelected = this.tab1;
   private exportbuttonDisplay;
   private dropdown_btns = summay_drop_down_buttons;
@@ -82,9 +83,15 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.status_id = data.status_id
       self.getStatusOfCM()
     }).catch((err) => {
+      self.interactionService.deleteCM(this.status_id);
+      this.killanimation()
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
+  }
+  killanimation() {
+    this.progressCmAnimation = 0;
+    this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }
   updateSummaryResult() {
     const self = this;
@@ -187,9 +194,17 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
         if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
           response.status.result.raster_layers.map((raster) => {
-            this.dataInteractionService.addNewLayer(response.status.result.name, raster.path)
+            this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
             // console.log(raster);
-            this.mapService.displayCustomLayerFromCM(raster.path);
+            this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
+          })
+          // this.cmRunned.cm_url = response.status.tile_directory
+        }
+        if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
+          response.status.result.vector_layers.map((vector) => {
+            this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
+            // console.log(raster);
+            this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
           })
           // this.cmRunned.cm_url = response.status.tile_directory
         }

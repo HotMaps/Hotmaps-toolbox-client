@@ -57,7 +57,7 @@ export class DataInteractionCellComponent implements OnInit {
     if (this.interactionService.getSummaryResultState() === false) {
       this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
       if (this.dataInteraction.category === calculation_module_category) {
-        this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id)
+        this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer)
       } else {
         this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, this.dataInteraction.id);
         if (this.dataInteraction.zoomLevel > 0) {

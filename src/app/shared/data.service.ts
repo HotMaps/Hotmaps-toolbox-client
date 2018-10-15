@@ -76,7 +76,8 @@ export const buttons_heat_load = [
 ];
 export const default_drop_down_button = 'overall';
 export const calculation_module_category = 'Calculation module'
-
+export const raster_type_name = 'raster';
+export const vector_type_name = 'vector';
 export const summay_drop_down_buttons = [
   { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
   { name: 'Demand', ref: 'demand', selected: false, display: false},

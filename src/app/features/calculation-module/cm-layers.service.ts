@@ -1,4 +1,4 @@
-import {apiUrl, Helper} from 'app/shared';
+import {apiUrl, Helper, vector_type_name, raster_type_name} from 'app/shared';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 
@@ -33,20 +33,24 @@ export class CMLayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.cmLayersArray;
   }
-  addOrRemoveLayerWithAction(directory, map: any, order: number) {
+  addOrRemoveLayerWithAction(directory, type, map: any, order: number) {
     console.log(directory);
     if (!this.cmLayersArray.containsKey(directory)) {
-      this.addLayerWithAction(directory, map, order);
+      this.addLayerWithAction(directory, type, map, order);
     } else {
       this.removelayer(directory);
     }
   }
-  addLayerWithAction(directory, map, order) {
-    this.layerAdded = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
-      minZoom: 4,
-      maxZoom: 15,
-      tms: true,
-    })
+  addLayerWithAction(directory, type, map, order) {
+    if (type === raster_type_name) {
+      this.layerAdded = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+        minZoom: 4,
+        maxZoom: 15,
+        tms: true,
+      })
+    } else if (type === vector_type_name) {
+      console.log(vector_type_name + ' ajout d\'un layer vector:' + directory)
+    }
     this.cmLayersArray.add(directory, this.layerAdded)
     this.layersCM.addLayer(this.layerAdded);
 
