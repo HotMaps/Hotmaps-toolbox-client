@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 
 import { LoaderService, Logger, APIService, ToasterService, Dictionary } from '../../shared';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
-
+import * as shpjs from 'shpjs';
 
 
 
@@ -34,7 +34,6 @@ export class CMLayersService extends APIService {
     return this.cmLayersArray;
   }
   addOrRemoveLayerWithAction(directory, type, map: any, order: number) {
-    console.log(directory);
     if (!this.cmLayersArray.containsKey(directory)) {
       this.addLayerWithAction(directory, type, map, order);
     } else {
@@ -49,7 +48,9 @@ export class CMLayersService extends APIService {
         tms: true,
       })
     } else if (type === vector_type_name) {
-      console.log(vector_type_name + ' ajout d\'un layer vector:' + directory)
+      shpjs(apiUrl + '/cm/files/' + directory).then(data => {
+        this.layerAdded = L.geoJson(data)
+      })
     }
     this.cmLayersArray.add(directory, this.layerAdded)
     this.layersCM.addLayer(this.layerAdded);
