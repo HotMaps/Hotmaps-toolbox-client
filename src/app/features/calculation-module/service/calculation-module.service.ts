@@ -62,10 +62,10 @@ export class CalculationModuleService extends APIService {
     return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
     .catch(this.handleError.bind(this));
   }
-  /* getCMResultMockData(payload) {
+  getCMResultMockData() {
     return this.http.get('http://albain-hotmaps:4200/assets/mockdata_graphic.txt').toPromise()
 
-  } */
+  }
   deleteCM(id) {
     return super.DELETE(apiUrl + '/cm/delete/' + id)
   }

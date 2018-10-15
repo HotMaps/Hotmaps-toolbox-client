@@ -75,16 +75,21 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   updateCMResult() {
     const self = this;
-    self.interactionService.deleteCM(this.status_id);
+    if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
     // self.mapService.removeCMLayer();
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
       self.getStatusOfCM()
     }).catch((err) => {
+      this.stopAnimation()
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
+  }
+  killAnimation() {
+    this.progressCmAnimation = 0;
+    this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }
   updateSummaryResult() {
     const self = this;
@@ -240,10 +245,14 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
   }
   stopAnimation() {
-    clearTimeout(this.animationTimeout)
-    this.interactionService.deleteCM(this.status_id)
-    this.progressCmAnimation = 0;
-    this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+      clearTimeout(this.animationTimeout)
+    }
+    if (!this.helper.isNullOrUndefined(this.status_id)) {
+      this.interactionService.deleteCM(this.status_id)
+    }
+    this.killAnimation()
+
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
@@ -251,7 +260,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.noIndicator = true
     } else {
       this.result.indicators.layers.map((layer) => {
-        console.log(layer)
         if (!this.helper.isNullOrUndefined(layer.name)) {
           const refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
           layer.category = refToDisplay

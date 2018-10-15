@@ -90,7 +90,7 @@ export const summay_drop_down_buttons = [
 
 
 // layers constant
-export const timeOut   = 200000;
+export const timeOut   = 10000;
 // layers constant
 export const clickAccuracy   = 100;
 export const zoomLevelDetectChange = 10;
