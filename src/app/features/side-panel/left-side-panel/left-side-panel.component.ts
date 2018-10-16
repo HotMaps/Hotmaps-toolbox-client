@@ -97,14 +97,11 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.mapService.getNutsSelectedSubject().subscribe((value) => {
         if (value === 0) {
+          this.interactionService.setIsCMRunning(false)
           uikit.tab('#uk-tab-left-panel').show(0);
           this.isZoneSelected = false;
         } else {
-          if (this.mapService.getScaleValue() === hectare) {
-            this.isZoneSelected = true;
-          } else {
-            this.isZoneSelected = true;
-          }
+          this.isZoneSelected = true;
         }
         this.nbElementsSelected = value;
         this.logger.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)

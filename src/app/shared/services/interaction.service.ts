@@ -187,16 +187,28 @@ export class InteractionService {
 
     } */
     getCMRunned() {
-      return this.calculationModuleStatusService.getCmRunned()
+      return this.calculationModuleStatusService.getCMselected()
+    }
+    setCMStatusID(value) {
+      this.calculationModuleStatusService.setStatusId(value)
     }
     setStatusCMPanel(value) {
-      return this.calculationModuleStatusService.setStatusCMPanel(value)
+      this.calculationModuleStatusService.setPanelStatus(value)
     }
     setCMAnimationStatus(value) {
-      this.calculationModuleStatusService.setCmAnimationStatus(value);
+      this.calculationModuleStatusService.setProgressTime(value);
     }
     undefinedCmRunned() {
       this.calculationModuleStatusService.undefinedCmRunned()
+    }
+    setProgressTime(value) {
+      this.calculationModuleStatusService.setProgressTime(value)
+    }
+    setIsCMRunning(value) {
+      this.calculationModuleStatusService.setIsCMRunning(value)
+    }
+    getIsCMRunning() {
+      return this.calculationModuleStatusService.getIsCMRunning()
     }
     deleteCM(id) {
       return this.calculationModuleService.deleteCM(id)

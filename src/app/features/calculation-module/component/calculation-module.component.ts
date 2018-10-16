@@ -48,10 +48,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   private calculationModules;
   private categories;
   private components;
-  private waitingCM = false;
+  private waitingCMs = false;
   private cmSelected;
   private cmRunning;
   private panelStatus;
+  private running_status_id;
+
   private layersFromType = [];
   constructor(
     private calculationModuleService: CalculationModuleService,
@@ -68,30 +70,26 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   ngOnDestroy() {}
 
   subscribeEvents() {
-    // const self = this;
-    this.calculationModuleStatusService.getWaitingCMs().subscribe((value) => {
-      this.waitingCM = value;
-    });
+    this.calculationModuleStatusService.getStatusId().subscribe((data) => {
+      this.running_status_id = data;
+    })
     this.calculationModuleStatusService.getIsCMRunning().subscribe((value) => {
       this.cmRunning = value
+      console.log('this.cmRunning', this.cmRunning)
+      // if(value===false) { this.calculationModuleStatusService.undefinedCmRunned(); }
     });
     this.calculationModuleStatusService.getProgressTime().subscribe((data) => {
       this.progress = data;
-      /* if (this.progress !== 0) {
-        this.cmRunning = true;
-      } else {
-        this.cmRunning = false;
-      } */
       this.logger.log('CM progress:' + this.progress)
     })
     this.calculationModuleStatusService.getPanelStatus().subscribe((value) => {
       this.panelStatus = value
       if (value === true) {
-        uikit.offcanvas('#box-components').show()
+        uikit.offcanvas('#box-components').show();
         this.logger.log('cm box is shown')
       } else if (value === false) {
-        uikit.offcanvas('#box-components').hide()
-        this.cmHidePanel()
+        this.calculationModuleStatusService.undefinedCmRunned()
+        uikit.offcanvas('#box-components').hide();
       }
     })
   }
@@ -103,16 +101,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       })
     }
   }
-  resetCM() {
-    this.cmSelected.status_id = '';
-    this.cmSelected.isApiRequestInTreatment = false;
-    this.calculationModuleStatusService.undefinedCmRunned();
-  }
+
   updateCMs() {
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
-      this.setWaiting(false);
+      this.setWaitingCMs(false);
     }).then(() => {
       this.isCmsReadable()
       this.calculationModuleService.getCalculationModuleCategories(this.calculationModules).then((categories) => {
@@ -131,11 +125,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
   runCM() {
     this.cmRunning = true;
+    this.calculationModuleStatusService.setIsCMRunning(true)
     this.calculationModuleStatusService.setCMselected(this.cmSelected, this.components);
   }
-  setWaiting(val) {
-    this.calculationModuleStatusService.setWaitingStatus(val)
-
+  setWaitingCMs(val) {
+    this.waitingCMs = val
   }
 
   selectCM(cm) {
@@ -152,21 +146,21 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.cmSelected = cm;
 
     this.toggleCMPanel(true)
-    this.setWaiting(true)
+    this.setWaitingCMs(true)
     this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
-      this.setWaiting(false)
+      this.setWaitingCMs(false)
     })
   }
-  cmHidePanel() {
+  /* cmHidePanel() {
     this.calculationModuleStatusService.undefinedCmRunned()
-    this.setWaiting(false);
+    this.setWaitingCMs(false);
     this.cmRunning = false
     this.cmSelected = undefined;
     this.logger.log('cm box is hided')
-  }
+  } */
   toggleCMPanel(value) {
-    this.calculationModuleStatusService.setStatusCMPanel(value);
+    this.calculationModuleStatusService.setPanelStatus(value);
   }
   getLayersFromType(layer) {
     this.dataInteractionService.getLayersFromType(layer)

@@ -75,7 +75,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       if (value !== null) {
         this.interactionService.openRightPanel()
       }
-
     })
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {

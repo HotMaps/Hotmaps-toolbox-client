@@ -69,11 +69,12 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
-    /* this.interactionService.getCMRunned().subscribe((data) => {
-      if (this.helper.isNullOrUndefined(data)) {
-        this.stopAnimation()
+    this.interactionService.getIsCMRunning().subscribe(value => {
+      // console.log('cmrunned', data)
+      if (!value) {
+        this.killProgressTime();
       }
-    }) */
+    })
   }
   initSubscription() {
 
@@ -84,17 +85,15 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
+      self.interactionService.setCMStatusID(self.status_id)
       self.getStatusOfCM()
     }).catch((err) => {
-      this.stopAnimation()
+      this.finishAnimation()
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
   }
-  killAnimation() {
-    this.progressCmAnimation = 0;
-    this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
-  }
+
   updateSummaryResult() {
     const self = this;
     self.indicatorLoading = true
@@ -183,16 +182,31 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
 
+  finishAnimation() {
+    this.cancelTimeout()
+    if (!this.helper.isNullOrUndefined(this.status_id)) {
+      this.interactionService.deleteCM(this.status_id)
+      this.status_id = null;
+    }
+    this.interactionService.setCMStatusID(null);
+    this.interactionService.setIsCMRunning(false);
+    this.killProgressTime()
+    this.interactionService.setCMStatusID(null);
+  }
+  killProgressTime() {
+    this.progressCmAnimation = 0;
+    this.interactionService.setProgressTime(this.progressCmAnimation);
+  }
   getStatusOfCM() {
     const self = this;
+    this.cancelTimeout()
     this.indicatorLoading = true
 
     this.interactionService.getStatusAndCMResult(this.status_id).then((data) => {
-      // this.interactionService.getCMResultMockData(status_id).then((data) => {
-      const response = JSON.parse(data["_body"])
-      if (response["state"] === 'SUCCESS') {
-        this.stopAnimation()
-        this.logger.log('status' + response["status"])
+      const response = JSON.parse(data['_body'])
+      if (response['state'] === 'SUCCESS') {
+        this.finishAnimation()
+        this.logger.log('status' + response['status'])
 
         if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
           response.status.result.raster_layers.map((raster) => {
@@ -211,7 +225,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
             name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
           })
           this.displayExportDataStatus = true;
-
         }
         this.indicatorLoading = false
         if (response.status.result.graphics.length >= 1) {
@@ -229,13 +242,13 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.getIndicatorsCatergories()
       } else {
         this.animationTimeout = setTimeout(() => {
-          this.getStatusOfCM();
           this.runAnimation();
-
+          this.getStatusOfCM();
         }, 1000);
+
       }
     }).catch((err) => {
-      this.stopAnimation()
+      this.finishAnimation()
       this.indicatorLoading = false
       this.displayExportDataStatus = false;
 
@@ -244,6 +257,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
     });
   }
+  cancelTimeout() {
+    if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+      clearTimeout(this.animationTimeout)
+    }
+  }
   runAnimation() {
     if (this.progressCmAnimation === 100) {
       this.progressCmAnimation = 10
@@ -251,17 +269,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.progressCmAnimation += 10;
     }
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    this.interactionService.setIsCMRunning(true);
   }
-  stopAnimation() {
-    if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
-      clearTimeout(this.animationTimeout)
-    }
-    if (!this.helper.isNullOrUndefined(this.status_id)) {
-      this.interactionService.deleteCM(this.status_id)
-    }
-    this.killAnimation()
 
-  }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
     if (this.result.indicators.layers.length === 0) {
