@@ -80,7 +80,7 @@ export class CMLayersService extends APIService {
 
     // we get the layer we want to remove
     const layer = this.cmLayersArray.value(id);
-    console.log(layer)
+    // console.log(layer)
     if (type === vector_type_name) {
       layer.clearLayers()
     } else if (type === raster_type_name) {
