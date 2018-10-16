@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 
 import { LoaderService, Logger, APIService, ToasterService, Dictionary } from '../../shared';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
+import Layer = L.Layer;
 import * as shpjs from 'shpjs';
 
 
@@ -15,8 +16,7 @@ export class CMLayersService extends APIService {
 
   private layersCM = new L.FeatureGroup();
   private cmLayersArray: Dictionary;
-  private layerAdded;
-
+  // private layerAdded;
 
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
     private helper: Helper,
@@ -32,28 +32,39 @@ export class CMLayersService extends APIService {
     return this.cmLayersArray;
   }
   addOrRemoveLayerWithAction(directory, type, map: any, order: number) {
+    console.log('addOrRemoveLayerWithAction', directory, type, this.cmLayersArray.containsKey(directory))
     if (!this.cmLayersArray.containsKey(directory)) {
       this.addLayerWithAction(directory, type, map, order);
     } else {
-      this.removelayer(directory);
+      this.removelayer(directory, type);
     }
+    map.fireEvent('didUpdateLayers', this.cmLayersArray);
   }
   addLayerWithAction(directory, type, map, order) {
+    // console.log('addLayerWithAction', directory, type===raster_type_name, type===vector_type_name)
+    const self = this;
+    // let layerAdded:any;
     if (type === raster_type_name) {
-      this.layerAdded = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+      let layer;
+      layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
         minZoom: 4,
         maxZoom: 15,
         tms: true,
       })
+      layer.addTo(self.layersCM)
+      self.cmLayersArray.add(directory, layer)
+
     } else if (type === vector_type_name) {
       shpjs(apiUrl + '/cm/files/' + directory).then(data => {
-        this.layerAdded = L.geoJson(data, {
+        let layer;
+        layer = new L.GeoJSON(data,{
           onEachFeature: this.onEachFeature
         })
+        layer.addTo(self.layersCM)
+        self.cmLayersArray.add(directory, layer)
+
       })
     }
-    this.cmLayersArray.add(directory, this.layerAdded)
-    this.layersCM.addLayer(this.layerAdded);
 
   }
   onEachFeature(feature, layer) {
@@ -63,20 +74,28 @@ export class CMLayersService extends APIService {
       html += '<span>' + feature.properties[prop] + '</span><br />';
     })
     layer.bindPopup(html);
+
   }
-  removelayer(id) {
+  removelayer(id, type) {
+
     // we get the layer we want to remove
     const layer = this.cmLayersArray.value(id);
+    console.log(layer)
+    if (type === vector_type_name) {
+      layer.clearLayers()
+    } else if (type === raster_type_name) {
+      this.layersCM.removeLayer(layer);
+    }
     // we remove this layer from map
-    this.layersCM.removeLayer(layer);
     // we destroy the layer
     this.cmLayersArray.remove(id);
   }
 
   clearAll() {
-    this.cmLayersArray._keys.map(key => {
+    /* this.cmLayersArray._keys.map(key => {
       this.removelayer(key)
-    })
+    }) */
+    this.layersCM.clearLayers()
   }
 
 }
