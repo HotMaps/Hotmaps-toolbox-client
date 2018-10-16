@@ -68,7 +68,7 @@ import {ElectricityMixComponent} from '../features/graph/electricity-mix/compone
 import {ElectricityMixService} from '../features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationModuleService } from './../features/calculation-module/service/calculation-module.service';
 import { CalculationModuleComponent } from './../features/calculation-module/component/calculation-module.component';
-import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
+import { CalculationModuleStatusService } from './../features/calculation-module/service/calculation-module-status.service';
 import { CalculationHeatLoadDividedService } from './../features/calculation-module/service/calculation-test.service';
 import { ResultManagerComponent } from '../features/result-manager/component';
 

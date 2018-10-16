@@ -24,7 +24,7 @@ import { LayersService } from '../../layers/services/layers.service';
 import { HeatLoadAggregateService } from '../heat-load/heat-load.service';
 import { ExportDataService } from "../../export-data/service/export-data.service";
 import {ElectricityMixService} from "../electricity-mix/service/electricity-mix.service";
-import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calculation-module-status.service";
 
 
 describe('DurationCurveComponent', () => {

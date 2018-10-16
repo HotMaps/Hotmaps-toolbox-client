@@ -26,7 +26,7 @@ import { DurationCurveService } from '../../graph/duration-curve/duration-curve.
 import {ElectricityMixService} from '../../graph/electricity-mix/service/electricity-mix.service';
 import { SelectionScaleService } from 'app/features/selection-scale';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
-import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calculation-module-status.service';
 import { CalculationModuleComponent } from '../../calculation-module/component/calculation-module.component';
 import { SelectionToolButtonStateService } from '../../selection-tools/service/selection-tool-button-state.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';

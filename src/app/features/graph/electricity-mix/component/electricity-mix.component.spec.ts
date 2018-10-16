@@ -25,7 +25,7 @@ import {MockBackend} from "@angular/http/testing";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {ElectricityMixService} from "../service/electricity-mix.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
-import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calculation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 

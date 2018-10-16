@@ -10,4 +10,5 @@ export class DataInteractionClass {
   layer_type: string;
   cm_id?: string;
   type_of_layer?: string;
+  cm_data?: any;
 }

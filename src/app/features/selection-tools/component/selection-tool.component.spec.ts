@@ -41,7 +41,7 @@ import {ExportDataService} from "../../export-data/service/export-data.service";
 import { DurationCurveService } from "../../graph/duration-curve/duration-curve.service";
 import {ElectricityMixService} from "../../graph/electricity-mix/service/electricity-mix.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
-import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calculation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 import { CMLayersService } from '../../calculation-module/cm-layers.service';
 

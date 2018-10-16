@@ -23,7 +23,7 @@ import { LayersService } from '../../../layers/services/layers.service';
 import {ExportDataService} from "../../../export-data/service/export-data.service";
 import {ElectricityMixService} from "../../electricity-mix/service/electricity-mix.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
-import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calculation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 
 

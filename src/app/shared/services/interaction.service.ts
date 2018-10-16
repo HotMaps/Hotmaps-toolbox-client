@@ -12,9 +12,7 @@ import { SidePanelService } from './../../features/side-panel/side-panel.service
 import { SelectionToolButtonStateService } from 'app/features/selection-tools';
 import { Dictionary } from 'app/shared';
 import { LayersService } from 'app/features/layers';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+
 import { HeatLoadAggregateService } from '../../features/graph/heat-load/heat-load.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from '../../features/graph/duration-curve/duration-curve.service';
@@ -22,7 +20,7 @@ import { DataInteractionService } from '../../features/layers-interaction/layers
 import {ElectricityMixService} from '../../features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationHeatLoadDividedService } from './../../features/calculation-module/service/calculation-test.service';
 import { CalculationModuleService } from './../../features/calculation-module/service/calculation-module.service';
-import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calculation-module-status.service';
 
 @Injectable()
 export class InteractionService {

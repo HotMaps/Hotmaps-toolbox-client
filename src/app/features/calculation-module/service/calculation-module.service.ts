@@ -16,7 +16,7 @@ import { ToasterService } from '../../../shared/services/toaster.service';
 
 @Injectable()
 export class CalculationModuleService extends APIService {
-  categories = new Set();
+  private categories = new Set();
   constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }

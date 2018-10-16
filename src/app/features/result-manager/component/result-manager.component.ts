@@ -48,6 +48,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     private dataInteractionService: DataInteractionService, private mapService: MapService) { }
 
   ngOnInit() {
+    this.initSubscription();
     this.interactionService.getHeatLoadData().subscribe((heatload) => {
       if (!this.helper.isNullOrUndefined(heatload)) {
         this.heatLoadData = heatload;
@@ -73,6 +74,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.stopAnimation()
       }
     }) */
+  }
+  initSubscription() {
+
   }
   updateCMResult() {
     const self = this;

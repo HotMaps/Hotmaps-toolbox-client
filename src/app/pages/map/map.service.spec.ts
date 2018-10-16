@@ -32,7 +32,7 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
 import { ExportDataService } from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from "../../features/graph/duration-curve/duration-curve.service";
 import { ElectricityMixService } from "../../features/graph/electricity-mix/service/electricity-mix.service";
-import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import { CalculationModuleStatusService } from "app/features/calculation-module/service/calculation-module-status.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from '../../features/calculation-module/cm-layers.service';

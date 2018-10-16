@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class CalculationModuleStatusService {
-  private waitingCM: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+ /*  private waitingCM: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private cmRunned: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private panelIsOpen: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private cmAnimationStatus: BehaviorSubject<any> = new BehaviorSubject<any>(0);
@@ -24,6 +24,7 @@ export class CalculationModuleStatusService {
   undefinedCmRunned() {
     this.cmRunned.next(null);
   }
+
   getStatusCMPanel() {
     return this.panelIsOpen;
   }
@@ -35,5 +36,5 @@ export class CalculationModuleStatusService {
   }
   getCmAnimationStatus() {
     return this.cmAnimationStatus
-  }
+  } */
 }

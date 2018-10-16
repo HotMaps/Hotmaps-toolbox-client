@@ -1,5 +1,4 @@
 
-
 import 'leaflet';
 import 'reflect-metadata';
 import 'jquery';
@@ -62,7 +61,7 @@ import { ElectricityMixComponent } from './features/graph/electricity-mix/compon
 import { ElectricityMixService } from './features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationModuleComponent } from './features/calculation-module/component/calculation-module.component';
 import { CalculationModuleService } from './features/calculation-module/service/calculation-module.service';
-import { CalculationModuleStatusService } from './features/calculation-module/service/calcultation-module-status.service';
+import { CalculationModuleStatusService } from './features/calculation-module/service/calculation-module-status.service';
 import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from './features/calculation-module/cm-layers.service';
 import { ResultManagerComponent } from './features/result-manager/component/result-manager.component';
@@ -138,7 +137,8 @@ import { ResultManagerComponent } from './features/result-manager/component/resu
     CalculationModuleService,
     CalculationModuleStatusService,
     CalculationHeatLoadDividedService,
-    CMLayersService
+    CMLayersService,
+    CalculationModuleStatusService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
