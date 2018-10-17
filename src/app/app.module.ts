@@ -66,6 +66,7 @@ import { CalculationModuleStatusService } from './features/calculation-module/se
 import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from './features/calculation-module/cm-layers.service';
 import { ResultManagerComponent } from './features/result-manager/component/result-manager.component';
+import { LoginComponent } from './features/login/login.component';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { ResultManagerComponent } from './features/result-manager/component/resu
     DurationCurveComponent,
     ExportDataComponent,
     ElectricityMixComponent,
-    CalculationModuleComponent
+    CalculationModuleComponent,
+    LoginComponent
   ],
 
   providers: [
