@@ -38,20 +38,20 @@ export class APIService {
   }
   handleError(error: any) {
     this.loaderService.display(false);
-    let message = error.message;
-    const status = error.status;
-    const statusText = error.statusText;
+    let message = error.json().error.message;
+    const status = error.json().error.status;
+    const statusText = error.json().error.statusText;
 
     if (this.isNullOrUndefined(message)) {
        message = ' ';
     }
     else {
-      message = ',' + message;
+      message = ', ' + message;
     }
 
     this.toasterService.showToaster(statusText + ' ' + message);
     this.logger.log('APIService/handleError');
-    this.logger.log('An error occurred: ' + error.message); // for demo purposes only
+    this.logger.log('An error occurred: ' + message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 
