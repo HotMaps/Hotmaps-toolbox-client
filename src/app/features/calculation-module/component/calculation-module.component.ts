@@ -1,4 +1,4 @@
-import { defaultLayerType } from './../../../shared/data.service';
+import { defaultLayerType, inputs_categories } from './../../../shared/data.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
@@ -24,6 +24,7 @@ import { calculationModuleClassArray } from '../service/calculation-module.data'
 import * as uikit from 'uikit';
 import {Logger} from "../../../shared/services";
 import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
+import { mockComponents } from './mock-calculation.data';
 
 @Component({
   selector: 'htm-cms',
@@ -43,7 +44,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
-
+  private inputs_categories = inputs_categories;
   private progress = 0;
   private calculationModules;
   private categories;
@@ -107,7 +108,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
-    this.calculationModuleService.getCalculationModuleServices().then((result) => {
+    this.calculationModuleService.getMockCalculationModules().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
 /*       this.calculationModules.map((cm) => {
@@ -158,7 +159,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
     this.toggleCMPanel(true)
     this.setWaiting(true)
-    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+
+    this.calculationModuleService.getMockCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
       this.setWaiting(false)
     })

@@ -30,10 +30,11 @@
 </div>
 
 <div class="uk-offcanvas-content">
-  <div  id="box-components" uk-offcanvas="overlay: false; bg-close: false;esc-close:false;">
+  <div id="box-components" uk-offcanvas="overlay: false; bg-close: false;esc-close:false;">
     <div class="uk-offcanvas-bar">
       <div *ngIf="cmSelected">
         <button class="uk-offcanvas-close" type="button" (click)="toggleCMPanel(false)" uk-close></button>
+
         <h3 class="cm_title">{{cmSelected.cm_name}}</h3>
         <span class="uk-margin description">{{cmSelected.cm_description}}</span><br />
         <span class="uk-margin" *ngIf="cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
@@ -42,16 +43,30 @@
         </div>
 
         <ng-container *ngIf="!waitingCM">
-          <div class="component uk-margin" *ngFor="let component of components">
-            <span class="input_title">{{component.input_name}} - (value:
-              {{component.input_value}}{{component.input_unit}})</span>
-            <div class="uk-form-controls">
-              <input class="uk-{{component.input_type}}" id="{{component.input_parameter_name}}" value="{{component.input_value}}"
-                type="{{component.input_type}}" min="{{component.input_min}}" max="{{component.input_max}}" placeholder="{{component.input_name}}"
-                (change)="changeValue($event, component)">
-            </div>
-            <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max: {{component.input_max}}
-              {{component.input_unit}};</span>
+
+          <div class="component uk-margin" *ngFor="let input_cat of inputs_categories">
+            <ul uk-accordion>
+              <li class="">
+                <a class="uk-accordion-title" href="#">{{input_cat.name}}</a>
+                <div class="uk-accordion-content">
+                  <div class="component uk-margin" *ngFor="let component of components">
+                    <ng-container *ngIf="input_cat.id == component.category">
+
+                      <span class="input_title">{{component.input_name}} - (value:
+                        {{component.input_value}}{{component.input_unit}})</span>
+                      <div class="uk-form-controls">
+                        <input class="uk-{{component.input_type}}" id="{{component.input_parameter_name}}" value="{{component.input_value}}"
+                          type="{{component.input_type}}" min="{{component.input_min}}" max="{{component.input_max}}"
+                          placeholder="{{component.input_name}}" (change)="changeValue($event, component)">
+                      </div>
+                      <span class="values">Min: {{component.input_min}}{{component.input_unit}}; Max:
+                        {{component.input_max}}
+                        {{component.input_unit}};</span>
+                    </ng-container>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
 
           <div *ngIf="layersFromType.length >= 1" class="uk-margin">

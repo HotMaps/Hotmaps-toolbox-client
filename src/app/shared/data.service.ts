@@ -222,3 +222,9 @@ export const clculation_module_graph_options = {
         }]
   }
 }
+
+
+export const inputs_categories = [
+  {id: 1, name: 'Basic inputs'},
+  {id: 2, name: 'Advanced inputs'}
+]
