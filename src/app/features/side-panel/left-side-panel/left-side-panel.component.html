@@ -10,6 +10,7 @@
     <ul class="uk-flex-center" uk-tab id="uk-tab-left-panel">
       <li class="uk-active layers-tab"><a href="">layers</a></li>
       <li [class.uk-disabled]="!isZoneSelected"><a href="" (click)="updateCmss()">Calculation modules</a></li>
+      <li ><a href="">Hotmaps data</a></li>
     </ul>
     <ul id="my-id3" class="uk-switcher">
       <li>
@@ -33,6 +34,9 @@
       </li>
       <li [hidden]="!isZoneSelected">
           <htm-cms [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected"></htm-cms>
+      </li>
+      <li>
+        <htm-hotmaps-data></htm-hotmaps-data>
       </li>
     </ul>
   </div>

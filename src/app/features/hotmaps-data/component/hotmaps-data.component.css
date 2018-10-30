@@ -1,0 +1,15 @@
+.uk-card-title {
+  overflow: hidden;
+  font-size: 18px;
+}
+.uk-card-footer > .uk-button-text {
+  padding:5px;
+}
+.uk-card {
+  padding: 10px;
+  margin: 10px;
+}
+.uk-card-footer {
+  padding: 10px;
+  text-align: center;
+}
