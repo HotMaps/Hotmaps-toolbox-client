@@ -44,7 +44,7 @@ export class DataInteractionCellComponent implements OnInit {
   @Input() dataInteraction: DataInteractionClass;
   @Input() expanded: boolean;
   private loading = true;
-  private imageUrl = urlLegend
+
   private cm_cat = calculation_module_category;
   constructor(private mapService: MapService, private interactionService: InteractionService) { }
   ngOnInit() {

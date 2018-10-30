@@ -1,29 +1,13 @@
-
 <div *ngIf="expanded" [@visibleTrigger]="'visible'" class="details">
-    <!--  <form class="uk-form">
-     <label > -->
-       <div>
+  <div>
 
-        <button type="button" [class.wait]="interactionService.getSummaryResultState()" name={{dataInteraction.workspaceName}} class="uk-button uk-button-default uk-width-1-1"
-        (click)="showRemoveLayer($event)" [class.uk-button-secondary]="dataInteraction.isSelected">
-          <input class="uk-checkbox" type="checkbox"  [checked]="dataInteraction.isSelected" >
-          <ng-container *ngIf="dataInteraction.type_of_layer">{{dataInteraction.type_of_layer}} - </ng-container>{{dataInteraction.name}}
-        </button>
+    <button type="button" [class.wait]="interactionService.getSummaryResultState()" name={{dataInteraction.workspaceName}}
+      class="uk-button uk-button-default uk-width-1-1" (click)="showRemoveLayer($event)" [class.uk-button-secondary]="dataInteraction.isSelected">
+      <input class="uk-checkbox" type="checkbox" [checked]="dataInteraction.isSelected">
+      <ng-container *ngIf="dataInteraction.type_of_layer">{{dataInteraction.type_of_layer}} - </ng-container>{{dataInteraction.name}}
+    </button>
 
-       </div>
-      <!-- </label>
-    </form>-->
-    <div [class.legend]="loading" class="legend-div" *ngIf="dataInteraction.isSelected && dataInteraction.wo !== 'null'">
-        <div *ngIf="loading" class="loader" uk-spinner></div>
-        <ul uk-accordion [hidden]="loading">
-          <li>
-            <div class="uk-accordion-title" href="#">
-              <i class="flaticon-signs-1"></i>
-            </div>
-            <div class="uk-accordion-content">
-                <img src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoad()"/>
-            </div>
-          </li>
-        </ul>
-    </div>
+  </div>
+  <htm-layer-tool *ngIf="dataInteraction.isSelected" [dataInteraction]="dataInteraction"></htm-layer-tool>
+
 </div>

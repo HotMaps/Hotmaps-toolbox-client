@@ -9,5 +9,6 @@ export class DataInteractionClass {
   ref: any[];
   layer_type: string;
   cm_id?: string;
+  download_url?: string;
   type_of_layer?: string;
 }

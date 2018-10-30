@@ -1,3 +1,4 @@
+import { LayerToolComponent } from './../../layer-tool/layer-tool.component';
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,7 +51,7 @@ describe('LeftSideComponent', () => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent],
+      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent ],
       providers: [
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

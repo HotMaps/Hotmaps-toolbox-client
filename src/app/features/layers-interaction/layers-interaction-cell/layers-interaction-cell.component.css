@@ -73,3 +73,6 @@ input{
 .wait {
   cursor: wait;
 }
+.uk-button {
+  line-height: 28px;
+}

@@ -2,8 +2,7 @@
 // listing import lines alphabetized by the module
 import { DataInteractionClass } from './layers-interaction.class';
 import { business_name_wwtp, defaultLayer, populationLayerName,
-  idDefaultLayer, calculation_module_category, defaultLayerType }
-   from '../../shared/data.service';
+  idDefaultLayer, calculation_module_category, defaultLayerType } from '../../shared/data.service';
 import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.service';
 export const potential_type = 'potential';
 export const wwtp_type = 'wwtp';
@@ -11,12 +10,14 @@ export const gfa_type = 'gross_floor_area';
 export const industry_type = 'industy';
 export const population_type = 'population';
 export const building_volume_type = 'building_volumes';
+export const gitlabUrl = 'https://gitlab.com/hotmaps/';
 
 export const DataInteractionArray: DataInteractionClass[] = [
  // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
   {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
-    workspaceName: defaultLayer, zoomLevel: 0, ref: ['overall', 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType},
+    workspaceName: defaultLayer, zoomLevel: 0, ref: ['overall', 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType,
+    download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif'},
 
   /*{id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType},

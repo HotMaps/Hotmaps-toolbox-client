@@ -1,3 +1,4 @@
+import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
 import { CMLayersService } from './../features/calculation-module/cm-layers.service';
 /* tslint:disable:no-unused-variable */
 /**
@@ -91,7 +92,7 @@ describe('AppComponent: Router', () => {
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent ],
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent, LayerToolComponent ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
