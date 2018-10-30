@@ -22,9 +22,13 @@ export class HotmapsDataComponent implements OnInit {
       this.hotmapsDataServices.getMockCategory().then((data) => {
         this.hotmapsDataCategories = data;
       })
-    }).then(() => {
-      console.log(this.hotmapsDataArray, this.hotmapsDataCategories)
     })
+  }
+
+  downloadData(url) {
+    if (url) {
+      window.open(url);
+    }
   }
 
 }

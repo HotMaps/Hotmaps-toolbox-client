@@ -5,9 +5,10 @@
 const potential_prefix = 'potential_'
 const load_profile = 'Load profile';
 const potential = 'Potential';
+const gitlabParamToDownload = '?inline=false'
 export const hotmapsData = [{
     id: 1, name: 'Residential cooling generic', gitlab_name: 'load_profile_residential_cooling_generic', description: '', category: load_profile,
-    download_url: 'https://gitlab.com/hotmaps/load_profile/load_profile_residential_cooling_generic/raw/master/data/hotmaps_task_2.7_load_profile_residential_cooling_generic.csv',
+    download_url: 'https://gitlab.com/hotmaps/load_profile/load_profile_residential_cooling_generic/raw/master/data/hotmaps_task_2.7_load_profile_residential_cooling_generic.csv'+gitlabParamToDownload,
     last_update:'10.09.2018 15:50'
   },{
     id: 1, name: 'Residential cooling yearlong 2010',gitlab_name: 'load_profile_residential_cooling_yearlong_2010',

@@ -8,11 +8,9 @@
           <div *ngIf="cat === data.category" class="uk-card uk-card-default uk-card-body">
             <h3 class="uk-card-title uk-margin-remove-bottom">{{data.name}}</h3>
             <p class="uk-text-meta uk-margin-remove-top">{{data.last_update}}</p>
-
-            <!-- <h3 class="uk-card-title">{{data.name}}</h3> -->
             <p>{{data.description}}</p>
             <div class="uk-card-footer">
-                <button class="uk-button uk-button-text"><span uk-icon="download"></span>Download data</button>
+                <button [disabled]="!data.download_url" class="uk-button uk-button-text" (click)="downloadData(data.download_url)"><span uk-icon="download"></span>Download data</button>
             </div>
           </div>
           <div class="uk-margin"></div>

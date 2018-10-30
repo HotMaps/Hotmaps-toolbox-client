@@ -143,7 +143,7 @@ export const MAPDIDIUPDATELAYER = 'didUpdateLayers';
 export const MAPOVERLAYADD = 'overlayadd';
 
 export const rightPanelSize = 600;
-export const leftPanelSize = 400;
+export const leftPanelSize = 445;
 
 // tab values
 export const default_tab_datapanel = 'indicator'
