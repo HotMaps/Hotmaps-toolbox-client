@@ -80,6 +80,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   @ViewChild(CalculationModuleComponent) calculationModuleComponent: CalculationModuleComponent;
   private layersSelected = [];
   private nbElementsSelected = 0;
+  private scaleLevel;
   layers: DataInteractionClass[];
   category = [];
   private isZoneSelected = false;
@@ -96,11 +97,12 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.scaleLevel = this.mapService.getScaleValue();
         if (value === 0) {
           uikit.tab('#uk-tab-left-panel').show(0);
           this.isZoneSelected = false;
         } else {
-          if (this.mapService.getScaleValue() === hectare) {
+          if (this.scaleLevel === hectare) {
             this.isZoneSelected = true;
           } else {
             this.isZoneSelected = true;
