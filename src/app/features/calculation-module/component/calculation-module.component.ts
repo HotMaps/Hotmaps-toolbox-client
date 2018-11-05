@@ -108,7 +108,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
-    this.calculationModuleService.getMockCalculationModules().then((result) => {
+    this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
 /*       this.calculationModules.map((cm) => {
@@ -167,7 +167,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.toggleCMPanel(true)
     this.setWaiting(true)
 
-    this.calculationModuleService.getMockCalculationModuleComponents(cm.cm_id).then((values) => {
+    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
     }).then(() => {
       this.setComponentCategory();
