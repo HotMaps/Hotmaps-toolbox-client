@@ -225,6 +225,9 @@ export const clculation_module_graph_options = {
 
 
 export const inputs_categories = [
+  {id: 0, name: ''},
   {id: 1, name: 'Basic inputs'},
-  {id: 2, name: 'Advanced inputs'}
+  {id: 2, name: 'Advanced inputs: (Level 1)'},
+  {id: 3, name: 'Advanced inputs: (Level 2)'},
+  {id: 4, name: 'Advanced inputs: (Level 3)'},
 ]
