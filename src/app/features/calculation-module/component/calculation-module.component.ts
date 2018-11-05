@@ -143,7 +143,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.setWaitingStatus(val)
 
   }
-
+  setComponentCategory() {
+    this.inputs_categories.map((input) => {
+      input.contains_component = false
+      if (this.components.filter(x => x.category === input.id).length >= 1) {
+        input.contains_component = true
+      }
+    })
+  }
   selectCM(cm) {
     this.layersFromType = [];
     if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
@@ -162,6 +169,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
     this.calculationModuleService.getMockCalculationModuleComponents(cm.cm_id).then((values) => {
       this.components = values;
+    }).then(() => {
+      this.setComponentCategory();
+      console.log(this.inputs_categories)
       this.setWaiting(false)
     })
   }

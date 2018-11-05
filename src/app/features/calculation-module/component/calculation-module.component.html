@@ -45,9 +45,9 @@
         <ng-container *ngIf="!waitingCM">
 
           <div class="component uk-margin" *ngFor="let input_cat of inputs_categories">
-            <ul uk-accordion>
-              <li class="">
-                <a class="uk-accordion-title" href="#">{{input_cat.name}}</a>
+            <ul uk-accordion *ngIf="input_cat.contains_component">
+              <li class="" [class.uk-open]="input_cat.id === 0">
+                <a class="uk-accordion-title" href="#">{{input_cat.name}} </a>
                 <div class="uk-accordion-content">
                   <div class="component uk-margin" *ngFor="let component of components">
                     <ng-container *ngIf="input_cat.id == component.category">
