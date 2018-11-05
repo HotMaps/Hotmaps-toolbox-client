@@ -18,7 +18,6 @@ export const cms = [
     "cm_id": 2,
     "layers_needed": "[u'heat_tot_curr_density']",
     "type_needed":['heat'],
-    "authorized_scale":['NUTS 2','NUTS 0','Hectare'],
 
     "cm_description": "This computation module calculates district heating potential within the selected region",
     "cm_name": "District Heating Potential",

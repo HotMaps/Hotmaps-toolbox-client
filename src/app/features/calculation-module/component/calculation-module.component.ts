@@ -108,16 +108,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
-    this.calculationModuleService.getMockCalculationModules().then((result) => {
+    this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
-/*       this.calculationModules.map((cm) => {
-        if (cm.cm_id === 1) {
-          cm['type_layer_needed'] = [defaultLayerType, population_type]
-        } else {
-          cm['type_layer_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
-        }
-      }) */
       this.setWaiting(false);
     }).then(() => {
       this.isCmsReadable()
@@ -144,15 +137,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
 
   }
   validateAuthorizedScale(cm) {
-    console.log(this.scaleLevel)
-    if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
-      return true
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale)) {
+      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
+        return true
+      } else {
+        return false
+      }
     } else {
-      return false
+      return true
     }
   }
   selectCM(cm) {
-    if(this.validateAuthorizedScale(cm)) {
+    if (this.validateAuthorizedScale(cm)) {
       this.layersFromType = [];
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
