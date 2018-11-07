@@ -7,7 +7,6 @@ export const cms = [
     "layers_needed": "[u'heat_tot_curr_density']",
     "type_layer_needed":['heat',gfa_type],
     "authorized_scale":['NUTS 3','Hectare'],
-    "type_layer_needed":['heat','gross_floor_area'],
     "cm_description": "this computation module allows to divide the HDM",
     "cm_name": "calculation_module_test",
     "cm_url": "http://172.26.0.2:80/",
