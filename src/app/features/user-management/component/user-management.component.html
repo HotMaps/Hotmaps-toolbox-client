@@ -1,4 +1,9 @@
-<a href="#modal-login" class="uk-icon-link" uk-icon="user" uk-toggle></a>
+<div [class.isLoggedIn]="isLoggedIn" [class.isLoggedOut]="!isLoggedIn">
+  <a href="#modal-login" class="uk-icon-link"  uk-icon="user" uk-toggle>
+    <span *ngIf="isLoggedIn">Account</span>
+    <span *ngIf="!isLoggedIn">Connect</span>
+  </a>
+</div>
 <div id="modal-login" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <htm-login></htm-login>

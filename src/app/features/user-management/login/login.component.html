@@ -7,11 +7,14 @@
 </p>
 <p>
   <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-  <button class="uk-button uk-button-primary" (click)="connect()">Connect</button>
-  <button class="uk-button uk-button-primary" (click)="logout()">logout</button>
+  <button class="uk-button uk-button-primary" (click)="!waitingStatus ? connect() : null">
+      <span *ngIf="!waitingStatus">Run CM</span>
+      <span *ngIf="waitingStatus" uk-spinner></span>
+  </button>
+  <!-- <button class="uk-button uk-button-primary" (click)="logout()">logout</button> -->
 </p>
 <p>
-  <a href="#modal-register" class="uk-button uk-button-link" uk-toggle>Register</a>
+  <a href="#modal-register" class="uk-button uk-button-link"  uk-toggle>Register</a>
 </p>
 <p>
   <a href="#modal-recover" class="uk-button uk-button-link" uk-toggle>Recover</a>

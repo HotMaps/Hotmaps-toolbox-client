@@ -71,6 +71,7 @@ import { LoginComponent } from './features/user-management';
 import { RegisterComponent } from './features/user-management';
 import { RecoveryComponent } from './features/user-management';
 import { UserManagementService } from './features/user-management/service/user-management.service';
+import { UserManagementStatusService } from './features/user-management/service/user-management-status.service';
 
 
 @NgModule({
@@ -146,7 +147,8 @@ import { UserManagementService } from './features/user-management/service/user-m
     CalculationModuleStatusService,
     CalculationHeatLoadDividedService,
     CMLayersService,
-    UserManagementService
+    UserManagementService,
+    UserManagementStatusService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
