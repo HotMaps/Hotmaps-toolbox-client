@@ -37,20 +37,23 @@ export class APIService {
     this.toasterService = toasterService;
   }
   handleError(error: any) {
+
+
     this.loaderService.display(false);
-    let message = error.json().error.message;
-    const status = error.json().error.status;
-    const statusText = error.json().error.statusText;
 
-    if (this.isNullOrUndefined(message)) {
-       message = ' ';
-    }
-    else {
+    let message;
+    if (this.isNullOrUndefined(error.json().message)) {
+       message = 'An error occurred: please try later ';
+    } else {
+      this.logger.log('APIService/handleError nnn'+ error.json().message);
       message = ', ' + message;
+      const status = error.json().error.status;
+      const statusText = error.json().error.statusText;
+      message = statusText + ' ' + message
     }
 
-    this.toasterService.showToaster(statusText + ' ' + message);
-    this.logger.log('APIService/handleError');
+    this.toasterService.showToaster(message);
+
     this.logger.log('An error occurred: ' + message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
