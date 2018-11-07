@@ -22,7 +22,7 @@ import { CalculationModuleService } from '../service/calculation-module.service'
 import { CalculationModuleStatusService } from '../service/calcultation-module-status.service';
 import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
-import {Logger, ToasterService} from "../../../shared/services";
+import { Logger, ToasterService } from "../../../shared/services";
 import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
 
 @Component({
@@ -58,15 +58,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     private calculationModuleStatusService: CalculationModuleStatusService,
     private dataInteractionService: DataInteractionService,
     private helper: Helper, private logger: Logger,
-    private  toasterService: ToasterService) { }
+    private toasterService: ToasterService) { }
 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs();
 
   }
-  ngOnChanges(changes: SimpleChanges): void {}
-  ngOnDestroy() {}
+  ngOnChanges(changes: SimpleChanges): void { }
+  ngOnDestroy() { }
 
   subscribeEvents() {
     const self = this;
@@ -135,18 +135,17 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
-
   }
   setComponentCategory() {
     this.inputs_categories.map((input) => {
       input.contains_component = false
-      if (this.components.filter(x => x.category === input.id).length >= 1) {
+      if (this.components.filter(x => x.input_priority === input.id).length >= 1) {
         input.contains_component = true
       }
     })
   }
   validateAuthorizedScale(cm) {
-    if(!this.helper.isNullOrUndefined(cm.authorized_scale)) {
+    if (cm.authorized_scale.length >= 1) {
       if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
         return true
       } else {
@@ -162,7 +161,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
           this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-            this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
+            this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName })
           }).then(() => {
             this.setLayerNeeded()
           })
@@ -170,16 +169,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       }
       this.cmSelected = cm;
 
-    this.toggleCMPanel(true)
-    this.setWaiting(true)
+      this.toggleCMPanel(true)
+      this.setWaiting(true)
 
-    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
-      this.components = values;
-    }).then(() => {
-      this.setComponentCategory();
-      console.log(this.inputs_categories)
-      this.setWaiting(false)
-    })
+      this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+        this.components = values;
+      }).then(() => {
+        this.setComponentCategory();
+        this.setWaiting(false)
+      })
       this.toggleCMPanel(true)
       this.setWaiting(true)
       this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {

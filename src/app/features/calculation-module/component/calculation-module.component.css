@@ -54,3 +54,7 @@
 .unclickable {
   cursor: wait;
 }
+.input_title{
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
