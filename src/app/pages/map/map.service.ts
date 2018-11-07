@@ -446,7 +446,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map, 150)
   }
   removeCMLayer() {
-    this.cmLayerService.clearAll()
+    // this.cmLayerService.clearAll()
   }
 }
 
