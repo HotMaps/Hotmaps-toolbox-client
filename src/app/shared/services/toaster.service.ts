@@ -2,7 +2,7 @@
  * Created by lesly on 14.07.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 import { Injectable } from '@angular/core';
 import * as uikit from 'uikit'
@@ -16,6 +16,6 @@ export class ToasterService {
 
   showToaster(msg: string) {
     uikit.notification.closeAll();
-    uikit.notification({message: msg, pos: 'bottom-center', timeout: 2000 })
+    uikit.notification({message: msg, pos: 'bottom-center', timeout: 3000 })
   }
 }

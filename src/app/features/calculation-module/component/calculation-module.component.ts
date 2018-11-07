@@ -22,7 +22,7 @@ import { CalculationModuleService } from '../service/calculation-module.service'
 import { CalculationModuleStatusService } from '../service/calcultation-module-status.service';
 import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
-import {Logger} from "../../../shared/services";
+import {Logger, ToasterService} from "../../../shared/services";
 import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
 
 @Component({
@@ -43,7 +43,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
-
+  @Input() scaleLevel;
   private progress = 0;
   private calculationModules;
   private categories;
@@ -56,7 +56,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
     private dataInteractionService: DataInteractionService,
-    private helper: Helper, private logger: Logger) { }
+    private helper: Helper, private logger: Logger,
+    private  toasterService: ToasterService) { }
 
   ngOnInit() {
     this.subscribeEvents()
@@ -110,13 +111,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
-/*       this.calculationModules.map((cm) => {
-        if (cm.cm_id === 1) {
-          cm['type_layer_needed'] = [defaultLayerType, population_type]
-        } else {
-          cm['type_layer_needed'] = [defaultLayerType, wwtp_type, population_type, gfa_type]
-        }
-      }) */
       this.setWaiting(false);
     }).then(() => {
       this.isCmsReadable()
@@ -142,26 +136,41 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.setWaitingStatus(val)
 
   }
-
-  selectCM(cm) {
-    this.layersFromType = [];
-    if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
-      cm.type_layer_needed.map((layerType) => {
-        this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-          this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
-        }).then(() => {
-          this.setLayerNeeded()
-        })
-      })
+  validateAuthorizedScale(cm) {
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale)) {
+      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      return true
     }
-    this.cmSelected = cm;
+  }
+  selectCM(cm) {
+    if (this.validateAuthorizedScale(cm)) {
+      this.layersFromType = [];
+      if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
+        cm.type_layer_needed.map((layerType) => {
+          this.dataInteractionService.getLayersFromType(layerType).then((data) => {
+            this.layersFromType.push({layerType: layerType, layers: data, layerSelected: data[0].workspaceName})
+          }).then(() => {
+            this.setLayerNeeded()
+          })
+        })
+      }
+      this.cmSelected = cm;
 
-    this.toggleCMPanel(true)
-    this.setWaiting(true)
-    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
-      this.components = values;
-      this.setWaiting(false)
-    })
+      this.toggleCMPanel(true)
+      this.setWaiting(true)
+      this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+        this.components = values;
+        this.setWaiting(false)
+      })
+    } else {
+      const scale_authorized = cm.authorized_scale.toString().replace(/,/g, ', ');
+      this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen')
+    }
   }
   cmHidePanel() {
     this.calculationModuleStatusService.undefinedCmRunned()

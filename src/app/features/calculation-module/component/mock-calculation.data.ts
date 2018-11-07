@@ -1,9 +1,12 @@
+import { gfa_type } from "app/features/layers-interaction/layers-interaction.data";
+
 export const cms = [
   {
     "category": "Buildings",
     "cm_id": 1,
     "layers_needed": "[u'heat_tot_curr_density']",
-    "type_layer_needed":"[u'heat','gfa']",
+    "type_layer_needed":['heat',gfa_type],
+    "authorized_scale":['NUTS 3','Hectare'],
     "cm_description": "this computation module allows to divide the HDM",
     "cm_name": "calculation_module_test",
     "cm_url": "http://172.26.0.2:80/",
@@ -14,7 +17,8 @@ export const cms = [
     "category": "Buildings",
     "cm_id": 2,
     "layers_needed": "[u'heat_tot_curr_density']",
-    "type_needed":"[u'heat']",
+    "type_needed":['heat'],
+
     "cm_description": "This computation module calculates district heating potential within the selected region",
     "cm_name": "District Heating Potential",
     "cm_url": "http://172.26.0.4:80/",
