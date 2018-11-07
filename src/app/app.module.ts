@@ -66,7 +66,11 @@ import { CalculationModuleStatusService } from './features/calculation-module/se
 import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from './features/calculation-module/cm-layers.service';
 import { ResultManagerComponent } from './features/result-manager/component/result-manager.component';
-import { LoginComponent } from './features/login/login.component';
+import { UserManagementComponent } from './features/user-management';
+import { LoginComponent } from './features/user-management';
+import { RegisterComponent } from './features/user-management';
+import { RecoveryComponent } from './features/user-management';
+import { UserManagementService } from './features/user-management/service/user-management.service';
 
 
 @NgModule({
@@ -107,11 +111,12 @@ import { LoginComponent } from './features/login/login.component';
     ExportDataComponent,
     ElectricityMixComponent,
     CalculationModuleComponent,
-    LoginComponent
+    UserManagementComponent,
+    LoginComponent,
+    RegisterComponent,
+    RecoveryComponent
   ],
-
   providers: [
-
     DataInteractionService,
     PopulationService,
     GeocodingService,
@@ -140,7 +145,8 @@ import { LoginComponent } from './features/login/login.component';
     CalculationModuleService,
     CalculationModuleStatusService,
     CalculationHeatLoadDividedService,
-    CMLayersService
+    CMLayersService,
+    UserManagementService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

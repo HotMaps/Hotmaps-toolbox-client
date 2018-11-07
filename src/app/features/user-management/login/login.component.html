@@ -1,0 +1,18 @@
+<h2 class="uk-modal-title">LOGIN</h2>
+<p>
+  <input class="uk-input" id="login-mail" type="email" placeholder="Username" (keyup.enter)="connect()" [(ngModel)]="username" [value]="username" required/>
+</p>
+<p>
+  <input class="uk-input" id="login-password" type="password" placeholder="Password" (keyup.enter)="connect()" [(ngModel)]="password" [value]="password" required />
+</p>
+<p>
+  <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+  <button class="uk-button uk-button-primary" (click)="connect()">Connect</button>
+  <button class="uk-button uk-button-primary" (click)="logout()">logout</button>
+</p>
+<p>
+  <a href="#modal-register" class="uk-button uk-button-link" uk-toggle>Register</a>
+</p>
+<p>
+  <a href="#modal-recover" class="uk-button uk-button-link" uk-toggle>Recover</a>
+</p>
