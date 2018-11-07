@@ -65,6 +65,7 @@ import { CalculationModuleComponent } from 'app/features/calculation-module/comp
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import { LayerToolComponent } from 'app/features/layer-tool/layer-tool.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -90,7 +91,7 @@ describe('MapComponent', () => {
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent, LayerToolComponent
       ],
       providers: [
         {

@@ -1,0 +1,26 @@
+<div class="tool-container">
+  <button [class.uk-button-primary]="isLegendDisplayed" class="uk-icon-button uk-button-default" uk-icon="paint-bucket" (click)="toggleLegend()"></button>
+  <button [class.uk-button-primary]="isInfoDisplayed" class="uk-icon-button uk-button-default" uk-icon="info" (click)="toggleInformations()"></button>
+  <button *ngIf="dataInteraction.download_url" class="uk-icon-button uk-button-default" uk-icon="upload" (click)="downloadFile()"></button>
+</div>
+
+<!--
+  Layer legend
+-->
+<div [hidden]="!isLegendDisplayed" class="uk-card uk-card-default uk-card-body">
+  <h3 class="uk-card-title">Symbology</h3>
+  <div class="card-content">
+    <div *ngIf="!displayLegend" class="loader" uk-spinner></div>
+    <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoadLegend()" />
+  </div>
+</div>
+<div *ngIf="isLegendDisplayed" class="uk-margin"></div>
+<!--
+  Layer informations
+-->
+<div *ngIf="isInfoDisplayed" class="uk-card uk-card-default uk-card-body">
+  <h3 class="uk-card-title">Informations</h3>
+  <div class="card-content">
+  </div>
+</div>
+<div *ngIf="isInfoDisplayed" class="uk-margin"></div>
