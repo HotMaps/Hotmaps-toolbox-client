@@ -1,4 +1,4 @@
-import { defaultLayerType } from './../../../shared/data.service';
+import { defaultLayerType, inputs_categories } from './../../../shared/data.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
@@ -43,6 +43,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
+  private inputs_categories = inputs_categories;
   @Input() scaleLevel;
   private progress = 0;
   private calculationModules;
@@ -136,6 +137,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.setWaitingStatus(val)
 
   }
+  setComponentCategory() {
+    this.inputs_categories.map((input) => {
+      input.contains_component = false
+      if (this.components.filter(x => x.category === input.id).length >= 1) {
+        input.contains_component = true
+      }
+    })
+  }
   validateAuthorizedScale(cm) {
     if(!this.helper.isNullOrUndefined(cm.authorized_scale)) {
       if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
@@ -161,6 +170,16 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       }
       this.cmSelected = cm;
 
+    this.toggleCMPanel(true)
+    this.setWaiting(true)
+
+    this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+      this.components = values;
+    }).then(() => {
+      this.setComponentCategory();
+      console.log(this.inputs_categories)
+      this.setWaiting(false)
+    })
       this.toggleCMPanel(true)
       this.setWaiting(true)
       this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {

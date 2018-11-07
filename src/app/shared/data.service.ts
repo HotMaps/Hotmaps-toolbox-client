@@ -222,3 +222,12 @@ export const clculation_module_graph_options = {
         }]
   }
 }
+
+
+export const inputs_categories = [
+  {id: 0, name: 'Inputs', contains_component: false},
+  {id: 1, name: 'Basic inputs', contains_component: false},
+  {id: 2, name: 'Advanced inputs: (Level 1)', contains_component: false},
+  {id: 3, name: 'Advanced inputs: (Level 2)', contains_component: false},
+  {id: 4, name: 'Advanced inputs: (Level 3)', contains_component: false},
+]
