@@ -1,4 +1,4 @@
-import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
+
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -65,6 +65,11 @@ import { CalculationModuleComponent } from 'app/features/calculation-module/comp
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import {
+  LoginComponent, AccountComponent, UserManagementStatusService,
+  UserManagementService, RecoveryComponent, RegisterComponent, UserManagementComponent
+} from 'app/features/user-management';
+import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -90,7 +95,8 @@ describe('MapComponent', () => {
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent
       ],
       providers: [
         {
@@ -127,6 +133,8 @@ describe('MapComponent', () => {
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: DurationCurveService, useClass: DurationCurveService },
         {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        {provide: UserManagementStatusService, useClass: UserManagementStatusService},
+        {provide: UserManagementService, useClass: UserManagementService},
 
       ],
       imports: [

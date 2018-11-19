@@ -3,6 +3,7 @@ import { Payload } from './../../population/payload.class';
 import { UserManagementService } from './../service/user-management.service';
 import { Component, OnInit } from '@angular/core';
 import { ToasterService } from 'app/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-recovery',
@@ -14,7 +15,7 @@ export class RecoveryComponent extends WaitingStatusComponent implements OnInit 
   private email = '';
   private new_password = '';
   private token = '';
-  constructor(private toasterService:ToasterService, private userManagementService:UserManagementService) {
+  constructor(private toasterService: ToasterService, private userManagementService:UserManagementService) {
     super()
    }
 

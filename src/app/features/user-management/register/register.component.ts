@@ -3,6 +3,7 @@ import { ToasterService } from './../../../shared/services/toaster.service';
 import { Component, OnInit } from '@angular/core';
 import { UserManagementService } from './../service/user-management.service';
 import * as uikit from 'uikit';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-register',
