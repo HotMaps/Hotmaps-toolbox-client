@@ -12,8 +12,8 @@ import { ToasterService } from 'app/shared';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends WaitingStatusComponent implements OnInit  {
-  private username='albain.dufils@crem.ch';
-  private password='crem';
+  private username='';
+  private password='';
   private token='';
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
     private toasterService: ToasterService) {
