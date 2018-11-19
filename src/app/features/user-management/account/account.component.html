@@ -1,0 +1,38 @@
+<h2 class="uk-modal-title">Welcome {{username}}</h2>
+
+<div class="uk-child-width-1-2@m uk-grid-match" uk-grid>
+  <div>
+    <div class="uk-card uk-card-default uk-card-body">
+      <h3>User diskspace</h3>
+      <div style="position:relative; height:215px">
+        <htm-chart [type]="'pie'" [labels]="diskspaceLabels" [options]="diskspaceOptions" [datasets]="diskspaceDataset"
+          [isLoading]="false"></htm-chart>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="uk-card uk-card-default uk-card-body">
+      <h3>Informations
+        <span [hidden]="isEditable" class="uk-margin-small-right" uk-icon="icon: pencil" (click)="toggleEditing()"></span>
+        <span [hidden]="!isEditable" class="uk-margin-small-right" uk-icon="icon: ban" (click)="disableEditing()"></span>
+      </h3>
+      <div>
+        <div class="profil-information">
+          <h5 class="title">Firstname</h5>
+          <!-- <span *ngIf="!isEditable">{{firstname}}</span> -->
+          <input class="uk-input" type="text" [class.uk-disabled]="!isEditable" placeholder="Firstname" [(ngModel)]="firstname"
+            [value]="firstname" required />
+        </div>
+        <div class="profil-information">
+          <h5 class="title">Lastname</h5>
+          <input class="uk-input" [class.uk-disabled]="!isEditable" type="text" placeholder="Lastname" [(ngModel)]="lastname"
+            [value]="lastname" required />
+        </div>
+        <div *ngIf="isEditable" class="uk-margin"></div>
+        <button *ngIf="isEditable" class="uk-button uk-button-primary" (click)="updateProfile()">Update profile</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button class="uk-button uk-button-primary" (click)="logout()">Logout</button>

@@ -1,21 +1,28 @@
 <div [class.isLoggedIn]="isLoggedIn" [class.isLoggedOut]="!isLoggedIn">
-  <a href="#modal-login" class="uk-icon-link"  uk-icon="user" uk-toggle>
-    <span *ngIf="isLoggedIn">Account</span>
-    <span *ngIf="!isLoggedIn">Connect</span>
-  </a>
+  <a href="#modal-login" *ngIf="!isLoggedIn" class="uk-icon-link"  uk-icon="user" uk-toggle><span class="link-right">Connect</span></a>
+  <a href="#modal-account" *ngIf="isLoggedIn" class="uk-icon-link"  uk-icon="user" uk-toggle><span class="link-right">Account</span></a>
 </div>
 <div id="modal-login" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
-    <htm-login></htm-login>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <htm-login *ngIf="!isLoggedIn"></htm-login>
   </div>
 </div>
 <div id="modal-register" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
     <htm-register></htm-register>
   </div>
 </div>
 <div id="modal-recover" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
     <htm-recovery></htm-recovery>
+  </div>
+</div>
+<div id="modal-account" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <htm-account *ngIf="isLoggedIn" [username]="username" [token]="token"></htm-account>
   </div>
 </div>

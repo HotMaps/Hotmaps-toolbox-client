@@ -1,9 +1,26 @@
 <h2 class="uk-modal-title">RECOVER ACCOUNT</h2>
-<p>
-  <label class="uk-form-label" for="form-horizontal-text">Mail address</label>
-  <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Some text..." />
+<p *ngIf="!submitedRecover">
+  <input class="uk-input" type="text" placeholder="Email address" (keyup.enter)="!waitingStatus ? recoverAccountAsk() : null" [(ngModel)]="email" [value]="email" required />
 </p>
-<p>
+<p *ngIf="!submitedRecover">
   <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-  <button class="uk-button uk-button-primary" type="button">Recover account</button>
+  <button class="uk-button uk-button-primary" type="button" (click)="!waitingStatus ? recoverAccountAsk() : null">
+      <span *ngIf="!waitingStatus">Recover account</span>
+      <span *ngIf="waitingStatus" uk-spinner></span>
+  </button>
+</p>
+
+<p *ngIf="submitedRecover">
+  Please check your mailbox (<strong>{{email}}</strong>)! Enter the token you receive by email.
+</p>
+<p *ngIf="submitedRecover">
+  <input class="uk-input" type="text" placeholder="Token to recover" [(ngModel)]="token" [value]="token" required />
+  <input class="uk-input" type="password" placeholder="New password" [(ngModel)]="new_password" [value]="new_password" required />
+</p>
+<p *ngIf="submitedRecover">
+  <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+  <button class="uk-button uk-button-primary" type="button" (click)="!waitingStatus ? recoverAccount() : null">
+    <span *ngIf="!waitingStatus">Submit</span>
+    <span *ngIf="waitingStatus" uk-spinner></span>
+  </button>
 </p>

@@ -72,6 +72,7 @@ import { RegisterComponent } from './features/user-management';
 import { RecoveryComponent } from './features/user-management';
 import { UserManagementService } from './features/user-management/service/user-management.service';
 import { UserManagementStatusService } from './features/user-management/service/user-management-status.service';
+import { AccountComponent } from './features/user-management/account/account.component';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import { UserManagementStatusService } from './features/user-management/service/
     UserManagementComponent,
     LoginComponent,
     RegisterComponent,
-    RecoveryComponent
+    RecoveryComponent,
+    AccountComponent
   ],
   providers: [
     DataInteractionService,

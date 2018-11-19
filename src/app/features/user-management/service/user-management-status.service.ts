@@ -4,18 +4,29 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserManagementStatusService {
   private isUserLogged = new BehaviorSubject<boolean>(false);
-  private userTocken = new BehaviorSubject<string>(null);
-  private userLogin = new BehaviorSubject<string>(null);
+  private userToken = new BehaviorSubject<string>(null);
+  private username = new BehaviorSubject<string>(null);
 
-
+  getUserToken() {
+    return this.userToken;
+  }
   getIsUserLogged() {
-    return this.isUserLogged
+    return this.isUserLogged;
+  }
+  getUsername() {
+    return this.username;
   }
   setUserIsLoggedIn() {
     this.isUserLogged.next(true);
   }
   setUserIsLoggedOut() {
     this.isUserLogged.next(false);
+  }
+  setUsername(username) {
+    this.username.next(username);
+  }
+  setUserToken(token) {
+    this.userToken.next(token);
   }
 }
 

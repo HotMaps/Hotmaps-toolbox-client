@@ -15,5 +15,8 @@
   </p>
   <p>
     <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-    <button class="uk-button uk-button-primary" type="button" (click)="createAccount()">Create account</button>
+    <button class="uk-button uk-button-primary" type="button" (click)="!waitingStatus ? createAccount() : null">
+        <span *ngIf="!waitingStatus">Create account</span>
+        <span *ngIf="waitingStatus" uk-spinner></span>
+    </button>
   </p>

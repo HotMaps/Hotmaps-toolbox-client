@@ -42,7 +42,6 @@ export class APIService {
     let message = error.message;
     const status = error.status;
     const statusText = error.statusText;
-
     if (this.isNullOrUndefined(message)) {
        message = ' ';
     }

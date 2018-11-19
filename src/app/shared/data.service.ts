@@ -26,7 +26,7 @@ export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?a
 export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density_tif';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -58,12 +58,20 @@ export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
 
 // User management endpoints
 export const user_endpoint = '/users/'
+export const upload_endpoint = '/upload/'
 export const post_user_register = user_endpoint + 'register';
 export const post_user_register_activate = user_endpoint + 'register/activate';
 export const post_user_recovery_ask = user_endpoint + 'recovery/ask';
 export const post_user_recovery = user_endpoint + 'recovery';
 export const post_user_logout = user_endpoint + 'logout';
 export const post_user_login = user_endpoint + 'login';
+export const get_userinformation_endpoint = user_endpoint + 'information';
+export const get_userupdateprofile_endpoint = user_endpoint + 'profile/update';
+
+export const get_diskspace_endpoint = upload_endpoint + 'space_used'
+export const get_filelist_endpoint = upload_endpoint + 'list';
+
+
 // title
 export const heatloadprofile = 'Heatload profile';
 export const Durationcurve = 'Duration curve';
@@ -229,5 +237,22 @@ export const clculation_module_graph_options = {
             labelString: ''
           }
         }]
+  }
+}
+export const color_usedspace = '#123';
+export const color_unusedspace = '#321';
+export const labels_diskspacechart = ['Used space', 'Unused space'];
+export const diskspacechart_options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    display: true,
+  },
+  tooltips: {
+    callbacks: {
+      label: function(tlt, data){
+        return data.labels[tlt.index] + ': ' + data.datasets[0].data[tlt.index] + ' MB'
+      }
+    }
   }
 }
