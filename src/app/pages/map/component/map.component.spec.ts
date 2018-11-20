@@ -1,3 +1,4 @@
+import { ActivateComponent } from './../../../features/user-management/activate/activate.component';
 
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
@@ -37,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockSidePanelService } from './../../../shared/services/mock/mock-sidepanel.service';
 import { BusinessInterfaceRenderService } from './../../../shared/business/business.service';
 import { DataInteractionService } from '../../../features/layers-interaction/layers-interaction.service';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, APP_BASE_HREF } from '@angular/common';
 import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
 import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
@@ -70,6 +71,8 @@ import {
   UserManagementService, RecoveryComponent, RegisterComponent, UserManagementComponent
 } from 'app/features/user-management';
 import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
+import { RouterModule } from '@angular/router';
+import { routes } from 'app/routes';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -96,7 +99,7 @@ describe('MapComponent', () => {
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent
       ],
       providers: [
         {
@@ -135,12 +138,14 @@ describe('MapComponent', () => {
         {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {provide: UserManagementStatusService, useClass: UserManagementStatusService},
         {provide: UserManagementService, useClass: UserManagementService},
+        {provide: APP_BASE_HREF, useValue: '/'}
 
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot()
+        RecaptchaModule.forRoot(),
+        RouterModule.forRoot(routes)
       ]
     }).compileComponents();
   });

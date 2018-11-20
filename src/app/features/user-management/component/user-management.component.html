@@ -11,7 +11,7 @@
 <div id="modal-register" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <button class="uk-modal-close-default" type="button" uk-close></button>
-    <htm-register></htm-register>
+    <htm-register [token_activation]="token_activation"></htm-register>
   </div>
 </div>
 <div id="modal-recover" uk-modal>
@@ -26,3 +26,9 @@
     <htm-account *ngIf="isLoggedIn" [username]="username" [token]="token"></htm-account>
   </div>
 </div>
+<div id="modal-activate" uk-modal>
+    <div *ngIf="token_activation" class="uk-modal-dialog uk-modal-body">
+      <button class="uk-modal-close-default" type="button" uk-close></button>
+      <htm-activate  [token_activation]="token_activation"></htm-activate>
+    </div>
+  </div>

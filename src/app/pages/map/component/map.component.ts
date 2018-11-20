@@ -51,7 +51,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private selectionToolService: SelectionToolService,
     private interactionService: InteractionService
-  ) {}
+  ) {
+  }
 
   ngAfterContentInit(): void {
     this.notifySubscription();
@@ -64,6 +65,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
+
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
@@ -132,6 +134,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
+
     // mapService get an instance of the maps and can work on it
     this.mapService.setupMapservice(this.createMap(basemap));
 

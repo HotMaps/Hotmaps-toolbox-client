@@ -1,9 +1,9 @@
+import {Location} from '@angular/common';
 import { WaitingStatusComponent } from './../../../shared/component/waiting-status';
 import { ToasterService } from './../../../shared/services/toaster.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from './../service/user-management.service';
 import * as uikit from 'uikit';
-import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-register',
@@ -11,6 +11,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent extends WaitingStatusComponent implements OnInit {
+  @Input() token_activation;
   private email='';
   private password='';
   private lastname='';
@@ -33,6 +34,15 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
   }
   closePanel() {
     uikit.modal('#modal-register').hide()
+  }
+  activateUser() {
+    const payload = { token: this.token_activation};
+    this.userManagementService.userRegisterActivate(payload).then((data) => {
+      this.toasterService.showToaster(data.message);
+      this.token_activation='';
+    })
+    this.closePanel()
+    // this.location.replaceState('/map')
   }
   resetRegisterForm() {
     this.email='';

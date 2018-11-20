@@ -7,9 +7,13 @@
 // listing import lines alphabetized by the module
 import { Routes } from '@angular/router';
 import { MapComponent } from './pages/map/component/map.component';
+import { ActivateComponent } from './features/user-management/activate/activate.component';
 
 
 export const routes: Routes = [
-  {path: '' , redirectTo: '/map', pathMatch: 'full'},
-  {path: 'map' , component: MapComponent},
+  { path: '' , redirectTo: '/map', pathMatch: 'full' },
+  { path: 'map' , component: MapComponent},
+  { path: 'register' , component: MapComponent, children:[
+    { path: ':token_activation' , component: ActivateComponent },
+  ]},
 ];

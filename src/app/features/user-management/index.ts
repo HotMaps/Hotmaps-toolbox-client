@@ -3,5 +3,6 @@ export * from './login';
 export * from './register';
 export * from './account';
 export * from './recovery';
+export * from './activate';
 export * from './service/user-management.service';
 export * from './service/user-management-status.service';

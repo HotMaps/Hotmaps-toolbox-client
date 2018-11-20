@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserManagementStatusService } from '../service/user-management-status.service';
 import { subscribeOn } from 'rxjs/operator/subscribeOn';
 import * as uikit from 'uikit';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'htm-user-management',
@@ -12,12 +13,19 @@ export class UserManagementComponent implements OnInit {
   private isLoggedIn;
   private username = '';
   private token = '';
-  constructor(private userManagementStatusService: UserManagementStatusService) { }
+  private token_activation = '';
+  constructor(private userManagementStatusService: UserManagementStatusService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.subscribe();
   }
   subscribe() {
+    this.route.params.subscribe( (params) => {
+      if(params.token_activation){
+        this.token_activation = params.token_activation;
+        uikit.modal('#modal-activate').show()
+      }
+    });
     this.userManagementStatusService.getIsUserLogged().subscribe((data) => {
       this.isLoggedIn=data;
       if(this.isLoggedIn) {

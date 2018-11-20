@@ -1,10 +1,3 @@
-import { RegisterComponent } from './../features/user-management/register/register.component';
-import { UserManagementService } from './../features/user-management/service/user-management.service';
-import { RecoveryComponent } from './../features/user-management/recovery/recovery.component';
-import { AccountComponent } from './../features/user-management/account/account.component';
-import { LoginComponent } from './../features/user-management/login/login.component';
-import { UserManagementComponent } from './../features/user-management/component/user-management.component';
-import { CMLayersService } from './../features/calculation-module/cm-layers.service';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -78,7 +71,14 @@ import { CalculationModuleStatusService } from './../features/calculation-module
 import { CalculationHeatLoadDividedService } from './../features/calculation-module/service/calculation-test.service';
 import { ResultManagerComponent } from '../features/result-manager/component';
 import { UserManagementStatusService } from 'app/features/user-management/service/user-management-status.service';
-
+import { ActivateComponent } from './../features/user-management/activate/activate.component';
+import { RegisterComponent } from './../features/user-management/register/register.component';
+import { UserManagementService } from './../features/user-management/service/user-management.service';
+import { RecoveryComponent } from './../features/user-management/recovery/recovery.component';
+import { AccountComponent } from './../features/user-management/account/account.component';
+import { LoginComponent } from './../features/user-management/login/login.component';
+import { UserManagementComponent } from './../features/user-management/component/user-management.component';
+import { CMLayersService } from './../features/calculation-module/cm-layers.service';
 
 describe('AppComponent: Router', () => {
 
@@ -99,7 +99,7 @@ describe('AppComponent: Router', () => {
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
