@@ -1,11 +1,9 @@
-import { MouseEvent } from 'leaflet';
 import { color_usedspace, color_unusedspace, labels_diskspacechart, diskspacechart_options } from './../../../shared/data.service';
 import { UserManagementStatusService } from './../service/user-management-status.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
 import { WaitingStatusComponent } from 'app/shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
-import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-account',

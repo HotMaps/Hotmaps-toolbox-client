@@ -14,6 +14,8 @@ export class UserManagementComponent implements OnInit {
   private username = '';
   private token = '';
   private token_activation = '';
+  private token_recover = '';
+  private submitedRecover = false;
   constructor(private userManagementStatusService: UserManagementStatusService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,6 +26,13 @@ export class UserManagementComponent implements OnInit {
       if(params.token_activation){
         this.token_activation = params.token_activation;
         uikit.modal('#modal-activate').show()
+      }
+    });
+    this.route.params.subscribe( (params) => {
+      if(params.token_recover){
+        this.token_recover = params.token_recover;
+        this.submitedRecover = true;
+        uikit.modal('#modal-recover').show()
       }
     });
     this.userManagementStatusService.getIsUserLogged().subscribe((data) => {

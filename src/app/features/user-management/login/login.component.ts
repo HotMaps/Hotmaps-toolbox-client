@@ -1,4 +1,3 @@
-import { InteractionService } from './../../../shared/services/interaction.service';
 import { Component, OnInit } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
 import { UserManagementStatusService } from '../service/user-management-status.service';

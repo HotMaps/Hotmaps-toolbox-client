@@ -11,11 +11,10 @@
 </p>
 
 <p *ngIf="submitedRecover">
-  Please check your mailbox (<strong>{{email}}</strong>)! Enter the token you receive by email.
+  Enter your new password
 </p>
 <p *ngIf="submitedRecover">
-  <input class="uk-input" type="text" placeholder="Token to recover" [(ngModel)]="token" [value]="token" required />
-  <input class="uk-input" type="password" placeholder="New password" [(ngModel)]="new_password" [value]="new_password" required />
+ <input class="uk-input" type="password" placeholder="New password" (keyup.enter)="!waitingStatus ? recoverAccount() : null" [(ngModel)]="new_password" [value]="new_password" required />
 </p>
 <p *ngIf="submitedRecover">
   <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
