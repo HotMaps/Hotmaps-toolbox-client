@@ -1,0 +1,29 @@
+.piechart_container {
+  width: 50%;
+}
+.uk-grid-small {
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+.uk-card-body {
+  padding: 20px 20px;
+}
+.profil-information > .title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10px;
+}
+.uk-card-badge {
+  width:50px;
+}
+.uk-card-badge > span {
+  float: right;
+  cursor: pointer;
+}
+.uk-card
+.uk-button {
+  width: 100%;
+}
+.disableEdit {
+  color: red;
+}

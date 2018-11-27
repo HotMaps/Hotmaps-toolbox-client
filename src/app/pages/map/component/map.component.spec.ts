@@ -1,4 +1,5 @@
-import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
+import { ActivateComponent } from './../../../features/user-management/activate/activate.component';
+
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -37,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockSidePanelService } from './../../../shared/services/mock/mock-sidepanel.service';
 import { BusinessInterfaceRenderService } from './../../../shared/business/business.service';
 import { DataInteractionService } from '../../../features/layers-interaction/layers-interaction.service';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, APP_BASE_HREF } from '@angular/common';
 import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
 import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
@@ -65,7 +66,13 @@ import { CalculationModuleComponent } from 'app/features/calculation-module/comp
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
-import { LayerToolComponent } from 'app/features/layer-tool/layer-tool.component';
+import {
+  LoginComponent, AccountComponent, UserManagementStatusService,
+  UserManagementService, RecoveryComponent, RegisterComponent, UserManagementComponent
+} from 'app/features/user-management';
+import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
+import { RouterModule } from '@angular/router';
+import { routes } from 'app/routes';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -91,7 +98,8 @@ describe('MapComponent', () => {
         FeedbackComponent, SelectionToolComponent,
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent, LayerToolComponent
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent
       ],
       providers: [
         {
@@ -128,12 +136,16 @@ describe('MapComponent', () => {
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: DurationCurveService, useClass: DurationCurveService },
         {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        {provide: UserManagementStatusService, useClass: UserManagementStatusService},
+        {provide: UserManagementService, useClass: UserManagementService},
+        {provide: APP_BASE_HREF, useValue: '/'}
 
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot()
+        RecaptchaModule.forRoot(),
+        RouterModule.forRoot(routes)
       ]
     }).compileComponents();
   });

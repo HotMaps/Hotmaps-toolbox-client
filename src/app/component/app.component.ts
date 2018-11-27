@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angular/core';
 
 import { LoaderService } from '../shared/services/loader.service';
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
   private showLoader: boolean;
 
   constructor(
-    private loaderService: LoaderService, private logger: Logger) {
+    private loaderService: LoaderService, private logger: Logger, private router: Router) {
   }
 
   ngAfterContentInit(): void {
@@ -40,6 +41,14 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
     this.logger.log('AppComponent/ngOnDestroy');
   }
   ngOnInit() {
+    /* this.router.events.subscribe((val) => {
+      console.log(val)
+    }) */
+/*     console.log(this.route.snapshot.paramMap.get('id'))
+ */
+    if(this.router.url === '/register') {
+      console.log('isRegisterRoute')
+    }
   }
 
 

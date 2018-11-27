@@ -66,7 +66,15 @@ import { CalculationModuleStatusService } from './features/calculation-module/se
 import { CalculationHeatLoadDividedService } from './features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from './features/calculation-module/cm-layers.service';
 import { ResultManagerComponent } from './features/result-manager/component/result-manager.component';
-import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
+import { UserManagementComponent } from './features/user-management';
+import { LoginComponent } from './features/user-management';
+import { RegisterComponent } from './features/user-management';
+import { RecoveryComponent } from './features/user-management';
+import { UserManagementService } from './features/user-management/service/user-management.service';
+import { UserManagementStatusService } from './features/user-management/service/user-management-status.service';
+import { AccountComponent } from './features/user-management/account/account.component';
+import { ActivateComponent } from './features/user-management/activate/activate.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -107,11 +115,14 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     ExportDataComponent,
     ElectricityMixComponent,
     CalculationModuleComponent,
-    LayerToolComponent
+    UserManagementComponent,
+    LoginComponent,
+    RegisterComponent,
+    RecoveryComponent,
+    AccountComponent,
+    ActivateComponent
   ],
-
   providers: [
-
     DataInteractionService,
     PopulationService,
     GeocodingService,
@@ -140,7 +151,9 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     CalculationModuleService,
     CalculationModuleStatusService,
     CalculationHeatLoadDividedService,
-    CMLayersService
+    CMLayersService,
+    UserManagementService,
+    UserManagementStatusService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

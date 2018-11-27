@@ -24,7 +24,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
 import { Logger } from "../../../shared/services/logger.service";
 import { MapService } from "../../../pages/map/map.service";
-import * as uikit from 'uikit'
+import * as uikit from 'uikit';
 import {hectare} from "../../../shared/data.service";
 
 @Component({

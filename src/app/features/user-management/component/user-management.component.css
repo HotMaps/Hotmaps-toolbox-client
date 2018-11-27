@@ -1,0 +1,17 @@
+/* :host {
+  position: absolute;
+  right: 20px;
+} */
+.isLoggedIn {
+  color:white !important;
+}
+.isLoggedOut {
+  color:#999!important;
+}
+.link-right {
+  float: right;
+  line-height: 50px;
+}
+.uk-icon-link {
+  line-height: 50px;
+}

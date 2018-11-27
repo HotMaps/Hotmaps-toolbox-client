@@ -1,3 +1,4 @@
+import { ToasterService } from './toaster.service';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -31,6 +32,7 @@ export class InteractionService {
 
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
+        private toasterService: ToasterService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
         private layerService: LayersService, private exportDataService: ExportDataService,
@@ -42,7 +44,9 @@ export class InteractionService {
         private calculationHeatLoadDividedService: CalculationHeatLoadDividedService
 
     ) { }
-
+    showToaster(msg) {
+      this.toasterService.showToaster(msg);
+    }
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
