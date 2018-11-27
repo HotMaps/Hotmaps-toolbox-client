@@ -1,3 +1,4 @@
+import { RecoveryComponent } from './features/user-management/recovery/recovery.component';
 /**
  * Created by lesly on 14.06.17.
  */
@@ -15,5 +16,8 @@ export const routes: Routes = [
   { path: 'map' , component: MapComponent},
   { path: 'register' , component: MapComponent, children:[
     { path: ':token_activation' , component: ActivateComponent },
+  ]},
+  { path: 'recover' , component: MapComponent, children:[
+    { path: ':token_recover' , component: RecoveryComponent },
   ]},
 ];
