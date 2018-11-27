@@ -107,7 +107,7 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     ExportDataComponent,
     ElectricityMixComponent,
     CalculationModuleComponent,
-    LayerToolComponent
+    LayerToolComponent,
   ],
 
   providers: [

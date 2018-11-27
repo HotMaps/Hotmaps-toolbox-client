@@ -1,4 +1,3 @@
-import { cms, mockComponents } from './../component/mock-calculation.data';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -11,6 +10,7 @@ import { LoaderService } from '../../../shared/services/loader.service';
 import { APIService } from '../../../shared/services/api.service';
 import { apiUrl } from 'app/shared/data.service';
 import { ToasterService } from '../../../shared/services/toaster.service';
+import { cms, mockComponents } from './../component/mock-calculation.data';
 
 
 
