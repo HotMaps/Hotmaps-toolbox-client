@@ -58,3 +58,7 @@
   margin-bottom: 0px;
   text-transform: uppercase;
 }
+.no-data {
+  text-transform: uppercase;
+  color:red;
+}
