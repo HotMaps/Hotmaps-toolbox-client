@@ -23,10 +23,10 @@ export const geoserverDevUrl = 'http://geoserver.hotmapsdev.hevs.ch/geoserver/ho
 
 export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserverProdUrl;
+export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = localApiUrl;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density_tif';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -259,9 +259,9 @@ export const diskspacechart_options = {
 
 
 export const inputs_categories = [
-  {id: 0, name: 'Inputs', contains_component: false},
-  {id: 1, name: 'Basic inputs', contains_component: false},
-  {id: 2, name: 'Advanced inputs: (Level 1)', contains_component: false},
-  {id: 3, name: 'Advanced inputs: (Level 2)', contains_component: false},
-  {id: 4, name: 'Advanced inputs: (Level 3)', contains_component: false},
+  {id: '0', name: 'Inputs', contains_component: false},
+  {id: '1', name: 'Basic inputs', contains_component: false},
+  {id: '2', name: 'Advanced inputs: (Level 1)', contains_component: false},
+  {id: '3', name: 'Advanced inputs: (Level 2)', contains_component: false},
+  {id: '4', name: 'Advanced inputs: (Level 3)', contains_component: false},
 ]

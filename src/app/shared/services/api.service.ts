@@ -46,6 +46,7 @@ export class APIService {
        message = 'An error occurred: please try later ';
     } else {
       this.logger.log('APIService/handleError nnn'+ error.json().message);
+      message = error.json().message
       message = ', ' + message;
       const status = error.json().error.status;
       const statusText = error.json().error.statusText;

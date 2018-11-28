@@ -45,6 +45,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   @Input() expandedState;
   private inputs_categories = inputs_categories;
   @Input() scaleLevel;
+  private type_select = 'select';
+  private type_input = 'input';
+  private type_radio = 'radio';
+  private type_range = 'range';
+  private type_checkbox = 'checkbox';
   private progress = 0;
   private calculationModules;
   private categories;
@@ -121,15 +126,24 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       })
     });
   }
-  changeValue(event, component) {
+
+  changeValueFromInputArray(event, component) {
+    component.input_value = event.target.value
+  }
+  changeValueFromInput(event, component) {
     const newValue = event.target.value
-    if ((newValue >= component.input_min) && (newValue <= component.input_max)) {
+    if ((newValue >= +component.input_min) && (newValue <= +component.input_max)) {
       component.input_value = event.target.value
     } else {
       event.target.value = component.input_value
     }
   }
   runCM() {
+    this.components.forEach(comp => {
+      if(!this.helper.isNullOrUndefined(comp.selected_value)){
+        comp.input_value = comp.selected_value
+      }
+    });
     this.cmRunning = true;
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
   }
@@ -144,19 +158,25 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       }
     })
   }
+  getComponentFiltered(id) {
+    return this.components.filter(x => x.input_priority === id)
+  }
   validateAuthorizedScale(cm) {
-    if (cm.authorized_scale.length >= 1) {
-      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
-        return true
-      } else {
-        return false
-      }
-    } else {
-      return true
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale)) { 
+      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) { 
+        return true 
+      } else { 
+        return false 
+      } 
+    } else { 
+      return true;
     }
   }
   selectCM(cm) {
     if (this.validateAuthorizedScale(cm)) {
+      this.toggleCMPanel(true)
+      this.setWaiting(true)
+      this.cmSelected = cm;
       this.layersFromType = [];
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
@@ -167,21 +187,22 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
           })
         })
       }
-      this.cmSelected = cm;
 
-      this.toggleCMPanel(true)
-      this.setWaiting(true)
-
+      
       this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
         this.components = values;
+        this.components.forEach(comp => {
+          comp['input_default_value'] = comp.input_value
+          if(typeof comp.input_value == 'object') {
+            comp.input_value = comp.input_value[0]
+          }
+        });
+        
+        console.log(this.components)
       }).then(() => {
         this.setComponentCategory();
-        this.setWaiting(false)
-      })
-      this.toggleCMPanel(true)
-      this.setWaiting(true)
-      this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
-        this.components = values;
+        console.log(this.inputs_categories)
+      }).then(()=>{
         this.setWaiting(false)
       })
     } else {
@@ -190,11 +211,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   cmHidePanel() {
+    this.setWaiting(true);
     this.calculationModuleStatusService.undefinedCmRunned()
-    this.setWaiting(false);
     this.cmRunning = false
     this.cmSelected = undefined;
+    this.components = undefined;
     this.logger.log('cm box is hided')
+    this.setWaiting(false);
   }
   toggleCMPanel(value) {
     this.calculationModuleStatusService.setStatusCMPanel(value);
