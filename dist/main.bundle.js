@@ -1224,7 +1224,7 @@ var ExportDataComponent = (function () {
         this.logger = logger;
         this.helper = helper;
         this.isInSummary = true;
-        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["M" /* tab1_datapanel */];
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["K" /* tab1_datapanel */];
         this.isChartValue = false;
         /* @Input() heatloadStatus; */
         /* @Input() graphics;
@@ -1305,7 +1305,7 @@ var ExportDataComponent = (function () {
         });
     };
     ExportDataComponent.prototype.export = function () {
-        if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["M" /* tab1_datapanel */]) {
+        if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["K" /* tab1_datapanel */]) {
             if (!this.helper.isNullOrUndefined(this.indicators.layers)) {
                 this.exportDataService.exportData(this.indicators.layers, true, this.tabSelected);
             }
@@ -2159,11 +2159,11 @@ var DurationCurveService = (function (_super) {
     DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
         if (isHectare === false) {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postDurationCurveNutsLau */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* postDurationCurveNutsLau */]);
         }
         else {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* postDurationCurveHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["J" /* postDurationCurveHectares */]);
         }
     };
     DurationCurveService.prototype.formatDataset = function () {
@@ -2325,8 +2325,8 @@ var ElectricityMixService = (function (_super) {
         return _this;
     }
     ElectricityMixService.prototype.getElectricityMix = function (payload) {
-        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["I" /* postHeatLoadProfileHectares */]);
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["J" /* getElectricityMixFromNuts0 */]);
+        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["G" /* postHeatLoadProfileHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["H" /* getElectricityMixFromNuts0 */]);
     };
     return ElectricityMixService;
 }(__WEBPACK_IMPORTED_MODULE_1__shared_services_api_service__["a" /* APIService */]));
@@ -2634,13 +2634,13 @@ var HeatLoadAggregateService = (function (_super) {
     };
     HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         if (isHectare === false) {
-            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* postHeatLoadProfileNutsLau */]);
+            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* postHeatLoadProfileNutsLau */]);
         }
         else {
-            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* postHeatLoadProfileHectares */] + type_api_ref);
-            this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* postHeatLoadProfileHectares */]);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* postHeatLoadProfileHectares */]);
+            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* postHeatLoadProfileHectares */] + type_api_ref);
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* postHeatLoadProfileHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* postHeatLoadProfileHectares */]);
         }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
@@ -2768,7 +2768,7 @@ var DataInteractionCellComponent = (function () {
         this.mapService = mapService;
         this.interactionService = interactionService;
         this.loading = true;
-        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */];
+        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */];
     }
     DataInteractionCellComponent.prototype.ngOnInit = function () {
     };
@@ -2779,7 +2779,7 @@ var DataInteractionCellComponent = (function () {
         console.log(this.dataInteraction);
         if (this.interactionService.getSummaryResultState() === false) {
             this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */]) {
+            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */]) {
                 this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer);
             }
             else {
@@ -2877,80 +2877,78 @@ var DataInteractionArray = [
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
         workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* defaultLayer */], zoomLevel: 0, ref: ['overall', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["C" /* styleNameHeat */], layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif' },
-    /*{id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-      workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType},
-  
-    {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-      workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType},*/
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* business_name_wwtp */] + ' Power', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["F" /* zoomLevelDetectChange */], ref: ['overall', 'potential'],
-        styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["C" /* styleNameHeat */], layer_type: 'wwtp_power' },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["F" /* zoomLevelDetectChange */], ref: ['overall', 'potential'],
-        styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["C" /* styleNameHeat */], layer_type: 'wwtp_capacity' },
+    { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'],
-        styleName: 'gfa_tot_curr_density_tif', layer_type: gfa_type },
+        workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area', layer_type: gfa_type },
     { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'],
-        styleName: 'gfa_res_curr_density_tif', layer_type: gfa_type },
-    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'],
-        styleName: 'gfa_nonres_curr_density_tif', layer_type: gfa_type },
+        workspaceName: 'gfa_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area', layer_type: gfa_type },
+    { id: 20, name: 'Gross floor area non-residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area', layer_type: gfa_type },
     { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'],
-        styleName: 'vol_tot_curr_density', layer_type: building_volume_type },
+        workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol', layer_type: building_volume_type },
     { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'],
-        styleName: 'vol_res_curr_density_tif', layer_type: building_volume_type },
-    /* {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
-       workspaceName: 'vol_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'vol_res_curr_density_tif', layer_type:building_volume_type},*/
+        workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol', layer_type: building_volume_type },
+    { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol', layer_type: building_volume_type },
+    // Industry
     { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'],
-        styleName: 'industrial_database_emissions_ets_2014', layer_type: industry_type },
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
     { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'],
-        styleName: 'industrial_database_emissions_ets_2014', layer_type: industry_type },
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
     { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'],
-        styleName: 'industrial_database_sector_name', layer_type: industry_type },
+        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_company_name', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
     { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'],
-        styleName: 'industrial_database_sector', layer_type: industry_type },
+        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    // Population
     { id: 14, name: 'Population total', category: 'Population', isSelected: false,
-        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* populationLayerName */], zoomLevel: 0, ref: ['overall', 'demand'],
-        styleName: 'pop_tot_curr_density_V2', layer_type: '' },
-    /*{id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat, layer_type:[]},
-    {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat, layer_type:[]},
-    {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat, layer_type:[]},*/
+        workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'population', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    // Potentials
+    { id: 12, name: 'Waste Water Treatment Plants - Power', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["E" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_power', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 12, name: 'Waste Water Treatment Plants - Capacity', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["E" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 18, name: 'Agricultural residues', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'agricultural_residues_view', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'Biomass_shape', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 18, name: 'Livestock effluents', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'livestock_effluents_view', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'Biomass_shape', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 18, name: 'Forest residues', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_forest', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'Biomass_forest_raster', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: 'waste_potential', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 20, name: 'Wind potential in 50 meters', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wind_50', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'wind', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
     { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["C" /* styleNameHeat */], layer_type: 'solar_optimal_total' },
+        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    // shallow geothermal vector layer
     { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['overall', 'potential'],
-        styleName: 'potential_shallowgeothermal_heat_cond', layer_type: '' },
-    { id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'],
-        styleName: 'potential_shallowgeothermal_hc_class', layer_type: '' },
-    /*{id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
-      workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif', layer_type:[]},*/
-    { id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
-        workspaceName: 'hdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'],
-        styleName: 'hdd_curr_tif', layer_type: '' },
-    { id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
-        workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'],
-        styleName: 'yearly_co2_emission', layer_type: '' },
+        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'shallowgeothermal', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
+    /*  {id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class'},*/
+    // Climate
+    { id: 20, name: 'Average Temperature', category: 'Climate', isSelected: false,
+        workspaceName: 'land_surface_temperature', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'temperature', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 20, name: 'Cooling degree days', category: 'Climate', isSelected: false,
+        workspaceName: 'cdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 20, name: 'Heating degree days', category: 'Climate', isSelected: false,
+        workspaceName: 'hdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    { id: 20, name: 'Solar radiation', category: 'Climate', isSelected: false,
+        workspaceName: 'solar_radiation', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'solar', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
+    // Electricity
+    { id: 20, name: 'Electricity CO2 emissions - country average', category: 'Electricity', isSelected: false,
+        workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */] },
 ];
 var cm_default_layer = {
     id: 21, name: '',
-    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */],
+    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */],
     isSelected: true,
     workspaceName: '',
-    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */]],
+    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */]],
     styleName: '',
-    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */],
+    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */],
     cm_id: ''
 };
 //# sourceMappingURL=layers-interaction.data.js.map
@@ -4267,7 +4265,7 @@ var LayersService = (function (_super) {
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
             layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* defaultLayer */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Q" /* formatImage */], transparent: true, version: '1.3.0',
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* formatImage */], transparent: true, version: '1.3.0',
             zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* idDefaultLayer */]
         };
         _this.layersArray = new __WEBPACK_IMPORTED_MODULE_0__shared_class_dictionary_class__["a" /* Dictionary */]([
@@ -4329,7 +4327,7 @@ var LayersService = (function (_super) {
         var layer;
         var option = {
             layers: 'hotmaps:' + action,
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Q" /* formatImage */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* formatImage */],
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
@@ -4341,7 +4339,7 @@ var LayersService = (function (_super) {
         this.layersArray.add(action, layer);
     };
     LayersService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -4377,10 +4375,10 @@ var LayersService = (function (_super) {
         if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["V" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["T" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -4401,7 +4399,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["W" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["V" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -4409,7 +4407,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["W" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -4418,7 +4416,7 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Y" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
@@ -4463,10 +4461,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -4618,7 +4616,7 @@ var PopulationService = (function (_super) {
         // Line 73 exceeds maximum line length of 140
         popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_17" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["W" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["V" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -4707,9 +4705,9 @@ var ResultManagerComponent = (function () {
         this.updateExportButton = false;
         this.noIndicator = true;
         this.indicatorLoading = true;
-        this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["M" /* tab1_datapanel */];
+        this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["K" /* tab1_datapanel */];
         this.tab2 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_24" /* tab2_datapanel */];
-        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */];
+        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */];
         this.tabSelected = this.tab1;
         this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* summay_drop_down_buttons */];
         this.selectedButton = this.dropdown_btns[0];
@@ -4888,7 +4886,7 @@ var ResultManagerComponent = (function () {
                 }
                 if (response.status.result.indicator.length >= 1) {
                     _this.result.indicators.layers.push({
-                        name: response.status.result.name, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */]]
+                        name: response.status.result.name, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */]]
                     });
                     _this.displayExportDataStatus = true;
                 }
@@ -4900,7 +4898,7 @@ var ResultManagerComponent = (function () {
                                 xAxes: [{ scaleLabel: { display: true, labelString: graphic.xLabel } }]
                             }
                         };
-                        var graph = _this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */], false);
+                        var graph = _this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */], false);
                     });
                     _this.displayExportDataStatus = true;
                 }
@@ -5062,7 +5060,7 @@ var SelectionScaleClassArray = [
 var action = 'population';
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -5071,7 +5069,7 @@ var hectareOption = {
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
@@ -5080,7 +5078,7 @@ var nuts0LayerOption = {
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
@@ -5089,7 +5087,7 @@ var nuts1LayerOption = {
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
@@ -5098,7 +5096,7 @@ var nuts2LayerOption = {
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
@@ -5106,8 +5104,8 @@ var nuts3LayerOption = {
     zIndex: 99
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["R" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     zIndex: 99
@@ -5176,7 +5174,7 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* initial_scale_value */];
         // scale value subject
         _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["x" /* nuts3 */]);
         return _this;
@@ -5215,7 +5213,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -5247,7 +5245,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -5261,7 +5259,7 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -5689,7 +5687,7 @@ var SelectionToolService = (function (_super) {
         _this.nutsIds = new Set;
         _this.multiSelectionLayers = new L.FeatureGroup();
         _this.controlMultiLayer = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["O" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["M" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
         _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
@@ -6196,7 +6194,7 @@ var LeftSideComponent = (function (_super) {
         this.layers = layers;
         this.category = layers.map(function (item) { return item.category; })
             .filter(function (value, index, self) { return self.indexOf(value) === index; });
-        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* calculation_module_category */]);
+        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* calculation_module_category */]);
     };
     LeftSideComponent.prototype.ngOnDestroy = function () {
     };
@@ -6451,7 +6449,7 @@ var RightSideComponent = (function (_super) {
         }, { payload: payloadTmp });
     };
     RightSideComponent.prototype.setSummaryPayloadIds = function () {
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["V" /* constant_year */], nuts: this.nutsIds };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["U" /* constant_year */], nuts: this.nutsIds };
         if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
             return;
@@ -6466,7 +6464,7 @@ var RightSideComponent = (function (_super) {
           this.setIsDataRunning(false);
           return
         }; */
-        this.summaryPayload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["V" /* constant_year */], areas: areas };
+        this.summaryPayload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["U" /* constant_year */], areas: areas };
     };
     RightSideComponent.prototype.setElectricityMixPayload = function () {
         this.energyMixPayload = { nuts: this.nutsIds };
@@ -7081,11 +7079,11 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["S" /* postStatsLayersNutsLau */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["Q" /* postStatsLayersNutsLau */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["T" /* postStatsLayersHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["R" /* postStatsLayersHectares */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
@@ -8629,7 +8627,7 @@ var MapService = (function (_super) {
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
         var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_14" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["R" /* lau2name */];
+        var action = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["P" /* lau2name */];
         var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_15" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
@@ -9884,7 +9882,7 @@ WaitingStatusComponent = __decorate([
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return geoserverUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return getIpUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
@@ -9893,22 +9891,22 @@ WaitingStatusComponent = __decorate([
 /* unused harmony export heat_type */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return defaultLayerType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return wwtpLayerName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_33", function() { return urlTaigaFeedback; });
 /* unused harmony export urlLegend */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_34", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return formatImage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return postStatsLayersHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return postStatsLayersNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return postHeatLoadProfileHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return postHeatLoadProfileNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return postDurationCurveHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return postDurationCurveNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return getElectricityMixFromNuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return postStatsLayersHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return postStatsLayersNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return postHeatLoadProfileHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return postHeatLoadProfileNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return postDurationCurveHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return postDurationCurveNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return getElectricityMixFromNuts0; });
 /* unused harmony export user_endpoint */
 /* unused harmony export upload_endpoint */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return post_user_register; });
@@ -9932,33 +9930,33 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_31", function() { return heat_load_api_month; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_29", function() { return buttons_heat_load; });
 /* unused harmony export default_drop_down_button */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return calculation_module_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return calculation_module_category; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return raster_type_name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return vector_type_name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return summay_drop_down_buttons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return timeOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_25", function() { return constant_year_duration_curve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return business_name_wwtp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return business_name_population; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return unit_population; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return round_value; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return defaultZoomLevel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return lau2name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return nuts0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return nuts1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return nuts2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return nuts3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return lau2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return initial_scale_value; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return MAPDRAWEDITED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return MAPDRAWSTART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return MAPDRAWDELETED; });
@@ -9976,7 +9974,7 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_40", function() { return rightPanelSize; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_39", function() { return leftPanelSize; });
 /* unused harmony export default_tab_datapanel */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return tab1_datapanel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return tab1_datapanel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_24", function() { return tab2_datapanel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_37", function() { return duration_curve_graph_title; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_38", function() { return duration_curve_graph_category; });
@@ -10897,9 +10895,9 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["m"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["n"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["M"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["R"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["P"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["K"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["P"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["N"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["p"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["z"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_28"]; });

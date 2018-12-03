@@ -13,31 +13,29 @@ export const building_volume_type = 'building_volumes';
 export const gitlabUrl = 'https://gitlab.com/hotmaps/';
 
 export const DataInteractionArray: DataInteractionClass[] = [
- // {id: 11, name: 'Heat map', category: 'Comsumption'},
 
-  {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
-    workspaceName: defaultLayer, zoomLevel: 0, ref: ['overall', 'demand'], styleName: styleNameHeat, layer_type: defaultLayerType,
-    download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif'},
+// Buildings
+    {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
+      workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density',layer_type: defaultLayerType},
+    {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+      workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall','demand'], styleName: 'heat_density',layer_type: defaultLayerType},
+    {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+      workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density',layer_type: defaultLayerType},
 
-  {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall','demand'], styleName: 'heat_density',layer_type: defaultLayerType},
-  {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-    workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density',layer_type: defaultLayerType},
-
-  {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: gfa_type},
-  {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: gfa_type},
-  {id: 20, name: 'Gross floor area non-residential', category: 'Buildings', isSelected: false,
-    workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: gfa_type},
+    {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
+      workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: defaultLayerType},
+    {id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
+      workspaceName: 'gfa_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: defaultLayerType},
+    {id: 20, name: 'Gross floor area non-residential', category: 'Buildings', isSelected: false,
+      workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gross_floor_area',layer_type: defaultLayerType},
 
 
-  {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
-    workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: building_volume_type},
-  {id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
-    workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: building_volume_type},
-  {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
-    workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: building_volume_type},
+    {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
+      workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: defaultLayerType},
+    {id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
+      workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: defaultLayerType},
+    {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+      workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol',layer_type: defaultLayerType},
 
   // Industry
   {id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
@@ -97,21 +95,18 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission',layer_type: defaultLayerType},
 
 
-  /*  {id: 20, name: 'CM District Heating Potential', category: 'Calculation module', isSelected: false,
-     workspaceName: 'CM District Heating Potential', zoomLevel: 0, ref: ['overall', calculation_module_category], styleName: '',layer_type:''}, */
-];
+/* CMs
+  {id: 20, name: 'CM - Heat demand reduction', category: 'CM', isSelected: false,
+    workspaceName: 'calculation_module_1', zoomLevel: 0, ref: ['overall', 'demand'], styleName: ''},*/
+  ];
+
 export const cm_default_layer = {
-    id: 21, name: '',
-    category: calculation_module_category,
-    isSelected: true,
-    workspaceName: '',
-    zoomLevel: 0, ref: ['overall', calculation_module_category],
-    styleName: '',
-    layer_type: calculation_module_category,
-    cm_id: ''
+  id: 21, name: '',
+  category: calculation_module_category,
+  isSelected: true,
+  workspaceName: '',
+  zoomLevel: 0, ref: ['overall', calculation_module_category],
+  styleName: '',
+  layer_type: calculation_module_category,
+  cm_id: ''
 }
-
-
-
-
-
