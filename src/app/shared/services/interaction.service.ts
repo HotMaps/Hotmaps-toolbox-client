@@ -24,6 +24,7 @@ import {ElectricityMixService} from '../../features/graph/electricity-mix/servic
 import { CalculationHeatLoadDividedService } from './../../features/calculation-module/service/calculation-test.service';
 import { CalculationModuleService } from './../../features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import {SelectionScaleService} from "../../features/selection-scale";
 
 @Injectable()
 export class InteractionService {
@@ -32,6 +33,7 @@ export class InteractionService {
 
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
+        private selectionScaleService:SelectionScaleService ,
         private toasterService: ToasterService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
@@ -44,7 +46,12 @@ export class InteractionService {
         private calculationHeatLoadDividedService: CalculationHeatLoadDividedService
 
     ) { }
-    showToaster(msg) {
+
+    getScaleValue(): string {
+      return this.selectionScaleService.getScaleValue();
+    }
+
+  showToaster(msg) {
       this.toasterService.showToaster(msg);
     }
     getLayerArray(): Dictionary {

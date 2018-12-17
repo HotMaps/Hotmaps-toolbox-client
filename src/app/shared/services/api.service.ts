@@ -43,7 +43,7 @@ export class APIService {
 
     let message;
     if (this.isNullOrUndefined(error.json().message)) {
-       message = 'An error occurred: please try later ';
+       message = 'UNKNOWN ERROR';
     } else {
       this.logger.log('APIService/handleError nnn'+ error.json().message);
       message = error.json().message
