@@ -1,3 +1,4 @@
+import { SelectionScaleService } from 'app/features/selection-scale';
 import { ToasterService } from './toaster.service';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
@@ -41,9 +42,13 @@ export class InteractionService {
         private dataInteractionService: DataInteractionService, private electricityMixService: ElectricityMixService,
         private calculationModuleStatusService: CalculationModuleStatusService,
         private calculationModuleService: CalculationModuleService,
-        private calculationHeatLoadDividedService: CalculationHeatLoadDividedService
+        private calculationHeatLoadDividedService: CalculationHeatLoadDividedService,
+        private selectionScaleService:SelectionScaleService
 
     ) { }
+    getScaleLevel() {
+      return this.selectionScaleService.getScaleValue();
+    }
     showToaster(msg) {
       this.toasterService.showToaster(msg);
     }

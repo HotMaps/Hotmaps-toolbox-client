@@ -211,7 +211,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
   setSummaryPayloadIds() {
-    const payload = { layers: this.layers, year: constant_year, nuts: this.nutsIds }
+    const payload = { layers: this.layers, year: constant_year, scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds }
     if (this.helper.isPayloadIncomplete(payload)) {
       this.interactionService.closeRightPanel();
       return;
@@ -228,7 +228,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       return
     }; */
 
-    this.summaryPayload = { layers: this.layers, year: constant_year, areas: areas }
+    this.summaryPayload = { layers: this.layers, year: constant_year, scale_level: this.interactionService.getScaleLevel(),areas: areas }
   }
   setElectricityMixPayload() {
     this.energyMixPayload = { nuts: this.nutsIds }
