@@ -1,3 +1,4 @@
+import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -99,7 +100,7 @@ describe('AppComponent: Router', () => {
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

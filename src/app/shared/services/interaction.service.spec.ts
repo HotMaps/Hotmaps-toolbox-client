@@ -23,6 +23,7 @@ import {ElectricityMixService} from "../../features/graph/electricity-mix/servic
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
+import { SelectionScaleService } from 'app/features/selection-scale';
 
 
 describe('InteractionService', () => {
@@ -60,6 +61,7 @@ describe('InteractionService', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: SelectionScaleService, useClass: SelectionScaleService }
       ],
       imports: []
     }).compileComponents();
