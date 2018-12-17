@@ -222,10 +222,11 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
   // NUTS management
   getNutsGeometryFromNuts(latlng: LatLng, nuts_level): any {
-    this.logger.log('MapService/getNutsGeometryFromNuts()');
+    this.logger.log('MapService/getNutsGeometryFromNuts()/');
+
     const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
-    bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
+    bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + ' AND ' + 'date=' + '2015' + '-01-01Z';
     const action = 'population';
     const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +

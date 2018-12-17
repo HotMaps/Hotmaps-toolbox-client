@@ -17,6 +17,7 @@ export class LayerToolComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.dataInteraction,this.isLegendDisplayed,this.isInfoDisplayed)
   }
   toggleLegend() {
     this.isLegendDisplayed = !this.isLegendDisplayed;
