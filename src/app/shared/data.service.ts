@@ -95,6 +95,9 @@ export const default_drop_down_button = 'overall';
 export const calculation_module_category = 'Calculation module'
 export const raster_type_name = 'raster';
 export const vector_type_name = 'vector';
+
+
+// Add the building ref
 export const summay_drop_down_buttons = [
   { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
   { name: 'Demand', ref: 'demand', selected: false, display: false},
@@ -105,7 +108,6 @@ export const summay_drop_down_buttons = [
   { name: 'Electricity', ref: 'electricity', selected: false, display: false},
   { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false}
 ]
-
 
 // layers constant
 export const timeOut   = 200000;

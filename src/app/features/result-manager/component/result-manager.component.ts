@@ -62,6 +62,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   ngOnDestroy() { }
   ngOnChanges() {
+    this.logger.log('ResultManagerComponent/ngOnChanges')
     this.resetResult();
     if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
