@@ -10092,7 +10092,7 @@ var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'https://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = localApiUrl;
+var apiUrl = devUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var heat_type = 'heat';
