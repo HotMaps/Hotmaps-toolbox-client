@@ -202,7 +202,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
             this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
           })
         }
-        if (response.status.result.indicator.length >= 1) {
+        if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
           this.result.indicators.layers.push({
             name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
           })
@@ -210,7 +210,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
         }
         this.indicatorLoading = false
-        if (response.status.result.graphics.length >= 1) {
+        if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
           response.status.result.graphics.map((graphic) => {
             const option_calculation_module = { scales: {
                 yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel } }],

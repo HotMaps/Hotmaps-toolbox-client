@@ -162,7 +162,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     return this.components.filter(x => x.input_priority === id)
   }
   validateAuthorizedScale(cm) {
-    if(!this.helper.isNullOrUndefined(cm.authorized_scale)) { 
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) { 
       if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) { 
         return true 
       } else { 
@@ -197,11 +197,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
             comp.input_value = comp.input_value[0]
           }
         });
-        
-        console.log(this.components)
       }).then(() => {
         this.setComponentCategory();
-        console.log(this.inputs_categories)
       }).then(()=>{
         this.setWaiting(false)
       })

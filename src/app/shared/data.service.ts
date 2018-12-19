@@ -26,7 +26,7 @@ export const geocodeUrl    = 'https://maps.googleapis.com/maps/api/geocode/json?
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -67,8 +67,8 @@ export const post_user_logout = user_endpoint + 'logout';
 export const post_user_login = user_endpoint + 'login';
 export const get_userinformation_endpoint = user_endpoint + 'information';
 export const get_userupdateprofile_endpoint = user_endpoint + 'profile/update';
+export const get_diskspace_endpoint = user_endpoint + 'space_used'
 
-export const get_diskspace_endpoint = upload_endpoint + 'space_used'
 export const get_filelist_endpoint = upload_endpoint + 'list';
 
 

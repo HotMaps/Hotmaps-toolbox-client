@@ -176,7 +176,7 @@ export class SelectionToolService extends APIService {
     this.nutsIds.clear();
     this.updateSelectionToolAction();
     // close opened CM
-    this.interactionService.setStatusCMPanel(false)
+    // this.interactionService.setStatusCMPanel(false)
   }
 
   // Summary result show result
