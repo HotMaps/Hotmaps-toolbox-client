@@ -9,7 +9,7 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'https://api.hotmaps.hevs.ch/api'; // 'http://hotmaps.hevs.ch:9006/api';
+const prodUrl    = 'http://api.hotmaps.hevs.ch/api'; // 'http://hotmaps.hevs.ch:9006/api';
 const devUrl    = 'https://api.hotmapsdev.hevs.ch/api'  // 'http://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
 
@@ -21,10 +21,10 @@ export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/h
 
 
 
-export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
+export const geocodeUrl    = 'https://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
 export const geoserverUrl = geoserverDevUrl;
-export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
+export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density';
@@ -35,7 +35,7 @@ export const defaultLayerType = heat_type;
 export const idDefaultLayer = 1;
 export const wwtpLayerName   = 'wwtp';
 
-export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
+export const urlTaigaFeedback = 'https://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const urlLegend = geoserverUrl + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style='
 export const timeOutAjaxRequest = 10000;
 export const unit_heatload_profil = 'kW';

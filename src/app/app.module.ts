@@ -75,6 +75,7 @@ import { UserManagementStatusService } from './features/user-management/service/
 import { AccountComponent } from './features/user-management/account/account.component';
 import { ActivateComponent } from './features/user-management/activate/activate.component';
 import { RouterModule } from '@angular/router';
+import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import { RouterModule } from '@angular/router';
     RegisterComponent,
     RecoveryComponent,
     AccountComponent,
-    ActivateComponent
+    ActivateComponent,
+    LayerToolComponent
   ],
   providers: [
     DataInteractionService,

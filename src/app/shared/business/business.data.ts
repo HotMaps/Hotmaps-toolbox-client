@@ -40,28 +40,20 @@ const vol_nonres_curr_density_indicator_name  =  'Building volumes - non-residen
 
 
 export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
-
-  {id: 17, api_name: 'heat_density', business_name: 'Average heat density'},
-  {id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2'},
-  {id: 172, api_name: heat_tot_curr_density + '_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3'},
-  {id: 174, api_name: heat_tot_curr_density + '_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2'},
-  {id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1'},
-  {id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0'},
-  {id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total'},
-  {id: 15, api_name: 'calculation_module_1', business_name: 'CM - Heat demand reduction'},
+  // Indicator definition example
+  {id: 17, api_name: heat_tot_curr_density +'_consumption', business_name: 'Heat consumption'},
+  {id: 17, api_name: heat_tot_curr_density +'_count_cell', business_name: 'Cell'},
+  {id: 17, api_name: heat_tot_curr_density +'_consumption_min', business_name: 'Heat consumption min'},
+  {id: 17, api_name: heat_tot_curr_density +'_consumption_max', business_name: 'Heat consumption max'},
+  {id: 17, api_name: heat_tot_curr_density +'_density', business_name: 'Average heat density'},
 
 
 
-  {id: 177, api_name: 'power', business_name: 'Average thermal power potential'},
-  {id: 177, api_name: 'capacity', business_name: 'Waste treatment capacity'},
 
+  // TODO All Indicators bellow could deleted
   {id: 17, api_name: gfa_tot_curr_density, business_name: 'Heated Gross Floor Area'},
-  {id: 172, api_name: gfa_tot_curr_density + '_lau2', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to LAU2'},
-  {id: 172, api_name: gfa_tot_curr_density + '_nuts3', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS3'},
-  {id: 174, api_name: gfa_tot_curr_density + '_nuts2', business_name: 'Heated Gross Floor Area total  / aggregrated from Hectares to NUTS2'},
-  {id: 175, api_name: gfa_tot_curr_density + '_nuts1', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS1'},
-  {id: 176, api_name: gfa_tot_curr_density + '_nuts0', business_name: 'Heated Gross Floor Area  / aggregrated from Hectares to NUTS0'},
-  {id: 177, api_name: gfa_tot_curr_density + '_ha', business_name: 'Heated Gross Floor Area'},
+
+
 
   {id: 175, api_name: gfa_tot_curr_density + '_value', business_name: gfa_tot_curr_density_indicator_name + ' value'},
   {id: 176, api_name: gfa_tot_curr_density + '_density', business_name: gfa_tot_curr_density_indicator_name },

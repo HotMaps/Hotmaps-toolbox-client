@@ -1,3 +1,4 @@
+import { LayerToolComponent } from './../../../features/layer-tool/layer-tool.component';
 import { ActivateComponent } from './../../../features/user-management/activate/activate.component';
 
 // TODO: Improvement of coding style :
@@ -99,7 +100,7 @@ describe('MapComponent', () => {
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,LayerToolComponent
       ],
       providers: [
         {
