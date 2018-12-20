@@ -10153,6 +10153,7 @@ var summay_drop_down_buttons = [
     { name: 'Demand', ref: 'demand', selected: false, display: false },
     { name: 'Potentials', ref: 'potential', selected: false, display: false },
     { name: 'Climate', ref: 'climate', selected: false, display: false },
+    { name: 'Buildings', ref: 'buildings', selected: false, display: false },
     { name: 'Heat Supply', ref: 'heat_supply', selected: false, display: false },
     { name: 'Industry', ref: 'industry', selected: false, display: false },
     { name: 'Electricity', ref: 'electricity', selected: false, display: false },
