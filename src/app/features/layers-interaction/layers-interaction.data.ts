@@ -17,7 +17,9 @@ export const DataInteractionArray: DataInteractionClass[] = [
 // Buildings
   {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
     workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density', layer_type: defaultLayerType,
-    download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif'},
+    download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif', description:'Data source level: Nuts3'},
+
+
   {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall','demand'], styleName: 'heat_density', layer_type: defaultLayerType},
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
@@ -48,7 +50,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
     workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector'},
 
-// Population
+  // Population
   {id: 14, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'population', layer_type: 'pop_tot_curr_density'},
 
