@@ -3,7 +3,9 @@ import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
+import {Geocoder} from 'leaflet-control-geocoder'
 declare const L: any;
+
 
 
 import { basemap } from '../basemap'
@@ -167,6 +169,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
+
+
+
     L.Control = L.Control.extend({
       delete: function(popup) {
         this._popup = popup;

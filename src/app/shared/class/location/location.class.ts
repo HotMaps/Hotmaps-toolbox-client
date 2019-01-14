@@ -8,5 +8,6 @@ export class LocationClass implements ILatLng {
   latitude: number;
   longitude: number;
   address: string;
+  country:string;
   viewBounds: LatLngBounds;
 }

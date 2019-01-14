@@ -29,29 +29,30 @@ export class GeocodingService {
     this.logger.log('GeocodingService/geocode()');
     this.loaderService.display(true);
     return this.http
-      .get(geocodeUrl + encodeURIComponent(address))
+      .get(geocodeUrl + encodeURIComponent(address)+"&format=json&polygon=1&addressdetails=1")
       .map(res => res.json())
       .map(result => {
-        this.logger.log('GeocodingService/geocode()/result' + result);
 
-        if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
-        const location = new LocationClass();
-        location.address = result.results[0].formatted_address;
-        location.latitude = result.results[0].geometry.location.lat;
-        location.longitude = result.results[0].geometry.location.lng;
+    //if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
 
-        const viewPort = result.results[0].geometry.viewport;
-        location.viewBounds = L.latLngBounds(
-          {
-            lat: viewPort.southwest.lat,
-            lng: viewPort.southwest.lng},
-          {
-            lat: viewPort.northeast.lat,
-            lng: viewPort.northeast.lng
-          });
-        this.loaderService.display(false);
-        return location;
+      const location = new LocationClass();
+      location.address = result[0].display_name;
+      location.latitude = result[0].lat;
+
+      location.longitude = result[0].lon;
+
+      const viewPort = result[0].boundingbox;
+    location.viewBounds = L.latLngBounds(
+      {
+        lat: viewPort[0],
+        lng: viewPort[2]},
+      {
+        lat: viewPort[1],
+        lng: viewPort[3]
       });
+    this.loaderService.display(false);
+    return location;
+  })
   }
 
   getCurrentLocation() {

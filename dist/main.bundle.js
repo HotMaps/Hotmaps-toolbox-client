@@ -10195,7 +10195,7 @@ var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
-var geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
+var geocodeUrl = 'https://nominatim.openstreetmap.org/search?q='; // prefer
 // prefer
 var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'https://ipv4.myexternalip.com/json'; // prefer
@@ -11606,24 +11606,21 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["r" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["r" /* geocodeUrl */] + encodeURIComponent(address) + "&format=json&polygon=1&addressdetails=1")
             .map(function (res) { return res.json(); })
             .map(function (result) {
-            _this.logger.log('GeocodingService/geocode()/result' + result);
-            if (result.status !== 'OK') {
-                throw new Error('unable to geocode address');
-            }
+            //if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
-            location.address = result.results[0].formatted_address;
-            location.latitude = result.results[0].geometry.location.lat;
-            location.longitude = result.results[0].geometry.location.lng;
-            var viewPort = result.results[0].geometry.viewport;
+            location.address = result[0].display_name;
+            location.latitude = result[0].lat;
+            location.longitude = result[0].lon;
+            var viewPort = result[0].boundingbox;
             location.viewBounds = L.latLngBounds({
-                lat: viewPort.southwest.lat,
-                lng: viewPort.southwest.lng
+                lat: viewPort[0],
+                lng: viewPort[2]
             }, {
-                lat: viewPort.northeast.lat,
-                lng: viewPort.northeast.lng
+                lat: viewPort[1],
+                lng: viewPort[3]
             });
             _this.loaderService.display(false);
             return location;

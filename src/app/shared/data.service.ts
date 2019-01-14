@@ -21,7 +21,7 @@ export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/h
 
 
 
-export const geocodeUrl    = 'https://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
+export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
 
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
