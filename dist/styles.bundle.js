@@ -10,7 +10,7 @@ module.exports = __webpack_require__.p + "Flaticon.73466f28191cec4eac2b.eot";
 /***/ "../../../../../src/assets/fonts/Flaticon.svg":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "Flaticon.83239483c085c8de8fec.svg";
+module.exports = __webpack_require__.p + "Flaticon.f6024d0531b801bd19da.svg";
 
 /***/ }),
 

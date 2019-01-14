@@ -822,7 +822,7 @@ var cms = [
         authorized_scale: ["NUTS 3", "Hectare"],
         cm_description: "this computation module allows to divide the HDM",
         cm_name: "calculation_module_test",
-        cm_url: "http://172.26.0.2:80/",
+        cm_url: "https://172.26.0.2:80/",
         updatedAt: "2018-10-08 08:24:25.769397",
         createdAt: "2018-10-08 08:24:25.769399"
     },
@@ -834,7 +834,7 @@ var cms = [
         type_layer_needed: ["heat"],
         cm_description: "This computation module calculates district heating potential within the selected region",
         cm_name: "District Heating Potential",
-        cm_url: "http://172.26.0.4:80/",
+        cm_url: "https://172.26.0.4:80/",
         updatedAt: "2018-10-08 08:24:25.796067",
         createdAt: "2018-10-08 08:24:25.796069"
     }
@@ -1777,14 +1777,14 @@ var platforms = {
     },
     facebook: {
         name: 'facebook',
-        url: 'http://www.facebook.com/sharer/sharer.php?u=',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=',
         logoOfficial: 'facebook',
         logo: 'facebook',
         text: 'Share',
     },
     reddit: {
         name: 'reddit',
-        url: 'http://www.reddit.com/submit?url=',
+        url: 'https://www.reddit.com/submit?url=',
         logoOfficial: 'reddit-alien',
         logo: 'reddit',
         text: 'Submit',
@@ -1805,7 +1805,7 @@ var platforms = {
     },
     linkedin: {
         name: 'linkedin',
-        url: 'http://www.linkedin.com/shareArticle?mini=true&url=',
+        url: 'https://www.linkedin.com/shareArticle?mini=true&url=',
         logoOfficial: 'linkedin',
         logo: 'linkedin2',
         text: 'Share',
@@ -1815,7 +1815,7 @@ var platforms = {
     },
     stumbleUpon: {
         name: 'stumbleUpon',
-        url: 'http://www.stumbleupon.com/submit?url=',
+        url: 'https://www.stumbleupon.com/submit?url=',
         logoOfficial: 'stumbleupon',
         logo: 'stumbleupon',
         text: 'stumbleupon',
@@ -1825,7 +1825,7 @@ var platforms = {
     },
     tumblr: {
         name: 'tumblr',
-        url: 'http://www.tumblr.com/share/link?url=',
+        url: 'https://www.tumblr.com/share/link?url=',
         logoOfficial: 'tumblr',
         logo: 'tumblr2',
         text: 'Share',
@@ -8183,8 +8183,8 @@ var _a, _b, _c, _d;
  * Created by lesly on 14.06.17.
  */ var basemap = {
     OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
-            ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+            ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
     }),
     Esri: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
@@ -8197,8 +8197,8 @@ var _a, _b, _c, _d;
             ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
     }),
     CartoDB: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy;' +
-            ' <a href="http://cartodb.com/attributions">CartoDB</a>'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy;' +
+            ' <a href="https://cartodb.com/attributions">CartoDB</a>'
     }),
 };
 //# sourceMappingURL=basemap.js.map
@@ -8807,13 +8807,13 @@ var MapService = (function (_super) {
     MapService.prototype.addLayersControl = function () {
         var overlayMaps = {};
         var baseLayers = {
-            OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
-                    ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+            OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+                    ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
             }),
             // Improvement of coding style : (with codelyzer)
             // Exceeds maximum line length of 140
-            Satellite: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+            Satellite: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
                     ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
             }),
@@ -10189,8 +10189,8 @@ WaitingStatusComponent = __decorate([
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-var prodUrl = 'http://api.hotmaps.hevs.ch/api'; // 'http://hotmaps.hevs.ch:9006/api';
-var devUrl = 'https://api.hotmapsdev.hevs.ch/api'; // 'http://hotmapsdev.hevs.ch:9006/api';
+var prodUrl = 'http://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
+var devUrl = 'https://api.hotmapsdev.hevs.ch/api'; // 'https://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
@@ -10208,7 +10208,7 @@ var heat_type = 'heat';
 var defaultLayerType = heat_type;
 var idDefaultLayer = 1;
 var wwtpLayerName = 'wwtp';
-var urlTaigaFeedback = 'https://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
+var urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 var urlLegend = geoserverUrl + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style=';
 var timeOutAjaxRequest = 10000;
 var unit_heatload_profil = 'kW';
