@@ -11,4 +11,5 @@ export class DataInteractionClass {
   cm_id?: string;
   download_url?: string;
   type_of_layer?: string;
+  description?: string;
 }
