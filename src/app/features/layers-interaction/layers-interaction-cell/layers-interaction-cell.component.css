@@ -10,6 +10,28 @@
     font-family: 'Hind', sans-serif;
 
 }
+.spinner{
+  float: right;
+  line-height: 27px;
+}
+.custom-tooltip {
+  opacity: 0;
+  z-index:0;
+  top: -20px;
+  right: 0px;
+  padding: 2px;
+  position: absolute;
+  color: white;
+  font-size: 9px;
+  background-color: #333333;
+  border-radius:5px;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+.details:hover .custom-tooltip{
+  opacity: 1;
+  z-index:2000;
+
+}
 .isSelected{
     color:white;
     background-color: #2889DF;
@@ -19,6 +41,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 2px;
+    width: 100%;
 }
 .notifications {
   flex: 1;

@@ -1,3 +1,4 @@
+import { WelcomePageComponent } from './../features/welcome-page/welcome-page.component';
 import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
 /* tslint:disable:no-unused-variable */
 /**
@@ -100,7 +101,8 @@ describe('AppComponent: Router', () => {
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
+        WelcomePageComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

@@ -76,6 +76,7 @@ import { AccountComponent } from './features/user-management/account/account.com
 import { ActivateComponent } from './features/user-management/activate/activate.component';
 import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
+import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 
 
 @NgModule({
@@ -122,7 +123,8 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     RecoveryComponent,
     AccountComponent,
     ActivateComponent,
-    LayerToolComponent
+    LayerToolComponent,
+    WelcomePageComponent
   ],
   providers: [
     DataInteractionService,

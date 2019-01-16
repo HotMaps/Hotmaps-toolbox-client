@@ -124,4 +124,14 @@ export class DataInteractionService extends APIService {
       return data.filter(x => x.layer_type === layer)
     })
   }
+  setLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = true
+    })
+  }
+  unsetLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = false
+    })
+  }
 }

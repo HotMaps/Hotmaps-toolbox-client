@@ -55,6 +55,13 @@ export class InteractionService {
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
+/*     setLoadingLayerInterraction(layer) {
+      this.dataInteractionService.setLoadingLayerInterraction(layer)
+    }
+    unsetLoadingLayerInterraction(layer) {
+      this.dataInteractionService.unsetLoadingLayerInterraction(layer)
+      
+    } */
     // interface for export data service
 
     displayButtonExportStats(value: boolean) {

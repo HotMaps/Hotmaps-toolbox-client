@@ -1,0 +1,25 @@
+.logo-container{
+    height: 50px;
+    float: left;
+    margin-left: 15px;
+}
+.logo-container > img {
+    height: 100%;
+}
+.logos{
+    position: relative;
+    height: 50px;
+}
+
+h1, h2 {
+    color:#57bec8;
+}
+h1 {
+    font-size: 150%;
+    margin:10px 0 5px 0;
+}
+h2 {
+    font-size: 130%;
+    font-weight: bold;
+    margin:10px 0 5px 0;
+}

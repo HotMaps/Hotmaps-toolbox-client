@@ -1,3 +1,4 @@
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -43,6 +44,7 @@ describe('LayersService', () => {
         {provide: ToasterService},
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        {provide: DataInteractionService, useClass: DataInteractionService},
         {provide: MailService, useClass: MailService},
         {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
         {provide: NavigationBarService, useClass: NavigationBarService},

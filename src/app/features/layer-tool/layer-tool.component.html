@@ -21,7 +21,9 @@
 <div *ngIf="isInfoDisplayed" class="uk-card uk-card-default uk-card-body">
   <h3 class="uk-card-title">Informations</h3>
   <div *ngIf="dataInteraction.description" class="card-content">
-    {{dataInteraction.description}}
+    <p>
+      {{dataInteraction.description}}
+    </p>
   </div>
 </div>
 <div *ngIf="isInfoDisplayed" class="uk-margin"></div>
