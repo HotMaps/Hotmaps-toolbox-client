@@ -65,7 +65,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
   {id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-    workspaceName: 'industrial_database_companyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_company_name', layer_type: 'industrial_database_companyname',
+    workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname',
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
