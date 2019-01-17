@@ -95,6 +95,7 @@ export class CMLayersService extends APIService {
     /* this.cmLayersArray._keys.map(key => {
       this.removelayer(key)
     }) */
+    this.logger.log('Clear all is called')
     this.layersCM.clearLayers()
   }
 

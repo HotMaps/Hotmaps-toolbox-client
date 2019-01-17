@@ -160,6 +160,7 @@ export class SelectionToolService extends APIService {
   }
 
   clearAll(map: any) {
+    this.logger.log('Clear all is called from selection tool')
     this.nbOfLayersSelected.next(0);
     // ================
     if (this.isDrawer) {
@@ -175,6 +176,7 @@ export class SelectionToolService extends APIService {
     // remove all nutsID selected
     this.nutsIds.clear();
     this.updateSelectionToolAction();
+    this.interactionService.deleteCMTask();
     // close opened CM
     // this.interactionService.setStatusCMPanel(false)
   }

@@ -387,7 +387,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
    */
   clearAll(map: Map) {
     this.selectionToolService.clearAll(map);
-    // this.cmLayerService.clearAll();
+    this.cmLayerService.clearAll();
   }
 
   /**

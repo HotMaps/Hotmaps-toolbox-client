@@ -11,13 +11,14 @@ import { APIService } from '../../../shared/services/api.service';
 import { apiUrl } from 'app/shared/data.service';
 import { ToasterService } from '../../../shared/services/toaster.service';
 import { cms, mockComponents } from './../component/mock-calculation.data';
+import {Helper} from "../../../shared";
 
 
 
 @Injectable()
 export class CalculationModuleService extends APIService {
   categories = new Set();
-  constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService,private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 
@@ -36,6 +37,7 @@ export class CalculationModuleService extends APIService {
 
   }
   getCalculationModuleComponents(cmId): Promise<any> {
+    this.logger.log( 'getCalculationModuleComponents' )
     const payload = { cm_id: '' + cmId }
     return super.POST(payload, apiUrl + '/cm/user-interface/')
   }
@@ -53,12 +55,24 @@ export class CalculationModuleService extends APIService {
 
   }
   getStatusOfCM(status_id) {
+
     this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
+
+    if ( this.helper.isNullOrUndefined(status_id) ){
+      this.logger.log('is  undefine')
+
+    }else{
+      this.logger.log('is  ok undefine')
+
+
+    }
     return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
     .catch(this.handleError.bind(this));
   }
 
   deleteCM(id) {
+    this.logger.log('deleteCM()' + apiUrl  + id)
     return super.DELETE(apiUrl + '/cm/delete/' + id)
+
   }
 }

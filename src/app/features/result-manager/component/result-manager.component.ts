@@ -80,9 +80,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
+      self.interactionService.setCurrentIdCM(self.status_id )
       self.getStatusOfCM()
     }).catch((err) => {
       this.stopAnimation()
+      //this.interactionService.setCurrentIdCM(null)
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
@@ -90,6 +92,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   killAnimation() {
     this.progressCmAnimation = 0;
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    this.interactionService.setCmRunningProgess(this.progressCmAnimation)
   }
   updateSummaryResult() {
     const self = this;
@@ -179,66 +182,111 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
 
+  processAndShowCmResult(data){
+
+    const response = JSON.parse(data["_body"])
+    if (response["state"] === 'SUCCESS' ){
+      this.stopAnimation()
+      this.logger.log('status' + response["status"])
+
+      if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
+        response.status.result.raster_layers.map((raster) => {
+          this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
+          this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
+        })
+      }
+      if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
+        response.status.result.vector_layers.map((vector) => {
+          this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
+          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
+        })
+      }
+      if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
+        this.result.indicators.layers.push({
+          name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
+        })
+        this.displayExportDataStatus = true;
+
+      }
+      this.indicatorLoading = false
+      if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
+        response.status.result.graphics.map((graphic) => {
+          const option_calculation_module = { scales: {
+              yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel } }],
+              xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel } }]
+            }
+          }
+          const graph = this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
+        })
+        this.displayExportDataStatus = true;
+
+      }
+      this.getIndicatorsCatergories()
+    } else{
+
+      this.logger.log('animationTimeout')
+      this.animationTimeout = setTimeout(() => {
+        this.getStatusOfCM();
+        this.runAnimation();
+
+      }, 1000);
+    }
+
+  }
+
   getStatusOfCM() {
     const self = this;
     this.indicatorLoading = true
+    this.logger.log('this.interactionService.getCurrentIdCM()' + this.interactionService.getCurrentIdCM())
+    if (this.interactionService.getCurrentIdCM() != null){
+      this.interactionService.getStatusAndCMResult( this.interactionService.getCurrentIdCM()).then((data) => {
+        this.processAndShowCmResult(data)
 
-    this.interactionService.getStatusAndCMResult(this.status_id).then((data) => {
-      // this.interactionService.getCMResultMockData(status_id).then((data) => {
-      const response = JSON.parse(data["_body"])
-      if (response["state"] === 'SUCCESS') {
-        this.stopAnimation()
-        this.logger.log('status' + response["status"])
+      }).catch((err) => {
 
-        if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
-          response.status.result.raster_layers.map((raster) => {
-            this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
-            this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
-          })
-        }
-        if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
-          response.status.result.vector_layers.map((vector) => {
-            this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
-            this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
-          })
-        }
-        if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
-          this.result.indicators.layers.push({
-            name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
-          })
-          this.displayExportDataStatus = true;
-
-        }
-        this.indicatorLoading = false
-        if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
-          response.status.result.graphics.map((graphic) => {
-            const option_calculation_module = { scales: {
-                yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel } }],
-                xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel } }]
-              }
-            }
-            const graph = this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
-          })
-          this.displayExportDataStatus = true;
-
-        }
-        this.getIndicatorsCatergories()
-      } else {
         this.animationTimeout = setTimeout(() => {
-          this.getStatusOfCM();
-          this.runAnimation();
+          this.stopAnimation()
 
         }, 1000);
-      }
-    }).catch((err) => {
-      this.stopAnimation()
+
+        this.indicatorLoading = false
+        this.displayExportDataStatus = false;
+        this.interactionService.setCMAnimationStatus(null)
+        this.logger.log('there is an error ')
+        this.logger.log(err);
+
+      })
+    }
+    else {
+
+      this.logger.log('EVERYTHING SHOULD HAVE STOP')
+      this.animationTimeout = setTimeout(() => {
+        this.stopAnimation()
+
+      }, 1000);
+
       this.indicatorLoading = false
       this.displayExportDataStatus = false;
+      this.interactionService.setCMAnimationStatus(null)
+      this.interactionService.setStatusCMPanel(false)
 
-      this.logger.log('there is an error ')
-      this.logger.log(err);
+    }
 
-    });
+  }
+
+  StopIfRunning(){
+
+  }
+  stopAllAnimation() {
+    this.interactionService.setCMAnimationStatus(0)
+    if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+      clearTimeout(this.animationTimeout)
+    }
+    if (!this.helper.isNullOrUndefined(this.status_id)) {
+      this.interactionService.deleteCM(this.status_id)
+    }
+    this.killAnimation()
+
   }
   runAnimation() {
     if (this.progressCmAnimation === 100) {
@@ -247,7 +295,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.progressCmAnimation += 10;
     }
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    this.interactionService.setCmRunningProgess(this.progressCmAnimation)
+
   }
+
+
   stopAnimation() {
     if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
       clearTimeout(this.animationTimeout)
