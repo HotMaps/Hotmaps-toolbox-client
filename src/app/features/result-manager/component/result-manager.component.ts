@@ -322,7 +322,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           this.logger.log("refToDisplay" +refToDisplay)
 
           refToDisplay.map(ref => {
-            //this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
+            this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
           })
         }
       })

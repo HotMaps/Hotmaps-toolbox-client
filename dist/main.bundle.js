@@ -5179,7 +5179,7 @@ var ResultManagerComponent = (function () {
                     layer.category = refToDisplay;
                     _this.logger.log("refToDisplay" + refToDisplay);
                     refToDisplay.map(function (ref) {
-                        //this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
+                        _this.dropdown_btns.filter(function (x) { return x.ref === ref; })[0].display = true;
                     });
                 }
             });
