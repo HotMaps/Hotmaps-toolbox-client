@@ -2529,6 +2529,7 @@ var HeatLoadChartComponent = (function () {
         var _this = this;
         this.interactionService.setHeatLoadData(null);
         this.interactionService.setDataStats(null);
+        this.datasets = null;
         if (this.buttons_date_type !== undefined) {
             var isHectare = false;
             this.isLoading = true;
@@ -2543,6 +2544,7 @@ var HeatLoadChartComponent = (function () {
                     payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
                 }
             }
+            payload['nuts_level'] = this.heatLoadPayload.scale_level;
             this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then(function (result) {
                 _this.loadProfileData = [];
                 _this.interactionService.setDataStats(result);
@@ -2664,11 +2666,11 @@ var HeatLoadAggregateService = (function (_super) {
     };
     HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         if (isHectare === false) {
-            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["J" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
+            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["J" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref + ' ; payload:' + JSON.stringify(payload));
             return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["J" /* postHeatLoadProfileNutsLau */]);
         }
         else {
-            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* postHeatLoadProfileHectares */] + type_api_ref);
+            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* postHeatLoadProfileHectares */] + type_api_ref + ' ; payload:' + JSON.stringify(payload));
             this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* postHeatLoadProfileHectares */]);
             return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* postHeatLoadProfileHectares */]);
         }
@@ -4530,18 +4532,15 @@ var LayersService = (function (_super) {
             /* self.dataInteractionService.setLoadingLayerInterraction(action)
             console.log(data) */
             self.dataInteractionService.unsetLoadingLayerInterraction(action);
-            self.logger.log('layerLoaded:' + action);
             // loader.display(false)
         });
         wms_request.on('tileunload', function () { });
         wms_request.on('tileloadstart', function (data) {
             self.dataInteractionService.setLoadingLayerInterraction(action);
-            self.logger.log('tileloadstart:' + action);
         });
         wms_request.on('tileerror', function (data) {
             self.dataInteractionService.unsetLoadingLayerInterraction(action);
             self.toasterService.showToaster('Error loading tiles for ' + action);
-            self.logger.log('layerLoaded:' + action);
         });
         wms_request.on('loading', function () { });
         return wms_request;
@@ -4930,11 +4929,11 @@ var ResultManagerComponent = (function () {
         if (!this.helper.isNullOrUndefined(this.summaryPayload)) {
             this.updateSummaryResult();
         }
-        if (!this.helper.isNullOrUndefined(this.energyMixPayload)) {
-            this.updateEnergyMixResult();
-        }
         if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
             this.updateHeatLoadResult();
+        }
+        if (!this.helper.isNullOrUndefined(this.energyMixPayload)) {
+            this.updateEnergyMixResult();
         }
         if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) {
             this.updateDurationCurveResult();
@@ -6601,6 +6600,7 @@ var RightSideComponent = (function (_super) {
         else {
             this.resetPayloads();
         }
+        console.log(this.scaleLevel);
     };
     RightSideComponent.prototype.resetPayloads = function () {
         this.cmPayload = null;
@@ -6610,7 +6610,7 @@ var RightSideComponent = (function (_super) {
         this.durationCurvePayload = null;
     };
     RightSideComponent.prototype.setSatusResults = function () {
-        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+        if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
             this.durationCurveStatus = true;
         }
@@ -6703,10 +6703,10 @@ var RightSideComponent = (function (_super) {
         this.energyMixPayload = { nuts: this.nutsIds };
     };
     RightSideComponent.prototype.setHeatloadPayloadAreas = function () {
-        this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas) };
+        this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas), scale_level: this.interactionService.getScaleLevel() };
     };
     RightSideComponent.prototype.setHeatloadPayloadIds = function () {
-        this.heatLoadPayload = { nuts: this.nutsIds };
+        this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() };
     };
     RightSideComponent.prototype.setDurationCurveIds = function () {
         this.durationCurvePayload = { nuts: this.nutsIds, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_25" /* constant_year_duration_curve */] };
