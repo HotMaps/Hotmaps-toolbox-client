@@ -3079,7 +3079,7 @@ var DataInteractionArray = [
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solar/blob/master/README.md', isLoading: false },
     // shallow geothermal vector layer
     { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'shallowgeothermal', layer_type: 'potential_shallowgeothermal',
+        workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'shallow_geothermal_potential', layer_type: 'shallow_geothermal_potential',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading: false },
     // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
     /*  {id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
