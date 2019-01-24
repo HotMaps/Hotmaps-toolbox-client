@@ -101,7 +101,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
 
         self.setSummaryResult(result);
-        self.getIndicatorsCatergories()
+        // TODO decomment when fixed  self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
@@ -113,7 +113,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
 
         self.setSummaryResult(result)
-        self.getIndicatorsCatergories()
+        // TODO decomment when fixed self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
@@ -221,7 +221,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.displayExportDataStatus = true;
 
       }
-      this.getIndicatorsCatergories()
+      // TODO decomment when fixed this.getIndicatorsCatergories()
     } else{
 
       this.logger.log('animationTimeout')

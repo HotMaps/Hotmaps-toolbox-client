@@ -4977,7 +4977,7 @@ var ResultManagerComponent = (function () {
         if (this.scaleLevel === '-1') {
             self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(function (result) {
                 self.setSummaryResult(result);
-                self.getIndicatorsCatergories();
+                // TODO decomment when fixed  self.getIndicatorsCatergories()
                 self.indicatorLoading = false;
                 self.displayExportDataStatus = true;
             }).catch(function (e) {
@@ -4989,7 +4989,7 @@ var ResultManagerComponent = (function () {
         else {
             self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(function (result) {
                 self.setSummaryResult(result);
-                self.getIndicatorsCatergories();
+                // TODO decomment when fixed self.getIndicatorsCatergories()
                 self.indicatorLoading = false;
                 self.displayExportDataStatus = true;
             }).catch(function (e) {
@@ -5095,7 +5095,7 @@ var ResultManagerComponent = (function () {
                 });
                 this.displayExportDataStatus = true;
             }
-            this.getIndicatorsCatergories();
+            // TODO decomment when fixed this.getIndicatorsCatergories()
         }
         else {
             this.logger.log('animationTimeout');
