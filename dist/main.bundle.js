@@ -5177,6 +5177,7 @@ var ResultManagerComponent = (function () {
                 if (!_this.helper.isNullOrUndefined(layer.name)) {
                     var refToDisplay = _this.dataInteractionService.getRefFromLayerName(layer.name);
                     layer.category = refToDisplay;
+                    _this.logger.log("refToDisplay" + refToDisplay);
                     refToDisplay.map(function (ref) {
                         _this.dropdown_btns.filter(function (x) { return x.ref === ref; })[0].display = true;
                     });

@@ -319,6 +319,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         if (!this.helper.isNullOrUndefined(layer.name)) {
           const refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
           layer.category = refToDisplay
+          this.logger.log("refToDisplay" +refToDisplay)
+
           refToDisplay.map(ref => {
             this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
           })
