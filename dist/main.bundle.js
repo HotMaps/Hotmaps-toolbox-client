@@ -4977,7 +4977,7 @@ var ResultManagerComponent = (function () {
         if (this.scaleLevel === '-1') {
             self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(function (result) {
                 self.setSummaryResult(result);
-                // TODO decomment when fixed  self.getIndicatorsCatergories()
+                self.getIndicatorsCatergories();
                 self.indicatorLoading = false;
                 self.displayExportDataStatus = true;
             }).catch(function (e) {
@@ -4989,7 +4989,7 @@ var ResultManagerComponent = (function () {
         else {
             self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(function (result) {
                 self.setSummaryResult(result);
-                // TODO decomment when fixed self.getIndicatorsCatergories()
+                self.getIndicatorsCatergories();
                 self.indicatorLoading = false;
                 self.displayExportDataStatus = true;
             }).catch(function (e) {
@@ -5095,7 +5095,7 @@ var ResultManagerComponent = (function () {
                 });
                 this.displayExportDataStatus = true;
             }
-            // TODO decomment when fixed this.getIndicatorsCatergories()
+            this.getIndicatorsCatergories();
         }
         else {
             this.logger.log('animationTimeout');
@@ -5179,7 +5179,7 @@ var ResultManagerComponent = (function () {
                     layer.category = refToDisplay;
                     _this.logger.log("refToDisplay" + refToDisplay);
                     refToDisplay.map(function (ref) {
-                        _this.dropdown_btns.filter(function (x) { return x.ref === ref; })[0].display = true;
+                        //this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
                     });
                 }
             });
