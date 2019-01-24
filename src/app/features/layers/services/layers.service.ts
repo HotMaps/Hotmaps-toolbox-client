@@ -134,19 +134,16 @@ export class LayersService extends APIService {
       /* self.dataInteractionService.setLoadingLayerInterraction(action)
       console.log(data) */
       self.dataInteractionService.unsetLoadingLayerInterraction(action)
-      self.logger.log('layerLoaded:'+action)
       // loader.display(false)
     });
     wms_request.on('tileunload', function() {  });
     wms_request.on('tileloadstart', function(data) {
       self.dataInteractionService.setLoadingLayerInterraction(action)
-      self.logger.log('tileloadstart:'+action)
 
     });
     wms_request.on('tileerror', function(data) {
       self.dataInteractionService.unsetLoadingLayerInterraction(action)
       self.toasterService.showToaster('Error loading tiles for '+action)
-      self.logger.log('layerLoaded:'+action)
     });
     wms_request.on('loading', function() {  });
     return wms_request;

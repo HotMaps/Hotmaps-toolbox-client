@@ -128,6 +128,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     } else {
       this.resetPayloads()
     }
+    console.log(this.scaleLevel)
   }
   resetPayloads() {
     this.cmPayload = null;
@@ -137,7 +138,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.durationCurvePayload = null;
   }
   setSatusResults() {
-    if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+    if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
       this.heatloadStatus = true;
       this.durationCurveStatus = true;
     } else {
@@ -234,10 +235,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.energyMixPayload = { nuts: this.nutsIds }
   }
   setHeatloadPayloadAreas() {
-    this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas)}
+    this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas), scale_level: this.interactionService.getScaleLevel()}
   }
   setHeatloadPayloadIds() {
-    this.heatLoadPayload = { nuts: this.nutsIds }
+    this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() }
   }
   setDurationCurveIds() {
     this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve }
