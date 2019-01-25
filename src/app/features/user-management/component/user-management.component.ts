@@ -23,16 +23,13 @@ export class UserManagementComponent implements OnInit {
   }
   subscribe() {
     this.route.params.subscribe( (params) => {
-      if(params.token_activation){
+      if (params.token_activation) {
         this.token_activation = params.token_activation;
-        uikit.modal('#modal-activate').show()
-      }
-    });
-    this.route.params.subscribe( (params) => {
-      if(params.token_recover){
+        uikit.modal('#modal-activate').show();
+      } else if (params.token_recover) {
         this.token_recover = params.token_recover;
         this.submitedRecover = true;
-        uikit.modal('#modal-recover').show()
+        uikit.modal('#modal-recover').show();
       }
     });
     this.userManagementStatusService.getIsUserLogged().subscribe((data) => {

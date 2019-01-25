@@ -32,7 +32,12 @@
         <button *ngIf="isEditable" class="uk-button uk-button-primary" (click)="updateProfile()">Update profile</button>
       </div>
     </div>
+  </div>  
+</div>
 
+<div class="uk-child-width-2-2@m uk-grid-match" uk-grid>
+  <div>
+    <app-upload></app-upload>
   </div>
 </div>
 <button class="uk-button uk-button-primary" (click)="logout()">Logout</button>

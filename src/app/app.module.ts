@@ -78,6 +78,9 @@ import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 
 
+import { UploadComponent } from './features/user-management/account/upload/upload.component';
+import { UploadService } from './shared/services/upload.service';
+
 @NgModule({
   imports: [
     HttpModule,
@@ -122,7 +125,8 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     RecoveryComponent,
     AccountComponent,
     ActivateComponent,
-    LayerToolComponent
+    LayerToolComponent,
+    UploadComponent
   ],
   providers: [
     DataInteractionService,
@@ -155,7 +159,8 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
     CalculationHeatLoadDividedService,
     CMLayersService,
     UserManagementService,
-    UserManagementStatusService
+    UserManagementStatusService,
+    UploadService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
