@@ -41,6 +41,10 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/gfa_nonres_curr_density/blob/master/data/gfa_nonres_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_nonres_curr_density/blob/master/README.md', isLoading:false},
 
+  {id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
+    workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: defaultLayerType,
+    download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading:false},
 
   {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
