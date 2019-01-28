@@ -62,3 +62,8 @@
   text-transform: uppercase;
   color:red;
 }
+
+
+.input-prefix input {
+  height:30px;
+}
