@@ -188,27 +188,27 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   processAndShowCmResult(data){
-
     const response = JSON.parse(data["_body"])
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
-
+      const name_of_result = this.cmPayload.cm_name;
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
-          this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
+          this.dataInteractionService.addNewLayer(name_of_result, raster.path, raster_type_name)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
+
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
-          this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
+          this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name)
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
         this.result.indicators.layers.push({
-          name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
+          name: name_of_result, values: response.status.result.indicator, category: ['overall', calculation_module_category]
         })
         this.displayExportDataStatus = true;
 
@@ -221,7 +221,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
               xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel } }]
             }
           }
-          const graph = this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
+          const graph = this.addGraphic(name_of_result, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
         })
         this.displayExportDataStatus = true;
 
