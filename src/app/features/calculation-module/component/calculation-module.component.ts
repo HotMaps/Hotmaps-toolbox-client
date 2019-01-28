@@ -59,6 +59,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   private cmSelected;
   private cmRunning;
   private layersFromType = [];
+  private prefix_cm='';
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
@@ -82,7 +83,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     this.logger.log('ngOnDestroy called')
 
   }
-
+  checkValue() {
+    console.log(this.prefix_cm)
+  }
   subscribeEvents() {
     const self = this;
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
@@ -154,6 +157,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     }
   }
   runCM() {
+    this.cmSelected['cm_prefix'] = this.prefix_cm;
+    this.prefix_cm='';
     this.components.forEach(comp => {
       if(!this.helper.isNullOrUndefined(comp.selected_value)){
         comp.input_value = comp.selected_value
