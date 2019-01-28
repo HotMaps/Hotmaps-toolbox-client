@@ -40,10 +40,10 @@ export class HeatLoadAggregateService extends APIService {
 
   getHeatLoad(payload, type_api_ref, isHectare) {
     if (isHectare === false) {
-      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref)
+      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       return super.POST(payload, apiUrl + postHeatLoadProfileNutsLau);
     }else {
-      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref)
+      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       this.logger.log(apiUrl + postHeatLoadProfileHectares)
       return super.POST(payload, apiUrl + postHeatLoadProfileHectares);
     }

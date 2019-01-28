@@ -143,6 +143,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'average_heat_conductivity'},
 
   {id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste based on NUTS3 data'},
+
   {id: 176, api_name: potential_municipal_solid_waste + '_agriculture_pp', business_name: 'Potential from Waste per capita'},
 
   {id: 176, api_name: potential_municipal_solid_waste + '_NUTS_potential', business_name: 'Potential from agricultural residues based on NUTS3 data'},
