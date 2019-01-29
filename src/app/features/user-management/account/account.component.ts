@@ -4,6 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
 import { WaitingStatusComponent } from 'app/shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
   selector: 'htm-account',
@@ -22,7 +23,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   private diskspaceDataset;
   private diskspaceOptions = diskspacechart_options;
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
-    private toasterService: ToasterService) {
+    private toasterService: ToasterService, private interactionService: InteractionService) {
     super()
   }
 
@@ -37,6 +38,10 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
       this.userManagementStatusService.setUsername(null);
       this.userManagementStatusService.setUserIsLoggedOut();
       this.userManagementStatusService.setUserToken(null);
+
+      this.interactionService.disableButtonWithId('save');
+      this.interactionService.disableButtonWithId('folder');
+
     }).catch(() => {
       this.setWaitingStatus(false)
     })

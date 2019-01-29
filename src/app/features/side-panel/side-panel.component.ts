@@ -54,7 +54,7 @@ export class SideComponent implements OnInit, OnDestroy {
 
     // Improvement of coding style :
     // display what ? The name of the method should describes his intent
-    display(val: boolean) {
+    display(val: boolean) {        
         if (val) {
             this.expandedState =  'expanded';
             this.expanded = true;
@@ -62,7 +62,6 @@ export class SideComponent implements OnInit, OnDestroy {
             this.expandedState = 'collapsed';
             this.expanded = false;
         }
-
     }
     closePanel(functionString) {
         this.interactionService.disableStateOpenWithFunction(functionString)

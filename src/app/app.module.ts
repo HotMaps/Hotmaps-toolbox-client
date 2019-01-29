@@ -77,9 +77,13 @@ import { ActivateComponent } from './features/user-management/activate/activate.
 import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 
+import { UploadService } from './shared/services/upload.service';
+import { SnapshotService } from './shared/services/snapshot.service';
 
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
-import { UploadService } from './shared/services/upload.service';
+import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
+import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
+import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 
 @NgModule({
   imports: [
@@ -126,7 +130,10 @@ import { UploadService } from './shared/services/upload.service';
     AccountComponent,
     ActivateComponent,
     LayerToolComponent,
-    UploadComponent
+    UploadComponent,
+    FolderPanelComponent,
+    SavePanelComponent,
+    PersonnalLayersComponent
   ],
   providers: [
     DataInteractionService,
@@ -160,7 +167,8 @@ import { UploadService } from './shared/services/upload.service';
     CMLayersService,
     UserManagementService,
     UserManagementStatusService,
-    UploadService
+    UploadService,
+    SnapshotService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

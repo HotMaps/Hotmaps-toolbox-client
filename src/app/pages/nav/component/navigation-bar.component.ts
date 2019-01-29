@@ -57,6 +57,12 @@ export class NavigationBarComponent implements OnInit {
                 if (isOpen) this.interactionService.closeTopPanel();
                 else this.interactionService.openTopPanel();
                 break;
+            case 'save':
+                this.interactionService.actionSavePanel(!isOpen);
+                break;
+            case 'folder':
+                this.interactionService.actionFolderPanel(!isOpen);
+                break;
         }
     }
 }

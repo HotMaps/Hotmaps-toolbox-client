@@ -26,6 +26,10 @@ import {geoserverUrl} from '../../../shared/data.service';
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   selectionToolShow = false;
+
+  folderPanelShow = false;
+  savePanelShow = false;
+
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -43,7 +47,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
+  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent;
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
@@ -131,6 +135,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.panelService.leftPanelStatus.subscribe((val: boolean) => {
       this.openLeftSidebar = val;
       this.leftPanelComponent.display(val);
+    });
+
+    this.panelService.folderPanelStatus.subscribe((val: boolean) => {
+      this.folderPanelShow = val;
+    });
+
+    this.panelService.savePanelStatus.subscribe((val: boolean) => {
+      this.savePanelShow = val;
     });
   }
   ngOnInit() {

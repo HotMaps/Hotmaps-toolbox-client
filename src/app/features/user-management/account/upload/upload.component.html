@@ -16,13 +16,13 @@
       <tbody>
         <tr *ngFor="let upFile of uploadedFiles">
           <td>
-            <input (change)="actionLayer(upFile.id, $event.target.checked)" type="checkbox" class="uk-checkbox" [disabled]="!upFile.name.split('.').reverse()[0] === 'csv'"/>
+            <input (change)="actionLayer(upFile, $event.target.checked)" type="checkbox" class="uk-checkbox" [disabled]="!upFile.name.split('.').reverse()[0] === 'csv'"/>
           </td>
           <td><p title="{{ upFile.name }}">{{ upFile.name }}</p></td>
           <td><p title="{{ getLayerName(upFile.layer) }}">{{ getLayerName(upFile.layer) }}</p></td>
           <td class="uk-text-right">{{ upFile.size * 1000 | number:'1.1-1' }}</td>
-          <td class="uk-text-center"><i class="flaticon-import iButton" (click)="download(upFile.id, upFile.name)"></i></td>
-          <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(upFile.id)"></i></td>
+          <td class="uk-text-center"><i class="flaticon-import iButton" (click)="download(upFile)"></i></td>
+          <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(upFile)"></i></td>
         </tr>
       </tbody>
     </table>
@@ -45,7 +45,7 @@
           <i class="flaticon-export iButton" (click)="inputFile.click()"></i>
           <input type="file" accept=".tif,.csv" (change)="onFileChange($event)" style="display:none" #inputFile>
         </td>
-        <td class="uk-text-center"><i class="iButton" [class.flaticon-plus]="!isUploading" [class.active]="isFileOk" id="uploadBtn" (click)="fileUpload()"><div *ngIf="isUploading" uk-spinner></div></i></td>
+        <td class="uk-text-center"><i class="iButton" [class.flaticon-plus]="!isUploading" [class.active]="isFileOk && selectedLayer" id="uploadBtn" (click)="fileUpload()"><div *ngIf="isUploading" uk-spinner></div></i></td>
       </tr>
     </tfoot>
   </table>

@@ -13,7 +13,7 @@ import { nuts3, lau2, hectare, urlLegend } from '../../shared/data.service';
   styleUrls: ['./layer-tool.component.css']
 })
 
-export class LayerToolComponent implements OnInit, DoCheck {
+export class LayerToolComponent implements OnInit {
   @Input() dataInteraction: DataInteractionClass;
   private imageUrl = urlLegend;
   private isLegendDisplayed = false;
@@ -26,14 +26,12 @@ export class LayerToolComponent implements OnInit, DoCheck {
 
   constructor(private mapService: MapService, private uploadService: UploadService) { }
 
-  ngOnInit() { }
-
-  ngDoCheck() {    
-    this.hasZoneSelected = this.mapService.getLoadResultbuttonState().getValue() && 
-      [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1;
+  ngOnInit() { 
+    this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value 
+      && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+    );
   }
-  
-  
+
   toggleLegend() {
     this.isLegendDisplayed = !this.isLegendDisplayed;
   }
@@ -49,15 +47,16 @@ export class LayerToolComponent implements OnInit, DoCheck {
   export() {
     this.loading = true;
     this.uploadService.export(this.dataInteraction.workspaceName)
-      .then(url => {
-        // window.open(url); //POPUP blocker
-        if (url != "") {
+      .then(data => {
+        if (data.url != "") {
+          //window.open(data.url); //POPUP blocker          
           const a = document.createElement('a');
-          a.href = url;
+          a.href = data.url;
+          a.download = data.filename;
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-          URL.revokeObjectURL(url);
+          URL.revokeObjectURL(data.url);
         }
         this.loading = false;
       });

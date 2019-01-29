@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { UploadService, UploadedFile } from '../../../../shared/services/upload.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { DataInteractionClass } from 'app/features/layers-interaction/layers-interaction.class';
-import { ToasterService } from 'app/shared';
 
 @Component({
   selector: 'app-upload',
@@ -18,9 +17,9 @@ export class UploadComponent implements OnInit {
   uploadedFiles: UploadedFile[] = [];
   
   layers: DataInteractionClass[] = [];
-  selectedLayer: string;
+  selectedLayer: string = null;
 
-  constructor(private upService: UploadService, private layerService: DataInteractionService, private toasterService: ToasterService) { }
+  constructor(private upService: UploadService, private layerService: DataInteractionService) { }
 
   ngOnInit() {
     this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
@@ -44,17 +43,17 @@ export class UploadComponent implements OnInit {
       .then(files => this.uploadedFiles = files);
   }
 
-  delete(id: number) {
+  delete(id: number|UploadedFile) {
     this.upService.delete(id).then(() => this.getFiles());    
   }
 
-  download(id: number, filename: string) {
-    this.upService.download(id, filename).then(url => {
+  download(upFile: UploadedFile) {
+    this.upService.download(upFile).then(url => {
       // window.open(url); //POPUP blocker
       const a = document.createElement('a');
       a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
+      a.download = upFile.name;
+      document.body.appendChild(a);      
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
@@ -71,13 +70,13 @@ export class UploadComponent implements OnInit {
   fileUpload() {
     if (!this.isFileOk)
       return;
-    this.isFileOk = false;
     this.isUploading = true;
     this.upService.add(this.file2Up, this.selectedLayer).then((success) => {      
       if (success) {
         this.getFiles();
         this.file2Up = null;
         this.isFileOk = false;
+        this.selectedLayer = null;
       } else this.isFileOk = true;
       this.isUploading = false;
     });
@@ -87,22 +86,33 @@ export class UploadComponent implements OnInit {
   /**
    * add or remove the layer imported (only for tif)
    * @param id id of import
-   * @param toAdd
+   * @param toShow to show or to remove
    */
-  actionLayer(id: number, toAdd: boolean = true) {
-    if (toAdd) this.addLayer(id);
+  actionLayer(id: number|UploadedFile, toShow: boolean = true) {
+    if (toShow) this.showLayer(id);
+    else this.removeLayer(id);
   }
 
-  addLayer (id: number) { // TODO
-    this.toasterService.showToaster("Sorry, we can't add layers now");
+  /**
+   * Show a layer
+   * @param id 
+   */
+  showLayer (id: number|UploadedFile) {
+    this.upService.show(id);
   }
 
-  removeLayer(id: number) { // TODO
-
+  /**
+   * Remove a layer
+   * @param id 
+   */
+  removeLayer(id: number|UploadedFile) { // TODO
+    this.upService.remove(id);
   }
 
+  /**
+   * Remove all active layers 
+   */
   removeAllLayers() {
-    for (var i in this.layers)
-      this.removeLayer(this.layers[i].id);
+    this.upService.removeAll();
   }
 }
