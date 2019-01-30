@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderPanelComponent } from './folder-panel.component';
+import { PersonnalLayersComponent } from './personnal-layers.component';
 
-describe('FolderPanelComponent', () => {
-  let component: FolderPanelComponent;
-  let fixture: ComponentFixture<FolderPanelComponent>;
+describe('PersonnalLayersComponent', () => {
+  let component: PersonnalLayersComponent;
+  let fixture: ComponentFixture<PersonnalLayersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FolderPanelComponent ]
+      declarations: [ PersonnalLayersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FolderPanelComponent);
+    fixture = TestBed.createComponent(PersonnalLayersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

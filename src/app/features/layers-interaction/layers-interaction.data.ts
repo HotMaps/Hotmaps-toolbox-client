@@ -15,8 +15,9 @@ export const gitlabUrl = 'https://gitlab.com/hotmaps/';
 export const DataInteractionArray: DataInteractionClass[] = [
 
 // Buildings
-  {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: true,
-    workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density', layer_type: defaultLayerType},
+  {id: idDefaultLayer, name: 'Heat density total', category: 'Buildings', isSelected: false,
+    workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_density', layer_type: defaultLayerType,
+    download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif'},
   {id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
     workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall','demand'], styleName: 'heat_density', layer_type: defaultLayerType},
   {id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,

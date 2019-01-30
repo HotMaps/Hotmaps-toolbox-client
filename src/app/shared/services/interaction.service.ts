@@ -121,29 +121,6 @@ export class InteractionService {
         this.sidePanelService.closeRightPanel();
     }
 
-
-    // Folder Panel
-    actionFolderPanel(toOpen: boolean = false) {
-      this.sidePanelService.setFolderPanelStatus(toOpen);
-    }
-    openFolderPanel() {
-      this.actionFolderPanel(true);
-    }
-    closeFolderPanel() {
-      this.actionFolderPanel(false);
-    }
-
-    // Save Panel
-    actionSavePanel(toOpen: boolean = false) {
-      this.sidePanelService.setSavePanelStatus(toOpen);
-    }
-    openSavePanel() {
-      this.actionSavePanel(true);
-    }
-    closeSavePanel() {
-      this.actionSavePanel(false);
-    }
-
     // LEFT PANEL
     openLeftPanel() {
         this.sidePanelService.openLeftPanel();

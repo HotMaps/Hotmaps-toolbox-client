@@ -27,9 +27,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   selectionToolShow = false;
 
-  folderPanelShow = false;
-  savePanelShow = false;
-
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -135,14 +132,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.panelService.leftPanelStatus.subscribe((val: boolean) => {
       this.openLeftSidebar = val;
       this.leftPanelComponent.display(val);
-    });
-
-    this.panelService.folderPanelStatus.subscribe((val: boolean) => {
-      this.folderPanelShow = val;
-    });
-
-    this.panelService.savePanelStatus.subscribe((val: boolean) => {
-      this.savePanelShow = val;
     });
   }
   ngOnInit() {

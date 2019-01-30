@@ -11,6 +11,7 @@ import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
 import { nuts3, lau2, hectare, constant_year, apiUrl } from '../../shared/data.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 interface LayerInfo {
@@ -44,6 +45,15 @@ export class UploadService {
 
   // For Show and Remove
   private activeLayers: Object = {};
+  private uploadedFiles: BehaviorSubject<UploadedFile[]> = new BehaviorSubject<UploadedFile[]>([]);
+
+
+  /**
+   * To refresh the list automatically
+   */
+  getUploadedFiles(): BehaviorSubject<UploadedFile[]> {
+    return this.uploadedFiles;
+  }
 
   constructor(private toasterService: ToasterService, private http: Http,
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
@@ -57,6 +67,7 @@ export class UploadService {
    * @param success true from then, false from catch
    */
   private showMsg(res: Response, success: boolean) {
+    this.list();
     this.toasterService.showToaster(res.json()["message"]);
     return success;
   }
@@ -84,6 +95,7 @@ export class UploadService {
    * @returns Promise with success of the procedure
    */
   delete(id: number|UploadedFile): Promise<boolean> {
+    this.remove(id); // remove first
     if (!isNumber(id)) id = (id as UploadedFile).id;
 
     return this.http.delete(uploadUrl + 'delete', {
@@ -101,7 +113,7 @@ export class UploadService {
    */
   download(id: number|UploadedFile): Promise<string> {
     if (!isNumber(id)) id = (id as UploadedFile).id;
-    
+
     return this.http.post(uploadUrl + 'download', {
       token: this.userToken, id: id
     }, { responseType : ResponseContentType.Blob }).toPromise().then(data => URL.createObjectURL(data.blob()) as string
@@ -116,7 +128,10 @@ export class UploadService {
    */
   list(): Promise<UploadedFile[]> {
     return this.http.post(uploadUrl + 'list', { token: this.userToken })
-      .toPromise().then(response => response.json()["uploads"] as UploadedFile[]);
+      .toPromise().then(response => {
+        this.uploadedFiles.next(response.json()["uploads"]);
+        return this.getUploadedFiles().getValue();
+      });
   }
 
   /**
@@ -125,8 +140,7 @@ export class UploadService {
    */
   show(id: number|UploadedFile): void {
     if (!isNumber(id)) id = (id as UploadedFile).id;
-
-    if (this.activeLayers[id as number] != null) {
+    if ((id as number) in this.activeLayers) {
       this.toasterService.showToaster('Layer already active');
       return;
     }
@@ -134,7 +148,8 @@ export class UploadService {
     this.activeLayers[id as number] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
       token: this.userToken,
       upload_id: id,
-      tms: true
+      tms: true,
+      maxNativeZoom: 11
     }).addTo(this.mapService.getMap());
   }
 
@@ -144,6 +159,7 @@ export class UploadService {
    */
   remove(id: number|UploadedFile): void {
     if (!isNumber(id)) id = (id as UploadedFile).id;
+    if (!((id as number) in this.activeLayers)) return; // if the layer wasn't active
 
     (this.activeLayers[id as number] as TileLayer).removeFrom(this.mapService.getMap());
     delete this.activeLayers[id as number];
