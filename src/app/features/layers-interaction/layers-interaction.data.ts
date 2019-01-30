@@ -41,6 +41,10 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/gfa_nonres_curr_density/blob/master/data/gfa_nonres_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_nonres_curr_density/blob/master/README.md', isLoading:false},
 
+  {id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
+    workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: defaultLayerType,
+    download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading:false},
 
   {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
@@ -101,7 +105,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/potential_biomass/blob/master/data/forest_residues.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential_biomass/blob/master/README.md', isLoading:false},
   {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
+    workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['overall','potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
     download_url: gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/data/solid_waste.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
@@ -117,7 +121,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
 // shallow geothermal vector layer
   {id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'shallow_geothermal_potential', layer_type:  'shallow_geothermal_potential',
+    workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['no_showed'], styleName: 'shallow_geothermal_potential', layer_type:  'shallow_geothermal_potential',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading:false},
 
 // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
