@@ -63,11 +63,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() { }
   ngOnChanges() {
     this.resetResult();
+    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
     if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
-    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
     /* this.interactionService.getCMRunned().subscribe((data) => {
       if (this.helper.isNullOrUndefined(data)) {
         this.stopAnimation()
@@ -99,7 +99,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
-       // this.resetResult()
+
         self.setSummaryResult(result);
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
@@ -111,7 +111,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       });
     } else {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
-       // this.resetResult()
 
         self.setSummaryResult(result)
         self.getIndicatorsCatergories()
@@ -129,12 +128,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   setSummaryResult(result) {
     if (result.layers.length !== 0) {
       result.layers.map((layer) => {
-
-
         this.result.indicators.layers.push(layer);
       })
-      this.logger.log(" this.result.indicators" + this.result.indicators)
-      this.logger.log(" this.result.indicators" + JSON.stringify( this.result.indicators))
     }
     if (result.no_data_layers.length !== 0) { this.result.indicators.no_data_layers.push(result.no_data_layers) }
     if (result.no_table_layers.length !== 0) { this.result.indicators.no_table_layers.push(result.no_table_layers) }
@@ -189,6 +184,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
   processAndShowCmResult(data){
     const response = JSON.parse(data["_body"])
+    console.log(response)
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
@@ -207,6 +203,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
+
         this.result.indicators.layers.push({
           name: name_of_result, values: response.status.result.indicator, category: ['overall', calculation_module_category]
         })
@@ -226,6 +223,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.displayExportDataStatus = true;
 
       }
+      console.log(this.result)
       this.getIndicatorsCatergories()
     } else{
 
@@ -317,17 +315,20 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
-
-
     if (this.result.indicators.layers.length === 0) {
       this.noIndicator = true
     } else {
       this.result.indicators.layers.map((layer) => {
+        console.log(JSON.stringify(layer))
         if (!this.helper.isNullOrUndefined(layer.name)) {
-          const refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
-          layer.category = refToDisplay
-          this.logger.log("refToDisplay" +refToDisplay)
-          this.logger.log("refToDisplay" +refToDisplay)
+          let refToDisplay=[];
+          if(this.helper.isNullOrUndefined(layer.category)){
+            refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
+            layer.category = refToDisplay
+          } else {
+            refToDisplay = layer.category
+          }
+          this.logger.log("refToDisplay:" +refToDisplay)
 
           refToDisplay.map(ref => {
             this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
