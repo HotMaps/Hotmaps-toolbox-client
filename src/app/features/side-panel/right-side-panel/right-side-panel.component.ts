@@ -197,15 +197,21 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   // Create payloads
   setCMPayload() {
     let payloadTmp;
+    let cm_name='';
     if (this.scaleLevel !== '-1') {
       payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
     } else if (this.scaleLevel === '-1') {
       payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
     }
+    console.log()
+    if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
+      cm_name+=this.cmRunned.cm.cm_prefix + ' - '
+    }
+    cm_name += this.cmRunned.cm.cm_name
     this.cmPayload = Object.assign(
       {
         url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:this.cmRunned.cm.cm_prefix + ' - ' + this.cmRunned.cm.cm_name
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name
       },
       { payload: payloadTmp }
     )
