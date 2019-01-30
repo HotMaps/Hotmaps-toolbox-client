@@ -3006,6 +3006,10 @@ var DataInteractionArray = [
         workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading: false },
+    { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
+        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* defaultLayerType */],
+        download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
         workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
         download_url: gitlabUrl + '/gfa_tot_curr_density/blob/master/data/gfa_tot_curr_density.tif',
@@ -3018,10 +3022,6 @@ var DataInteractionArray = [
         workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
         download_url: gitlabUrl + '/gfa_nonres_curr_density/blob/master/data/gfa_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_nonres_curr_density/blob/master/README.md', isLoading: false },
-    { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
-        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* defaultLayerType */],
-        download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
-        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
         workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
         download_url: gitlabUrl + '/vol_tot_curr_density/blob/master/data/vol_tot_curr_density.tif',
@@ -3081,7 +3081,7 @@ var DataInteractionArray = [
         workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
         download_url: gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/data/solid_waste.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/README.md', isLoading: false },
-    { id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
+    { id: 20, name: 'Wind potential at 50 meters', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'wind_50m', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'wind', layer_type: 'wind_50m',
         download_url: gitlabUrl + '/potential/potential_wind/blob/master/data/wind_50m.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_wind/blob/master/README.md', isLoading: false },
@@ -3245,6 +3245,7 @@ var DataInteractionService = (function (_super) {
     };
     DataInteractionService.prototype.getRefFromLayerName = function (name) {
         var layer = this.getLayersTabs().filter(function (x) { return x.workspaceName === name; })[0];
+        this.logger.log("no layer with this name " + name);
         if (this.helper.isNullOrUndefined(layer)) {
             return ["no layer with this name"];
         }
@@ -9810,7 +9811,7 @@ var BusinessInterfaceRenderArray = [
     { id: 17, api_name: vol_nonres_curr_density + '_' + vol_nonres_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Building volume per person' },
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Industry
-    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO_2 emissions of energy intensive industries' },
+    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO² emissions of energy intensive industries' },
     { id: 178, api_name: 'industrial_database_excess_heat_value1', business_name: 'excess heat potential [100°C - 200°C]' },
     { id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential [200°C - 500°C]' },
     { id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential [ > 500°C]' },
@@ -10348,7 +10349,7 @@ var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'https://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = devUrl;
+var apiUrl = localApiUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var heat_type = 'heat';

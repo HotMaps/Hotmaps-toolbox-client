@@ -76,6 +76,7 @@ export class DataInteractionService extends APIService {
 
   getRefFromLayerName(name: string): any[]{
     const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
+    this.logger.log("no layer with this name " + name)
 
     if (this.helper.isNullOrUndefined(layer)) {return ["no layer with this name"]}
     return layer.ref;
