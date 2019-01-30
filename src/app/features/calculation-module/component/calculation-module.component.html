@@ -36,7 +36,10 @@
         <div *ngIf="cmSelected">
           <button class="uk-offcanvas-close" type="button" (click)="toggleCMPanel(false)" uk-close></button>
   
-          <h3 class="cm_title">{{cmSelected.cm_name}}</h3>
+          <h3 class="cm_title"> {{cmSelected.cm_name}}</h3>
+          <span class="uk-margin input-prefix">
+              <input class="uk-input" maxlength="15" type="text" placeholder="Name of calculation module session" [(ngModel)]="prefix_cm" />
+            </span><br />
           <span class="uk-margin description">{{cmSelected.cm_description}}</span><br />
           <span class="uk-margin" *ngIf="cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
           <div *ngIf="waitingCM" class="waitingboxcomponents">

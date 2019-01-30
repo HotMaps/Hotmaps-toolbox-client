@@ -38,7 +38,7 @@ export class DataInteractionService extends APIService {
   }
   addNewLayer(name, id, type) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
-    DataInteractionArray[newLayerAdded - 1].name = name + ' - ' + id.substring(0, 5);
+    DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
     DataInteractionArray[newLayerAdded - 1].cm_id = id;
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
