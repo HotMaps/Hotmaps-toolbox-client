@@ -78,6 +78,10 @@ import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 
+import { UploadService } from './shared/services/upload.service';
+
+import { UploadComponent } from './features/user-management/account/upload/upload.component';
+import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 
 @NgModule({
   imports: [
@@ -124,7 +128,9 @@ import { WelcomePageComponent } from './features/welcome-page/welcome-page.compo
     AccountComponent,
     ActivateComponent,
     LayerToolComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    UploadComponent,
+    PersonnalLayersComponent
   ],
   providers: [
     DataInteractionService,
@@ -157,7 +163,8 @@ import { WelcomePageComponent } from './features/welcome-page/welcome-page.compo
     CalculationHeatLoadDividedService,
     CMLayersService,
     UserManagementService,
-    UserManagementStatusService
+    UserManagementStatusService,
+    UploadService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -52,8 +52,7 @@ export class DataInteractionCellComponent implements OnInit {
   endLoad() {
     this.loading = false;
   }
-  showRemoveLayer(e) {
-
+  showRemoveLayer(e) {    
     if (this.interactionService.getSummaryResultState() === false) {
       this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
       if (this.dataInteraction.category === calculation_module_category) {

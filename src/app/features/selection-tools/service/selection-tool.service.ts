@@ -107,6 +107,9 @@ export class SelectionToolService extends APIService {
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
+  getScaleValue(): string {
+    return this.scaleValue;
+  }
 
   loadResultNuts(map) {
     const layerNameArray = []

@@ -121,8 +121,7 @@ export class LayersService extends APIService {
         srs: 'EPSG:4326',
         zIndex: 1
       }
-    this.logger.log('action' + action);
-    layer = this.getTilayer(option, action);
+    layer = this.getTilayer(option, this.loaderService);
     this.layers.addLayer(layer);
     this.layersArray.add(action, layer);
   }

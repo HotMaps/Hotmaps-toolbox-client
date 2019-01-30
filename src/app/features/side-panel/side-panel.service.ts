@@ -18,6 +18,10 @@ export class SidePanelService {
     public topPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public rightToggleExpandedStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+
+    public folderPanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public savePanelStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    
     topPanelexpandedCollapsed() {
       this.topPanelStatus.next(true);
     }
@@ -41,6 +45,26 @@ export class SidePanelService {
     }
     closeLeftPanel() {
       this.leftPanelStatus.next(false);
+    }
+
+    setFolderPanelStatus(toOpen: boolean = false) {
+      this.folderPanelStatus.next(toOpen);
+    }
+    openFolderPanel() {
+      this.setFolderPanelStatus(true);
+    }
+    closeFolderPanel() {
+      this.setFolderPanelStatus(false);
+    }
+
+    setSavePanelStatus(toOpen: boolean = false) {
+      this.savePanelStatus.next(toOpen);
+    }
+    openSavePanel() {
+      this.setSavePanelStatus(true);
+    }
+    closeSavePanel() {
+      this.setSavePanelStatus(false);
     }
 }
 

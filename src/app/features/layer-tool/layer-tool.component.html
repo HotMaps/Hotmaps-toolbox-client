@@ -1,7 +1,10 @@
 <div class="tool-container">
   <button [class.uk-button-primary]="isLegendDisplayed" class="uk-icon-button uk-button-default" uk-icon="paint-bucket" (click)="toggleLegend()"></button>
   <button [class.uk-button-primary]="isInfoDisplayed" class="uk-icon-button uk-button-default" uk-icon="info" (click)="toggleInformations()"></button>
-  <button *ngIf="dataInteraction.download_url" class="uk-icon-button uk-button-default" uk-icon="upload" (click)="downloadFile()"></button>
+  
+  <button [disabled]="!hasZoneSelected" class="uk-icon-button uk-button-default" uk-icon="cloud-download" (click)="export()"></button>
+  <a *ngIf="dataInteraction.download_url" href="{{ dataInteraction.download_url }}"><button  class="uk-icon-button uk-button-default" uk-icon="upload"></button></a>  
+  <div *ngIf="loading" uk-spinner></div>
 </div>
 
 <!--

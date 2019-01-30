@@ -1,23 +1,37 @@
-import { Http } from '@angular/http';
-import { Component, OnInit, Input } from '@angular/core';
-import { urlLegend } from '../../shared';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
+
+import { DataInteractionClass } from '../layers-interaction/layers-interaction.class';
+
+import { MapService } from 'app/pages/map';
+import { UploadService } from 'app/shared/services/upload.service';
+
+import { nuts3, lau2, hectare, urlLegend } from '../../shared/data.service';
 
 @Component({
   selector: 'htm-layer-tool',
   templateUrl: './layer-tool.component.html',
   styleUrls: ['./layer-tool.component.css']
 })
+
 export class LayerToolComponent implements OnInit {
-  @Input() dataInteraction;
+  @Input() dataInteraction: DataInteractionClass;
   private imageUrl = urlLegend;
   private isLegendDisplayed = false;
   private isInfoDisplayed = false;
   private displayLegend = false;
 
-  constructor() { }
+  private loading: boolean = false;
+  private hasZoneSelected: boolean = false;
 
-  ngOnInit() {
+
+  constructor(private mapService: MapService, private uploadService: UploadService) { }
+
+  ngOnInit() { 
+    this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value 
+      && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+    );
   }
+
   toggleLegend() {
     this.isLegendDisplayed = !this.isLegendDisplayed;
   }
@@ -25,11 +39,26 @@ export class LayerToolComponent implements OnInit {
     this.isInfoDisplayed = !this.isInfoDisplayed;
   }
 
-  downloadFile() {
-    window.open(this.dataInteraction.download_url)
-  }
   endLoadLegend() {
     this.displayLegend = true;
   }
 
+
+  export() {
+    this.loading = true;
+    this.uploadService.export(this.dataInteraction.workspaceName)
+      .then(data => {
+        if (data.url != "") {
+          //window.open(data.url); //POPUP blocker          
+          const a = document.createElement('a');
+          a.href = data.url;
+          a.download = data.filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(data.url);
+        }
+        this.loading = false;
+      });
+  }
 }
