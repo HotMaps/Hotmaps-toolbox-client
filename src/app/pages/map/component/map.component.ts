@@ -45,7 +45,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
+  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent;
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
