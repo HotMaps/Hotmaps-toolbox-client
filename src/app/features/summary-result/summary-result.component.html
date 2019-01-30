@@ -18,7 +18,7 @@
               <tr *ngFor="let value of layer.values" class="table-level-two">
                 <td>{{value.name | businessname}}</td>
                 <td height="20" class="uk-align-left uk-align-center" *ngIf="value.value" [@tableOpacityTrigger]="'in'">
-                  {{value.value | number: round}} {{ value.unit | businessname}}
+                  {{value.value | number: round | numberformat }} {{ value.unit | businessname}}
                 </td>
                 <td *ngIf="!value.value" [@tableOpacityTrigger]="'in'">Not available</td>
               </tr>
