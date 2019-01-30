@@ -5,8 +5,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Last date</th>
-                    <th>
+                    <th class="uk-text-right">Last date</th>
+                    <th class="uk-text-center">
                         <i class="iButton" (click)="refresh()">&#8635;</i>
                     </th>
                 </tr>
@@ -17,9 +17,9 @@
             <table class="uk-table uk-table-hover uk-table-striped" #tblBody>
                 <tbody>
                     <tr *ngFor="let snapshot of snapshots">
-                        <td>{{ snapshot.name }}</td>
-                        <td>{{ snapshot.description }}</td>
-                        <td>{{ snapshot.date }}</td>
+                        <td><p>{{ snapshot.name }}</p></td>
+                        <td><p>{{ snapshot.description }}</p></td>
+                        <td><p class="uk-text-right">{{ snapshot.date | date:'yyyy/MM/dd' }}</p></td>
                         <td class="uk-text-center"><i class="flaticon-success iButton" (click)="apply(snapshot)"></i></td>
                         <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(snapshot)"></i></td>
                     </tr>

@@ -69,9 +69,9 @@ export class SnapshotService {
    * @param description 
    * @returns Promise with success of the procedure
    */
-  add(name: string, description: string = "") {
+  add(name: string, description: string = ""): Promise<boolean> {
     const scale = this.slcToolsService.getScaleValue();
-    
+        
     let config: SnapshotConfig = {
       name: name,
       description: description,
@@ -86,7 +86,7 @@ export class SnapshotService {
       zoom: this.mapService.getZoomLevel().getValue()
     }
 
-    this.http.post(snapshotUrl + 'save', {
+    return this.http.post(snapshotUrl + 'add', {
       token: this.userToken, config: JSON.stringify(config)
     }).toPromise()
       .then(response => this.showMsg(response, true))
@@ -96,7 +96,56 @@ export class SnapshotService {
 
   apply(snapshot: SnapshotConfig) {
 
-    this.mapService.getMap().setView(snapshot.center, snapshot.zoom);
+    const layers2Toggle: Array<string> = [];
+    {
+      const lay: Array<string> = snapshot.layers.concat(this.mapService.getLayerArray().getValue());
+      
+      for (var i = 0; i < lay.length; i++) {
+        var add = true;      
+        for (var j = 0;j < lay.length; j++) {
+          if (j == i) continue;
+          if (lay[i] == lay[j]) {
+            add = false;
+            break;
+          }
+        }
+        if (add)
+          layers2Toggle.push(lay[i]);
+      }
+    }
+    layers2Toggle.forEach(layer => this.mapService.showOrRemoveLayer(layer, 0));
+
+    this.dataInteractionService.getDataArrayServices().forEach(val => {
+      val.isSelected = snapshot.layers.includes(val.workspaceName);
+    }); 
+    
+    /*
+    this.mapService.clearAll(this.mapService.getMap())
+
+    this.slcToolsService.clearAll(this.mapService.getMap());
+  
+    this.slcToolsService.setScaleValue(snapshot.scale);
+    this.slcScaleService.setScaleValue(snapshot.scale);
+    this.layersService.setCurrentNutsLevel(snapshot.scale);
+    this.slcScaleService.changeScale();
+
+    console.log(this.mapService.getMap)
+
+    this.mapService.getMap().eachLayer(layer => {
+      console.log(layer)
+    })    
+    
+    if (snapshot.scale === hectare) {
+      this.mapService.selectAreaWithHectare(snapshot.zones)
+      this.slcToolsService.areasSubject.next(snapshot.zones)
+    } else {
+      this.mapService.selectAreaWithNuts(snapshot.zones)
+      this.slcToolsService.nutsIdsSubject.next(snapshot.zones)
+      console.log(this.slcToolsService.getDrawer())
+    }*/
+    
+    
+    this.mapService.getMap().flyTo(snapshot.center, snapshot.zoom);
   }
 
   /**

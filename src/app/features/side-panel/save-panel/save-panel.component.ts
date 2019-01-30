@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MapService } from 'app/pages/map';
-import { SelectionToolService } from 'app/features/selection-tools';
+
+import { InteractionService } from 'app/shared/services/interaction.service';
 import { SnapshotService } from 'app/shared/services/snapshot.service';
 
 @Component({
@@ -13,12 +13,18 @@ export class SavePanelComponent implements OnInit {
   name: string = "";
   description: string;
 
-  constructor(private snapshotService: SnapshotService) { }
+  constructor(private snapshotService: SnapshotService, private interactionService: InteractionService) { }
 
   ngOnInit() {   
   }
 
   save() {
-    this.snapshotService.add(this.name, this.description);
+    this.snapshotService.add(this.name, this.description).then(success => {
+      if (success) {
+        this.name = "";
+        this.description = null;
+        this.interactionService.closeSavePanel();
+      }
+    });
   }
 }

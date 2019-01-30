@@ -125,17 +125,19 @@ export class InteractionService {
     // Folder Panel
     actionFolderPanel(toOpen: boolean = false) {
       this.sidePanelService.setFolderPanelStatus(toOpen);
+      this.navigationBarService.getButtonWithId('folder').stateOpen = toOpen;
     }
     openFolderPanel() {
-      this.actionFolderPanel(true);
+      this.actionFolderPanel(true);      
     }
     closeFolderPanel() {
-      this.actionFolderPanel(false);
+      this.actionFolderPanel(false);      
     }
 
     // Save Panel
     actionSavePanel(toOpen: boolean = false) {
       this.sidePanelService.setSavePanelStatus(toOpen);
+      this.navigationBarService.getButtonWithId('save').stateOpen = toOpen;
     }
     openSavePanel() {
       this.actionSavePanel(true);

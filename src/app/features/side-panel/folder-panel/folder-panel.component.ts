@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { InteractionService } from 'app/shared/services/interaction.service';
 import { SnapshotService, SnapshotConfig } from 'app/shared/services/snapshot.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class FolderPanelComponent implements OnInit {
 
   snapshots: SnapshotConfig[] = [];
 
-  constructor(private snapshotService: SnapshotService) { }
+  constructor(private snapshotService: SnapshotService, private interactionService: InteractionService) { }
 
   ngOnInit() {
     this.refresh();
@@ -26,6 +27,7 @@ export class FolderPanelComponent implements OnInit {
 
   apply(snapshot: SnapshotConfig) {
     this.snapshotService.apply(snapshot);
+    this.interactionService.closeFolderPanel();
   }
 
   delete(snapshot: SnapshotConfig) {
