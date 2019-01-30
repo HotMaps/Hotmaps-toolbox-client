@@ -184,7 +184,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
   processAndShowCmResult(data){
     const response = JSON.parse(data["_body"])
-    console.log(response)
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
@@ -223,7 +222,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.displayExportDataStatus = true;
 
       }
-      console.log(this.result)
       this.getIndicatorsCatergories()
     } else{
 

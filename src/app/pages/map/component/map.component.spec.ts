@@ -74,6 +74,7 @@ import {
 import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
 import { RouterModule } from '@angular/router';
 import { routes } from 'app/routes';
+import { NumberFormatPipe } from 'app/shared';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -97,7 +98,7 @@ describe('MapComponent', () => {
         MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
-        LayerNamePipe, BusinessNamePipe,
+        LayerNamePipe, BusinessNamePipe, NumberFormatPipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,LayerToolComponent
