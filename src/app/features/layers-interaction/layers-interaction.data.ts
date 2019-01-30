@@ -27,7 +27,10 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: defaultLayerType,
     download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading:false},
-
+  {id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
+    workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: defaultLayerType,
+    download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading:false},
   {id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
     workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
     download_url: gitlabUrl + '/gfa_tot_curr_density/blob/master/data/gfa_tot_curr_density.tif',
@@ -41,10 +44,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/gfa_nonres_curr_density/blob/master/data/gfa_nonres_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_nonres_curr_density/blob/master/README.md', isLoading:false},
 
-  {id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
-    workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: defaultLayerType,
-    download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading:false},
+
 
   {id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
     workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
@@ -108,7 +108,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['overall','potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
     download_url: gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/data/solid_waste.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/README.md', isLoading:false},
-  {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
+  {id: 20, name: 'Wind potential at 50 meters', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'wind_50m', zoomLevel: 0, ref: ['overall','potential'], styleName: 'wind', layer_type: 'wind_50m',
     download_url: gitlabUrl + '/potential/potential_wind/blob/master/data/wind_50m.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_wind/blob/master/README.md', isLoading:false},
