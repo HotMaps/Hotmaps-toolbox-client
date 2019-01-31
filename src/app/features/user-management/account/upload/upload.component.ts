@@ -24,7 +24,6 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
     this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
     this.getFiles();
-    this.upService.getUploadedFiles().subscribe(files => this.uploadedFiles = files);
   }
 
   /**
@@ -40,11 +39,12 @@ export class UploadComponent implements OnInit {
   }
 
   getFiles() {
-    this.upService.list();
+    this.upService.list()
+      .then(files => this.uploadedFiles = files);
   }
 
   delete(id: number|UploadedFile) {
-    this.upService.delete(id);    
+    this.upService.delete(id).then(() => this.getFiles());    
   }
 
   download(upFile: UploadedFile) {
@@ -68,16 +68,51 @@ export class UploadComponent implements OnInit {
   }
 
   fileUpload() {
-    if (!(this.isFileOk && this.selectedLayer))
+    if (!this.isFileOk)
       return;
     this.isUploading = true;
     this.upService.add(this.file2Up, this.selectedLayer).then((success) => {      
       if (success) {
+        this.getFiles();
         this.file2Up = null;
         this.isFileOk = false;
         this.selectedLayer = null;
       } else this.isFileOk = true;
       this.isUploading = false;
     });
+  }
+
+
+  /**
+   * add or remove the layer imported (only for tif)
+   * @param id id of import
+   * @param toShow to show or to remove
+   */
+  actionLayer(id: number|UploadedFile, toShow: boolean = true) {
+    if (toShow) this.showLayer(id);
+    else this.removeLayer(id);
+  }
+
+  /**
+   * Show a layer
+   * @param id 
+   */
+  showLayer (id: number|UploadedFile) {
+    this.upService.show(id);
+  }
+
+  /**
+   * Remove a layer
+   * @param id 
+   */
+  removeLayer(id: number|UploadedFile) { // TODO
+    this.upService.remove(id);
+  }
+
+  /**
+   * Remove all active layers 
+   */
+  removeAllLayers() {
+    this.upService.removeAll();
   }
 }

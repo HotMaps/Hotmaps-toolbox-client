@@ -1,6 +1,7 @@
 <div class="uk-card uk-card-default uk-overflow-container">
   <table class="uk-table" [style.width.px]="tblBody.offsetWidth">
     <thead><tr>
+      <th></th>
       <th>Filename</th>
       <th>Layer</th>
       <th class="uk-text-right">Size (kB)</th>
@@ -14,6 +15,9 @@
     <table class="uk-table uk-table-hover uk-table-striped" #tblBody>
       <tbody>
         <tr *ngFor="let upFile of uploadedFiles">
+          <td>
+            <input (change)="actionLayer(upFile, $event.target.checked)" type="checkbox" class="uk-checkbox" [disabled]="!upFile.name.split('.').reverse()[0] === 'csv'"/>
+          </td>
           <td><p title="{{ upFile.name }}">{{ upFile.name }}</p></td>
           <td><p title="{{ getLayerName(upFile.layer) }}">{{ getLayerName(upFile.layer) }}</p></td>
           <td class="uk-text-right">{{ upFile.size * 1000 | number:'1.1-1' }}</td>
@@ -27,6 +31,7 @@
   <table id="tblFoot" class="uk-table" [style.width.px]="tblBody.offsetWidth">
     <tfoot>
       <tr>
+        <td></td>
         <td><p *ngIf="isFileOk" title="{{ file2Up.name }}">{{ file2Up.name }}</p></td>
         <td>
           <select class="uk-select" style="width: 100%;" [(ngModel)]="selectedLayer">

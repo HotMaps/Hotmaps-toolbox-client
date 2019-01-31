@@ -79,9 +79,11 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 
 import { UploadService } from './shared/services/upload.service';
+import { SnapshotService } from './shared/services/snapshot.service';
 
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
-import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
+import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
+import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
 
 @NgModule({
   imports: [
@@ -130,7 +132,8 @@ import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/
     LayerToolComponent,
     WelcomePageComponent,
     UploadComponent,
-    PersonnalLayersComponent
+    FolderPanelComponent,
+    SavePanelComponent
   ],
   providers: [
     DataInteractionService,
@@ -164,7 +167,8 @@ import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/
     CMLayersService,
     UserManagementService,
     UserManagementStatusService,
-    UploadService
+    UploadService,
+    SnapshotService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

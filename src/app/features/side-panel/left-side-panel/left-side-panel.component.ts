@@ -26,7 +26,6 @@ import { Logger } from "../../../shared/services/logger.service";
 import { MapService } from "../../../pages/map/map.service";
 import * as uikit from 'uikit';
 import {hectare} from "../../../shared/data.service";
-import { UserManagementStatusService } from 'app/features/user-management';
 
 @Component({
   moduleId: module.id,
@@ -85,14 +84,12 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   layers: DataInteractionClass[];
   category = [];
   private isZoneSelected = false;
-  private isConnected = false;
 
   expanded = false;
   expandedState = 'collapsed';
   constructor(private helper: Helper,
     private dataInteractionService: DataInteractionService, private logger: Logger,
-    protected interactionService: InteractionService, protected mapService: MapService,
-    private userStatusService: UserManagementStatusService) {
+    protected interactionService: InteractionService, protected mapService: MapService) {
     super(interactionService);
   }
 
@@ -121,8 +118,6 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
         this.logger.log('LeftSideComponent/this.layersSelected = ' + this.layersSelected)
       })
     }
-
-    this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }

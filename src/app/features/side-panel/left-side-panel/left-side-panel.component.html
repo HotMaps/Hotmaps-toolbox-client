@@ -14,7 +14,6 @@
     <ul id="my-id3" class="uk-switcher">
       <li>
           <span *ngIf="expanded" [@titleTextTrigger]="'in'">
-            <htm-personnal-layers *ngIf="isConnected"></htm-personnal-layers>
               <ul uk-accordion *ngFor="let i of category">
                   <li class="uk-open">
                     <h3 class="uk-accordion-title">

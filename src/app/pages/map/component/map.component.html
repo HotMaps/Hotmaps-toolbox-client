@@ -15,8 +15,11 @@
 <div class="container-map">
   <htm-top-side-panel></htm-top-side-panel>
   <htm-left-side-panel></htm-left-side-panel>
+
+  <htm-folder-panel *ngIf="folderPanelShow"></htm-folder-panel>
+  <htm-save-panel *ngIf="savePanelShow"></htm-save-panel>
   
-  <div id="map">
+  <div id="map" [style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
     <htm-selection-tool *ngIf="selectionToolShow" onclick="event.stopPropagation();"></htm-selection-tool>
     
     <!--<hmt-toolbar></hmt-toolbar> -->
