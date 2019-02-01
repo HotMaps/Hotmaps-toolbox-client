@@ -213,8 +213,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
         response.status.result.graphics.map((graphic) => {
           const option_calculation_module = { scales: {
-              yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel } }],
-              xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel } }]
+              yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel },ticks: {min:0} }],
+              xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel },ticks: {autoSkip: false, min:0} }]
             }
           }
           const graph = this.addGraphic(name_of_result, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
