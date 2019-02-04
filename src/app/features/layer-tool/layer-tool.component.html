@@ -12,8 +12,13 @@
 <div [hidden]="!isLegendDisplayed" class="uk-card uk-card-default uk-card-body">
   <h3 class="uk-card-title">Symbology</h3>
   <div class="card-content">
-    <div *ngIf="!displayLegend" class="loader" uk-spinner></div>
-    <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoadLegend()" />
+    <ng-container *ngIf="dataInteraction.custom_symbology">
+      <htm-custom-symbology [symbolgies]="dataInteraction.custom_symbology"></htm-custom-symbology>
+    </ng-container>
+    <ng-container *ngIf="!dataInteraction.custom_symbology">
+      <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoadLegend()" />
+      <div *ngIf="!displayLegend" class="loader" uk-spinner></div>
+    </ng-container>
   </div>
 </div>
 <div *ngIf="isLegendDisplayed" class="uk-margin"></div>

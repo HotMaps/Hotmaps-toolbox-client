@@ -266,3 +266,9 @@ export const inputs_categories = [
   {id: '3', name: 'Advanced inputs: (Level 2)', contains_component: false},
   {id: '4', name: 'Advanced inputs: (Level 3)', contains_component: false},
 ]
+export const mock_symbology = [
+  {"red":75,"green":125,"blue":175,"opacity":0.5,"value":250,"label":"250MWh to ∞"},
+  {"red":100,"green":150,"blue":10,"opacity":1,"value":150,"label":"150MWh to 199MWh"},
+    {"red":50,"green":50,"blue":50,"opacity":1,"value":50,"label":"50MWh to 149MWh"},
+     {"red":25,"green":75,"blue":125,"opacity":1,"value":200,"label":"200MWh to 249MWh"}
+  ]

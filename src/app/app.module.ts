@@ -84,6 +84,7 @@ import { SnapshotService } from './shared/services/snapshot.service';
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
 import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
 import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
+import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology/custom-symbology.component';
 
 @NgModule({
   imports: [
@@ -133,7 +134,8 @@ import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.
     WelcomePageComponent,
     UploadComponent,
     FolderPanelComponent,
-    SavePanelComponent
+    SavePanelComponent,
+    CustomSymbologyComponent
   ],
   providers: [
     DataInteractionService,

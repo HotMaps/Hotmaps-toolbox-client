@@ -12,7 +12,7 @@ import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
-import { summay_drop_down_buttons } from '../../shared/data.service';
+import { summay_drop_down_buttons, mock_symbology } from '../../shared/data.service';
 
 
 @Injectable()
@@ -42,6 +42,7 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
     DataInteractionArray[newLayerAdded - 1].cm_id = id;
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
+    DataInteractionArray[newLayerAdded - 1].custom_symbology = mock_symbology;
     // console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {
