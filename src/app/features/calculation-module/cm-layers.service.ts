@@ -57,9 +57,22 @@ export class CMLayersService extends APIService {
       layer = new L.GeoJSON(data,{
         onEachFeature: this.onEachFeature,
         style:(feature) => {
-          const color = feature.properties['rgba']
-          // return { color: 'rgba'+color+''}
-          return { color: '#ad1ad1'}
+          let color = '(255,127,80)'
+          let fillColor = '(255,127,80)'
+          let fillOpacity = 0.5
+          if(!this.helper.isNullOrUndefined(feature.properties['color'])) color = feature.properties['color']
+          if(!this.helper.isNullOrUndefined(feature.properties['fillColor'])) fillColor = feature.properties['fillColor']
+          if(!this.helper.isNullOrUndefined(feature.properties['fillOpacity'])) color = feature.properties['fillOpacity']
+          //const weight = feature.properties['weight']
+          // const fillColor = feature.properties['fillColor']
+
+
+          return {
+            color: 'rgb'+ color,
+            fillColor:'rgb'+ fillColor,
+            fillOpacity: fillOpacity
+          }
+
         }
       })
       layer.addTo(self.layersCM)
@@ -79,7 +92,7 @@ export class CMLayersService extends APIService {
   onEachFeature(feature, layer) {
     let html = ''
     Object.keys(feature.properties).map((prop) => {
-      if (prop !== 'rgba') {
+      if (prop !== 'RGBA') {
         html += '<bold>' + prop + ':</bold>';
         html += '<span>' + feature.properties[prop] + '</span><br />';
       }

@@ -201,6 +201,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
+          // console.log(vector)
           let symb;
           if(vector.type == 'custom') {
             symb = vector.symbology;

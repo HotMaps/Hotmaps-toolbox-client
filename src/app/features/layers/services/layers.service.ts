@@ -130,8 +130,6 @@ export class LayersService extends APIService {
     const self = this;
     const wms_request = L.tileLayer.wms(geoserverUrl, option);
     wms_request.on('load', function(data) {
-      /* self.dataInteractionService.setLoadingLayerInterraction(action)
-      console.log(data) */
       self.dataInteractionService.unsetLoadingLayerInterraction(action)
       // loader.display(false)
     });

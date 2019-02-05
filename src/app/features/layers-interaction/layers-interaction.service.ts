@@ -45,7 +45,6 @@ export class DataInteractionService extends APIService {
     if(symb) {
       DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
     }
-    console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {
 

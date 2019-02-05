@@ -48,7 +48,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
     );
 
     if(this.router.url === '/register') {
-      console.log('isRegisterRoute')
+      // console.log('isRegisterRoute')
     }
   }
 }

@@ -65,7 +65,6 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   }
   getAcountFileList() {
     this.userManagementService.getAcountFileList(this.token).then((data) => {
-      console.log(data);
     })
   }
   toggleEditing() {
