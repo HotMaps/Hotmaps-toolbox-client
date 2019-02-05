@@ -15,6 +15,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NumberFormatPipe  implements PipeTransform {
 
     transform(value: string, args: any[]): any {
-        return value.replace(',',' ').replace('.',',');
+      const val_trans = value.split(',').join(' ').split('.').join(',')
+      console.log(value, val_trans)
+      return val_trans;
     }
 }
