@@ -2,7 +2,7 @@
 // listing import lines alphabetized by the module
 import { DataInteractionClass } from './layers-interaction.class';
 import { business_name_wwtp, defaultLayer, populationLayerName,
-  idDefaultLayer, calculation_module_category, defaultLayerType } from '../../shared/data.service';
+  idDefaultLayer, calculation_module_category, defaultLayerType, industry_layer_order } from '../../shared/data.service';
 import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.service';
 export const potential_type = 'potential';
 export const wwtp_type = 'wwtp';
@@ -61,19 +61,19 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   // Industry
   {id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-    workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions',
+    workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions',order:industry_layer_order,
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-    workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat',
+    workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat',order:industry_layer_order,
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
   {id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-    workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname',
+    workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname', order:industry_layer_order,
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-    workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector',
+    workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector', order:industry_layer_order,
     download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false},
 

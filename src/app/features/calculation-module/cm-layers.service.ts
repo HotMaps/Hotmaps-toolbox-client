@@ -1,4 +1,4 @@
-import {apiUrl, Helper, vector_type_name, raster_type_name} from 'app/shared';
+import {apiUrl, Helper, vector_type_name, raster_type_name, cm_layers_order} from 'app/shared';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 
@@ -49,7 +49,7 @@ export class CMLayersService extends APIService {
       layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
         minZoom: 4,
         maxZoom: 15,
-        tms: true,
+        tms: true
       })
       layer.addTo(self.layersCM)
       self.cmLayersArray.add(directory, layer)
@@ -58,7 +58,7 @@ export class CMLayersService extends APIService {
       shpjs(apiUrl + '/cm/files/' + directory).then(data => {
         let layer;
         layer = new L.GeoJSON(data,{
-          onEachFeature: this.onEachFeature
+          onEachFeature: this.onEachFeature,
         })
         layer.addTo(self.layersCM)
         self.cmLayersArray.add(directory, layer)
