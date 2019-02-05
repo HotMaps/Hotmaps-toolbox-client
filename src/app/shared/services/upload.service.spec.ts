@@ -5,7 +5,9 @@ import { UploadService } from './upload.service';
 describe('UploadService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UploadService]
+      providers: [
+        { provide: UploadService, useValue: UploadService }
+      ]
     });
   });
 

@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { UserManagementService } from '..';
 import { Logger, LoaderService, ToasterService } from 'app/shared';
 import { UserManagementStatusService } from '../service/user-management-status.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,23 +15,17 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [
-        FormsModule
-      ],
+      imports: [ FormsModule ],
       providers:[
-        UserManagementService,
-        UserManagementStatusService,
+        UserManagementService, UserManagementStatusService,
+        MockBackend, BaseRequestOptions,
+        Logger, LoaderService, ToasterService,
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            return new Http(backend, defaultOptions);
+          }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: Logger, useClass: Logger},
-        {provide: LoaderService, useValue: LoaderService },
-        {provide: ToasterService, useClass: ToasterService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-
+        { provide: InteractionService, useValue: InteractionService }
       ]
     })
     .compileComponents();

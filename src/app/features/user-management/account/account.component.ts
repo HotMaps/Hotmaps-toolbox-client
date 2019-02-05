@@ -52,6 +52,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   }
   getAcountInformation() {
     this.getUserInformations()
+    if (this.userManagementService.getDiskSpace)
     this.userManagementService.getDiskSpace(this.token).then((data) => {
       this.diskspaceMax = data.max_size;
       this.diskspaceUsed = data.used_size;
@@ -75,6 +76,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
     this.toggleEditing()
   }
   getUserInformations() {
+    if (this.userManagementService.getUserInformations)
     this.userManagementService.getUserInformations(this.token).then((data) => {
       this.firstname = data.first_name;
       this.lastname = data.last_name;

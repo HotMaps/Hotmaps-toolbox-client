@@ -1,7 +1,5 @@
 import { calculation_module_category } from './../../../shared/data.service';
 import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
-import { Helper } from './../../../shared/helper';
-import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
 import {
   Component,
   OnInit,
@@ -89,7 +87,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
   expanded = false;
   expandedState = 'collapsed';
-  constructor(private helper: Helper,
+  constructor(
     private dataInteractionService: DataInteractionService, private logger: Logger,
     protected interactionService: InteractionService, protected mapService: MapService,
     private userStatusService: UserManagementStatusService) {
@@ -98,7 +96,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
   ngOnInit() {
 
-    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+    if (this.mapService.getNutsSelectedSubject()) {
       this.mapService.getNutsSelectedSubject().subscribe((value) => {
         this.scaleLevel = this.mapService.getScaleValue();
         if (value === 0) {
@@ -113,16 +111,15 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
         }
         this.nbElementsSelected = value;
         this.logger.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
-      })
-    }
-    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+      });
+
       this.mapService.getLayerArray().subscribe(() => {
         this.layersSelected = this.mapService.setLayerWithoutSuffix();
         this.logger.log('LeftSideComponent/this.layersSelected = ' + this.layersSelected)
-      })
-    }
+      });
 
-    this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
+      this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
+    }
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }

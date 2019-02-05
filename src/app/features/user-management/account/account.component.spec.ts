@@ -7,7 +7,12 @@ import { MockBackend } from '@angular/http/testing';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import { AccountComponent } from './account.component';
 import { UserManagementService } from '..';
-import { Logger, LoaderService, ToasterService } from 'app/shared';
+import { Logger, LoaderService, ToasterService, BusinessInterfaceRenderService, Helper } from 'app/shared';
+import { UploadComponent } from './upload/upload.component';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { UploadService } from 'app/shared/services/upload.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import { DecimalPipe } from '@angular/common';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -15,7 +20,7 @@ describe('AccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountComponent, ChartComponent ],
+      declarations: [ AccountComponent, ChartComponent, UploadComponent ],
       imports: [
         FormsModule
       ],
@@ -24,15 +29,16 @@ describe('AccountComponent', () => {
         UserManagementStatusService,
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            return new Http(backend, defaultOptions);
+          }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: Logger, useClass: Logger},
-        {provide: LoaderService, useValue: LoaderService },
-        {provide: ToasterService, useClass: ToasterService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-
+        MockBackend, BaseRequestOptions,
+        Logger, LoaderService, ToasterService,
+        Helper, DecimalPipe,
+        DataInteractionService,
+        BusinessInterfaceRenderService,
+        { provide: UploadService, useValue: UploadService },
+        { provide: InteractionService, useValue: InteractionService }
       ]
     })
     .compileComponents();
