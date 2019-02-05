@@ -47,10 +47,10 @@ export class CMLayersService extends APIService {
     if (type === raster_type_name) {
       let layer;
       layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
-        minZoom: 4,
-        maxZoom: 15,
+
         tms: true,
       })
+      console.log(layer)
       layer.addTo(self.layersCM)
       self.cmLayersArray.add(directory, layer)
 
