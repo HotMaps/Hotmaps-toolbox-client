@@ -1,4 +1,4 @@
-import { calculation_module_category } from './../../../shared/data.service';
+import { calculation_module_category, layers_order } from './../../../shared/data.service';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -52,13 +52,17 @@ export class DataInteractionCellComponent implements OnInit {
   endLoad() {
     this.loading = false;
   }
-  showRemoveLayer(e) {    
+  showRemoveLayer(e) {
     if (this.interactionService.getSummaryResultState() === false) {
       this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
       if (this.dataInteraction.category === calculation_module_category) {
         this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer)
       } else {
-        this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, this.dataInteraction.id);
+        let order = layers_order;
+        if (this.dataInteraction.order) {
+          order = this.dataInteraction.order
+        }
+        this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, order);
         if (this.dataInteraction.zoomLevel > 0) {
           this.mapService.checkZoomLevelLayer(this.dataInteraction.workspaceName, this.dataInteraction.zoomLevel)
         }

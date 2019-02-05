@@ -13,4 +13,5 @@ export class DataInteractionClass {
   type_of_layer?: string;
   description?: string;
   isLoading:boolean;
+  order?:number;
 }

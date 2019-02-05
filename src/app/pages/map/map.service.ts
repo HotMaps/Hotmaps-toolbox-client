@@ -11,7 +11,7 @@ import {
   lau2, lau2name, defaultZoomLevel, hectare, clickAccuracy, geoserverGetFeatureInfoUrl, MAPDRAWEDITED, MAPDRAWSTART,
   MAPDRAWDELETED,
   MAPDRAWEDITSTOP, MAPDRAWEDITSTART, MAPCLICK, MAPLAYERCHANCE, MAPDRAWCREATED, MAPZOOMSTART, MAPZOOMEND,
-  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD, apiUrl,
+  MAPLAYERSCONTROLEVENT, MAPLAYERADD, MAPDIDIUPDATELAYER, MAPOVERLAYADD, apiUrl, maps_order,
 } from './../../shared/data.service';
 import { basemap } from './basemap';
 
@@ -342,19 +342,22 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     };
     const baseLayers = {
       OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        zIndex:maps_order,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
           ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
       }),
       // Improvement of coding style : (with codelyzer)
       // Exceeds maximum line length of 140
       Satellite: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        zIndex:maps_order,
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
           ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
       }),
     };
-    const control = L.control.layers(baseLayers, null, { collapsed: false });
+    const control = L.control.layers(baseLayers, overlayMaps, { collapsed: false });
     control.addTo(this.map);
     this.map.addLayer(baseLayers.Satellite);
+
   }
 
   checkZoomLevelLayer(action, zoomLevel) {

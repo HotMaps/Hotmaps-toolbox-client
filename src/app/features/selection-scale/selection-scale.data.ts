@@ -4,7 +4,7 @@
 import { SelectionScaleClass  } from './class/selection-scale.class';
 import {
   business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare,
-  lau2name, formatImage
+  lau2name, formatImage, scale_layer_order
 } from '../../shared/data.service';
 export const SelectionScaleClassArray: SelectionScaleClass[] = [
   {id: 1, name: 'nonuts'},
@@ -24,7 +24,7 @@ export const hectareOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 export const nuts0LayerOption = {
   layers: 'hotmaps:' + action,
@@ -33,7 +33,7 @@ export const nuts0LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 0 + '',
   srs: 'EPSG:4326',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 export const nuts1LayerOption = {
   layers: 'hotmaps:' + action,
@@ -42,7 +42,7 @@ export const nuts1LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 1 + '',
   srs: 'EPSG:4326',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 export const nuts2LayerOption = {
   layers: 'hotmaps:' + action,
@@ -51,7 +51,7 @@ export const nuts2LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 2 + '',
   srs: 'EPSG:4326',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 export const nuts3LayerOption = {
   layers: 'hotmaps:' + action,
@@ -60,14 +60,14 @@ export const nuts3LayerOption = {
   version: '1.3.0',
   cql_filter : 'stat_levl_ = ' + 3 + '',
   srs: 'EPSG:4326',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 export const  lau2LayerOption = {
   layers: 'hotmaps:' + lau2name,
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  zIndex: 99
+  zIndex: scale_layer_order
 }
 
 /*

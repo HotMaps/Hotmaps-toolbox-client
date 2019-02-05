@@ -2,7 +2,7 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { wwtp_data } from './../mock/wwtp.data';
-import { Dictionary } from './../../../shared/class/dictionary.class';  
+import { Dictionary } from './../../../shared/class/dictionary.class';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -14,7 +14,7 @@ import 'proj4';
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population, zoomLevelDetectChange, formatImage
+  unit_population, zoomLevelDetectChange, formatImage, layers_order
 } from '../../../shared/data.service'
 
 import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
@@ -40,7 +40,7 @@ export class LayersService extends APIService {
   private heatmapOption = {
     layers: 'hotmaps:' + defaultLayer,
     format: formatImage, transparent: true, version: '1.3.0',
-    zIndex: idDefaultLayer
+    zIndex: layers_order
   };
 
   private layersArray: Dictionary = new Dictionary([
@@ -119,7 +119,7 @@ export class LayersService extends APIService {
         transparent: true,
         version: '1.3.0',
         srs: 'EPSG:4326',
-        zIndex: 1
+        zIndex: order
       }
     layer = this.getTilayer(option, action);
     this.layers.addLayer(layer);

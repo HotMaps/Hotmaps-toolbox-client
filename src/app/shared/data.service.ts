@@ -42,7 +42,6 @@ export const unit_heatload_profil = 'kW';
 
 export const formatImage = 'image/png8';
 // layer_name
-
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
@@ -106,7 +105,15 @@ export const summay_drop_down_buttons = [
   { name: 'Electricity', ref: 'electricity', selected: false, display: false},
   { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false}
 ]
-
+// Layer order number
+/*
+  More the number is big, more hight is the layer on the toolbox
+*/
+export const industry_layer_order = 6;
+export const scale_layer_order = 5;
+export const cm_layers_order = 4;
+export const layers_order = 3;
+export const maps_order = 1;
 
 // layers constant
 export const timeOut   = 200000;
