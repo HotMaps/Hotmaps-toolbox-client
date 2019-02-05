@@ -190,15 +190,24 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       const name_of_result = this.cmPayload.cm_name;
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
-          this.dataInteractionService.addNewLayer(name_of_result, raster.path, raster_type_name)
+          let symb;
+          if(raster.type === 'custom') {
+            symb = raster.symbology;
+          }
+          this.dataInteractionService.addNewLayer(name_of_result, raster.path, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
 
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
-          this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name)
-          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
+          let symb;
+          if(vector.type == 'custom') {
+            symb = vector.symbology;
+          }
+          this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name,symb)
+
+          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
@@ -317,7 +326,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.noIndicator = true
     } else {
       this.result.indicators.layers.map((layer) => {
-        console.log(JSON.stringify(layer))
         if (!this.helper.isNullOrUndefined(layer.name)) {
           let refToDisplay=[];
           if(this.helper.isNullOrUndefined(layer.category)){

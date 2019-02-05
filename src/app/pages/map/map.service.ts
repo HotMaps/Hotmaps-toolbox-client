@@ -390,7 +390,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
    */
   clearAll(map: Map) {
     this.selectionToolService.clearAll(map);
-    this.cmLayerService.clearAll();
+    // this.cmLayerService.clearAll();
   }
 
   /**
@@ -447,7 +447,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     return layers
   }
   displayCustomLayerFromCM(directory, type) {
-    this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map, 150)
+    this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map)
   }
   removeCMLayer() {
     // this.cmLayerService.clearAll()

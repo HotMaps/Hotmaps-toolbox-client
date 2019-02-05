@@ -12,6 +12,7 @@ import { DecimalPipe } from '@angular/common';
 import { LayersService } from '../layers';
 import { SelectionScaleService } from '../selection-scale';
 import { CMLayersService } from '../calculation-module/cm-layers.service';
+import { CustomSymbologyComponent } from './custom-symbology/custom-symbology.component';
 
 describe('LayerToolComponent', () => {
   let component: LayerToolComponent;
@@ -25,7 +26,7 @@ describe('LayerToolComponent', () => {
     loaderServiceStub = new LoaderService();
 
     TestBed.configureTestingModule({
-      declarations: [ LayerToolComponent ],
+      declarations: [ LayerToolComponent, CustomSymbologyComponent ],
       providers: [
         MapService,
         ToasterService,

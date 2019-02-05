@@ -83,6 +83,7 @@ import { UserManagementComponent } from './../features/user-management/component
 import { CMLayersService } from './../features/calculation-module/cm-layers.service';
 import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('AppComponent: Router', () => {
 
@@ -104,7 +105,7 @@ describe('AppComponent: Router', () => {
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
-        WelcomePageComponent, PersonnalLayersComponent, UploadComponent
+        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

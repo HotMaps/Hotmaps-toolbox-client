@@ -89,6 +89,5 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
       this.getUserInformations();
       this.toggleEditing()
     })
-    // console.log(this.lastname,this.firstname)
   }
 }

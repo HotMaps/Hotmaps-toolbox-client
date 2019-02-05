@@ -273,3 +273,4 @@ export const inputs_categories = [
   {id: '3', name: 'Advanced inputs: (Level 2)', contains_component: false},
   {id: '4', name: 'Advanced inputs: (Level 3)', contains_component: false},
 ]
+

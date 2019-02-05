@@ -41,6 +41,7 @@ import { PersonnalLayersComponent } from './personnal-layers/personnal-layers.co
 import { UserManagementStatusService } from 'app/features/user-management';
 import { Helper } from 'app/shared';
 import { DecimalPipe } from '@angular/common';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -52,7 +53,7 @@ describe('LeftSideComponent', () => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent, PersonnalLayersComponent ],
+      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent ],
       providers: [
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

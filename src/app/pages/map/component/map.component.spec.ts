@@ -76,6 +76,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from 'app/routes';
 import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -102,7 +103,7 @@ describe('MapComponent', () => {
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent, LayerToolComponent, PersonnalLayersComponent, UploadComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent, LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent
       ],
       providers: [
         {

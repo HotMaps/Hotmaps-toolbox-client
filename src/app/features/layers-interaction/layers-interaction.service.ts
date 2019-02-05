@@ -36,13 +36,16 @@ export class DataInteractionService extends APIService {
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
   }
-  addNewLayer(name, id, type) {
+  addNewLayer(name, id, type, symb?) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
     DataInteractionArray[newLayerAdded - 1].cm_id = id;
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
-    // console.log(DataInteractionArray[newLayerAdded - 1])
+    if(symb) {
+      DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    }
+    console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {
 

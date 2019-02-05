@@ -12,6 +12,7 @@ export class DataInteractionClass {
   download_url?: string;
   type_of_layer?: string;
   description?: string;
+  custom_symbology?: any;
   isLoading:boolean;
   order?:number;
 }

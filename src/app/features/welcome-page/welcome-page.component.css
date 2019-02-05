@@ -1,9 +1,6 @@
 .logo-container{
   height: 100%;
 }
-.logo-container > img {
-  height: 100%;
-}
 .logos{
     position: relative;
     height: 300px;
@@ -14,18 +11,7 @@
 .parteners {
   float: right;
 }
-/* h1, h2 {
-    color:#57bec8;
-}
-h1 {
-    font-size: 150%;
-    margin:10px 0 5px 0;
-}
-h2 {
-    font-size: 130%;
-    font-weight: bold;
-    margin:10px 0 5px 0;
-} */
+
 .europe-logo {
   position: relative;
   float: left;

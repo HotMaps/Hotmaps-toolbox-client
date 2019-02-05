@@ -83,9 +83,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     this.logger.log('ngOnDestroy called')
 
   }
-  checkValue() {
-    console.log(this.prefix_cm)
-  }
   subscribeEvents() {
     const self = this;
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
@@ -183,13 +180,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     return this.components.filter(x => x.input_priority === id)
   }
   validateAuthorizedScale(cm) {
-    if(!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) { 
-      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) { 
-        return true 
-      } else { 
-        return false 
-      } 
-    } else { 
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) {
+      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
+        return true
+      } else {
+        return false
+      }
+    } else {
       return true;
     }
   }
@@ -209,7 +206,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         })
       }
 
-      
+
       this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
         this.components = values;
         this.components.forEach(comp => {
