@@ -6,6 +6,7 @@ import { MapService } from 'app/pages/map';
 import { UploadService } from 'app/shared/services/upload.service';
 
 import { nuts3, lau2, hectare, urlLegend } from '../../shared/data.service';
+import { Helper } from 'app/shared';
 
 @Component({
   selector: 'htm-layer-tool',
@@ -24,12 +25,15 @@ export class LayerToolComponent implements OnInit {
   private hasZoneSelected: boolean = false;
 
 
-  constructor(private mapService: MapService, private uploadService: UploadService) { }
+  constructor(private mapService: MapService, private uploadService: UploadService, private helper:Helper) { }
 
-  ngOnInit() { 
-    this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value 
-      && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
-    );
+  ngOnInit() {
+    if(!this.helper.isNullOrUndefined(this.mapService.getLoadResultbuttonState())) {
+      this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value
+        && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+      );
+
+    }
   }
 
   toggleLegend() {
@@ -49,7 +53,7 @@ export class LayerToolComponent implements OnInit {
     this.uploadService.export(this.dataInteraction.workspaceName)
       .then(data => {
         if (data.url != "") {
-          //window.open(data.url); //POPUP blocker          
+          //window.open(data.url); //POPUP blocker
           const a = document.createElement('a');
           a.href = data.url;
           a.download = data.filename;

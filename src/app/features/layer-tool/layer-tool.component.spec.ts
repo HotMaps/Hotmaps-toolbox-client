@@ -8,21 +8,24 @@ import { ToasterService, Logger, LoaderService, Helper, BusinessInterfaceRenderS
 import { Http, BaseRequestOptions, ConnectionBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { UserManagementStatusService } from '../user-management';
-import { SelectionToolService } from '../selection-tools';
+import { SelectionToolService, SelectionToolButtonStateService } from '../selection-tools';
 import { DecimalPipe } from '@angular/common';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { SidePanelService } from '../side-panel';
 import { NavigationBarService } from 'app/pages/nav';
+import { LayersService } from '../layers';
+import { SelectionScaleService } from '../selection-scale';
+import { CMLayersService } from '../calculation-module/cm-layers.service';
 
 describe('LayerToolComponent', () => {
   let component: LayerToolComponent;
   let fixture: ComponentFixture<LayerToolComponent>;
 
 
-  
+
   let loggerStub: Logger;
   let loaderServiceStub: LoaderService;
-  
+
   beforeEach(async(() => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
@@ -30,31 +33,35 @@ describe('LayerToolComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LayerToolComponent ],
       providers: [
-        
-        { provide: MapService, useClass: MapService },
-        { provide: UploadService, useClass: UploadService },
-        { provide: ToasterService, useClass: ToasterService },
 
+        { provide: MapService, useClass: MapService },
+        { provide: UploadService, useValue: UploadService },
+        { provide: ToasterService, useValue: ToasterService },
+        { provide: SelectionScaleService, useValue: SelectionScaleService },
+        { provide: CMLayersService, useValue: CMLayersService },
+        { provide: SelectionToolButtonStateService, useValue: SelectionToolButtonStateService },
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);
           }, deps: [MockBackend, BaseRequestOptions]
-        },        
-        { provide: MockBackend, useClass: MockBackend },
-        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        },
+        { provide: MockBackend, useValue: MockBackend },
+        { provide: BaseRequestOptions, useValue: BaseRequestOptions },
 
-        { provide: UserManagementStatusService, useClass: UserManagementStatusService },
-        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: UserManagementStatusService, useValue: UserManagementStatusService },
+        { provide: SelectionToolService, useValue: SelectionToolService },
 
-        { provide: Logger, useClass: loggerStub },
-        { provide: LoaderService, useClass: loaderServiceStub },
-        //{ provide: Helper, useValue: new Helper(loggerStub, new DecimalPipe('')) },
+        { provide: Logger, useValue: loggerStub },
+        { provide: LayersService, useValue: LayersService },
+        { provide: LoaderService, useValue: loaderServiceStub },
         { provide: Helper, useClass: Helper },
 
-        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-        { provide: InteractionService, useClass: InteractionService },
-        { provide: SidePanelService, useClass: SidePanelService },
-        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: BusinessInterfaceRenderService, useValue: BusinessInterfaceRenderService },
+        // { provide: InteractionService, useValue: InteractionService },
+        { provide: SidePanelService, useValue: SidePanelService },
+        { provide: NavigationBarService, useValue: NavigationBarService },
+        {provide: DecimalPipe, useClass: DecimalPipe},
+
       ]
     }).compileComponents();
   }));
