@@ -42,10 +42,9 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
     DataInteractionArray[newLayerAdded - 1].cm_id = id;
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
-    // if(symb) {
-    //   DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
-    // }
-    // console.log(DataInteractionArray[newLayerAdded - 1])
+    if(symb) {
+      DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    }
   }
   getReadableName(layerName: string): string {
 

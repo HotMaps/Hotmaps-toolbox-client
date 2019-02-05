@@ -6,6 +6,7 @@ import { LoaderService, Logger, APIService, ToasterService, Dictionary } from '.
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import Layer = L.Layer;
 import * as shpjs from 'shpjs';
+import { feature } from '@turf/helpers';
 
 
 
@@ -31,39 +32,48 @@ export class CMLayersService extends APIService {
   getLayerArray(): Dictionary {
     return this.cmLayersArray;
   }
-  addOrRemoveLayerWithAction(directory, type, map: any, order: number) {
-    console.log('addOrRemoveLayerWithAction', directory, type, this.cmLayersArray.containsKey(directory))
+  addOrRemoveLayerWithAction(directory, type, map: any, symb?) {
     if (!this.cmLayersArray.containsKey(directory)) {
-      this.addLayerWithAction(directory, type, map, order);
+      this.addLayerWithAction(directory, type, symb);
     } else {
       this.removelayer(directory, type);
     }
     map.fireEvent('didUpdateLayers', this.cmLayersArray);
   }
-  addLayerWithAction(directory, type, map, order) {
-    // console.log('addLayerWithAction', directory, type===raster_type_name, type===vector_type_name)
+  addLayerWithActionRaster(directory) {
     const self = this;
-    // let layerAdded:any;
-    if (type === raster_type_name) {
-      let layer;
-      layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+    let layer;
+    layer = L.tileLayer(apiUrl + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
 
-        tms: true,
+      tms: true,
+    })
+    layer.addTo(self.layersCM)
+    self.cmLayersArray.add(directory, layer)
+  }
+  addLayerWithActionVector(directory, symb?) {
+    const self = this;
+    shpjs(apiUrl + '/cm/files/' + directory).then(data => {
+      let layer;
+      layer = new L.GeoJSON(data,{
+        onEachFeature: this.onEachFeature,
+        style:() => {
+          let color;
+          if(symb) color='rgba('+symb[0].red+','+symb[0].green+','+symb[0].blue+','+','+symb[0].oppacity+')'
+          else color='#ff7800'
+          return { color: color}
+        }
       })
-      console.log(layer)
       layer.addTo(self.layersCM)
       self.cmLayersArray.add(directory, layer)
 
+    })
+  }
+  addLayerWithAction(directory, type, symb?) {
+    // let layerAdded:any;
+    if (type === raster_type_name) {
+      this.addLayerWithActionRaster(directory)
     } else if (type === vector_type_name) {
-      shpjs(apiUrl + '/cm/files/' + directory).then(data => {
-        let layer;
-        layer = new L.GeoJSON(data,{
-          onEachFeature: this.onEachFeature
-        })
-        layer.addTo(self.layersCM)
-        self.cmLayersArray.add(directory, layer)
-
-      })
+      this.addLayerWithActionVector(directory, symb)
     }
 
   }
@@ -80,7 +90,6 @@ export class CMLayersService extends APIService {
 
     // we get the layer we want to remove
     const layer = this.cmLayersArray.value(id);
-    // console.log(layer)
     if (type === vector_type_name) {
       layer.clearLayers()
     } else if (type === raster_type_name) {

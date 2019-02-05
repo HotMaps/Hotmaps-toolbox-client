@@ -190,7 +190,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       const name_of_result = this.cmPayload.cm_name;
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
-          console.log(raster)
           let symb;
           if(raster.type == 'custom') {
             symb = raster.symbology;
@@ -202,14 +201,18 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
-          console.log(vector)
-
           let symb;
           if(vector.type == 'custom') {
-            symb = vector.symbology;
+            symb = [
+              {"red":50,"green":50,"blue":50,"opacity":0.5,"value":"50","label":"50MWh"},
+                 {"red":100,"green":150,"blue":10,"opacity":0.5,"value":"150","label":"150MWh"},
+                 {"red":50,"green":50,"blue":50,"opacity":0.5,"value":"200","label":"200MWh"},
+                 {"red":50,"green":50,"blue":50,"opacity":0.5,"value":"250","label":"250MWh"}
+               ];
           }
           this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name,symb)
-          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
+
+          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name, symb);
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
@@ -328,7 +331,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.noIndicator = true
     } else {
       this.result.indicators.layers.map((layer) => {
-        console.log(JSON.stringify(layer))
         if (!this.helper.isNullOrUndefined(layer.name)) {
           let refToDisplay=[];
           if(this.helper.isNullOrUndefined(layer.category)){

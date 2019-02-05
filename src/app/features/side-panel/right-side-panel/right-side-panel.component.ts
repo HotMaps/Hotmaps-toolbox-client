@@ -128,7 +128,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     } else {
       this.resetPayloads()
     }
-    console.log(this.scaleLevel)
   }
   resetPayloads() {
     this.cmPayload = null;
@@ -203,7 +202,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     } else if (this.scaleLevel === '-1') {
       payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
     }
-    console.log()
     if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
       cm_name+=this.cmRunned.cm.cm_prefix + ' - '
     }

@@ -47,8 +47,6 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
       this.isMap = (val as any).url === '/map'
     );
 
-/*     console.log(this.route.snapshot.paramMap.get('id'))
- */
     if(this.router.url === '/register') {
       console.log('isRegisterRoute')
     }
