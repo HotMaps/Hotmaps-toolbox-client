@@ -122,6 +122,7 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__features_user_management_account_upload_upload_component__ = __webpack_require__("../../../../../src/app/features/user-management/account/upload/upload.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__features_side_panel_left_side_panel_personnal_layers_personnal_layers_component__ = __webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__features_layer_tool_custom_symbology_custom_symbology_component__ = __webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -135,6 +136,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
+
 
 
 
@@ -250,7 +252,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_56__features_layer_tool_layer_tool_component__["a" /* LayerToolComponent */],
             __WEBPACK_IMPORTED_MODULE_57__features_welcome_page_welcome_page_component__["a" /* WelcomePageComponent */],
             __WEBPACK_IMPORTED_MODULE_59__features_user_management_account_upload_upload_component__["a" /* UploadComponent */],
-            __WEBPACK_IMPORTED_MODULE_60__features_side_panel_left_side_panel_personnal_layers_personnal_layers_component__["a" /* PersonnalLayersComponent */]
+            __WEBPACK_IMPORTED_MODULE_60__features_side_panel_left_side_panel_personnal_layers_personnal_layers_component__["a" /* PersonnalLayersComponent */],
+            __WEBPACK_IMPORTED_MODULE_61__features_layer_tool_custom_symbology_custom_symbology_component__["a" /* CustomSymbologyComponent */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_30__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */],
@@ -317,7 +320,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet>\n  <htm-welcome-page *ngIf=\"isMap\"></htm-welcome-page>\n  <span *ngIf=\"showLoader\" class=\"loader-app\">\n    <div uk-spinner=\"ratio:4\"></div>\n  </span>\n</router-outlet>"
+module.exports = "<router-outlet>\r\n  <htm-welcome-page *ngIf=\"isMap\"></htm-welcome-page>\r\n  <span *ngIf=\"showLoader\" class=\"loader-app\">\r\n    <div uk-spinner=\"ratio:4\"></div>\r\n  </span>\r\n</router-outlet>"
 
 /***/ }),
 
@@ -371,10 +374,8 @@ var AppComponent = (function () {
         this.router.events.subscribe(function (val) {
             return _this.isMap = val.url === '/map';
         });
-        /*     console.log(this.route.snapshot.paramMap.get('id'))
-         */
         if (this.router.url === '/register') {
-            console.log('isRegisterRoute');
+            // console.log('isRegisterRoute')
         }
     };
     return AppComponent;
@@ -458,54 +459,77 @@ var CMLayersService = (function (_super) {
     CMLayersService.prototype.getLayerArray = function () {
         return this.cmLayersArray;
     };
-    CMLayersService.prototype.addOrRemoveLayerWithAction = function (directory, type, map, order) {
-        console.log('addOrRemoveLayerWithAction', directory, type, this.cmLayersArray.containsKey(directory));
+    CMLayersService.prototype.addOrRemoveLayerWithAction = function (directory, type, map) {
         if (!this.cmLayersArray.containsKey(directory)) {
-            this.addLayerWithAction(directory, type, map, order);
+            this.addLayerWithAction(directory, type);
         }
         else {
             this.removelayer(directory, type);
         }
         map.fireEvent('didUpdateLayers', this.cmLayersArray);
     };
-    CMLayersService.prototype.addLayerWithAction = function (directory, type, map, order) {
-        var _this = this;
-        // console.log('addLayerWithAction', directory, type===raster_type_name, type===vector_type_name)
+    CMLayersService.prototype.addLayerWithActionRaster = function (directory) {
         var self = this;
-        // let layerAdded:any;
-        if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["raster_type_name"]) {
-            var layer = void 0;
-            layer = L.tileLayer(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
-                minZoom: 4,
-                maxZoom: 15,
-                tms: true,
+        var layer;
+        layer = L.tileLayer(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+            zIndex: __WEBPACK_IMPORTED_MODULE_0_app_shared__["cm_layers_order"],
+            tms: true
+        });
+        layer.addTo(self.layersCM);
+        self.cmLayersArray.add(directory, layer);
+    };
+    CMLayersService.prototype.addLayerWithActionVector = function (directory) {
+        var _this = this;
+        var self = this;
+        __WEBPACK_IMPORTED_MODULE_5_shpjs__(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/files/' + directory).then(function (data) {
+            var layer;
+            layer = new L.GeoJSON(data, {
+                onEachFeature: _this.onEachFeature,
+                style: function (feature) {
+                    var color = '(255,127,80)';
+                    var fillColor = '(255,127,80)';
+                    var fillOpacity = 0.5;
+                    if (!_this.helper.isNullOrUndefined(feature.properties['color']))
+                        color = feature.properties['color'];
+                    if (!_this.helper.isNullOrUndefined(feature.properties['fillColor']))
+                        fillColor = feature.properties['fillColor'];
+                    if (!_this.helper.isNullOrUndefined(feature.properties['fillOpacity']))
+                        color = feature.properties['fillOpacity'];
+                    //const weight = feature.properties['weight']
+                    // const fillColor = feature.properties['fillColor']
+                    return {
+                        color: 'rgb' + color,
+                        fillColor: 'rgb' + fillColor,
+                        fillOpacity: fillOpacity
+                    };
+                }
             });
             layer.addTo(self.layersCM);
             self.cmLayersArray.add(directory, layer);
+        });
+    };
+    CMLayersService.prototype.addLayerWithAction = function (directory, type) {
+        // let layerAdded:any;
+        if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["raster_type_name"]) {
+            this.addLayerWithActionRaster(directory);
         }
         else if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["vector_type_name"]) {
-            __WEBPACK_IMPORTED_MODULE_5_shpjs__(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/files/' + directory).then(function (data) {
-                var layer;
-                layer = new L.GeoJSON(data, {
-                    onEachFeature: _this.onEachFeature
-                });
-                layer.addTo(self.layersCM);
-                self.cmLayersArray.add(directory, layer);
-            });
+            this.addLayerWithActionVector(directory);
         }
     };
     CMLayersService.prototype.onEachFeature = function (feature, layer) {
         var html = '';
         Object.keys(feature.properties).map(function (prop) {
-            html += '<bold>' + prop + ':</bold>';
-            html += '<span>' + feature.properties[prop] + '</span><br />';
+            if (prop !== 'RGBA') {
+                html += '<bold>' + prop + ':</bold>';
+                html += '<span>' + feature.properties[prop] + '</span><br />';
+            }
         });
         layer.bindPopup(html);
     };
     CMLayersService.prototype.removelayer = function (id, type) {
         // we get the layer we want to remove
         var layer = this.cmLayersArray.value(id);
-        // console.log(layer)
         if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["vector_type_name"]) {
             layer.clearLayers();
         }
@@ -517,9 +541,6 @@ var CMLayersService = (function (_super) {
         this.cmLayersArray.remove(id);
     };
     CMLayersService.prototype.clearAll = function () {
-        /* this.cmLayersArray._keys.map(key => {
-          this.removelayer(key)
-        }) */
         this.logger.log('Clear all is called');
         this.layersCM.clearLayers();
     };
@@ -543,7 +564,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".uk-container {\n  margin: 5px;\n  padding: 5px;\n}\n\n.component > input {\n  width: 100%;\n}\n\n.uk-offcanvas-bar {\n  width: 401px;\n  top: 48px;\n  background-color:#333333;\n}\n.uk-button {\n  width: 100%;\n}\n.waitingbox, .waitingboxcomponents {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n\n.spinner {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  color: black;\n  margin: 15px 15px 15px -25px;\n}\n.waitingboxcomponents > .spinner {\n  color: white !important;\n}\n#box-components {\n  width: 0 !important;\n}\n.values {\n  font-size: 12px;\n}\n.cm_title{\n  color: white;\n  margin-bottom: 0;\n}\n.description {\n  font-style: italic;\n}\n.component_title {\n  color: white;\n  font-size: 18px;\n}\n.api-inprogress {\n  background: rgb(255, 0, 0);\n}\n.unclickable {\n  cursor: wait;\n}\n.input_title{\n  margin-bottom: 0px;\n  text-transform: uppercase;\n}\n.no-data {\n  text-transform: uppercase;\n  color:red;\n}\n\n\n.input-prefix input {\n  height:30px;\n}", ""]);
+exports.push([module.i, ".uk-container {\r\n  margin: 5px;\r\n  padding: 5px;\r\n}\r\n\r\n.component > input {\r\n  width: 100%;\r\n}\r\n\r\n.uk-offcanvas-bar {\r\n  width: 401px;\r\n  top: 48px;\r\n  background-color:#333333;\r\n}\r\n.uk-button {\r\n  width: 100%;\r\n}\r\n.waitingbox, .waitingboxcomponents {\r\n  height: 150px;\r\n  width: 100%;\r\n  position: relative;\r\n}\r\n\r\n.spinner {\r\n  position: absolute;\r\n  left: 50%;\r\n  top: 50%;\r\n  color: black;\r\n  margin: 15px 15px 15px -25px;\r\n}\r\n.waitingboxcomponents > .spinner {\r\n  color: white !important;\r\n}\r\n#box-components {\r\n  width: 0 !important;\r\n}\r\n.values {\r\n  font-size: 12px;\r\n}\r\n.cm_title{\r\n  color: white;\r\n  margin-bottom: 0;\r\n}\r\n.description {\r\n  font-style: italic;\r\n}\r\n.component_title {\r\n  color: white;\r\n  font-size: 18px;\r\n}\r\n.api-inprogress {\r\n  background: rgb(255, 0, 0);\r\n}\r\n.unclickable {\r\n  cursor: wait;\r\n}\r\n.input_title{\r\n  margin-bottom: 0px;\r\n  text-transform: uppercase;\r\n}\r\n.no-data {\r\n  text-transform: uppercase;\r\n  color:red;\r\n}\r\n\r\n\r\n.input-prefix input {\r\n  height:30px;\r\n}", ""]);
 
 // exports
 
@@ -556,7 +577,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/calculation-module/component/calculation-module.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"calculationModules?.length >= 1\">\n\n  <div [@cmTrigger]=\"expandedState\">\n    <span *ngIf=\"expanded && calculationModules\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of categories\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let cm of calculationModules\">\n              <span *ngIf=\"i === cm.category && cm.isReadable\">\n                <div class=\"uk-container\">\n                  <div class=\"uk-offcanvas-content\">\n  \n                    <button class=\"uk-button uk-button-default uk-margin-small-right\" [class.api-inprogress]=\"cm.isApiRequestInTreatment\"\n                      type=\"button\" (click)=\"selectCM(cm)\">\n                      <ng-container *ngIf=\"cm.isApiRequestInTreatment\">Refresh</ng-container> {{cm.cm_name}}\n                    </button>\n                  </div>\n                </div>\n              </span>\n            </ng-container>\n          </div>\n        </li>\n      </ul>\n    </span>\n  </div>\n  <div *ngIf=\"waitingCM\" class=\"waitingbox\">\n    <div class=\"spinner\" uk-spinner></div>\n  </div>\n  \n  <div class=\"uk-offcanvas-content\">\n    <div id=\"box-components\" uk-offcanvas=\"overlay: false; bg-close: false;esc-close:false;\">\n      <div class=\"uk-offcanvas-bar\">\n        <div *ngIf=\"cmSelected\">\n          <button class=\"uk-offcanvas-close\" type=\"button\" (click)=\"toggleCMPanel(false)\" uk-close></button>\n  \n          <h3 class=\"cm_title\"> {{cmSelected.cm_name}}</h3>\n          <span class=\"uk-margin input-prefix\">\n              <input class=\"uk-input\" maxlength=\"15\" type=\"text\" placeholder=\"Name of calculation module session\" [(ngModel)]=\"prefix_cm\" />\n            </span><br />\n          <span class=\"uk-margin description\">{{cmSelected.cm_description}}</span><br />\n          <span class=\"uk-margin description-link\" *ngIf=\"cmSelected.description_link\">\n              <a class=\"uk-link-heading\" href=\"{{cmSelected.description_link}}\" target=\"_blank\">More description...</a>\n          </span><br />\n          <span class=\"uk-margin\" *ngIf=\"cmSelected.status_id\">id of request: {{cmSelected.status_id}}</span>\n          <div *ngIf=\"waitingCM\" class=\"waitingboxcomponents\">\n            <div class=\"spinner\" uk-spinner></div>\n          </div>\n  \n          <ng-container *ngIf=\"!waitingCM\">\n  \n          <div class=\"component uk-margin\" *ngFor=\"let input_cat of inputs_categories; let i=index\">\n              <ul uk-accordion *ngIf=\"input_cat.contains_component\">\n                <li class=\"\" [class.uk-open]=\"i===0\">\n                  <a class=\"uk-heading-bullet uk-accordion-title input_title\" href=\"#\">{{input_cat.name}} </a>\n                  <div class=\"uk-accordion-content\">\n                      <div class=\"component uk-margin\" *ngFor=\"let component of getComponentFiltered(input_cat.id)\">\n                          <span class=\"\">{{component.input_name}} - (value: {{component.input_value}}{{component.input_unit}})</span>\n                          <div class=\"uk-form-controls\">\n                            <ng-container *ngIf=\"component.input_type == type_input || component.input_type == type_range\">\n                                <input class=\"uk-{{component.input_type}}\" id=\"{{component.input_parameter_name}}\" value=\"{{component.input_value}}\"\n                                type=\"{{component.input_type}}\" min=\"{{component.input_min}}\" max=\"{{component.input_max}}\"\n                                placeholder=\"{{component.input_name}}\" (change)=\"changeValueFromInput($event, component)\" />\n                                <span class=\"values\">\n                                  Min: {{component.input_min}}{{component.input_unit}}; \n                                  Max: {{component.input_max}}{{component.input_unit}};\n                                  </span>\n                            </ng-container>\n                            <ng-container *ngIf=\"component.input_type == type_radio\">\n                              <ng-container *ngFor=\"let value of component.input_default_value; let i = index\">\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\n                                type=\"{{component.input_type}}\" (change)=\"changeValueFromInputArray($event, component)\" [checked]=\"i===0\"/> {{value}}</label>\n                              </ng-container> \n                            </ng-container>\n                            <ng-container *ngIf=\"component.input_type == type_select\">\n                                <select class=\"uk-{{select}}\" (change)=\"changeValueFromInputArray($event, component)\">\n                                  <option *ngFor=\"let value of component.input_default_value\" value=\"{{value}}\">{{value}}</option>\n                                </select>\n                            </ng-container>\n                            <!-- <ng-container *ngIf=\"component.input_type == 'checkbox'\">\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\n                                  type=\"{{component.input_type}}\" (change)=\"changeValue($event, component)\"/>{{value}}</label>\n                            </ng-container> -->\n                        </div>\n                      </div>\n                  </div>\n                </li>\n              </ul>\n            </div> \n  \n            <div *ngIf=\"layersFromType.length >= 1\" class=\"uk-margin\">\n              <div *ngFor=\"let layersTable of layersFromType\">\n                <h4 class=\"uk-heading-bullet main_title input_title\">Input type selection</h4>\n                <span>Type: {{layersTable.layerType}}</span>\n                <select class=\"uk-select\" [(ngModel)]=\"layersTable.layerSelected\" (change)=\"setLayerNeeded()\">\n                  <ng-container *ngFor=\"let layer of layersTable.layers;\">\n                    <option [ngValue]=\"layer.workspaceName\">\n                      {{layer.name}}\n                    </option>\n                  </ng-container>\n                </select>\n              </div>\n            </div>\n            <button class=\"uk-button uk-button-primary\" [class.unclickable]=\"cmRunning\" (click)=\"!cmRunning ? runCM() : null\">\n              <span *ngIf=\"!cmRunning\">Run CM</span>\n              <span *ngIf=\"cmRunning\" uk-spinner></span>\n            </button>\n  \n            <div class=\"uk-margin\"></div>\n            <progress id=\"js-progressbar\" class=\"uk-progress\" value=\"{{progress}}\" max=\"100\"></progress>\n  \n  \n  \n          </ng-container>\n        </div>\n      </div>\n  \n    </div>\n  </div>\n</div>\n<div *ngIf=\"calculationModules?.length === 0\">\n  <span class=\"no-data\">No calculation module runs. <br/> Please, try later!</span>\n</div>\n"
+module.exports = "<div *ngIf=\"calculationModules?.length >= 1\">\r\n\r\n  <div [@cmTrigger]=\"expandedState\">\r\n    <span *ngIf=\"expanded && calculationModules\" [@titleTextTrigger]=\"'in'\">\r\n      <ul uk-accordion *ngFor=\"let i of categories\">\r\n        <li class=\"uk-open\">\r\n          <h3 class=\"uk-accordion-title\">\r\n            {{i}}\r\n          </h3>\r\n          <div class=\"uk-accordion-content\">\r\n            <ng-container *ngFor=\"let cm of calculationModules\">\r\n              <span *ngIf=\"i === cm.category && cm.isReadable\">\r\n                <div class=\"uk-container\">\r\n                  <div class=\"uk-offcanvas-content\">\r\n  \r\n                    <button class=\"uk-button uk-button-default uk-margin-small-right\" [class.api-inprogress]=\"cm.isApiRequestInTreatment\"\r\n                      type=\"button\" (click)=\"selectCM(cm)\">\r\n                      <ng-container *ngIf=\"cm.isApiRequestInTreatment\">Refresh</ng-container> {{cm.cm_name}}\r\n                    </button>\r\n                  </div>\r\n                </div>\r\n              </span>\r\n            </ng-container>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </span>\r\n  </div>\r\n  <div *ngIf=\"waitingCM\" class=\"waitingbox\">\r\n    <div class=\"spinner\" uk-spinner></div>\r\n  </div>\r\n  \r\n  <div class=\"uk-offcanvas-content\">\r\n    <div id=\"box-components\" uk-offcanvas=\"overlay: false; bg-close: false;esc-close:false;\">\r\n      <div class=\"uk-offcanvas-bar\">\r\n        <div *ngIf=\"cmSelected\">\r\n          <button class=\"uk-offcanvas-close\" type=\"button\" (click)=\"toggleCMPanel(false)\" uk-close></button>\r\n  \r\n          <h3 class=\"cm_title\"> {{cmSelected.cm_name}}</h3>\r\n          <span class=\"uk-margin input-prefix\">\r\n              <input class=\"uk-input\" maxlength=\"15\" type=\"text\" placeholder=\"Name of calculation module session\" [(ngModel)]=\"prefix_cm\" />\r\n            </span><br />\r\n          <span class=\"uk-margin description\">{{cmSelected.cm_description}}</span><br />\r\n          <span class=\"uk-margin description-link\" *ngIf=\"cmSelected.description_link\">\r\n              <a class=\"uk-link-heading\" href=\"{{cmSelected.description_link}}\" target=\"_blank\">More description...</a>\r\n          </span><br />\r\n          <span class=\"uk-margin\" *ngIf=\"cmSelected.status_id\">id of request: {{cmSelected.status_id}}</span>\r\n          <div *ngIf=\"waitingCM\" class=\"waitingboxcomponents\">\r\n            <div class=\"spinner\" uk-spinner></div>\r\n          </div>\r\n  \r\n          <ng-container *ngIf=\"!waitingCM\">\r\n  \r\n          <div class=\"component uk-margin\" *ngFor=\"let input_cat of inputs_categories; let i=index\">\r\n              <ul uk-accordion *ngIf=\"input_cat.contains_component\">\r\n                <li class=\"\" [class.uk-open]=\"i===0\">\r\n                  <a class=\"uk-heading-bullet uk-accordion-title input_title\" href=\"#\">{{input_cat.name}} </a>\r\n                  <div class=\"uk-accordion-content\">\r\n                      <div class=\"component uk-margin\" *ngFor=\"let component of getComponentFiltered(input_cat.id)\">\r\n                          <span class=\"\">{{component.input_name}} - (value: {{component.input_value}}{{component.input_unit}})</span>\r\n                          <div class=\"uk-form-controls\">\r\n                            <ng-container *ngIf=\"component.input_type == type_input || component.input_type == type_range\">\r\n                                <input class=\"uk-{{component.input_type}}\" id=\"{{component.input_parameter_name}}\" value=\"{{component.input_value}}\"\r\n                                type=\"{{component.input_type}}\" min=\"{{component.input_min}}\" max=\"{{component.input_max}}\"\r\n                                placeholder=\"{{component.input_name}}\" (change)=\"changeValueFromInput($event, component)\" />\r\n                                <span class=\"values\">\r\n                                  Min: {{component.input_min}}{{component.input_unit}}; \r\n                                  Max: {{component.input_max}}{{component.input_unit}};\r\n                                  </span>\r\n                            </ng-container>\r\n                            <ng-container *ngIf=\"component.input_type == type_radio\">\r\n                              <ng-container *ngFor=\"let value of component.input_default_value; let i = index\">\r\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\r\n                                type=\"{{component.input_type}}\" (change)=\"changeValueFromInputArray($event, component)\" [checked]=\"i===0\"/> {{value}}</label>\r\n                              </ng-container> \r\n                            </ng-container>\r\n                            <ng-container *ngIf=\"component.input_type == type_select\">\r\n                                <select class=\"uk-{{select}}\" (change)=\"changeValueFromInputArray($event, component)\">\r\n                                  <option *ngFor=\"let value of component.input_default_value\" value=\"{{value}}\">{{value}}</option>\r\n                                </select>\r\n                            </ng-container>\r\n                            <!-- <ng-container *ngIf=\"component.input_type == 'checkbox'\">\r\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\r\n                                  type=\"{{component.input_type}}\" (change)=\"changeValue($event, component)\"/>{{value}}</label>\r\n                            </ng-container> -->\r\n                        </div>\r\n                      </div>\r\n                  </div>\r\n                </li>\r\n              </ul>\r\n            </div> \r\n  \r\n            <div *ngIf=\"layersFromType.length >= 1\" class=\"uk-margin\">\r\n              <div *ngFor=\"let layersTable of layersFromType\">\r\n                <h4 class=\"uk-heading-bullet main_title input_title\">Input type selection</h4>\r\n                <span>Type: {{layersTable.layerType}}</span>\r\n                <select class=\"uk-select\" [(ngModel)]=\"layersTable.layerSelected\" (change)=\"setLayerNeeded()\">\r\n                  <ng-container *ngFor=\"let layer of layersTable.layers;\">\r\n                    <option [ngValue]=\"layer.workspaceName\">\r\n                      {{layer.name}}\r\n                    </option>\r\n                  </ng-container>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <button class=\"uk-button uk-button-primary\" [class.unclickable]=\"cmRunning\" (click)=\"!cmRunning ? runCM() : null\">\r\n              <span *ngIf=\"!cmRunning\">Run CM</span>\r\n              <span *ngIf=\"cmRunning\" uk-spinner></span>\r\n            </button>\r\n  \r\n            <div class=\"uk-margin\"></div>\r\n            <progress id=\"js-progressbar\" class=\"uk-progress\" value=\"{{progress}}\" max=\"100\"></progress>\r\n  \r\n  \r\n  \r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n  \r\n    </div>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"calculationModules?.length === 0\">\r\n  <span class=\"no-data\">No calculation module runs. <br/> Please, try later!</span>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -602,7 +623,7 @@ var CalculationModuleComponent = (function () {
         this.helper = helper;
         this.logger = logger;
         this.toasterService = toasterService;
-        this.inputs_categories = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_22" /* inputs_categories */];
+        this.inputs_categories = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_27" /* inputs_categories */];
         this.type_select = 'select';
         this.type_input = 'input';
         this.type_radio = 'radio';
@@ -623,9 +644,6 @@ var CalculationModuleComponent = (function () {
     };
     CalculationModuleComponent.prototype.ngOnDestroy = function () {
         this.logger.log('ngOnDestroy called');
-    };
-    CalculationModuleComponent.prototype.checkValue = function () {
-        console.log(this.prefix_cm);
     };
     CalculationModuleComponent.prototype.subscribeEvents = function () {
         var _this = this;
@@ -751,7 +769,9 @@ var CalculationModuleComponent = (function () {
             if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
                 cm.type_layer_needed.map(function (layerType) {
                     _this.dataInteractionService.getLayersFromType(layerType).then(function (data) {
-                        _this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName });
+                        if (data.length >= 1) {
+                            _this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName });
+                        }
                     }).then(function () {
                         _this.setLayerNeeded();
                     });
@@ -1271,7 +1291,7 @@ var ExportDataComponent = (function () {
         this.logger = logger;
         this.helper = helper;
         this.isInSummary = true;
-        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["J" /* tab1_datapanel */];
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["L" /* tab1_datapanel */];
         this.isChartValue = false;
         /* @Input() heatloadStatus; */
         /* @Input() graphics;
@@ -1352,12 +1372,12 @@ var ExportDataComponent = (function () {
         });
     };
     ExportDataComponent.prototype.export = function () {
-        if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["J" /* tab1_datapanel */]) {
+        if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["L" /* tab1_datapanel */]) {
             if (!this.helper.isNullOrUndefined(this.indicators.layers)) {
                 this.exportDataService.exportData(this.indicators.layers, true, this.tabSelected);
             }
         }
-        else if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_24" /* tab2_datapanel */]) {
+        else if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_29" /* tab2_datapanel */]) {
             if (!this.helper.isNullOrUndefined(this.dataStats)) {
                 this.exportDataService.exportData(this.dataStats.values, false, this.tabSelected);
             }
@@ -1610,7 +1630,7 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_33" /* urlTaigaFeedback */],
+            url: __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_38" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
@@ -2101,16 +2121,16 @@ var DurationCurveComponent = (function () {
         var payload;
         if (this.scaleLevel === '-1') {
             isHectare = true;
-            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_25" /* constant_year_duration_curve */], this.durationCurvePayload.areas);
+            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_30" /* constant_year_duration_curve */], this.durationCurvePayload.areas);
         }
         else {
-            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_25" /* constant_year_duration_curve */], this.durationCurvePayload.nuts);
+            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_30" /* constant_year_duration_curve */], this.durationCurvePayload.nuts);
         }
         this.loadingData = true;
         this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
             // this.datasets = this.interactionService.transformDurationCurveData(result);
             _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
-            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_26" /* duration_curve_graph_options */];
+            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_31" /* duration_curve_graph_options */];
         }).then(function () {
             _this.loadingData = false;
         });
@@ -2206,11 +2226,11 @@ var DurationCurveService = (function (_super) {
     DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
         if (isHectare === false) {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* postDurationCurveNutsLau */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["J" /* postDurationCurveNutsLau */]);
         }
         else {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* postDurationCurveHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postDurationCurveHectares */]);
         }
     };
     DurationCurveService.prototype.formatDataset = function () {
@@ -2295,7 +2315,7 @@ var ElectricityMixComponent = (function () {
         this.type = 'pie';
     }
     ElectricityMixComponent.prototype.ngOnInit = function () {
-        this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_23" /* energy_mix_options */];
+        this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_28" /* energy_mix_options */];
         /* this.update(); */
     };
     ElectricityMixComponent.prototype.ngOnChanges = function (changes) {
@@ -2372,8 +2392,8 @@ var ElectricityMixService = (function (_super) {
         return _this;
     }
     ElectricityMixService.prototype.getElectricityMix = function (payload) {
-        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["F" /* postHeatLoadProfileHectares */]);
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["G" /* getElectricityMixFromNuts0 */]);
+        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["H" /* postHeatLoadProfileHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["I" /* getElectricityMixFromNuts0 */]);
     };
     return ElectricityMixService;
 }(__WEBPACK_IMPORTED_MODULE_1__shared_services_api_service__["a" /* APIService */]));
@@ -2568,7 +2588,7 @@ var HeatLoadChartComponent = (function () {
                 _this.loadProfileData = _this.interactionService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
                 _this.datasets = _this.loadProfileData[0];
                 _this.labels = _this.loadProfileData[1];
-                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_27" /* heat_load_graph_options */];
+                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_32" /* heat_load_graph_options */];
                 _this.interactionService.setHeatLoadData({ dataset: _this.datasets, labels: _this.labels });
             }).then(function () {
                 _this.isLoading = false;
@@ -2683,13 +2703,13 @@ var HeatLoadAggregateService = (function (_super) {
     };
     HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         if (isHectare === false) {
-            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref + ' ; payload:' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postHeatLoadProfileNutsLau */]);
+            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref + ' ; payload:' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* postHeatLoadProfileNutsLau */]);
         }
         else {
-            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* postHeatLoadProfileHectares */] + type_api_ref + ' ; payload:' + JSON.stringify(payload));
-            this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* postHeatLoadProfileHectares */]);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* postHeatLoadProfileHectares */]);
+            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* postHeatLoadProfileHectares */] + type_api_ref + ' ; payload:' + JSON.stringify(payload));
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* postHeatLoadProfileHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* postHeatLoadProfileHectares */]);
         }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
@@ -2763,6 +2783,84 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".color-box {\r\n  height: 12px;\r\n  width: 50px;\r\n  float: left;\r\n  position: absolute;\r\n  left: 80px;\r\n}\r\n.symbolgy {\r\n  float: left;\r\n  margin:1px;\r\n  width: 100%;\r\n  position: relative;\r\n  height: 14px;\r\n  overflow: hidden;\r\n}\r\n.label {\r\n  text-align: left;\r\n  font-size: 12px;\r\n  line-height: 12px;\r\n  position: absolute;\r\n  left: 134px;\r\n  white-space: nowrap;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<div class=\"symbolgies\">\r\n  <div class=\"symbolgy\" *ngFor=\"let symb of symbolgies\">\r\n    <div class=\"color-box\" [style.background-color]=\"'rgba(' + symb.red +',' + symb.green +',' +symb.blue +',' + symb.opacity +')'\"></div>\r\n    <div class=\"label\">\r\n        {{symb.value}}: {{symb.label}}\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomSymbologyComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CustomSymbologyComponent = (function () {
+    function CustomSymbologyComponent(helper) {
+        this.helper = helper;
+    }
+    CustomSymbologyComponent.prototype.ngOnInit = function () {
+        if (!this.helper.isNullOrUndefined(this.symbolgies)) {
+            this.symbolgies.sort(function (a, b) {
+                if (+a.value > +b.value)
+                    return 1;
+                if (+a.value < +b.value)
+                    return -1;
+                return 0;
+            });
+        }
+    };
+    return CustomSymbologyComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], CustomSymbologyComponent.prototype, "symbolgies", void 0);
+CustomSymbologyComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-custom-symbology',
+        template: __webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"]) === "function" && _a || Object])
+], CustomSymbologyComponent);
+
+var _a;
+//# sourceMappingURL=custom-symbology.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/features/layer-tool/layer-tool.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2771,7 +2869,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".tool-container {\n  margin:10px;\n}\n.tool-container > span {\n  cursor: pointer;\n  color: white;\n}\n.uk-button-primary {\n  background: #0f7ae5b3;\n}\n.uk-card-body {\n  padding: 10px;\n}\n.card-content {\n  text-align: center;\n  word-wrap: break-word;\n\n}\n\n", ""]);
+exports.push([module.i, ".tool-container {\r\n  margin:10px;\r\n}\r\n.tool-container > span {\r\n  cursor: pointer;\r\n  color: white;\r\n}\r\n.uk-button-primary {\r\n  background: #0f7ae5b3;\r\n}\r\n.uk-card-body {\r\n  padding: 10px;\r\n}\r\n.card-content {\r\n  text-align: center;\r\n  word-wrap: break-word;\r\n\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -2784,7 +2882,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/layer-tool/layer-tool.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tool-container\">\n  <button [class.uk-button-primary]=\"isLegendDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"paint-bucket\" (click)=\"toggleLegend()\"></button>\n  <button [class.uk-button-primary]=\"isInfoDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"info\" (click)=\"toggleInformations()\"></button>\n  \n  <button [disabled]=\"!hasZoneSelected\" class=\"uk-icon-button uk-button-default\" uk-icon=\"cloud-download\" (click)=\"export()\"></button>\n  <a *ngIf=\"dataInteraction.download_url\" href=\"{{ dataInteraction.download_url }}\"><button  class=\"uk-icon-button uk-button-default\" uk-icon=\"upload\"></button></a>  \n  <div *ngIf=\"loading\" uk-spinner></div>\n</div>\n\n<!--\n  Layer legend\n-->\n<div [hidden]=\"!isLegendDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\n  <h3 class=\"uk-card-title\">Symbology</h3>\n  <div class=\"card-content\">\n    <div *ngIf=\"!displayLegend\" class=\"loader\" uk-spinner></div>\n    <img [hidden]=\"!displayLegend\" src=\"{{imageUrl}}{{dataInteraction.workspaceName}}\" (load)=\"endLoadLegend()\" />\n  </div>\n</div>\n<div *ngIf=\"isLegendDisplayed\" class=\"uk-margin\"></div>\n<!--\n  Layer informations\n-->\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\n  <h3 class=\"uk-card-title\">Informations</h3>\n  <div *ngIf=\"dataInteraction.description\" class=\"card-content\">\n    <p>\n      {{dataInteraction.description}}\n    </p>\n  </div>\n</div>\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-margin\"></div>\n"
+module.exports = "<div class=\"tool-container\">\r\n  <button [class.uk-button-primary]=\"isLegendDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"paint-bucket\" (click)=\"toggleLegend()\"></button>\r\n  <button [class.uk-button-primary]=\"isInfoDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"info\" (click)=\"toggleInformations()\"></button>\r\n  \r\n  <button [disabled]=\"!hasZoneSelected\" class=\"uk-icon-button uk-button-default\" uk-icon=\"cloud-download\" (click)=\"export()\"></button>\r\n  <a *ngIf=\"dataInteraction.download_url\" href=\"{{ dataInteraction.download_url }}\"><button  class=\"uk-icon-button uk-button-default\" uk-icon=\"upload\"></button></a>  \r\n  <div *ngIf=\"loading\" uk-spinner></div>\r\n</div>\r\n\r\n<!--\r\n  Layer legend\r\n-->\r\n<div [hidden]=\"!isLegendDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\r\n  <h3 class=\"uk-card-title\">Symbology</h3>\r\n  <div class=\"card-content\">\r\n    <ng-container *ngIf=\"dataInteraction.custom_symbology\">\r\n      <htm-custom-symbology [symbolgies]=\"dataInteraction.custom_symbology\"></htm-custom-symbology>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"!dataInteraction.custom_symbology\">\r\n      <img [hidden]=\"!displayLegend\" src=\"{{imageUrl}}{{dataInteraction.workspaceName}}\" (load)=\"endLoadLegend()\" />\r\n      <div *ngIf=\"!displayLegend\" class=\"loader\" uk-spinner></div>\r\n    </ng-container>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"isLegendDisplayed\" class=\"uk-margin\"></div>\r\n<!--\r\n  Layer informations\r\n-->\r\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\r\n  <h3 class=\"uk-card-title\">Informations</h3>\r\n  <div *ngIf=\"dataInteraction.description\" class=\"card-content\">\r\n    <p>\r\n      {{dataInteraction.description}}\r\n    </p>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-margin\"></div>\r\n"
 
 /***/ }),
 
@@ -2816,7 +2914,7 @@ var LayerToolComponent = (function () {
     function LayerToolComponent(mapService, uploadService) {
         this.mapService = mapService;
         this.uploadService = uploadService;
-        this.imageUrl = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_17" /* urlLegend */];
+        this.imageUrl = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_22" /* urlLegend */];
         this.isLegendDisplayed = false;
         this.isInfoDisplayed = false;
         this.displayLegend = false;
@@ -2885,7 +2983,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    min-height: 0;\n    min-width: 0;\n    /*max-height: 48px;*/\n    padding: 3px;\n    font-family: 'Hind', sans-serif;\n\n}\n.spinner{\n  float: right;\n  line-height: 27px;\n}\n.custom-tooltip {\n  opacity: 0;\n  z-index:0;\n  top: -20px;\n  right: 0px;\n  padding: 2px;\n  position: absolute;\n  color: white;\n  font-size: 9px;\n  background-color: #333333;\n  border-radius:5px;\n  transition: visibility 0s, opacity 0.2s linear;\n}\n.details:hover .custom-tooltip{\n  opacity: 1;\n  z-index:2000;\n\n}\n.isSelected{\n    color:white;\n    background-color: #2889DF;\n}\n.details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-left: 2px;\n    width: 100%;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.legend {\n  text-align: center;\n}\n.legend-div {\n  padding: 5px;\n}\n.uk-accordion-content, .uk-accordion{\n  margin: 0px !important;\n}\n.icon {\n}\n.flaticon-signs-1::before {\n  margin: 0px;\n}\n.message {\n\n}\n\n.date {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    font-size: 0.6em;\n    color: #444444;\n}\nbutton{\n    padding: 0 5px;\n    text-align: left;\n    /* font-size: 0.675rem; */\n}\n\ninput:checked{\n    border-color: green !important;\n}\n\ninput{\n    margin: 0px 5px;\n}\n.uk-button-secondary{\n    background-color: #333333;\n}\n\n.uk-accordion-title::after {\n  display: none;\n}\n\n.wait {\n  cursor: wait;\n}\n.uk-button {\n  line-height: 28px;\n}\n", ""]);
+exports.push([module.i, "\r\n:host {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n    min-height: 0;\r\n    min-width: 0;\r\n    /*max-height: 48px;*/\r\n    padding: 3px;\r\n    font-family: 'Hind', sans-serif;\r\n\r\n}\r\n.spinner{\r\n  float: right;\r\n  line-height: 27px;\r\n}\r\n.custom-tooltip {\r\n  opacity: 0;\r\n  z-index:0;\r\n  top: -20px;\r\n  right: 0px;\r\n  padding: 2px;\r\n  position: absolute;\r\n  color: white;\r\n  font-size: 9px;\r\n  background-color: #333333;\r\n  border-radius:5px;\r\n  transition: visibility 0s, opacity 0.2s linear;\r\n}\r\n.details:hover .custom-tooltip{\r\n  opacity: 1;\r\n  z-index:2000;\r\n\r\n}\r\n.isSelected{\r\n    color:white;\r\n    background-color: #2889DF;\r\n}\r\n.details {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1;\r\n            flex: 1;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    margin-left: 2px;\r\n    width: 100%;\r\n}\r\n.notifications {\r\n  -webkit-box-flex: 1;\r\n      -ms-flex: 1;\r\n          flex: 1;\r\n  overflow-y: auto;\r\n}\r\n.legend {\r\n  text-align: center;\r\n}\r\n.legend-div {\r\n  padding: 5px;\r\n}\r\n.uk-accordion-content, .uk-accordion{\r\n  margin: 0px !important;\r\n}\r\n.icon {\r\n}\r\n.flaticon-signs-1::before {\r\n  margin: 0px;\r\n}\r\n.message {\r\n\r\n}\r\n\r\n.date {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: end;\r\n        -ms-flex-pack: end;\r\n            justify-content: flex-end;\r\n    font-size: 0.6em;\r\n    color: #444444;\r\n}\r\nbutton{\r\n    padding: 0 5px;\r\n    text-align: left;\r\n    /* font-size: 0.675rem; */\r\n}\r\n\r\ninput:checked{\r\n    border-color: green !important;\r\n}\r\n\r\ninput{\r\n    margin: 0px 5px;\r\n}\r\n.uk-button-secondary{\r\n    background-color: #333333;\r\n}\r\n\r\n.uk-accordion-title::after {\r\n  display: none;\r\n}\r\n\r\n.wait {\r\n  cursor: wait;\r\n}\r\n.uk-button {\r\n  line-height: 28px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -2898,7 +2996,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n  <div style=\"position:relative\">\n    <div class=\"custom-tooltip\" *ngIf=\"dataInteraction.isLoading\">\n      {{dataInteraction.name}} layer is loading\n    </div>\n    <button type=\"button\" [class.wait]=\"interactionService.getSummaryResultState()\" name={{dataInteraction.workspaceName}}\n      class=\"uk-button uk-button-default uk-width-1-1 button-layer\" (click)=\"showRemoveLayer($event)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n      <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"dataInteraction.isSelected\">\n      {{dataInteraction.name}}\n      <div *ngIf=\"dataInteraction.isLoading\" class=\"spinner\" uk-spinner=\"ratio:0.5\" ></div>\n    </button>\n  </div>\n  <htm-layer-tool *ngIf=\"dataInteraction.isSelected\" [dataInteraction]=\"dataInteraction\"></htm-layer-tool>\n</div>\n"
+module.exports = "<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\r\n  <div style=\"position:relative\">\r\n    <div class=\"custom-tooltip\" *ngIf=\"dataInteraction.isLoading\">\r\n      {{dataInteraction.name}} layer is loading\r\n    </div>\r\n    <button type=\"button\" [class.wait]=\"interactionService.getSummaryResultState()\" name={{dataInteraction.workspaceName}}\r\n      class=\"uk-button uk-button-default uk-width-1-1 button-layer\" (click)=\"showRemoveLayer($event)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\r\n      <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"dataInteraction.isSelected\">\r\n      {{dataInteraction.name}}\r\n      <div *ngIf=\"dataInteraction.isLoading\" class=\"spinner\" uk-spinner=\"ratio:0.5\" ></div>\r\n    </button>\r\n  </div>\r\n  <htm-layer-tool *ngIf=\"dataInteraction.isSelected\" [dataInteraction]=\"dataInteraction\"></htm-layer-tool>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2931,7 +3029,7 @@ var DataInteractionCellComponent = (function () {
         this.mapService = mapService;
         this.interactionService = interactionService;
         this.loading = true;
-        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */];
+        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */];
     }
     DataInteractionCellComponent.prototype.ngOnInit = function () {
     };
@@ -2941,11 +3039,15 @@ var DataInteractionCellComponent = (function () {
     DataInteractionCellComponent.prototype.showRemoveLayer = function (e) {
         if (this.interactionService.getSummaryResultState() === false) {
             this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */]) {
+            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */]) {
                 this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer);
             }
             else {
-                this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, this.dataInteraction.id);
+                var order = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["V" /* layers_order */];
+                if (this.dataInteraction.order) {
+                    order = this.dataInteraction.order;
+                }
+                this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, order);
                 if (this.dataInteraction.zoomLevel > 0) {
                     this.mapService.checkZoomLevelLayer(this.dataInteraction.workspaceName, this.dataInteraction.zoomLevel);
                 }
@@ -3036,20 +3138,20 @@ var building_volume_type = 'building_volumes';
 var gitlabUrl = 'https://gitlab.com/hotmaps/';
 var DataInteractionArray = [
     // Buildings
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
-        workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* defaultLayerType */],
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
+        workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* defaultLayerType */],
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_res_curr_density/raw/master/data/heat_res_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_res_curr_density/blob/master/README.md', isLoading: false },
     { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* defaultLayerType */],
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading: false },
     { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
-        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["C" /* defaultLayerType */],
+        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
@@ -3078,19 +3180,19 @@ var DataInteractionArray = [
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_nonres_curr_density/blob/master/README.md', isLoading: false },
     // Industry
     { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions',
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat',
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname',
+        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector',
+        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     // Population
@@ -3100,11 +3202,11 @@ var DataInteractionArray = [
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/pop_tot_curr_density/blob/master/README.md', isLoading: false },
     // Potentials
     { id: 12, name: 'Waste Water Treatment Plants - Power', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["D" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'default', layer_type: 'wwtp_power',
+        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["F" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'default', layer_type: 'wwtp_power',
         download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
     { id: 12, name: 'Waste Water Treatment Plants - Capacity', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["D" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: 'wwtp_capacity',
+        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["F" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: 'wwtp_capacity',
         download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Agricultural residues', category: 'R.E.S. Potential', isSelected: false,
@@ -3168,12 +3270,12 @@ var DataInteractionArray = [
 ];
 var cm_default_layer = {
     id: 21, name: '',
-    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */],
+    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */],
     isSelected: true,
     workspaceName: '',
-    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */]],
+    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */]],
     styleName: '',
-    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */],
+    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */],
     cm_id: '',
     isLoading: false
 };
@@ -3251,13 +3353,15 @@ var DataInteractionService = (function (_super) {
     DataInteractionService.prototype.getDataArrayServices = function () {
         return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
     };
-    DataInteractionService.prototype.addNewLayer = function (name, id, type) {
+    DataInteractionService.prototype.addNewLayer = function (name, id, type, symb) {
         var newLayerAdded = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */].push(Object.assign({}, __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["c" /* cm_default_layer */]));
         __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].name = name;
         __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].workspaceName = name;
         __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].cm_id = id;
         __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].type_of_layer = type;
-        // console.log(DataInteractionArray[newLayerAdded - 1])
+        if (symb) {
+            __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].custom_symbology = symb;
+        }
     };
     DataInteractionService.prototype.getReadableName = function (layerName) {
         this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
@@ -4504,13 +4608,13 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* defaultLayer */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* formatImage */], transparent: true, version: '1.3.0',
-            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* idDefaultLayer */]
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* defaultLayer */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* formatImage */], transparent: true, version: '1.3.0',
+            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["V" /* layers_order */]
         };
         _this.layersArray = new __WEBPACK_IMPORTED_MODULE_1__shared_class_dictionary_class__["a" /* Dictionary */]([
             {
-                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* defaultLayer */])
+                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* defaultLayer */])
             },
         ]);
         _this.popup = L.popup();
@@ -4528,7 +4632,7 @@ var LayersService = (function (_super) {
         this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
     };
     LayersService.prototype.setupDefaultLayer = function () {
-        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* defaultLayer */]);
+        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* defaultLayer */]);
         this.logger.log(layer.toString());
         this.layers.addLayer(layer);
     };
@@ -4567,11 +4671,11 @@ var LayersService = (function (_super) {
         var layer;
         var option = {
             layers: 'hotmaps:' + action,
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* formatImage */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* formatImage */],
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
-            zIndex: 1
+            zIndex: order
         };
         layer = this.getTilayer(option, action);
         this.layers.addLayer(layer);
@@ -4579,10 +4683,8 @@ var LayersService = (function (_super) {
     };
     LayersService.prototype.getTilayer = function (option, action) {
         var self = this;
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* geoserverUrl */], option);
         wms_request.on('load', function (data) {
-            /* self.dataInteractionService.setLoadingLayerInterraction(action)
-            console.log(data) */
             self.dataInteractionService.unsetLoadingLayerInterraction(action);
             // loader.display(false)
         });
@@ -4617,13 +4719,13 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
-        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* defaultLayer */])) {
+        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["W" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["T" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -4644,7 +4746,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["U" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Y" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -4652,7 +4754,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["V" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Z" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -4661,8 +4763,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["W" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_0" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_1" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
     LayersService.prototype.showLayerDependingZoom = function (action, map, zoomLevel) {
@@ -4706,10 +4808,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["W" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -4859,9 +4961,9 @@ var PopulationService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         // Improvement of coding style : (with codelyzer)
         // Line 73 exceeds maximum line length of 140
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_16" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_21" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["U" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["Y" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -4950,9 +5052,9 @@ var ResultManagerComponent = (function () {
         this.updateExportButton = false;
         this.noIndicator = true;
         this.indicatorLoading = true;
-        this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* tab1_datapanel */];
-        this.tab2 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_24" /* tab2_datapanel */];
-        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */];
+        this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* tab1_datapanel */];
+        this.tab2 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_29" /* tab2_datapanel */];
+        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */];
         this.tabSelected = this.tab1;
         this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["h" /* summay_drop_down_buttons */];
         this.selectedButton = this.dropdown_btns[0];
@@ -5066,7 +5168,7 @@ var ResultManagerComponent = (function () {
     };
     ResultManagerComponent.prototype.updateEnergyMixResult = function () {
         var self = this;
-        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_35" /* energy_mix_title */], 'pie', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_23" /* energy_mix_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_36" /* energy_mix_graph_category */], true);
+        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_40" /* energy_mix_title */], 'pie', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_28" /* energy_mix_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_41" /* energy_mix_graph_category */], true);
         self.interactionService.getElectricityMix(self.energyMixPayload).then(function (result) {
             graphic.isLoading = false;
             graphic.data = result.datasets;
@@ -5079,12 +5181,12 @@ var ResultManagerComponent = (function () {
         });
     };
     ResultManagerComponent.prototype.updateHeatLoadResult = function () {
-        this.heatloadGraph = this.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_28" /* heatloadprofile */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_27" /* heat_load_graph_options */], 'heatload', true);
+        this.heatloadGraph = this.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_33" /* heatloadprofile */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_32" /* heat_load_graph_options */], 'heatload', true);
     };
     ResultManagerComponent.prototype.updateDurationCurveResult = function () {
         var _this = this;
         var self = this;
-        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_37" /* duration_curve_graph_title */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_26" /* duration_curve_graph_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_38" /* duration_curve_graph_category */], true);
+        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_42" /* duration_curve_graph_title */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_31" /* duration_curve_graph_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_43" /* duration_curve_graph_category */], true);
         var isHectare;
         if (this.scaleLevel === '-1') {
             isHectare = true;
@@ -5119,19 +5221,28 @@ var ResultManagerComponent = (function () {
             var name_of_result_1 = this.cmPayload.cm_name;
             if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
                 response.status.result.raster_layers.map(function (raster) {
-                    _this.dataInteractionService.addNewLayer(name_of_result_1, raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* raster_type_name */]);
-                    _this.mapService.displayCustomLayerFromCM(raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* raster_type_name */]);
+                    var symb;
+                    if (raster.type === 'custom') {
+                        symb = raster.symbology;
+                    }
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* raster_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* raster_type_name */]);
                 });
             }
             if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
                 response.status.result.vector_layers.map(function (vector) {
-                    _this.dataInteractionService.addNewLayer(name_of_result_1, vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* vector_type_name */]);
-                    _this.mapService.displayCustomLayerFromCM(vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* vector_type_name */]);
+                    // console.log(vector)
+                    var symb;
+                    if (vector.type == 'custom') {
+                        symb = vector.symbology;
+                    }
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["y" /* vector_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["y" /* vector_type_name */]);
                 });
             }
             if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
                 this.result.indicators.layers.push({
-                    name: name_of_result_1, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */]]
+                    name: name_of_result_1, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */]]
                 });
                 this.displayExportDataStatus = true;
             }
@@ -5143,7 +5254,7 @@ var ResultManagerComponent = (function () {
                             xAxes: [{ scaleLabel: { display: true, labelString: graphic.xLabel }, ticks: { autoSkip: false, min: 0 } }]
                         }
                     };
-                    var graph = _this.addGraphic(name_of_result_1, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */], false);
+                    var graph = _this.addGraphic(name_of_result_1, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */], false);
                 });
                 this.displayExportDataStatus = true;
             }
@@ -5226,7 +5337,6 @@ var ResultManagerComponent = (function () {
         }
         else {
             this.result.indicators.layers.map(function (layer) {
-                console.log(JSON.stringify(layer));
                 if (!_this.helper.isNullOrUndefined(layer.name)) {
                     var refToDisplay = [];
                     if (_this.helper.isNullOrUndefined(layer.category)) {
@@ -5350,55 +5460,55 @@ var SelectionScaleClassArray = [
 var action = 'population';
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 0 + '',
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 1 + '',
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 2 + '',
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
     cql_filter: 'stat_levl_ = ' + 3 + '',
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["N" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["R" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["P" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* scale_layer_order */]
 };
 /*
 * loading  Event  Fired when the grid layer starts loading tiles.
@@ -5464,7 +5574,7 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* initial_scale_value */];
         // scale value subject
         _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* nuts3 */]);
         return _this;
@@ -5503,7 +5613,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["O" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -5535,7 +5645,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -5549,7 +5659,7 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["L" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
@@ -5588,7 +5698,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 401;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}\n", ""]);
+exports.push([module.i, "\r\n:host {\r\n    /*display: flex;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    min-height: 0;\r\n    overflow: hidden;*/\r\n    z-index: 401;\r\n\r\n    float:left;\r\n    position: absolute;\r\n\r\n    margin-top: 8px;\r\n    margin-left: 8px;\r\n\r\n}\r\n\r\n/* SELECTIONS TOOLS CONTAINER */\r\n#selection-tools-box{\r\n    /*border: 1px solid #000000;*/\r\n    background-color: white;\r\n    width: 30px;\r\n    border-radius: 4px;\r\n}\r\n\r\n#click{\r\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\r\n    background-size: 18px 18px;\r\n    background-repeat:no-repeat;\r\n    background-position: center;\r\n}\r\n\r\n#rectangle{\r\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\r\n    background-size: 14px 14px;\r\n    background-repeat:no-repeat;\r\n    background-position: center;\r\n}\r\n\r\n#circle{\r\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\r\n    background-size: 16px 16px;\r\n    background-repeat:no-repeat;\r\n    background-position: center;\r\n}\r\n\r\n#polygon{\r\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\r\n    background-size: 18px 18px;\r\n    background-repeat:no-repeat;\r\n    background-position: center;\r\n}\r\n\r\n.radio-custom {\r\n    opacity: 0;\r\n    position: absolute;\r\n\r\n}\r\n\r\n.radio-custom, .radio-custom-label {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    margin: 3px;\r\n    cursor: pointer;\r\n}\r\n\r\n.radio-custom-label {\r\n    position: relative;\r\n\r\n}\r\n\r\n.radio-custom + .radio-custom-label:before {\r\n    content: '';\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    width: 18px;\r\n    height: 20px;\r\n    padding: 2px;\r\n    border: 1px solid white;\r\n}\r\n\r\n.radio-custom:checked + .radio-custom-label:before {\r\n    /*background: #ccc;*/\r\n    border: 1px solid #545454;\r\n}\r\n\r\n\r\n/* INFOS CONTAINER */\r\np {\r\n    font-size: 15px;\r\n    text-align:left;\r\n    margin-bottom: -10px;\r\n}\r\n\r\nspan {\r\n    float: right;\r\n}\r\n\r\n.containers {\r\n    /*flex: 1;\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-height: 0;\r\n    min-width: 0;*/\r\n}\r\n\r\n#info-box{\r\n    /*border: 1px solid #000000;*/\r\n    margin-top: 8px;\r\n    height: 100%;\r\n    width: 250px;\r\n    background-color: white;\r\n    padding:8px;\r\n    border-radius: 4px;\r\n}\r\n\r\n.divButtons{\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.uk-button{\r\n    font-size: 12px;\r\n    width:100%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -5977,7 +6087,7 @@ var SelectionToolService = (function (_super) {
         _this.nutsIds = new Set;
         _this.multiSelectionLayers = new L.FeatureGroup();
         _this.controlMultiLayer = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["L" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["N" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
         _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
@@ -6382,7 +6492,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <ul class=\"uk-flex-center\" uk-tab id=\"uk-tab-left-panel\">\n      <li class=\"uk-active layers-tab\"><a href=\"\">layers</a></li>\n      <li [class.uk-disabled]=\"!isZoneSelected\"><a href=\"\" (click)=\"updateCmss()\">Calculation modules</a></li>\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n          <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n            <htm-personnal-layers *ngIf=\"isConnected\"></htm-personnal-layers>\n              <ul uk-accordion *ngFor=\"let i of category\">\n                  <li class=\"uk-open\">\n                    <h3 class=\"uk-accordion-title\">\n                      {{i}}\n                    </h3>\n                    <div class=\"uk-accordion-content\">\n                      <ng-container *ngFor=\"let n of layers\" >\n                        <span *ngIf=\"i === n.category\">\n                          <layers-interaction-cell (click)=\"updateCmss()\" [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></layers-interaction-cell>\n                        </span>\n                      </ng-container>\n                    </div>\n\n                  </li>\n              </ul>\n            </span>\n      </li>\n      <li [hidden]=\"!isZoneSelected\">\n          <htm-cms [expandedState]=\"expandedState\" [expanded]=\"expanded\" [layersSelected]=\"layersSelected\" [scaleLevel]=\"scaleLevel\"></htm-cms>\n      </li>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\r\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\r\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\r\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\r\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\r\n        </a>\r\n    </div>\r\n\r\n  <div class=\"notifications\">\r\n    <ul class=\"uk-flex-center\" uk-tab id=\"uk-tab-left-panel\">\r\n      <li class=\"uk-active layers-tab\"><a href=\"\">layers</a></li>\r\n      <li [class.uk-disabled]=\"!isZoneSelected\"><a href=\"\" (click)=\"updateCmss()\">Calculation modules</a></li>\r\n    </ul>\r\n    <ul id=\"my-id3\" class=\"uk-switcher\">\r\n      <li>\r\n          <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\r\n            <htm-personnal-layers *ngIf=\"isConnected\"></htm-personnal-layers>\r\n              <ul uk-accordion *ngFor=\"let i of category\">\r\n                  <li class=\"uk-open\">\r\n                    <h3 class=\"uk-accordion-title\">\r\n                      {{i}}\r\n                    </h3>\r\n                    <div class=\"uk-accordion-content\">\r\n                      <ng-container *ngFor=\"let n of layers\" >\r\n                        <span *ngIf=\"i === n.category\">\r\n                          <layers-interaction-cell (click)=\"updateCmss()\" [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></layers-interaction-cell>\r\n                        </span>\r\n                      </ng-container>\r\n                    </div>\r\n\r\n                  </li>\r\n              </ul>\r\n            </span>\r\n      </li>\r\n      <li [hidden]=\"!isZoneSelected\">\r\n          <htm-cms [expandedState]=\"expandedState\" [expanded]=\"expanded\" [layersSelected]=\"layersSelected\" [scaleLevel]=\"scaleLevel\"></htm-cms>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6489,7 +6599,7 @@ var LeftSideComponent = (function (_super) {
         this.layers = layers;
         this.category = layers.map(function (item) { return item.category; })
             .filter(function (value, index, self) { return self.indexOf(value) === index; });
-        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["E" /* calculation_module_category */]);
+        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* calculation_module_category */]);
     };
     LeftSideComponent.prototype.ngOnDestroy = function () {
     };
@@ -6566,7 +6676,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "input {\n    margin: 0px 5px;\n}\n\nbutton {\n    padding: 0 5px;\n    line-height: 28px;\n    text-align: left;\n}\n\nspan {\n    width: calc(100% - 30px);\n    position: absolute;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n}\n\n.layers {\n    padding: 3px;\n}\n\n.button-secondary {\n    background-color: #333333;\n    color: white;\n}", ""]);
+exports.push([module.i, "input {\r\n    margin: 0px 5px;\r\n}\r\n\r\nbutton {\r\n    padding: 0 5px;\r\n    line-height: 28px;\r\n    text-align: left;\r\n}\r\n\r\nspan {\r\n    width: calc(100% - 30px);\r\n    position: absolute;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n}\r\n\r\n.layers {\r\n    padding: 3px;\r\n}\r\n\r\n.button-secondary {\r\n    background-color: #333333;\r\n    color: white;\r\n}", ""]);
 
 // exports
 
@@ -6579,7 +6689,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul uk-accordion>\n    <li class=\"uk-open\">\n        <h3 class=\"uk-accordion-title\">Personnal layer</h3>\n        <div class=\"uk-accordion-content\" style=\"position: relative; width: 100%;\">\n            <ng-container *ngFor=\"let layer of layers\">\n                <div class=\"layers\" (click)=\"actionLayer(layer)\">\n                    <button type=\"button\" class=\"uk-button uk-button-default uk-width-1-1\" [class.button-secondary]=\"layer.checked\">\n                        <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"layer.checked\"><span>{{ layer.name }}</span>\n                    </button>\n                </div>\n            </ng-container>\n        </div>\n    </li>\n</ul>"
+module.exports = "<ul uk-accordion>\r\n    <li class=\"uk-open\">\r\n        <h3 class=\"uk-accordion-title\">Personnal layer</h3>\r\n        <div class=\"uk-accordion-content\" style=\"position: relative; width: 100%;\">\r\n            <ng-container *ngFor=\"let layer of layers\">\r\n                <div class=\"layers\" (click)=\"actionLayer(layer)\">\r\n                    <button type=\"button\" class=\"uk-button uk-button-default uk-width-1-1\" [class.button-secondary]=\"layer.checked\">\r\n                        <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"layer.checked\"><span>{{ layer.name }}</span>\r\n                    </button>\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n    </li>\r\n</ul>"
 
 /***/ }),
 
@@ -6744,7 +6854,6 @@ var RightSideComponent = (function (_super) {
         else {
             this.resetPayloads();
         }
-        console.log(this.scaleLevel);
     };
     RightSideComponent.prototype.resetPayloads = function () {
         this.cmPayload = null;
@@ -6821,7 +6930,6 @@ var RightSideComponent = (function (_super) {
         else if (this.scaleLevel === '-1') {
             payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed };
         }
-        console.log();
         if (!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix) && this.cmRunned.cm.cm_prefix != '') {
             cm_name += this.cmRunned.cm.cm_prefix + ' - ';
         }
@@ -6859,10 +6967,10 @@ var RightSideComponent = (function (_super) {
         this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() };
     };
     RightSideComponent.prototype.setDurationCurveIds = function () {
-        this.durationCurvePayload = { nuts: this.nutsIds, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_25" /* constant_year_duration_curve */] };
+        this.durationCurvePayload = { nuts: this.nutsIds, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_30" /* constant_year_duration_curve */] };
     };
     RightSideComponent.prototype.setDurationCurveAreas = function () {
-        this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_25" /* constant_year_duration_curve */] };
+        this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_30" /* constant_year_duration_curve */] };
     };
     return RightSideComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__side_panel_component__["a" /* SideComponent */]));
@@ -7356,7 +7464,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"summaryResult\">\n          <ng-container *ngFor=\"let layer of summaryResult.layers\">\n            <ng-container *ngIf=\"layer.category.indexOf(refSelected) > -1\">\n\n              <tr class=\"table-level-one\">\n                <th colspan=\"2\">{{layer.name | layername}}</th>\n              </tr>\n              <tr *ngFor=\"let value of layer.values\" class=\"table-level-two\">\n                <td>{{value.name | businessname}}</td>\n                <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">\n                  {{value.value | number: '1.0-2' }} {{ value.unit | businessname}}\n                </td>\n                <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n              </tr>\n            </ng-container>\n          </ng-container>\n\n          <ng-container *ngFor=\"let layer of summaryResult.no_data_layers\">\n            <tr class=\"table-level-one warning\">\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No data for \"{{layer | layername}}\"</th>\n            </tr>\n          </ng-container>\n          <ng-container *ngFor=\"let layer of summaryResult.no_table_layers\">\n            <tr class=\"table-level-one warning\">\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No table for \"{{layer | layername}}\"</th>\n            </tr>\n          </ng-container>\n\n\n        </ng-container>\n        <!-- <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container> -->\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "<span [@tableOpacityTrigger]=\"'in'\">\r\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\r\n    <table class=\"uk-table uk-table-divider uk-table-small\">\r\n      <thead>\r\n        <tr class=\"header-summary\">\r\n          <th class=\"uk-table-shrink\">Information</th>\r\n          <th class=\"uk-table-shrink\">Value</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <ng-container *ngIf=\"summaryResult\">\r\n          <ng-container *ngFor=\"let layer of summaryResult.layers\">\r\n            <ng-container *ngIf=\"layer.category.indexOf(refSelected) > -1\">\r\n\r\n              <tr class=\"table-level-one\">\r\n                <th colspan=\"2\">{{layer.name | layername}}</th>\r\n              </tr>\r\n              <tr *ngFor=\"let value of layer.values\" class=\"table-level-two\">\r\n                <td>{{value.name | businessname}}</td>\r\n                <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">\r\n                  {{value.value | number: '1.0-2' | numberformat }} {{ value.unit | businessname}}\r\n                </td>\r\n                <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\r\n              </tr>\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <ng-container *ngFor=\"let layer of summaryResult.no_data_layers\">\r\n            <tr class=\"table-level-one warning\">\r\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No data for \"{{layer | layername}}\"</th>\r\n            </tr>\r\n          </ng-container>\r\n          <ng-container *ngFor=\"let layer of summaryResult.no_table_layers\">\r\n            <tr class=\"table-level-one warning\">\r\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No table for \"{{layer | layername}}\"</th>\r\n            </tr>\r\n          </ng-container>\r\n\r\n\r\n        </ng-container>\r\n        <!-- <ng-container *ngIf=\"poiData\">\r\n          <tr class=\"table-level-one\">\r\n            <th colspan=\"2\">{{poiTitle}}</th>\r\n          </tr>\r\n          <tr class=\"table-level-two\">\r\n            <td>{{poiTitle | businessname}}</td>\r\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\r\n          </tr>\r\n        </ng-container> -->\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n</span>\r\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\r\n  <div class=\"spinner\" uk-spinner></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7486,11 +7594,11 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["P" /* postStatsLayersNutsLau */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["S" /* postStatsLayersNutsLau */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["Q" /* postStatsLayersHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["T" /* postStatsLayersHectares */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
@@ -7525,7 +7633,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/user-management/account/account.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"uk-modal-title\">Welcome {{username}}</h2>\n\n<div class=\"uk-child-width-1-2@m uk-grid-match\" uk-grid>\n  <div>\n    <div class=\"uk-card uk-card-default uk-card-body\">\n      <h3>User diskspace</h3>\n      <div style=\"position:relative; height:215px\">\n        <htm-chart [type]=\"'pie'\" [labels]=\"diskspaceLabels\" [options]=\"diskspaceOptions\" [datasets]=\"diskspaceDataset\"\n          [isLoading]=\"false\"></htm-chart>\n      </div>\n    </div>\n  </div>\n  <div>\n    <div class=\"uk-card uk-card-default uk-card-body\">\n      <h3>Informations\n        <span [hidden]=\"isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: pencil\" (click)=\"toggleEditing()\"></span>\n        <span [hidden]=\"!isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: ban\" (click)=\"disableEditing()\"></span>\n      </h3>\n      <div>\n        <div class=\"profil-information\">\n          <h5 class=\"title\">Firstname</h5>\n          <!-- <span *ngIf=\"!isEditable\">{{firstname}}</span> -->\n          <input class=\"uk-input\" type=\"text\" [class.uk-disabled]=\"!isEditable\" placeholder=\"Firstname\" [(ngModel)]=\"firstname\"\n            [value]=\"firstname\" required />\n        </div>\n        <div class=\"profil-information\">\n          <h5 class=\"title\">Lastname</h5>\n          <input class=\"uk-input\" [class.uk-disabled]=\"!isEditable\" type=\"text\" placeholder=\"Lastname\" [(ngModel)]=\"lastname\"\n            [value]=\"lastname\" required />\n        </div>\n        <div *ngIf=\"isEditable\" class=\"uk-margin\"></div>\n        <button *ngIf=\"isEditable\" class=\"uk-button uk-button-primary\" (click)=\"updateProfile()\">Update profile</button>\n      </div>\n    </div>\n  </div>  \n</div>\n\n<div class=\"uk-child-width-2-2@m uk-grid-match\" uk-grid>\n  <div>\n    <app-upload></app-upload>\n  </div>\n</div>\n<button class=\"uk-button uk-button-primary\" (click)=\"logout()\">Logout</button>"
+module.exports = "<h2 class=\"uk-modal-title\">Welcome {{username}}</h2>\r\n\r\n<div class=\"uk-child-width-1-2@m uk-grid-match\" uk-grid>\r\n  <div>\r\n    <div class=\"uk-card uk-card-default uk-card-body\">\r\n      <h3>User diskspace</h3>\r\n      <div style=\"position:relative; height:215px\">\r\n        <htm-chart [type]=\"'pie'\" [labels]=\"diskspaceLabels\" [options]=\"diskspaceOptions\" [datasets]=\"diskspaceDataset\"\r\n          [isLoading]=\"false\"></htm-chart>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div>\r\n    <div class=\"uk-card uk-card-default uk-card-body\">\r\n      <h3>Informations\r\n        <span [hidden]=\"isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: pencil\" (click)=\"toggleEditing()\"></span>\r\n        <span [hidden]=\"!isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: ban\" (click)=\"disableEditing()\"></span>\r\n      </h3>\r\n      <div>\r\n        <div class=\"profil-information\">\r\n          <h5 class=\"title\">Firstname</h5>\r\n          <!-- <span *ngIf=\"!isEditable\">{{firstname}}</span> -->\r\n          <input class=\"uk-input\" type=\"text\" [class.uk-disabled]=\"!isEditable\" placeholder=\"Firstname\" [(ngModel)]=\"firstname\"\r\n            [value]=\"firstname\" required />\r\n        </div>\r\n        <div class=\"profil-information\">\r\n          <h5 class=\"title\">Lastname</h5>\r\n          <input class=\"uk-input\" [class.uk-disabled]=\"!isEditable\" type=\"text\" placeholder=\"Lastname\" [(ngModel)]=\"lastname\"\r\n            [value]=\"lastname\" required />\r\n        </div>\r\n        <div *ngIf=\"isEditable\" class=\"uk-margin\"></div>\r\n        <button *ngIf=\"isEditable\" class=\"uk-button uk-button-primary\" (click)=\"updateProfile()\">Update profile</button>\r\n      </div>\r\n    </div>\r\n  </div>  \r\n</div>\r\n\r\n<div class=\"uk-child-width-2-2@m uk-grid-match\" uk-grid>\r\n  <div>\r\n    <app-upload></app-upload>\r\n  </div>\r\n</div>\r\n<button class=\"uk-button uk-button-primary\" (click)=\"logout()\">Logout</button>"
 
 /***/ }),
 
@@ -7578,8 +7686,8 @@ var AccountComponent = (function (_super) {
         _this.firstname = '';
         _this.lastname = '';
         _this.isEditable = false;
-        _this.diskspaceLabels = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_18" /* labels_diskspacechart */];
-        _this.diskspaceOptions = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_19" /* diskspacechart_options */];
+        _this.diskspaceLabels = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_23" /* labels_diskspacechart */];
+        _this.diskspaceOptions = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_24" /* diskspacechart_options */];
         return _this;
     }
     AccountComponent.prototype.ngOnInit = function () {
@@ -7612,14 +7720,13 @@ var AccountComponent = (function (_super) {
                 _this.diskspaceUsed = data.used_size;
                 _this.diskspaceDataset = [{
                         label: 'Account disk',
-                        backgroundColor: [__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_20" /* color_usedspace */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_21" /* color_unusedspace */]],
+                        backgroundColor: [__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_25" /* color_usedspace */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_26" /* color_unusedspace */]],
                         data: [_this.diskspaceUsed, _this.diskspaceMax - _this.diskspaceUsed]
                     }];
             });
     };
     AccountComponent.prototype.getAcountFileList = function () {
         this.userManagementService.getAcountFileList(this.token).then(function (data) {
-            console.log(data);
         });
     };
     AccountComponent.prototype.toggleEditing = function () {
@@ -7645,7 +7752,6 @@ var AccountComponent = (function (_super) {
             _this.getUserInformations();
             _this.toggleEditing();
         });
-        // console.log(this.lastname,this.firstname)
     };
     return AccountComponent;
 }(__WEBPACK_IMPORTED_MODULE_4_app_shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
@@ -7690,7 +7796,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "i.iButton {\n    cursor: pointer;\n    margin-left: 0;\n}\ni.iButton:hover {\n    color: black;\n}\ni.iButton::before {\n    margin-left: 0;\n}\n\n#uploadBtn {\n    color: red;\n    cursor: default;\n}\n#uploadBtn:hover {\n    cursor: not-allowed;\n}\n#uploadBtn.active {\n    color: green;\n    cursor: pointer;\n}\n#uploadBtn.active:hover {\n    color: lightgreen;\n}\n\ntable {\n    margin: 0;\n    table-layout: fixed;\n}\n\ntd p {\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n}\n\nth:nth-child(1), td:nth-child(1),\nth:nth-child(2), td:nth-child(2) {\n    width: 34%;\n}\nth:nth-child(3), td:nth-child(3) {\n    width: 16%;\n}\nth:nth-child(4), {\n    width: 16%;\n}\ntd:nth-child(4), td:nth-child(5) {\n    width: 8%;\n}", ""]);
+exports.push([module.i, "i.iButton {\r\n    cursor: pointer;\r\n    margin-left: 0;\r\n}\r\ni.iButton:hover {\r\n    color: black;\r\n}\r\ni.iButton::before {\r\n    margin-left: 0;\r\n}\r\n\r\n#uploadBtn {\r\n    color: red;\r\n    cursor: default;\r\n}\r\n#uploadBtn:hover {\r\n    cursor: not-allowed;\r\n}\r\n#uploadBtn.active {\r\n    color: green;\r\n    cursor: pointer;\r\n}\r\n#uploadBtn.active:hover {\r\n    color: lightgreen;\r\n}\r\n\r\ntable {\r\n    margin: 0;\r\n    table-layout: fixed;\r\n}\r\n\r\ntd p {\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n}\r\n\r\nth:nth-child(1), td:nth-child(1),\r\nth:nth-child(2), td:nth-child(2) {\r\n    width: 34%;\r\n}\r\nth:nth-child(3), td:nth-child(3) {\r\n    width: 16%;\r\n}\r\nth:nth-child(4), {\r\n    width: 16%;\r\n}\r\ntd:nth-child(4), td:nth-child(5) {\r\n    width: 8%;\r\n}", ""]);
 
 // exports
 
@@ -7703,7 +7809,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/user-management/account/upload/upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"uk-card uk-card-default uk-overflow-container\">\n  <table class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\n    <thead><tr>\n      <th>Filename</th>\n      <th>Layer</th>\n      <th class=\"uk-text-right\">Size (kB)</th>\n      <th class=\"uk-text-center\" colspan=\"2\">\n          <i class=\"iButton\" (click)=\"getFiles()\">&#8635;</i>\n      </th>\n    </tr></thead>\n  </table>\n\n  <div class=\"uk-overflow-auto uk-height-small\">\n    <table class=\"uk-table uk-table-hover uk-table-striped\" #tblBody>\n      <tbody>\n        <tr *ngFor=\"let upFile of uploadedFiles\">\n          <td><p title=\"{{ upFile.name }}\">{{ upFile.name }}</p></td>\n          <td><p title=\"{{ getLayerName(upFile.layer) }}\">{{ getLayerName(upFile.layer) }}</p></td>\n          <td class=\"uk-text-right\">{{ upFile.size * 1000 | number:'1.1-1' }}</td>\n          <td class=\"uk-text-center\"><i class=\"flaticon-import iButton\" (click)=\"download(upFile)\"></i></td>\n          <td class=\"uk-text-center\"><i class=\"flaticon-trash iButton\" (click)=\"delete(upFile)\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <table id=\"tblFoot\" class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\n    <tfoot>\n      <tr>\n        <td><p *ngIf=\"isFileOk\" title=\"{{ file2Up.name }}\">{{ file2Up.name }}</p></td>\n        <td>\n          <select class=\"uk-select\" style=\"width: 100%;\" [(ngModel)]=\"selectedLayer\">\n            <option *ngFor=\"let layer of layers\" value=\"{{ layer.workspaceName }}\">[{{ layer.category }}] {{ layer.name }}</option>\n          </select>\n        </td>\n        <td class=\"uk-text-right\">\n          <span *ngIf=\"isFileOk\">{{ file2Up.size / 1000 | number:'1.1-1' }}</span>\n        </td>\n        <td class=\"uk-text-center\">\n          <i class=\"flaticon-export iButton\" (click)=\"inputFile.click()\"></i>\n          <input type=\"file\" accept=\".tif,.csv\" (change)=\"onFileChange($event)\" style=\"display:none\" #inputFile>\n        </td>\n        <td class=\"uk-text-center\"><i class=\"iButton\" [class.flaticon-plus]=\"!isUploading\" [class.active]=\"isFileOk && selectedLayer\" id=\"uploadBtn\" (click)=\"fileUpload()\"><div *ngIf=\"isUploading\" uk-spinner></div></i></td>\n      </tr>\n    </tfoot>\n  </table>\n</div>"
+module.exports = "<div class=\"uk-card uk-card-default uk-overflow-container\">\r\n  <table class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\r\n    <thead><tr>\r\n      <th>Filename</th>\r\n      <th>Layer</th>\r\n      <th class=\"uk-text-right\">Size (kB)</th>\r\n      <th class=\"uk-text-center\" colspan=\"2\">\r\n          <i class=\"iButton\" (click)=\"getFiles()\">&#8635;</i>\r\n      </th>\r\n    </tr></thead>\r\n  </table>\r\n\r\n  <div class=\"uk-overflow-auto uk-height-small\">\r\n    <table class=\"uk-table uk-table-hover uk-table-striped\" #tblBody>\r\n      <tbody>\r\n        <tr *ngFor=\"let upFile of uploadedFiles\">\r\n          <td><p title=\"{{ upFile.name }}\">{{ upFile.name }}</p></td>\r\n          <td><p title=\"{{ getLayerName(upFile.layer) }}\">{{ getLayerName(upFile.layer) }}</p></td>\r\n          <td class=\"uk-text-right\">{{ upFile.size * 1000 | number:'1.1-1' }}</td>\r\n          <td class=\"uk-text-center\"><i class=\"flaticon-import iButton\" (click)=\"download(upFile)\"></i></td>\r\n          <td class=\"uk-text-center\"><i class=\"flaticon-trash iButton\" (click)=\"delete(upFile)\"></i></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <table id=\"tblFoot\" class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\r\n    <tfoot>\r\n      <tr>\r\n        <td><p *ngIf=\"isFileOk\" title=\"{{ file2Up.name }}\">{{ file2Up.name }}</p></td>\r\n        <td>\r\n          <select class=\"uk-select\" style=\"width: 100%;\" [(ngModel)]=\"selectedLayer\">\r\n            <option *ngFor=\"let layer of layers\" value=\"{{ layer.workspaceName }}\">[{{ layer.category }}] {{ layer.name }}</option>\r\n          </select>\r\n        </td>\r\n        <td class=\"uk-text-right\">\r\n          <span *ngIf=\"isFileOk\">{{ file2Up.size / 1000 | number:'1.1-1' }}</span>\r\n        </td>\r\n        <td class=\"uk-text-center\">\r\n          <i class=\"flaticon-export iButton\" (click)=\"inputFile.click()\"></i>\r\n          <input type=\"file\" accept=\".tif,.csv\" (change)=\"onFileChange($event)\" style=\"display:none\" #inputFile>\r\n        </td>\r\n        <td class=\"uk-text-center\"><i class=\"iButton\" [class.flaticon-plus]=\"!isUploading\" [class.active]=\"isFileOk && selectedLayer\" id=\"uploadBtn\" (click)=\"fileUpload()\"><div *ngIf=\"isUploading\" uk-spinner></div></i></td>\r\n      </tr>\r\n    </tfoot>\r\n  </table>\r\n</div>"
 
 /***/ }),
 
@@ -7954,7 +8060,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/user-management/component/user-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [class.isLoggedIn]=\"isLoggedIn\" [class.isLoggedOut]=\"!isLoggedIn\">\n  <a href=\"#modal-login\" *ngIf=\"!isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Connect</span></a>\n  <a href=\"#modal-account\" *ngIf=\"isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Account</span></a>\n</div>\n<div id=\"modal-login\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-login *ngIf=\"!isLoggedIn\"></htm-login>\n  </div>\n</div>\n<div id=\"modal-register\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-register [token_activation]=\"token_activation\"></htm-register>\n  </div>\n</div>\n<div id=\"modal-recover\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-recovery [token_recover]=\"token_recover\" [submitedRecover]=\"submitedRecover\"></htm-recovery>\n  </div>\n</div>\n<div id=\"modal-account\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-account *ngIf=\"isLoggedIn\" [username]=\"username\" [token]=\"token\"></htm-account>\n  </div>\n</div>\n<div id=\"modal-activate\" uk-modal>\n  <div *ngIf=\"token_activation\" class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-activate  [token_activation]=\"token_activation\"></htm-activate>\n  </div>\n</div>\n"
+module.exports = "<div [class.isLoggedIn]=\"isLoggedIn\" [class.isLoggedOut]=\"!isLoggedIn\">\r\n  <a href=\"#modal-login\" *ngIf=\"!isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Connect</span></a>\r\n  <a href=\"#modal-account\" *ngIf=\"isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Account</span></a>\r\n</div>\r\n<div id=\"modal-login\" uk-modal>\r\n  <div class=\"uk-modal-dialog uk-modal-body\">\r\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\r\n    <htm-login *ngIf=\"!isLoggedIn\"></htm-login>\r\n  </div>\r\n</div>\r\n<div id=\"modal-register\" uk-modal>\r\n  <div class=\"uk-modal-dialog uk-modal-body\">\r\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\r\n    <htm-register [token_activation]=\"token_activation\"></htm-register>\r\n  </div>\r\n</div>\r\n<div id=\"modal-recover\" uk-modal>\r\n  <div class=\"uk-modal-dialog uk-modal-body\">\r\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\r\n    <htm-recovery [token_recover]=\"token_recover\" [submitedRecover]=\"submitedRecover\"></htm-recovery>\r\n  </div>\r\n</div>\r\n<div id=\"modal-account\" uk-modal>\r\n  <div class=\"uk-modal-dialog uk-modal-body\">\r\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\r\n    <htm-account *ngIf=\"isLoggedIn\" [username]=\"username\" [token]=\"token\"></htm-account>\r\n  </div>\r\n</div>\r\n<div id=\"modal-activate\" uk-modal>\r\n  <div *ngIf=\"token_activation\" class=\"uk-modal-dialog uk-modal-body\">\r\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\r\n    <htm-activate  [token_activation]=\"token_activation\"></htm-activate>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -8620,7 +8726,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".logo-container{\n  height: 100%;\n}\n.logo-container > img {\n  height: 100%;\n}\n.logos{\n    position: relative;\n    height: 300px;\n}\n.hotmaps {\n  float: left\n}\n.parteners {\n  float: right;\n}\n/* h1, h2 {\n    color:#57bec8;\n}\nh1 {\n    font-size: 150%;\n    margin:10px 0 5px 0;\n}\nh2 {\n    font-size: 130%;\n    font-weight: bold;\n    margin:10px 0 5px 0;\n} */\n.europe-logo {\n  position: relative;\n  float: left;\n  height: 100px;\n  width: 100%\n}\n\n\n.europe-logo > img {\n  height: 100%;\n  margin-left:-7px;\n  margin-top:-7px;\n  float: left;\n}\n.europe-logo > span {\n  position: absolute;\n  top:33%\n}\n", ""]);
+exports.push([module.i, ".logo-container{\r\n  height: 100%;\r\n}\r\n.logos{\r\n    position: relative;\r\n    height: 300px;\r\n}\r\n.hotmaps {\r\n  float: left\r\n}\r\n.parteners {\r\n  float: right;\r\n}\r\n\r\n.europe-logo {\r\n  position: relative;\r\n  float: left;\r\n  height: 100px;\r\n  width: 100%\r\n}\r\n\r\n\r\n.europe-logo > img {\r\n  height: 100%;\r\n  margin-left:-7px;\r\n  margin-top:-7px;\r\n  float: left;\r\n}\r\n.europe-logo > span {\r\n  position: absolute;\r\n  top:33%\r\n}\r\n", ""]);
 
 // exports
 
@@ -8633,7 +8739,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/welcome-page/welcome-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"modal-full\" class=\"uk-modal-full\" uk-modal>\n  <div class=\"uk-modal-dialog\">\n    <button\n      class=\"uk-modal-close-full uk-close-large\"\n      type=\"button\"\n      uk-close\n    ></button>\n    <div class=\"uk-grid-collapse uk-child-width-1-1@s uk-flex-middle\" uk-grid>\n      <!-- <div class=\"uk-background-cover\" uk-height-viewport>\n            </div> -->\n      <div class=\"uk-padding-large\">\n        <div class=\"logos\">\n          <div class=\"logo-container hotmaps\">\n            <img src=\"../../../assets/first-page/hotmaps_logo.png\" />\n          </div>\n          <div class=\"logo-container parteners\">\n            <img src=\"../../../assets/first-page/parteners.png\" />\n          </div>\n        </div>\n        <p>\n          The <strong>Hotmaps</strong> project aims at designing a toolbox to support public authorities, energy agencies and urban planners in strategic heating and cooling planning on local, regional and national levels, and in line with EU policies.\n          More information on the project can be found here: <a class=\"uk-link-heading\" href=\"http://www.hotmaps-project.eu\" target=\"_blank\">www.hotmaps-project.eu</a>\n        </p>\n        <p>\n          Here we present the beta-version of the <strong>Hotmaps toolbox</strong>. In the following year the tool will be updated and new releases will be available. In this version the basic functionalities for mapping heating and cooling in EU members are available. In addition also the first calculation models are available – more functionalities including additional calculation models and the possibility to save and load the status of your work on the toolbox will be available in the final release of the tool.\n        </p>\n        <ul class=\"uk-list uk-list-bullet\">\n          <li>\n              <strong>Open source:</strong> The developed tool and all related modules run without requiring any other commercial tool or software. Use of and access to Source Code is subject to Open Source Licenses. The datasets that are used in the tool can be found at <a class=\"uk-link-heading\" href=\"https://gitlab.com/hotmaps\" target=\"_blank\">www.gitlab.com/hotmaps</a>. The source code of the tool can be accessed via <a class=\"uk-link-heading\" href=\"https://github.com/HotMaps\" target=\"_blank\">www.github.com/hotmaps</a>.\n          </li>\n          <li><strong>Feedback and contributions:</strong> We are happy to receive feedback on the tool. Please use the feedback-button in the toolbox to let us know your opinions and suggestions for the tool. Hotmaps also invites other developers to contribute with additional calculation modules or datasets that can be integrated in the toolbox. Please also get in contact with us if you want to take part in the future development of the toolbox. </li>\n        </ul>\n        <p>\n            <strong>Disclaimer:</strong> The data and tools provided on this website are indicative and for research purposes only. No responsibility is taken for the accuracy of included data, figures and results or for using them for unintended purposes.\n        </p>\n        <p>\n            <strong>Data privacy:</strong> By clicking OK below, you accept that this website may use cookies..\n        </p>\n        <div class=\"europe-logo\">\n            <img src=\"../../../assets/first-page/co-funded-h2020-horiz_en.png\" />\n\n            <span>\n              This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 723677.\n            </span>\n          </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div id=\"modal-full\" class=\"uk-modal-full\" uk-modal>\r\n  <div class=\"uk-modal-dialog\">\r\n    <button\r\n      class=\"uk-modal-close-full uk-close-large\"\r\n      type=\"button\"\r\n      uk-close\r\n    ></button>\r\n    <div class=\"uk-grid-collapse uk-child-width-1-1@s uk-flex-middle\" uk-grid>\r\n      <!-- <div class=\"uk-background-cover\" uk-height-viewport>\r\n            </div> -->\r\n      <div class=\"uk-padding-large\">\r\n        <div class=\"uk-column-1-2\">\r\n          <div class=\"logo-container hotmaps\">\r\n            <img src=\"../../../assets/first-page/hotmaps_logo.png\" />\r\n          </div>\r\n          <div class=\"logo-container parteners\">\r\n            <img src=\"../../../assets/first-page/parteners.png\" />\r\n          </div>\r\n        </div>\r\n        <p>\r\n          The <strong>Hotmaps</strong> project aims at designing a toolbox to support public authorities, energy agencies and urban planners in strategic heating and cooling planning on local, regional and national levels, and in line with EU policies.\r\n          More information on the project can be found here: <a class=\"uk-link-heading\" href=\"http://www.hotmaps-project.eu\" target=\"_blank\">www.hotmaps-project.eu</a>\r\n        </p>\r\n        <p>\r\n          Here we present the beta-version of the <strong>Hotmaps toolbox</strong>. In the following year the tool will be updated and new releases will be available. In this version the basic functionalities for mapping heating and cooling in EU members are available. In addition also the first calculation models are available – more functionalities including additional calculation models and the possibility to save and load the status of your work on the toolbox will be available in the final release of the tool.\r\n        </p>\r\n        <ul class=\"uk-list uk-list-bullet\">\r\n          <li>\r\n              <strong>Open source:</strong> The developed tool and all related modules run without requiring any other commercial tool or software. Use of and access to Source Code is subject to Open Source Licenses. The datasets that are used in the tool can be found at <a class=\"uk-link-heading\" href=\"https://gitlab.com/hotmaps\" target=\"_blank\">www.gitlab.com/hotmaps</a>. The source code of the tool can be accessed via <a class=\"uk-link-heading\" href=\"https://github.com/HotMaps\" target=\"_blank\">www.github.com/hotmaps</a>.\r\n          </li>\r\n          <li><strong>Feedback and contributions:</strong> We are happy to receive feedback on the tool. Please use the feedback-button in the toolbox to let us know your opinions and suggestions for the tool. Hotmaps also invites other developers to contribute with additional calculation modules or datasets that can be integrated in the toolbox. Please also get in contact with us if you want to take part in the future development of the toolbox. </li>\r\n        </ul>\r\n        <p>\r\n            <strong>Disclaimer:</strong> The data and tools provided on this website are indicative and for research purposes only. No responsibility is taken for the accuracy of included data, figures and results or for using them for unintended purposes.\r\n        </p>\r\n        <p>\r\n            <strong>Data privacy:</strong> By clicking OK below, you accept that this website may use cookies..\r\n        </p>\r\n        <div class=\"europe-logo\">\r\n            <img src=\"../../../assets/first-page/co-funded-h2020-horiz_en.png\" />\r\n\r\n            <span>\r\n              This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 723677.\r\n            </span>\r\n          </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -8742,7 +8848,7 @@ WelcomePageComponent = __decorate([
 /***/ "../../../../../src/app/pages/map/component/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title-map\">\n  <htm-user-management></htm-user-management>\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  \n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    \n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel\n    [nutsIds]=\"nutsIds\"\n    [layers]=\"layers\"\n    [scaleLevel]=\"scaleLevel\"\n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\"\n    [cmRunned]=\"cmRunned\">\n  </htm-right-side-panel>\n</div>\n"
+module.exports = "<div class=\"title-map\">\r\n  <htm-user-management></htm-user-management>\r\n  <hmt-search-bar></hmt-search-bar>\r\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\r\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\r\n  <i class=\"icon-nav flaticon-vector\"></i>\r\n  <i class=\"icon-nav flaticon-folder-2\"></i>\r\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\r\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\r\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\r\n  <i class=\"icon-nav flaticon-technology-2\"></i>\r\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\r\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\r\n</div>\r\n<div class=\"container-map\">\r\n  <htm-top-side-panel></htm-top-side-panel>\r\n  <htm-left-side-panel></htm-left-side-panel>\r\n  \r\n  <div id=\"map\">\r\n    <htm-selection-tool *ngIf=\"selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\r\n    \r\n    <!--<hmt-toolbar></hmt-toolbar> -->\r\n    <!-- <div class=\"zoom-level-box\">\r\n       {{zoomlevel}}\r\n     </div> -->\r\n  </div>\r\n\r\n  <htm-right-side-panel\r\n    [nutsIds]=\"nutsIds\"\r\n    [layers]=\"layers\"\r\n    [scaleLevel]=\"scaleLevel\"\r\n    [locationsSelection]=\"locationsSelection\"\r\n    [areas]=\"areas\"\r\n    [cmRunned]=\"cmRunned\">\r\n  </htm-right-side-panel>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -8911,7 +9017,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_15" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_20" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -9066,7 +9172,7 @@ var MapService = (function (_super) {
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.selectionToolButtonStateService = selectionToolButtonStateService;
-        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["Y" /* defaultZoomLevel */]);
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_2" /* defaultZoomLevel */]);
         _this.layerArray = new __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
         // TODO: A modifier
         _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_14_rxjs_Subject__["Subject"](); // Observable source for click
@@ -9107,20 +9213,20 @@ var MapService = (function (_super) {
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["Z" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_0" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_1" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_2" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_3" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_4" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_5" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_6" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_8" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_9" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_10" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_11" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_12" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_3" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_4" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_5" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_6" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_8" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_9" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_10" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_11" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_12" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_13" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_14" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_15" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_16" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
@@ -9227,10 +9333,10 @@ var MapService = (function (_super) {
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
         this.logger.log('MapService/getNutsGeometryFromNuts()/');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_13" /* clickAccuracy */]).toBBoxString();
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_17" /* clickAccuracy */]).toBBoxString();
         bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + ' AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_14" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_18" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
@@ -9238,9 +9344,9 @@ var MapService = (function (_super) {
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_13" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["O" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_14" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_17" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["R" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_18" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
@@ -9331,17 +9437,19 @@ var MapService = (function (_super) {
         var overlayMaps = {};
         var baseLayers = {
             OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                zIndex: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_19" /* maps_order */],
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
                     ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
             }),
             // Improvement of coding style : (with codelyzer)
             // Exceeds maximum line length of 140
             Satellite: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+                zIndex: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_19" /* maps_order */],
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
                     ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
             }),
         };
-        var control = L.control.layers(baseLayers, null, { collapsed: false });
+        var control = L.control.layers(baseLayers, overlayMaps, { collapsed: false });
         control.addTo(this.map);
         this.map.addLayer(baseLayers.Satellite);
     };
@@ -9371,7 +9479,7 @@ var MapService = (function (_super) {
      */
     MapService.prototype.clearAll = function (map) {
         this.selectionToolService.clearAll(map);
-        this.cmLayerService.clearAll();
+        // this.cmLayerService.clearAll();
     };
     /**
      * Get the nutsSelected Subject of SelectionToolService
@@ -9423,7 +9531,7 @@ var MapService = (function (_super) {
         return layers;
     };
     MapService.prototype.displayCustomLayerFromCM = function (directory, type) {
-        this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map, 150);
+        this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map);
     };
     MapService.prototype.removeCMLayer = function () {
         // this.cmLayerService.clearAll()
@@ -9695,7 +9803,7 @@ var navigationButtons = [
 /***/ "../../../../../src/app/pages/searchbar/searchbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"search-bar\">\n    <i class=\"icon-search fa fa-search\"></i>\n    <input id=\"place-input\" class=\"on-map\" type=\"text\" placeholder=\"Go to place...\"\n        [(ngModel)]=\"address\" (keyup.enter)=\"goto()\" />\n</div>\n\n<!--<button id=\"goto\" class=\"btn btn-primary on-map\" href=\"#\" title=\"Goto Place\" (click)=\"goto()\"></button>-->"
+module.exports = "<div class=\"search-bar\">\r\n    <i class=\"icon-search fa fa-search\"></i>\r\n    <input id=\"place-input\" class=\"on-map\" type=\"text\" placeholder=\"Go to place...\"\r\n        [(ngModel)]=\"address\" (keyup.enter)=\"goto()\" />\r\n</div>\r\n\r\n<!--<button id=\"goto\" class=\"btn btn-primary on-map\" href=\"#\" title=\"Goto Place\" (click)=\"goto()\"></button>-->"
 
 /***/ }),
 
@@ -10256,9 +10364,9 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["y" /* nuts0 */], suffix: '' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["z" /* nuts1 */], suffix: '' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["A" /* nuts2 */], suffix: '' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["z" /* nuts0 */], suffix: '' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["A" /* nuts1 */], suffix: '' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["B" /* nuts2 */], suffix: '' },
     { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["d" /* nuts3 */], suffix: '' },
     { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["c" /* lau2 */], suffix: '' },
     { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["e" /* hectare */], suffix: '' },
@@ -10329,8 +10437,9 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Helper"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Dictionary"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["vector_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["tab1_datapanel"]; });
@@ -10371,8 +10480,9 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Helper"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Dictionary"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["vector_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["tab1_datapanel"]; });
@@ -10503,31 +10613,31 @@ WaitingStatusComponent = __decorate([
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return geoserverUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getIpUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getLocationFromIp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return defaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return defaultLayer; });
 /* unused harmony export styleNameHeat */
 /* unused harmony export heat_type */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return defaultLayerType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_33", function() { return urlTaigaFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return urlLegend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_34", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return defaultLayerType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_38", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_22", function() { return urlLegend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_39", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return formatImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_18", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return postStatsLayersHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return postStatsLayersNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return postHeatLoadProfileHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return postHeatLoadProfileNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return postDurationCurveHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return postDurationCurveNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return getElectricityMixFromNuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return postStatsLayersHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return postStatsLayersNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return postHeatLoadProfileHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return postHeatLoadProfileNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return postDurationCurveHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return postDurationCurveNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return getElectricityMixFromNuts0; });
 /* unused harmony export user_endpoint */
 /* unused harmony export upload_endpoint */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return post_user_register; });
@@ -10540,75 +10650,80 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return get_userupdateprofile_endpoint; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return get_diskspace_endpoint; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return get_filelist_endpoint; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_28", function() { return heatloadprofile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_33", function() { return heatloadprofile; });
 /* unused harmony export Durationcurve */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_35", function() { return energy_mix_title; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_40", function() { return energy_mix_title; });
 /* unused harmony export set404url */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return proj3035; });
 /* unused harmony export proj4326 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_30", function() { return heat_load_api_day; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_32", function() { return heat_load_api_year; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_31", function() { return heat_load_api_month; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_29", function() { return buttons_heat_load; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_35", function() { return heat_load_api_day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_37", function() { return heat_load_api_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_36", function() { return heat_load_api_month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_34", function() { return buttons_heat_load; });
 /* unused harmony export default_drop_down_button */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return calculation_module_category; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return raster_type_name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return vector_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return calculation_module_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return raster_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return vector_type_name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return summay_drop_down_buttons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return industry_layer_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return scale_layer_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return cm_layers_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return layers_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_19", function() { return maps_order; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return zoomLevelDetectChange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_25", function() { return constant_year_duration_curve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_30", function() { return constant_year_duration_curve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_21", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return unit_population; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return defaultZoomLevel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_20", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return nuts2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return nuts3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return lau2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return MAPOVERLAYADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_40", function() { return rightPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_39", function() { return leftPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_45", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_44", function() { return leftPanelSize; });
 /* unused harmony export default_tab_datapanel */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return tab1_datapanel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_24", function() { return tab2_datapanel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_37", function() { return duration_curve_graph_title; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_38", function() { return duration_curve_graph_category; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_26", function() { return duration_curve_graph_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_27", function() { return heat_load_graph_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_36", function() { return energy_mix_graph_category; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_23", function() { return energy_mix_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return tab1_datapanel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_29", function() { return tab2_datapanel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_42", function() { return duration_curve_graph_title; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_43", function() { return duration_curve_graph_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_31", function() { return duration_curve_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_32", function() { return heat_load_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_41", function() { return energy_mix_graph_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_28", function() { return energy_mix_options; });
 /* unused harmony export clculation_module_graph_options */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_20", function() { return color_usedspace; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_21", function() { return color_unusedspace; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_18", function() { return labels_diskspacechart; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_19", function() { return diskspacechart_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_22", function() { return inputs_categories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_25", function() { return color_usedspace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_26", function() { return color_unusedspace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_23", function() { return labels_diskspacechart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_24", function() { return diskspacechart_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_27", function() { return inputs_categories; });
 
 
 /**
@@ -10619,17 +10734,17 @@ WaitingStatusComponent = __decorate([
 // listing import lines alphabetized by the module
 var prodUrl = 'http://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
 var devUrl = 'https://api.hotmapsdev.hevs.ch/api'; // 'https://hotmapsdev.hevs.ch:9006/api';
-var localApiUrl = 'http://153.109.130.81:5000/api';
+var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
 var geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 var geocodeUrl = 'https://nominatim.openstreetmap.org/search?q='; // prefer
 // prefer
-var geoserverUrl = geoserverProdUrl;
+var geoserverUrl = geoserverDevUrl;
 var getIpUrl = 'https://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = localApiUrl;
+var apiUrl = devUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
 var heat_type = 'heat';
@@ -10698,6 +10813,15 @@ var summay_drop_down_buttons = [
     { name: 'Electricity', ref: 'electricity', selected: false, display: false },
     { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false }
 ];
+// Layer order number
+/*
+  More the number is big, more hight is the layer on the toolbox
+*/
+var industry_layer_order = 6;
+var scale_layer_order = 5;
+var cm_layers_order = 4;
+var layers_order = 3;
+var maps_order = 1;
 // layers constant
 var timeOut = 200000;
 // layers constant
@@ -11484,8 +11608,9 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Helper"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Dictionary"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["raster_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["vector_type_name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["tab1_datapanel"]; });
@@ -11514,22 +11639,23 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["w"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["x"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["J"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["O"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["M"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["w"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["x"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["y"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["L"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["R"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["O"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_28"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_29"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_30"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_31"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_32"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_34"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_39"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_40"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_33"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_34"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_35"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_36"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_37"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_39"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_44"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_45"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -11715,7 +11841,8 @@ var NumberFormatPipe = (function () {
     function NumberFormatPipe() {
     }
     NumberFormatPipe.prototype.transform = function (value, args) {
-        return value.replace(',', ' ');
+        var val_trans = value.split(',').join(' ').split('.').join(',');
+        return val_trans;
     };
     return NumberFormatPipe;
 }());
