@@ -247,6 +247,11 @@ export const clculation_module_graph_options = {
         }]
   }
 }
+
+export const default_color_shpfile = '#FFA500'
+export const default_fillColor_shpfile = '#FFA500'
+export const default_fillOpacity_shpfile = 0.5
+
 export const color_usedspace = '#123';
 export const color_unusedspace = '#321';
 export const labels_diskspacechart = ['Used space', 'Unused space'];

@@ -1,4 +1,4 @@
-import {apiUrl, Helper, vector_type_name, raster_type_name, cm_layers_order} from 'app/shared';
+import {apiUrl, Helper, vector_type_name, raster_type_name, cm_layers_order, default_fillOpacity_shpfile, default_fillColor_shpfile, default_color_shpfile} from 'app/shared';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 
@@ -57,19 +57,16 @@ export class CMLayersService extends APIService {
       layer = new L.GeoJSON(data,{
         onEachFeature: this.onEachFeature,
         style:(feature) => {
-          let color = '(255,127,80)'
-          let fillColor = '(255,127,80)'
-          let fillOpacity = 0.5
+          let color = default_color_shpfile
+          let fillColor = default_fillColor_shpfile
+          let fillOpacity = default_fillOpacity_shpfile
           if(!this.helper.isNullOrUndefined(feature.properties['color'])) color = feature.properties['color']
           if(!this.helper.isNullOrUndefined(feature.properties['fillColor'])) fillColor = feature.properties['fillColor']
-          if(!this.helper.isNullOrUndefined(feature.properties['fillOpacity'])) color = feature.properties['fillOpacity']
-          //const weight = feature.properties['weight']
-          // const fillColor = feature.properties['fillColor']
-
+          if(!this.helper.isNullOrUndefined(feature.properties['opacity'])) color = feature.properties['opacity']
 
           return {
-            color: 'rgb'+ color,
-            fillColor:'rgb'+ fillColor,
+            color: color,
+            fillColor:fillColor,
             fillOpacity: fillOpacity
           }
 
@@ -92,7 +89,7 @@ export class CMLayersService extends APIService {
   onEachFeature(feature, layer) {
     let html = ''
     Object.keys(feature.properties).map((prop) => {
-      if (prop !== 'RGBA') {
+      if (prop != 'color' && prop != 'fillColor' && prop != 'opacity') {
         html += '<bold>' + prop + ':</bold>';
         html += '<span>' + feature.properties[prop] + '</span><br />';
       }

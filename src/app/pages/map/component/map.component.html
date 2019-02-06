@@ -13,12 +13,13 @@
   <i class="icon-nav flaticon-database-7"></i> -->
 </div>
 <div class="container-map">
-  <htm-top-side-panel></htm-top-side-panel>
-  <htm-left-side-panel></htm-left-side-panel>
-  
+  <htm-top-side-panel ></htm-top-side-panel>
+
+    <htm-left-side-panel [hidden]="!openLeftSidebar"></htm-left-side-panel>
+
   <div id="map">
     <htm-selection-tool *ngIf="selectionToolShow" onclick="event.stopPropagation();"></htm-selection-tool>
-    
+
     <!--<hmt-toolbar></hmt-toolbar> -->
     <!-- <div class="zoom-level-box">
        {{zoomlevel}}
@@ -26,6 +27,7 @@
   </div>
 
   <htm-right-side-panel
+    [hidden]="!openRightSidebar"
     [nutsIds]="nutsIds"
     [layers]="layers"
     [scaleLevel]="scaleLevel"
