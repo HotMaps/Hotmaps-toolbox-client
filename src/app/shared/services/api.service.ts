@@ -5,7 +5,7 @@
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
+import {Http, Headers, RequestOptionsArgs} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -74,35 +74,37 @@ export class APIService {
     return result;
   }
 
-  POST(payload, url): Promise<any> {
-
+  POST(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {
+    if (!request.headers)
+      request.headers = this.headers;
     return this.http
-      .post(url, JSON.stringify(payload), {headers: this.headers})
+      .post(url, JSON.stringify(payload), request)
       .timeout(timeOut)
       .toPromise()
-      .then( response => response.json() as any)
+      .then( response => toJson ? response.json() as any : response)
       .catch(this.handleError.bind(this));
   }
 
-  POSTunStringify(payload, url): Promise<any> {
-
+  POSTunStringify(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {    
+    if (!request.headers)
+      request.headers = this.headers;
     return this.http
-      .post(url, payload, {headers: this.headers})
+      .post(url, payload, request)
       .timeout(timeOut)
       .toPromise()
-      .then( response => response.json() as any)
+      .then( response => toJson ? response.json() as any : response)
       .catch(this.handleError.bind(this));
   }
-  GET(url): any {
-    return this.http.get(url, this.headers)
+  GET(url, request:RequestOptionsArgs = {}): any {
+    return this.http.get(url, request)
   }
-  DELETE(url): any {
-    return this.http.delete(url);
+  DELETE(url, request:RequestOptionsArgs = {}): any {
+    return this.http.delete(url, request);
 
   }
-  async pGET(url): Promise<any>  {
+  async pGET(url, request:RequestOptionsArgs = {}): Promise<any>  {
     return await this.http
-      .get(url, this.headers)
+      .get(url, request)
       .toPromise()
       .then( response => response  )
 

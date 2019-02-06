@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, ResponseContentType } from '@angular/http';
+import { Http, ResponseContentType, Headers } from '@angular/http';
 
 import { UserManagementStatusService } from 'app/features/user-management/service/user-management-status.service';
 import { SelectionToolService } from 'app/features/selection-tools';
@@ -11,7 +11,10 @@ import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
 import { nuts3, lau2, hectare, constant_year, apiUrl } from '../../shared/data.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { APIService } from './api.service';
+import { Logger } from './logger.service';
+import { LoaderService } from './loader.service';
 
 
 interface LayerInfo {
@@ -39,7 +42,7 @@ export interface UploadedFile {
 export const LayersExportInfo = {"default":{"schema":"","data_type":"raster"},"heat_tot_curr_density":{"schema":"geo","data_type":"raster"},"heat_res_curr_density":{"schema":"geo","data_type":"raster"},"heat_nonres_curr_density":{"schema":"geo","data_type":"raster"},"gfa_tot_curr_density":{"schema":"geo","data_type":"raster"},"gfa_res_curr_density":{"schema":"geo","data_type":"raster"},"gfa_nonres_curr_density":{"schema":"geo","data_type":"raster"},"vol_tot_curr_density":{"schema":"geo","data_type":"raster"},"vol_res_curr_density":{"schema":"geo","data_type":"raster"},"vol_nonres_curr_density":{"schema":"geo","data_type":"raster"},"industrial_database_emissions":{"schema":"public","data_type":"csv"},"industrial_database_excess_heat":{"schema":"public","data_type":"csv"},"industrial_database_companyname":{"schema":"public","data_type":"csv"},"industrial_database_subsector":{"schema":"public","data_type":"csv"},"pop_tot_curr_density":{"schema":"geo","data_type":"raster"},"wwtp_power":{"schema":"public","data_type":"csv"},"wwtp_capacity":{"schema":"public","data_type":"csv"},"agricultural_residues_view":{"schema":"geo","data_type":"csv"},"livestock_effluents_view":{"schema":"geo","data_type":"csv"},"potential_forest":{"schema":"geo","data_type":"raster"},"potential_municipal_solid_waste":{"schema":"public","data_type":"csv"},"wind_50m":{"schema":"geo","data_type":"raster"},"solar_optimal_total":{"schema":"geo","data_type":"raster"},"shallow_geothermal_potential":{"schema":"geo","data_type":"csv"},"land_surface_temperature":{"schema":"geo","data_type":"raster"},"cdd_curr":{"schema":"geo","data_type":"raster"},"hdd_curr":{"schema":"geo","data_type":"raster"},"solar_radiation":{"schema":"geo","data_type":"raster"},"output_wind_speed":{"schema":"geo","data_type":"raster"},"yearly_co2_emission":{"schema":"public","data_type":"csv"}};
 
 @Injectable()
-export class UploadService {
+export class UploadService extends APIService {
 
   private userToken: string;  
 
@@ -55,9 +58,11 @@ export class UploadService {
     return this.uploadedFiles;
   }
 
-  constructor(private toasterService: ToasterService, private http: Http,
+  constructor(
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
-    private helper: Helper, private mapService: MapService) { 
+    private helper: Helper, private mapService: MapService,
+    protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) { 
+      super(http, logger, loaderService, toasterService);
       this.userStatus.getUserToken().subscribe(value => this.userToken = value);
     }
 
@@ -66,9 +71,9 @@ export class UploadService {
    * @param res Response of the api
    * @param success true from then, false from catch
    */
-  private showMsg(res: Response, success: boolean) {
+  private showMsg(res: any, success: boolean) {
     this.list();
-    this.toasterService.showToaster(res.json()["message"]);
+    this.toasterService.showToaster(res["message"]);
     return success;
   }
 
@@ -84,7 +89,7 @@ export class UploadService {
     form.append('name', file.name);
     form.append('file', file, file.name);
     form.append('layer', layer);
-    return this.http.post(uploadUrl + 'add', form).toPromise()
+    return super.POSTunStringify(form, uploadUrl + 'add', {headers: new Headers() })
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
   }
@@ -98,11 +103,11 @@ export class UploadService {
     this.remove(id); // remove first
     if (!isNumber(id)) id = (id as UploadedFile).id;
 
-    return this.http.delete(uploadUrl + 'delete', {
+    return super.DELETE(uploadUrl + 'delete', {
       body: { token: this.userToken, id: id }
     }).toPromise()
-      .then(response => this.showMsg(response, true))
-      .catch(response => this.showMsg(response, false));
+      .then(response => this.showMsg(response.json(), true))
+      .catch(response => this.showMsg(response.json(), false));
   }
   
   /**
@@ -114,9 +119,9 @@ export class UploadService {
   download(id: number|UploadedFile): Promise<string> {
     if (!isNumber(id)) id = (id as UploadedFile).id;
 
-    return this.http.post(uploadUrl + 'download', {
+    return super.POSTunStringify({
       token: this.userToken, id: id
-    }, { responseType : ResponseContentType.Blob }).toPromise().then(data => URL.createObjectURL(data.blob()) as string
+    }, uploadUrl + 'download', { responseType : ResponseContentType.Blob, headers: new Headers() }).then(data => URL.createObjectURL(data) as string
     ).catch(err => {      
       return ""; // If file dont exist
     });
@@ -127,9 +132,9 @@ export class UploadService {
    * @returns Promise with the files
    */
   list(): Promise<UploadedFile[]> {
-    return this.http.post(uploadUrl + 'list', { token: this.userToken })
-      .toPromise().then(response => {
-        this.uploadedFiles.next(response.json()["uploads"]);
+    return super.POSTunStringify({ token: this.userToken }, uploadUrl + 'list')
+      .then(response => {
+        this.uploadedFiles.next(response["uploads"]);
         return this.getUploadedFiles().getValue();
       });
   }
@@ -198,10 +203,11 @@ export class UploadService {
       isNuts = false;
     }
 
-    return this.http.post(uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`, {
+    return super.POSTunStringify({
       layers: layer, [isNuts ? 'nuts': 'areas' ] : nutsOrAreas,
       schema: schema, year : year.toString()
-    }, { responseType : ResponseContentType.Blob }).toPromise().then(data => {
+    }, uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`,
+    { responseType : ResponseContentType.Blob }, false).then(data => {
         return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
     }).catch(() => {
       this.toasterService.showToaster("Sorry, We can't export this layer yet");
