@@ -133,7 +133,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: solar_optimal_total + '_min', business_name: 'Minimum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells'},
-  {id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar potential estimate'},
+  {id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate'},
 
   {id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed'},
   {id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed'},
@@ -142,17 +142,13 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'average_heat_conductivity'},
 
-  {id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste based on NUTS3 data'},
+  {id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
 
-  {id: 176, api_name: potential_municipal_solid_waste + '_agriculture_pp', business_name: 'Potential from Waste per capita'},
 
-  {id: 176, api_name: potential_municipal_solid_waste + '_NUTS_potential', business_name: 'Potential from agricultural residues based on NUTS3 data'},
-  {id: 176, api_name: potential_municipal_solid_waste + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
-
-  {id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues based on NUTS3 data'},
+  {id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues - maximum resolution: NUTS3'},
   {id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
 
-  {id: 176, api_name: livestock_effluents_view + '_NUTS_potential', business_name: 'Potential from livestock effluents based on NUTS3 data'},
+  {id: 176, api_name: livestock_effluents_view + '_NUTS_potential', business_name: 'Potential from livestock effluents - maximum resolution: NUTS3'},
   {id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita'},
 
   {id: 176, api_name: potential_forest + '_average', business_name: 'Average potential from forest resdiues'},
@@ -201,7 +197,3 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
 
 ];
-
-
-
-

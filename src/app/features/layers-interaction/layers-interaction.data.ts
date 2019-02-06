@@ -114,13 +114,13 @@ export const DataInteractionArray: DataInteractionClass[] = [
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_wind/blob/master/README.md', isLoading:false},
 
 
-  {id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
+  {id: 20, name: 'Solar radiation on building footprint', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_optimal_total', layer_type: 'solar_optimal_total',
     download_url: gitlabUrl + '/potential/potential_solar/blob/master/data/solar_opt.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solar/blob/master/README.md', isLoading:false},
 
 // shallow geothermal vector layer
-  {id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+  {id: 20, name: 'Geothermal potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['no_showed'], styleName: 'shallow_geothermal_potential', layer_type:  'shallow_geothermal_potential',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading:false},
 
@@ -131,7 +131,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
 // Climate
 
-  {id: 20, name: 'Average Temperature', category: 'Climate', isSelected: false,
+  {id: 20, name: 'Average temperature', category: 'Climate', isSelected: false,
     workspaceName: 'land_surface_temperature', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'temp_v2', layer_type: 'land_surface_temperature',
     download_url: gitlabUrl + '/climate/climate_land_surface_temperature/blob/master/data/eurolst_mean.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_land_surface_temperature/blob/master/README.md', isLoading:false},
@@ -142,12 +142,12 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: 20, name: 'Heating degree days', category: 'Climate', isSelected: false,
     workspaceName: 'hdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd_curr_tif', layer_type: 'hdd_curr',
     download_url: gitlabUrl + '/climate/HDD_ha_curr/blob/master/data/HDD_curr.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/HDD_ha_curr/blob/master/data/README.md', isLoading:false},
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/HDD_ha_curr/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Solar radiation', category: 'Climate', isSelected: false,
     workspaceName: 'solar_radiation', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'solar_optimal_total', layer_type: 'solar_radiation',
     download_url: gitlabUrl + '/climate/climate_solar_radiation/blob/master/data/output_solar_radiation.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_solar_radiation/blob/master/README.md', isLoading:false},
-  {id: 20, name: 'Wind Speed', category: 'Climate', isSelected: false,
+  {id: 20, name: 'Wind speed', category: 'Climate', isSelected: false,
     workspaceName: 'output_wind_speed', zoomLevel: 0, ref: ['overall','climate'], styleName: 'wind', layer_type:  'output_wind_speed',
     download_url: gitlabUrl + '/climate/climate_wind_speed/blob/master/data/EU_wind_speed_average.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_wind_speed/blob/master/README.md', isLoading:false},
