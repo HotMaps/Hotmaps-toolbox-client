@@ -2,6 +2,10 @@
   margin: 5px;
   padding: 5px;
 }
+option {
+  background: #333333;
+  color:white
+}
 
 .component > input {
   width: 100%;
