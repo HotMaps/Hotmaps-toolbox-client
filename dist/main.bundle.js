@@ -3118,7 +3118,7 @@ var DataInteractionArray = [
         download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading: false },
     { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
-        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* defaultLayerType */],
+        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: 'cooling',
         download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
