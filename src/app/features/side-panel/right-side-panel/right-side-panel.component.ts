@@ -245,10 +245,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() }
   }
   setDurationCurveIds() {
-    this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve }
+    this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve, scale_level: this.interactionService.getScaleLevel() }
   }
   setDurationCurveAreas() {
-    this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: constant_year_duration_curve}
+    this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: constant_year_duration_curve, }
   }
 
 
