@@ -198,9 +198,11 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     let payloadTmp;
     let cm_name='';
     if (this.scaleLevel !== '-1') {
-      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
+      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
+      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
     } else if (this.scaleLevel === '-1') {
-      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
+      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
+      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
     }
     if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
       cm_name+=this.cmRunned.cm.cm_prefix + ' - '
