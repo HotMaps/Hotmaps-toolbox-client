@@ -16,7 +16,7 @@ export const SelectionScaleClassArray: SelectionScaleClass[] = [
   {id: 6, name: 'hectare'},
 ];
 // NUTS geometry is taken from the population layer but we don't use other data
-const action = 'population';
+const action = 'nuts';
 export const hectareOption = {
   layers: 'hotmaps:' + action + 0 ,
   format: formatImage,

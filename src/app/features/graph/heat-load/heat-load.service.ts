@@ -51,15 +51,15 @@ export class HeatLoadAggregateService extends APIService {
 
   heatLoadMultiDataset(data) {
     data.values.map((value) => {
-      this.multiDatasets[0].data.push(Math.round(value.min));
-      this.multiDatasets[1].data.push(Math.round(value.max));
-      this.multiDatasets[2].data.push(Math.round(value.average));
+      this.multiDatasets[0].data.push(value.min);
+      this.multiDatasets[1].data.push(value.max);
+      this.multiDatasets[2].data.push(value.average);
     });
     this.formattedValues.push(this.multiDatasets);
   }
   heatLoadSingleDataset(data) {
     data.values.map((value) => {
-      this.singleDataset[0].data.push(Math.round(value.value));
+      this.singleDataset[0].data.push(value.value);
     });
     this.formattedValues.push(this.singleDataset);
   }

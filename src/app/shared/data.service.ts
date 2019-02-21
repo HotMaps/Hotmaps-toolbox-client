@@ -26,7 +26,7 @@ export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';   
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = localApiUrl;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -45,7 +45,7 @@ export const formatImage = 'image/png8';
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
-export const populationLayerName = 'pop_tot_curr_density_tif'
+export const populationLayerName = 'pop_tot_curr_density'
 export const postStatsLayersHectares = '/stats/layers/hectares';
 export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
 export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
@@ -78,7 +78,7 @@ export const energy_mix_title = 'Electricity generation mix';
 export const set404url   = 'set404url';
 
 // Projection data string
-export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
+export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=43f21000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 export const proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 
 // Heat load profil

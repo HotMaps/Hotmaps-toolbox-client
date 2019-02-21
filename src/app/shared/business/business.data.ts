@@ -26,6 +26,7 @@ const yearly_co2_emission = 'yearly_co2_emission'
 const hdd_curr = 'hdd_curr'
 const cdd_curr = 'cdd_curr'
 const land_surface_temperature = 'land_surface_temperature'
+
 const agricultural_residues_view = 'agricultural_residues_view'
 const solar_radiation = 'solar_radiation'
 
@@ -172,8 +173,8 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 177, api_name: hdd_curr + '_cells', business_name: 'Counted cells'},
 
   {id: 175, api_name: land_surface_temperature + '_average', business_name: 'Average Temperature'},
-  {id: 176, api_name: land_surface_temperature + '_max', business_name: 'Maximum Temperature'},
-  {id: 176, api_name: land_surface_temperature + '_min', business_name: 'Minimum Temperature'},
+  {id: 176, api_name: land_surface_temperature + '_maximum', business_name: 'Maximum Temperature'},
+  {id: 176, api_name: land_surface_temperature + '_minimum', business_name: 'Minimum Temperature'},
   {id: 177, api_name: land_surface_temperature + '_cells', business_name: 'Counted cells'},
 
   {id: 176, api_name: solar_radiation + '_average', business_name: 'Average solar radiation'},
