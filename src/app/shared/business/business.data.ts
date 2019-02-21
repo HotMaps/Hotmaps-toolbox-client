@@ -21,7 +21,7 @@ const livestock_effluents_view = 'livestock_effluents_view'
 const potential_municipal_solid_waste = 'potential_municipal_solid_waste'
 const output_wind_speed = 'output_wind_speed'
 const wind_50m = 'wind_50m'
-const potential_potential_shallowgeothermal = 'potential_shallowgeothermal'
+const potential_potential_shallowgeothermal = 'shallow_geothermal_potential'
 const yearly_co2_emission = 'yearly_co2_emission'
 const hdd_curr = 'hdd_curr'
 const cdd_curr = 'cdd_curr'
@@ -140,7 +140,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: wind_50m + '_max', business_name: 'Maximum wind speed'},
   {id: 176, api_name: wind_50m + '_cells', business_name: 'Counted cells'},
 
-  {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'average_heat_conductivity'},
+  {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'Average heat conductivity'},
 
   {id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
 
