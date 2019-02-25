@@ -23,7 +23,7 @@ export const hectareOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 1 + ''+date_filter,
+  cql_filter : 'stat_levl_ = ' + 1 + date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -32,7 +32,7 @@ export const nuts0LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 0 + ''+date_filter,
+  cql_filter : 'stat_levl_ = ' + 0 +date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -41,7 +41,7 @@ export const nuts1LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 1 + ''+date_filter,
+  cql_filter : 'stat_levl_ = ' + 1 + date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -50,7 +50,7 @@ export const nuts2LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 2 + ' '+date_filter,
+  cql_filter : 'stat_levl_ = ' + 2 + date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -71,13 +71,13 @@ export const  lau2LayerOption = {
   zIndex: scale_layer_order
 }
 
-/*
-* loading  Event  Fired when the grid layer starts loading tiles.
+/* *
+
+loading  Event  Fired when the grid layer starts loading tiles.
 tileunload   TileEvent  Fired when a tile is removed (e.g. when a tile goes off the screen).
 tileloadstart  TileEvent  Fired when a tile is requested and starts loading.
 tileerror  TileErrorEvent   Fired when there is an error loading a tile.
 tileload   TileEvent  Fired when a tile loads.
 load   Event  Fired when the grid layer loaded all visible tiles.
-*
-*
+
 * */
