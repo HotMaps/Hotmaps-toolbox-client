@@ -17,12 +17,13 @@ export const SelectionScaleClassArray: SelectionScaleClass[] = [
 ];
 // NUTS geometry is taken from the population layer but we don't use other data
 const action = 'nuts';
+const date_filter = " AND year='2013-01-01'"
 export const hectareOption = {
   layers: 'hotmaps:' + action + 0 ,
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 1 + '',
+  cql_filter : 'stat_levl_ = ' + 1 + ''+date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -31,7 +32,7 @@ export const nuts0LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 0 + '',
+  cql_filter : 'stat_levl_ = ' + 0 + ''+date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -40,7 +41,7 @@ export const nuts1LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 1 + '',
+  cql_filter : 'stat_levl_ = ' + 1 + ''+date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -49,7 +50,7 @@ export const nuts2LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 2 + '',
+  cql_filter : 'stat_levl_ = ' + 2 + ' '+date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
@@ -58,7 +59,7 @@ export const nuts3LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ = ' + 3 + '',
+  cql_filter : 'stat_levl_ =' + 3+date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }
