@@ -109,7 +109,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//Industry
-  {id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO² emissions of energy intensive industries'},
+  {id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO₂ emissions of energy intensive industries'},
   {id: 178, api_name: 'industrial_database_excess_heat_value1', business_name: 'excess heat potential [100°C - 200°C]'},
   {id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential [200°C - 500°C]'},
   {id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential [ > 500°C]'},
