@@ -38,7 +38,7 @@ export const wwtpLayerName   = 'wwtp';
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
 export const urlLegend = geoserverUrl + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style='
 export const timeOutAjaxRequest = 10000;
-export const unit_heatload_profil = 'kW';
+export const unit_heatload_profil = 'MW';
 
 export const formatImage = 'image/png8';
 // layer_name
