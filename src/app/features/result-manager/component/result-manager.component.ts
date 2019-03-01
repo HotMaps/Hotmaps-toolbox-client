@@ -99,24 +99,27 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
-
+        this.resetIndicators();
         self.setSummaryResult(result);
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
+        this.resetIndicators();
         self.indicatorLoading = false
         self.logger.log(JSON.stringify(e));
         self.displayExportDataStatus = false;
       });
     } else {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
-
+        this.resetIndicators();
         self.setSummaryResult(result)
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
+        this.resetIndicators();
+
         self.indicatorLoading = false
         self.logger.log(JSON.stringify(e));
         self.displayExportDataStatus = false;
@@ -363,10 +366,13 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   resetResult() {
     this.displayExportDataStatus = false;
-    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
+    this.resetIndicators();
     this.result.graphics = [];
     this.result.raster_layers = [];
     this.result.vector_layers = [];
+  }
+  resetIndicators() {
+    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
   }
   tabSwitch(tabName) {
     this.tabSelected = tabName
