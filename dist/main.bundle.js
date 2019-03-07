@@ -10720,7 +10720,7 @@ var prodUrl = 'https://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:900
 var devUrl = 'https://api.hotmapsdev.hevs.ch/api'; // 'https://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
 var geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-var geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
+var geoserverProdUrl = 'https://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
 var geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 var geocodeUrl = 'https://nominatim.openstreetmap.org/search?q='; // prefer
 // prefer
