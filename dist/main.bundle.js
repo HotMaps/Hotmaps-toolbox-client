@@ -372,7 +372,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.router.events.subscribe(function (val) {
-            return _this.isMap = val.url === '/map';
+            return _this.isMap = val.url === '/';
         });
         if (this.router.url === '/register') {
             // console.log('isRegisterRoute')
