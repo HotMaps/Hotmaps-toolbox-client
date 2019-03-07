@@ -8,7 +8,7 @@ import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
 import {APIService} from '../../../shared/services/api.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
-import {apiUrl, heat_load_api_year, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
+import {apiUrl, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import { Helper } from 'app/shared';
 
@@ -25,19 +25,25 @@ export class HeatLoadAggregateService extends APIService {
     {label: 'Value', data: [], borderColor: '#2889DF', fill: false}
   ]
   private formattedValues = [];
-
+  private heatLoadData = new BehaviorSubject<any>(null);
 
   private labels = [];
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
+  setHeatLoadData(data) {
+    this.heatLoadData.next(data)
+  }
+  getHeatLoadData() {
+    return this.heatLoadData;
+  }
 
   getHeatLoad(payload, type_api_ref, isHectare) {
     if (isHectare === false) {
-      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref)
+      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       return super.POST(payload, apiUrl + postHeatLoadProfileNutsLau);
     }else {
-      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref)
+      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       this.logger.log(apiUrl + postHeatLoadProfileHectares)
       return super.POST(payload, apiUrl + postHeatLoadProfileHectares);
     }
@@ -45,15 +51,15 @@ export class HeatLoadAggregateService extends APIService {
 
   heatLoadMultiDataset(data) {
     data.values.map((value) => {
-      this.multiDatasets[0].data.push(Math.round(value.min));
-      this.multiDatasets[1].data.push(Math.round(value.max));
-      this.multiDatasets[2].data.push(Math.round(value.average));
+      this.multiDatasets[0].data.push(value.min);
+      this.multiDatasets[1].data.push(value.max);
+      this.multiDatasets[2].data.push(value.average);
     });
     this.formattedValues.push(this.multiDatasets);
   }
   heatLoadSingleDataset(data) {
     data.values.map((value) => {
-      this.singleDataset[0].data.push(Math.round(value.value));
+      this.singleDataset[0].data.push(value.value);
     });
     this.formattedValues.push(this.singleDataset);
   }

@@ -1,3 +1,5 @@
+import { SelectionScaleService } from 'app/features/selection-scale';
+import { ToasterService } from './toaster.service';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -10,7 +12,7 @@ import { NavigationBarService } from './../../pages/nav/service/navigation-bar.s
 import { Logger } from './logger.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
 import { SelectionToolButtonStateService } from 'app/features/selection-tools';
-import { Dictionary } from 'app/shared';
+import {APIService, Dictionary} from 'app/shared';
 import { LayersService } from 'app/features/layers';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -25,12 +27,17 @@ import { CalculationModuleService } from './../../features/calculation-module/se
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 
 @Injectable()
-export class InteractionService {
+export class InteractionService  {
     private summaryResultState = false;
     private electricityGenerationResultState = false;
 
+    private currentCMiD = null;
+    private cmRunning = false;
+
+    private cmRunningProgess = 0;
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
+        private toasterService: ToasterService,
         private navigationBarService: NavigationBarService,
         private summaryResultService: SummaryResultService,
         private layerService: LayersService, private exportDataService: ExportDataService,
@@ -39,13 +46,26 @@ export class InteractionService {
         private dataInteractionService: DataInteractionService, private electricityMixService: ElectricityMixService,
         private calculationModuleStatusService: CalculationModuleStatusService,
         private calculationModuleService: CalculationModuleService,
-        private calculationHeatLoadDividedService: CalculationHeatLoadDividedService
+        private calculationHeatLoadDividedService: CalculationHeatLoadDividedService,
+        private selectionScaleService:SelectionScaleService
 
     ) { }
-
+    getScaleLevel() {
+      return this.selectionScaleService.getScaleValue();
+    }
+    showToaster(msg) {
+      this.toasterService.showToaster(msg);
+    }
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
+/*     setLoadingLayerInterraction(layer) {
+      this.dataInteractionService.setLoadingLayerInterraction(layer)
+    }
+    unsetLoadingLayerInterraction(layer) {
+      this.dataInteractionService.unsetLoadingLayerInterraction(layer)
+      
+    } */
     // interface for export data service
 
     displayButtonExportStats(value: boolean) {
@@ -135,6 +155,12 @@ export class InteractionService {
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
+    getHeatLoadData() {
+      return this.heatLoadAggregateService.getHeatLoadData()
+    }
+    setHeatLoadData(data) {
+      return this.heatLoadAggregateService.setHeatLoadData(data)
+    }
     formatHeatLoadForChartjs(data, api_ref){
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     }
@@ -144,6 +170,10 @@ export class InteractionService {
     transformDurationCurveData(data){
         return this.durationCurveService.transformData(data);
     }
+    getDefaultDatasetDurationCurve() {
+      return this.durationCurveService.getDefaultDatasetDurationCurve();
+
+    }
     getSplittedResults(results){
         return this.dataInteractionService.getSplittedResults(results);
     }
@@ -151,8 +181,8 @@ export class InteractionService {
         return this.dataInteractionService.getSplittedResults(r);
     }
 
-    getElectricityMixFromNuts0(payload): Promise<any> {
-    return this.electricityMixService.getElectricityMixFromNuts0(payload);
+    getElectricityMix(payload): Promise<any> {
+    return this.electricityMixService.getElectricityMix(payload);
     }
     enableOpenStateWithId(id) {
         this.navigationBarService.enableOpenStateWithId(id);
@@ -163,7 +193,89 @@ export class InteractionService {
     getCMResult(summaryResult, cm): Promise<any> {
       return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
     }
+
+    setCMResult(summaryResult, cm): Promise<any> {
+      return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm)
+    }
+    getCMInformations(payload): Promise<any> {
+      return this.calculationModuleService.getCMInformations(payload)
+    }
+    getStatusAndCMResult(id): Promise<any> {
+
+
+      return this.calculationModuleService.getStatusOfCM(id)
+    }
+    /* getCMResultMockData() {
+      return this.calculationModuleService.getCMResultMockData()
+
+    } */
+
+    get
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
+    }
+    setStatusCMPanel(value) {
+      return this.calculationModuleStatusService.setStatusCMPanel(value)
+    }
+    setCMAnimationStatus(value) {
+      this.calculationModuleStatusService.setCmAnimationStatus(value);
+    }
+
+    getCMAnimationStatus() {
+      this.calculationModuleStatusService.getCmAnimationStatus();
+    }
+    undefinedCmRunned() {
+      this.calculationModuleStatusService.undefinedCmRunned()
+    }
+    deleteCM(id) {
+      return this.calculationModuleService.deleteCM(id)
+    }
+
+    getCmRunning() {
+      return this.cmRunning
+    }
+    setCmRunning(cmRunning) {
+      this.cmRunning = cmRunning
+    }
+
+    getCurrentIdCM() {
+      return this.currentCMiD
+    }
+    setCurrentIdCM(currentCMiD) {
+      this.currentCMiD = currentCMiD
+    }
+    getcmRunningProgess() {
+      return this.cmRunningProgess
+    }
+    setCmRunningProgess(cmRunningProgess) {
+      this.cmRunningProgess = cmRunningProgess
+    }
+
+
+  getStatusCMPanel(){
+    return this.calculationModuleStatusService.getStatusCMPanel();
+
+  }
+  deleteCMTask() {
+
+
+      if (this.getcmRunningProgess() >0 && this.currentCMiD != null){
+
+        const currentCMiD = this.currentCMiD
+        this.setCurrentIdCM (null)
+        return this.calculationModuleService.deleteCM(currentCMiD).toPromise().then( response => {
+          this.logger.log('CMMMMM REMOVEEEED')
+          this.currentCMiD = null
+          })
+          .catch({});
+
+
+      }
+
+      if (this.getStatusCMPanel().value == true){
+
+        this.setStatusCMPanel(false)
+
+      }
     }
 }

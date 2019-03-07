@@ -1,5 +1,5 @@
-import { Helper } from './../../../shared/helper';
-import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
+import { calculation_module_category } from './../../../shared/data.service';
+import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
 import {
   Component,
   OnInit,
@@ -10,6 +10,7 @@ import {
   transition,
   animate,
   Input,
+  ViewChild,
 
 } from '@angular/core';
 
@@ -21,7 +22,9 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { leftPanelSize } from 'app/shared';
 import { Logger } from "../../../shared/services/logger.service";
 import { MapService } from "../../../pages/map/map.service";
-import * as uikit from 'uikit'
+import * as uikit from 'uikit';
+import {hectare} from "../../../shared/data.service";
+import { UserManagementStatusService } from 'app/features/user-management';
 
 @Component({
   moduleId: module.id,
@@ -73,50 +76,62 @@ import * as uikit from 'uikit'
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
   @Input() areas;
+  @ViewChild(CalculationModuleComponent) calculationModuleComponent: CalculationModuleComponent;
   private layersSelected = [];
   private nbElementsSelected = 0;
+  private scaleLevel;
   layers: DataInteractionClass[];
-  category: DataInteractionClass[];
+  category = [];
   private isZoneSelected = false;
+  private isConnected = false;
+
   expanded = false;
   expandedState = 'collapsed';
-  constructor(private helper: Helper,
+  constructor(
     private dataInteractionService: DataInteractionService, private logger: Logger,
-    protected interactionService: InteractionService, protected mapService: MapService) {
+    protected interactionService: InteractionService, protected mapService: MapService,
+    private userStatusService: UserManagementStatusService) {
     super(interactionService);
   }
 
   ngOnInit() {
 
-    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+    if (this.mapService.getNutsSelectedSubject()) {
       this.mapService.getNutsSelectedSubject().subscribe((value) => {
+        this.scaleLevel = this.mapService.getScaleValue();
         if (value === 0) {
           uikit.tab('#uk-tab-left-panel').show(0);
           this.isZoneSelected = false;
         } else {
-          this.isZoneSelected = true;
+          if (this.scaleLevel === hectare) {
+            this.isZoneSelected = true;
+          } else {
+            this.isZoneSelected = true;
+          }
         }
         this.nbElementsSelected = value;
-        console.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
-      })
-    }
-    if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+        this.logger.log('LeftSideComponent/this.nbElementsSelected = ' + this.nbElementsSelected)
+      });
+
       this.mapService.getLayerArray().subscribe(() => {
         this.layersSelected = this.mapService.setLayerWithoutSuffix();
-        console.log('LeftSideComponent/this.layersSelected = ', this.layersSelected)
-      })
+        this.logger.log('LeftSideComponent/this.layersSelected = ' + this.layersSelected)
+      });
+
+      this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
     }
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }
-
+  updateCmss() {
+    this.calculationModuleComponent.updateCMs()
+  }
   getLayerAndCategory(layers: any) {
-
     this.logger.log(' layerr = ' + JSON.stringify(layers))
-    console.log(layers)
     this.layers = layers
     this.category = layers.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
+    this.category.push(calculation_module_category)
   }
 
   ngOnDestroy() {

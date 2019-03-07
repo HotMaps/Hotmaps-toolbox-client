@@ -9,36 +9,39 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'http://hotmaps.hevs.ch:9006/api';
-const api_prod_Url    = 'http://api.hotmaps.hevs.ch';
-const devUrl    = 'http://hotmapsdev.hevs.ch:9006/api';
+const prodUrl    = 'https://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
+const devUrl    = 'https://api.hotmapsdev.hevs.ch/api'  // 'https://hotmapsdev.hevs.ch:9006/api';
 const localApiUrl    = 'http://localhost:5000/api';
 
 
 
-export const geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserver_prod_Url = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
+export const geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+export const geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
+export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 
 
-export const geocodeUrl    = 'http://maps.googleapis.com/maps/api/geocode/json?address=';    // prefer
 
-export const geoserverUrl = geoserver_prod_Url;
-export const getIpUrl    = 'http://ipv4.myexternalip.com/json';    // prefer
+export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
+
+export const geoserverUrl = geoserverProdUrl;
+export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = api_prod_Url;
+export const apiUrl = prodUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
+export const heat_type = 'heat';
+export const defaultLayerType = heat_type;
+
 export const idDefaultLayer = 1;
 export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
+export const urlLegend = geoserverUrl + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style='
 export const timeOutAjaxRequest = 10000;
-export const unit_heatload_profil = 'kW';
+export const unit_heatload_profil = 'MW';
 
 export const formatImage = 'image/png8';
 // layer_name
-
 export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
   'SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=hotmaps:'
 export const nuts_level   = '3';
@@ -51,14 +54,31 @@ export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hect
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
 export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
 
+
+// User management endpoints
+export const user_endpoint = '/users/'
+export const upload_endpoint = '/upload/'
+export const post_user_register = user_endpoint + 'register';
+export const post_user_register_activate = user_endpoint + 'register/activate';
+export const post_user_recovery_ask = user_endpoint + 'recovery/ask';
+export const post_user_recovery = user_endpoint + 'recovery';
+export const post_user_logout = user_endpoint + 'logout';
+export const post_user_login = user_endpoint + 'login';
+export const get_userinformation_endpoint = user_endpoint + 'information';
+export const get_userupdateprofile_endpoint = user_endpoint + 'profile/update';
+export const get_diskspace_endpoint = user_endpoint + 'space_used'
+
+export const get_filelist_endpoint = upload_endpoint + 'list';
+
+
 // title
 export const heatloadprofile = 'Heatload profile';
 export const Durationcurve = 'Duration curve';
-
+export const energy_mix_title = 'Electricity generation mix';
 export const set404url   = 'set404url';
 
 // Projection data string
-export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
+export const proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=43f21000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 export const proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 
 // Heat load profil
@@ -71,17 +91,29 @@ export const buttons_heat_load = [
   { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 export const default_drop_down_button = 'overall';
-
+export const calculation_module_category = 'Calculation module'
+export const raster_type_name = 'raster';
+export const vector_type_name = 'vector';
 export const summay_drop_down_buttons = [
-  { name: 'Overall', ref: default_drop_down_button, selected: true},
-  { name: 'Demand', ref: 'demand', selected: false},
-  { name: 'Potentials', ref: 'potential', selected: false},
-  { name: 'Climate', ref: 'climate', selected: false},
-  { name: 'Heat Supply', ref: 'heat_supply', selected: false},
-  { name: 'Industry', ref: 'industry', selected: false},
-  { name: 'Electricity', ref: 'electricity', selected: false}
+  { name: 'Overall', ref: default_drop_down_button, selected: true, display: false},
+  { name: 'Demand', ref: 'demand', selected: false, display: false},
+  { name: 'Potentials', ref: 'potential', selected: false, display: false},
+  { name: 'Climate', ref: 'climate', selected: false, display: false},
+  { name: 'Buildings', ref: 'buildings', selected: false, display: false},
+  { name: 'Heat Supply', ref: 'heat_supply', selected: false, display: false},
+  { name: 'Industry', ref: 'industry', selected: false, display: false},
+  { name: 'Electricity', ref: 'electricity', selected: false, display: false},
+  { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false}
 ]
-
+// Layer order number
+/*
+  More the number is big, more hight is the layer on the toolbox
+*/
+export const industry_layer_order = 6;
+export const scale_layer_order = 5;
+export const cm_layers_order = 4;
+export const layers_order = 3;
+export const maps_order = 1;
 
 // layers constant
 export const timeOut   = 200000;
@@ -111,13 +143,13 @@ export const map_options =  {
 export const lau2name = 'tbl_lau1_2';
 
 // Scale Value
-export const nuts0   = 'NUTS 0';
-export const nuts1   = 'NUTS 1';
-export const nuts2   = 'NUTS 2';
-export const nuts3   = 'NUTS 3';
+export const nuts0  = 'NUTS 0';
+export const nuts1  = 'NUTS 1';
+export const nuts2  = 'NUTS 2';
+export const nuts3  = 'NUTS 3';
 export const lau2   = 'LAU 2';
-export const hectare   = 'Hectare';
-export const initial_scale_value   = nuts3;
+export const hectare= 'Hectare';
+export const initial_scale_value = nuts3;
 
 // Event variable
 export const MAPDRAWEDITED = L.Draw.Event.EDITED;
@@ -139,21 +171,24 @@ export const rightPanelSize = 600;
 export const leftPanelSize = 400;
 
 // tab values
+export const default_tab_datapanel = 'indicator'
+export const tab1_datapanel = default_tab_datapanel
+export const tab2_datapanel = 'charts'
 
-export const tab1 = 'overall'
-
-export const tab2 = 'stats'
 
 // Duration curve graph data
+export const duration_curve_graph_title = 'Duration curve';
+export const duration_curve_graph_category = 'duration_curve';
+
 export const duration_curve_graph_options = {
       legend: {
           display: false
       },
-      elements:{
+      /* elements:{
         point:{
           radius:0
         }
-      },
+      }, */
       tooltips: {enabled: false},
       hover: {mode: null},
       scales:{
@@ -187,14 +222,60 @@ export const heat_load_graph_options = {
             }]
       }
   }
-
+export const energy_mix_graph_category = 'duration_curve';
 export const energy_mix_options = {
   position : 'right',
   responsive: true,
   legend: {
     display: true,
     position : 'right'
-
   }
 }
+export const clculation_module_graph_options = {
+  scales:{
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: ''
+          }
+        }],
+        xAxes: [{
+          scaleLabel : {
+            display: true,
+            labelString: ''
+          }
+        }]
+  }
+}
+
+export const default_color_shpfile = '#FFA500'
+export const default_fillColor_shpfile = '#FFA500'
+export const default_fillOpacity_shpfile = 0.5
+
+export const color_usedspace = '#123';
+export const color_unusedspace = '#321';
+export const labels_diskspacechart = ['Used space', 'Unused space'];
+export const diskspacechart_options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    display: true,
+  },
+  tooltips: {
+    callbacks: {
+      label: function(tlt, data){
+        return data.labels[tlt.index] + ': ' + data.datasets[0].data[tlt.index] + ' MB'
+      }
+    }
+  }
+}
+
+
+export const inputs_categories = [
+  {id: '0', name: 'Inputs', contains_component: false},
+  {id: '1', name: 'Basic inputs', contains_component: false},
+  {id: '2', name: 'Advanced inputs: (Level 1)', contains_component: false},
+  {id: '3', name: 'Advanced inputs: (Level 2)', contains_component: false},
+  {id: '4', name: 'Advanced inputs: (Level 3)', contains_component: false},
+]
 

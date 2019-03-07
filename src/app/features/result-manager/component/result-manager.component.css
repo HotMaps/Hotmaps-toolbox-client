@@ -1,0 +1,11 @@
+.uk-tab > .uk-disabled > a {
+  color: rgba(214, 56, 56, 0.32) !important;
+}
+.uk-tab{
+  justify-content: center;
+    margin-bottom: 5px;
+}
+.spinner{
+  width: 100%;
+  text-align: center;
+}

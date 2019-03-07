@@ -1,0 +1,42 @@
+.logo-container{
+  height: 50%;
+}
+.main-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.logo-container > img {
+  max-width: 50%;
+}
+.hotmaps > img {
+  float:right;
+}
+.logos{
+    position: relative;
+    height: 300px;
+}
+.hotmaps {
+  float: left
+}
+.parteners {
+  float: right;
+}
+
+.europe-logo {
+  position: relative;
+  float: left;
+  height: 100px;
+  width: 100%
+}
+
+
+.europe-logo > img {
+  height: 100%;
+  margin-left:-7px;
+  margin-top:-7px;
+  float: left;
+}
+.europe-logo > span {
+  position: absolute;
+  top:33%
+}

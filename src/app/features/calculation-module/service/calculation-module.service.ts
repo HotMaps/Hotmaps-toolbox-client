@@ -5,22 +5,20 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CalculationModuleClass } from './calculation-module.class';
-import { calculationModuleClassArray, calculation_module_components } from './calculation-module.data';
-import {Logger} from '../../../shared/services/logger.service';
+import { Logger } from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
-import {APIService} from '../../../shared/services/api.service';
-import {ToasterService} from '../../../shared/services/toaster.service';
-import {Helper} from '../../../shared/helper';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
-import { ComponentClass } from './../component/component.class';
+import { APIService } from '../../../shared/services/api.service';
+import { apiUrl } from 'app/shared/data.service';
+import { ToasterService } from '../../../shared/services/toaster.service';
+import { cms, mockComponents } from './../component/mock-calculation.data';
+import {Helper} from "../../../shared";
 
 
 
 @Injectable()
 export class CalculationModuleService extends APIService {
   categories = new Set();
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
-    private helper: Helper, private business: BusinessInterfaceRenderService) {
+  constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService,private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 
@@ -28,39 +26,53 @@ export class CalculationModuleService extends APIService {
     return Promise.resolve(this.getCalculationModuleServices());
   }
 
-  getCalculationModuleServices(): CalculationModuleClass[] {
-    return calculationModuleClassArray;
+  getCalculationModuleServices(): Promise<any> {
+    return super.POST('', apiUrl + '/cm/list')
   }
-  getCalculationModuleComponents(): ComponentClass[] {
-    return calculation_module_components;
+  getMockCalculationModules(): Promise<any> {
+    return Promise.resolve(cms)
   }
-  getcalculationModuleServicesByName(cm_name: string): CalculationModuleClass {
+  getMockCalculationModuleComponents(id): Promise<any> {
+    return Promise.resolve(mockComponents)
 
-    const cm  =  this.getCalculationModuleServices().filter(x => x.cm_name === cm_name)[0];
-    return cm;
   }
-  getCalculationModuleCategories() {
+  getCalculationModuleComponents(cmId): Promise<any> {
+    this.logger.log( 'getCalculationModuleComponents' )
+    const payload = { cm_id: '' + cmId }
+    return super.POST(payload, apiUrl + '/cm/user-interface/')
+  }
+
+  getCalculationModuleCategories(cms) {
     this.categories.clear()
-    this.getCalculationModuleServices().forEach((cm) => {
+    cms.forEach((cm) => {
       if (cm.isReadable) { this.categories.add(cm.category) }
     });
-    return Promise.resolve(this.categories);
+    return Promise.resolve(Array.from(this.categories.values()));
   }
-  getCalculationModuleServicesSlowly(): Promise<CalculationModuleClass[]> {
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getCalculationModuleServices()), 2000);
-    });
+  getCMInformations(payload) {
+    this.logger.log( 'compute-async/data ' + JSON.stringify(payload) )
+    return super.POST(payload, apiUrl + '/cm/compute-async/')
+
   }
-  getComponentsByCMId(cmId): ComponentClass[] {
-    const components = this.getCalculationModuleComponents().filter(x => x.cmId === cmId)
-    return components
+  getStatusOfCM(status_id) {
+
+    this.logger.log('getStatusOfCM()' + apiUrl + '/cm/status/' + status_id)
+
+    if ( this.helper.isNullOrUndefined(status_id) ){
+      this.logger.log('is  undefine')
+
+    }else{
+      this.logger.log('is  ok undefine')
+
+
+    }
+    return super.GET(apiUrl + '/cm/status/' + status_id).toPromise().then( response => response )
+    .catch(this.handleError.bind(this));
   }
-  getComponentsByCMIdSlowly(cmId) {
-    return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getComponentsByCMId(cmId)), 2000);
-    });
+
+  deleteCM(id) {
+    this.logger.log('deleteCM()' + apiUrl  + id)
+    return super.DELETE(apiUrl + '/cm/delete/' + id)
 
   }
 }

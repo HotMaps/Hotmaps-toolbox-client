@@ -2,6 +2,7 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { wwtp_data } from './../mock/wwtp.data';
+import { Dictionary } from './../../../shared/class/dictionary.class';
 
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
@@ -10,11 +11,10 @@ import 'rxjs/add/operator/mergeMap';
 import 'proj4leaflet';
 import 'proj4';
 
-import {Dictionary} from '../../../shared/class/dictionary.class'
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
-  unit_population, zoomLevelDetectChange, formatImage
+  unit_population, zoomLevelDetectChange, formatImage, layers_order
 } from '../../../shared/data.service'
 
 import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
@@ -23,7 +23,7 @@ import Layer = L.Layer;
 import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
-import {logger} from "codelyzer/util/logger";
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 const proj4 = (proj4x as any).default;
 
 
@@ -40,15 +40,16 @@ export class LayersService extends APIService {
   private heatmapOption = {
     layers: 'hotmaps:' + defaultLayer,
     format: formatImage, transparent: true, version: '1.3.0',
-    zIndex: idDefaultLayer
+    zIndex: layers_order
   };
 
   private layersArray: Dictionary = new Dictionary([
     {
-      key: defaultLayer , value: this.getTilayer( this.heatmapOption, this.loaderService)
+      key: defaultLayer , value: this.getTilayer( this.heatmapOption, defaultLayer)
     },
 
   ]);
+
   private popup = L.popup();
 
   // Improvement of coding style :
@@ -60,6 +61,7 @@ export class LayersService extends APIService {
   constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               // private interactionService: InteractionService,
               // private populationService: PopulationService,
+              private dataInteractionService: DataInteractionService,
               private helper: Helper,
               private businessInterfaceRenderService: BusinessInterfaceRenderService
             ) {
@@ -107,11 +109,9 @@ export class LayersService extends APIService {
       this.removelayer(action, map);
     }
     map.fireEvent('didUpdateLayers', this.layersArray);
-
   }
-
   addLayerWithAction(action: string, map: any, order: number) {
-    this.logger.log('action' + action);
+    this.logger.log('action:' + action);
     let layer;
       const option = {
         layers: 'hotmaps:' + action ,
@@ -119,31 +119,35 @@ export class LayersService extends APIService {
         transparent: true,
         version: '1.3.0',
         srs: 'EPSG:4326',
-        zIndex: 1
+        zIndex: order
       }
-    this.logger.log('action' + action);
-    layer = this.getTilayer(option, this.loaderService);
+    layer = this.getTilayer(option, action);
     this.layers.addLayer(layer);
     this.layersArray.add(action, layer);
   }
 
-  getTilayer(option: any, loader): any {
+  getTilayer(option: any, action): any {
+    const self = this;
     const wms_request = L.tileLayer.wms(geoserverUrl, option);
-    wms_request.on('load', function() {
+    wms_request.on('load', function(data) {
+      self.dataInteractionService.unsetLoadingLayerInterraction(action)
       // loader.display(false)
     });
     wms_request.on('tileunload', function() {  });
-    wms_request.on('tileloadstart', function() {
-      // loader.display(true)
+    wms_request.on('tileloadstart', function(data) {
+      self.dataInteractionService.setLoadingLayerInterraction(action)
+
     });
-    wms_request.on('tileerror', function() {
-      // loader.display(false)
-      });
+    wms_request.on('tileerror', function(data) {
+      self.dataInteractionService.unsetLoadingLayerInterraction(action)
+      self.toasterService.showToaster('Error loading tiles for '+action)
+    });
     wms_request.on('loading', function() {  });
     return wms_request;
   }
 
   removelayer(action: string, map: any) {
+    this.dataInteractionService.unsetLoadingLayerInterraction(action)
     // we get the layer we want to remove
     const layer = this.layersArray.value(action);
     // we remove this layer from map

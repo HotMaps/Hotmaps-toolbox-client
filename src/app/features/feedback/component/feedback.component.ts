@@ -42,7 +42,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     private files;
     private submited = false;
     private feedbackLoader = false;
-    constructor(private toasterService: ToasterService, private interactionService: InteractionService) {
+    constructor(private interactionService: InteractionService) {
 
     }
     ngOnInit() {
@@ -72,7 +72,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         this.files = files[0];
     }
     showError() {
-        this.toasterService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
+        this.interactionService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
     }
     sendRequest(f) {
         const fd = new FormData();

@@ -2,6 +2,10 @@
   margin: 5px;
   padding: 5px;
 }
+option {
+  background: #333333;
+  color:white
+}
 
 .component > input {
   width: 100%;
@@ -47,4 +51,23 @@
 .component_title {
   color: white;
   font-size: 18px;
+}
+.api-inprogress {
+  background: rgb(255, 0, 0);
+}
+.unclickable {
+  cursor: wait;
+}
+.input_title{
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
+.no-data {
+  text-transform: uppercase;
+  color:red;
+}
+
+
+.input-prefix input {
+  height:30px;
 }

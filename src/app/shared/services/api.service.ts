@@ -5,7 +5,7 @@
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
+import {Http, Headers, RequestOptionsArgs} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -25,6 +25,7 @@ import {Logger} from './logger.service';
 
 
 import {ToasterService} from './toaster.service';
+
 export class APIService {
   public headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
@@ -36,38 +37,78 @@ export class APIService {
     this.toasterService = toasterService;
   }
   handleError(error: any) {
+
+
     this.loaderService.display(false);
-    let message = error.message;
-    if (error.name === 'TimeoutError') {
-       message = 'Timeout has occurred';
+
+    let message;
+    if (this.isNullOrUndefined(error.json().message)) {
+       message = 'UNKNOWN ERROR';
+    } else {
+      this.logger.log('APIService/handleError nnn'+ error.json().message);
+      message = error.json().message
+      message = ', ' + message;
+      const status = error.json().error.status;
+      const statusText = error.json().error.statusText;
+      message = statusText + ' ' + message
     }
 
-    this.toasterService.showToaster('We encountered a problem' + ', please try again later');
-    this.logger.log('APIService/handleError');
-    this.logger.log('An error occurred: ' + error.message); // for demo purposes only
+    this.toasterService.showToaster(message);
+
+    this.logger.log('An error occurred: ' + message); // for demo purposes only
     return Promise.reject(error.message || error);
   }
-  POST(payload, url): Promise<any> {
 
+  isNullOrUndefined(x: any) {
+    let result = false;
+    if (x == null) {
+      result = true;
+    }
+
+    if (x === null) {
+      result = true;
+    }
+    if (typeof x === 'undefined') {
+      result = true;
+    }
+    return result;
+  }
+
+  POST(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {
+    if (!request.headers)
+      request.headers = this.headers;
     return this.http
-      .post(url, JSON.stringify(payload), {headers: this.headers})
+      .post(url, JSON.stringify(payload), request)
       .timeout(timeOut)
       .toPromise()
-      .then( response => response.json() as any)
+      .then( response => toJson ? response.json() as any : response)
       .catch(this.handleError.bind(this));
   }
 
-  POSTunStringify(payload, url): Promise<any> {
-
+  POSTunStringify(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {    
+    if (!request.headers)
+      request.headers = this.headers;
     return this.http
-      .post(url, payload, {headers: this.headers})
+      .post(url, payload, request)
       .timeout(timeOut)
       .toPromise()
-      .then( response => response.json() as any)
+      .then( response => toJson ? response.json() as any : response)
       .catch(this.handleError.bind(this));
   }
-  GET(url): any {
-    return this.http.get(url, this.headers)
+  GET(url, request:RequestOptionsArgs = {}): any {
+    return this.http.get(url, request)
+  }
+  DELETE(url, request:RequestOptionsArgs = {}): any {
+    return this.http.delete(url, request);
+
+  }
+  async pGET(url, request:RequestOptionsArgs = {}): Promise<any>  {
+    return await this.http
+      .get(url, request)
+      .toPromise()
+      .then( response => response  )
+
+      .catch(this.handleError.bind(this));
   }
 
   public async getJSONFromFille(url: string): Promise<any> {
@@ -75,6 +116,5 @@ export class APIService {
       .toPromise()
       .then( response => response.json() as any)
   }
-
 
 }

@@ -9,13 +9,13 @@
   <div class="notifications">
     <ul class="uk-flex-center" uk-tab id="uk-tab-left-panel">
       <li class="uk-active layers-tab"><a href="">layers</a></li>
-      <li [class.uk-disabled]="!isZoneSelected" ><a href="">Calculation modules</a></li>
+      <li [class.uk-disabled]="!isZoneSelected"><a href="" (click)="updateCmss()">Calculation modules</a></li>
     </ul>
     <ul id="my-id3" class="uk-switcher">
       <li>
           <span *ngIf="expanded" [@titleTextTrigger]="'in'">
+            <htm-personnal-layers *ngIf="isConnected"></htm-personnal-layers>
               <ul uk-accordion *ngFor="let i of category">
-                <ng-container *ngIf="i !== 'CM'">
                   <li class="uk-open">
                     <h3 class="uk-accordion-title">
                       {{i}}
@@ -23,18 +23,17 @@
                     <div class="uk-accordion-content">
                       <ng-container *ngFor="let n of layers" >
                         <span *ngIf="i === n.category">
-                          <layers-interaction-cell [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
+                          <layers-interaction-cell (click)="updateCmss()" [dataInteraction]="n" [expanded]="expanded" disabled="true"></layers-interaction-cell>
                         </span>
                       </ng-container>
                     </div>
-                    
+
                   </li>
-              </ng-container>
               </ul>
             </span>
       </li>
       <li [hidden]="!isZoneSelected">
-          <htm-cms [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected"></htm-cms>
+          <htm-cms [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected" [scaleLevel]="scaleLevel"></htm-cms>
       </li>
     </ul>
   </div>

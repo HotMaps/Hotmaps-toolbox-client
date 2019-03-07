@@ -43,6 +43,7 @@ import {ElectricityMixService} from "../../graph/electricity-mix/service/electri
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import { CMLayersService } from '../../calculation-module/cm-layers.service';
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -63,7 +64,8 @@ describe('SelectionToolComponent', () => {
         DurationCurveService,
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService}
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        { provide: CMLayersService, useClass: CMLayersService}
       ]
     })
     .compileComponents();

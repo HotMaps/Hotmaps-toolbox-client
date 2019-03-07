@@ -1,0 +1,10 @@
+
+<div class="symbolgies">
+  <div class="symbolgy" *ngFor="let symb of symbolgies">
+    <div class="color-box" [style.background-color]="'rgba(' + symb.red +',' + symb.green +',' +symb.blue +',' + symb.opacity +')'"></div>
+    <div class="label">
+        {{symb.value}}: {{symb.label}}
+    </div>
+  </div>
+
+</div>

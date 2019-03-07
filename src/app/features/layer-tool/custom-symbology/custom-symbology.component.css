@@ -1,0 +1,23 @@
+.color-box {
+  height: 12px;
+  width: 50px;
+  float: left;
+  position: absolute;
+  left: 80px;
+}
+.symbolgy {
+  float: left;
+  margin:1px;
+  width: 100%;
+  position: relative;
+  height: 14px;
+  overflow: hidden;
+}
+.label {
+  text-align: left;
+  font-size: 12px;
+  line-height: 12px;
+  position: absolute;
+  left: 134px;
+  white-space: nowrap;
+}

@@ -1,0 +1,37 @@
+<div class="tool-container">
+  <button [class.uk-button-primary]="isLegendDisplayed" class="uk-icon-button uk-button-default" uk-icon="paint-bucket" (click)="toggleLegend()"></button>
+  <button [class.uk-button-primary]="isInfoDisplayed" class="uk-icon-button uk-button-default" uk-icon="info" (click)="toggleInformations()"></button>
+  
+  <button [disabled]="!hasZoneSelected" class="uk-icon-button uk-button-default" uk-icon="cloud-download" (click)="export()"></button>
+  <a *ngIf="dataInteraction.download_url" href="{{ dataInteraction.download_url }}"><button  class="uk-icon-button uk-button-default" uk-icon="upload"></button></a>  
+  <div *ngIf="loading" uk-spinner></div>
+</div>
+
+<!--
+  Layer legend
+-->
+<div [hidden]="!isLegendDisplayed" class="uk-card uk-card-default uk-card-body">
+  <h3 class="uk-card-title">Symbology</h3>
+  <div class="card-content">
+    <ng-container *ngIf="dataInteraction.custom_symbology">
+      <htm-custom-symbology [symbolgies]="dataInteraction.custom_symbology"></htm-custom-symbology>
+    </ng-container>
+    <ng-container *ngIf="!dataInteraction.custom_symbology">
+      <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoadLegend()" />
+      <div *ngIf="!displayLegend" class="loader" uk-spinner></div>
+    </ng-container>
+  </div>
+</div>
+<div *ngIf="isLegendDisplayed" class="uk-margin"></div>
+<!--
+  Layer informations
+-->
+<div *ngIf="isInfoDisplayed" class="uk-card uk-card-default uk-card-body">
+  <h3 class="uk-card-title">Informations</h3>
+  <div *ngIf="dataInteraction.description" class="card-content">
+    <p>
+      {{dataInteraction.description}}
+    </p>
+  </div>
+</div>
+<div *ngIf="isInfoDisplayed" class="uk-margin"></div>

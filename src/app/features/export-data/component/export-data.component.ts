@@ -1,26 +1,47 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Helper } from './../../../shared/helper';
+import { Component, OnInit, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 
 import { ExportDataService} from '../service/export-data.service';
 import {Logger} from '../../../shared/services/logger.service';
-import {tab1} from '../../../shared/data.service';
+import { tab1_datapanel, tab2_datapanel} from '../../../shared/data.service';
 
 @Component({
   selector: 'htm-export-data',
   templateUrl: './export-data.component.html',
   styleUrls: ['./export-data.component.css']
 })
-export class ExportDataComponent implements OnInit, OnDestroy {
+export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() indicators;
+  @Input() graphics;
+  @Input() tabSelected;
+  @Input() displayExportDataStatus;
+
+
   private loadingSummary: boolean;
-  private loadingStats: boolean;
   private dataSummary: any;
   private dataStats: any;
   private isInSummary = true;
-  private tabsSelectedName = tab1;
-  @Input() heatloadStatus;
-  constructor(private exportDataService: ExportDataService, private logger: Logger) { }
+  private tabsSelectedName = tab1_datapanel;
+  private isChartValue = false;
+  /* @Input() heatloadStatus; */
+  /* @Input() graphics;
+  @Input() indicators;
+  @Input() heatLoadData;
+  @Input() tab = tab1_datapanel;
+  @Input() updateStatus; */
+  private displayButton = true;
+  constructor(private exportDataService: ExportDataService, private logger: Logger, private helper: Helper) { }
 
   ngOnInit() {
     this.notifyService();
+  }
+
+  ngOnChanges(changes) {
+
+  }
+  changeButtonState() {
+
   }
   ngOnDestroy() {
     this.logger.log('ExportDataComponent/ngOnDestroy')
@@ -42,41 +63,29 @@ export class ExportDataComponent implements OnInit, OnDestroy {
     });
 
     /**
-     * subcribe the status of the stats result
-     *
-     */
-    this.exportDataService.getStatsStatus().subscribe((val: boolean) => {
-      this.loadingStats = val;
-    });
-
-    /**
      * subcribe the data of the stats result
      *
      */
     this.exportDataService.getDataStats().subscribe((val: any) => {
       this.logger.log('ExportDataComponent/getDataStats' + JSON.stringify(val))
-      this.dataStats = val;
-    });
-    /**
-     * subcribe the status of the tabs on which tabs are we?
-     *
-     */
-    this.exportDataService.getTabsSelectedName().subscribe((val: string) => {
-      this.logger.log('ExportDataComponent/getTabsSelectedName' + val)
-      if (val === tab1) {
-        this.isInSummary = true;
+      if (!this.helper.isNullOrUndefined(val)) {
+        this.isChartValue = true;
+        this.dataStats = val;
       } else {
-        this.isInSummary = false;
+        this.isChartValue = false;
       }
-      this.logger.log('setisinsummary:' + this.isInSummary)
-      this.tabsSelectedName = val;
     });
   }
   export() {
-    if (this.isInSummary === true) {
-      this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName)
-    } else {
-      this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName)
+    if (this.tabSelected === tab1_datapanel) {
+      if (!this.helper.isNullOrUndefined(this.indicators.layers)) {
+        this.exportDataService.exportData(this.indicators.layers, true, this.tabSelected)
+
+      }
+    } else if (this.tabSelected === tab2_datapanel) {
+      if (!this.helper.isNullOrUndefined(this.dataStats)) {
+        this.exportDataService.exportData(this.dataStats.values, false, this.tabSelected)
+      }
     }
   }
 

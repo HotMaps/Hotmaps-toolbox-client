@@ -6,7 +6,6 @@ This pipe is used to format number with the correct format
 
 */
 
-import { DecimalPipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -15,8 +14,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class NumberFormatPipe  implements PipeTransform {
 
-    transform(value: number, args: any[]): any {
-        // return value.toString().replace(',', "'");
-        return value.toLocaleString();
+    transform(value: string, args: any[]): any {
+      const val_trans = value.split(',').join(' ').split('.').join('.');
+      return val_trans;
     }
 }

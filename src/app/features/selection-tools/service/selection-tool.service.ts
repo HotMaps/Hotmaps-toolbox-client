@@ -107,6 +107,9 @@ export class SelectionToolService extends APIService {
   setScaleValue(scaleValue: string) {
     this.scaleValue = scaleValue;
   }
+  getScaleValue(): string {
+    return this.scaleValue;
+  }
 
   loadResultNuts(map) {
     const layerNameArray = []
@@ -152,7 +155,7 @@ export class SelectionToolService extends APIService {
       }else{return 1;}
     }
     else{return 2;}
-    
+
   }
 
   toggleActivateTool(val: boolean) {
@@ -160,6 +163,7 @@ export class SelectionToolService extends APIService {
   }
 
   clearAll(map: any) {
+    this.logger.log('Clear all is called from selection tool')
     this.nbOfLayersSelected.next(0);
     // ================
     if (this.isDrawer) {
@@ -175,6 +179,9 @@ export class SelectionToolService extends APIService {
     // remove all nutsID selected
     this.nutsIds.clear();
     this.updateSelectionToolAction();
+    this.interactionService.deleteCMTask();
+    // close opened CM
+    // this.interactionService.setStatusCMPanel(false)
   }
 
   // Summary result show result
@@ -258,6 +265,8 @@ export class SelectionToolService extends APIService {
       if (nuts_lvl === 4) {} else {
         url += 'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z'
       }
+
+      this.logger.log(url)
     this.GET(url).map((res: Response) => res.json() as any)
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
   }
@@ -343,9 +352,9 @@ export class SelectionToolService extends APIService {
   drawResultBeforeLoadingResult(result: any) {
     this.logger.log('result is ' + result);
     this.logger.log('result is ' + result.features);
-    if (result.features.length === 0) {
+    /*if (result.features.length === 0) {
       this.toasterService.showToaster('We encountered a problem, there is no data for this area');
-    }
+    }*/
     if (this.helper.isNullOrUndefined(result) === false) {
       for (const feature of result.features) {
         let selection_id;

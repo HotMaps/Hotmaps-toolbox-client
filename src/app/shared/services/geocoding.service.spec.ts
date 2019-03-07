@@ -79,7 +79,7 @@ describe('geocodingService', () => {
       let location = new LocationClass();
       mockBackend.connections.subscribe(c => {
 
-          expect(c.request.url).toBe(geocodeUrl + 'lausanne');
+          expect(c.request.url).toBe(geocodeUrl + 'lausanne&format=json&polygon=1&addressdetails=1');
 
       });
       geocodingService.geocode('lausanne').subscribe((result) => {

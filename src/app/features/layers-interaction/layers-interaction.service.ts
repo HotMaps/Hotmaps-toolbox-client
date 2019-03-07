@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { DataInteractionClass } from './layers-interaction.class';
-import { DataInteractionArray } from './layers-interaction.data';
+import { DataInteractionArray, cm_default_layer } from './layers-interaction.data';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
@@ -35,6 +35,16 @@ export class DataInteractionService extends APIService {
 
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
+  }
+  addNewLayer(name, id, type, symb?) {
+    const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
+    DataInteractionArray[newLayerAdded - 1].name = name;
+    DataInteractionArray[newLayerAdded - 1].workspaceName = name;
+    DataInteractionArray[newLayerAdded - 1].cm_id = id;
+    DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
+    if(symb) {
+      DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    }
   }
   getReadableName(layerName: string): string {
 
@@ -67,9 +77,10 @@ export class DataInteractionService extends APIService {
   }
 
   getRefFromLayerName(name: string): any[]{
+    this.logger.log('getRefFromLayerName/name:' + name)
     const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
 
-    if (this.helper.isNullOrUndefined(layer)) {return ["no layer with this name"]}
+    if (this.helper.isNullOrUndefined(layer)) {return ["overall"]}
     return layer.ref;
   }
 
@@ -78,9 +89,12 @@ export class DataInteractionService extends APIService {
   }
 
   getSplittedResults(results){
+    this.logger.log('go inside  getSplittedResults+ '+ results)
     let newResults = this.helper.createSplittedResultsModel();
     const rLayers=results.layers
-    const rNoDataLayers=results.no_data_layers
+    this.logger.log('rLayers '+rLayers)
+    this.logger.log('rLayers ' + JSON.stringify(rLayers));
+    const rNoDataLayers = results.no_data_layers
 
     // returns null if results is empty
     if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)){
@@ -92,6 +106,7 @@ export class DataInteractionService extends APIService {
         if (this.getRefFromLayerName(results.layers[i].name).includes(summay_drop_down_buttons[j]["ref"])){
           const ref = summay_drop_down_buttons[j]["ref"];
           newResults[ref]["layers"].push(results.layers[i]);
+          this.logger.log('rLayers '+rLayers)
 
         }
       }
@@ -103,8 +118,23 @@ export class DataInteractionService extends APIService {
       }
 
     }
-
+    this.logger.log(' newResults rLayers ' + JSON.stringify(newResults));
+    this.logger.log(' newResults rLayers ' + newResults);
     return newResults;
   }
-
+  getLayersFromType(layer) {
+    return this.getDataInteractionServices().then((data) => {
+      return data.filter(x => x.layer_type === layer)
+    })
+  }
+  setLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = true
+    })
+  }
+  unsetLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = false
+    })
+  }
 }

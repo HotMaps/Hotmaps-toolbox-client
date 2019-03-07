@@ -1,3 +1,5 @@
+import { WelcomePageComponent } from './../features/welcome-page/welcome-page.component';
+import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -69,7 +71,19 @@ import { CalculationModuleService } from './../features/calculation-module/servi
 import { CalculationModuleComponent } from './../features/calculation-module/component/calculation-module.component';
 import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
 import { CalculationHeatLoadDividedService } from './../features/calculation-module/service/calculation-test.service';
-
+import { ResultManagerComponent } from '../features/result-manager/component';
+import { UserManagementStatusService } from 'app/features/user-management/service/user-management-status.service';
+import { ActivateComponent } from './../features/user-management/activate/activate.component';
+import { RegisterComponent } from './../features/user-management/register/register.component';
+import { UserManagementService } from './../features/user-management/service/user-management.service';
+import { RecoveryComponent } from './../features/user-management/recovery/recovery.component';
+import { AccountComponent } from './../features/user-management/account/account.component';
+import { LoginComponent } from './../features/user-management/login/login.component';
+import { UserManagementComponent } from './../features/user-management/component/user-management.component';
+import { CMLayersService } from './../features/calculation-module/cm-layers.service';
+import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
+import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('AppComponent: Router', () => {
 
@@ -79,15 +93,20 @@ describe('AppComponent: Router', () => {
 
   let location, router;
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     mockLoaderService = new MockLoaderService();
     loaderServiceStub = new LoaderService();
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
     TestBed.configureTestingModule({
       declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
-        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent ],
+        DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
+        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
+        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent
+       ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
         {provide: MapService, useClass: MapService},
@@ -122,10 +141,14 @@ describe('AppComponent: Router', () => {
         {provide: PopulationService, useClass: PopulationService},
         {provide: GeocodingService, useClass: GeocodingService},
         {provide: DataInteractionService, useClass: DataInteractionService},
+        {provide: CMLayersService, useClass: CMLayersService},
 
         {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
         {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
-        {provide: APP_BASE_HREF, useValue : '/' }
+        {provide: APP_BASE_HREF, useValue : '/' },
+        {provide: CMLayersService, useClass : CMLayersService },
+        {provide: UserManagementService, useClass : UserManagementService },
+        {provide: UserManagementStatusService, useClass : UserManagementStatusService },
       ],
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
@@ -152,7 +175,7 @@ describe('AppComponent: Router', () => {
   }));
 
 
-  it('should /map go map', async(() => {
+  it('should /map go map', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
@@ -160,9 +183,9 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
 
     });
-  }));
+  });
 
-  it('should empty path go map', async(() => {
+  it('should empty path go map', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
@@ -170,5 +193,5 @@ describe('AppComponent: Router', () => {
       expect(location.path()).toBe('/map');
 
     });
-  }));
+  });
 });

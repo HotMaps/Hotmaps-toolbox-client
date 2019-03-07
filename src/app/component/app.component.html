@@ -1,10 +1,6 @@
 <router-outlet>
+  <htm-welcome-page *ngIf="isMap"></htm-welcome-page>
   <span *ngIf="showLoader" class="loader-app">
     <div uk-spinner="ratio:4"></div>
   </span>
 </router-outlet>
-
-
-
-
-

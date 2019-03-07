@@ -56,7 +56,13 @@ export const calculationModuleClassArray: CalculationModuleClass[] = [
     cm_description: 'Based on the results of heat demand indicators, this module divides the resulting heat demand by an n factor (input)',
     category: 'Demand',
     layer_needed: ['heat_tot_curr_density'],
-    isReadable: false
+    type_layer_needed: ['heat'],
+    vectors_needed: ['heat'],
+
+    isApiRequestInTreatment: false,
+    status_id: '',
+    isReadable: false,
+    layerDisplayed: undefined
   }
   /* ,
   {

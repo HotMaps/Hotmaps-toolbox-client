@@ -3,7 +3,9 @@ import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
+import {Geocoder} from 'leaflet-control-geocoder'
 declare const L: any;
+
 
 
 import { basemap } from '../basemap'
@@ -16,7 +18,6 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
 
 import {geoserverUrl} from '../../../shared/data.service';
-
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -27,6 +28,7 @@ import {geoserverUrl} from '../../../shared/data.service';
 export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   selectionToolShow = false;
+
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -44,7 +46,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   // declaration of the left and right sidebar
   @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
   @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent
+  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent;
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
@@ -52,7 +54,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private selectionToolService: SelectionToolService,
     private interactionService: InteractionService
-  ) {}
+  ) {
+  }
 
   ngAfterContentInit(): void {
     this.notifySubscription();
@@ -65,6 +68,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
+
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
@@ -72,8 +76,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       });
     }
     this.interactionService.getCMRunned().subscribe((value) => {
-      this.interactionService.openRightPanel()
       this.cmRunned = value
+      if (value !== null) {
+        this.interactionService.openRightPanel()
+      }
+
     })
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {
@@ -130,12 +137,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     });
   }
   ngOnInit() {
+
     // mapService get an instance of the maps and can work on it
     this.mapService.setupMapservice(this.createMap(basemap));
 
 
     this.initializeNavigator();
     this.map.invalidateSize();
+
   }
   initializeNavigator(): void {
     this.searchBarComponent.Initialize();
@@ -161,6 +170,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
+
+
+
     L.Control = L.Control.extend({
       delete: function(popup) {
         this._popup = popup;

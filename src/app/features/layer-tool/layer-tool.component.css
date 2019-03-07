@@ -1,0 +1,19 @@
+.tool-container {
+  margin:10px;
+}
+.tool-container > span {
+  cursor: pointer;
+  color: white;
+}
+.uk-button-primary {
+  background: #0f7ae5b3;
+}
+.uk-card-body {
+  padding: 10px;
+}
+.card-content {
+  text-align: center;
+  word-wrap: break-word;
+
+}
+

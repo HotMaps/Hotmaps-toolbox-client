@@ -1,0 +1,50 @@
+i.iButton {
+    cursor: pointer;
+    margin-left: 0;
+}
+i.iButton:hover {
+    color: black;
+}
+i.iButton::before {
+    margin-left: 0;
+}
+
+#uploadBtn {
+    color: red;
+    cursor: default;
+}
+#uploadBtn:hover {
+    cursor: not-allowed;
+}
+#uploadBtn.active {
+    color: green;
+    cursor: pointer;
+}
+#uploadBtn.active:hover {
+    color: lightgreen;
+}
+
+table {
+    margin: 0;
+    table-layout: fixed;
+}
+
+td p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+th:nth-child(1), td:nth-child(1),
+th:nth-child(2), td:nth-child(2) {
+    width: 34%;
+}
+th:nth-child(3), td:nth-child(3) {
+    width: 16%;
+}
+th:nth-child(4), {
+    width: 16%;
+}
+td:nth-child(4), td:nth-child(5) {
+    width: 8%;
+}

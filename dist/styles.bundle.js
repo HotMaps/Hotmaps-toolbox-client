@@ -10,7 +10,7 @@ module.exports = __webpack_require__.p + "Flaticon.73466f28191cec4eac2b.eot";
 /***/ "../../../../../src/assets/fonts/Flaticon.svg":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "Flaticon.83239483c085c8de8fec.svg";
+module.exports = __webpack_require__.p + "Flaticon.f6024d0531b801bd19da.svg";
 
 /***/ }),
 
@@ -2074,6 +2074,21 @@ exports.push([module.i, "/* You can add global styles to this file, and also imp
 
 /***/ }),
 
+/***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../leaflet-control-geocoder/dist/Control.Geocoder.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".leaflet-control-geocoder {\n  border-radius: 4px;\n  background: white;\n  min-width: 26px;\n  min-height: 26px;\n}\n\n.leaflet-touch .leaflet-control-geocoder {\n  min-width: 30px;\n  min-height: 30px;\n}\n\n.leaflet-control-geocoder a,\n.leaflet-control-geocoder .leaflet-control-geocoder-icon {\n  border-bottom: none;\n  display: inline-block;\n}\n\n.leaflet-control-geocoder .leaflet-control-geocoder-alternatives a {\n  width: inherit;\n  height: inherit;\n  line-height: inherit;\n}\n\n.leaflet-control-geocoder a:hover,\n.leaflet-control-geocoder .leaflet-control-geocoder-icon:hover {\n  border-bottom: none;\n  display: inline-block;\n}\n\n.leaflet-control-geocoder-form {\n  display: none;\n  vertical-align: middle;\n}\n.leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {\n  display: inline-block;\n}\n.leaflet-control-geocoder-form input {\n  font-size: 120%;\n  border: 0;\n  background-color: transparent;\n  width: 246px;\n}\n\n.leaflet-control-geocoder-icon {\n  border-radius: 4px;\n  width: 26px;\n  height: 26px;\n  border: none;\n  background-color: white;\n  background-image: url(" + __webpack_require__("../../../../leaflet-control-geocoder/dist/images/geocoder.png") + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  cursor: pointer;\n}\n\n.leaflet-touch .leaflet-control-geocoder-icon {\n  width: 30px;\n  height: 30px;\n}\n\n.leaflet-control-geocoder-throbber .leaflet-control-geocoder-icon {\n  background-image: url(" + __webpack_require__("../../../../leaflet-control-geocoder/dist/images/throbber.gif") + ");\n}\n\n.leaflet-control-geocoder-form-no-error {\n  display: none;\n}\n\n.leaflet-control-geocoder-form input:focus {\n  outline: none;\n}\n\n.leaflet-control-geocoder-form button {\n  display: none;\n}\n.leaflet-control-geocoder-error {\n  margin-top: 8px;\n  margin-left: 8px;\n  display: block;\n  color: #444;\n}\n.leaflet-control-geocoder-alternatives {\n  display: block;\n  width: 272px;\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.leaflet-control-geocoder-alternatives-minimized {\n  display: none;\n  height: 0;\n}\n.leaflet-control-geocoder-alternatives li {\n  white-space: nowrap;\n  display: block;\n  overflow: hidden;\n  padding: 5px 8px;\n  text-overflow: ellipsis;\n  border-bottom: 1px solid #ccc;\n  cursor: pointer;\n}\n\n.leaflet-control-geocoder-alternatives li a,\n.leaflet-control-geocoder-alternatives li a:hover {\n  width: inherit;\n  height: inherit;\n  line-height: inherit;\n  background: inherit;\n  border-radius: inherit;\n  text-align: left;\n}\n\n.leaflet-control-geocoder-alternatives li:last-child {\n  border-bottom: none;\n}\n.leaflet-control-geocoder-alternatives li:hover,\n.leaflet-control-geocoder-selected {\n  background-color: #f5f5f5;\n}\n.leaflet-control-geocoder-address-detail {\n}\n.leaflet-control-geocoder-address-context {\n  color: #666;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../leaflet-draw/dist/leaflet.draw.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2302,6 +2317,47 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+
+/***/ "../../../../leaflet-control-geocoder/dist/Control.Geocoder.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../leaflet-control-geocoder/dist/Control.Geocoder.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("../../../../style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js??ref--9-1!../../postcss-loader/index.js??postcss!./Control.Geocoder.css", function() {
+			var newContent = require("!!../../css-loader/index.js??ref--9-1!../../postcss-loader/index.js??postcss!./Control.Geocoder.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "../../../../leaflet-control-geocoder/dist/images/geocoder.png":
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAz1BMVEUAAAAkJCQmJiYmJiYlJSUkJCQAAAAqKiokJCQmJiYzMzMlJSUkJCQmJiYlJSUmJiYoKCgmJiYmJiYnJycmJiYAAAAmJiYmJiYlJSUZGRklJSUmJiYmJiYlJSUlJSUmJiYmJiYtLS0mJiYlJSUmJiYnJyccHBwmJiYmJiYlJSUiIiImJiYmJiYmJiYlJSUkJCQlJSUjIyMuLi4mJiYmJiYlJSUlJSUlJSUAAAAmJiYlJSUoKCglJSUlJSUmJiYmJiYlJSUlJSUlJSUlJSUmJiawjvnZAAAARHRSTlMARfbw3jEDBkb+BatNZMu1GfHGDdQBoPjyCsOfFD2C/LQRaqiTVQmMcFkW4uR961pnOQshyWDgnAKuzDP5uPVW+tp5S3AUDfcAAACGSURBVBgZzcFFAoMwAATARQN1d3d3d9n/v6n0SsKdGYROrW7ZUMlWm+SsD1kkw1ZnPnXHkMTZADAxFwP4JdMCnhU1+CVy+NO4hF+02IbnwzX8YuwKwDLeNiQFHo7nG7+Q5UcmX/eH/oTK5oQLjS3Urjp3Amp7cogAPboO1ESl5CBAOYVQ+QEjbg1iCZEUOgAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ "../../../../leaflet-control-geocoder/dist/images/throbber.gif":
+/***/ (function(module, exports) {
+
+module.exports = "data:image/gif;base64,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"
 
 /***/ }),
 
@@ -2709,7 +2765,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("../../../../../src/assets/fonts/flaticon.css");
@@ -2717,10 +2773,11 @@ __webpack_require__("../../../../leaflet-draw/dist/leaflet.draw.css");
 __webpack_require__("../../../../leaflet/dist/leaflet.css");
 __webpack_require__("../../../../uikit/dist/css/uikit.css");
 __webpack_require__("../../../../../src/assets/fonts/Roboto.css");
+__webpack_require__("../../../../leaflet-control-geocoder/dist/Control.Geocoder.css");
 module.exports = __webpack_require__("../../../../../src/styles.css");
 
 
 /***/ })
 
-},[1]);
+},[2]);
 //# sourceMappingURL=styles.bundle.js.map

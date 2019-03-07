@@ -1,0 +1,49 @@
+<span class="center">
+  <div *ngIf="!noIndicator" style="padding: 10px;">
+    <select class="uk-select" (ngModelChange)="changeResultsDisplay($event)" [(ngModel)]="selectedButton">
+      <ng-container *ngFor="let button of dropdown_btns">
+        <option *ngIf="button.display" [selected]="button.ref === selectedButton.ref"  [ngValue]="button">{{button.name}}</option>
+      </ng-container>
+    </select>
+  </div>
+</span>
+<ul class="uk-tab" data-uk-tab="{connect:'#my-id3'}">
+  <li id="tab1" (click)="tabSwitch(tab1)">
+    <a href="">INDICATORS</a>
+  </li>
+  <li id="tab2" [class.uk-disabled]="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" (click)="tabSwitch(tab2)">
+    <a href="">GRAPHICS</a>
+  </li>
+
+</ul>
+<ul id="my-id3" class="uk-switcher results-container">
+  <li>
+    <div *ngIf="result.indicators">
+      <htm-summary-result [summaryResult]="result.indicators" [refSelected]="selectedButton.ref"></htm-summary-result>
+    </div>
+    <div class="spinner" *ngIf="indicatorLoading" uk-spinner="ratio: 3"></div>
+  </li>
+  <li class="charts-tab">
+
+    <div *ngIf="result.graphics">
+      <div *ngFor="let graphic of result.graphics">
+        <ng-container *ngIf="graphic.category == 'heatload'">
+          <htm-heat-load-chart [heatLoadPayload]="heatLoadPayload"></htm-heat-load-chart>
+        </ng-container>
+        <ng-container *ngIf="graphic.category == 'energy_mix'">
+          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.labels"></htm-electricity-mix>
+        </ng-container>
+        <ng-container *ngIf="graphic.category == cm_catedory || graphic.category == 'duration_curve'">
+          <htm-chart [datasets]="graphic.data" [type]="graphic.type" [title]="graphic.name" [labels]="graphic.labels" [options]="graphic.options" [isLoading]="graphic.isLoading"></htm-chart>
+        </ng-container>
+      </div>
+    </div>
+    <!-- <div class="spinner" *ngIf="result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload" uk-spinner="ratio: 3"></div> -->
+  </li>
+</ul>
+<div>
+  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators" [tabSelected]="tabSelected" [displayExportDataStatus]="displayExportDataStatus"></htm-export-data>
+<!--   <htm-export-data [updateStatus]="displayExportDataStatus" [indicators]="result.indicators" [graphics]="result.graphics" [tab]="tabSelected" [heatLoadData]="heatLoadData"></htm-export-data>
+ -->
+</div>
+

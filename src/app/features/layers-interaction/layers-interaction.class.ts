@@ -5,6 +5,14 @@ export class DataInteractionClass {
   isSelected: boolean;
   workspaceName: string;
   zoomLevel: number;
-  styleName: string
+  styleName: string;
   ref: any[];
+  layer_type: string;
+  cm_id?: string;
+  download_url?: string;
+  type_of_layer?: string;
+  description?: string;
+  custom_symbology?: any;
+  isLoading:boolean;
+  order?:number;
 }

@@ -40,14 +40,14 @@ export const platforms:Platforms = {
             },
   facebook : {
               name:'facebook',
-              url: 'http://www.facebook.com/sharer/sharer.php?u=',
+              url: 'https://www.facebook.com/sharer/sharer.php?u=',
               logoOfficial:'facebook',
               logo:'facebook',
               text:'Share',
           },
   reddit : {
               name: 'reddit',
-              url: 'http://www.reddit.com/submit?url=',
+              url: 'https://www.reddit.com/submit?url=',
               logoOfficial:'reddit-alien',
               logo:'reddit',
               text:'Submit',
@@ -68,7 +68,7 @@ export const platforms:Platforms = {
         },
   linkedin : {
               name:'linkedin',
-              url: 'http://www.linkedin.com/shareArticle?mini=true&url=',
+              url: 'https://www.linkedin.com/shareArticle?mini=true&url=',
               logoOfficial:'linkedin',
               logo:'linkedin2',
               text:'Share',
@@ -78,7 +78,7 @@ export const platforms:Platforms = {
         },
   stumbleUpon : {
               name:'stumbleUpon',
-              url: 'http://www.stumbleupon.com/submit?url=',
+              url: 'https://www.stumbleupon.com/submit?url=',
               logoOfficial:'stumbleupon',
               logo:'stumbleupon',
               text:'stumbleupon',
@@ -88,7 +88,7 @@ export const platforms:Platforms = {
   },
   tumblr : {
               name:'tumblr',
-              url: 'http://www.tumblr.com/share/link?url=',
+              url: 'https://www.tumblr.com/share/link?url=',
               logoOfficial:'tumblr',
               logo:'tumblr2',
               text:'Share',

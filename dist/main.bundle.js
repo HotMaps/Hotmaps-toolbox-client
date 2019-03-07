@@ -43,8 +43,8 @@ var AppRoutingModule = (function () {
 }());
 AppRoutingModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_2__routes__["a" /* routes */])],
-        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_2__routes__["a" /* routes */])],
+        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
     })
 ], AppRoutingModule);
 
@@ -64,11 +64,11 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9____ = __webpack_require__("../../../../../src/app/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8____ = __webpack_require__("../../../../../src/app/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_searchbar_searchbar_component__ = __webpack_require__("../../../../../src/app/pages/searchbar/searchbar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_toolbar_toolbar_component__ = __webpack_require__("../../../../../src/app/pages/toolbar/toolbar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_map__ = __webpack_require__("../../../../../src/app/pages/map/index.ts");
@@ -110,6 +110,19 @@ AppRoutingModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__features_calculation_module_service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__features_calculation_module_service_calcultation_module_status_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calcultation-module-status.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__features_calculation_module_service_calculation_test_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-test.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__features_calculation_module_cm_layers_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/cm-layers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__features_result_manager_component_result_manager_component__ = __webpack_require__("../../../../../src/app/features/result-manager/component/result-manager.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__features_user_management__ = __webpack_require__("../../../../../src/app/features/user-management/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__features_user_management_service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__features_user_management_service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__features_user_management_account_account_component__ = __webpack_require__("../../../../../src/app/features/user-management/account/account.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__features_user_management_activate_activate_component__ = __webpack_require__("../../../../../src/app/features/user-management/activate/activate.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__features_layer_tool_layer_tool_component__ = __webpack_require__("../../../../../src/app/features/layer-tool/layer-tool.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__features_welcome_page_welcome_page_component__ = __webpack_require__("../../../../../src/app/features/welcome-page/welcome-page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__features_user_management_account_upload_upload_component__ = __webpack_require__("../../../../../src/app/features/user-management/account/upload/upload.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__features_side_panel_left_side_panel_personnal_layers_personnal_layers_component__ = __webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__features_layer_tool_custom_symbology_custom_symbology_component__ = __webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -170,6 +183,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -179,28 +208,28 @@ AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["FormsModule"],
-            __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser_animations__["b" /* NoopAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_9____["a" /* AppRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["ReactiveFormsModule"],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["FormsModule"],
+            __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["b" /* NoopAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_8____["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["ReactiveFormsModule"],
             __WEBPACK_IMPORTED_MODULE_15_ng_recaptcha_forms__["RecaptchaFormsModule"],
             __WEBPACK_IMPORTED_MODULE_14_ng_recaptcha__["RecaptchaModule"].forRoot()
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_9____["b" /* AppComponent */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_8____["b" /* AppComponent */]],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_9____["b" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8____["b" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_10__pages_searchbar_searchbar_component__["a" /* SearchBarComponent */],
             __WEBPACK_IMPORTED_MODULE_11__pages_toolbar_toolbar_component__["a" /* ToolbarComponent */],
             __WEBPACK_IMPORTED_MODULE_12__pages_map__["a" /* MapComponent */],
             __WEBPACK_IMPORTED_MODULE_24__features_side_panel_right_side_panel_right_side_panel_component__["a" /* RightSideComponent */],
-            __WEBPACK_IMPORTED_MODULE_25__features_side_panel_left_side_panel_left_side_panel_component__["a" /* LeftSideComponent */],
             __WEBPACK_IMPORTED_MODULE_26__pages_nav_component_navigation_bar_component__["a" /* NavigationBarComponent */],
             __WEBPACK_IMPORTED_MODULE_22__features_summary_result_summary_result_component__["a" /* SummaryResultComponent */],
             __WEBPACK_IMPORTED_MODULE_23__features_summary_result_summary_result_cell__["a" /* SummaryResultCellComponent */],
             __WEBPACK_IMPORTED_MODULE_28__features_layers_interaction_layers_interaction_cell_layers_interaction_cell_component__["a" /* DataInteractionCellComponent */],
             __WEBPACK_IMPORTED_MODULE_25__features_side_panel_left_side_panel_left_side_panel_component__["a" /* LeftSideComponent */],
+            __WEBPACK_IMPORTED_MODULE_50__features_result_manager_component_result_manager_component__["a" /* ResultManagerComponent */],
             __WEBPACK_IMPORTED_MODULE_33_app_features_side_panel__["a" /* TopSideComponent */],
             __WEBPACK_IMPORTED_MODULE_13__shared__["UppercaseFirstLetterPipe"],
             __WEBPACK_IMPORTED_MODULE_13__shared__["NumberFormatPipe"],
@@ -213,7 +242,18 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_38__features_graph_duration_curve_duration_curve_component__["a" /* DurationCurveComponent */],
             __WEBPACK_IMPORTED_MODULE_40__features_export_data_component_export_data_component__["a" /* ExportDataComponent */],
             __WEBPACK_IMPORTED_MODULE_43__features_graph_electricity_mix_component_electricity_mix_component__["a" /* ElectricityMixComponent */],
-            __WEBPACK_IMPORTED_MODULE_45__features_calculation_module_component_calculation_module_component__["a" /* CalculationModuleComponent */]
+            __WEBPACK_IMPORTED_MODULE_45__features_calculation_module_component_calculation_module_component__["a" /* CalculationModuleComponent */],
+            __WEBPACK_IMPORTED_MODULE_51__features_user_management__["a" /* UserManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_51__features_user_management__["b" /* LoginComponent */],
+            __WEBPACK_IMPORTED_MODULE_51__features_user_management__["c" /* RegisterComponent */],
+            __WEBPACK_IMPORTED_MODULE_51__features_user_management__["d" /* RecoveryComponent */],
+            __WEBPACK_IMPORTED_MODULE_54__features_user_management_account_account_component__["a" /* AccountComponent */],
+            __WEBPACK_IMPORTED_MODULE_55__features_user_management_activate_activate_component__["a" /* ActivateComponent */],
+            __WEBPACK_IMPORTED_MODULE_56__features_layer_tool_layer_tool_component__["a" /* LayerToolComponent */],
+            __WEBPACK_IMPORTED_MODULE_57__features_welcome_page_welcome_page_component__["a" /* WelcomePageComponent */],
+            __WEBPACK_IMPORTED_MODULE_59__features_user_management_account_upload_upload_component__["a" /* UploadComponent */],
+            __WEBPACK_IMPORTED_MODULE_60__features_side_panel_left_side_panel_personnal_layers_personnal_layers_component__["a" /* PersonnalLayersComponent */],
+            __WEBPACK_IMPORTED_MODULE_61__features_layer_tool_custom_symbology_custom_symbology_component__["a" /* CustomSymbologyComponent */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_30__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */],
@@ -232,7 +272,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_19__features_selection_tools__["b" /* SelectionToolButtonStateService */],
             __WEBPACK_IMPORTED_MODULE_13__shared__["BusinessInterfaceRenderService"],
             __WEBPACK_IMPORTED_MODULE_29__features_summary_result_summary_result_service__["a" /* SummaryResultService */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_common__["DecimalPipe"],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common__["DecimalPipe"],
             __WEBPACK_IMPORTED_MODULE_32__features_feedback_mail_service__["a" /* MailService */],
             __WEBPACK_IMPORTED_MODULE_21__features_selection_scale__["a" /* SelectionScaleService */],
             __WEBPACK_IMPORTED_MODULE_31_app_shared_services_interaction_service__["a" /* InteractionService */],
@@ -243,7 +283,11 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_44__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */],
             __WEBPACK_IMPORTED_MODULE_46__features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */],
             __WEBPACK_IMPORTED_MODULE_47__features_calculation_module_service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */],
-            __WEBPACK_IMPORTED_MODULE_48__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */]
+            __WEBPACK_IMPORTED_MODULE_48__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */],
+            __WEBPACK_IMPORTED_MODULE_49__features_calculation_module_cm_layers_service__["a" /* CMLayersService */],
+            __WEBPACK_IMPORTED_MODULE_52__features_user_management_service_user_management_service__["a" /* UserManagementService */],
+            __WEBPACK_IMPORTED_MODULE_53__features_user_management_service_user_management_status_service__["a" /* UserManagementStatusService */],
+            __WEBPACK_IMPORTED_MODULE_58__shared_services_upload_service__["a" /* UploadService */]
         ],
         schemas: [
             __WEBPACK_IMPORTED_MODULE_3__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]
@@ -276,7 +320,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/component/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet>\n  <span *ngIf=\"showLoader\" class=\"loader-app\">\n    <div uk-spinner=\"ratio:4\"></div>\n  </span>\n</router-outlet>\n\n\n\n\n\n"
+module.exports = "<router-outlet>\n  <htm-welcome-page *ngIf=\"isMap\"></htm-welcome-page>\n  <span *ngIf=\"showLoader\" class=\"loader-app\">\n    <div uk-spinner=\"ratio:4\"></div>\n  </span>\n</router-outlet>"
 
 /***/ }),
 
@@ -284,9 +328,10 @@ module.exports = "<router-outlet>\n  <span *ngIf=\"showLoader\" class=\"loader-a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -300,10 +345,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = (function () {
-    function AppComponent(loaderService, logger) {
+    function AppComponent(loaderService, logger, router) {
         this.loaderService = loaderService;
         this.logger = logger;
+        this.router = router;
+        this.isMap = false;
     }
     AppComponent.prototype.ngAfterContentInit = function () {
         this.notifyLoaderService();
@@ -322,19 +370,26 @@ var AppComponent = (function () {
         this.logger.log('AppComponent/ngOnDestroy');
     };
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.router.events.subscribe(function (val) {
+            return _this.isMap = val.url === '/';
+        });
+        if (this.router.url === '/register') {
+            // console.log('isRegisterRoute')
+        }
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/component/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/component/app.component.css")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], AppComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -350,6 +405,155 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/features/calculation-module/cm-layers.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_features_calculation_module_service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_shpjs__ = __webpack_require__("../../../../shpjs/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_shpjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_shpjs__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CMLayersService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CMLayersService = (function (_super) {
+    __extends(CMLayersService, _super);
+    // private layerAdded;
+    function CMLayersService(http, logger, loaderService, toasterService, helper, calculationModuleService) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.helper = helper;
+        _this.calculationModuleService = calculationModuleService;
+        _this.layersCM = new L.FeatureGroup();
+        _this.cmLayersArray = new __WEBPACK_IMPORTED_MODULE_3__shared__["Dictionary"]([{ key: null, value: null }]);
+        return _this;
+    }
+    CMLayersService.prototype.getLayersCM = function () {
+        return this.layersCM;
+    };
+    CMLayersService.prototype.getLayerArray = function () {
+        return this.cmLayersArray;
+    };
+    CMLayersService.prototype.addOrRemoveLayerWithAction = function (directory, type, map) {
+        if (!this.cmLayersArray.containsKey(directory)) {
+            this.addLayerWithAction(directory, type);
+        }
+        else {
+            this.removelayer(directory, type);
+        }
+        map.fireEvent('didUpdateLayers', this.cmLayersArray);
+    };
+    CMLayersService.prototype.addLayerWithActionRaster = function (directory) {
+        var self = this;
+        var layer;
+        layer = L.tileLayer(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/tiles/' + directory + '/{z}/{x}/{y}/', {
+            zIndex: __WEBPACK_IMPORTED_MODULE_0_app_shared__["cm_layers_order"],
+            tms: true
+        });
+        layer.addTo(self.layersCM);
+        self.cmLayersArray.add(directory, layer);
+    };
+    CMLayersService.prototype.addLayerWithActionVector = function (directory) {
+        var _this = this;
+        var self = this;
+        __WEBPACK_IMPORTED_MODULE_5_shpjs__(__WEBPACK_IMPORTED_MODULE_0_app_shared__["apiUrl"] + '/cm/files/' + directory).then(function (data) {
+            var layer;
+            layer = new L.GeoJSON(data, {
+                onEachFeature: _this.onEachFeature,
+                style: function (feature) {
+                    var color = __WEBPACK_IMPORTED_MODULE_0_app_shared__["default_color_shpfile"];
+                    var fillColor = __WEBPACK_IMPORTED_MODULE_0_app_shared__["default_fillColor_shpfile"];
+                    var fillOpacity = __WEBPACK_IMPORTED_MODULE_0_app_shared__["default_fillOpacity_shpfile"];
+                    if (!_this.helper.isNullOrUndefined(feature.properties['color']))
+                        color = feature.properties['color'];
+                    if (!_this.helper.isNullOrUndefined(feature.properties['fillColor']))
+                        fillColor = feature.properties['fillColor'];
+                    if (!_this.helper.isNullOrUndefined(feature.properties['opacity']))
+                        color = feature.properties['opacity'];
+                    return {
+                        color: color,
+                        fillColor: fillColor,
+                        fillOpacity: fillOpacity
+                    };
+                }
+            });
+            layer.addTo(self.layersCM);
+            self.cmLayersArray.add(directory, layer);
+        });
+    };
+    CMLayersService.prototype.addLayerWithAction = function (directory, type) {
+        // let layerAdded:any;
+        if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["raster_type_name"]) {
+            this.addLayerWithActionRaster(directory);
+        }
+        else if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["vector_type_name"]) {
+            this.addLayerWithActionVector(directory);
+        }
+    };
+    CMLayersService.prototype.onEachFeature = function (feature, layer) {
+        var html = '';
+        Object.keys(feature.properties).map(function (prop) {
+            if (prop != 'color' && prop != 'fillColor' && prop != 'opacity') {
+                html += '<bold>' + prop + ':</bold>';
+                html += '<span>' + feature.properties[prop] + '</span><br />';
+            }
+        });
+        layer.bindPopup(html);
+    };
+    CMLayersService.prototype.removelayer = function (id, type) {
+        // we get the layer we want to remove
+        var layer = this.cmLayersArray.value(id);
+        if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["vector_type_name"]) {
+            layer.clearLayers();
+        }
+        else if (type === __WEBPACK_IMPORTED_MODULE_0_app_shared__["raster_type_name"]) {
+            this.layersCM.removeLayer(layer);
+        }
+        // we remove this layer from map
+        // we destroy the layer
+        this.cmLayersArray.remove(id);
+    };
+    CMLayersService.prototype.clearAll = function () {
+        this.logger.log('Clear all is called');
+        this.layersCM.clearLayers();
+    };
+    return CMLayersService;
+}(__WEBPACK_IMPORTED_MODULE_3__shared__["APIService"]));
+CMLayersService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared__["ToasterService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_app_shared__["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_app_features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */]) === "function" && _f || Object])
+], CMLayersService);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=cm-layers.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/features/calculation-module/component/calculation-module.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -358,7 +562,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".uk-container {\n  margin: 5px;\n  padding: 5px;\n}\n\n.component > input {\n  width: 100%;\n}\n\n.uk-offcanvas-bar {\n  width: 401px;\n  top: 48px;\n  background-color:#333333;\n}\n.uk-button {\n  width: 100%;\n}\n.waitingbox, .waitingboxcomponents {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n\n.spinner {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  color: black;\n  margin: 15px 15px 15px -25px;\n}\n.waitingboxcomponents > .spinner {\n  color: white !important;\n}\n#box-components {\n  width: 0 !important;\n}\n.values {\n  font-size: 12px;\n}\n.cm_title{\n  color: white;\n  margin-bottom: 0;\n}\n.description {\n  font-style: italic;\n}\n.component_title {\n  color: white;\n  font-size: 18px;\n}\n", ""]);
+exports.push([module.i, ".uk-container {\n  margin: 5px;\n  padding: 5px;\n}\noption {\n  background: #333333;\n  color:white\n}\n\n.component > input {\n  width: 100%;\n}\n\n.uk-offcanvas-bar {\n  width: 401px;\n  top: 48px;\n  background-color:#333333;\n}\n.uk-button {\n  width: 100%;\n}\n.waitingbox, .waitingboxcomponents {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n\n.spinner {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  color: black;\n  margin: 15px 15px 15px -25px;\n}\n.waitingboxcomponents > .spinner {\n  color: white !important;\n}\n#box-components {\n  width: 0 !important;\n}\n.values {\n  font-size: 12px;\n}\n.cm_title{\n  color: white;\n  margin-bottom: 0;\n}\n.description {\n  font-style: italic;\n}\n.component_title {\n  color: white;\n  font-size: 18px;\n}\n.api-inprogress {\n  background: rgb(255, 0, 0);\n}\n.unclickable {\n  cursor: wait;\n}\n.input_title{\n  margin-bottom: 0px;\n  text-transform: uppercase;\n}\n.no-data {\n  text-transform: uppercase;\n  color:red;\n}\n\n\n.input-prefix input {\n  height:30px;\n}\n", ""]);
 
 // exports
 
@@ -371,7 +575,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/calculation-module/component/calculation-module.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [@cmTrigger]=\"expandedState\">\n  <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n    <ul uk-accordion *ngFor=\"let i of categories\">\n      <li class=\"uk-open\">\n        <h3 class=\"uk-accordion-title\">\n          {{i}}\n        </h3>\n        <div class=\"uk-accordion-content\">\n          <ng-container *ngFor=\"let cm of calculationModules\">\n              <span *ngIf=\"i === cm.category && cm.isReadable\">\n                <div class=\"uk-container\">\n                  <div class=\"uk-offcanvas-content\">\n                    <button class=\"uk-button uk-button-default uk-margin-small-right\" type=\"button\" (click)=\"selectCM(cm)\">{{cm.cm_name}}</button>\n                  </div>\n                </div>\n              </span>\n          </ng-container>\n        </div>\n      </li>\n    </ul>\n  </span>\n</div>\n<div *ngIf=\"waitingCM\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n\n<div class=\"uk-offcanvas-content\">\n  <div id=\"box-components\" uk-offcanvas=\"overlay: false; bg-close: false;esc-close:false;\">\n    <div class=\"uk-offcanvas-bar\">\n      <button class=\"uk-offcanvas-close\" type=\"button\" (click)=\"closeCMpage()\" uk-close></button>\n      <h3 class=\"cm_title\" *ngIf=\"cmSelected\">{{cmSelected.cm_name}}</h3>\n      <span class=\"uk-margin description\" *ngIf=\"cmSelected\">{{cmSelected.cm_description}}</span>\n      <div *ngIf=\"waitingCM\" class=\"waitingboxcomponents\">\n        <div class=\"spinner\" uk-spinner></div>\n      </div>\n      <ng-container *ngIf=\"!waitingCM\">\n        <div class=\"component uk-margin\" *ngFor=\"let component of components\">\n          <span class=\"component_title\">{{component.component_name}} - (value: {{component.value}}{{component.unit}})</span>\n          <div class=\"uk-form-controls\">\n            <input class=\"uk-{{component.component_type}}\" id=\"{{component.parameter_name}}\" value=\"{{component.value}}\" type=\"{{component.component_type}}\"\n              min=\"{{component.min}}\" max=\"{{component.max}}\" placeholder=\"{{component.component_name}}\" (change)=\"changeValue($event, component)\">\n          </div>\n          <span class=\"values\">Min: {{component.min}}{{component.unit}}; Max: {{component.max}}{{component.unit}};</span>\n        </div>\n        <button class=\"uk-button uk-button-primary\" (click)=\"runCM()\">Run CM</button>\n      </ng-container>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"calculationModules?.length >= 1\">\n\n  <div [@cmTrigger]=\"expandedState\">\n    <span *ngIf=\"expanded && calculationModules\" [@titleTextTrigger]=\"'in'\">\n      <ul uk-accordion *ngFor=\"let i of categories\">\n        <li class=\"uk-open\">\n          <h3 class=\"uk-accordion-title\">\n            {{i}}\n          </h3>\n          <div class=\"uk-accordion-content\">\n            <ng-container *ngFor=\"let cm of calculationModules\">\n              <span *ngIf=\"i === cm.category && cm.isReadable\">\n                <div class=\"uk-container\">\n                  <div class=\"uk-offcanvas-content\">\n  \n                    <button class=\"uk-button uk-button-default uk-margin-small-right\" [class.api-inprogress]=\"cm.isApiRequestInTreatment\"\n                      type=\"button\" (click)=\"selectCM(cm)\">\n                      <ng-container *ngIf=\"cm.isApiRequestInTreatment\">Refresh</ng-container> {{cm.cm_name}}\n                    </button>\n                  </div>\n                </div>\n              </span>\n            </ng-container>\n          </div>\n        </li>\n      </ul>\n    </span>\n  </div>\n  <div *ngIf=\"waitingCM\" class=\"waitingbox\">\n    <div class=\"spinner\" uk-spinner></div>\n  </div>\n  \n  <div class=\"uk-offcanvas-content\">\n    <div id=\"box-components\" uk-offcanvas=\"overlay: false; bg-close: false;esc-close:false;\">\n      <div class=\"uk-offcanvas-bar\">\n        <div *ngIf=\"cmSelected\">\n          <button class=\"uk-offcanvas-close\" type=\"button\" (click)=\"toggleCMPanel(false)\" uk-close></button>\n  \n          <h3 class=\"cm_title\"> {{cmSelected.cm_name}}</h3>\n          <span class=\"uk-margin input-prefix\">\n              <input class=\"uk-input\" maxlength=\"15\" type=\"text\" placeholder=\"Name of calculation module session\" [(ngModel)]=\"prefix_cm\" />\n            </span><br />\n          <span class=\"uk-margin description\">{{cmSelected.cm_description}}</span><br />\n          <span class=\"uk-margin description-link\" *ngIf=\"cmSelected.description_link\">\n              <a class=\"uk-link-heading\" href=\"{{cmSelected.description_link}}\" target=\"_blank\">More description...</a>\n          </span><br />\n          <span class=\"uk-margin\" *ngIf=\"cmSelected.status_id\">id of request: {{cmSelected.status_id}}</span>\n          <div *ngIf=\"waitingCM\" class=\"waitingboxcomponents\">\n            <div class=\"spinner\" uk-spinner></div>\n          </div>\n  \n          <ng-container *ngIf=\"!waitingCM\">\n  \n          <div class=\"component uk-margin\" *ngFor=\"let input_cat of inputs_categories; let i=index\">\n              <ul uk-accordion *ngIf=\"input_cat.contains_component\">\n                <li class=\"\" [class.uk-open]=\"i===0\">\n                  <a class=\"uk-heading-bullet uk-accordion-title input_title\" href=\"#\">{{input_cat.name}} </a>\n                  <div class=\"uk-accordion-content\">\n                      <div class=\"component uk-margin\" *ngFor=\"let component of getComponentFiltered(input_cat.id)\">\n                          <span class=\"\">{{component.input_name}} - (value: {{component.input_value}}{{component.input_unit}})</span>\n                          <div class=\"uk-form-controls\">\n                            <ng-container *ngIf=\"component.input_type == type_input || component.input_type == type_range\">\n                                <input class=\"uk-{{component.input_type}}\" id=\"{{component.input_parameter_name}}\" value=\"{{component.input_value}}\"\n                                type=\"{{component.input_type}}\" min=\"{{component.input_min}}\" max=\"{{component.input_max}}\"\n                                placeholder=\"{{component.input_name}}\" (change)=\"changeValueFromInput($event, component)\" />\n                                <span class=\"values\">\n                                  Min: {{component.input_min}}{{component.input_unit}}; \n                                  Max: {{component.input_max}}{{component.input_unit}};\n                                  </span>\n                            </ng-container>\n                            <ng-container *ngIf=\"component.input_type == type_radio\">\n                              <ng-container *ngFor=\"let value of component.input_default_value; let i = index\">\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\n                                type=\"{{component.input_type}}\" (change)=\"changeValueFromInputArray($event, component)\" [checked]=\"i===0\"/> {{value}}</label>\n                              </ng-container> \n                            </ng-container>\n                            <ng-container *ngIf=\"component.input_type == type_select\">\n                                <select class=\"uk-{{select}}\" (change)=\"changeValueFromInputArray($event, component)\">\n                                  <option *ngFor=\"let value of component.input_default_value\" value=\"{{value}}\">{{value}}</option>\n                                </select>\n                            </ng-container>\n                            <!-- <ng-container *ngIf=\"component.input_type == 'checkbox'\">\n                                <label style=\"cursor: pointer;\"><input class=\"uk-{{component.input_type}}\" name=\"{{component.input_name}}\" id=\"{{component.input_name}}\" value=\"{{value}}\"\n                                  type=\"{{component.input_type}}\" (change)=\"changeValue($event, component)\"/>{{value}}</label>\n                            </ng-container> -->\n                        </div>\n                      </div>\n                  </div>\n                </li>\n              </ul>\n            </div> \n  \n            <div *ngIf=\"layersFromType.length >= 1\" class=\"uk-margin\">\n              <div *ngFor=\"let layersTable of layersFromType\">\n                <h4 class=\"uk-heading-bullet main_title input_title\">Input type selection</h4>\n                <span>Type: {{layersTable.layerType}}</span>\n                <select class=\"uk-select\" [(ngModel)]=\"layersTable.layerSelected\" (change)=\"setLayerNeeded()\">\n                  <ng-container *ngFor=\"let layer of layersTable.layers;\">\n                    <option [ngValue]=\"layer.workspaceName\">\n                      {{layer.name}}\n                    </option>\n                  </ng-container>\n                </select>\n              </div>\n            </div>\n            <button class=\"uk-button uk-button-primary\" [class.unclickable]=\"cmRunning\" (click)=\"!cmRunning ? runCM() : null\">\n              <span *ngIf=\"!cmRunning\">Run CM</span>\n              <span *ngIf=\"cmRunning\" uk-spinner></span>\n            </button>\n  \n            <div class=\"uk-margin\"></div>\n            <progress id=\"js-progressbar\" class=\"uk-progress\" value=\"{{progress}}\" max=\"100\"></progress>\n  \n  \n  \n          </ng-container>\n        </div>\n      </div>\n  \n    </div>\n  </div>\n</div>\n<div *ngIf=\"calculationModules?.length === 0\">\n  <span class=\"no-data\">No calculation module runs. <br/> Please, try later!</span>\n</div>\n"
 
 /***/ }),
 
@@ -379,12 +583,16 @@ module.exports = "<div [@cmTrigger]=\"expandedState\">\n  <span *ngIf=\"expanded
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_calcultation_module_status_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calcultation-module-status.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_calcultation_module_status_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calcultation-module-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services__ = __webpack_require__("../../../../../src/app/shared/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalculationModuleComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -400,223 +608,380 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var CalculationModuleComponent = (function () {
-    function CalculationModuleComponent(calculationModuleService, calculationModuleStatusService, helper) {
+    function CalculationModuleComponent(calculationModuleService, calculationModuleStatusService, interactionService, dataInteractionService, helper, logger, toasterService) {
         this.calculationModuleService = calculationModuleService;
         this.calculationModuleStatusService = calculationModuleStatusService;
+        this.interactionService = interactionService;
+        this.dataInteractionService = dataInteractionService;
         this.helper = helper;
+        this.logger = logger;
+        this.toasterService = toasterService;
+        this.inputs_categories = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_30" /* inputs_categories */];
+        this.type_select = 'select';
+        this.type_input = 'input';
+        this.type_radio = 'radio';
+        this.type_range = 'range';
+        this.type_checkbox = 'checkbox';
+        this.progress = 0;
         this.waitingCM = false;
+        this.layersFromType = [];
+        this.prefix_cm = '';
     }
     CalculationModuleComponent.prototype.ngOnInit = function () {
         this.subscribeEvents();
+        this.updateCMs();
+        this.logger.log('ngOnInit called');
     };
     CalculationModuleComponent.prototype.ngOnChanges = function (changes) {
-        var _this = this;
-        /*     console.log(changes.layersSelected.currentValue)
-         */
-        if (!this.helper.isNullOrUndefined(this.calculationModules)) {
-            this.calculationModules.map(function (cm) {
-                var _loop_1 = function (layer) {
-                    console.log(layer);
-                    if (_this.layersSelected.filter(function (lay) { return lay === layer; }).length === 0) {
-                        cm.isReadable = false;
-                        return "break";
-                    }
-                    else {
-                        cm.isReadable = true;
-                    }
-                    console.log(layer);
-                };
-                for (var _i = 0, _a = cm.layer_needed; _i < _a.length; _i++) {
-                    var layer = _a[_i];
-                    var state_1 = _loop_1(layer);
-                    if (state_1 === "break")
-                        break;
-                }
-            });
-        }
-        this.updateCMs();
-        console.log(this.calculationModules, this.categories);
-        // this.layersSelected.includes(this.calculationModules.layer_needed)
+        this.logger.log('ngOnChanges called');
     };
-    CalculationModuleComponent.prototype.ngOnDestroy = function () { };
+    CalculationModuleComponent.prototype.ngOnDestroy = function () {
+        this.logger.log('ngOnDestroy called');
+    };
     CalculationModuleComponent.prototype.subscribeEvents = function () {
+        var _this = this;
         var self = this;
         this.calculationModuleStatusService.getWaitingSatus().subscribe(function (value) {
             self.waitingCM = value;
         });
-        // Event trigger for the cm panel
-        __WEBPACK_IMPORTED_MODULE_4_uikit__["util"].on('#box-components', 'show', function () {
-            console.log('cm box is shown');
+        this.calculationModuleStatusService.getCmAnimationStatus().subscribe(function (data) {
+            _this.progress = data;
+            if (_this.progress !== 0) {
+                _this.cmRunning = true;
+                _this.interactionService.setCmRunning(_this.cmRunning);
+            }
+            else {
+                /* if (!this.helper.isNullOrUndefined(this.cmSelected)) {
+                  this.calculationModuleStatusService.undefinedCmRunned();
+                } */
+                _this.cmRunning = false;
+                _this.interactionService.setCmRunning(_this.cmRunning);
+            }
+            _this.logger.log('CM progress:' + _this.progress);
+            _this.logger.log('CM getCurrentIdCM:' + _this.interactionService.getCurrentIdCM());
         });
-        __WEBPACK_IMPORTED_MODULE_4_uikit__["util"].on('#box-components', 'hide', function () {
-            self.calculationModuleStatusService.undefinedCmRunned();
-            self.setWaiting(false);
-            self.cmSelected = undefined;
-            console.log('cm box is hided');
+        this.calculationModuleStatusService.getStatusCMPanel().subscribe(function (value) {
+            if (value === true) {
+                __WEBPACK_IMPORTED_MODULE_6_uikit__["offcanvas"]('#box-components').show();
+                _this.logger.log('cm box is shown');
+            }
+            else if (value === false) {
+                __WEBPACK_IMPORTED_MODULE_6_uikit__["offcanvas"]('#box-components').hide();
+                _this.cmHidePanel();
+            }
         });
+    };
+    CalculationModuleComponent.prototype.isCmsReadable = function () {
+        if (!this.helper.isNullOrUndefined(this.calculationModules)) {
+            this.calculationModules.map(function (cm) {
+                cm['isReadable'] = true;
+            });
+        }
+    };
+    CalculationModuleComponent.prototype.resetCM = function () {
+        this.cmSelected.status_id = '';
+        this.cmSelected.isApiRequestInTreatment = false;
+        this.calculationModuleStatusService.undefinedCmRunned();
     };
     CalculationModuleComponent.prototype.updateCMs = function () {
         var _this = this;
-        this.calculationModuleService.getcalculationModuleServicesPromise().then(function (result) {
+        this.interactionService.deleteCMTask();
+        this.calculationModuleService.getCalculationModuleServices().then(function (result) {
             _this.calculationModules = [];
             _this.calculationModules = result;
             _this.setWaiting(false);
-        });
-        this.calculationModuleService.getCalculationModuleCategories().then(function (categories) {
-            _this.categories = {};
-            _this.categories = categories;
+        }).then(function () {
+            _this.isCmsReadable();
+            _this.calculationModuleService.getCalculationModuleCategories(_this.calculationModules).then(function (categories) {
+                _this.categories = [];
+                _this.categories = categories;
+            });
         });
     };
-    CalculationModuleComponent.prototype.changeValue = function (event, component) {
+    CalculationModuleComponent.prototype.changeValueFromInputArray = function (event, component) {
+        component.input_value = event.target.value;
+    };
+    CalculationModuleComponent.prototype.changeValueFromInput = function (event, component) {
         var newValue = event.target.value;
-        if ((newValue >= component.min) && (newValue <= component.max)) {
-            component.value = event.target.value;
+        if ((newValue >= +component.input_min) && (newValue <= +component.input_max)) {
+            component.input_value = event.target.value;
         }
         else {
-            event.target.value = component.value;
+            event.target.value = component.input_value;
         }
     };
     CalculationModuleComponent.prototype.runCM = function () {
-        if (this.cmSelected.id === 'calculation_module_1') {
-            this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
-        }
+        var _this = this;
+        this.cmSelected['cm_prefix'] = this.prefix_cm;
+        this.prefix_cm = '';
+        this.components.forEach(function (comp) {
+            if (!_this.helper.isNullOrUndefined(comp.selected_value)) {
+                comp.input_value = comp.selected_value;
+            }
+        });
+        this.cmRunning = true;
+        this.interactionService.setCmRunning(this.cmRunning);
+        this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
     };
     CalculationModuleComponent.prototype.setWaiting = function (val) {
         this.calculationModuleStatusService.setWaitingStatus(val);
     };
-    CalculationModuleComponent.prototype.selectCM = function (cm) {
+    CalculationModuleComponent.prototype.setComponentCategory = function () {
         var _this = this;
-        this.cmSelected = cm;
-        __WEBPACK_IMPORTED_MODULE_4_uikit__["offcanvas"]('#box-components').show();
-        this.cmName = cm.cm_name;
-        this.setWaiting(true);
-        this.calculationModuleService.getComponentsByCMIdSlowly(cm.id).then(function (values) {
-            _this.components = values;
-            _this.setWaiting(false);
+        this.inputs_categories.map(function (input) {
+            input.contains_component = false;
+            if (_this.components.filter(function (x) { return x.input_priority === input.id; }).length >= 1) {
+                input.contains_component = true;
+            }
         });
     };
-    CalculationModuleComponent.prototype.closeCMpage = function () {
-        __WEBPACK_IMPORTED_MODULE_4_uikit__["offcanvas"]('#box-components').hide();
+    CalculationModuleComponent.prototype.getComponentFiltered = function (id) {
+        return this.components.filter(function (x) { return x.input_priority === id; });
+    };
+    CalculationModuleComponent.prototype.validateAuthorizedScale = function (cm) {
+        var _this = this;
+        if (!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) {
+            if (cm.authorized_scale.filter(function (x) { return x === _this.scaleLevel; }).length >= 1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    };
+    CalculationModuleComponent.prototype.selectCM = function (cm) {
+        var _this = this;
+        if (this.validateAuthorizedScale(cm)) {
+            this.toggleCMPanel(true);
+            this.setWaiting(true);
+            this.cmSelected = cm;
+            this.layersFromType = [];
+            if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
+                cm.type_layer_needed.map(function (layerType) {
+                    _this.dataInteractionService.getLayersFromType(layerType).then(function (data) {
+                        if (data.length >= 1) {
+                            _this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName });
+                        }
+                        else {
+                            _this.layersFromType.push({ layerType: layerType, layers: [{ workspaceName: layerType, name: layerType }], layerSelected: layerType });
+                        }
+                    }).then(function () {
+                        _this.setLayerNeeded();
+                    });
+                });
+            }
+            this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then(function (values) {
+                _this.components = values;
+                _this.components.forEach(function (comp) {
+                    comp['input_default_value'] = comp.input_value;
+                    if (typeof comp.input_value == 'object') {
+                        comp.input_value = comp.input_value[0];
+                    }
+                });
+            }).then(function () {
+                _this.setComponentCategory();
+            }).then(function () {
+                _this.setWaiting(false);
+            });
+        }
+        else {
+            var scale_authorized = cm.authorized_scale.toString().replace(/,/g, ', ');
+            this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen');
+        }
+    };
+    CalculationModuleComponent.prototype.cmHidePanel = function () {
+        this.setWaiting(true);
+        this.calculationModuleStatusService.undefinedCmRunned();
+        this.cmRunning = false;
+        this.interactionService.setCmRunning(this.cmRunning);
+        this.cmSelected = undefined;
+        this.components = undefined;
+        this.logger.log('cm box is hided');
+        this.setWaiting(false);
+    };
+    CalculationModuleComponent.prototype.toggleCMPanel = function (value) {
+        this.calculationModuleStatusService.setStatusCMPanel(value);
+    };
+    CalculationModuleComponent.prototype.getLayersFromType = function (layer) {
+        this.dataInteractionService.getLayersFromType(layer);
+    };
+    CalculationModuleComponent.prototype.setLayerNeeded = function () {
+        var _this = this;
+        this.cmSelected.layers_needed = [];
+        this.layersFromType.map(function (layer) {
+            _this.cmSelected.layers_needed.push(layer.layerSelected);
+        });
     };
     return CalculationModuleComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CalculationModuleComponent.prototype, "layersSelected", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CalculationModuleComponent.prototype, "expanded", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CalculationModuleComponent.prototype, "expandedState", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], CalculationModuleComponent.prototype, "scaleLevel", void 0);
 CalculationModuleComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
         selector: 'htm-cms',
         template: __webpack_require__("../../../../../src/app/features/calculation-module/component/calculation-module.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/calculation-module/component/calculation-module.component.css")],
         animations: [
             // Formulare trigger
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('cmTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: 1 })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: 0 })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms 150ms linear')),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('100ms linear'))
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["trigger"])('cmTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["style"])({ opacity: 1 })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["style"])({ opacity: 0 })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["animate"])('200ms 150ms linear')),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["animate"])('100ms linear'))
             ]),
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_calculation_module_service__["a" /* CalculationModuleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_calculation_module_service__["a" /* CalculationModuleService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__service_calculation_module_service__["a" /* CalculationModuleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__service_calculation_module_service__["a" /* CalculationModuleService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services__["a" /* Logger */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services__["d" /* ToasterService */]) === "function" && _g || Object])
 ], CalculationModuleComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=calculation-module.component.js.map
 
 /***/ }),
 
-/***/ "../../../../../src/app/features/calculation-module/service/calculation-module.data.ts":
+/***/ "../../../../../src/app/features/calculation-module/component/mock-calculation.data.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return calculation_module_components; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return calculationModuleClassArray; });
-var calculation_module_components = [
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_app_features_layers_interaction_layers_interaction_data__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.data.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return cms; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mockComponents; });
+
+var cms = [
     {
-        component_name: 'Reduction factor',
-        component_type: 'input',
-        parameter_name: 'reduction_factor',
-        value: 2,
-        unit: '',
-        min: 1,
-        max: 10,
-        cmId: 'calculation_module_1'
-    }
-    /* ,
-    {
-      component_name: 'Blablabla',
-      component_type: 'range',
-      parameter_name: 'bla',
-      value: 50,
-      unit: '',
-      min: 10,
-      max: 1000,
-      cmId: 'calculation_module_2'
+        category: "Buildings",
+        cm_id: 1,
+        layers_needed: "[u'heat_tot_curr_density']",
+        type_layer_needed: ["heat", __WEBPACK_IMPORTED_MODULE_0_app_features_layers_interaction_layers_interaction_data__["a" /* gfa_type */]],
+        authorized_scale: ["NUTS 3", "Hectare"],
+        cm_description: "this computation module allows to divide the HDM",
+        cm_name: "calculation_module_test",
+        cm_url: "https://172.26.0.2:80/",
+        updatedAt: "2018-10-08 08:24:25.769397",
+        createdAt: "2018-10-08 08:24:25.769399"
     },
     {
-      component_name: 'Test name component',
-      component_type: 'input',
-      parameter_name: 'test',
-      value: -10,
-      unit: '',
-      min: -20,
-      max: 10,
-      cmId: 'calculation_module_2'
-    } */
-    /* ,
-    {
-      component_name: 'Number 2',
-      component_type: 'range',
-      parameter_name: 'number_2',
-      value: 50,
-      unit: 'pourcentage',
-      min: 30,
-      max: 129
-    } */
-];
-var calculationModuleClassArray = [
-    {
-        id: 'calculation_module_1',
-        cm_name: 'Heat demand reduction',
-        cm_url: '',
-        cm_description: 'Based on the results of heat demand indicators, this module divides the resulting heat demand by an n factor (input)',
-        category: 'Demand',
-        layer_needed: ['heat_tot_curr_density'],
-        isReadable: false
+        category: "Buildings",
+        cm_id: 2,
+        layers_needed: "[u'heat_tot_curr_density']",
+        type_needed: ["heat"],
+        type_layer_needed: ["heat"],
+        cm_description: "This computation module calculates district heating potential within the selected region",
+        cm_name: "District Heating Potential",
+        cm_url: "https://172.26.0.4:80/",
+        updatedAt: "2018-10-08 08:24:25.796067",
+        createdAt: "2018-10-08 08:24:25.796069"
     }
-    /* ,
+];
+var mockComponents = [
     {
-      id: 'calculation_module_2',
-      cm_name: 'Calculation module 2',
-      cm_url: '',
-      cm_description: 'This module allows you to divide the heat density by the factor you want',
-      category: 'Industry',
-      layer_needed: ['pop_tot_curr_density'],
-      isReadable: false
-  
+        input_id: "1",
+        input_name: "Gross floor area",
+        input_type: "input",
+        input_parameter_name: "gfa",
+        input_value: "100",
+        input_priority: "0",
+        input_unit: "m2",
+        input_min: "0",
+        input_max: "10000",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
     },
     {
-      id: 'calculation_module_3',
-      cm_name: 'Calculation module 3',
-      cm_url: '',
-      cm_description: 'This module allows you to divide the heat density by the factor you want',
-      category: 'Demand',
-      layer_needed: ['heat_tot_curr_density'],
-      isReadable: false
-    } */
+        input_id: "2",
+        input_name: "Interest rate",
+        input_type: "input",
+        input_parameter_name: "r",
+        input_value: "0.05",
+        input_priority: "0",
+        input_unit: "",
+        input_min: "0",
+        input_max: "1",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
+    },
+    {
+        input_id: "3",
+        input_name: "Sector",
+        input_type: "radio",
+        input_parameter_name: "sector",
+        input_value: ["service", "residential"],
+        input_priority: "0",
+        input_unit: "",
+        input_min: "",
+        input_max: "",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
+    },
+    {
+        input_id: "4",
+        input_name: "Building type",
+        input_type: "select",
+        input_parameter_name: "building_type",
+        input_value: ["service", "new SFH", "new MFH"],
+        input_priority: "0",
+        input_unit: "",
+        input_min: "",
+        input_max: "",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
+    },
+    {
+        input_id: "5",
+        input_name: "Demand type",
+        input_type: "select",
+        input_parameter_name: "demand_type",
+        input_value: ["heating", "cooling"],
+        input_priority: "0",
+        input_unit: "",
+        input_min: "",
+        input_max: "",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
+    },
+    {
+        input_id: "6",
+        input_name: "Year",
+        input_type: "select",
+        input_parameter_name: "year",
+        input_value: ["2015", "2020", "2030", "2050"],
+        input_priority: "0",
+        input_unit: "",
+        input_min: "",
+        input_max: "",
+        createdAt: "2018-11-26 09:22:55.441705",
+        updatedAt: "2018-11-26 09:22:55.441704",
+        cm_id: "5"
+    }
 ];
-//# sourceMappingURL=calculation-module.data.js.map
+//# sourceMappingURL=mock-calculation.data.js.map
 
 /***/ }),
 
@@ -628,13 +993,13 @@ var calculationModuleClassArray = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__calculation_module_data__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.data.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_mock_calculation_data__ = __webpack_require__("../../../../../src/app/features/calculation-module/component/mock-calculation.data.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalculationModuleService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -670,10 +1035,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CalculationModuleService = (function (_super) {
     __extends(CalculationModuleService, _super);
-    function CalculationModuleService(http, logger, loaderService, toasterService, helper, business) {
+    function CalculationModuleService(http, logger, loaderService, toasterService, helper) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.helper = helper;
-        _this.business = business;
         _this.categories = new Set();
         return _this;
     }
@@ -681,51 +1045,56 @@ var CalculationModuleService = (function (_super) {
         return Promise.resolve(this.getCalculationModuleServices());
     };
     CalculationModuleService.prototype.getCalculationModuleServices = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__calculation_module_data__["a" /* calculationModuleClassArray */];
+        return _super.prototype.POST.call(this, '', __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/list');
     };
-    CalculationModuleService.prototype.getCalculationModuleComponents = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__calculation_module_data__["b" /* calculation_module_components */];
+    CalculationModuleService.prototype.getMockCalculationModules = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_8__component_mock_calculation_data__["a" /* cms */]);
     };
-    CalculationModuleService.prototype.getcalculationModuleServicesByName = function (cm_name) {
-        var cm = this.getCalculationModuleServices().filter(function (x) { return x.cm_name === cm_name; })[0];
-        return cm;
+    CalculationModuleService.prototype.getMockCalculationModuleComponents = function (id) {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_8__component_mock_calculation_data__["b" /* mockComponents */]);
     };
-    CalculationModuleService.prototype.getCalculationModuleCategories = function () {
+    CalculationModuleService.prototype.getCalculationModuleComponents = function (cmId) {
+        this.logger.log('getCalculationModuleComponents');
+        var payload = { cm_id: '' + cmId };
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/user-interface/');
+    };
+    CalculationModuleService.prototype.getCalculationModuleCategories = function (cms) {
         var _this = this;
         this.categories.clear();
-        this.getCalculationModuleServices().forEach(function (cm) {
+        cms.forEach(function (cm) {
             if (cm.isReadable) {
                 _this.categories.add(cm.category);
             }
         });
-        return Promise.resolve(this.categories);
+        return Promise.resolve(Array.from(this.categories.values()));
     };
-    CalculationModuleService.prototype.getCalculationModuleServicesSlowly = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            // Simulate server latency with 2 second delay
-            setTimeout(function () { return resolve(_this.getCalculationModuleServices()); }, 2000);
-        });
+    CalculationModuleService.prototype.getCMInformations = function (payload) {
+        this.logger.log('compute-async/data ' + JSON.stringify(payload));
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/compute-async/');
     };
-    CalculationModuleService.prototype.getComponentsByCMId = function (cmId) {
-        var components = this.getCalculationModuleComponents().filter(function (x) { return x.cmId === cmId; });
-        return components;
+    CalculationModuleService.prototype.getStatusOfCM = function (status_id) {
+        this.logger.log('getStatusOfCM()' + __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/status/' + status_id);
+        if (this.helper.isNullOrUndefined(status_id)) {
+            this.logger.log('is  undefine');
+        }
+        else {
+            this.logger.log('is  ok undefine');
+        }
+        return _super.prototype.GET.call(this, __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/status/' + status_id).toPromise().then(function (response) { return response; })
+            .catch(this.handleError.bind(this));
     };
-    CalculationModuleService.prototype.getComponentsByCMIdSlowly = function (cmId) {
-        var _this = this;
-        return new Promise(function (resolve) {
-            // Simulate server latency with 2 second delay
-            setTimeout(function () { return resolve(_this.getComponentsByCMId(cmId)); }, 2000);
-        });
+    CalculationModuleService.prototype.deleteCM = function (id) {
+        this.logger.log('deleteCM()' + __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + id);
+        return _super.prototype.DELETE.call(this, __WEBPACK_IMPORTED_MODULE_6_app_shared_data_service__["a" /* apiUrl */] + '/cm/delete/' + id);
     };
     return CalculationModuleService;
-}(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
+}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
 CalculationModuleService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"]) === "function" && _e || Object])
 ], CalculationModuleService);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=calculation-module.service.js.map
 
 /***/ }),
@@ -734,18 +1103,14 @@ var _a, _b, _c, _d, _e, _f;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalculationHeatLoadDividedService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -766,7 +1131,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -777,22 +1141,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var CalculationHeatLoadDividedService = (function (_super) {
     __extends(CalculationHeatLoadDividedService, _super);
-    function CalculationHeatLoadDividedService(http, logger, loaderService, toasterService, helper, business) {
-        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.helper = helper;
-        _this.business = business;
-        _this.cmResult = new __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__["BehaviorSubject"]('init');
-        return _this;
+    function CalculationHeatLoadDividedService(http, logger, loaderService, toasterService) {
+        return _super.call(this, http, logger, loaderService, toasterService) || this;
     }
-    CalculationHeatLoadDividedService.prototype.setCMResult = function () {
-        this.cmResult.next('test');
-    };
     CalculationHeatLoadDividedService.prototype.getCMResult = function (summaryResult, cm) {
-        console.log(summaryResult, cm);
         var cmResult = {};
         summaryResult.layers.map(function (layerResult) {
             if (layerResult.name === 'heat_tot_curr_density') {
@@ -806,19 +1160,18 @@ var CalculationHeatLoadDividedService = (function (_super) {
                         name: cm.cm.id
                     };
                 // layerResult.values[0].value
-                console.log(cmResult);
             }
         });
         return Promise.resolve(cmResult);
     };
     return CalculationHeatLoadDividedService;
-}(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
+}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
 CalculationHeatLoadDividedService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
 ], CalculationHeatLoadDividedService);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d;
 //# sourceMappingURL=calculation-test.service.js.map
 
 /***/ }),
@@ -843,6 +1196,8 @@ var CalculationModuleStatusService = (function () {
     function CalculationModuleStatusService() {
         this.waitingCM = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](true);
         this.cmRunned = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.panelIsOpen = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.cmAnimationStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](0);
     }
     CalculationModuleStatusService.prototype.getWaitingSatus = function () {
         return this.waitingCM;
@@ -859,6 +1214,18 @@ var CalculationModuleStatusService = (function () {
     };
     CalculationModuleStatusService.prototype.undefinedCmRunned = function () {
         this.cmRunned.next(null);
+    };
+    CalculationModuleStatusService.prototype.getStatusCMPanel = function () {
+        return this.panelIsOpen;
+    };
+    CalculationModuleStatusService.prototype.setStatusCMPanel = function (value) {
+        this.panelIsOpen.next(value);
+    };
+    CalculationModuleStatusService.prototype.setCmAnimationStatus = function (value) {
+        this.cmAnimationStatus.next(value);
+    };
+    CalculationModuleStatusService.prototype.getCmAnimationStatus = function () {
+        return this.cmAnimationStatus;
     };
     return CalculationModuleStatusService;
 }());
@@ -891,7 +1258,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/export-data/component/export-data.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div *ngIf=\"heatloadStatus;then energy_stat_content else normal_content\" class=\"energy-statistic\"></div>\n<ng-template #energy_stat_content>\n\n  <!-- if we are on summary tabs-->\n\n  <div class=\"divButtonExport\" *ngIf=\"isInSummary && loadingSummary\"  >\n    <button id=\"exportSummary\" class=\"uk-button uk-button-secondary\"   (click)=\"export() \">Export</button>\n  </div>\n\n  <!-- if we are on stats tabs-->\n\n  <div class=\"divButtonExport\" *ngIf=\"!isInSummary && loadingStats\" >\n    <button id=\"exportstats\" class=\"uk-button uk-button-secondary\"   (click)=\"export() \">Export</button>\n  </div>\n\n\n</ng-template>\n\n<ng-template #normal_content>\n  <div class=\"divButtonExport\" *ngIf=\"loadingSummary\">\n    <button id=\"exportBtn\" class=\"uk-button uk-button-secondary\"   (click)=\"export() \">Export</button>\n  </div>\n</ng-template>\n"
+module.exports = "<div *ngIf=\"(tabSelected === 'charts' && isChartValue) || (tabSelected === 'indicator' && indicators.layers.length >= 1)\" style=\"padding: 10px;\">\n  <button id=\"exportBtn\" class=\"uk-button uk-button-secondary\" (click)=\"export()\">Export</button>\n</div>"
 
 /***/ }),
 
@@ -899,10 +1266,11 @@ module.exports = "\n<div *ngIf=\"heatloadStatus;then energy_stat_content else no
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExportDataComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -917,15 +1285,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ExportDataComponent = (function () {
-    function ExportDataComponent(exportDataService, logger) {
+    function ExportDataComponent(exportDataService, logger, helper) {
         this.exportDataService = exportDataService;
         this.logger = logger;
+        this.helper = helper;
         this.isInSummary = true;
-        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["s" /* tab1 */];
+        this.tabsSelectedName = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["O" /* tab1_datapanel */];
+        this.isChartValue = false;
+        /* @Input() heatloadStatus; */
+        /* @Input() graphics;
+        @Input() indicators;
+        @Input() heatLoadData;
+        @Input() tab = tab1_datapanel;
+        @Input() updateStatus; */
+        this.displayButton = true;
     }
     ExportDataComponent.prototype.ngOnInit = function () {
         this.notifyService();
+    };
+    ExportDataComponent.prototype.ngOnChanges = function (changes) {
+    };
+    ExportDataComponent.prototype.changeButtonState = function () {
     };
     ExportDataComponent.prototype.ngOnDestroy = function () {
         this.logger.log('ExportDataComponent/ngOnDestroy');
@@ -947,60 +1329,60 @@ var ExportDataComponent = (function () {
             _this.dataSummary = val;
         });
         /**
-         * subcribe the status of the stats result
-         *
-         */
-        this.exportDataService.getStatsStatus().subscribe(function (val) {
-            _this.loadingStats = val;
-        });
-        /**
          * subcribe the data of the stats result
          *
          */
         this.exportDataService.getDataStats().subscribe(function (val) {
             _this.logger.log('ExportDataComponent/getDataStats' + JSON.stringify(val));
-            _this.dataStats = val;
-        });
-        /**
-         * subcribe the status of the tabs on which tabs are we?
-         *
-         */
-        this.exportDataService.getTabsSelectedName().subscribe(function (val) {
-            _this.logger.log('ExportDataComponent/getTabsSelectedName' + val);
-            if (val === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["s" /* tab1 */]) {
-                _this.isInSummary = true;
+            if (!_this.helper.isNullOrUndefined(val)) {
+                _this.isChartValue = true;
+                _this.dataStats = val;
             }
             else {
-                _this.isInSummary = false;
+                _this.isChartValue = false;
             }
-            _this.logger.log('setisinsummary:' + _this.isInSummary);
-            _this.tabsSelectedName = val;
         });
     };
     ExportDataComponent.prototype.export = function () {
-        if (this.isInSummary === true) {
-            this.exportDataService.exportData(this.dataSummary.layers, true, this.tabsSelectedName);
+        if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["O" /* tab1_datapanel */]) {
+            if (!this.helper.isNullOrUndefined(this.indicators.layers)) {
+                this.exportDataService.exportData(this.indicators.layers, true, this.tabSelected);
+            }
         }
-        else {
-            this.exportDataService.exportData(this.dataStats.values, false, this.tabsSelectedName);
+        else if (this.tabSelected === __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_32" /* tab2_datapanel */]) {
+            if (!this.helper.isNullOrUndefined(this.dataStats)) {
+                this.exportDataService.exportData(this.dataStats.values, false, this.tabSelected);
+            }
         }
     };
     return ExportDataComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
     __metadata("design:type", Object)
-], ExportDataComponent.prototype, "heatloadStatus", void 0);
+], ExportDataComponent.prototype, "indicators", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ExportDataComponent.prototype, "graphics", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ExportDataComponent.prototype, "tabSelected", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ExportDataComponent.prototype, "displayExportDataStatus", void 0);
 ExportDataComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'htm-export-data',
         template: __webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/export-data/component/export-data.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_export_data_service__["a" /* ExportDataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_export_data_service__["a" /* ExportDataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */]) === "function" && _c || Object])
 ], ExportDataComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=export-data.component.js.map
 
 /***/ }),
@@ -1016,7 +1398,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExportDataService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1041,7 +1423,7 @@ var ExportDataService = (function () {
         this.dataSummary = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
         this.statusStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.dataStats = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](null);
-        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared_data_service__["s" /* tab1 */]);
+        this.tabsSelectedName = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_5__shared__["tab1_datapanel"]);
     }
     /**
      * subcribe summary result
@@ -1149,12 +1531,11 @@ module.exports = "<div [@feedbackTrigger]=\"expandedState\">\n    <form *ngIf='!
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__ = __webpack_require__("../../../../../src/app/features/feedback/data-taiga.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_feedback_data_taiga__ = __webpack_require__("../../../../../src/app/features/feedback/data-taiga.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedbackComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1170,13 +1551,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var FeedbackComponent = (function () {
-    function FeedbackComponent(toasterService, interactionService) {
-        this.toasterService = toasterService;
+    function FeedbackComponent(interactionService) {
         this.interactionService = interactionService;
-        this.issue_levels = __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__["a" /* issue_levels */];
-        this.issue_type = __WEBPACK_IMPORTED_MODULE_4_app_features_feedback_data_taiga__["b" /* issue_type */];
+        this.issue_levels = __WEBPACK_IMPORTED_MODULE_3_app_features_feedback_data_taiga__["a" /* issue_levels */];
+        this.issue_type = __WEBPACK_IMPORTED_MODULE_3_app_features_feedback_data_taiga__["b" /* issue_type */];
         this.submited = false;
         this.feedbackLoader = false;
     }
@@ -1208,7 +1587,7 @@ var FeedbackComponent = (function () {
         this.files = files[0];
     };
     FeedbackComponent.prototype.showError = function () {
-        this.toasterService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
+        this.interactionService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
     };
     FeedbackComponent.prototype.sendRequest = function (f) {
         var _this = this;
@@ -1218,7 +1597,7 @@ var FeedbackComponent = (function () {
         }
         fd.append('formValues', JSON.stringify(f.value));
         jQuery.ajax({
-            url: __WEBPACK_IMPORTED_MODULE_5__shared_data_service__["_13" /* urlTaigaFeedback */],
+            url: __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_41" /* urlTaigaFeedback */],
             type: 'POST',
             data: fd,
             processData: false,
@@ -1238,34 +1617,34 @@ var FeedbackComponent = (function () {
                 _this.showError();
                 _this.feedbackLoader = false;
             },
-            timeout: __WEBPACK_IMPORTED_MODULE_2_app_shared__["timeOutAjaxRequest"]
+            timeout: __WEBPACK_IMPORTED_MODULE_1_app_shared__["timeOutAjaxRequest"]
         });
     };
     return FeedbackComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], FeedbackComponent.prototype, "expandedState", void 0);
 FeedbackComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-feedback',
         template: __webpack_require__("../../../../../src/app/features/feedback/component/feedback.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/feedback/component/feedback.component.css")],
         animations: [
             // Formulare trigger
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('feedbackTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: 1 })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: 0 })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms 150ms linear')),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('100ms linear'))
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('feedbackTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: 1 })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: 0 })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 150ms linear')),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('100ms linear'))
             ]),
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object])
 ], FeedbackComponent);
 
-var _a, _b;
+var _a;
 //# sourceMappingURL=feedback.component.js.map
 
 /***/ }),
@@ -1431,14 +1810,14 @@ var platforms = {
     },
     facebook: {
         name: 'facebook',
-        url: 'http://www.facebook.com/sharer/sharer.php?u=',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=',
         logoOfficial: 'facebook',
         logo: 'facebook',
         text: 'Share',
     },
     reddit: {
         name: 'reddit',
-        url: 'http://www.reddit.com/submit?url=',
+        url: 'https://www.reddit.com/submit?url=',
         logoOfficial: 'reddit-alien',
         logo: 'reddit',
         text: 'Submit',
@@ -1459,7 +1838,7 @@ var platforms = {
     },
     linkedin: {
         name: 'linkedin',
-        url: 'http://www.linkedin.com/shareArticle?mini=true&url=',
+        url: 'https://www.linkedin.com/shareArticle?mini=true&url=',
         logoOfficial: 'linkedin',
         logo: 'linkedin2',
         text: 'Share',
@@ -1469,7 +1848,7 @@ var platforms = {
     },
     stumbleUpon: {
         name: 'stumbleUpon',
-        url: 'http://www.stumbleupon.com/submit?url=',
+        url: 'https://www.stumbleupon.com/submit?url=',
         logoOfficial: 'stumbleupon',
         logo: 'stumbleupon',
         text: 'stumbleupon',
@@ -1479,7 +1858,7 @@ var platforms = {
     },
     tumblr: {
         name: 'tumblr',
-        url: 'http://www.tumblr.com/share/link?url=',
+        url: 'https://www.tumblr.com/share/link?url=',
         logoOfficial: 'tumblr',
         logo: 'tumblr2',
         text: 'Share',
@@ -1515,7 +1894,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 100%;\n    height: 100%;\n}", ""]);
+exports.push([module.i, ":host {\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 100%;\n    height: 100%;\n}\n\n.spinner{\n  width: 100%;\n  text-align: center;\n  position: absolute;\n  top: 30%;\n}\n.wrapper-chart {\n  position: relative;\n  width: 100%;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -1528,7 +1907,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/graph/chart/chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<canvas #canvas></canvas>\n"
+module.exports = "<div class=\"title\" *ngIf=\"title\">\n  <h5 class=\"uk-card-title\" style=\"float:left;margin: 10px;\">{{title}}</h5>\n</div>\n<div class=\"wrapper-chart\">\n  <canvas #canvas></canvas>\n  <div class=\"spinner\" *ngIf=\"isLoading\" uk-spinner=\"ratio: 3\"></div>\n</div>\n\n"
 
 /***/ }),
 
@@ -1557,6 +1936,7 @@ var ChartComponent = (function () {
     function ChartComponent(logger) {
         this.logger = logger;
         this.type = 'line';
+        this.isLoading = true;
     }
     ChartComponent.prototype.ngOnInit = function () {
         this.logger.log('ChartComponent/ngOnInit()');
@@ -1571,25 +1951,15 @@ var ChartComponent = (function () {
     ChartComponent.prototype.createChart = function () {
         this.resetChart();
         this.logger.log('this.type =' + this.type);
-        if (this.type === 'line') {
-            this.logger.log('this.type = line');
-            this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: this.labels,
-                    datasets: this.datasets
-                },
-                options: this.options
-            });
-        }
-        else if (this.type === 'pie') {
-            this.logger.log('this.type = pie');
-            this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
-                type: 'pie',
-                data: this.datasets,
-                options: this.options
-            });
-        }
+        this.chart = new __WEBPACK_IMPORTED_MODULE_1_chart_js__["Chart"](this.canvas.nativeElement.getContext('2d'), {
+            type: this.type,
+            data: {
+                labels: this.labels,
+                datasets: this.datasets
+            },
+            labels: this.labels,
+            options: this.options
+        });
     };
     ChartComponent.prototype.resetChart = function () {
         if (this.chart) {
@@ -1618,11 +1988,15 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
-], ChartComponent.prototype, "updateChart", void 0);
+], ChartComponent.prototype, "title", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], ChartComponent.prototype, "options", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "isLoading", void 0);
 ChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-chart',
@@ -1658,7 +2032,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/graph/duration-curve/duration-curve.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<!-- <div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n -->\n"
 
 /***/ }),
 
@@ -1698,7 +2072,7 @@ var DurationCurveComponent = (function () {
     }
     DurationCurveComponent.prototype.ngOnInit = function () {
         this.logger.log('DurationCurveComponent/ngOnInit');
-        this.update();
+        // this.update();
     };
     DurationCurveComponent.prototype.ngOnDestroy = function () {
         this.logger.log('DurationCurveComponent/ngOnDestroy');
@@ -1714,27 +2088,16 @@ var DurationCurveComponent = (function () {
         var payload;
         if (this.scaleLevel === '-1') {
             isHectare = true;
-            var area = this.areas;
-            var areas_1 = [];
-            this.areas.map(function (layer) {
-                var points = [];
-                if (layer instanceof L.Circle) {
-                    areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
-                }
-                else {
-                    areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
-                }
-            });
-            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], areas_1);
+            payload = this.helper.createDCPayloadHectares(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_33" /* constant_year_duration_curve */], this.durationCurvePayload.areas);
         }
         else {
-            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_5" /* constant_year_duration_curve */], this.nutsIds);
+            payload = this.helper.createDCPayloadNuts(__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_33" /* constant_year_duration_curve */], this.durationCurvePayload.nuts);
         }
         this.loadingData = true;
         this.interactionService.getDurationCurveWithPayload(payload, isHectare).then(function (result) {
-            _this.datasets = _this.interactionService.transformDurationCurveData(result);
+            // this.datasets = this.interactionService.transformDurationCurveData(result);
             _this.labels = _this.helper.createDurationCurveLabels(_this.labels);
-            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_6" /* duration_curve_graph_options */];
+            _this.options = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_34" /* duration_curve_graph_options */];
         }).then(function () {
             _this.loadingData = false;
         });
@@ -1748,7 +2111,7 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
-], DurationCurveComponent.prototype, "nutsIds", void 0);
+], DurationCurveComponent.prototype, "durationCurvePayload", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
@@ -1823,42 +2186,40 @@ var DurationCurveService = (function (_super) {
     function DurationCurveService(http, logger, loaderService, toasterService, helper) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.helper = helper;
-        _this.chartDataset = [
-            { label: 'HeatLoad', data: [], borderColor: '#2889DF', fill: true } // "fill: false" if the grey filling isn't good
-        ];
+        _this.chartDataset = { label: 'HeatLoad', data: [], borderColor: '#2889DF', fill: false }; // "fill: false" if the grey filling isn't good
         _this.formattedValues = [];
         return _this;
     }
     DurationCurveService.prototype.getDurationCurveWithPayload = function (payload, isHectare) {
         if (isHectare === false) {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* postDurationCurveNutsLau */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["M" /* postDurationCurveNutsLau */]);
         }
         else {
             this.logger.log('DurationCurveService/getDurationCurveWithPayload = ' + JSON.stringify(payload));
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["r" /* postDurationCurveHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["N" /* postDurationCurveHectares */]);
         }
     };
     DurationCurveService.prototype.formatDataset = function () {
-        this.chartDataset[0].data = [];
+        this.chartDataset.data = [];
         this.formattedValues = [];
     };
     DurationCurveService.prototype.transformData = function (data) {
         this.formatDataset();
         for (var i = 0; i < data["points"].length; ++i) {
-            this.formattedValues[i] = {
-                x: data["points"][i]['X'],
-                y: data["points"][i]['Y']
-            };
+            this.formattedValues[i] = data["points"][i]['Y'];
         }
-        this.chartDataset[0].data = this.formattedValues;
+        this.chartDataset.data = this.formattedValues;
+        return this.chartDataset;
+    };
+    DurationCurveService.prototype.getDefaultDatasetDurationCurve = function () {
         return this.chartDataset;
     };
     return DurationCurveService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
 DurationCurveService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared__["Helper"]) === "function" && _e || Object])
 ], DurationCurveService);
 
 var _a, _b, _c, _d, _e;
@@ -1887,7 +2248,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/graph/electricity-mix/component/electricity-mix.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"uk-table uk-table-divider uk-table-small\">\n<thead>\n<tr class=\"header-energy-mix\">\n  <th class=\"uk-table-shrink\">Data on NUTS0</th>\n</tr>\n</thead>\n  </table>\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n\n\n\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "<table class=\"uk-table uk-table-divider uk-table-small\">\n<thead>\n<tr class=\"header-energy-mix\">\n  <th class=\"uk-table-shrink\">Data on NUTS0</th>\n</tr>\n</thead>\n  </table>\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n  </div>\n  <div class=\"lineargraph\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<!-- <div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div> -->\n"
 
 /***/ }),
 
@@ -1921,58 +2282,21 @@ var ElectricityMixComponent = (function () {
         this.type = 'pie';
     }
     ElectricityMixComponent.prototype.ngOnInit = function () {
-        this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_4" /* energy_mix_options */];
-        this.update();
+        this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_31" /* energy_mix_options */];
+        /* this.update(); */
     };
     ElectricityMixComponent.prototype.ngOnChanges = function (changes) {
-        // this.logger.log('HeatLoadChartComponent/ngOnChanges');
-        this.update();
-    };
-    ElectricityMixComponent.prototype.update = function () {
-        var _this = this;
-        if (this.scaleLevel === '0') {
-            this.loadingData = true;
-            var payloadElec = { nuts: this.nutsIds };
-            this.logger.log(' electricitMix:payloadElec = ' + this.nutsIds);
-            var self_1 = this;
-            var electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(function (result) {
-                self_1.datasets = result;
-            }).then(function () {
-                self_1.loadingData = false;
-                _this.interactionService.setElectricityGenerationMixResultState(_this.loadingData);
-            }).catch(function (e) {
-                self_1.logger.log(JSON.stringify(e));
-                self_1.loadingData = false;
-                self_1.interactionService.setElectricityGenerationMixResultState(_this.loadingData);
-            });
-        }
     };
     return ElectricityMixComponent;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Boolean)
-], ElectricityMixComponent.prototype, "expanded", void 0);
+    __metadata("design:type", Object)
+], ElectricityMixComponent.prototype, "labels", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], ElectricityMixComponent.prototype, "datasets", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ElectricityMixComponent.prototype, "nutsIds", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ElectricityMixComponent.prototype, "loadingData", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ElectricityMixComponent.prototype, "scaleLevel", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], ElectricityMixComponent.prototype, "electricityGenerationResultState", void 0);
 ElectricityMixComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-electricity-mix',
@@ -2034,15 +2358,15 @@ var ElectricityMixService = (function (_super) {
         _this.helper = helper;
         return _this;
     }
-    ElectricityMixService.prototype.getElectricityMixFromNuts0 = function (payload) {
-        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["o" /* postHeatLoadProfileHectares */]);
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["p" /* getElectricityMixFromNuts0 */]);
+    ElectricityMixService.prototype.getElectricityMix = function (payload) {
+        this.logger.log(__WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["K" /* postHeatLoadProfileHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7_app_shared_data_service__["L" /* getElectricityMixFromNuts0 */]);
     };
     return ElectricityMixService;
 }(__WEBPACK_IMPORTED_MODULE_1__shared_services_api_service__["a" /* APIService */]));
 ElectricityMixService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared__["Helper"]) === "function" && _e || Object])
 ], ElectricityMixService);
 
 var _a, _b, _c, _d, _e;
@@ -2071,7 +2395,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/graph/heat-load/component/heat-load-chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\"\n        (click)=\"changeHeatloadType(button)\"\n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\"\n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"onSelectChange($event)\">\n          <option *ngFor=\"let option of selectedButton.options\" [selected]=\"selectedButton.date === option.id\" [value]=\"option.id\">{{option.name}}</option>\n      </select>\n    </span>\n  </div>\n  <div class=\"lineargraph\" *ngIf=\"!loadingData\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\"></htm-chart>\n  </div>\n</div>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "\n<div class=\"uk-card uk-card-body htm-card\" *ngIf=\"!nodata\">\n  <div class=\"title\">\n    <h5 class=\"uk-card-title\" style=\"float:left;margin-bottom: 0px;\">{{subtitle}} </h5>\n    <div class=\"uk-button-group date-buttons\" style=\"float:right;\">\n      <button *ngFor=\"let button of buttons_date_type\"\n        (click)=\"changeHeatloadType(button)\"\n        class=\"uk-button uk-button-default uk-button-small\" [class.activebutton]=\"button.selected\"\n        [class.uk-active]=\"button.selected\">\n        {{button.name}}\n      </button>\n    </div>\n  </div>\n  <div class=\"date-visu\">\n    <span class=\"center\">\n      <select class=\"uk-select\" (change)=\"onSelectChange($event)\">\n          <option *ngFor=\"let option of selectedButton.options\" [selected]=\"selectedButton.date === option.id\" [value]=\"option.id\">{{option.name}}</option>\n      </select>\n    </span>\n  </div>\n  <div class=\"lineargraph\">\n    <htm-chart [datasets]=\"datasets\" [labels]=\"labels\" [options]=\"options\" [type]=\"type\" [isLoading]=\"isLoading\"></htm-chart>\n  </div>\n</div>\n<!-- <div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div> -->\n"
 
 /***/ }),
 
@@ -2104,11 +2428,11 @@ var HeatLoadChartComponent = (function () {
         this.logger = logger;
         this.helper = helper;
         this.interactionService = interactionService;
+        this.isLoading = true;
         this.dateHeatload = { year: 2010, month: 1, day: 1 };
         this.subtitle = __WEBPACK_IMPORTED_MODULE_2_app_shared__["heatloadprofile"];
         this.type = 'line';
         this.default_year = 2010;
-        this.loadingData = false;
     }
     HeatLoadChartComponent.prototype.ngOnInit = function () {
         this.logger.log('HeatLoadChartComponent/ngOnInit');
@@ -2207,44 +2531,39 @@ var HeatLoadChartComponent = (function () {
     };
     HeatLoadChartComponent.prototype.update = function () {
         var _this = this;
+        this.interactionService.setHeatLoadData(null);
+        this.interactionService.setDataStats(null);
+        this.datasets = null;
         if (this.buttons_date_type !== undefined) {
             var isHectare = false;
-            this.loadingData = true;
-            this.interactionService.displayButtonExportStats(!this.loadingData);
+            this.isLoading = true;
+            this.interactionService.displayButtonExportStats(!this.isLoading);
             var payload = void 0;
-            if (this.scaleLevel === '-1') {
-                isHectare = true;
-                var area = this.areas;
-                var areas_1 = [];
-                this.areas.map(function (layer) {
-                    var points = [];
-                    if (layer instanceof L.Circle) {
-                        areas_1.push({ points: _this.helper.getLocationsFromCicle(layer) });
-                    }
-                    else {
-                        areas_1.push({ points: _this.helper.getLocationsFromPolygon(layer) });
-                    }
-                });
-                payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, areas_1);
-            }
-            else {
-                payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.nutsIds);
+            if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
+                if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) {
+                    isHectare = true;
+                    payload = this.helper.createHLPayloadHectares(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.areas);
+                }
+                else {
+                    payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
+                }
+                payload['scale_level'] = this.heatLoadPayload.scale_level;
             }
             this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then(function (result) {
-                _this.logger.log('HeatLoadComponent/update = ' + result);
                 _this.loadProfileData = [];
                 _this.interactionService.setDataStats(result);
                 _this.loadProfileData = _this.interactionService.formatHeatLoadForChartjs(result, _this.selectedButton.api_ref);
                 _this.datasets = _this.loadProfileData[0];
                 _this.labels = _this.loadProfileData[1];
-                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* heat_load_graph_options */];
+                _this.options = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_35" /* heat_load_graph_options */];
+                _this.interactionService.setHeatLoadData({ dataset: _this.datasets, labels: _this.labels });
             }).then(function () {
-                _this.loadingData = false;
-                _this.interactionService.displayButtonExportStats(!_this.loadingData);
+                _this.isLoading = false;
+                _this.interactionService.displayButtonExportStats(!_this.isLoading);
             }).catch(function (e) {
                 _this.logger.log(JSON.stringify(e));
-                _this.loadingData = false;
-                _this.interactionService.displayButtonExportStats(!_this.loadingData);
+                _this.isLoading = false;
+                _this.interactionService.displayButtonExportStats(!_this.isLoading);
             });
         }
     };
@@ -2252,28 +2571,8 @@ var HeatLoadChartComponent = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Boolean)
-], HeatLoadChartComponent.prototype, "expanded", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
-], HeatLoadChartComponent.prototype, "nutsIds", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], HeatLoadChartComponent.prototype, "layers", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], HeatLoadChartComponent.prototype, "scaleLevel", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], HeatLoadChartComponent.prototype, "heatloadStatus", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Array)
-], HeatLoadChartComponent.prototype, "areas", void 0);
+], HeatLoadChartComponent.prototype, "heatLoadPayload", void 0);
 HeatLoadChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-heat-load-chart',
@@ -2303,16 +2602,18 @@ var _a, _b, _c;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeatLoadAggregateService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2342,6 +2643,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HeatLoadAggregateService = (function (_super) {
     __extends(HeatLoadAggregateService, _super);
     function HeatLoadAggregateService(http, logger, loaderService, toasterService, helper) {
@@ -2356,33 +2658,40 @@ var HeatLoadAggregateService = (function (_super) {
             { label: 'Value', data: [], borderColor: '#2889DF', fill: false }
         ];
         _this.formattedValues = [];
+        _this.heatLoadData = new __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__["BehaviorSubject"](null);
         _this.labels = [];
         return _this;
     }
+    HeatLoadAggregateService.prototype.setHeatLoadData = function (data) {
+        this.heatLoadData.next(data);
+    };
+    HeatLoadAggregateService.prototype.getHeatLoadData = function () {
+        return this.heatLoadData;
+    };
     HeatLoadAggregateService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         if (isHectare === false) {
-            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["t" /* postHeatLoadProfileNutsLau */]);
+            this.logger.log('postHeatLoadProfileNutsLau ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* postHeatLoadProfileNutsLau */] + '/' + type_api_ref + ' ; payload:' + JSON.stringify(payload));
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["P" /* postHeatLoadProfileNutsLau */]);
         }
         else {
-            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["o" /* postHeatLoadProfileHectares */] + type_api_ref);
-            this.logger.log(__WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["o" /* postHeatLoadProfileHectares */]);
-            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["o" /* postHeatLoadProfileHectares */]);
+            this.logger.log('postHeatLoadProfileHectares ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postHeatLoadProfileHectares */] + type_api_ref + ' ; payload:' + JSON.stringify(payload));
+            this.logger.log(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postHeatLoadProfileHectares */]);
+            return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["K" /* postHeatLoadProfileHectares */]);
         }
     };
     HeatLoadAggregateService.prototype.heatLoadMultiDataset = function (data) {
         var _this = this;
         data.values.map(function (value) {
-            _this.multiDatasets[0].data.push(Math.round(value.min));
-            _this.multiDatasets[1].data.push(Math.round(value.max));
-            _this.multiDatasets[2].data.push(Math.round(value.average));
+            _this.multiDatasets[0].data.push(value.min);
+            _this.multiDatasets[1].data.push(value.max);
+            _this.multiDatasets[2].data.push(value.average);
         });
         this.formattedValues.push(this.multiDatasets);
     };
     HeatLoadAggregateService.prototype.heatLoadSingleDataset = function (data) {
         var _this = this;
         data.values.map(function (value) {
-            _this.singleDataset[0].data.push(Math.round(value.value));
+            _this.singleDataset[0].data.push(value.value);
         });
         this.formattedValues.push(this.singleDataset);
     };
@@ -2430,14 +2739,206 @@ var HeatLoadAggregateService = (function (_super) {
         return this.formattedValues;
     };
     return HeatLoadAggregateService;
-}(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
+}(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
 HeatLoadAggregateService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_app_shared__["Helper"]) === "function" && _e || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_app_shared__["Helper"]) === "function" && _e || Object])
 ], HeatLoadAggregateService);
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=heat-load.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".color-box {\n  height: 12px;\n  width: 50px;\n  float: left;\n  position: absolute;\n  left: 80px;\n}\n.symbolgy {\n  float: left;\n  margin:1px;\n  width: 100%;\n  position: relative;\n  height: 14px;\n  overflow: hidden;\n}\n.label {\n  text-align: left;\n  font-size: 12px;\n  line-height: 12px;\n  position: absolute;\n  left: 134px;\n  white-space: nowrap;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"symbolgies\">\n  <div class=\"symbolgy\" *ngFor=\"let symb of symbolgies\">\n    <div class=\"color-box\" [style.background-color]=\"'rgba(' + symb.red +',' + symb.green +',' +symb.blue +',' + symb.opacity +')'\"></div>\n    <div class=\"label\">\n        {{symb.value}}: {{symb.label}}\n    </div>\n  </div>\n\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomSymbologyComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CustomSymbologyComponent = (function () {
+    function CustomSymbologyComponent(helper) {
+        this.helper = helper;
+    }
+    CustomSymbologyComponent.prototype.ngOnInit = function () {
+        if (!this.helper.isNullOrUndefined(this.symbolgies)) {
+            this.symbolgies.sort(function (a, b) {
+                if (+a.value > +b.value)
+                    return 1;
+                if (+a.value < +b.value)
+                    return -1;
+                return 0;
+            });
+        }
+    };
+    return CustomSymbologyComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], CustomSymbologyComponent.prototype, "symbolgies", void 0);
+CustomSymbologyComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-custom-symbology',
+        template: __webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/layer-tool/custom-symbology/custom-symbology.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared__["Helper"]) === "function" && _a || Object])
+], CustomSymbologyComponent);
+
+var _a;
+//# sourceMappingURL=custom-symbology.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/layer-tool.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".tool-container {\n  margin:10px;\n}\n.tool-container > span {\n  cursor: pointer;\n  color: white;\n}\n.uk-button-primary {\n  background: #0f7ae5b3;\n}\n.uk-card-body {\n  padding: 10px;\n}\n.card-content {\n  text-align: center;\n  word-wrap: break-word;\n\n}\n\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/layer-tool.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"tool-container\">\n  <button [class.uk-button-primary]=\"isLegendDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"paint-bucket\" (click)=\"toggleLegend()\"></button>\n  <button [class.uk-button-primary]=\"isInfoDisplayed\" class=\"uk-icon-button uk-button-default\" uk-icon=\"info\" (click)=\"toggleInformations()\"></button>\n  \n  <button [disabled]=\"!hasZoneSelected\" class=\"uk-icon-button uk-button-default\" uk-icon=\"cloud-download\" (click)=\"export()\"></button>\n  <a *ngIf=\"dataInteraction.download_url\" href=\"{{ dataInteraction.download_url }}\"><button  class=\"uk-icon-button uk-button-default\" uk-icon=\"upload\"></button></a>  \n  <div *ngIf=\"loading\" uk-spinner></div>\n</div>\n\n<!--\n  Layer legend\n-->\n<div [hidden]=\"!isLegendDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\n  <h3 class=\"uk-card-title\">Symbology</h3>\n  <div class=\"card-content\">\n    <ng-container *ngIf=\"dataInteraction.custom_symbology\">\n      <htm-custom-symbology [symbolgies]=\"dataInteraction.custom_symbology\"></htm-custom-symbology>\n    </ng-container>\n    <ng-container *ngIf=\"!dataInteraction.custom_symbology\">\n      <img [hidden]=\"!displayLegend\" src=\"{{imageUrl}}{{dataInteraction.workspaceName}}\" (load)=\"endLoadLegend()\" />\n      <div *ngIf=\"!displayLegend\" class=\"loader\" uk-spinner></div>\n    </ng-container>\n  </div>\n</div>\n<div *ngIf=\"isLegendDisplayed\" class=\"uk-margin\"></div>\n<!--\n  Layer informations\n-->\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-card uk-card-default uk-card-body\">\n  <h3 class=\"uk-card-title\">Informations</h3>\n  <div *ngIf=\"dataInteraction.description\" class=\"card-content\">\n    <p>\n      {{dataInteraction.description}}\n    </p>\n  </div>\n</div>\n<div *ngIf=\"isInfoDisplayed\" class=\"uk-margin\"></div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/layer-tool/layer-tool.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layers_interaction_layers_interaction_class__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_pages_map__ = __webpack_require__("../../../../../src/app/pages/map/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayerToolComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var LayerToolComponent = (function () {
+    function LayerToolComponent(mapService, uploadService) {
+        this.mapService = mapService;
+        this.uploadService = uploadService;
+        this.imageUrl = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_25" /* urlLegend */];
+        this.isLegendDisplayed = false;
+        this.isInfoDisplayed = false;
+        this.displayLegend = false;
+        this.loading = false;
+        this.hasZoneSelected = false;
+    }
+    LayerToolComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.mapService.getLoadResultbuttonState()) {
+            this.mapService.getLoadResultbuttonState().subscribe(function (value) { return _this.hasZoneSelected = value
+                && [__WEBPACK_IMPORTED_MODULE_4__shared_data_service__["d" /* nuts3 */], __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["c" /* lau2 */], __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["e" /* hectare */]].indexOf(_this.mapService.getScaleValue()) > -1; });
+        }
+    };
+    LayerToolComponent.prototype.toggleLegend = function () {
+        this.isLegendDisplayed = !this.isLegendDisplayed;
+    };
+    LayerToolComponent.prototype.toggleInformations = function () {
+        this.isInfoDisplayed = !this.isInfoDisplayed;
+    };
+    LayerToolComponent.prototype.endLoadLegend = function () {
+        this.displayLegend = true;
+    };
+    LayerToolComponent.prototype.export = function () {
+        var _this = this;
+        this.loading = true;
+        this.uploadService.export(this.dataInteraction.workspaceName)
+            .then(function (data) {
+            if (data.url != "") {
+                //window.open(data.url); //POPUP blocker
+                var a = document.createElement('a');
+                a.href = data.url;
+                a.download = data.filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(data.url);
+            }
+            _this.loading = false;
+        });
+    };
+    return LayerToolComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__layers_interaction_layers_interaction_class__["a" /* DataInteractionClass */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__layers_interaction_layers_interaction_class__["a" /* DataInteractionClass */]) === "function" && _a || Object)
+], LayerToolComponent.prototype, "dataInteraction", void 0);
+LayerToolComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-layer-tool',
+        template: __webpack_require__("../../../../../src/app/features/layer-tool/layer-tool.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/layer-tool/layer-tool.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_pages_map__["b" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_pages_map__["b" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared_services_upload_service__["a" /* UploadService */]) === "function" && _c || Object])
+], LayerToolComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=layer-tool.component.js.map
 
 /***/ }),
 
@@ -2449,7 +2950,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    min-height: 0;\n    min-width: 0;\n    /*max-height: 48px;*/\n    padding: 3px;\n    font-family: 'Hind', sans-serif;\n\n}\n.isSelected{\n    color:white;\n    background-color: #2889DF;\n}\n.details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-left: 2px;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.legend {\n  text-align: center;\n}\n.legend-div {\n  padding: 5px;\n}\n.uk-accordion-content, .uk-accordion{\n  margin: 0px !important;\n}\n.icon {\n}\n.flaticon-signs-1::before {\n  margin: 0px;\n}\n.message {\n\n}\n\n.date {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    font-size: 0.6em;\n    color: #444444;\n}\nbutton{\n    padding: 0 5px;\n    text-align: left;\n    /* font-size: 0.675rem; */\n}\n\ninput:checked{\n    border-color: green !important;\n}\n\ninput{\n    margin: 0px 5px;\n}\n.uk-button-secondary{\n    background-color: #333333;\n}\n\n.uk-accordion-title::after {\n  display: none;\n}\n\n.wait {\n  cursor: wait;\n}\n", ""]);
+exports.push([module.i, "\n:host {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    min-height: 0;\n    min-width: 0;\n    /*max-height: 48px;*/\n    padding: 3px;\n    font-family: 'Hind', sans-serif;\n\n}\n.spinner{\n  float: right;\n  line-height: 27px;\n}\n.custom-tooltip {\n  opacity: 0;\n  z-index:0;\n  top: -20px;\n  right: 0px;\n  padding: 2px;\n  position: absolute;\n  color: white;\n  font-size: 9px;\n  background-color: #333333;\n  border-radius:5px;\n  transition: visibility 0s, opacity 0.2s linear;\n}\n.details:hover .custom-tooltip{\n  opacity: 1;\n  z-index:2000;\n\n}\n.isSelected{\n    color:white;\n    background-color: #2889DF;\n}\n.details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-left: 2px;\n    width: 100%;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.legend {\n  text-align: center;\n}\n.legend-div {\n  padding: 5px;\n}\n.uk-accordion-content, .uk-accordion{\n  margin: 0px !important;\n}\n.icon {\n}\n.flaticon-signs-1::before {\n  margin: 0px;\n}\n.message {\n\n}\n\n.date {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    font-size: 0.6em;\n    color: #444444;\n}\nbutton{\n    padding: 0 5px;\n    text-align: left;\n    /* font-size: 0.675rem; */\n}\n\ninput:checked{\n    border-color: green !important;\n}\n\ninput{\n    margin: 0px 5px;\n}\n.uk-button-secondary{\n    background-color: #333333;\n}\n\n.uk-accordion-title::after {\n  display: none;\n}\n\n.wait {\n  cursor: wait;\n}\n.uk-button {\n  line-height: 28px;\n}\n", ""]);
 
 // exports
 
@@ -2462,7 +2963,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n    <!--  <form class=\"uk-form\">\n     <label > -->\n       <div>\n\n        <button type=\"button\" [class.wait]=\"interactionService.getSummaryResultState()\" name={{dataInteraction.workspaceName}} class=\"uk-button uk-button-default uk-width-1-1\"\n        (click)=\"showRemoveLayer($event,dataInteraction.workspaceName, dataInteraction.id)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n          <input class=\"uk-checkbox\" type=\"checkbox\"  [checked]=\"dataInteraction.isSelected\" >\n          {{dataInteraction.name}}\n        </button>\n\n       </div>\n      <!-- </label>\n    </form>-->\n    <div [class.legend]=\"loading\" class=\"legend-div\" *ngIf=\"dataInteraction.isSelected && dataInteraction.wo !== 'null'\">\n        <div *ngIf=\"loading\" class=\"loader\" uk-spinner></div>\n        <ul uk-accordion [hidden]=\"loading\">\n          <li>\n            <div class=\"uk-accordion-title\" href=\"#\">\n              <i class=\"flaticon-signs-1\"></i>\n            </div>\n            <div class=\"uk-accordion-content\">\n                <img src=\"http://hotmaps.hevs.ch:9009/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style={{dataInteraction.workspaceName}}\" (load)=\"endLoad()\"/>\n            </div>\n          </li>\n        </ul>\n    </div>\n</div>\n"
+module.exports = "<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" class=\"details\">\n  <div style=\"position:relative\">\n    <div class=\"custom-tooltip\" *ngIf=\"dataInteraction.isLoading\">\n      {{dataInteraction.name}} layer is loading\n    </div>\n    <button type=\"button\" [class.wait]=\"interactionService.getSummaryResultState()\" name={{dataInteraction.workspaceName}}\n      class=\"uk-button uk-button-default uk-width-1-1 button-layer\" (click)=\"showRemoveLayer($event)\" [class.uk-button-secondary]=\"dataInteraction.isSelected\">\n      <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"dataInteraction.isSelected\">\n      {{dataInteraction.name}}\n      <div *ngIf=\"dataInteraction.isLoading\" class=\"spinner\" uk-spinner=\"ratio:0.5\" ></div>\n    </button>\n  </div>\n  <htm-layer-tool *ngIf=\"dataInteraction.isSelected\" [dataInteraction]=\"dataInteraction\"></htm-layer-tool>\n</div>\n"
 
 /***/ }),
 
@@ -2470,11 +2971,11 @@ module.exports = "\n<div *ngIf=\"expanded\" [@visibleTrigger]=\"'visible'\" clas
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layers_interaction_class__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionCellComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2495,39 +2996,47 @@ var DataInteractionCellComponent = (function () {
         this.mapService = mapService;
         this.interactionService = interactionService;
         this.loading = true;
-        this.imageUrl = __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["v" /* geoserverUrl */];
+        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */];
     }
     DataInteractionCellComponent.prototype.ngOnInit = function () {
     };
     DataInteractionCellComponent.prototype.endLoad = function () {
         this.loading = false;
     };
-    DataInteractionCellComponent.prototype.showRemoveLayer = function (e, action, order) {
-        if (this.dataInteraction.isSelected) {
-        }
+    DataInteractionCellComponent.prototype.showRemoveLayer = function (e) {
         if (this.interactionService.getSummaryResultState() === false) {
             this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-            if (this.dataInteraction.isSelected) {
+            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */]) {
+                this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer);
             }
-            this.mapService.showOrRemoveLayer(action, order);
-            if (this.dataInteraction.zoomLevel > 0) {
-                this.mapService.checkZoomLevelLayer(action, this.dataInteraction.zoomLevel);
+            else {
+                var order = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Y" /* layers_order */];
+                if (this.dataInteraction.order) {
+                    order = this.dataInteraction.order;
+                }
+                this.mapService.showOrRemoveLayer(this.dataInteraction.workspaceName, order);
+                if (this.dataInteraction.zoomLevel > 0) {
+                    this.mapService.checkZoomLevelLayer(this.dataInteraction.workspaceName, this.dataInteraction.zoomLevel);
+                }
+                this.mapService.setLayersSubject();
             }
-            this.mapService.setLayersSubject();
         }
+    };
+    DataInteractionCellComponent.prototype.getIdSubtringing = function (id) {
+        return id.substring(0, 5);
     };
     return DataInteractionCellComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__["a" /* DataInteractionClass */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__layers_interaction_class__["a" /* DataInteractionClass */]) === "function" && _a || Object)
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__layers_interaction_class__["a" /* DataInteractionClass */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__layers_interaction_class__["a" /* DataInteractionClass */]) === "function" && _a || Object)
 ], DataInteractionCellComponent.prototype, "dataInteraction", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
     __metadata("design:type", Boolean)
 ], DataInteractionCellComponent.prototype, "expanded", void 0);
 DataInteractionCellComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'layers-interaction-cell',
         template: __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component.css")],
@@ -2540,14 +3049,14 @@ DataInteractionCellComponent = __decorate([
             //  over a 200ms time interval. When the item is removed we don't delay anything
             //  and use a 200ms interval.
             //
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('visible', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 300ms')]),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => void', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))])
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('visibleTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('visible', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '1' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '0' }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms 300ms')]),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('* => void', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '0' }))])
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_map_map_service__["a" /* MapService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
 ], DataInteractionCellComponent);
 
 var _a, _b, _c;
@@ -2576,64 +3085,167 @@ var DataInteractionClass = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
+/* unused harmony export potential_type */
+/* unused harmony export wwtp_type */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return gfa_type; });
+/* unused harmony export industry_type */
+/* unused harmony export population_type */
+/* unused harmony export building_volume_type */
+/* unused harmony export gitlabUrl */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DataInteractionArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return cm_default_layer; });
 
 
+var potential_type = 'potential';
+var wwtp_type = 'wwtp';
+var gfa_type = 'gross_floor_area';
+var industry_type = 'industy';
+var population_type = 'population';
+var building_volume_type = 'building_volumes';
+var gitlabUrl = 'https://gitlab.com/hotmaps/';
 var DataInteractionArray = [
-    // {id: 11, name: 'Heat map', category: 'Comsumption'},
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
-        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* defaultLayer */], zoomLevel: 0, ref: ['overall', 'demand'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
-    /*{id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-      workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
-    /*{id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-      workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: [ 'demand'], styleName: styleNameHeat},*/
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */] + ' Power', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
-    { id: 12, name: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* business_name_wwtp */] + ' Capacity', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_3" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
+    // Buildings
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
+        workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* defaultLayerType */],
+        download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_tot_curr_density/blob/master/README.md', isLoading: false },
+    { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* defaultLayerType */],
+        download_url: gitlabUrl + '/heat/heat_res_curr_density/raw/master/data/heat_res_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_res_curr_density/blob/master/README.md', isLoading: false },
+    { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* defaultLayerType */],
+        download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading: false },
+    { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
+        workspaceName: 'cool_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'cool_density', layer_type: 'cooling',
+        download_url: gitlabUrl + '/heat/cool_tot_curr_density/blob/master/data/cool_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/cool_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Gross floor area total', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_tot_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_tot_curr_density_tif' },
+        workspaceName: 'gfa_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
+        download_url: gitlabUrl + '/gfa_tot_curr_density/blob/master/data/gfa_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 19, name: 'Gross floor area residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_res_curr_density_tif' },
-    { id: 20, name: 'Gross floor area non residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'gfa_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'gfa_nonres_curr_density_tif' },
+        workspaceName: 'gfa_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
+        download_url: gitlabUrl + '/gfa_res_curr_density/blob/master/data/gfa_res_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_res_curr_density/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Gross floor area non-residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'gfa_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'gfa_tot_curr_density', layer_type: gfa_type,
+        download_url: gitlabUrl + '/gfa_nonres_curr_density/blob/master/data/gfa_nonres_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/gfa_nonres_curr_density/blob/master/README.md', isLoading: false },
     { id: 19, name: 'Building volumes total', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_tot_curr_density_tif', zoomLevel: 0, ref: ['overall'], styleName: 'vol_tot_curr_density' },
+        workspaceName: 'vol_tot_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
+        download_url: gitlabUrl + '/vol_tot_curr_density/blob/master/data/vol_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Building volumes residential', category: 'Buildings', isSelected: false,
-        workspaceName: 'vol_res_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'vol_res_curr_density_tif' },
-    /* {id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
-       workspaceName: 'vol_nonres_curr_density_tif', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'vol_res_curr_density_tif'},*/
+        workspaceName: 'vol_res_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
+        download_url: gitlabUrl + '/vol_res_curr_density/blob/master/data/vol_res_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_res_curr_density/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Building volumes non-residential', category: 'Buildings', isSelected: false,
+        workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
+        download_url: gitlabUrl + '/vol_nonres_curr_density/blob/master/data/vol_nonres_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_nonres_curr_density/blob/master/README.md', isLoading: false },
+    // Industry
     { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_emissions_ets_2014' },
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* industry_layer_order */],
+        download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_emissions_ets_2014' },
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* industry_layer_order */],
+        download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_sector_name' },
+        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* industry_layer_order */],
+        download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_database_sector' },
+        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* industry_layer_order */],
+        download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
+    // Population
     { id: 14, name: 'Population total', category: 'Population', isSelected: false,
-        workspaceName: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["D" /* populationLayerName */], zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density_V2' },
-    /*{id: 18, name: 'Biomass Potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_biomass', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-    {id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},
-    {id: 20, name: 'Wind potential', category: 'R.E.S. Potential', isSelected: false,
-      workspaceName: 'potential_wind', zoomLevel: 0, ref: ['potential'], styleName: styleNameHeat},*/
-    { id: 20, name: 'Solar potential', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_2" /* styleNameHeat */] },
-    { id: 20, name: 'Geothermal Potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_heat_cond', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_heat_cond' },
-    { id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class' },
-    { id: 20, name: 'Cooling degree days', category: 'climate', isSelected: false,
-        workspaceName: 'cdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif' },
-    { id: 20, name: 'Heating degree days', category: 'climate', isSelected: false,
-        workspaceName: 'hdd_curr_tif', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd_curr_tif' },
-    { id: 20, name: 'Electricity CO2 emissions "Data on NUTS0"', category: 'Electricity', isSelected: false,
-        workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission' },
-    { id: 20, name: 'CM - Heat demand reduction', category: 'CM', isSelected: false,
-        workspaceName: 'calculation_module_1', zoomLevel: 0, ref: ['overall', 'demand'], styleName: '' },
+        workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density', layer_type: 'pop_tot_curr_density',
+        download_url: gitlabUrl + '/pop_tot_curr_density/blob/master/data/pop_tot_curr_density.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/pop_tot_curr_density/blob/master/README.md', isLoading: false },
+    // Potentials
+    { id: 12, name: 'Waste Water Treatment Plants - Power', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["I" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'default', layer_type: 'wwtp_power',
+        download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
+    { id: 12, name: 'Waste Water Treatment Plants - Capacity', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["I" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: 'wwtp_capacity',
+        download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
+    { id: 18, name: 'Agricultural residues', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'agricultural_residues_view', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'agriculture', layer_type: 'agricultural_residues_view',
+        download_url: gitlabUrl + '/potential/potential_biomass/blob/master/data/agricultural_residues.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_biomass/blob/master/README.md', isLoading: false },
+    { id: 18, name: 'Livestock effluents', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'livestock_effluents_view', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'livestock', layer_type: 'livestock_effluents_view',
+        download_url: gitlabUrl + '/potential/potential_biomass/blob/master/data/livestock_effluents.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_biomass/blob/master/README.md', isLoading: false },
+    { id: 18, name: 'Forest residues', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_forest', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'forest', layer_type: 'potential_forest',
+        download_url: gitlabUrl + '/potential_biomass/blob/master/data/forest_residues.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential_biomass/blob/master/README.md', isLoading: false },
+    { id: 19, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
+        download_url: gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/data/solid_waste.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Wind potential at 50 meters', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'wind_50m', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'wind', layer_type: 'wind_50m',
+        download_url: gitlabUrl + '/potential/potential_wind/blob/master/data/wind_50m.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_wind/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Solar radiation on building footprint', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'solar_optimal_total', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_optimal_total', layer_type: 'solar_optimal_total',
+        download_url: gitlabUrl + '/potential/potential_solar/blob/master/data/solar_opt.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solar/blob/master/README.md', isLoading: false },
+    // shallow geothermal vector layer
+    { id: 20, name: 'Geothermal potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall', 'potential'] /*['no_showed']*/, styleName: 'shallow_geothermal_potential', layer_type: 'shallow_geothermal_potential',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading: false },
+    // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
+    /*  {id: 20, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class', layer_type: defaultLayerType,
+      description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md'}, isLoading:false},*/
+    // Climate
+    { id: 20, name: 'Average temperature', category: 'Climate', isSelected: false,
+        workspaceName: 'land_surface_temperature', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'temp_v2', layer_type: 'land_surface_temperature',
+        download_url: gitlabUrl + '/climate/climate_land_surface_temperature/blob/master/data/eurolst_mean.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_land_surface_temperature/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Cooling degree days', category: 'Climate', isSelected: false,
+        workspaceName: 'cdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif', layer_type: 'cdd_curr',
+        download_url: gitlabUrl + '/climate/CDD_ha_curr/blob/master/data/CDD_curr.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/CDD_ha_curr/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Heating degree days', category: 'Climate', isSelected: false,
+        workspaceName: 'hdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'hdd_curr_tif', layer_type: 'hdd_curr',
+        download_url: gitlabUrl + '/climate/HDD_ha_curr/blob/master/data/HDD_curr.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/HDD_ha_curr/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Solar radiation', category: 'Climate', isSelected: false,
+        workspaceName: 'solar_radiation', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'solar_optimal_total', layer_type: 'solar_radiation',
+        download_url: gitlabUrl + '/climate/climate_solar_radiation/blob/master/data/output_solar_radiation.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_solar_radiation/blob/master/README.md', isLoading: false },
+    { id: 20, name: 'Wind speed', category: 'Climate', isSelected: false,
+        workspaceName: 'output_wind_speed', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'wind', layer_type: 'output_wind_speed',
+        download_url: gitlabUrl + '/climate/climate_wind_speed/blob/master/data/EU_wind_speed_average.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_wind_speed/blob/master/README.md', isLoading: false },
+    // Electricity
+    { id: 20, name: 'Electricity CO2 emissions - country average', category: 'Electricity', isSelected: false,
+        workspaceName: 'yearly_co2_emission', zoomLevel: 0, ref: ['overall', 'electricity'], styleName: 'yearly_co2_emission', layer_type: 'yearly_co2_emission',
+        download_url: gitlabUrl + '/load_electricity/electricity_emissions_hourly/blob/master/data/Emissions_hourly.csv',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/load_electricity/electricity_emissions_hourly/blob/master/README.md', isLoading: false },
 ];
+var cm_default_layer = {
+    id: 21, name: '',
+    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */],
+    isSelected: true,
+    workspaceName: '',
+    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */]],
+    styleName: '',
+    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */],
+    cm_id: '',
+    isLoading: false
+};
 //# sourceMappingURL=layers-interaction.data.js.map
 
 /***/ }),
@@ -2703,10 +3315,20 @@ var DataInteractionService = (function (_super) {
         .catch(this.handleError);
     }*/
     DataInteractionService.prototype.getDataInteractionServices = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */]);
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */]);
     };
     DataInteractionService.prototype.getDataArrayServices = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
+    };
+    DataInteractionService.prototype.addNewLayer = function (name, id, type, symb) {
+        var newLayerAdded = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */].push(Object.assign({}, __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["c" /* cm_default_layer */]));
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].name = name;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].workspaceName = name;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].cm_id = id;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].type_of_layer = type;
+        if (symb) {
+            __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].custom_symbology = symb;
+        }
     };
     DataInteractionService.prototype.getReadableName = function (layerName) {
         this.logger.log('DataInteractionService/getReadableName layerName=' + layerName);
@@ -2723,7 +3345,7 @@ var DataInteractionService = (function (_super) {
         return layer.name;
     };
     DataInteractionService.prototype.getModulesServicesWithNewService = function (newService) {
-        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
         servicesArray.push(newService);
         return Promise.resolve(servicesArray);
     };
@@ -2735,44 +3357,66 @@ var DataInteractionService = (function (_super) {
         });
     };
     DataInteractionService.prototype.getRefFromLayerName = function (name) {
+        this.logger.log('getRefFromLayerName/name:' + name);
         var layer = this.getLayersTabs().filter(function (x) { return x.workspaceName === name; })[0];
         if (this.helper.isNullOrUndefined(layer)) {
-            return ["no layer with this name"];
+            return ["overall"];
         }
         return layer.ref;
     };
     DataInteractionService.prototype.getLayersTabs = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
     };
     DataInteractionService.prototype.getSplittedResults = function (results) {
+        this.logger.log('go inside  getSplittedResults+ ' + results);
         var newResults = this.helper.createSplittedResultsModel();
         var rLayers = results.layers;
+        this.logger.log('rLayers ' + rLayers);
+        this.logger.log('rLayers ' + JSON.stringify(rLayers));
         var rNoDataLayers = results.no_data_layers;
         // returns null if results is empty
         if (this.helper.isNullOrUndefined(rLayers) && this.helper.isNullOrUndefined(rNoDataLayers)) {
             return null;
         }
-        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["i" /* summay_drop_down_buttons */].length; j++) {
+        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */].length; j++) {
             for (var i = 0; i < rLayers.length; i++) {
-                if (this.getRefFromLayerName(results.layers[i].name).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["i" /* summay_drop_down_buttons */][j]["ref"])) {
-                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["i" /* summay_drop_down_buttons */][j]["ref"];
+                if (this.getRefFromLayerName(results.layers[i].name).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"])) {
+                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
                     newResults[ref]["layers"].push(results.layers[i]);
+                    this.logger.log('rLayers ' + rLayers);
                 }
             }
             for (var i = 0; i < rNoDataLayers.length; i++) {
-                if (this.getRefFromLayerName(results.no_data_layers[i]).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["i" /* summay_drop_down_buttons */][j]["ref"])) {
-                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["i" /* summay_drop_down_buttons */][j]["ref"];
+                if (this.getRefFromLayerName(results.no_data_layers[i]).includes(__WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"])) {
+                    var ref = __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
                     newResults[ref]["no_data_layers"].push(results.no_data_layers[i]);
                 }
             }
         }
+        this.logger.log(' newResults rLayers ' + JSON.stringify(newResults));
+        this.logger.log(' newResults rLayers ' + newResults);
         return newResults;
+    };
+    DataInteractionService.prototype.getLayersFromType = function (layer) {
+        return this.getDataInteractionServices().then(function (data) {
+            return data.filter(function (x) { return x.layer_type === layer; });
+        });
+    };
+    DataInteractionService.prototype.setLoadingLayerInterraction = function (layer) {
+        this.getDataInteractionServices().then(function (data) {
+            data.filter(function (x) { return x.workspaceName === layer; })[0].isLoading = true;
+        });
+    };
+    DataInteractionService.prototype.unsetLoadingLayerInterraction = function (layer) {
+        this.getDataInteractionServices().then(function (data) {
+            data.filter(function (x) { return x.workspaceName === layer; })[0].isLoading = false;
+        });
     };
     return DataInteractionService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
 DataInteractionService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_helper__["a" /* Helper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object])
 ], DataInteractionService);
 
 var _a, _b, _c, _d, _e, _f;
@@ -3867,18 +4511,19 @@ var wwtp_data = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mock_wwtp_data__ = __webpack_require__("../../../../../src/app/features/layers/mock/wwtp.data.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_proj4leaflet__ = __webpack_require__("../../../../proj4leaflet/src/proj4leaflet.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_proj4leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_proj4leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_proj4__ = __webpack_require__("../../../../proj4/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_class_dictionary_class__ = __webpack_require__("../../../../../src/app/shared/class/dictionary.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_class_dictionary_class__ = __webpack_require__("../../../../../src/app/shared/class/dictionary.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_mergeMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_proj4leaflet__ = __webpack_require__("../../../../proj4leaflet/src/proj4leaflet.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_proj4leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_proj4leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_proj4__ = __webpack_require__("../../../../proj4/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_app_features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayersService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -3913,14 +4558,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var proj4 = __WEBPACK_IMPORTED_MODULE_6_proj4__["default"];
+
+var proj4 = __WEBPACK_IMPORTED_MODULE_7_proj4__["default"];
 var LayersService = (function (_super) {
     __extends(LayersService, _super);
     function LayersService(http, logger, loaderService, toasterService, 
         // private interactionService: InteractionService,
         // private populationService: PopulationService,
-        helper, businessInterfaceRenderService) {
+        dataInteractionService, helper, businessInterfaceRenderService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.dataInteractionService = dataInteractionService;
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         // Improvement of coding style :
@@ -3928,13 +4575,13 @@ var LayersService = (function (_super) {
         _this.layers = new L.FeatureGroup();
         _this.current_nuts_level = '0';
         _this.heatmapOption = {
-            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */],
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["w" /* formatImage */], transparent: true, version: '1.3.0',
-            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["B" /* idDefaultLayer */]
+            layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* defaultLayer */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* formatImage */], transparent: true, version: '1.3.0',
+            zIndex: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Y" /* layers_order */]
         };
-        _this.layersArray = new __WEBPACK_IMPORTED_MODULE_7__shared_class_dictionary_class__["a" /* Dictionary */]([
+        _this.layersArray = new __WEBPACK_IMPORTED_MODULE_1__shared_class_dictionary_class__["a" /* Dictionary */]([
             {
-                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, _this.loaderService)
+                key: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* defaultLayer */], value: _this.getTilayer(_this.heatmapOption, __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* defaultLayer */])
             },
         ]);
         _this.popup = L.popup();
@@ -3952,7 +4599,7 @@ var LayersService = (function (_super) {
         this.current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nutsLevel);
     };
     LayersService.prototype.setupDefaultLayer = function () {
-        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */]);
+        var layer = this.layersArray.value(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* defaultLayer */]);
         this.logger.log(layer.toString());
         this.layers.addLayer(layer);
     };
@@ -3987,37 +4634,40 @@ var LayersService = (function (_super) {
         map.fireEvent('didUpdateLayers', this.layersArray);
     };
     LayersService.prototype.addLayerWithAction = function (action, map, order) {
-        this.logger.log('action' + action);
+        this.logger.log('action:' + action);
         var layer;
         var option = {
             layers: 'hotmaps:' + action,
-            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["w" /* formatImage */],
+            format: __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["S" /* formatImage */],
             transparent: true,
             version: '1.3.0',
             srs: 'EPSG:4326',
-            zIndex: 1
+            zIndex: order
         };
-        this.logger.log('action' + action);
-        layer = this.getTilayer(option, this.loaderService);
+        layer = this.getTilayer(option, action);
         this.layers.addLayer(layer);
         this.layersArray.add(action, layer);
     };
-    LayersService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* geoserverUrl */], option);
-        wms_request.on('load', function () {
+    LayersService.prototype.getTilayer = function (option, action) {
+        var self = this;
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* geoserverUrl */], option);
+        wms_request.on('load', function (data) {
+            self.dataInteractionService.unsetLoadingLayerInterraction(action);
             // loader.display(false)
         });
         wms_request.on('tileunload', function () { });
-        wms_request.on('tileloadstart', function () {
-            // loader.display(true)
+        wms_request.on('tileloadstart', function (data) {
+            self.dataInteractionService.setLoadingLayerInterraction(action);
         });
-        wms_request.on('tileerror', function () {
-            // loader.display(false)
+        wms_request.on('tileerror', function (data) {
+            self.dataInteractionService.unsetLoadingLayerInterraction(action);
+            self.toasterService.showToaster('Error loading tiles for ' + action);
         });
         wms_request.on('loading', function () { });
         return wms_request;
     };
     LayersService.prototype.removelayer = function (action, map) {
+        this.dataInteractionService.unsetLoadingLayerInterraction(action);
         // we get the layer we want to remove
         var layer = this.layersArray.value(action);
         // we remove this layer from map
@@ -4036,13 +4686,13 @@ var LayersService = (function (_super) {
         console.error('An error occurred', error); // for demo purposes only
     };
     LayersService.prototype.choosePopup = function (map, res, latlng, action) {
-        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["A" /* defaultLayer */])) {
+        if (this.layersArray.containsKey(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["X" /* defaultLayer */])) {
             this.addPopupHeatmap(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Z" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["D" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["E" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_0" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -4063,7 +4713,7 @@ var LayersService = (function (_super) {
         this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
         this.popup.setLatLng(latlng)
             .setContent('<h5>Population</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["F" /* unit_population */] + '</li> </ul>')
+            ' <li>Population density: ' + this.helper.round(population_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_1" /* unit_population */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupHeatmap = function (map, data, latlng) {
@@ -4071,7 +4721,7 @@ var LayersService = (function (_super) {
         var heat_density = data.features[0].properties.heat_density;
         this.popup.setLatLng(latlng)
             .setContent('<h5>Heat map</h5> <ul class="uk-list uk-list-divider">' +
-            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["G" /* unit_heat_density */] + '</li> </ul>')
+            ' <li>Heat demand: ' + this.helper.round(heat_density) + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_2" /* unit_heat_density */] + '</li> </ul>')
             .openOn(map);
     };
     LayersService.prototype.addPopupWWTP = function (map, data, latlng) {
@@ -4080,8 +4730,8 @@ var LayersService = (function (_super) {
         var power = data.features[0].properties.power;
         var date = data.features[0].properties.date.split('Z')[0];
         var unit = data.features[0].properties.unit;
-        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["H" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
-            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["I" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
+        this.popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_3" /* business_name_wwtp */] + '</h5> <ul class="uk-list uk-list-divider">' +
+            '<li>Capacity: ' + capacity + ' ' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_4" /* unit_capacity */] + '</li><li>Power: ' + this.helper.round(power) + ' ' + unit + '</li>' +
             '<li>Reference date: ' + date + '</li></ul>').openOn(map);
     };
     LayersService.prototype.showLayerDependingZoom = function (action, map, zoomLevel) {
@@ -4125,10 +4775,10 @@ var LayersService = (function (_super) {
         this.logger.log('showWwtpWithMarker');
         var epsg = '3035';
         var coordinate = this.getTranformedBoundingBox(map, __WEBPACK_IMPORTED_MODULE_9__shared__["proj3035"]);
-        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* geoserverUrl */] + '?service=wfs' +
+        var url = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* geoserverUrl */] + '?service=wfs' +
             '&version=2.0.0' +
             '&request=GetFeature' +
-            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["C" /* wwtpLayerName */] +
+            '&typeNames=hotmaps:' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Z" /* wwtpLayerName */] +
             '&srsName=EPSG:' + epsg +
             '&bbox=' + coordinate.toString() +
             '&outputFormat=application/json';
@@ -4181,11 +4831,11 @@ var LayersService = (function (_super) {
     return LayersService;
 }(__WEBPACK_IMPORTED_MODULE_9__shared__["APIService"]));
 LayersService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["ToasterService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["BusinessInterfaceRenderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["BusinessInterfaceRenderService"]) === "function" && _f || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["ToasterService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_10_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["Helper"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_9__shared__["BusinessInterfaceRenderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared__["BusinessInterfaceRenderService"]) === "function" && _g || Object])
 ], LayersService);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=layers.service.js.map
 
 /***/ }),
@@ -4226,7 +4876,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 
@@ -4278,9 +4928,9 @@ var PopulationService = (function (_super) {
         var date = data.features[0].properties.date.split('Z')[0];
         // Improvement of coding style : (with codelyzer)
         // Line 73 exceeds maximum line length of 140
-        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_1" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
+        popup.setLatLng(latlng).setContent('<h5>' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_24" /* business_name_population */] + '</h5> <ul class="uk-list uk-list-divider">' +
             '<li>nuts id: ' + nuts_id + '</li><li>nuts level: ' + stat_levl_ + '</li><li>name: ' + name + '</li>' +
-            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["F" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
+            '<li>Population: ' + this.helper.round(value) + ' ' + __WEBPACK_IMPORTED_MODULE_4__shared_data_service__["_1" /* unit_population */] + '</li><li>Reference date: ' + date + '</li></ul>').openOn(map);
         this.logger.log('PopulationService/addPopup/popup/added');
     };
     /**
@@ -4297,11 +4947,451 @@ var PopulationService = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_8__shared_services_api_service__["a" /* APIService */]));
 PopulationService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_helper__["a" /* Helper */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_helper__["a" /* Helper */]) === "function" && _e || Object])
 ], PopulationService);
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=population.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/result-manager/component/result-manager.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".uk-tab > .uk-disabled > a {\n  color: rgba(214, 56, 56, 0.32) !important;\n}\n.uk-tab{\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n    margin-bottom: 5px;\n}\n.spinner{\n  width: 100%;\n  text-align: center;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/result-manager/component/result-manager.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<span class=\"center\">\n  <div *ngIf=\"!noIndicator\" style=\"padding: 10px;\">\n    <select class=\"uk-select\" (ngModelChange)=\"changeResultsDisplay($event)\" [(ngModel)]=\"selectedButton\">\n      <ng-container *ngFor=\"let button of dropdown_btns\">\n        <option *ngIf=\"button.display\" [selected]=\"button.ref === selectedButton.ref\"  [ngValue]=\"button\">{{button.name}}</option>\n      </ng-container>\n    </select>\n  </div>\n</span>\n<ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\">\n  <li id=\"tab1\" (click)=\"tabSwitch(tab1)\">\n    <a href=\"\">INDICATORS</a>\n  </li>\n  <li id=\"tab2\" [class.uk-disabled]=\"result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload\" (click)=\"tabSwitch(tab2)\">\n    <a href=\"\">GRAPHICS</a>\n  </li>\n\n</ul>\n<ul id=\"my-id3\" class=\"uk-switcher results-container\">\n  <li>\n    <div *ngIf=\"result.indicators\">\n      <htm-summary-result [summaryResult]=\"result.indicators\" [refSelected]=\"selectedButton.ref\"></htm-summary-result>\n    </div>\n    <div class=\"spinner\" *ngIf=\"indicatorLoading\" uk-spinner=\"ratio: 3\"></div>\n  </li>\n  <li class=\"charts-tab\">\n\n    <div *ngIf=\"result.graphics\">\n      <div *ngFor=\"let graphic of result.graphics\">\n        <ng-container *ngIf=\"graphic.category == 'heatload'\">\n          <htm-heat-load-chart [heatLoadPayload]=\"heatLoadPayload\"></htm-heat-load-chart>\n        </ng-container>\n        <ng-container *ngIf=\"graphic.category == 'energy_mix'\">\n          <htm-electricity-mix [datasets]=\"graphic.data\" [labels]=\"graphic.labels\"></htm-electricity-mix>\n        </ng-container>\n        <ng-container *ngIf=\"graphic.category == cm_catedory || graphic.category == 'duration_curve'\">\n          <htm-chart [datasets]=\"graphic.data\" [type]=\"graphic.type\" [title]=\"graphic.name\" [labels]=\"graphic.labels\" [options]=\"graphic.options\" [isLoading]=\"graphic.isLoading\"></htm-chart>\n        </ng-container>\n      </div>\n    </div>\n    <!-- <div class=\"spinner\" *ngIf=\"result.graphics.length === 0 && !durationCurvePayload && !heatLoadPayload\" uk-spinner=\"ratio: 3\"></div> -->\n  </li>\n</ul>\n<div>\n  <htm-export-data [graphics]=\"result.graphics\" [indicators]=\"result.indicators\" [tabSelected]=\"tabSelected\" [displayExportDataStatus]=\"displayExportDataStatus\"></htm-export-data>\n<!--   <htm-export-data [updateStatus]=\"displayExportDataStatus\" [indicators]=\"result.indicators\" [graphics]=\"result.graphics\" [tab]=\"tabSelected\" [heatLoadData]=\"heatLoadData\"></htm-export-data>\n -->\n</div>\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/result-manager/component/result-manager.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map__ = __webpack_require__("../../../../../src/app/pages/map/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultManagerComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var ResultManagerComponent = (function () {
+    function ResultManagerComponent(helper, interactionService, logger, dataInteractionService, mapService) {
+        this.helper = helper;
+        this.interactionService = interactionService;
+        this.logger = logger;
+        this.dataInteractionService = dataInteractionService;
+        this.mapService = mapService;
+        this.progressCmAnimation = 0;
+        this.updateExportButton = false;
+        this.noIndicator = true;
+        this.indicatorLoading = true;
+        this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["O" /* tab1_datapanel */];
+        this.tab2 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_32" /* tab2_datapanel */];
+        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */];
+        this.tabSelected = this.tab1;
+        this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["h" /* summay_drop_down_buttons */];
+        this.selectedButton = this.dropdown_btns[0];
+        this.result = {
+            indicators: { layers: null, no_data_layers: null, no_table_layers: null },
+            graphics: null, raster_layers: null, vector_layers: null
+        };
+    }
+    ResultManagerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.interactionService.getHeatLoadData().subscribe(function (heatload) {
+            if (!_this.helper.isNullOrUndefined(heatload)) {
+                _this.heatLoadData = heatload;
+                _this.heatloadGraph.data = _this.heatLoadData.dataset;
+                _this.heatloadGraph.labels = _this.heatLoadData.labels;
+                _this.displayExportDataStatus = Object.assign({}, true);
+            }
+            else {
+                _this.displayExportDataStatus = false;
+            }
+        });
+    };
+    ResultManagerComponent.prototype.ngOnDestroy = function () { };
+    ResultManagerComponent.prototype.ngOnChanges = function () {
+        this.resetResult();
+        if (!this.helper.isNullOrUndefined(this.cmPayload)) {
+            this.updateCMResult();
+        }
+        if (!this.helper.isNullOrUndefined(this.summaryPayload)) {
+            this.updateSummaryResult();
+        }
+        if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
+            this.updateHeatLoadResult();
+        }
+        if (!this.helper.isNullOrUndefined(this.energyMixPayload)) {
+            this.updateEnergyMixResult();
+        }
+        if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) {
+            this.updateDurationCurveResult();
+        }
+        /* this.interactionService.getCMRunned().subscribe((data) => {
+          if (this.helper.isNullOrUndefined(data)) {
+            this.stopAnimation()
+          }
+        }) */
+    };
+    ResultManagerComponent.prototype.updateCMResult = function () {
+        var _this = this;
+        var self = this;
+        if (!this.helper.isNullOrUndefined(this.status_id)) {
+            self.interactionService.deleteCM(this.status_id);
+        }
+        self.interactionService.getCMInformations(this.cmPayload).then(function (data) {
+            self.logger.log('data.status_id ' + data.status_id);
+            self.status_id = data.status_id;
+            self.interactionService.setCurrentIdCM(self.status_id);
+            self.getStatusOfCM();
+        }).catch(function (err) {
+            _this.stopAnimation();
+            //this.interactionService.setCurrentIdCM(null)
+            self.logger.log('there is an error ');
+            self.logger.log(err);
+        });
+    };
+    ResultManagerComponent.prototype.killAnimation = function () {
+        this.progressCmAnimation = 0;
+        this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+        this.interactionService.setCmRunningProgess(this.progressCmAnimation);
+    };
+    ResultManagerComponent.prototype.updateSummaryResult = function () {
+        var _this = this;
+        var self = this;
+        self.indicatorLoading = true;
+        if (this.scaleLevel === '-1') {
+            self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(function (result) {
+                _this.resetIndicators();
+                self.setSummaryResult(result);
+                self.getIndicatorsCatergories();
+                self.indicatorLoading = false;
+                self.displayExportDataStatus = true;
+            }).catch(function (e) {
+                _this.resetIndicators();
+                self.indicatorLoading = false;
+                self.logger.log(JSON.stringify(e));
+                self.displayExportDataStatus = false;
+            });
+        }
+        else {
+            self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(function (result) {
+                _this.resetIndicators();
+                self.setSummaryResult(result);
+                self.getIndicatorsCatergories();
+                self.indicatorLoading = false;
+                self.displayExportDataStatus = true;
+            }).catch(function (e) {
+                _this.resetIndicators();
+                self.indicatorLoading = false;
+                self.logger.log(JSON.stringify(e));
+                self.displayExportDataStatus = false;
+            });
+        }
+    };
+    ResultManagerComponent.prototype.setSummaryResult = function (result) {
+        var _this = this;
+        if (result.layers.length !== 0) {
+            result.layers.map(function (layer) {
+                _this.result.indicators.layers.push(layer);
+            });
+        }
+        if (result.no_data_layers.length !== 0) {
+            this.result.indicators.no_data_layers.push(result.no_data_layers);
+        }
+        if (result.no_table_layers.length !== 0) {
+            this.result.indicators.no_table_layers.push(result.no_table_layers);
+        }
+    };
+    ResultManagerComponent.prototype.updateEnergyMixResult = function () {
+        var self = this;
+        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_43" /* energy_mix_title */], 'pie', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_31" /* energy_mix_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_44" /* energy_mix_graph_category */], true);
+        self.interactionService.getElectricityMix(self.energyMixPayload).then(function (result) {
+            graphic.isLoading = false;
+            graphic.data = result.datasets;
+            graphic.labels = result.labels;
+            self.displayExportDataStatus = true;
+        }).catch(function (e) {
+            self.displayExportDataStatus = false;
+            self.logger.log('error');
+            self.logger.log(JSON.stringify(e));
+        });
+    };
+    ResultManagerComponent.prototype.updateHeatLoadResult = function () {
+        this.heatloadGraph = this.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_36" /* heatloadprofile */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_35" /* heat_load_graph_options */], 'heatload', true);
+    };
+    ResultManagerComponent.prototype.updateDurationCurveResult = function () {
+        var _this = this;
+        var self = this;
+        var graphic = self.addGraphic(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_45" /* duration_curve_graph_title */], 'line', [], [], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_34" /* duration_curve_graph_options */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_46" /* duration_curve_graph_category */], true);
+        var isHectare;
+        if (this.scaleLevel === '-1') {
+            isHectare = true;
+        }
+        else {
+            isHectare = false;
+        }
+        self.interactionService.getDurationCurveWithPayload(this.durationCurvePayload, isHectare).then(function (result) {
+            var dataset = _this.interactionService.getDefaultDatasetDurationCurve();
+            dataset.data = [];
+            var labels = [];
+            result.points.map(function (point) {
+                dataset.data.push(point.Y);
+                labels.push('');
+            });
+            graphic.isLoading = false;
+            graphic.data = [dataset];
+            graphic.labels = labels;
+            self.displayExportDataStatus = true;
+        }).catch(function (e) {
+            self.displayExportDataStatus = false;
+            self.logger.log('error');
+            self.logger.log(JSON.stringify(e));
+        });
+    };
+    ResultManagerComponent.prototype.processAndShowCmResult = function (data) {
+        var _this = this;
+        var response = JSON.parse(data["_body"]);
+        if (response["state"] === 'SUCCESS') {
+            this.stopAnimation();
+            this.logger.log('status' + response["status"]);
+            var name_of_result_1 = this.cmPayload.cm_name;
+            if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
+                response.status.result.raster_layers.map(function (raster) {
+                    var symb;
+                    if (raster.type === 'custom') {
+                        symb = raster.symbology;
+                    }
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* raster_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["A" /* raster_type_name */]);
+                });
+            }
+            if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
+                response.status.result.vector_layers.map(function (vector) {
+                    // console.log(vector)
+                    var symb;
+                    if (vector.type == 'custom') {
+                        symb = vector.symbology;
+                    }
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* vector_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["B" /* vector_type_name */]);
+                });
+            }
+            if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
+                this.result.indicators.layers.push({
+                    name: name_of_result_1, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */]]
+                });
+                this.displayExportDataStatus = true;
+            }
+            this.indicatorLoading = false;
+            if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
+                response.status.result.graphics.map(function (graphic) {
+                    var option_calculation_module = { scales: {
+                            yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel }, ticks: { min: 0 } }],
+                            xAxes: [{ scaleLabel: { display: true, labelString: graphic.xLabel }, ticks: { autoSkip: false, min: 0 } }]
+                        }
+                    };
+                    var graph = _this.addGraphic(name_of_result_1, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */], false);
+                });
+                this.displayExportDataStatus = true;
+            }
+            this.getIndicatorsCatergories();
+        }
+        else {
+            this.logger.log('animationTimeout');
+            this.animationTimeout = setTimeout(function () {
+                _this.getStatusOfCM();
+                _this.runAnimation();
+            }, 1000);
+        }
+    };
+    ResultManagerComponent.prototype.getStatusOfCM = function () {
+        var _this = this;
+        var self = this;
+        this.indicatorLoading = true;
+        this.logger.log('this.interactionService.getCurrentIdCM()' + this.interactionService.getCurrentIdCM());
+        if (this.interactionService.getCurrentIdCM() != null) {
+            this.interactionService.getStatusAndCMResult(this.interactionService.getCurrentIdCM()).then(function (data) {
+                _this.processAndShowCmResult(data);
+            }).catch(function (err) {
+                _this.animationTimeout = setTimeout(function () {
+                    _this.stopAnimation();
+                }, 1000);
+                _this.indicatorLoading = false;
+                _this.displayExportDataStatus = false;
+                _this.interactionService.setCMAnimationStatus(null);
+                _this.logger.log('there is an error ');
+                _this.logger.log(err);
+            });
+        }
+        else {
+            this.logger.log('EVERYTHING SHOULD HAVE STOP');
+            this.animationTimeout = setTimeout(function () {
+                _this.stopAnimation();
+            }, 1000);
+            this.indicatorLoading = false;
+            this.displayExportDataStatus = false;
+            this.interactionService.setCMAnimationStatus(null);
+            this.interactionService.setStatusCMPanel(false);
+        }
+    };
+    ResultManagerComponent.prototype.StopIfRunning = function () {
+    };
+    ResultManagerComponent.prototype.stopAllAnimation = function () {
+        this.interactionService.setCMAnimationStatus(0);
+        if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+            clearTimeout(this.animationTimeout);
+        }
+        if (!this.helper.isNullOrUndefined(this.status_id)) {
+            this.interactionService.deleteCM(this.status_id);
+        }
+        this.killAnimation();
+    };
+    ResultManagerComponent.prototype.runAnimation = function () {
+        if (this.progressCmAnimation === 100) {
+            this.progressCmAnimation = 10;
+        }
+        else {
+            this.progressCmAnimation += 10;
+        }
+        this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+        this.interactionService.setCmRunningProgess(this.progressCmAnimation);
+    };
+    ResultManagerComponent.prototype.stopAnimation = function () {
+        if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+            clearTimeout(this.animationTimeout);
+        }
+        if (!this.helper.isNullOrUndefined(this.status_id)) {
+            this.interactionService.deleteCM(this.status_id);
+        }
+        this.killAnimation();
+    };
+    ResultManagerComponent.prototype.getIndicatorsCatergories = function () {
+        var _this = this;
+        this.resetButtonsDiplay();
+        if (this.result.indicators.layers.length === 0) {
+            this.noIndicator = true;
+        }
+        else {
+            this.result.indicators.layers.map(function (layer) {
+                if (!_this.helper.isNullOrUndefined(layer.name)) {
+                    var refToDisplay = [];
+                    if (_this.helper.isNullOrUndefined(layer.category)) {
+                        refToDisplay = _this.dataInteractionService.getRefFromLayerName(layer.name);
+                        layer.category = refToDisplay;
+                    }
+                    else {
+                        refToDisplay = layer.category;
+                    }
+                    _this.logger.log("refToDisplay:" + refToDisplay);
+                    refToDisplay.map(function (ref) {
+                        _this.dropdown_btns.filter(function (x) { return x.ref === ref; })[0].display = true;
+                    });
+                }
+            });
+            this.noIndicator = false;
+        }
+        this.selectedButton = this.dropdown_btns[0];
+        this.selectedButton.selected = true;
+    };
+    ResultManagerComponent.prototype.addGraphic = function (name, type, data, labels, options, category, isLoading) {
+        var graphic = { name: name, type: type, data: data, labels: labels, options: options, category: category, isLoading: isLoading };
+        this.result.graphics.push(graphic);
+        return graphic;
+    };
+    ResultManagerComponent.prototype.changeResultsDisplay = function (button) {
+        this.selectedButton = button;
+    };
+    ResultManagerComponent.prototype.resetButtonsDiplay = function () {
+        this.dropdown_btns.map(function (btn) {
+            btn.display = false;
+        });
+    };
+    ResultManagerComponent.prototype.resetResult = function () {
+        this.displayExportDataStatus = false;
+        this.resetIndicators();
+        this.result.graphics = [];
+        this.result.raster_layers = [];
+        this.result.vector_layers = [];
+    };
+    ResultManagerComponent.prototype.resetIndicators = function () {
+        this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] };
+    };
+    ResultManagerComponent.prototype.tabSwitch = function (tabName) {
+        this.tabSelected = tabName;
+    };
+    return ResultManagerComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "cmPayload", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "summaryPayload", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "energyMixPayload", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "heatLoadPayload", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "durationCurvePayload", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ResultManagerComponent.prototype, "scaleLevel", void 0);
+ResultManagerComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+        selector: 'htm-result-manager',
+        template: __webpack_require__("../../../../../src/app/features/result-manager/component/result-manager.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/result-manager/component/result-manager.component.css")],
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map__["b" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map__["b" /* MapService */]) === "function" && _e || Object])
+], ResultManagerComponent);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=result-manager.component.js.map
 
 /***/ }),
 
@@ -4342,68 +5432,69 @@ var SelectionScaleClassArray = [
     { id: 6, name: 'hectare' },
 ];
 // NUTS geometry is taken from the population layer but we don't use other data
-var action = 'population';
+var action = 'nuts';
+var date_filter = " AND year='2013-01-01'";
 var hectareOption = {
     layers: 'hotmaps:' + action + 0,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    cql_filter: 'stat_levl_ = ' + 1 + '',
+    cql_filter: 'stat_levl_ = ' + 1 + date_filter,
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
 var nuts0LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    cql_filter: 'stat_levl_ = ' + 0 + '',
+    cql_filter: 'stat_levl_ = ' + 0 + date_filter,
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
 var nuts1LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    cql_filter: 'stat_levl_ = ' + 1 + '',
+    cql_filter: 'stat_levl_ = ' + 1 + date_filter,
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
 var nuts2LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    cql_filter: 'stat_levl_ = ' + 2 + '',
+    cql_filter: 'stat_levl_ = ' + 2 + date_filter,
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
 var nuts3LayerOption = {
     layers: 'hotmaps:' + action,
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    cql_filter: 'stat_levl_ = ' + 3 + '',
+    cql_filter: 'stat_levl_ =' + 3 + date_filter,
     srs: 'EPSG:4326',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
 var lau2LayerOption = {
-    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["x" /* lau2name */],
-    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["w" /* formatImage */],
+    layers: 'hotmaps:' + __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["U" /* lau2name */],
+    format: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["S" /* formatImage */],
     transparent: true,
     version: '1.3.0',
-    zIndex: 99
+    zIndex: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["T" /* scale_layer_order */]
 };
-/*
-* loading  Event  Fired when the grid layer starts loading tiles.
+/* *
+
+loading  Event  Fired when the grid layer starts loading tiles.
 tileunload   TileEvent  Fired when a tile is removed (e.g. when a tile goes off the screen).
 tileloadstart  TileEvent  Fired when a tile is requested and starts loading.
 tileerror  TileErrorEvent   Fired when there is an error loading a tile.
 tileload   TileEvent  Fired when a tile loads.
 load   Event  Fired when the grid layer loaded all visible tiles.
-*
-*
+
 * */
 //# sourceMappingURL=selection-scale.data.js.map
 
@@ -4459,7 +5550,7 @@ var SelectionScaleService = (function (_super) {
     __extends(SelectionScaleService, _super);
     function SelectionScaleService(http, logger, loaderService, toasterService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Q" /* initial_scale_value */];
         // scale value subject
         _this.scaleValueSubject = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* nuts3 */]);
         return _this;
@@ -4498,7 +5589,7 @@ var SelectionScaleService = (function (_super) {
         });
     };
     SelectionScaleService.prototype.getTilayer = function (option, loader) {
-        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* geoserverUrl */], option);
+        var wms_request = L.tileLayer.wms(__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["R" /* geoserverUrl */], option);
         wms_request.on('load', function () {
             // loader.display(false)
         });
@@ -4530,7 +5621,7 @@ var SelectionScaleService = (function (_super) {
         var overlayMaps = {};
         var control = L.control.layers(SelectionScale, overlayMaps, { collapsed: false });
         control.addTo(map);
-        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
+        map.addLayer(SelectionScale[__WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Q" /* initial_scale_value */]]); // # Add this if you want to show, comment this if you want to hide it.-
     };
     SelectionScaleService.prototype.getIdFromNuts = function (nuts_lvl) {
         var SelectionScale = {
@@ -4544,13 +5635,13 @@ var SelectionScaleService = (function (_super) {
         return SelectionScale[nuts_lvl];
     };
     SelectionScaleService.prototype.getInitialScale = function () {
-        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["u" /* initial_scale_value */];
+        return __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Q" /* initial_scale_value */];
     };
     return SelectionScaleService;
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services_api_service__["a" /* APIService */]));
 SelectionScaleService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
 ], SelectionScaleService);
 
 var _a, _b, _c, _d;
@@ -4583,7 +5674,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 5000;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}", ""]);
+exports.push([module.i, "\n:host {\n    /*display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 0;\n    overflow: hidden;*/\n    z-index: 401;\n\n    float:left;\n    position: absolute;\n\n    margin-top: 8px;\n    margin-left: 8px;\n\n}\n\n/* SELECTIONS TOOLS CONTAINER */\n#selection-tools-box{\n    /*border: 1px solid #000000;*/\n    background-color: white;\n    width: 30px;\n    border-radius: 4px;\n}\n\n#click{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/cursor.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#rectangle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/square.svg") + ");\n    background-size: 14px 14px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#circle{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/circle.svg") + ");\n    background-size: 16px 16px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n#polygon{\n    background-image: url(" + __webpack_require__("../../../../../src/assets/icons/polygon.svg") + ");\n    background-size: 18px 18px;\n    background-repeat:no-repeat;\n    background-position: center;\n}\n\n.radio-custom {\n    opacity: 0;\n    position: absolute;\n\n}\n\n.radio-custom, .radio-custom-label {\n    display: inline-block;\n    vertical-align: middle;\n    margin: 3px;\n    cursor: pointer;\n}\n\n.radio-custom-label {\n    position: relative;\n\n}\n\n.radio-custom + .radio-custom-label:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    width: 18px;\n    height: 20px;\n    padding: 2px;\n    border: 1px solid white;\n}\n\n.radio-custom:checked + .radio-custom-label:before {\n    /*background: #ccc;*/\n    border: 1px solid #545454;\n}\n\n\n/* INFOS CONTAINER */\np {\n    font-size: 15px;\n    text-align:left;\n    margin-bottom: -10px;\n}\n\nspan {\n    float: right;\n}\n\n.containers {\n    /*flex: 1;\n    display: flex;\n    flex-direction: column;\n    min-height: 0;\n    min-width: 0;*/\n}\n\n#info-box{\n    /*border: 1px solid #000000;*/\n    margin-top: 8px;\n    height: 100%;\n    width: 250px;\n    background-color: white;\n    padding:8px;\n    border-radius: 4px;\n}\n\n.divButtons{\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin-top: 20px;\n}\n\n.uk-button{\n    font-size: 12px;\n    width:100%;\n}\n", ""]);
 
 // exports
 
@@ -4972,7 +6063,7 @@ var SelectionToolService = (function (_super) {
         _this.nutsIds = new Set;
         _this.multiSelectionLayers = new L.FeatureGroup();
         _this.controlMultiLayer = new L.FeatureGroup();
-        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["u" /* initial_scale_value */];
+        _this.scaleValue = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["Q" /* initial_scale_value */];
         _this.isDrawer = false;
         _this.isPolygonDrawer = false;
         _this.nbNutsSelectedSubject = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](0);
@@ -5032,6 +6123,9 @@ var SelectionToolService = (function (_super) {
     SelectionToolService.prototype.setScaleValue = function (scaleValue) {
         this.scaleValue = scaleValue;
     };
+    SelectionToolService.prototype.getScaleValue = function () {
+        return this.scaleValue;
+    };
     SelectionToolService.prototype.loadResultNuts = function (map) {
         var layerNameArray = [];
         for (var i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
@@ -5082,6 +6176,7 @@ var SelectionToolService = (function (_super) {
         this.isActivate = val;
     };
     SelectionToolService.prototype.clearAll = function (map) {
+        this.logger.log('Clear all is called from selection tool');
         this.nbOfLayersSelected.next(0);
         // ================
         if (this.isDrawer) {
@@ -5097,6 +6192,9 @@ var SelectionToolService = (function (_super) {
         // remove all nutsID selected
         this.nutsIds.clear();
         this.updateSelectionToolAction();
+        this.interactionService.deleteCMTask();
+        // close opened CM
+        // this.interactionService.setStatusCMPanel(false)
     };
     // Summary result show result
     SelectionToolService.prototype.getStatisticsFromLayer = function (locations, layers, map) {
@@ -5171,6 +6269,7 @@ var SelectionToolService = (function (_super) {
         else {
             url += 'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z';
         }
+        this.logger.log(url);
         this.GET(url).map(function (res) { return res.json(); })
             .subscribe(function (res) { return _this.drawResultBeforeLoadingResult(res); }, function (err) { return _super.prototype.handleError.call(_this, err); });
     };
@@ -5251,9 +6350,9 @@ var SelectionToolService = (function (_super) {
     SelectionToolService.prototype.drawResultBeforeLoadingResult = function (result) {
         this.logger.log('result is ' + result);
         this.logger.log('result is ' + result.features);
-        if (result.features.length === 0) {
-            this.toasterService.showToaster('We encountered a problem, there is no data for this area');
-        }
+        /*if (result.features.length === 0) {
+          this.toasterService.showToaster('We encountered a problem, there is no data for this area');
+        }*/
         if (this.helper.isNullOrUndefined(result) === false) {
             for (var _i = 0, _a = result.features; _i < _a.length; _i++) {
                 var feature = _a[_i];
@@ -5306,7 +6405,7 @@ var SelectionToolService = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_6__shared_services__["f" /* APIService */]));
 SelectionToolService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services__["d" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["Helper"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_app_features_selection_tools_service_selection_tool_utils_service__["a" /* SelectionToolUtils */]) === "function" && _h || Object])
 ], SelectionToolService);
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -5369,7 +6468,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <ul class=\"uk-flex-center\" uk-tab id=\"uk-tab-left-panel\">\n      <li class=\"uk-active layers-tab\"><a href=\"\">layers</a></li>\n      <li [class.uk-disabled]=\"!isZoneSelected\" ><a href=\"\">Calculation modules</a></li>\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n          <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n              <ul uk-accordion *ngFor=\"let i of category\">\n                <ng-container *ngIf=\"i !== 'CM'\">\n                  <li class=\"uk-open\">\n                    <h3 class=\"uk-accordion-title\">\n                      {{i}}\n                    </h3>\n                    <div class=\"uk-accordion-content\">\n                      <ng-container *ngFor=\"let n of layers\" >\n                        <span *ngIf=\"i === n.category\">\n                          <layers-interaction-cell [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></layers-interaction-cell>\n                        </span>\n                      </ng-container>\n                    </div>\n                    \n                  </li>\n              </ng-container>\n              </ul>\n            </span>\n      </li>\n      <li [hidden]=\"!isZoneSelected\">\n          <htm-cms [expandedState]=\"expandedState\" [expanded]=\"expanded\" [layersSelected]=\"layersSelected\"></htm-cms>\n      </li>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"expandedState\">\n    <div class=\"title-panel-left\" [@titleColorTrigger]=\"expandedState\">\n        <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n        <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState(''); closePanel('left')\">\n          <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n        </a>\n    </div>\n\n  <div class=\"notifications\">\n    <ul class=\"uk-flex-center\" uk-tab id=\"uk-tab-left-panel\">\n      <li class=\"uk-active layers-tab\"><a href=\"\">layers</a></li>\n      <li [class.uk-disabled]=\"!isZoneSelected\"><a href=\"\" (click)=\"updateCmss()\">Calculation modules</a></li>\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n          <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">\n            <htm-personnal-layers *ngIf=\"isConnected\"></htm-personnal-layers>\n              <ul uk-accordion *ngFor=\"let i of category\">\n                  <li class=\"uk-open\">\n                    <h3 class=\"uk-accordion-title\">\n                      {{i}}\n                    </h3>\n                    <div class=\"uk-accordion-content\">\n                      <ng-container *ngFor=\"let n of layers\" >\n                        <span *ngIf=\"i === n.category\">\n                          <layers-interaction-cell (click)=\"updateCmss()\" [dataInteraction]=\"n\" [expanded]=\"expanded\" disabled=\"true\"></layers-interaction-cell>\n                        </span>\n                      </ng-container>\n                    </div>\n\n                  </li>\n              </ul>\n            </span>\n      </li>\n      <li [hidden]=\"!isZoneSelected\">\n          <htm-cms [expandedState]=\"expandedState\" [expanded]=\"expanded\" [layersSelected]=\"layersSelected\" [scaleLevel]=\"scaleLevel\"></htm-cms>\n      </li>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5377,16 +6476,19 @@ module.exports = "<div class=\"container-panel-left\" [@panelWidthTrigger]=\"exp
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_features_calculation_module_component_calculation_module_component__ = __webpack_require__("../../../../../src/app/features/calculation-module/component/calculation-module.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__side_panel_component__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_app_features_user_management__ = __webpack_require__("../../../../../src/app/features/user-management/index.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeftSideComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -5416,62 +6518,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var LeftSideComponent = (function (_super) {
     __extends(LeftSideComponent, _super);
-    function LeftSideComponent(helper, dataInteractionService, logger, interactionService, mapService) {
+    function LeftSideComponent(dataInteractionService, logger, interactionService, mapService, userStatusService) {
         var _this = _super.call(this, interactionService) || this;
-        _this.helper = helper;
         _this.dataInteractionService = dataInteractionService;
         _this.logger = logger;
         _this.interactionService = interactionService;
         _this.mapService = mapService;
+        _this.userStatusService = userStatusService;
         _this.layersSelected = [];
         _this.nbElementsSelected = 0;
+        _this.category = [];
         _this.isZoneSelected = false;
+        _this.isConnected = false;
         _this.expanded = false;
         _this.expandedState = 'collapsed';
         return _this;
     }
     LeftSideComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
+        if (this.mapService.getNutsSelectedSubject()) {
             this.mapService.getNutsSelectedSubject().subscribe(function (value) {
+                _this.scaleLevel = _this.mapService.getScaleValue();
                 if (value === 0) {
-                    __WEBPACK_IMPORTED_MODULE_8_uikit__["tab"]('#uk-tab-left-panel').show(0);
+                    __WEBPACK_IMPORTED_MODULE_9_uikit__["tab"]('#uk-tab-left-panel').show(0);
                     _this.isZoneSelected = false;
                 }
                 else {
-                    _this.isZoneSelected = true;
+                    if (_this.scaleLevel === __WEBPACK_IMPORTED_MODULE_10__shared_data_service__["e" /* hectare */]) {
+                        _this.isZoneSelected = true;
+                    }
+                    else {
+                        _this.isZoneSelected = true;
+                    }
                 }
                 _this.nbElementsSelected = value;
-                console.log('LeftSideComponent/this.nbElementsSelected = ' + _this.nbElementsSelected);
+                _this.logger.log('LeftSideComponent/this.nbElementsSelected = ' + _this.nbElementsSelected);
             });
-        }
-        if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
             this.mapService.getLayerArray().subscribe(function () {
                 _this.layersSelected = _this.mapService.setLayerWithoutSuffix();
-                console.log('LeftSideComponent/this.layersSelected = ', _this.layersSelected);
+                _this.logger.log('LeftSideComponent/this.layersSelected = ' + _this.layersSelected);
             });
+            this.userStatusService.getIsUserLogged().subscribe(function (value) { return _this.isConnected = value; });
         }
         this.dataInteractionService.getDataInteractionServices().then(function (layers) { return _this.getLayerAndCategory(layers); });
     };
+    LeftSideComponent.prototype.updateCmss = function () {
+        this.calculationModuleComponent.updateCMs();
+    };
     LeftSideComponent.prototype.getLayerAndCategory = function (layers) {
         this.logger.log(' layerr = ' + JSON.stringify(layers));
-        console.log(layers);
         this.layers = layers;
         this.category = layers.map(function (item) { return item.category; })
             .filter(function (value, index, self) { return self.indexOf(value) === index; });
+        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* calculation_module_category */]);
     };
     LeftSideComponent.prototype.ngOnDestroy = function () {
     };
     return LeftSideComponent;
-}(__WEBPACK_IMPORTED_MODULE_2__side_panel_component__["a" /* SideComponent */]));
+}(__WEBPACK_IMPORTED_MODULE_3__side_panel_component__["a" /* SideComponent */]));
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], LeftSideComponent.prototype, "areas", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_app_features_calculation_module_component_calculation_module_component__["a" /* CalculationModuleComponent */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_features_calculation_module_component_calculation_module_component__["a" /* CalculationModuleComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_features_calculation_module_component_calculation_module_component__["a" /* CalculationModuleComponent */]) === "function" && _a || Object)
+], LeftSideComponent.prototype, "calculationModuleComponent", void 0);
 LeftSideComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'htm-left-side-panel',
         template: __webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/left-side-panel.component.css")],
@@ -5486,42 +6605,123 @@ LeftSideComponent = __decorate([
             //  we add a delay of 200ms to allow some other animations to complete before
             //  shrinking the panel down.
             //
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('panelWidthTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_5_app_shared__["leftPanelSize"] + 'px' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ width: '0px' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms ease-in')),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms 200ms ease-out'))
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["trigger"])('panelWidthTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_6_app_shared__["leftPanelSize"] + 'px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ width: '0px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms ease-in')),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('titleColorTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ backgroundColor: '#333333', color: '#FFFFFF' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms ease-in')),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms 200ms ease-out'))
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["trigger"])('titleColorTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ backgroundColor: '#333333', color: '#FFFFFF' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms ease-in')),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('titleTextTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '1' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '0' }),
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('100ms 300ms')
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["trigger"])('titleTextTrigger', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ opacity: '1' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ opacity: '0' }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('100ms 300ms')
                 ]),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('* => void', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('50ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ opacity: '0' }))
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('* => void', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('50ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["style"])({ opacity: '0' }))
                 ])
             ]),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('iconTrigger', [
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["trigger"])('iconTrigger', [
                 // state('collapsed', style({ transform: 'rotate(180deg)' })),
                 // state('collapsed', style({ transform: 'rotate(180deg)' })),
                 //   state('expanded', style({ transform: 'rotate(0deg)' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms ease-in')),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["animate"])('200ms ease-out'))
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms ease-in')),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["animate"])('200ms ease-out'))
             ])
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_3__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_4__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_helper__["a" /* Helper */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__pages_map_map_service__["a" /* MapService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__pages_map_map_service__["a" /* MapService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_11_app_features_user_management__["e" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11_app_features_user_management__["e" /* UserManagementStatusService */]) === "function" && _f || Object])
 ], LeftSideComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=left-side-panel.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "input {\n    margin: 0px 5px;\n}\n\nbutton {\n    padding: 0 5px;\n    line-height: 28px;\n    text-align: left;\n}\n\nspan {\n    width: calc(100% - 30px);\n    position: absolute;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n}\n\n.layers {\n    padding: 3px;\n}\n\n.button-secondary {\n    background-color: #333333;\n    color: white;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ul uk-accordion>\n    <li class=\"uk-open\">\n        <h3 class=\"uk-accordion-title\">Personal layer</h3>\n        <div class=\"uk-accordion-content\" style=\"position: relative; width: 100%;\">\n            <ng-container *ngFor=\"let layer of layers\">\n                <div class=\"layers\" (click)=\"actionLayer(layer)\">\n                    <button type=\"button\" class=\"uk-button uk-button-default uk-width-1-1\" [class.button-secondary]=\"layer.checked\">\n                        <input class=\"uk-checkbox\" type=\"checkbox\" [checked]=\"layer.checked\"><span>{{ layer.name }}</span>\n                    </button>\n                </div>\n            </ng-container>\n        </div>\n    </li>\n</ul>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PersonnalLayersComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PersonnalLayersComponent = (function () {
+    function PersonnalLayersComponent(uploadService) {
+        this.uploadService = uploadService;
+        this.layers = [];
+    }
+    PersonnalLayersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.uploadService.getUploadedFiles)
+            this.uploadService.getUploadedFiles().subscribe(function (files) {
+                _this.layers = files.filter(function (file) { return file.name.split('.').reverse()[0] != 'csv'; });
+            });
+    };
+    PersonnalLayersComponent.prototype.actionLayer = function (layer) {
+        if (layer.checked) {
+            this.uploadService.remove(layer);
+            layer.checked = false;
+        }
+        else {
+            this.uploadService.show(layer);
+            layer.checked = true;
+        }
+    };
+    return PersonnalLayersComponent;
+}());
+PersonnalLayersComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-personnal-layers',
+        template: __webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_shared_services_upload_service__["a" /* UploadService */]) === "function" && _a || Object])
+], PersonnalLayersComponent);
+
+var _a;
+//# sourceMappingURL=personnal-layers.component.js.map
 
 /***/ }),
 
@@ -5544,7 +6744,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow:auto;\n  max-height: 94vh;\n}\n\n.content-right-panel{\n    max-height: 89vh;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\ni {\n    font-size: 1.5em;\n}\n\n.uk-tab{\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n    margin-bottom: 5px;\n}\n.container-panel-right {\n    /*flex: 1;\n    display: flex;*/\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 5vh;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 5vh;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n\n.export-tab1{\n  bottom: 0;\n  right: 0;\n}\n\n.export-tab2{\n  bottom: 0;\n  float: right;\n}\n", ""]);
+exports.push([module.i, "\n:host {\n  border-right: 1px solid #000000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow:auto;\n  max-height: 94vh;\n}\n\n.content-right-panel{\n    max-height: 89vh;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\ni {\n    font-size: 1.5em;\n}\n\n.uk-tab{\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n    margin-bottom: 5px;\n}\n.container-panel-right {\n    /*flex: 1;\n    display: flex;*/\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    min-height: 0;\n    min-width: 0;\n}\n\n.title-panel-right  {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    color: #d3d3d3;;\n    padding: 0 8px 0 8px;\n    height: 50px;\n    background-color: #333333;\n}\n\n.title-panel-right  span {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    font-family: 'Roboto', sans-serif;\n    font-size: 1.5em;\n    text-align: center;\n    text-transform: uppercase;\n    line-height: 50px;\n}\n\n.title-panel-right \\--collapsed {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n\n.notifications {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\na {\n    text-decoration: none;\n\n}\n.title-panel-right>a{\n    line-height: 50px;\n}\n\na:hover {\n    cursor: pointer;\n}\n\n.export-tab1{\n  bottom: 0;\n  right: 0;\n}\n\n.export-tab2{\n  bottom: 0;\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -5557,7 +6757,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\">\n\n  <div class=\"title-panel-right \" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n\n  </div>\n  <span class=\"center\">\n      <div *ngIf=\"splittedResults\" style=\"padding: 10px;\">\n        <select class=\"uk-select\" (change)=\"changeResultsDisplay($event)\">\n            <ng-container *ngFor=\"let button of dropdown_btns\">\n              <option *ngIf=\"splittedResults[button.ref].layers.length !== 0\" [selected]=\"button.ref == buttonRef\" [value]=\"button.ref\">\n                {{button.name}}\n              </option>\n            </ng-container>\n        </select>\n      </div>\n    </span>\n  <div *ngIf=\"heatloadStatus && !nust0Selected;then energy_stat_content\" class=\"energy-statistic\"></div>\n  <div *ngIf=\"!heatloadStatus && !nust0Selected;then normal_content\" class=\"energy-statistic\"></div>\n  <div *ngIf=\"nust0Selected && !heatloadStatus;then energy_mix_content\" class=\"energy-statistic\"></div>\n\n  <ng-template #energy_stat_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1\" (click)=\"clickTab('overall')\">\n        <a href=\"\">INDICATORS</a>\n      </li>\n      <li id=\"tab2\" (click)=\"clickTab('stats')\">\n        <a href=\"\">GRAPHICS</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          [splittedResults]=\"splittedResults\"\n          [buttonRef]=\"buttonRef\"\n\n          ></htm-summary-result>\n          <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-heat-load-chart\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [layers]=\"layers\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-heat-load-chart>\n        <htm-duration-curve\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [nutsIds]=\"nutsIds\"\n          [scaleLevel]=\"scaleLevel\"\n          [areas]=\"areas\"\n          [heatloadStatus]=\"heatloadStatus\"></htm-duration-curve>\n          <div class=\"export-tab2\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n  </ul>\n  </ng-template>\n\n  <ng-template #normal_content>\n    <htm-summary-result\n      *ngIf=\"expanded\"\n      [poiTitle]=\"poiTitle\"\n      [expanded]=\"expanded\"\n      [summaryResult]=\"summaryResult\"\n      [loadingData]=\"loadingData\"\n      [splittedResults]=\"splittedResults\"\n      [buttonRef]=\"buttonRef\"\n\n      ></htm-summary-result>\n      <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n  </ng-template>\n\n\n  <ng-template #energy_mix_content>\n    <ul class=\"uk-tab\" data-uk-tab=\"{connect:'#my-id3'}\" (toggle)=\"didSwicth()\">\n      <li id=\"tab1bis\" (click)=\"clickTab('overall')\">\n        <a href=\"\">Overview</a>\n      </li>\n      <li id=\"tab2bis\" (click)=\"clickTab('stats')\">\n        <a href=\"\">GRAPHICS</a>\n      </li>\n\n    </ul>\n    <ul id=\"my-id3bis\" class=\"uk-switcher\">\n      <li>\n        <htm-summary-result\n          *ngIf=\"expanded\"\n          [poiTitle]=\"poiTitle\"\n          [expanded]=\"expanded\"\n          [summaryResult]=\"summaryResult\"\n          [loadingData]=\"loadingData\"\n          [splittedResults]=\"splittedResults\"\n          [buttonRef]=\"buttonRef\"\n        ></htm-summary-result>\n        <div class=\"export-tab1\"><htm-export-data [heatloadStatus]=\"heatloadStatus\"></htm-export-data></div>\n      </li>\n      <li>\n        <htm-electricity-mix\n          *ngIf=\"expanded\"\n          [expanded]=\"expanded\"\n          [datasets]=\"electricitMixResult\"\n          [nutsIds]=\"nutsIds\"\n          [loadingData]=\"electricitMixLoadingState\"\n          [electricityGenerationResultState]=\"electricityGenerationResultState\"></htm-electricity-mix>\n      </li>\n    </ul>\n  </ng-template>\n\n\n</div>\n"
+module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"expandedState\" [hidden]=\"!expanded\">\n\n  <div class=\"title-panel-right\" [@titleColorTrigger]=\"expandedState\">\n    <a [@iconTrigger]=\"expandedState\" class=\"link\" (click)=\"toggleExpandedState('right'); closePanel('right')\">\n      <i class=\"flaticon-cross\" aria-hidden=\"true\"></i>\n    </a>\n    <span *ngIf=\"expanded\" [@titleTextTrigger]=\"'in'\">{{title}}</span>\n  </div>\n\n  <div class=\"results-container\">\n    <htm-result-manager [summaryPayload]=\"summaryPayload\" [cmPayload]=\"cmPayload\" [energyMixPayload]=\"energyMixPayload\" [heatLoadPayload]=\"heatLoadPayload\" [durationCurvePayload]=\"durationCurvePayload\" [scaleLevel]=\"scaleLevel\"></htm-result-manager>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5571,12 +6771,8 @@ module.exports = "<div class=\"container-panel-right \" [@panelWidthTrigger]=\"e
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__ = __webpack_require__("../../../../../src/app/pages/map/map.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RightSideComponent; });
-// TODO: Improvement of coding style :
-// TODO: leaving one empty line between third party imports and application imports
-// TODO: listing import lines alphabetized by the module
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -5596,7 +6792,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
+// TODO: Improvement of coding style :
+// TODO: leaving one empty line between third party imports and application imports
+// TODO: listing import lines alphabetized by the module
 
 
 
@@ -5607,191 +6805,150 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var RightSideComponent = (function (_super) {
     __extends(RightSideComponent, _super);
-    function RightSideComponent(interactionService, helper, logger, mapService, dataInteractionService) {
+    function RightSideComponent(interactionService, helper, logger, dataInteractionService) {
         var _this = _super.call(this, interactionService) || this;
         _this.interactionService = interactionService;
         _this.helper = helper;
         _this.logger = logger;
-        _this.mapService = mapService;
         _this.dataInteractionService = dataInteractionService;
+        // Components status
         _this.heatloadStatus = false;
-        _this.nust0Selected = false;
-        _this.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
-        _this.scale = 'Nuts 3';
-        _this.isDataAgregate = false;
+        _this.electricityMixStatus = false;
+        _this.durationCurveStatus = false;
+        _this.summaryResultStatus = false;
         _this.loadingData = false;
-        _this.electricitMixLoadingState = false;
         return _this;
     }
-    RightSideComponent.prototype.ngOnInit = function () {
-        this.initButtons();
-    };
+    RightSideComponent.prototype.ngOnInit = function () { };
     RightSideComponent.prototype.ngOnDestroy = function () { };
     RightSideComponent.prototype.ngOnChanges = function () {
-        console.log('RightSidePanelComponent/ngOnChanges');
-        if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+        this.logger.log('RightSidePanelComponent/ngOnChanges');
+        if (this.expanded === true) {
+            this.setSatusResults();
+            this.updateAll();
+        }
+        else {
+            this.resetPayloads();
+        }
+    };
+    RightSideComponent.prototype.resetPayloads = function () {
+        this.cmPayload = null;
+        this.summaryPayload = null;
+        this.energyMixPayload = null;
+        this.heatLoadPayload = null;
+        this.durationCurvePayload = null;
+    };
+    RightSideComponent.prototype.setSatusResults = function () {
+        if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
             this.heatloadStatus = true;
+            this.durationCurveStatus = true;
         }
         else {
             this.heatloadStatus = false;
+            this.durationCurveStatus = false;
         }
-        if ((this.scaleLevel === '0')) {
-            this.nust0Selected = true;
+        if (this.scaleLevel === '0') {
+            this.electricityMixStatus = true;
         }
         else {
-            this.nust0Selected = false;
+            this.electricityMixStatus = false;
         }
-        /*       this.logger.log('RightSidePanelComponent/ngOnChanges');
-         */
-        this.scale = this.mapService.getScaleValue();
-        console.log(this.cmRunned);
-        if (this.mapService.getScaleValue() !== __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["f" /* hectare */] && this.expanded === true) {
-            this.isDataAgregate = true;
-            this.updateWithIds();
+        this.summaryResultStatus = true;
+    };
+    RightSideComponent.prototype.updateAll = function () {
+        if (this.summaryResultStatus && this.scaleLevel !== '-1') {
+            this.setSummaryPayloadIds();
         }
-        else if (this.mapService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["f" /* hectare */] && this.expanded === true) {
-            this.isDataAgregate = false;
-            this.updateWithAreas();
+        else if (this.summaryResultStatus && this.scaleLevel === '-1') {
+            this.setSummaryPayloadArea();
         }
-        /*if (this.summaryResult) {
-          this.updateResult();
-        }*/
-    };
-    RightSideComponent.prototype.initButtons = function () {
-        this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["i" /* summay_drop_down_buttons */];
-        this.selectedButton = this.dropdown_btns[0];
-        this.selectedButton.selected = true;
-    };
-    RightSideComponent.prototype.loadExportData = function (buttonRef) {
-        var indicatorResults = this.splittedResults[buttonRef];
-        this.interactionService.displayButtonExport(!this.loadingData);
-        this.interactionService.setSummaryData(indicatorResults);
-        if (this.helper.isResultDataEmpty(indicatorResults)) {
-            this.interactionService.displayButtonExport(false);
+        else {
+            this.summaryPayload = null;
+        }
+        if (this.heatloadStatus && this.scaleLevel !== '-1') {
+            this.setHeatloadPayloadIds();
+        }
+        else if (this.heatloadStatus && this.scaleLevel === '-1') {
+            this.setHeatloadPayloadAreas();
+        }
+        else {
+            this.heatLoadPayload = null;
+        }
+        if (this.durationCurveStatus && this.scaleLevel !== '-1') {
+            this.setDurationCurveIds();
+        }
+        else if (this.durationCurveStatus && this.scaleLevel === '-1') {
+            this.setDurationCurveAreas();
+        }
+        else {
+            this.durationCurvePayload = null;
+        }
+        if (this.electricityMixStatus) {
+            this.setElectricityMixPayload();
+        }
+        else {
+            this.energyMixPayload = null;
+        }
+        if (this.cmRunned) {
+            this.setCMPayload();
+        }
+        else {
+            this.cmPayload = null;
         }
     };
-    RightSideComponent.prototype.changeResultsDisplay = function (event) {
-        this.logger.log('RightSidePanelComponentdropdown_btns/changeResultsDisplay');
-        this.buttonRef = event.target.value;
-        console.log(this.buttonRef);
-        console.log(this.splittedResults);
-        this.loadExportData(this.buttonRef);
+    // Create payloads
+    RightSideComponent.prototype.setCMPayload = function () {
+        var payloadTmp;
+        var cm_name = '';
+        if (this.scaleLevel !== '-1') {
+            payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed };
+            this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed);
+        }
+        else if (this.scaleLevel === '-1') {
+            payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed };
+            this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed);
+        }
+        if (!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix) && this.cmRunned.cm.cm_prefix != '') {
+            cm_name += this.cmRunned.cm.cm_prefix + ' - ';
+        }
+        cm_name += this.cmRunned.cm.cm_name;
+        this.cmPayload = Object.assign({
+            url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
+            inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name: cm_name
+        }, { payload: payloadTmp });
     };
-    RightSideComponent.prototype.clickTab = function (id) {
-        this.logger.log('clickTab' + id);
-        this.interactionService.setTabsSelectedName(id);
-    };
-    RightSideComponent.prototype.getData = function (data) {
-        this.summaryResult = data;
-    };
-    RightSideComponent.prototype.setExportButtonState = function (val) {
-        this.interactionService.setSummaryResultState(!val);
-        this.interactionService.displayButtonExport(val);
-    };
-    RightSideComponent.prototype.updateWithIds = function () {
-        var _this = this;
-        var self = this;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["E" /* constant_year */], nuts: this.nutsIds };
+    RightSideComponent.prototype.setSummaryPayloadIds = function () {
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["b" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds };
         if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
             return;
         }
-        this.logger.log('RightSidePanelComponent/updateWithIds() +' + this.layers);
-        this.loadingData = true;
-        this.interactionService.setSummaryResultState(this.loadingData);
-        this.setExportButtonState(false);
-        var summaryPromise = this.interactionService.getSummaryResultWithIds(payload).then(function (result) {
-            self.summaryResult = result;
-            self.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
-        }).then(function () {
-            _this.updateCMResult();
-        }).then(function () {
-            self.updateResult();
-            self.updateCMResult();
-            self.loadingData = false;
-            self.setExportButtonState(true);
-        }).catch(function (e) {
-            self.logger.log(JSON.stringify(e));
-            self.loadingData = false;
-            self.interactionService.setSummaryResultState(self.loadingData);
-        });
-        // only for nuts 0 electricity generation mix is allowed
-        if (this.scaleLevel === '0') {
-            self.electricitMixLoadingState = true;
-            var payloadElec = { nuts: this.nutsIds };
-            self.logger.log(' electricitMix:payloadElec = ' + self.nutsIds);
-            var electricityGenerationMixPromise = this.interactionService.getElectricityMixFromNuts0(payloadElec).then(function (result) {
-                self.electricitMixResult = result;
-                self.logger.log('electricitMix: Result = ' + JSON.stringify(self.electricitMixResult));
-            }).then(function () {
-            }).then(function () {
-                self.electricitMixLoadingState = false;
-                _this.interactionService.setElectricityGenerationMixResultState(_this.electricitMixLoadingState);
-            }).catch(function (e) {
-                self.logger.log(JSON.stringify(e));
-                self.electricitMixLoadingState = false;
-                _this.interactionService.setElectricityGenerationMixResultState(_this.electricitMixLoadingState);
-            });
-        }
+        this.summaryPayload = payload;
     };
-    RightSideComponent.prototype.updateResult = function () {
-        this.splittedResults = this.interactionService.getSplittedResults(this.summaryResult);
-        this.loadExportData(this.buttonRef);
+    RightSideComponent.prototype.setSummaryPayloadArea = function () {
+        var areas = this.helper.getAreasForPayload(this.areas);
+        /*this.logger.log('RightSidePanelComponent/areas()' + JSON.stringify(areas))
+         if (areas.length === 0) {
+          this.logger.log('RightSidePanelComponent/areas().lenght === 0')
+          this.setIsDataRunning(false);
+          return
+        }; */
+        this.summaryPayload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["b" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), areas: areas };
     };
-    RightSideComponent.prototype.updateWithAreas = function () {
-        var _this = this;
-        this.logger.log('RightSidePanelComponent/updateWithAreas()');
-        var areas = [];
-        this.areas.map(function (layer) {
-            var points = [];
-            if (layer instanceof L.Circle) {
-                areas.push({ points: _this.helper.getLocationsFromCicle(layer) });
-            }
-            else {
-                areas.push({ points: _this.helper.getLocationsFromPolygon(layer) });
-            }
-        });
-        this.logger.log('RightSidePanelComponent/areas()' + JSON.stringify(areas));
-        if (areas.length === 0) {
-            this.logger.log('RightSidePanelComponent/areas().lenght === 0');
-            this.loadingData = false;
-            this.interactionService.setSummaryResultState(this.loadingData);
-            return;
-        }
-        ;
-        ;
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["E" /* constant_year */], areas: areas };
-        if (this.helper.isPayloadIncomplete(payload)) {
-            this.interactionService.closeRightPanel();
-            return;
-        }
-        this.loadingData = true;
-        this.interactionService.setSummaryResultState(this.loadingData);
-        var summaryPromise = this.interactionService.getSummaryResultWithMultiAreas(payload).then(function (result) {
-            _this.summaryResult = result;
-            _this.buttonRef = __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["_16" /* default_drop_down_button */];
-            // this.summaryResult.layers[0].values.push({name: 'Zones Selected', value: this.areas.length});
-        }).then(function () {
-            _this.updateCMResult();
-        }).then(function () {
-            _this.updateResult();
-            _this.loadingData = false;
-            _this.interactionService.setSummaryResultState(_this.loadingData);
-            _this.setExportButtonState(true);
-        }).catch(function (e) {
-            _this.logger.log(JSON.stringify(e));
-            _this.loadingData = false;
-            _this.interactionService.setSummaryResultState(_this.loadingData);
-        });
+    RightSideComponent.prototype.setElectricityMixPayload = function () {
+        this.energyMixPayload = { nuts: this.nutsIds };
     };
-    RightSideComponent.prototype.updateCMResult = function () {
-        var _this = this;
-        if (!this.helper.isNullOrUndefined(this.cmRunned)) {
-            this.interactionService.getCMResult(this.summaryResult, this.cmRunned).then(function (value) {
-                _this.summaryResult.layers.push(value);
-            });
-            console.log(this.summaryResult);
-        }
+    RightSideComponent.prototype.setHeatloadPayloadAreas = function () {
+        this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas), scale_level: this.interactionService.getScaleLevel() };
+    };
+    RightSideComponent.prototype.setHeatloadPayloadIds = function () {
+        this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() };
+    };
+    RightSideComponent.prototype.setDurationCurveIds = function () {
+        this.durationCurvePayload = { nuts: this.nutsIds, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_33" /* constant_year_duration_curve */], scale_level: this.interactionService.getScaleLevel() };
+    };
+    RightSideComponent.prototype.setDurationCurveAreas = function () {
+        this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["_33" /* constant_year_duration_curve */], };
     };
     return RightSideComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__side_panel_component__["a" /* SideComponent */]));
@@ -5825,47 +6982,18 @@ RightSideComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/side-panel/right-side-panel/right-side-panel.component.css")],
         animations: [
-            // Define the animation used on the containing dev where the width of the
-            //  panel is determined. Here we define the expanded width to be 300px, and
-            //  the collapsed width to be 38px.
-            //
-            // When expanding the panel we transition over a 200ms interval.
-            //
-            // When collapsing the panel we again use 200ms for the transition, but
-            //  we add a delay of 200ms to allow some other animations to complete before
-            //  shrinking the panel down.
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('panelWidthTrigger', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_3_app_shared__["rightPanelSize"] + 'px' })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '0px' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: __WEBPACK_IMPORTED_MODULE_3_app_shared__["rightPanelSize"] + 'px', display: 'block' })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ width: '0px', display: 'none' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            // Define the animation used in the title bar where the colors swap from
-            //  a red foreground with white background, to the opposite. In this case
-            //  we use the same timings as the width animation above so these two
-            //  transitions happen at the same time
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('titleColorTrigger', [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ backgroundColor: '#FFFFFF', color: '#d3d3d3' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ backgroundColor: '#333333', color: '#FFFFFF' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms 200ms ease-out'))
             ]),
-            // The title text trigger is a little different because it's an animation
-            //  for an element being added to the DOM. Here we take advantage of the 'void'
-            //  transition using a hard-coded state called 'in' (which is also hard coded in
-            //  the template).
-            //
-            // What we do in this animation is say when the element is added to the DOM
-            //  it should have an opacity of 0 (i.e., hidden), wait 300ms, and then animate
-            //  it's opacity change to 1 over a 100 ms time span. This effectively delays the
-            //  appearance of the text until after the panel has slid out to the full size.
-            //
-            // When the element is removed we take a different approach and animate the
-            //  opacity change back to 0 over a short 50ms interval. This ensures it's gone before
-            //  the panel starts to slide back in, creating a nice effect.
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('titleTextTrigger', [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '1' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }),
@@ -5875,23 +7003,16 @@ RightSideComponent = __decorate([
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('50ms', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({ opacity: '0' }))
                 ])
             ]),
-            // Define the animation used in the arrow icon where it rotates to point left
-            //  or right based on the state of the panel. In this case we use the same
-            //  timings as the width animation above so these two transitions happen at
-            //  the same time.
-            //
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('iconTrigger', [
-                // state('collapsed', style({ transform: 'rotate(0deg)' })),
-                // state('expanded', style({ transform: 'rotate(180deg)' })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-in')),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('200ms ease-out'))
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__pages_map_map_service__["a" /* MapService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_logger_service__["a" /* Logger */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _d || Object])
 ], RightSideComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 //# sourceMappingURL=right-side-panel.component.js.map
 
 /***/ }),
@@ -5998,6 +7119,8 @@ var SidePanelService = (function () {
         this.rightPanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.topPanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
         this.rightToggleExpandedStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        this.folderPanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        this.savePanelStatus = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false);
     }
     SidePanelService.prototype.topPanelexpandedCollapsed = function () {
         this.topPanelStatus.next(true);
@@ -6022,6 +7145,26 @@ var SidePanelService = (function () {
     };
     SidePanelService.prototype.closeLeftPanel = function () {
         this.leftPanelStatus.next(false);
+    };
+    SidePanelService.prototype.setFolderPanelStatus = function (toOpen) {
+        if (toOpen === void 0) { toOpen = false; }
+        this.folderPanelStatus.next(toOpen);
+    };
+    SidePanelService.prototype.openFolderPanel = function () {
+        this.setFolderPanelStatus(true);
+    };
+    SidePanelService.prototype.closeFolderPanel = function () {
+        this.setFolderPanelStatus(false);
+    };
+    SidePanelService.prototype.setSavePanelStatus = function (toOpen) {
+        if (toOpen === void 0) { toOpen = false; }
+        this.savePanelStatus.next(toOpen);
+    };
+    SidePanelService.prototype.openSavePanel = function () {
+        this.setSavePanelStatus(true);
+    };
+    SidePanelService.prototype.closeSavePanel = function () {
+        this.setSavePanelStatus(false);
     };
     return SidePanelService;
 }());
@@ -6286,7 +7429,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n:host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.uk-table{\n  margin-top: 0px;\n}\n.waitingbox {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n/* .wait-graph-container{\n  background-color: rgba(71, 71, 71, 0.3);\n  position: relative;\n} */\n.spinner {\n  position: absolute; \n  left: 50%; \n  top: 50%; \n  color: black;\n  margin: 15px 15px 15px -25px;\n}\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}\n.table-level-two-nodata{\n  border-right: 1px solid #f5f5f5;\n  text-align: center;\n  font-style: italic;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}", ""]);
+exports.push([module.i, "\n:host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.uk-table{\n  margin-top: 0px;\n}\n.waitingbox {\n  height: 150px;\n  width: 100%;\n  position: relative;\n}\n/* .wait-graph-container{\n  background-color: rgba(71, 71, 71, 0.3);\n  position: relative;\n} */\n.warning > th {\n  color: red\n}\n.spinner {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  color: black;\n  margin: 15px 15px 15px -25px;\n}\ni {\n  font-size: 1.5em;\n}\n\n.container-panel-right {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n\n.title-panel-right  {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  color: #d3d3d3;;\n  padding: 0 8px 0 8px;\n  height: 50px;\n}\n\n.title-panel-right  span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-family: 'Hind', sans-serif;\n  font-size: 1.5em;\n  padding: 0 8px 0 8px;\n}\n\n.title-panel-right \\--collapsed {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.header-summary{\n  color: #d3d3d3;\n  background:#333333;\n\n}\n.header-summary > th{\n  color:white;\n  border-right: 1px solid #f5f5f5;\n}\n.notifications {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  overflow-y: auto;\n}\n.uk-accordion-content{\n  margin-top:10px;\n}\n\n.uk-card-default{\n\n  margin-top:10px;\n  width: 380px;\n}\na {\n  text-decoration: none;\n  margin-top: 6px;\n}\n\na:hover {\n  cursor: pointer;\n}\n\n.htm-card{\n  padding: 10px;\n}\n\n.table-level-one>th{\n  text-align: center;\n}\n.table-level-one{\n  background-color: #f5f5f5;\n}\n.table-level-two>td{\n  border-right: 1px solid #f5f5f5;\n}\n.table-level-two-nodata{\n  border-right: 1px solid #f5f5f5;\n  text-align: center;\n  font-style: italic;\n}\n.date-visu{\n    text-align: center;\n    margin-bottom: 10px;\n}\n.right{\n    float: right;\n}\n.left{\n    float: left;\n}\n.date-visu > .right, .date-visu > .left {\n    cursor: pointer;\n}\n.date-visu > span {\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n}\n.activebutton{\n    background-color: #1e87f0;\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -6299,7 +7442,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/features/summary-result/summary-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let i of splittedResults[buttonRef].layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{i.name | layername}}</th>\n            </tr>\n            <tr *ngFor=\"let value of i.values\" class=\"table-level-two\">\n              <td>{{value.name | businessname}}</td>\n              <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">{{value.value | number: round}} {{ value.unit | businessname}}</td>\n              <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n            </tr>\n          </ng-container>\n        </ng-container>\n        <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container>\n      <!--  <ng-container *ngIf=\"splittedResults\">\n          <ng-container *ngFor=\"let l of splittedResults[buttonRef].no_data_layers\">\n            <tr class=\"table-level-one\">\n              <th colspan=\"2\">{{l | layername}}</th>\n            </tr>\n            <tr class=\"table-level-two-nodata\">\n              <td colspan=\"2\">No data available</td>\n            </tr>\n          </ng-container>\n        </ng-container> -->\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
+module.exports = "<span [@tableOpacityTrigger]=\"'in'\">\n  <div class=\"uk-card uk-card-body htm-card\" [hidden]=\"loadingData\">\n    <table class=\"uk-table uk-table-divider uk-table-small\">\n      <thead>\n        <tr class=\"header-summary\">\n          <th class=\"uk-table-shrink\">Information</th>\n          <th class=\"uk-table-shrink\">Value</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngIf=\"summaryResult\">\n          <ng-container *ngFor=\"let layer of summaryResult.layers\">\n            <ng-container *ngIf=\"layer.category.indexOf(refSelected) > -1\">\n\n              <tr class=\"table-level-one\">\n                <th colspan=\"2\">{{layer.name | layername}}</th>\n              </tr>\n              <tr *ngFor=\"let value of layer.values\" class=\"table-level-two\">\n                <td>{{value.name | businessname}}</td>\n                <td height=\"20\" class=\"uk-align-left uk-align-center\" *ngIf=\"value.value\" [@tableOpacityTrigger]=\"'in'\">\n                  {{value.value | number: '1.0-2' | numberformat }} {{ value.unit | businessname}}\n                </td>\n                <td *ngIf=\"!value.value\" [@tableOpacityTrigger]=\"'in'\">Not available</td>\n              </tr>\n            </ng-container>\n          </ng-container>\n\n          <ng-container *ngFor=\"let layer of summaryResult.no_data_layers\">\n            <tr class=\"table-level-one warning\">\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No data for \"{{layer | layername}}\"</th>\n            </tr>\n          </ng-container>\n          <ng-container *ngFor=\"let layer of summaryResult.no_table_layers\">\n            <tr class=\"table-level-one warning\">\n              <th colspan=\"2\"><span uk-icon=\"warning\"></span> No table for \"{{layer | layername}}\"</th>\n            </tr>\n          </ng-container>\n\n\n        </ng-container>\n        <!-- <ng-container *ngIf=\"poiData\">\n          <tr class=\"table-level-one\">\n            <th colspan=\"2\">{{poiTitle}}</th>\n          </tr>\n          <tr class=\"table-level-two\">\n            <td>{{poiTitle | businessname}}</td>\n            <td>{{poiData.features[0].properties.heat_density | number: round}} </td>\n          </tr>\n        </ng-container> -->\n      </tbody>\n    </table>\n  </div>\n</span>\n<div *ngIf=\"loadingData\" class=\"waitingbox\">\n  <div class=\"spinner\" uk-spinner></div>\n</div>\n"
 
 /***/ }),
 
@@ -6309,10 +7452,9 @@ module.exports = "\n<span *ngIf=\"expanded\" [@tableOpacityTrigger]=\"'in'\">\n 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__summary_result_service__ = __webpack_require__("../../../../../src/app/features/summary-result/summary-result.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SummaryResultComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6328,22 +7470,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var SummaryResultComponent = (function () {
+    // @Input() loadingData;
+    // private buttonRef = default_drop_down_button;
     function SummaryResultComponent(logger, helper, interactionService) {
         this.logger = logger;
         this.helper = helper;
         this.interactionService = interactionService;
-        this.expandedState = 'collapsed';
-        this.round = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["g" /* round_value */];
-        this.scale = 'Nuts 3';
-        this.isDataAgregate = false;
     }
     SummaryResultComponent.prototype.ngOnInit = function () {
         this.logger.log('SummaryResultComponent/ngOnInit');
+        this.logger.log('SummaryResult ' + JSON.stringify(this.summaryResult));
     };
     SummaryResultComponent.prototype.ngOnChanges = function (changes) {
         this.logger.log('SummaryResultComponent/ngOnChanges');
+        this.logger.log('SummaryResult ' + JSON.stringify(this.summaryResult));
     };
     SummaryResultComponent.prototype.ngOnDestroy = function () {
     };
@@ -6351,48 +7492,12 @@ var SummaryResultComponent = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Boolean)
-], SummaryResultComponent.prototype, "expanded", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "poiTitle", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "nutsIds", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "layers", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "scaleLevel", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "locationsSelection", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "areas", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], SummaryResultComponent.prototype, "summaryResult", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "loadingData", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "buttonRef", void 0);
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-    __metadata("design:type", Object)
-], SummaryResultComponent.prototype, "splittedResults", void 0);
+], SummaryResultComponent.prototype, "refSelected", void 0);
 SummaryResultComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'htm-summary-result',
@@ -6411,7 +7516,7 @@ SummaryResultComponent = __decorate([
             ]),
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["Helper"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _c || Object])
 ], SummaryResultComponent);
 
 var _a, _b, _c;
@@ -6467,21 +7572,1192 @@ var SummaryResultService = (function (_super) {
     }
     SummaryResultService.prototype.getSummaryResultWithIds = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithIds = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["y" /* postStatsLayersNutsLau */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["V" /* postStatsLayersNutsLau */]);
     };
     SummaryResultService.prototype.getSummaryResultWithMultiAreas = function (payload) {
         this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["n" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["z" /* postStatsLayersHectares */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_7__shared_data_service__["W" /* postStatsLayersHectares */]);
     };
     return SummaryResultService;
 }(__WEBPACK_IMPORTED_MODULE_5__shared_services_api_service__["a" /* APIService */]));
 SummaryResultService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object])
 ], SummaryResultService);
 
 var _a, _b, _c, _d;
 //# sourceMappingURL=summary-result.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/account.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".piechart_container {\n  width: 50%;\n}\n.uk-grid-small {\n  margin-left: 0px;\n  margin-bottom: 10px;\n}\n.uk-card-body {\n  padding: 20px 20px;\n}\n.profil-information > .title {\n  text-align: center;\n  text-transform: uppercase;\n  margin: 10px;\n}\n.uk-card-badge {\n  width:50px;\n}\n.uk-card-badge > span {\n  float: right;\n  cursor: pointer;\n}\n.uk-card\n.uk-button {\n  width: 100%;\n}\n.disableEdit {\n  color: red;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/account.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"uk-modal-title\">Welcome {{username}}</h2>\n\n<div class=\"uk-child-width-1-2@m uk-grid-match\" uk-grid>\n  <div>\n    <div class=\"uk-card uk-card-default uk-card-body\">\n      <h3>User diskspace</h3>\n      <div style=\"position:relative; height:215px\">\n        <htm-chart [type]=\"'pie'\" [labels]=\"diskspaceLabels\" [options]=\"diskspaceOptions\" [datasets]=\"diskspaceDataset\"\n          [isLoading]=\"false\"></htm-chart>\n      </div>\n    </div>\n  </div>\n  <div>\n    <div class=\"uk-card uk-card-default uk-card-body\">\n      <h3>Informations\n        <span [hidden]=\"isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: pencil\" (click)=\"toggleEditing()\"></span>\n        <span [hidden]=\"!isEditable\" class=\"uk-margin-small-right\" uk-icon=\"icon: ban\" (click)=\"disableEditing()\"></span>\n      </h3>\n      <div>\n        <div class=\"profil-information\">\n          <h5 class=\"title\">Firstname</h5>\n          <!-- <span *ngIf=\"!isEditable\">{{firstname}}</span> -->\n          <input class=\"uk-input\" type=\"text\" [class.uk-disabled]=\"!isEditable\" placeholder=\"Firstname\" [(ngModel)]=\"firstname\"\n            [value]=\"firstname\" required />\n        </div>\n        <div class=\"profil-information\">\n          <h5 class=\"title\">Lastname</h5>\n          <input class=\"uk-input\" [class.uk-disabled]=\"!isEditable\" type=\"text\" placeholder=\"Lastname\" [(ngModel)]=\"lastname\"\n            [value]=\"lastname\" required />\n        </div>\n        <div *ngIf=\"isEditable\" class=\"uk-margin\"></div>\n        <button *ngIf=\"isEditable\" class=\"uk-button uk-button-primary\" (click)=\"updateProfile()\">Update profile</button>\n      </div>\n    </div>\n  </div>  \n</div>\n\n<div class=\"uk-child-width-2-2@m uk-grid-match\" uk-grid>\n  <div>\n    <app-upload></app-upload>\n  </div>\n</div>\n<button class=\"uk-button uk-button-primary\" (click)=\"logout()\">Logout</button>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/account.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountComponent; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var AccountComponent = (function (_super) {
+    __extends(AccountComponent, _super);
+    function AccountComponent(userManagementService, userManagementStatusService, toasterService, interactionService) {
+        var _this = _super.call(this) || this;
+        _this.userManagementService = userManagementService;
+        _this.userManagementStatusService = userManagementStatusService;
+        _this.toasterService = toasterService;
+        _this.interactionService = interactionService;
+        _this.firstname = '';
+        _this.lastname = '';
+        _this.isEditable = false;
+        _this.diskspaceLabels = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_26" /* labels_diskspacechart */];
+        _this.diskspaceOptions = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_27" /* diskspacechart_options */];
+        return _this;
+    }
+    AccountComponent.prototype.ngOnInit = function () {
+        this.getAcountInformation();
+    };
+    AccountComponent.prototype.logout = function () {
+        var _this = this;
+        this.setWaitingStatus(true);
+        this.userManagementService.userLogout(this.token).then(function (data) {
+            _this.toasterService.showToaster(data.message);
+            _this.userManagementStatusService.setUsername(null);
+            _this.userManagementStatusService.setUserIsLoggedOut();
+            _this.userManagementStatusService.setUserToken(null);
+            _this.interactionService.disableButtonWithId('save');
+            _this.interactionService.disableButtonWithId('folder');
+        }).catch(function () {
+            _this.setWaitingStatus(false);
+        });
+    };
+    AccountComponent.prototype.setUserIsLoggedOut = function () {
+        this.setWaitingStatus(false);
+        this.userManagementStatusService.setUserIsLoggedOut();
+    };
+    AccountComponent.prototype.getAcountInformation = function () {
+        var _this = this;
+        this.getUserInformations();
+        if (this.userManagementService.getDiskSpace)
+            this.userManagementService.getDiskSpace(this.token).then(function (data) {
+                _this.diskspaceMax = data.max_size;
+                _this.diskspaceUsed = data.used_size;
+                _this.diskspaceDataset = [{
+                        label: 'Account disk',
+                        backgroundColor: [__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_28" /* color_usedspace */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_29" /* color_unusedspace */]],
+                        data: [_this.diskspaceUsed, _this.diskspaceMax - _this.diskspaceUsed]
+                    }];
+            });
+    };
+    AccountComponent.prototype.getAcountFileList = function () {
+        this.userManagementService.getAcountFileList(this.token).then(function (data) {
+        });
+    };
+    AccountComponent.prototype.toggleEditing = function () {
+        this.isEditable = !this.isEditable;
+    };
+    AccountComponent.prototype.disableEditing = function () {
+        this.getUserInformations();
+        this.toggleEditing();
+    };
+    AccountComponent.prototype.getUserInformations = function () {
+        var _this = this;
+        if (this.userManagementService.getUserInformations)
+            this.userManagementService.getUserInformations(this.token).then(function (data) {
+                _this.firstname = data.first_name;
+                _this.lastname = data.last_name;
+            });
+    };
+    AccountComponent.prototype.updateProfile = function () {
+        var _this = this;
+        var payload = { token: this.token, last_name: this.lastname, first_name: this.firstname };
+        this.userManagementService.userUpdateProfile(payload).then(function (data) {
+            _this.toasterService.showToaster(data.message);
+            _this.getUserInformations();
+            _this.toggleEditing();
+        });
+    };
+    return AccountComponent;
+}(__WEBPACK_IMPORTED_MODULE_4_app_shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], AccountComponent.prototype, "username", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], AccountComponent.prototype, "token", void 0);
+AccountComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+        selector: 'htm-account',
+        template: __webpack_require__("../../../../../src/app/features/user-management/account/account.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/account/account.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object])
+], AccountComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=account.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__account_component__ = __webpack_require__("../../../../../src/app/features/user-management/account/account.component.ts");
+/* unused harmony namespace reexport */
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/upload/upload.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "i.iButton {\n    cursor: pointer;\n    margin-left: 0;\n}\ni.iButton:hover {\n    color: black;\n}\ni.iButton::before {\n    margin-left: 0;\n}\n\n#uploadBtn {\n    color: red;\n    cursor: default;\n}\n#uploadBtn:hover {\n    cursor: not-allowed;\n}\n#uploadBtn.active {\n    color: green;\n    cursor: pointer;\n}\n#uploadBtn.active:hover {\n    color: lightgreen;\n}\n\ntable {\n    margin: 0;\n    table-layout: fixed;\n}\n\ntd p {\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n}\n\nth:nth-child(1), td:nth-child(1),\nth:nth-child(2), td:nth-child(2) {\n    width: 34%;\n}\nth:nth-child(3), td:nth-child(3) {\n    width: 16%;\n}\nth:nth-child(4), {\n    width: 16%;\n}\ntd:nth-child(4), td:nth-child(5) {\n    width: 8%;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/upload/upload.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"uk-card uk-card-default uk-overflow-container\">\n  <table class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\n    <thead><tr>\n      <th>Filename</th>\n      <th>Layer</th>\n      <th class=\"uk-text-right\">Size (kB)</th>\n      <th class=\"uk-text-center\" colspan=\"2\">\n          <i class=\"iButton\" (click)=\"getFiles()\">&#8635;</i>\n      </th>\n    </tr></thead>\n  </table>\n\n  <div class=\"uk-overflow-auto uk-height-small\">\n    <table class=\"uk-table uk-table-hover uk-table-striped\" #tblBody>\n      <tbody>\n        <tr *ngFor=\"let upFile of uploadedFiles\">\n          <td><p title=\"{{ upFile.name }}\">{{ upFile.name }}</p></td>\n          <td><p title=\"{{ getLayerName(upFile.layer) }}\">{{ getLayerName(upFile.layer) }}</p></td>\n          <td class=\"uk-text-right\">{{ upFile.size * 1000 | number:'1.1-1' }}</td>\n          <td class=\"uk-text-center\"><i class=\"flaticon-import iButton\" (click)=\"download(upFile)\"></i></td>\n          <td class=\"uk-text-center\"><i class=\"flaticon-trash iButton\" (click)=\"delete(upFile)\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <table id=\"tblFoot\" class=\"uk-table\" [style.width.px]=\"tblBody.offsetWidth\">\n    <tfoot>\n      <tr>\n        <td><p *ngIf=\"isFileOk\" title=\"{{ file2Up.name }}\">{{ file2Up.name }}</p></td>\n        <td>\n          <select class=\"uk-select\" style=\"width: 100%;\" [(ngModel)]=\"selectedLayer\">\n            <option *ngFor=\"let layer of layers\" value=\"{{ layer.workspaceName }}\">[{{ layer.category }}] {{ layer.name }}</option>\n          </select>\n        </td>\n        <td class=\"uk-text-right\">\n          <span *ngIf=\"isFileOk\">{{ file2Up.size / 1000 | number:'1.1-1' }}</span>\n        </td>\n        <td class=\"uk-text-center\">\n          <i class=\"flaticon-export iButton\" (click)=\"inputFile.click()\"></i>\n          <input type=\"file\" accept=\".tif,.csv\" (change)=\"onFileChange($event)\" style=\"display:none\" #inputFile>\n        </td>\n        <td class=\"uk-text-center\"><i class=\"iButton\" [class.flaticon-plus]=\"!isUploading\" [class.active]=\"isFileOk && selectedLayer\" id=\"uploadBtn\" (click)=\"fileUpload()\"><div *ngIf=\"isUploading\" uk-spinner></div></i></td>\n      </tr>\n    </tfoot>\n  </table>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/account/upload/upload.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UploadComponent = (function () {
+    function UploadComponent(upService, layerService) {
+        this.upService = upService;
+        this.layerService = layerService;
+        this.isFileOk = false;
+        this.isUploading = false; // Temporary until api do this async
+        this.uploadedFiles = [];
+        this.layers = [];
+        this.selectedLayer = null;
+    }
+    UploadComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.layerService.getDataInteractionServices)
+            this.layerService.getDataInteractionServices().then(function (layers) { return _this.layers = layers; });
+        this.getFiles();
+        if (this.upService.getUploadedFiles)
+            this.upService.getUploadedFiles().subscribe(function (files) { return _this.uploadedFiles = files; });
+    };
+    /**
+     * Get the layer name from the layer workspacename
+     * @param layer
+     * @returns
+     */
+    UploadComponent.prototype.getLayerName = function (layer) {
+        for (var i in this.layers)
+            if (this.layers[i].workspaceName == layer)
+                return this.layers[i].name;
+        return layer;
+    };
+    UploadComponent.prototype.getFiles = function () {
+        if (this.upService.list)
+            this.upService.list();
+    };
+    UploadComponent.prototype.delete = function (id) {
+        this.upService.delete(id);
+    };
+    UploadComponent.prototype.download = function (upFile) {
+        this.upService.download(upFile).then(function (url) {
+            // window.open(url); //POPUP blocker
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = upFile.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    };
+    UploadComponent.prototype.onFileChange = function (event) {
+        if (event.target.files && event.target.files.length) {
+            this.file2Up = event.target.files[0];
+            this.isFileOk = true;
+        }
+        else
+            this.isFileOk = false;
+    };
+    UploadComponent.prototype.fileUpload = function () {
+        var _this = this;
+        if (!(this.isFileOk && this.selectedLayer))
+            return;
+        this.isUploading = true;
+        this.upService.add(this.file2Up, this.selectedLayer).then(function (success) {
+            if (success) {
+                _this.file2Up = null;
+                _this.isFileOk = false;
+                _this.selectedLayer = null;
+            }
+            else
+                _this.isFileOk = true;
+            _this.isUploading = false;
+        });
+    };
+    return UploadComponent;
+}());
+UploadComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-upload',
+        template: __webpack_require__("../../../../../src/app/features/user-management/account/upload/upload.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/account/upload/upload.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_upload_service__["a" /* UploadService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _b || Object])
+], UploadComponent);
+
+var _a, _b;
+//# sourceMappingURL=upload.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/activate/activate.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/activate/activate.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"uk-modal-title\">USER ACTIVATION</h2>\n<input class=\"uk-input\" id=\"login-password\" type=\"text\" placeholder=\"Token\" (keyup.enter)=\"activateUser()\" [(ngModel)]=\"token_activation\" [value]=\"token_activation\" required />\n<button class=\"uk-button uk-button-primary\" (click)=\"activateUser()\">Activate account</button>\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/activate/activate.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivateComponent; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ActivateComponent = (function (_super) {
+    __extends(ActivateComponent, _super);
+    function ActivateComponent(userManagementService, toasterService) {
+        var _this = _super.call(this) || this;
+        _this.userManagementService = userManagementService;
+        _this.toasterService = toasterService;
+        return _this;
+    }
+    ActivateComponent.prototype.ngOnInit = function () {
+    };
+    ActivateComponent.prototype.activateUser = function () {
+        var _this = this;
+        var payload = { token: this.token_activation };
+        this.userManagementService.userRegisterActivate(payload).then(function (data) {
+            _this.toasterService.showToaster(data.message);
+            _this.token_activation = '';
+            window.location.href = '';
+        });
+    };
+    return ActivateComponent;
+}(__WEBPACK_IMPORTED_MODULE_0__shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ActivateComponent.prototype, "token_activation", void 0);
+ActivateComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+        selector: 'htm-activate',
+        template: __webpack_require__("../../../../../src/app/features/user-management/activate/activate.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/activate/activate.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _b || Object])
+], ActivateComponent);
+
+var _a, _b;
+//# sourceMappingURL=activate.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/activate/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__activate_component__ = __webpack_require__("../../../../../src/app/features/user-management/activate/activate.component.ts");
+/* unused harmony namespace reexport */
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/component/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_management_component__ = __webpack_require__("../../../../../src/app/features/user-management/component/user-management.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__user_management_component__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/component/user-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* :host {\n  position: absolute;\n  right: 20px;\n} */\n.isLoggedIn {\n  color:white !important;\n}\n.isLoggedOut {\n  color:#999!important;\n}\n.link-right {\n  float: right;\n  line-height: 50px;\n}\n.uk-icon-link {\n  line-height: 50px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/component/user-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div [class.isLoggedIn]=\"isLoggedIn\" [class.isLoggedOut]=\"!isLoggedIn\">\n  <a href=\"#modal-login\" *ngIf=\"!isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Connect</span></a>\n  <a href=\"#modal-account\" *ngIf=\"isLoggedIn\" class=\"uk-icon-link\"  uk-icon=\"user\" uk-toggle><span class=\"link-right\">Account</span></a>\n</div>\n<div id=\"modal-login\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-login *ngIf=\"!isLoggedIn\"></htm-login>\n  </div>\n</div>\n<div id=\"modal-register\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-register [token_activation]=\"token_activation\"></htm-register>\n  </div>\n</div>\n<div id=\"modal-recover\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-recovery [token_recover]=\"token_recover\" [submitedRecover]=\"submitedRecover\"></htm-recovery>\n  </div>\n</div>\n<div id=\"modal-account\" uk-modal>\n  <div class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-account *ngIf=\"isLoggedIn\" [username]=\"username\" [token]=\"token\"></htm-account>\n  </div>\n</div>\n<div id=\"modal-activate\" uk-modal>\n  <div *ngIf=\"token_activation\" class=\"uk-modal-dialog uk-modal-body\">\n    <button class=\"uk-modal-close-default\" type=\"button\" uk-close></button>\n    <htm-activate  [token_activation]=\"token_activation\"></htm-activate>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/component/user-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserManagementComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UserManagementComponent = (function () {
+    function UserManagementComponent(userManagementStatusService, route) {
+        this.userManagementStatusService = userManagementStatusService;
+        this.route = route;
+        this.username = '';
+        this.token = '';
+        this.token_activation = '';
+        this.token_recover = '';
+        this.submitedRecover = false;
+    }
+    UserManagementComponent.prototype.ngOnInit = function () {
+        this.subscribe();
+    };
+    UserManagementComponent.prototype.subscribe = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            if (params.token_activation) {
+                _this.token_activation = params.token_activation;
+                __WEBPACK_IMPORTED_MODULE_2_uikit__["modal"]('#modal-activate').show();
+            }
+            else if (params.token_recover) {
+                _this.token_recover = params.token_recover;
+                _this.submitedRecover = true;
+                __WEBPACK_IMPORTED_MODULE_2_uikit__["modal"]('#modal-recover').show();
+            }
+        });
+        if (this.userManagementStatusService.getIsUserLogged) {
+            this.userManagementStatusService.getIsUserLogged().subscribe(function (data) {
+                _this.isLoggedIn = data;
+                if (_this.isLoggedIn)
+                    _this.closeLogin();
+                else
+                    _this.closeAccount();
+            });
+        }
+        if (this.userManagementStatusService.getUserToken)
+            this.userManagementStatusService.getUserToken().subscribe(function (data) { return _this.token = data; });
+        if (this.userManagementStatusService.getUsername)
+            this.userManagementStatusService.getUsername().subscribe(function (data) { return _this.username = data; });
+    };
+    UserManagementComponent.prototype.closeAccount = function () {
+        __WEBPACK_IMPORTED_MODULE_2_uikit__["modal"]('#modal-account').hide();
+    };
+    UserManagementComponent.prototype.closeLogin = function () {
+        __WEBPACK_IMPORTED_MODULE_2_uikit__["modal"]('#modal-login').hide();
+    };
+    return UserManagementComponent;
+}());
+UserManagementComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-user-management',
+        template: __webpack_require__("../../../../../src/app/features/user-management/component/user-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/component/user-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object])
+], UserManagementComponent);
+
+var _a, _b;
+//# sourceMappingURL=user-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__component__ = __webpack_require__("../../../../../src/app/features/user-management/component/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__component__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login__ = __webpack_require__("../../../../../src/app/features/user-management/login/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__login__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__("../../../../../src/app/features/user-management/register/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__register__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__account__ = __webpack_require__("../../../../../src/app/features/user-management/account/index.ts");
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__recovery__ = __webpack_require__("../../../../../src/app/features/user-management/recovery/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_4__recovery__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__activate__ = __webpack_require__("../../../../../src/app/features/user-management/activate/index.ts");
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_7__service_user_management_status_service__["a"]; });
+
+
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/login/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__login_component__ = __webpack_require__("../../../../../src/app/features/user-management/login/login.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__login_component__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/login/login.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/login/login.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"uk-modal-title\">LOGIN</h2>\n<p>\n  <input class=\"uk-input\" id=\"login-mail\" type=\"email\" placeholder=\"Username\" (keyup.enter)=\"connect()\" [(ngModel)]=\"username\" [value]=\"username\" required/>\n</p>\n<p>\n  <input class=\"uk-input\" id=\"login-password\" type=\"password\" placeholder=\"Password\" (keyup.enter)=\"connect()\" [(ngModel)]=\"password\" [value]=\"password\" required />\n</p>\n<p>\n  <button class=\"uk-button uk-button-default uk-modal-close\" type=\"button\">Cancel</button>\n  <button class=\"uk-button uk-button-primary\" (click)=\"!waitingStatus ? connect() : null\">\n      <span *ngIf=\"!waitingStatus\">Connect</span>\n      <span *ngIf=\"waitingStatus\" uk-spinner></span>\n  </button>\n  <!-- <button class=\"uk-button uk-button-primary\" (click)=\"logout()\">logout</button> -->\n</p>\n<p>\n  <a href=\"#modal-register\" class=\"uk-button uk-button-link\"  uk-toggle>Register</a>\n</p>\n<p>\n  <a href=\"#modal-recover\" class=\"uk-button uk-button-link\" uk-toggle>Recover</a>\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/login/login.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var LoginComponent = (function (_super) {
+    __extends(LoginComponent, _super);
+    function LoginComponent(userManagementService, userManagementStatusService, toasterService, interactionService) {
+        var _this = _super.call(this) || this;
+        _this.userManagementService = userManagementService;
+        _this.userManagementStatusService = userManagementStatusService;
+        _this.toasterService = toasterService;
+        _this.interactionService = interactionService;
+        _this.username = '';
+        _this.password = '';
+        _this.token = '';
+        return _this;
+    }
+    LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.connect = function () {
+        var _this = this;
+        this.setWaitingStatus(true);
+        var payload = { password: this.password, email: this.username };
+        this.userManagementService.userLogin(payload).then(function (data) {
+            _this.token = data.token;
+            _this.toasterService.showToaster(data.message);
+            _this.setUserIsLoggedIn();
+        }).catch(function () {
+            _this.setWaitingStatus(false);
+        });
+    };
+    LoginComponent.prototype.setUserIsLoggedIn = function () {
+        this.userManagementStatusService.setUserToken(this.token);
+        this.userManagementStatusService.setUserIsLoggedIn();
+        this.userManagementStatusService.setUsername(this.username);
+        this.interactionService.enableButtonWithId('save');
+        this.interactionService.enableButtonWithId('folder');
+        this.setWaitingStatus(false);
+    };
+    return LoginComponent;
+}(__WEBPACK_IMPORTED_MODULE_3__shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
+LoginComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-login',
+        template: __webpack_require__("../../../../../src/app/features/user-management/login/login.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/login/login.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_shared__["ToasterService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object])
+], LoginComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=login.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/recovery/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__recovery_component__ = __webpack_require__("../../../../../src/app/features/user-management/recovery/recovery.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__recovery_component__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/recovery/recovery.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/recovery/recovery.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"uk-modal-title\">RECOVER ACCOUNT</h2>\n<p *ngIf=\"!submitedRecover\">\n  <input class=\"uk-input\" type=\"text\" placeholder=\"Email address\" (keyup.enter)=\"!waitingStatus ? recoverAccountAsk() : null\" [(ngModel)]=\"email\" [value]=\"email\" required />\n</p>\n<p *ngIf=\"!submitedRecover\">\n  <button class=\"uk-button uk-button-default uk-modal-close\" type=\"button\">Cancel</button>\n  <button class=\"uk-button uk-button-primary\" type=\"button\" (click)=\"!waitingStatus ? recoverAccountAsk() : null\">\n      <span *ngIf=\"!waitingStatus\">Recover account</span>\n      <span *ngIf=\"waitingStatus\" uk-spinner></span>\n  </button>\n</p>\n\n<p *ngIf=\"submitedRecover\">\n  Enter your new password\n</p>\n<p *ngIf=\"submitedRecover\">\n <input class=\"uk-input\" type=\"password\" placeholder=\"New password\" (keyup.enter)=\"!waitingStatus ? recoverAccount() : null\" [(ngModel)]=\"new_password\" [value]=\"new_password\" required />\n</p>\n<p *ngIf=\"submitedRecover\">\n  <button class=\"uk-button uk-button-default uk-modal-close\" type=\"button\">Cancel</button>\n  <button class=\"uk-button uk-button-primary\" type=\"button\" (click)=\"!waitingStatus ? recoverAccount() : null\">\n    <span *ngIf=\"!waitingStatus\">Submit</span>\n    <span *ngIf=\"waitingStatus\" uk-spinner></span>\n  </button>\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/recovery/recovery.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_app_shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uikit__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecoveryComponent; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var RecoveryComponent = (function (_super) {
+    __extends(RecoveryComponent, _super);
+    function RecoveryComponent(toasterService, userManagementService) {
+        var _this = _super.call(this) || this;
+        _this.toasterService = toasterService;
+        _this.userManagementService = userManagementService;
+        _this.submitedRecover = false;
+        _this.email = '';
+        _this.new_password = '';
+        return _this;
+    }
+    RecoveryComponent.prototype.ngOnInit = function () { };
+    RecoveryComponent.prototype.recoverAccountAsk = function () {
+        var _this = this;
+        this.setWaitingStatus(true);
+        var payload = { email: this.email };
+        this.userManagementService.userRecoverAsk(payload).then(function () {
+            _this.setWaitingStatus(false);
+            _this.resetRecoverComponent();
+            _this.toasterService.showToaster('Check your email address (' + _this.email + ') to change your password!');
+            __WEBPACK_IMPORTED_MODULE_4_uikit__["modal"]('#modal-recover').hide();
+        }).catch(function () {
+            _this.setWaitingStatus(false);
+            _this.submitedRecover = false;
+        });
+    };
+    RecoveryComponent.prototype.recoverAccount = function () {
+        var _this = this;
+        this.setWaitingStatus(true);
+        var payload = { token: this.token_recover, password: this.new_password };
+        this.userManagementService.userRecover(payload).then(function (data) {
+            _this.resetRecoverComponent();
+            _this.toasterService.showToaster(data.message);
+            _this.setWaitingStatus(false);
+            _this.submitedRecover = false;
+            window.location.href = '';
+        }).catch(function () {
+            _this.setWaitingStatus(false);
+        });
+    };
+    RecoveryComponent.prototype.resetRecoverComponent = function () {
+        this.email = '';
+        this.new_password = '';
+        this.token_recover = '';
+    };
+    return RecoveryComponent;
+}(__WEBPACK_IMPORTED_MODULE_0_app_shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], RecoveryComponent.prototype, "submitedRecover", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], RecoveryComponent.prototype, "token_recover", void 0);
+RecoveryComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+        selector: 'htm-recovery',
+        template: __webpack_require__("../../../../../src/app/features/user-management/recovery/recovery.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/recovery/recovery.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_shared__["ToasterService"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_service__["a" /* UserManagementService */]) === "function" && _b || Object])
+], RecoveryComponent);
+
+var _a, _b;
+//# sourceMappingURL=recovery.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/register/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__register_component__ = __webpack_require__("../../../../../src/app/features/user-management/register/register.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__register_component__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/register/register.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/register/register.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"uk-modal-title\">REGISTER</h2>\n<p>\n  <input class=\"uk-input\" id=\"form-horizontal-text1\" type=\"text\" placeholder=\"Firstname\" [(ngModel)]=\"firstname\"\n    required />\n</p>\n<p>\n  <input class=\"uk-input\" id=\"form-horizontal-text2\" type=\"text\" placeholder=\"Lastname\" [(ngModel)]=\"lastname\" required />\n</p>\n<p>\n  <input class=\"uk-input\" id=\"form-horizontal-text3\" type=\"email\" placeholder=\"Email\" [(ngModel)]=\"email\" required />\n</p>\n<p>\n  <input class=\"uk-input\" id=\"form-horizontal-text4\" type=\"password\" placeholder=\"Password\" [(ngModel)]=\"password\"\n    required />\n</p>\n<p>\n  <button class=\"uk-button uk-button-default uk-modal-close\" type=\"button\">Cancel</button>\n  <button class=\"uk-button uk-button-primary\" type=\"button\" (click)=\"!waitingStatus ? createAccount() : null\">\n    <span *ngIf=\"!waitingStatus\">Create account</span>\n    <span *ngIf=\"waitingStatus\" uk-spinner></span>\n  </button>\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/register/register.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uikit__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var RegisterComponent = (function (_super) {
+    __extends(RegisterComponent, _super);
+    function RegisterComponent(userManagementService, toasterService) {
+        var _this = _super.call(this) || this;
+        _this.userManagementService = userManagementService;
+        _this.toasterService = toasterService;
+        _this.email = '';
+        _this.password = '';
+        _this.lastname = '';
+        _this.firstname = '';
+        return _this;
+    }
+    RegisterComponent.prototype.ngOnInit = function () {
+    };
+    RegisterComponent.prototype.createAccount = function () {
+        var _this = this;
+        this.setWaitingStatus(true);
+        var payload = { email: this.email, password: this.password, first_name: this.firstname, last_name: this.lastname };
+        this.userManagementService.userRegister(payload).then(function (data) {
+            _this.toasterService.showToaster(data.message + '. <br />An email has been sent to your mail address (' + _this.email + '). <br />Please press the link in the mail to activate your account.');
+            _this.closePanel();
+            _this.resetRegisterForm();
+            _this.setWaitingStatus(false);
+        });
+    };
+    RegisterComponent.prototype.closePanel = function () {
+        __WEBPACK_IMPORTED_MODULE_4_uikit__["modal"]('#modal-register').hide();
+    };
+    RegisterComponent.prototype.activateUser = function () {
+        var _this = this;
+        var payload = { token: this.token_activation };
+        this.userManagementService.userRegisterActivate(payload).then(function (data) {
+            _this.toasterService.showToaster(data.message);
+            _this.token_activation = '';
+        });
+        this.closePanel();
+        // this.location.replaceState('/map')
+    };
+    RegisterComponent.prototype.resetRegisterForm = function () {
+        this.email = '';
+        this.password = '';
+        this.lastname = '';
+        this.firstname = '';
+    };
+    return RegisterComponent;
+}(__WEBPACK_IMPORTED_MODULE_0__shared_component_waiting_status__["a" /* WaitingStatusComponent */]));
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], RegisterComponent.prototype, "token_activation", void 0);
+RegisterComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+        selector: 'htm-register',
+        template: __webpack_require__("../../../../../src/app/features/user-management/register/register.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/user-management/register/register.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _b || Object])
+], RegisterComponent);
+
+var _a, _b;
+//# sourceMappingURL=register.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/service/user-management-status.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserManagementStatusService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var UserManagementStatusService = (function () {
+    function UserManagementStatusService() {
+        this.isUserLogged = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["BehaviorSubject"](false);
+        this.userToken = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["BehaviorSubject"](null);
+        this.username = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["BehaviorSubject"](null);
+    }
+    UserManagementStatusService.prototype.getUserToken = function () {
+        return this.userToken;
+    };
+    UserManagementStatusService.prototype.getIsUserLogged = function () {
+        return this.isUserLogged;
+    };
+    UserManagementStatusService.prototype.getUsername = function () {
+        return this.username;
+    };
+    UserManagementStatusService.prototype.setUserIsLoggedIn = function () {
+        this.isUserLogged.next(true);
+    };
+    UserManagementStatusService.prototype.setUserIsLoggedOut = function () {
+        this.isUserLogged.next(false);
+    };
+    UserManagementStatusService.prototype.setUsername = function (username) {
+        this.username.next(username);
+    };
+    UserManagementStatusService.prototype.setUserToken = function (token) {
+        this.userToken.next(token);
+    };
+    return UserManagementStatusService;
+}());
+UserManagementStatusService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])()
+], UserManagementStatusService);
+
+//# sourceMappingURL=user-management-status.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/user-management/service/user-management.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserManagementService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var UserManagementService = (function (_super) {
+    __extends(UserManagementService, _super);
+    function UserManagementService(http, logger, loaderService, toasterService) {
+        return _super.call(this, http, logger, loaderService, toasterService) || this;
+    }
+    UserManagementService.prototype.userRegister = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["m" /* post_user_register */]);
+    };
+    UserManagementService.prototype.userRegisterActivate = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["n" /* post_user_register_activate */]);
+    };
+    UserManagementService.prototype.userLogin = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["o" /* post_user_login */]);
+    };
+    UserManagementService.prototype.userLogout = function (token) {
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["p" /* post_user_logout */]);
+    };
+    UserManagementService.prototype.userRecover = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["q" /* post_user_recovery */]);
+    };
+    UserManagementService.prototype.userRecoverAsk = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["r" /* post_user_recovery_ask */]);
+    };
+    UserManagementService.prototype.getDiskSpace = function (token) {
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["s" /* get_diskspace_endpoint */]);
+    };
+    UserManagementService.prototype.getAcountFileList = function (token) {
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["t" /* get_filelist_endpoint */]);
+    };
+    UserManagementService.prototype.getUserInformations = function (token) {
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["u" /* get_userinformation_endpoint */]);
+    };
+    UserManagementService.prototype.userUpdateProfile = function (payload) {
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["v" /* get_userupdateprofile_endpoint */]);
+    };
+    UserManagementService.prototype.getTokenPayload = function (token) {
+        return { token: token };
+    };
+    return UserManagementService;
+}(__WEBPACK_IMPORTED_MODULE_4__shared_services_api_service__["a" /* APIService */]));
+UserManagementService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["Logger"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["Logger"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["LoaderService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["LoaderService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"]) === "function" && _d || Object])
+], UserManagementService);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=user-management.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/welcome-page/welcome-page.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".logo-container{\n  height: 50%;\n}\n.main-container {\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n.logo-container > img {\n  max-width: 50%;\n}\n.hotmaps > img {\n  float:right;\n}\n.logos{\n    position: relative;\n    height: 300px;\n}\n.hotmaps {\n  float: left\n}\n.parteners {\n  float: right;\n}\n\n.europe-logo {\n  position: relative;\n  float: left;\n  height: 100px;\n  width: 100%\n}\n\n\n.europe-logo > img {\n  height: 100%;\n  margin-left:-7px;\n  margin-top:-7px;\n  float: left;\n}\n.europe-logo > span {\n  position: absolute;\n  top:33%\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/welcome-page/welcome-page.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"modal-full\" class=\"uk-modal-full\" uk-modal>\n  <div class=\"uk-modal-dialog\">\n    <button\n      class=\"uk-modal-close-full uk-close-large\"\n      type=\"button\"\n      uk-close\n    ></button>\n    <div class=\"uk-grid-collapse uk-child-width-1-1@s uk-flex-middle\" uk-grid>\n      <!-- <div class=\"uk-background-cover\" uk-height-viewport>\n            </div> -->\n      <div class=\"uk-padding-large main-container\">\n        <div class=\"uk-column-1-2\">\n          <div class=\"logo-container hotmaps\">\n            <img src=\"../../../assets/first-page/hotmaps_logo.png\" />\n          </div>\n          <div class=\"logo-container parteners\">\n            <img src=\"../../../assets/first-page/parteners.png\" />\n          </div>\n        </div>\n        <p>\n          The <strong>Hotmaps</strong> project aims at designing a toolbox to support public authorities, energy agencies and urban planners in strategic heating and cooling planning on local, regional and national levels, and in line with EU policies.\n          More information on the project can be found here: <a class=\"uk-link-heading\" href=\"http://www.hotmaps-project.eu\" target=\"_blank\">www.hotmaps-project.eu</a>\n        </p>\n        <p>\n          Here we present the beta-version of the <strong>Hotmaps toolbox</strong>. In the following year the tool will be updated and new releases will be available. In this version the basic functionalities for mapping heating and cooling in EU members are available. In addition also the first calculation models are available – more functionalities including additional calculation models and the possibility to save and load the status of your work on the toolbox will be available in the final release of the tool.\n        </p>\n        <ul class=\"uk-list uk-list-bullet\">\n          <li>\n              <strong>Open source:</strong> The developed tool and all related modules run without requiring any other commercial tool or software. Use of and access to Source Code is subject to Open Source Licenses. The datasets that are used in the tool can be found at <a class=\"uk-link-heading\" href=\"https://gitlab.com/hotmaps\" target=\"_blank\">www.gitlab.com/hotmaps</a>. The source code of the tool can be accessed via <a class=\"uk-link-heading\" href=\"https://github.com/HotMaps\" target=\"_blank\">www.github.com/hotmaps</a>.\n          </li>\n          <li><strong>Feedback and contributions:</strong> We are happy to receive feedback on the tool. Please use the feedback-button in the toolbox to let us know your opinions and suggestions for the tool. Hotmaps also invites other developers to contribute with additional calculation modules or datasets that can be integrated in the toolbox. Please also get in contact with us if you want to take part in the future development of the toolbox. </li>\n        </ul>\n        <p>\n            <strong>Disclaimer:</strong> The data and tools provided on this website are indicative and for research purposes only. No responsibility is taken for the accuracy of included data, figures and results or for using them for unintended purposes.\n        </p>\n        <p>\n            <strong>Data privacy:</strong> By clicking OK below, you accept that this website may use cookies..\n        </p>\n        <div class=\"europe-logo\">\n            <img src=\"../../../assets/first-page/co-funded-h2020-horiz_en.png\" />\n\n            <span>\n              This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 723677.\n            </span>\n        </div>\n        <p class=\"uk-text-right\">\n          <button class=\"uk-button uk-button-primary uk-modal-close\" type=\"button\">OK</button>\n        </p>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/features/welcome-page/welcome-page.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__("../../../../uikit/dist/js/uikit.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomePageComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WelcomePageComponent = (function () {
+    function WelcomePageComponent() {
+    }
+    WelcomePageComponent.prototype.ngOnInit = function () {
+        __WEBPACK_IMPORTED_MODULE_1_uikit__["modal"]('#modal-full').show();
+    };
+    return WelcomePageComponent;
+}());
+WelcomePageComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'htm-welcome-page',
+        template: __webpack_require__("../../../../../src/app/features/welcome-page/welcome-page.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/features/welcome-page/welcome-page.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], WelcomePageComponent);
+
+//# sourceMappingURL=welcome-page.component.js.map
 
 /***/ }),
 
@@ -6513,23 +8789,23 @@ var _a, _b, _c, _d;
 /**
  * Created by lesly on 14.06.17.
  */ var basemap = {
-    OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
-            ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+    OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+            ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
     }),
-    Esri: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    Esri: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
             ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
     }),
     // Improvement of coding style : (with codelyzer)
     // Exceeds maximum line length of 140
-    Hybrid: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    Hybrid: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
             ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
     }),
-    CartoDB: L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy;' +
-            ' <a href="http://cartodb.com/attributions">CartoDB</a>'
+    CartoDB: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy;' +
+            ' <a href="https://cartodb.com/attributions">CartoDB</a>'
     }),
 };
 //# sourceMappingURL=basemap.js.map
@@ -6550,7 +8826,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/pages/map/component/map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title-map\">\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel></htm-top-side-panel>\n  <htm-left-side-panel></htm-left-side-panel>\n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel\n    [nutsIds]=\"nutsIds\"\n    [layers]=\"layers\"\n    [scaleLevel]=\"scaleLevel\"\n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\"\n    [cmRunned]=\"cmRunned\"\n    >\n  </htm-right-side-panel>\n</div>\n"
+module.exports = "<div class=\"title-map\">\n  <htm-user-management></htm-user-management>\n  <hmt-search-bar></hmt-search-bar>\n  <htm-nav-bar [leftPanel]=\"leftPanelComponent\" [rightPanel]=\"rightPanelComponent\"></htm-nav-bar>\n  <!-- <i  (click)=\"toggleLeftExpandedState('Layers')\"></i>\n  <i class=\"icon-nav flaticon-vector\"></i>\n  <i class=\"icon-nav flaticon-folder-2\"></i>\n  <i class=\"icon-nav flaticon-pie-chart-1\" (click)=\"toggleRightExpandedState('Load result')\"></i>\n  <i class=\"icon-nav flaticon-cloud-computing\"></i>\n  <i class=\"icon-nav flaticon-interface-1\" (click)=\"toggleLeftExpandedState('Calculation modules')\"></i>\n  <i class=\"icon-nav flaticon-technology-2\"></i>\n  <i class=\"icon-nav flaticon-comparison-1\"></i>\n  <i class=\"icon-nav flaticon-database-7\"></i> -->\n</div>\n<div class=\"container-map\">\n  <htm-top-side-panel ></htm-top-side-panel>\n\n    <htm-left-side-panel [hidden]=\"!openLeftSidebar\"></htm-left-side-panel>\n\n  <div id=\"map\">\n    <htm-selection-tool *ngIf=\"selectionToolShow\" onclick=\"event.stopPropagation();\"></htm-selection-tool>\n\n    <!--<hmt-toolbar></hmt-toolbar> -->\n    <!-- <div class=\"zoom-level-box\">\n       {{zoomlevel}}\n     </div> -->\n  </div>\n\n  <htm-right-side-panel\n    [hidden]=\"!openRightSidebar\"\n    [nutsIds]=\"nutsIds\"\n    [layers]=\"layers\"\n    [scaleLevel]=\"scaleLevel\"\n    [locationsSelection]=\"locationsSelection\"\n    [areas]=\"areas\"\n    [cmRunned]=\"cmRunned\">\n  </htm-right-side-panel>\n</div>\n"
 
 /***/ }),
 
@@ -6562,7 +8838,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  /*min-height: 6vh;*/\n  height: 48px;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  height: calc(100vh - 48px);\n  min-height: calc(100vh - 48px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, ":host {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 0;\n  min-width: 0;\n}\n.zoom-level-box {\n  z-index: 20000;\n  width: 26px;\n  height: 26px;\n  position: absolute;\n  top: 10px;\n  right: 46px;\n  background-color: white;\n  border-radius: 5px;\n  line-height: 26px;\n  text-align: center;\n  font-size: 18px;\n  color: black;\n}\n.button-navbar {\n  height: 30px;\n  width: 30px;\n  margin: 10px;\n  border-bottom-color: #000000;\n}\n.title-map {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 1000;\n  /*min-height: 6vh;*/\n  height: 48px;\n  transition: width 0.4s ease-in-out;\n  font-family: Arial;\n  font-size: 12px;\n  padding: 10px;\n  background-color: #333333;\n  color: #ffffff;\n  border-radius: 0px;\n  border-bottom: solid 1px white;\n}\n#map {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  /*justify-content: center; disable this to display selection tools to the left*/\n  min-width: 0;\n  min-height: 0;\n  top: 0px;\n  left: 0%;\n  bottom: 0;\n  width: 100%;\n  /* Annuler la sélection dans la container map */\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.container-map {\n  height: calc(100vh - 48px);\n  min-height: calc(100vh - 48px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  position: relative;\n}\n", ""]);
 
 // exports
 
@@ -6644,8 +8920,10 @@ var MapComponent = (function () {
             });
         }
         this.interactionService.getCMRunned().subscribe(function (value) {
-            _this.interactionService.openRightPanel();
             _this.cmRunned = value;
+            if (value !== null) {
+                _this.interactionService.openRightPanel();
+            }
         });
         if (this.mapService.getLayerArray() !== null) {
             this.mapService.getLayerArray().subscribe(function (data) {
@@ -6717,7 +8995,7 @@ var MapComponent = (function () {
     MapComponent.prototype.createMap = function (basemap) {
         // setup  the map from leaflet
         var self = this;
-        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_0" /* map_options */]);
+        this.map = L.map('map', __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["_23" /* map_options */]);
         L.control.zoom({ position: 'topright' }).addTo(this.map);
         var measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles',
             activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
@@ -6802,24 +9080,25 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__ = __webpack_require__("../../../../../src/app/features/selection-tools/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__ = __webpack_require__("../../../../../src/app/features/selection-scale/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__features_calculation_module_cm_layers_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/cm-layers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__ = __webpack_require__("../../../../../src/app/shared/business/business.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__features_selection_tools__ = __webpack_require__("../../../../../src/app/features/selection-tools/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_selection_scale__ = __webpack_require__("../../../../../src/app/features/selection-scale/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_services_toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_services_loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_services_logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_services_api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__features_selection_tools_service_selection_tool_button_state_service__ = __webpack_require__("../../../../../src/app/features/selection-tools/service/selection-tool-button-state.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapService; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6841,6 +9120,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 /**
  * Created by lesly on 27.05.17.
  */
@@ -6861,22 +9141,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MapService = (function (_super) {
     __extends(MapService, _super);
-    function MapService(http, logger, loaderService, toasterService, layersService, selectionScaleService, selectionToolService, helper, businessInterfaceRenderService, selectionToolButtonStateService) {
+    function MapService(http, logger, loaderService, toasterService, layersService, selectionScaleService, cmLayerService, selectionToolService, helper, businessInterfaceRenderService, selectionToolButtonStateService) {
         var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
         _this.layersService = layersService;
         _this.selectionScaleService = selectionScaleService;
+        _this.cmLayerService = cmLayerService;
         _this.selectionToolService = selectionToolService;
         _this.helper = helper;
         _this.businessInterfaceRenderService = businessInterfaceRenderService;
         _this.selectionToolButtonStateService = selectionToolButtonStateService;
-        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["J" /* defaultZoomLevel */]);
-        _this.layerArray = new __WEBPACK_IMPORTED_MODULE_12_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        _this.zoomlevel = new __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__["BehaviorSubject"](__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_5" /* defaultZoomLevel */]);
+        _this.layerArray = new __WEBPACK_IMPORTED_MODULE_13_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
         // TODO: A modifier
-        _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"](); // Observable source for click
+        _this.clickEventSubject = new __WEBPACK_IMPORTED_MODULE_14_rxjs_Subject__["Subject"](); // Observable source for click
         _this.clickEventSubjectObs = _this.clickEventSubject.asObservable(); // Observable stream
-        _this.drawCreatedSubject = new __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__["Subject"]();
+        _this.drawCreatedSubject = new __WEBPACK_IMPORTED_MODULE_14_rxjs_Subject__["Subject"]();
         _this.drawCreatedSubjectObs = _this.drawCreatedSubject.asObservable();
-        _this.baseMaps = __WEBPACK_IMPORTED_MODULE_3__basemap__["a" /* basemap */];
+        _this.baseMaps = __WEBPACK_IMPORTED_MODULE_4__basemap__["a" /* basemap */];
         return _this;
     }
     MapService.prototype.ngOnInit = function () {
@@ -6910,20 +9191,20 @@ var MapService = (function (_super) {
     // Retrive all map events
     MapService.prototype.retriveMapEvent = function () {
         var self = this;
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["K" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["L" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["M" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["N" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["O" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["P" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Q" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["R" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["S" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["T" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["U" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["V" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["W" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
-        this.map.on(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["X" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_6" /* MAPCLICK */], function (event) { self.onClickEvent(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_7" /* MAPLAYERCHANCE */], function (event) { self.onBaselayerChange(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_8" /* MAPZOOMSTART */], function () { self.onZoomStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_9" /* MAPZOOMEND */], function () { self.onZoomEnd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_10" /* MAPLAYERSCONTROLEVENT */], function () { self.onLayersControlEvent(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_11" /* MAPLAYERADD */], function (e) { self.onLayerAdd(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_12" /* MAPDIDIUPDATELAYER */], function (event) { self.onDidUpdateLayers(self, event); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_13" /* MAPOVERLAYADD */], function () { self.onOverLayAdd(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_14" /* MAPDRAWCREATED */], function (e) { self.onDrawCreated(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_15" /* MAPDRAWEDITED */], function () { self.onDrawEdited(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_16" /* MAPDRAWSTART */], function () { self.onDrawStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_17" /* MAPDRAWEDITSTART */], function () { self.onDrawEditStart(self); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_18" /* MAPDRAWEDITSTOP */], function (e) { self.onDrawEditStop(self, e); });
+        this.map.on(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_19" /* MAPDRAWDELETED */], function () { self.onDrawDeleted(self); });
     };
     // Event functions
     MapService.prototype.onDrawCreated = function (self, e) {
@@ -6987,7 +9268,7 @@ var MapService = (function (_super) {
         this.selectionScaleService.changeScale();
     };
     MapService.prototype.onClickEvent = function (self, e) {
-        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* hectare */]) {
+        if (self.getScaleValue() === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* hectare */]) {
             return;
         }
         if (self.selectionToolService.getPolygonDrawerState()) {
@@ -7003,12 +9284,12 @@ var MapService = (function (_super) {
         }
         // check if the selection toul is activate
         self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
-        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["f" /* hectare */]) {
+        if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["e" /* hectare */]) {
             if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
                 self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());
             }
         }
-        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["e" /* lau2 */]) {
+        else if (self.selectionScaleService.getScaleValue() === __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["c" /* lau2 */]) {
             self.selectionToolService.enableNavigationService();
             self.getNutsGeometryFromLau2(e.latlng, self.selectionScaleService.getScaleValue());
         }
@@ -7028,12 +9309,12 @@ var MapService = (function (_super) {
     };
     // NUTS management
     MapService.prototype.getNutsGeometryFromNuts = function (latlng, nuts_level) {
-        this.logger.log('MapService/getNutsGeometryFromNuts()');
+        this.logger.log('MapService/getNutsGeometryFromNuts()/');
         var current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
-        bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + 'AND ' + 'date=' + '2015' + '-01-01Z';
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_20" /* clickAccuracy */]).toBBoxString();
+        bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + ' AND ' + 'date=' + '2015' + '-01-01Z';
         var action = 'population';
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
+        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_21" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('url' + url);
@@ -7041,9 +9322,9 @@ var MapService = (function (_super) {
     };
     // LAU management;
     MapService.prototype.getNutsGeometryFromLau2 = function (latlng, nuts_level) {
-        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Y" /* clickAccuracy */]).toBBoxString();
-        var action = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["x" /* lau2name */];
-        var url = __WEBPACK_IMPORTED_MODULE_2__shared_data_service__["Z" /* geoserverGetFeatureInfoUrl */]
+        var bbox = latlng.toBounds(__WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_20" /* clickAccuracy */]).toBBoxString();
+        var action = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["U" /* lau2name */];
+        var url = __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_21" /* geoserverGetFeatureInfoUrl */]
             + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
             '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
         this.logger.log('lau2name url' + url);
@@ -7126,24 +9407,27 @@ var MapService = (function (_super) {
         this.addLayersControl();
         this.retriveMapEvent();
         this.layersService.getLayers().addTo(this.map);
+        this.cmLayerService.getLayersCM().addTo(this.map);
         this.selectionToolService.getMultiSelectionLayers().addTo(this.map);
         this.layersService.setupDefaultLayer();
     };
     MapService.prototype.addLayersControl = function () {
         var overlayMaps = {};
         var baseLayers = {
-            OSM: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
-                    ' Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+            OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                zIndex: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_22" /* maps_order */],
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>,' +
+                    ' Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
             }),
             // Improvement of coding style : (with codelyzer)
             // Exceeds maximum line length of 140
-            Satellite: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+            Satellite: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+                zIndex: __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["_22" /* maps_order */],
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC,' +
                     ' USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan,'
             }),
         };
-        var control = L.control.layers(baseLayers, null, { collapsed: false });
+        var control = L.control.layers(baseLayers, overlayMaps, { collapsed: false });
         control.addTo(this.map);
         this.map.addLayer(baseLayers.Satellite);
     };
@@ -7173,6 +9457,7 @@ var MapService = (function (_super) {
      */
     MapService.prototype.clearAll = function (map) {
         this.selectionToolService.clearAll(map);
+        // this.cmLayerService.clearAll();
     };
     /**
      * Get the nutsSelected Subject of SelectionToolService
@@ -7223,14 +9508,20 @@ var MapService = (function (_super) {
         });
         return layers;
     };
+    MapService.prototype.displayCustomLayerFromCM = function (directory, type) {
+        this.cmLayerService.addOrRemoveLayerWithAction(directory, type, this.map);
+    };
+    MapService.prototype.removeCMLayer = function () {
+        // this.cmLayerService.clearAll()
+    };
     return MapService;
-}(__WEBPACK_IMPORTED_MODULE_11__shared_services_api_service__["a" /* APIService */]));
+}(__WEBPACK_IMPORTED_MODULE_12__shared_services_api_service__["a" /* APIService */]));
 MapService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_15__shared_helper__["a" /* Helper */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_14__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _k || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_11__shared_services_logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__shared_services_logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_10__shared_services_loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__shared_services_loader_service__["a" /* LoaderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9__shared_services_toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__shared_services_toaster_service__["a" /* ToasterService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__features_calculation_module_cm_layers_service__["a" /* CMLayersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__features_calculation_module_cm_layers_service__["a" /* CMLayersService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__features_selection_tools__["a" /* SelectionToolService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_16__shared_helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_16__shared_helper__["a" /* Helper */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__["a" /* BusinessInterfaceRenderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_business_business_service__["a" /* BusinessInterfaceRenderService */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_15__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_15__features_selection_tools_service_selection_tool_button_state_service__["a" /* SelectionToolButtonStateService */]) === "function" && _l || Object])
 ], MapService);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 //# sourceMappingURL=map.service.js.map
 
 /***/ }),
@@ -7298,41 +9589,37 @@ var NavigationBarComponent = (function () {
         this.navButtons = this.interactionService.getNavButtons();
     };
     NavigationBarComponent.prototype.toggleExpandedState = function (button) {
-        if (button.enable) {
-            if (button.stateOpen) {
-                if (button.buttonFunction === 'left') {
+        var functionName = button.buttonFunction;
+        var isOpen = button.stateOpen;
+        if (isOpen)
+            this.interactionService.disableStateOpenWithFunction(functionName);
+        else
+            this.interactionService.enableStateOpenWithFunction(functionName);
+        switch (functionName) {
+            case 'left':
+                if (isOpen)
                     this.interactionService.closeLeftPanel();
-                }
-                else if (button.buttonFunction === 'right') {
-                    this.interactionService.closeRightPanel();
-                }
-                else if (button.buttonFunction === 'selection') {
-                    this.selectionToolButtonStateService.enable(false);
-                    // this.selectionToolService.clearAll(this.mapService.getMap());
-                }
-                else if (button.buttonFunction === 'send_mail') {
-                    // Toggle top panel when it's opened
-                    this.interactionService.openTopPanel();
-                }
-                this.interactionService.disableStateOpenWithFunction(button.buttonFunction);
-            }
-            else {
-                if (button.buttonFunction === 'left') {
+                else
                     this.interactionService.openLeftPanel();
-                }
-                else if (button.buttonFunction === 'right') {
+                break;
+            case 'right':
+                if (isOpen)
+                    this.interactionService.closeRightPanel();
+                else
                     this.interactionService.openRightPanel();
-                }
-                else if (button.buttonFunction === 'selection') {
+                break;
+            case 'selection':
+                if (isOpen)
+                    this.selectionToolButtonStateService.enable(false);
+                else
                     this.selectionToolButtonStateService.enable(true);
-                    // this.interactionService.enableButtonWithId(button.buttonFunction);
-                }
-                else if (button.buttonFunction === 'send_mail') {
-                    // Toggle top panel when it's closed
+                break;
+            case 'send_mail':
+                if (isOpen)
                     this.interactionService.closeTopPanel();
-                }
-                this.interactionService.enableStateOpenWithFunction(button.buttonFunction);
-            }
+                else
+                    this.interactionService.openTopPanel();
+                break;
         }
     };
     return NavigationBarComponent;
@@ -7473,16 +9760,7 @@ var _a;
 var navigationButtons = [
     { id: 'layers', title: 'Layers', buttonFunction: 'left', iconClass: 'flaticon-layers-1', enable: true, stateOpen: false },
     { id: 'selection', title: 'Selection tool', buttonFunction: 'selection', iconClass: 'flaticon-vector', enable: true, stateOpen: false },
-    /* {id: 'folder', title: 'Folder', buttonFunction: '', iconClass: 'flaticon-folder-2', enable: false, stateOpen: false},*/
     { id: 'load_result', title: 'Show results', buttonFunction: 'right', iconClass: 'flaticon-pie-chart-1', enable: false, stateOpen: false },
-    /* {id: 'import_data', title: 'Import data', buttonFunction: '', iconClass: 'flaticon-cloud-computing', enable: false, stateOpen: false},
-      {id: 'calculation_modules', title: 'Calculation modules', buttonFunction: 'left', iconClass: 'flaticon-interface-1',
-       enable: true, stateOpen: false},
-     {id: 'save_as', title: 'Save as', buttonFunction: '', iconClass: 'flaticon-technology-2', enable: false, stateOpen: false},
-    {id: 'comparison', title: 'Comparison', buttonFunction: '', iconClass: 'flaticon-comparison-1', enable: false, stateOpen: false},
-  
-      {id: 'data_info', title: 'Dataset informations', buttonFunction: '', iconClass: 'flaticon-database-7', enable: false, stateOpen: false},
-  */
     { id: 'feedback', title: 'Feedback', buttonFunction: 'send_mail', iconClass: 'flaticon-send', enable: true, stateOpen: false },
 ];
 //# sourceMappingURL=navigation-buttons.data.js.map
@@ -7503,7 +9781,7 @@ var navigationButtons = [
 /***/ "../../../../../src/app/pages/searchbar/searchbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"search-bar\">\n    <i class=\"icon-search fa fa-search\"></i>\n    <input id=\"place-input\" class=\"on-map\" type=\"text\" placeholder=\"Go to place...\"\n        [(ngModel)]=\"address\" (keyup.enter)=\"goto()\" />\n</div>\n\n<!--<button id=\"goto\" class=\"btn btn-primary on-map\" href=\"#\" title=\"Goto Place\" (click)=\"goto()\"></button>-->\n"
+module.exports = "<div class=\"search-bar\">\n    <i class=\"icon-search fa fa-search\"></i>\n    <input id=\"place-input\" class=\"on-map\" type=\"text\" placeholder=\"Go to place...\"\n        [(ngModel)]=\"address\" (keyup.enter)=\"goto()\" />\n</div>\n\n<!--<button id=\"goto\" class=\"btn btn-primary on-map\" href=\"#\" title=\"Goto Place\" (click)=\"goto()\"></button>-->"
 
 /***/ }),
 
@@ -7750,15 +10028,22 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_map_component_map_component__ = __webpack_require__("../../../../../src/app/pages/map/component/map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__features_user_management_recovery_recovery_component__ = __webpack_require__("../../../../../src/app/features/user-management/recovery/recovery.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_map_component_map_component__ = __webpack_require__("../../../../../src/app/pages/map/component/map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__features_user_management_activate_activate_component__ = __webpack_require__("../../../../../src/app/features/user-management/activate/activate.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
-/**
- * Created by lesly on 14.06.17.
- */
+
+
 
 var routes = [
     { path: '', redirectTo: '/map', pathMatch: 'full' },
-    { path: 'map', component: __WEBPACK_IMPORTED_MODULE_0__pages_map_component_map_component__["a" /* MapComponent */] },
+    { path: 'map', component: __WEBPACK_IMPORTED_MODULE_1__pages_map_component_map_component__["a" /* MapComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_1__pages_map_component_map_component__["a" /* MapComponent */], children: [
+            { path: ':token_activation', component: __WEBPACK_IMPORTED_MODULE_2__features_user_management_activate_activate_component__["a" /* ActivateComponent */] },
+        ] },
+    { path: 'recover', component: __WEBPACK_IMPORTED_MODULE_1__pages_map_component_map_component__["a" /* MapComponent */], children: [
+            { path: ':token_recover', component: __WEBPACK_IMPORTED_MODULE_0__features_user_management_recovery_recovery_component__["a" /* RecoveryComponent */] },
+        ] },
 ];
 //# sourceMappingURL=routes.js.map
 
@@ -7817,122 +10102,141 @@ var BusinessInterfaceRenderClass = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessInterfaceRenderArray; });
 var heat_tot_curr_density = 'heat_tot_curr_density';
-var wwtp = 'wwtp';
-var gfa_tot_curr_density = 'gfa_tot_curr_density_tif';
-var gfa_tot_curr_density_indicator_name = 'Heated gross floor area';
-var gfa_res_curr_density = 'gfa_res_curr_density_tif';
-var gfa_res_curr_density_indicator_name = 'Heated gross floor area -residential buildings';
-var gfa_nonres_curr_density = 'gfa_nonres_curr_density_tif';
-var gfa_nonres_curr_density_indicator_name = 'Heated gross floor Area -non residential buildings';
+var gfa_tot_curr_density = 'gfa_tot_curr_density';
+var gfa_res_curr_density = 'gfa_res_curr_density';
+var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
 var heat_res_curr_density = 'heat_res_curr_density';
-var heat_res_curr_density_indicator_name = 'Heat consumption - Residential Buildings';
 var heat_nonres_curr_density = 'heat_nonres_curr_density';
-var heat_nonres_curr_density_indicator_name = 'Heat consumption - Non-Residential Buildings';
 var solar_optimal_total = 'solar_optimal_total';
-var solar_optimal_total_indicator_name = 'solar energy ';
-var potential_shallowgeothermal_heat_cond = 'potential_shallowgeothermal_heat_cond';
-var potential_shallowgeothermal_heat_cond_indicator_name = 'Average potential of shallow geothermal energy';
-var cdd_curr_tif_density = 'cdd_curr_tif';
-var cdd_curr_tif_density_indicator_name = 'Average cooling degree days';
-var hdd_curr_tif_density = 'hdd_curr_tif';
-var hdd_curr_tif_density_indicator_name = 'Average heating degree days';
-var yearly_co2_emission_density = 'yearly_co2_emission';
-var yearly_co2_emission_density_indicator_name = 'average CO2 emissions for electricity';
-var cell = 'Counted cells with values';
-var vol_tot_curr_density = 'vol_tot_curr_density_tif';
-var vol_tot_curr_density_indicator_name = 'Building volumes';
-var vol_res_curr_density = 'vol_res_curr_density_tif';
-var vol_res_curr_density_indicator_name = 'Building volumes - residential buildings';
-var vol_nonres_curr_density = 'vol_nonres_curr_density_tif';
-var vol_nonres_curr_density_indicator_name = 'Building volumes - non-residential buildings';
+var vol_tot_curr_density = 'vol_tot_curr_density';
+var vol_res_curr_density = 'vol_res_curr_density';
+var cool_tot_curr_density = 'cool_tot_curr_density';
+var vol_nonres_curr_density = 'vol_nonres_curr_density';
+var pop_tot_curr_density = 'pop_tot_curr_density';
+var wwtp_capacity = 'wwtp_capacity';
+var wwtp_power = 'wwtp_power';
+var potential_forest = 'potential_forest';
+var livestock_effluents_view = 'livestock_effluents_view';
+var potential_municipal_solid_waste = 'potential_municipal_solid_waste';
+var output_wind_speed = 'output_wind_speed';
+var wind_50m = 'wind_50m';
+var potential_potential_shallowgeothermal = 'shallow_geothermal_potential';
+var yearly_co2_emission = 'yearly_co2_emission';
+var hdd_curr = 'hdd_curr';
+var cdd_curr = 'cdd_curr';
+var land_surface_temperature = 'land_surface_temperature';
+var agricultural_residues_view = 'agricultural_residues_view';
+var solar_radiation = 'solar_radiation';
 var BusinessInterfaceRenderArray = [
-    { id: 17, api_name: 'heat_density', business_name: 'Average heat density' },
-    { id: 172, api_name: heat_tot_curr_density + '_lau2', business_name: 'Heat density total / aggregrated from Hectares to LAU2' },
-    { id: 172, api_name: heat_tot_curr_density + '_nuts3', business_name: 'Heat density total / aggregrated from Hectares to NUTS3' },
-    { id: 174, api_name: heat_tot_curr_density + '_nuts2', business_name: 'Heat density total  / aggregrated from Hectares to NUTS2' },
-    { id: 175, api_name: heat_tot_curr_density + '_nuts1', business_name: 'Heat density total / aggregrated from Hectares to NUTS1' },
-    { id: 176, api_name: heat_tot_curr_density + '_nuts0', business_name: 'Heat density total  / aggregrated from Hectares to NUTS0' },
-    { id: 177, api_name: heat_tot_curr_density + '_ha', business_name: 'Heat density total' },
-    { id: 15, api_name: 'calculation_module_1', business_name: 'CM - Heat demand reduction' },
-    { id: 177, api_name: 'power', business_name: 'Average thermal power potential' },
-    { id: 177, api_name: 'capacity', business_name: 'Waste treatment capacity' },
-    { id: 17, api_name: gfa_tot_curr_density, business_name: 'Heated Gross Floor Area' },
-    { id: 172, api_name: gfa_tot_curr_density + '_lau2', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to LAU2' },
-    { id: 172, api_name: gfa_tot_curr_density + '_nuts3', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS3' },
-    { id: 174, api_name: gfa_tot_curr_density + '_nuts2', business_name: 'Heated Gross Floor Area total  / aggregrated from Hectares to NUTS2' },
-    { id: 175, api_name: gfa_tot_curr_density + '_nuts1', business_name: 'Heated Gross Floor Area total / aggregrated from Hectares to NUTS1' },
-    { id: 176, api_name: gfa_tot_curr_density + '_nuts0', business_name: 'Heated Gross Floor Area  / aggregrated from Hectares to NUTS0' },
-    { id: 177, api_name: gfa_tot_curr_density + '_ha', business_name: 'Heated Gross Floor Area' },
-    { id: 175, api_name: gfa_tot_curr_density + '_value', business_name: gfa_tot_curr_density_indicator_name + ' value' },
-    { id: 176, api_name: gfa_tot_curr_density + '_density', business_name: gfa_tot_curr_density_indicator_name },
-    { id: 177, api_name: gfa_tot_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: gfa_res_curr_density + '_value', business_name: gfa_res_curr_density_indicator_name + ' value' },
-    { id: 176, api_name: gfa_res_curr_density + '_density', business_name: gfa_res_curr_density_indicator_name },
-    { id: 177, api_name: gfa_res_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: gfa_nonres_curr_density + '_value', business_name: gfa_nonres_curr_density_indicator_name },
-    { id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: gfa_nonres_curr_density_indicator_name },
-    { id: 177, api_name: gfa_nonres_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: heat_res_curr_density + '_value', business_name: 'Heat consumption - Residential Buildings' },
-    { id: 176, api_name: heat_res_curr_density + '_density', business_name: 'Average heat density - Residential Buildings' },
-    { id: 177, api_name: heat_res_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: heat_nonres_curr_density + '_value', business_name: heat_nonres_curr_density_indicator_name },
-    { id: 176, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density - Non-Residential Buildings' },
-    { id: 177, api_name: heat_nonres_curr_density + '_cells', business_name: 'Counting cells with values' },
-    { id: 175, api_name: cdd_curr_tif_density + '_value', business_name: cdd_curr_tif_density_indicator_name },
-    { id: 176, api_name: cdd_curr_tif_density + '_density', business_name: cdd_curr_tif_density_indicator_name },
-    { id: 177, api_name: cdd_curr_tif_density + '_cells', business_name: cell },
-    { id: 175, api_name: hdd_curr_tif_density + '_value', business_name: hdd_curr_tif_density_indicator_name },
-    { id: 176, api_name: hdd_curr_tif_density + '_density', business_name: hdd_curr_tif_density_indicator_name },
-    { id: 177, api_name: hdd_curr_tif_density + '_cells', business_name: cell },
-    { id: 175, api_name: vol_tot_curr_density + '_value', business_name: vol_tot_curr_density_indicator_name },
-    { id: 176, api_name: vol_tot_curr_density + '_density', business_name: vol_tot_curr_density_indicator_name + ' density' },
-    { id: 177, api_name: vol_tot_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: vol_res_curr_density + '_value', business_name: vol_res_curr_density_indicator_name },
-    { id: 176, api_name: vol_res_curr_density + '_density', business_name: vol_res_curr_density_indicator_name + ' density' },
-    { id: 177, api_name: vol_res_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: vol_nonres_curr_density + '_value', business_name: vol_nonres_curr_density_indicator_name },
-    { id: 176, api_name: vol_nonres_curr_density + '_density', business_name: vol_nonres_curr_density_indicator_name + ' density' },
-    { id: 177, api_name: vol_nonres_curr_density + '_cells', business_name: cell },
-    { id: 175, api_name: yearly_co2_emission_density + '_value', business_name: yearly_co2_emission_density_indicator_name },
-    { id: 176, api_name: yearly_co2_emission_density + '_density', business_name: yearly_co2_emission_density_indicator_name },
-    { id: 177, api_name: yearly_co2_emission_density + '_cells', business_name: cell },
-    { id: 175, api_name: potential_shallowgeothermal_heat_cond + '_value', business_name: potential_shallowgeothermal_heat_cond_indicator_name },
-    { id: 175, api_name: 'heat_consumption_per_gfa_tot_curr_density_density', business_name: 'Heat consumption per m2' },
-    { id: 172, api_name: wwtp + '_lau2', business_name: 'Waste Water treatment plants / aggregrated from Hectares to LAU2' },
-    { id: 172, api_name: wwtp + '_nuts3', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS3' },
-    { id: 174, api_name: wwtp + '_nuts2', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS2' },
-    { id: 175, api_name: wwtp + '_nuts1', business_name: 'Waste Water treatment plants / aggregrated from Hectares to NUTS1' },
-    { id: 176, api_name: wwtp + '_nuts0', business_name: 'Waste Water treatment plants  / aggregrated from Hectares to NUTS0' },
-    { id: 176, api_name: wwtp + '_ha', business_name: 'Waste Water treatment plants' },
-    { id: 178, api_name: 'population_density_nuts3', business_name: 'population / aggregrated from Hectares to NUTS3' },
-    { id: 175, api_name: solar_optimal_total + '_value', business_name: solar_optimal_total_indicator_name },
-    { id: 176, api_name: solar_optimal_total + '_density', business_name: 'Average ' + solar_optimal_total_indicator_name + ' density' },
-    { id: 177, api_name: solar_optimal_total + '_cells', business_name: cell },
-    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO_2 emissions of energy intensive industries' },
-    { id: 178, api_name: 'industrial_database_excess_heat_value', business_name: 'excess heat potential [100°C - 200°C]' },
+    // Buildings
+    { id: 17, api_name: heat_tot_curr_density + '_consumption', business_name: 'Heat demand total' },
+    { id: 17, api_name: heat_tot_curr_density + '_count_cell', business_name: 'Counted Cells' },
+    { id: 17, api_name: heat_tot_curr_density + '_consumption_min', business_name: 'Heat density min' },
+    { id: 17, api_name: heat_tot_curr_density + '_consumption_max', business_name: 'Heat density max' },
+    { id: 17, api_name: heat_tot_curr_density + '_density', business_name: 'Average heat density' },
+    { id: 17, api_name: heat_tot_curr_density + '_' + heat_tot_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Heat demand per person' },
+    { id: 17, api_name: heat_res_curr_density + '_consumption', business_name: 'Heat demand total' },
+    { id: 17, api_name: heat_res_curr_density + '_count_cell', business_name: 'Counted Cells' },
+    { id: 17, api_name: heat_res_curr_density + '_density', business_name: 'Average heat density' },
+    { id: 17, api_name: heat_res_curr_density + '_' + heat_res_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Heat demand per person' },
+    { id: 17, api_name: heat_nonres_curr_density + '_consumption', business_name: 'Heat demand total' },
+    { id: 17, api_name: heat_nonres_curr_density + '_count_cell', business_name: 'Counted Cells' },
+    { id: 17, api_name: heat_nonres_curr_density + '_density', business_name: 'Average heat density' },
+    { id: 17, api_name: heat_nonres_curr_density + '_' + heat_nonres_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Heat demand per person' },
+    { id: 17, api_name: cool_tot_curr_density + '_consumption', business_name: 'Theoretical cooling needs total' },
+    { id: 17, api_name: cool_tot_curr_density + '_count_cell', business_name: 'Counted Cells' },
+    { id: 17, api_name: cool_tot_curr_density + '_consumption_min', business_name: 'Cooling density min' },
+    { id: 17, api_name: cool_tot_curr_density + '_consumption_max', business_name: 'Cooling density max' },
+    { id: 17, api_name: cool_tot_curr_density + '_density', business_name: 'Average cooling density' },
+    { id: 17, api_name: cool_tot_curr_density + '_' + cool_tot_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Theoretical cooling needs per person' },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Gross floor Area
+    { id: 175, api_name: gfa_tot_curr_density + '_total', business_name: 'Gross floor area' },
+    { id: 176, api_name: gfa_tot_curr_density + '_density', business_name: 'Gross floor area density' },
+    { id: 177, api_name: gfa_tot_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: gfa_tot_curr_density + '_' + gfa_tot_curr_density + '_per_' + pop_tot_curr_density, business_name: 'GFA per person' },
+    { id: 175, api_name: gfa_res_curr_density + '_total', business_name: 'Gross floor area' },
+    { id: 176, api_name: gfa_res_curr_density + '_density', business_name: 'Gross floor area density' },
+    { id: 177, api_name: gfa_res_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: gfa_res_curr_density + '_' + gfa_res_curr_density + '_per_' + pop_tot_curr_density, business_name: 'GFA per person' },
+    { id: 175, api_name: gfa_nonres_curr_density + '_total', business_name: 'Gross floor area' },
+    { id: 176, api_name: gfa_nonres_curr_density + '_density', business_name: 'Gross floor area density' },
+    { id: 177, api_name: gfa_nonres_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: gfa_nonres_curr_density + '_' + gfa_nonres_curr_density + '_per_' + pop_tot_curr_density, business_name: 'GFA per person' },
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Building volume
+    { id: 175, api_name: vol_tot_curr_density + '_total', business_name: 'Building volume' },
+    { id: 176, api_name: vol_tot_curr_density + '_density', business_name: 'Building volume density' },
+    { id: 177, api_name: vol_tot_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: vol_tot_curr_density + '_' + vol_tot_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Building volume per person' },
+    { id: 175, api_name: vol_res_curr_density + '_total', business_name: 'Building volume' },
+    { id: 176, api_name: vol_res_curr_density + '_density', business_name: 'Building volume density' },
+    { id: 177, api_name: vol_res_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: vol_res_curr_density + '_' + vol_res_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Building volume per person' },
+    { id: 175, api_name: vol_nonres_curr_density + '_total', business_name: 'Building volume' },
+    { id: 176, api_name: vol_nonres_curr_density + '_density', business_name: 'Building volume density' },
+    { id: 177, api_name: vol_nonres_curr_density + '_count_cell', business_name: 'Counted cells' },
+    { id: 17, api_name: vol_nonres_curr_density + '_' + vol_nonres_curr_density + '_per_' + pop_tot_curr_density, business_name: 'Building volume per person' },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Industry
+    { id: 178, api_name: 'industrial_database_emissions_value', business_name: 'CO₂ emissions of energy intensive industries' },
+    { id: 178, api_name: 'industrial_database_excess_heat_value1', business_name: 'excess heat potential [100°C - 200°C]' },
     { id: 178, api_name: 'industrial_database_excess_heat_value2', business_name: 'excess heat potential [200°C - 500°C]' },
     { id: 178, api_name: 'industrial_database_excess_heat_value3', business_name: 'excess heat potential [ > 500°C]' },
-    { id: 178, api_name: 'total', business_name: 'excess heat potential of energy-intensive industries total [°C]' },
-    { id: 179, api_name: 'population_density_nuts2', business_name: 'population / aggregrated from Hectares to NUTS2' },
-    { id: 147, api_name: 'population_density_nuts1', business_name: 'population / aggregrated from Hectares to NUTS1' },
-    { id: 157, api_name: 'population_density_nuts0', business_name: 'population / aggregrated from Hectares to NUTS1\'' },
-    { id: 157, api_name: 'population_density_lau2', business_name: 'population / aggregrated from Hectares to LAU2' },
-    { id: 157, api_name: 'population_density', business_name: 'Average population density' },
-    { id: 167, api_name: 'population_density_ha', business_name: 'population density' },
-    { id: 168, api_name: 'count_cell_pop', business_name: cell },
-    { id: 169, api_name: 'count_cell_heat', business_name: cell },
-    { id: 12, api_name: 'heat_consumption', business_name: 'Heat demand' },
-    { id: 13, api_name: 'density', business_name: 'Total population' },
-    { id: 16, api_name: 'heat_consumption_per_population', business_name: 'Heat consumption per person' },
-    { id: 16, api_name: 'heat_res_curr_density_value_per_population', business_name: 'Heat consumption per person - Residential Buildings' },
-    { id: 16, api_name: 'heat_consumption_per_gfa_tot_curr_density_tif_density', business_name: 'Heat demand per m2' },
-    { id: 25, api_name: 'population_density_sum', business_name: 'Population' },
-    { id: 19, api_name: 'population_density_avg', business_name: 'Average population density' },
-    { id: 179, api_name: 'Inhabitants', business_name: 'person' },
-    { id: 1543, api_name: 'MWh/ha', business_name: 'MWh/ha' },
-    { id: 1545, api_name: 'MWh/Inhabitants', business_name: 'MWh/person' },
-    { id: 152, api_name: 'Inhabitants/ha', business_name: 'person/ha' },
-    { id: 16, api_name: 'heat_consumption_per_gfa_tot_curr_density_tif_density', business_name: 'Heat demand per m2' },
+    { id: 178, api_name: 'industrial_database_excess_heat_total', business_name: 'Total excess heat potential of energy-intensive industries' },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Population
+    { id: 179, api_name: pop_tot_curr_density + '_population', business_name: 'Total population' },
+    { id: 179, api_name: pop_tot_curr_density + '_density', business_name: 'Average population density' },
+    { id: 179, api_name: pop_tot_curr_density + '_count_cell', business_name: 'Counted cells' },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Potentials
+    { id: 176, api_name: wwtp_capacity + '_capacity', business_name: 'Waste water treatment capacity' },
+    { id: 176, api_name: wwtp_power + '_power', business_name: 'Average excess heat power from waste water treatment' },
+    { id: 176, api_name: solar_optimal_total + '_average', business_name: 'Average solar radiation' },
+    { id: 176, api_name: solar_optimal_total + '_min', business_name: 'Minimum solar radiation' },
+    { id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation' },
+    { id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells' },
+    { id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate' },
+    { id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed' },
+    { id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed' },
+    { id: 176, api_name: wind_50m + '_max', business_name: 'Maximum wind speed' },
+    { id: 176, api_name: wind_50m + '_cells', business_name: 'Counted cells' },
+    { id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'Average heat conductivity' },
+    { id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste - maximum resolution: NUTS3' },
+    { id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues - maximum resolution: NUTS3' },
+    { id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita' },
+    { id: 176, api_name: livestock_effluents_view + '_NUTS_potential', business_name: 'Potential from livestock effluents - maximum resolution: NUTS3' },
+    { id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita' },
+    { id: 176, api_name: potential_forest + '_average', business_name: 'Average potential from forest resdiues' },
+    { id: 176, api_name: potential_forest + '_value', business_name: 'Potential from forest resdiues' },
+    { id: 176, api_name: potential_forest + '_cells', business_name: 'Counted cells' },
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Climate
+    { id: 175, api_name: cdd_curr + '_average', business_name: 'Average CDD' },
+    { id: 176, api_name: cdd_curr + '_max', business_name: 'Maximum CDD' },
+    { id: 176, api_name: cdd_curr + '_min', business_name: 'Minimum CDD' },
+    { id: 177, api_name: cdd_curr + '_cells', business_name: 'Counted cells' },
+    { id: 175, api_name: hdd_curr + '_average', business_name: 'Average HDD' },
+    { id: 176, api_name: hdd_curr + '_max', business_name: 'Maximum HDD' },
+    { id: 176, api_name: hdd_curr + '_min', business_name: 'Minimum HDD' },
+    { id: 177, api_name: hdd_curr + '_cells', business_name: 'Counted cells' },
+    { id: 175, api_name: land_surface_temperature + '_average', business_name: 'Average Temperature' },
+    { id: 176, api_name: land_surface_temperature + '_maximum', business_name: 'Maximum Temperature' },
+    { id: 176, api_name: land_surface_temperature + '_minimum', business_name: 'Minimum Temperature' },
+    { id: 177, api_name: land_surface_temperature + '_cells', business_name: 'Counted cells' },
+    { id: 176, api_name: solar_radiation + '_average', business_name: 'Average solar radiation' },
+    { id: 176, api_name: solar_radiation + '_min', business_name: 'Minimum solar radiation' },
+    { id: 176, api_name: solar_radiation + '_max', business_name: 'Maximum solar radiation' },
+    { id: 176, api_name: solar_radiation + '_cells', business_name: 'Counted cells' },
+    { id: 176, api_name: solar_radiation + '_total_radiation', business_name: 'Total radiation on surface' },
+    { id: 176, api_name: output_wind_speed + '_average', business_name: 'Average wind speed' },
+    { id: 176, api_name: output_wind_speed + '_min', business_name: 'Minimum wind speed' },
+    { id: 176, api_name: output_wind_speed + '_max', business_name: 'Maximum wind speed' },
+    { id: 176, api_name: output_wind_speed + '_cells', business_name: 'Counted cells' },
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Electricity
+    { id: 176, api_name: yearly_co2_emission + '_density', business_name: 'Average CO2 emissions on NUTS0' },
 ];
 //# sourceMappingURL=business.data.js.map
 
@@ -8035,12 +10339,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NutsRenderArray; });
 
 var NutsRenderArray = [
-    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["a" /* nuts0 */], suffix: '_nuts0' },
-    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["b" /* nuts1 */], suffix: '_nuts1' },
-    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["c" /* nuts2 */], suffix: '_nuts2' },
-    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["d" /* nuts3 */], suffix: '_nuts3' },
-    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["e" /* lau2 */], suffix: '_lau2' },
-    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["f" /* hectare */], suffix: '_ha' },
+    { id: 0, api_name: '0', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["C" /* nuts0 */], suffix: '' },
+    { id: 1, api_name: '1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["D" /* nuts1 */], suffix: '' },
+    { id: 2, api_name: '2', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["E" /* nuts2 */], suffix: '' },
+    { id: 3, api_name: '3', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["d" /* nuts3 */], suffix: '' },
+    { id: 4, api_name: '4', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["c" /* lau2 */], suffix: '' },
+    { id: 5, api_name: '-1', business_name: __WEBPACK_IMPORTED_MODULE_0__data_service__["e" /* hectare */], suffix: '' },
 ];
 //# sourceMappingURL=nuts.data.js.map
 
@@ -8107,10 +10411,19 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["Dictionary"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "default_color_shpfile")) __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["default_color_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "default_fillColor_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["default_fillColor_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "default_fillOpacity_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["default_fillOpacity_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["raster_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["vector_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["tab1_datapanel"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["proj3035"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["buttons_heat_load"]; });
@@ -8121,7 +10434,7 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "leftPanelSize")) __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["leftPanelSize"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "rightPanelSize")) __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["rightPanelSize"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dictionary_class__ = __webpack_require__("../../../../../src/app/shared/class/dictionary.class.ts");
-/* unused harmony namespace reexport */
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_1__dictionary_class__["a"]; });
 
 
 //# sourceMappingURL=index.js.map
@@ -8144,10 +10457,19 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["Dictionary"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "default_color_shpfile")) __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["default_color_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "default_fillColor_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["default_fillColor_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "default_fillOpacity_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["default_fillOpacity_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["raster_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["vector_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["tab1_datapanel"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["proj3035"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["buttons_heat_load"]; });
@@ -8231,6 +10553,36 @@ var MONTHNAME = [
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/component/waiting-status.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitingStatusComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WaitingStatusComponent = (function () {
+    function WaitingStatusComponent() {
+        this.waitingStatus = false;
+    }
+    WaitingStatusComponent.prototype.setWaitingStatus = function (value) {
+        this.waitingStatus = value;
+    };
+    return WaitingStatusComponent;
+}());
+WaitingStatusComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({})
+], WaitingStatusComponent);
+
+//# sourceMappingURL=waiting-status.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/data.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8238,87 +10590,124 @@ var MONTHNAME = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_map_basemap__ = __webpack_require__("../../../../../src/app/pages/map/basemap.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw__ = __webpack_require__("../../../../leaflet-draw/dist/leaflet.draw.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet_draw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet_draw__);
+/* unused harmony export geoserverProdUrl_old */
 /* unused harmony export geoserverProdUrl */
 /* unused harmony export geoserverDevUrl */
-/* unused harmony export geoserver_prod_Url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return geocodeUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return geoserverUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getIpUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getLocationFromIp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return apiUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return defaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return styleNameHeat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return idDefaultLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return wwtpLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return urlTaigaFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return timeOutAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return geocodeUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return geoserverUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getIpUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getLocationFromIp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return apiUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return defaultLayer; });
+/* unused harmony export styleNameHeat */
+/* unused harmony export heat_type */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return defaultLayerType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return wwtpLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_41", function() { return urlTaigaFeedback; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_25", function() { return urlLegend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_42", function() { return timeOutAjaxRequest; });
 /* unused harmony export unit_heatload_profil */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return formatImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return geoserverGetFeatureInfoUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return formatImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_21", function() { return geoserverGetFeatureInfoUrl; });
 /* unused harmony export nuts_level */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return populationLayerName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return postStatsLayersHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return postStatsLayersNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return postHeatLoadProfileHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return postHeatLoadProfileNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return postDurationCurveHectares; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return postDurationCurveNutsLau; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return getElectricityMixFromNuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return heatloadprofile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return populationLayerName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return postStatsLayersHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return postStatsLayersNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return postHeatLoadProfileHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return postHeatLoadProfileNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return postDurationCurveHectares; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return postDurationCurveNutsLau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return getElectricityMixFromNuts0; });
+/* unused harmony export user_endpoint */
+/* unused harmony export upload_endpoint */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return post_user_register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return post_user_register_activate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return post_user_recovery_ask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return post_user_recovery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return post_user_logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return post_user_login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return get_userinformation_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return get_userupdateprofile_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return get_diskspace_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return get_filelist_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_36", function() { return heatloadprofile; });
 /* unused harmony export Durationcurve */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_43", function() { return energy_mix_title; });
 /* unused harmony export set404url */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return proj3035; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return proj3035; });
 /* unused harmony export proj4326 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return heat_load_api_day; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return heat_load_api_year; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return heat_load_api_month; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return buttons_heat_load; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return default_drop_down_button; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return summay_drop_down_buttons; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return timeOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_38", function() { return heat_load_api_day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_40", function() { return heat_load_api_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_39", function() { return heat_load_api_month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_37", function() { return buttons_heat_load; });
+/* unused harmony export default_drop_down_button */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return calculation_module_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return raster_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return vector_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return summay_drop_down_buttons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return industry_layer_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return scale_layer_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return cm_layers_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return layers_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_22", function() { return maps_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return timeOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_20", function() { return clickAccuracy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return constant_year_duration_curve; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return business_name_wwtp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return business_name_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return unit_capacity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return unit_heat_density; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_33", function() { return constant_year_duration_curve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return business_name_wwtp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_24", function() { return business_name_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return unit_capacity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_2", function() { return unit_heat_density; });
 /* unused harmony export unit_shape_area */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return unit_population; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return round_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return defaultZoomLevel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return map_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return lau2name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return nuts0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return nuts1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return nuts2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_1", function() { return unit_population; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return round_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_5", function() { return defaultZoomLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_23", function() { return map_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return lau2name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return nuts0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return nuts1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return nuts2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return nuts3; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return lau2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return hectare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return initial_scale_value; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return MAPDRAWEDITED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return MAPDRAWSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return MAPDRAWDELETED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "W", function() { return MAPDRAWEDITSTOP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "V", function() { return MAPDRAWEDITSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return MAPDRAWCREATED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MAPCLICK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return MAPLAYERCHANCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return MAPZOOMSTART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return MAPZOOMEND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return MAPLAYERSCONTROLEVENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return MAPLAYERADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return MAPDIDIUPDATELAYER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return MAPOVERLAYADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return rightPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return leftPanelSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return tab1; });
-/* unused harmony export tab2 */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return duration_curve_graph_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return heat_load_graph_options; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_4", function() { return energy_mix_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return lau2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return hectare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return initial_scale_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_15", function() { return MAPDRAWEDITED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_16", function() { return MAPDRAWSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_19", function() { return MAPDRAWDELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_18", function() { return MAPDRAWEDITSTOP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_17", function() { return MAPDRAWEDITSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_14", function() { return MAPDRAWCREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_6", function() { return MAPCLICK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_7", function() { return MAPLAYERCHANCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_8", function() { return MAPZOOMSTART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_9", function() { return MAPZOOMEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_10", function() { return MAPLAYERSCONTROLEVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_11", function() { return MAPLAYERADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_12", function() { return MAPDIDIUPDATELAYER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_13", function() { return MAPOVERLAYADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_48", function() { return rightPanelSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_47", function() { return leftPanelSize; });
+/* unused harmony export default_tab_datapanel */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "O", function() { return tab1_datapanel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_32", function() { return tab2_datapanel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_45", function() { return duration_curve_graph_title; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_46", function() { return duration_curve_graph_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_34", function() { return duration_curve_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_35", function() { return heat_load_graph_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_44", function() { return energy_mix_graph_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_31", function() { return energy_mix_options; });
+/* unused harmony export clculation_module_graph_options */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return default_color_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return default_fillColor_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return default_fillOpacity_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_28", function() { return color_usedspace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_29", function() { return color_unusedspace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_26", function() { return labels_diskspacechart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_27", function() { return diskspacechart_options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_30", function() { return inputs_categories; });
 
 
 /**
@@ -8327,27 +10716,29 @@ var MONTHNAME = [
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-var prodUrl = 'http://hotmaps.hevs.ch:9006/api';
-var api_prod_Url = 'http://api.hotmaps.hevs.ch';
-var devUrl = 'http://hotmapsdev.hevs.ch:9006/api';
+var prodUrl = 'https://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
+var devUrl = 'https://api.hotmapsdev.hevs.ch/api'; // 'https://hotmapsdev.hevs.ch:9006/api';
 var localApiUrl = 'http://localhost:5000/api';
-var geoserverProdUrl = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-var geoserverDevUrl = 'http://hotmapsdev.hevs.ch:9009/geoserver/hotmaps/wms';
-var geoserver_prod_Url = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
-var geocodeUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address='; // prefer
+var geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
+var geoserverProdUrl = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
+var geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
+var geocodeUrl = 'https://nominatim.openstreetmap.org/search?q='; // prefer
 // prefer
-var geoserverUrl = geoserver_prod_Url;
-var getIpUrl = 'http://ipv4.myexternalip.com/json'; // prefer
+var geoserverUrl = geoserverProdUrl;
+var getIpUrl = 'https://ipv4.myexternalip.com/json'; // prefer
 // prefer
 var getLocationFromIp = 'http://hotmaps.hevs.ch:9005/api/';
-var apiUrl = api_prod_Url;
+var apiUrl = prodUrl;
 var defaultLayer = 'heat_tot_curr_density';
 var styleNameHeat = 'heat_tot_curr_density';
+var heat_type = 'heat';
+var defaultLayerType = heat_type;
 var idDefaultLayer = 1;
 var wwtpLayerName = 'wwtp';
 var urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
+var urlLegend = geoserverUrl + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=50&HEIGHT=10&STRICT=false&style=';
 var timeOutAjaxRequest = 10000;
-var unit_heatload_profil = 'kW';
+var unit_heatload_profil = 'MW';
 var formatImage = 'image/png8';
 // layer_name
 var geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
@@ -8361,12 +10752,26 @@ var postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
 var postDurationCurveHectares = '/heat-load-profile/duration-curve/hectares';
 var postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
 var getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
+// User management endpoints
+var user_endpoint = '/users/';
+var upload_endpoint = '/upload/';
+var post_user_register = user_endpoint + 'register';
+var post_user_register_activate = user_endpoint + 'register/activate';
+var post_user_recovery_ask = user_endpoint + 'recovery/ask';
+var post_user_recovery = user_endpoint + 'recovery';
+var post_user_logout = user_endpoint + 'logout';
+var post_user_login = user_endpoint + 'login';
+var get_userinformation_endpoint = user_endpoint + 'information';
+var get_userupdateprofile_endpoint = user_endpoint + 'profile/update';
+var get_diskspace_endpoint = user_endpoint + 'space_used';
+var get_filelist_endpoint = upload_endpoint + 'list';
 // title
 var heatloadprofile = 'Heatload profile';
 var Durationcurve = 'Duration curve';
+var energy_mix_title = 'Electricity generation mix';
 var set404url = 'set404url';
 // Projection data string
-var proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
+var proj3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=43f21000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs';
 var proj4326 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 // Heat load profil
 var heat_load_api_day = 'day';
@@ -8378,15 +10783,29 @@ var buttons_heat_load = [
     { name: 'Day', api_ref: heat_load_api_day, selected: false, date: 1, min: 1, max: 31, options: [] },
 ];
 var default_drop_down_button = 'overall';
+var calculation_module_category = 'Calculation module';
+var raster_type_name = 'raster';
+var vector_type_name = 'vector';
 var summay_drop_down_buttons = [
-    { name: 'Overall', ref: default_drop_down_button, selected: true },
-    { name: 'Demand', ref: 'demand', selected: false },
-    { name: 'Potentials', ref: 'potential', selected: false },
-    { name: 'Climate', ref: 'climate', selected: false },
-    { name: 'Heat Supply', ref: 'heat_supply', selected: false },
-    { name: 'Industry', ref: 'industry', selected: false },
-    { name: 'Electricity', ref: 'electricity', selected: false }
+    { name: 'Overall', ref: default_drop_down_button, selected: true, display: false },
+    { name: 'Demand', ref: 'demand', selected: false, display: false },
+    { name: 'Potentials', ref: 'potential', selected: false, display: false },
+    { name: 'Climate', ref: 'climate', selected: false, display: false },
+    { name: 'Buildings', ref: 'buildings', selected: false, display: false },
+    { name: 'Heat Supply', ref: 'heat_supply', selected: false, display: false },
+    { name: 'Industry', ref: 'industry', selected: false, display: false },
+    { name: 'Electricity', ref: 'electricity', selected: false, display: false },
+    { name: 'Calculation module', ref: calculation_module_category, selected: false, display: false }
 ];
+// Layer order number
+/*
+  More the number is big, more hight is the layer on the toolbox
+*/
+var industry_layer_order = 6;
+var scale_layer_order = 5;
+var cm_layers_order = 4;
+var layers_order = 3;
+var maps_order = 1;
 // layers constant
 var timeOut = 200000;
 // layers constant
@@ -8439,18 +10858,21 @@ var MAPOVERLAYADD = 'overlayadd';
 var rightPanelSize = 600;
 var leftPanelSize = 400;
 // tab values
-var tab1 = 'overall';
-var tab2 = 'stats';
+var default_tab_datapanel = 'indicator';
+var tab1_datapanel = default_tab_datapanel;
+var tab2_datapanel = 'charts';
 // Duration curve graph data
+var duration_curve_graph_title = 'Duration curve';
+var duration_curve_graph_category = 'duration_curve';
 var duration_curve_graph_options = {
     legend: {
         display: false
     },
-    elements: {
-        point: {
-            radius: 0
-        }
-    },
+    /* elements:{
+      point:{
+        radius:0
+      }
+    }, */
     tooltips: { enabled: false },
     hover: { mode: null },
     scales: {
@@ -8483,6 +10905,7 @@ var heat_load_graph_options = {
             }]
     }
 };
+var energy_mix_graph_category = 'duration_curve';
 var energy_mix_options = {
     position: 'right',
     responsive: true,
@@ -8491,6 +10914,49 @@ var energy_mix_options = {
         position: 'right'
     }
 };
+var clculation_module_graph_options = {
+    scales: {
+        yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: ''
+                }
+            }],
+        xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: ''
+                }
+            }]
+    }
+};
+var default_color_shpfile = '#FFA500';
+var default_fillColor_shpfile = '#FFA500';
+var default_fillOpacity_shpfile = 0.5;
+var color_usedspace = '#123';
+var color_unusedspace = '#321';
+var labels_diskspacechart = ['Used space', 'Unused space'];
+var diskspacechart_options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+        display: true,
+    },
+    tooltips: {
+        callbacks: {
+            label: function (tlt, data) {
+                return data.labels[tlt.index] + ': ' + data.datasets[0].data[tlt.index] + ' MB';
+            }
+        }
+    }
+};
+var inputs_categories = [
+    { id: '0', name: 'Inputs', contains_component: false },
+    { id: '1', name: 'Basic inputs', contains_component: false },
+    { id: '2', name: 'Advanced inputs: (Level 1)', contains_component: false },
+    { id: '3', name: 'Advanced inputs: (Level 2)', contains_component: false },
+    { id: '4', name: 'Advanced inputs: (Level 3)', contains_component: false },
+];
 //# sourceMappingURL=data.service.js.map
 
 /***/ }),
@@ -8677,7 +11143,7 @@ var Helper = (function () {
             return num;
         }
         ;
-        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["g" /* round_value */]);
+        return this.decimalPipe.transform(num, __WEBPACK_IMPORTED_MODULE_3__data_service__["f" /* round_value */]);
     };
     Helper.prototype.formatDataLoadProfil = function (data) {
         var _this = this;
@@ -8719,7 +11185,7 @@ var Helper = (function () {
         return proj4(epsgString).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.transformLatLngToEpsg3035 = function (latlng) {
-        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
+        return proj4(__WEBPACK_IMPORTED_MODULE_3__data_service__["g" /* proj3035 */]).forward([latlng.lng, latlng.lat]);
     };
     Helper.prototype.getTranformedBoundingBox = function (map, epsgString) {
         var coordinate = [];
@@ -8780,6 +11246,20 @@ var Helper = (function () {
             locations.push(loc);
         }
         return locations;
+    };
+    Helper.prototype.getAreasForPayload = function (areas) {
+        var _this = this;
+        var ar = [];
+        areas.map(function (layer) {
+            var points = [];
+            if (layer instanceof L.Circle) {
+                ar.push({ points: _this.getLocationsFromCicle(layer) });
+            }
+            else {
+                ar.push({ points: _this.getLocationsFromPolygon(layer) });
+            }
+        });
+        return ar;
     };
     Helper.prototype.checkIntersect = function (l1, l2) {
         var intersects = false;
@@ -8894,6 +11374,19 @@ var Helper = (function () {
         }
         return pointCrossed;
     };
+    Helper.prototype.getScaleLevelPay = function (scaleLevel) {
+        var payloadScale = '';
+        if (scaleLevel === '2' || scaleLevel === '3' || scaleLevel === '0' || scaleLevel === '1') {
+            payloadScale = 'nuts';
+        }
+        else if (scaleLevel === '4') {
+            payloadScale = 'lau';
+        }
+        else {
+            payloadScale = 'hectare';
+        }
+        return payloadScale;
+    };
     Helper.prototype.testSpatial = function (baseJson, drawJson) {
         return __WEBPACK_IMPORTED_MODULE_6__turf_boolean_contains__["a" /* default */](drawJson, baseJson);
     };
@@ -8960,8 +11453,8 @@ var Helper = (function () {
     };
     Helper.prototype.createSplittedResultsModel = function () {
         var splittedResultsArray = [];
-        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_3__data_service__["i" /* summay_drop_down_buttons */].length; j++) {
-            var refName = __WEBPACK_IMPORTED_MODULE_3__data_service__["i" /* summay_drop_down_buttons */][j]["ref"];
+        for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* summay_drop_down_buttons */].length; j++) {
+            var refName = __WEBPACK_IMPORTED_MODULE_3__data_service__["h" /* summay_drop_down_buttons */][j]["ref"];
             var p = {
                 "layers": [],
                 "no_data_layers": []
@@ -9059,6 +11552,19 @@ var Helper = (function () {
         };
         return payload;
     };
+    Helper.prototype.getScaleLevelPaylaod = function (scaleLevel) {
+        var payloadScale = '';
+        if (scaleLevel.startsWith('NUTS')) {
+            payloadScale = 'nuts';
+        }
+        else if (scaleLevel.startsWith('LAU')) {
+            payloadScale = 'lau';
+        }
+        else {
+            payloadScale = 'hectare';
+        }
+        return payloadScale;
+    };
     return Helper;
 }());
 Helper = __decorate([
@@ -9088,10 +11594,19 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "ToasterService")) __webpack_require__.d(__webpack_exports__, "ToasterService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["ToasterService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "GlobalErrorHandler")) __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["GlobalErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Helper")) __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Helper"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "Dictionary")) __webpack_require__.d(__webpack_exports__, "Dictionary", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["Dictionary"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "apiUrl")) __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["apiUrl"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "cm_layers_order")) __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["cm_layers_order"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "default_color_shpfile")) __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["default_color_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "default_fillColor_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["default_fillColor_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "default_fillOpacity_shpfile")) __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["default_fillOpacity_shpfile"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "raster_type_name")) __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["raster_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "vector_type_name")) __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["vector_type_name"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "tab1_datapanel")) __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["tab1_datapanel"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["proj3035"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "APIService")) __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["APIService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["buttons_heat_load"]; });
@@ -9114,18 +11629,26 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["x"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["v"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_8"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_9"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_10"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_11"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_12"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_14"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_15"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_17"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["w"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["x"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["y"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["z"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["A"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["B"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["O"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["U"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["R"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_36"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_37"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_day", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_38"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_month", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_39"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heat_load_api_year", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_40"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "timeOutAjaxRequest", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_42"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "leftPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_47"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "rightPanelSize", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_48"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return __WEBPACK_IMPORTED_MODULE_5__helper__["a"]; });
 
@@ -9311,8 +11834,8 @@ var NumberFormatPipe = (function () {
     function NumberFormatPipe() {
     }
     NumberFormatPipe.prototype.transform = function (value, args) {
-        // return value.toString().replace(',', "'");
-        return value.toLocaleString();
+        var val_trans = value.split(',').join(' ').split('.').join('.');
+        return val_trans;
     };
     return NumberFormatPipe;
 }());
@@ -9438,7 +11961,7 @@ var APIService = (function () {
         this.logger = logger;
         this.loaderService = loaderService;
         this.toasterService = toasterService;
-        this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         this.http = http;
         this.logger = logger;
         this.loaderService = loaderService;
@@ -9446,33 +11969,81 @@ var APIService = (function () {
     }
     APIService.prototype.handleError = function (error) {
         this.loaderService.display(false);
-        var message = error.message;
-        if (error.name === 'TimeoutError') {
-            message = 'Timeout has occurred';
+        var message;
+        if (this.isNullOrUndefined(error.json().message)) {
+            message = 'UNKNOWN ERROR';
         }
-        this.toasterService.showToaster('We encountered a problem' + ', please try again later');
-        this.logger.log('APIService/handleError');
-        this.logger.log('An error occurred: ' + error.message); // for demo purposes only
+        else {
+            this.logger.log('APIService/handleError nnn' + error.json().message);
+            message = error.json().message;
+            message = ', ' + message;
+            var status = error.json().error.status;
+            var statusText = error.json().error.statusText;
+            message = statusText + ' ' + message;
+        }
+        this.toasterService.showToaster(message);
+        this.logger.log('An error occurred: ' + message); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    APIService.prototype.POST = function (payload, url) {
+    APIService.prototype.isNullOrUndefined = function (x) {
+        var result = false;
+        if (x == null) {
+            result = true;
+        }
+        if (x === null) {
+            result = true;
+        }
+        if (typeof x === 'undefined') {
+            result = true;
+        }
+        return result;
+    };
+    APIService.prototype.POST = function (payload, url, request, toJson) {
+        if (request === void 0) { request = {}; }
+        if (toJson === void 0) { toJson = true; }
+        if (!request.headers)
+            request.headers = this.headers;
         return this.http
-            .post(url, JSON.stringify(payload), { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["m" /* timeOut */])
+            .post(url, JSON.stringify(payload), request)
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["l" /* timeOut */])
             .toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return toJson ? response.json() : response; })
             .catch(this.handleError.bind(this));
     };
-    APIService.prototype.POSTunStringify = function (payload, url) {
+    APIService.prototype.POSTunStringify = function (payload, url, request, toJson) {
+        if (request === void 0) { request = {}; }
+        if (toJson === void 0) { toJson = true; }
+        if (!request.headers)
+            request.headers = this.headers;
         return this.http
-            .post(url, payload, { headers: this.headers })
-            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["m" /* timeOut */])
+            .post(url, payload, request)
+            .timeout(__WEBPACK_IMPORTED_MODULE_5__data_service__["l" /* timeOut */])
             .toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return toJson ? response.json() : response; })
             .catch(this.handleError.bind(this));
     };
-    APIService.prototype.GET = function (url) {
-        return this.http.get(url, this.headers);
+    APIService.prototype.GET = function (url, request) {
+        if (request === void 0) { request = {}; }
+        return this.http.get(url, request);
+    };
+    APIService.prototype.DELETE = function (url, request) {
+        if (request === void 0) { request = {}; }
+        return this.http.delete(url, request);
+    };
+    APIService.prototype.pGET = function (url, request) {
+        if (request === void 0) { request = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http
+                            .get(url, request)
+                            .toPromise()
+                            .then(function (response) { return response; })
+                            .catch(this.handleError.bind(this))];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
     APIService.prototype.getJSONFromFille = function (url) {
         return __awaiter(this, void 0, void 0, function () {
@@ -9591,24 +12162,21 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/geocode()');
         this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* geocodeUrl */] + encodeURIComponent(address))
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["i" /* geocodeUrl */] + encodeURIComponent(address) + "&format=json&polygon=1&addressdetails=1")
             .map(function (res) { return res.json(); })
             .map(function (result) {
-            _this.logger.log('GeocodingService/geocode()/result' + result);
-            if (result.status !== 'OK') {
-                throw new Error('unable to geocode address');
-            }
+            //if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
-            location.address = result.results[0].formatted_address;
-            location.latitude = result.results[0].geometry.location.lat;
-            location.longitude = result.results[0].geometry.location.lng;
-            var viewPort = result.results[0].geometry.viewport;
+            location.address = result[0].display_name;
+            location.latitude = result[0].lat;
+            location.longitude = result[0].lon;
+            var viewPort = result[0].boundingbox;
             location.viewBounds = L.latLngBounds({
-                lat: viewPort.southwest.lat,
-                lng: viewPort.southwest.lng
+                lat: viewPort[0],
+                lng: viewPort[2]
             }, {
-                lat: viewPort.northeast.lat,
-                lng: viewPort.northeast.lng
+                lat: viewPort[1],
+                lng: viewPort[3]
             });
             _this.loaderService.display(false);
             return location;
@@ -9619,9 +12187,9 @@ var GeocodingService = (function () {
         this.logger.log('GeocodingService/getCurrentLocation()');
         // this.loaderService.display(true);
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* getIpUrl */])
+            .get(__WEBPACK_IMPORTED_MODULE_7__data_service__["j" /* getIpUrl */])
             .map(function (res) { return res.json().ip; })
-            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["l" /* getLocationFromIp */] + ip); })
+            .flatMap(function (ip) { return _this.http.get(__WEBPACK_IMPORTED_MODULE_7__data_service__["k" /* getLocationFromIp */] + ip); })
             .map(function (res) { return res.json(); })
             .map(function (result) {
             var location = new __WEBPACK_IMPORTED_MODULE_1__class_location_location_class__["a" /* LocationClass */]();
@@ -9641,7 +12209,7 @@ var GeocodingService = (function () {
 }());
 GeocodingService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__loader_service__["a" /* LoaderService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__logger_service__["a" /* Logger */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__loader_service__["a" /* LoaderService */]) === "function" && _c || Object])
 ], GeocodingService);
 
 var _a, _b, _c;
@@ -9679,20 +12247,22 @@ var _a, _b, _c;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__ = __webpack_require__("../../../../../src/app/features/summary-result/summary-result.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__ = __webpack_require__("../../../../../src/app/pages/nav/service/navigation-bar.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/graph/heat-load/heat-load.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__ = __webpack_require__("../../../../../src/app/features/graph/electricity-mix/service/electricity-mix.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__features_calculation_module_service_calculation_test_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-test.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__features_calculation_module_service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_app_features_calculation_module_service_calcultation_module_status_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calcultation-module-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_app_features_selection_scale__ = __webpack_require__("../../../../../src/app/features/selection-scale/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__features_summary_result_summary_result_service__ = __webpack_require__("../../../../../src/app/features/summary-result/summary-result.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_nav_service_navigation_bar_service__ = __webpack_require__("../../../../../src/app/pages/nav/service/navigation-bar.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__features_side_panel_side_panel_service__ = __webpack_require__("../../../../../src/app/features/side-panel/side-panel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_app_features_layers__ = __webpack_require__("../../../../../src/app/features/layers/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__features_graph_heat_load_heat_load_service__ = __webpack_require__("../../../../../src/app/features/graph/heat-load/heat-load.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__features_export_data_service_export_data_service__ = __webpack_require__("../../../../../src/app/features/export-data/service/export-data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__features_graph_duration_curve_duration_curve_service__ = __webpack_require__("../../../../../src/app/features/graph/duration-curve/duration-curve.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__features_layers_interaction_layers_interaction_service__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__features_graph_electricity_mix_service_electricity_mix_service__ = __webpack_require__("../../../../../src/app/features/graph/electricity-mix/service/electricity-mix.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__features_calculation_module_service_calculation_test_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-test.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__features_calculation_module_service_calculation_module_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calculation-module.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_app_features_calculation_module_service_calcultation_module_status_service__ = __webpack_require__("../../../../../src/app/features/calculation-module/service/calcultation-module-status.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InteractionService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9703,6 +12273,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -9721,9 +12293,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var InteractionService = (function () {
-    function InteractionService(logger, sidePanelService, navigationBarService, summaryResultService, layerService, exportDataService, heatLoadAggregateService, durationCurveService, dataInteractionService, electricityMixService, calculationModuleStatusService, calculationModuleService, calculationHeatLoadDividedService) {
+    function InteractionService(logger, sidePanelService, toasterService, navigationBarService, summaryResultService, layerService, exportDataService, heatLoadAggregateService, durationCurveService, dataInteractionService, electricityMixService, calculationModuleStatusService, calculationModuleService, calculationHeatLoadDividedService, selectionScaleService) {
         this.logger = logger;
         this.sidePanelService = sidePanelService;
+        this.toasterService = toasterService;
         this.navigationBarService = navigationBarService;
         this.summaryResultService = summaryResultService;
         this.layerService = layerService;
@@ -9735,12 +12308,29 @@ var InteractionService = (function () {
         this.calculationModuleStatusService = calculationModuleStatusService;
         this.calculationModuleService = calculationModuleService;
         this.calculationHeatLoadDividedService = calculationHeatLoadDividedService;
+        this.selectionScaleService = selectionScaleService;
         this.summaryResultState = false;
         this.electricityGenerationResultState = false;
+        this.currentCMiD = null;
+        this.cmRunning = false;
+        this.cmRunningProgess = 0;
     }
+    InteractionService.prototype.getScaleLevel = function () {
+        return this.selectionScaleService.getScaleValue();
+    };
+    InteractionService.prototype.showToaster = function (msg) {
+        this.toasterService.showToaster(msg);
+    };
     InteractionService.prototype.getLayerArray = function () {
         return this.layerService.getLayerArray();
     };
+    /*     setLoadingLayerInterraction(layer) {
+          this.dataInteractionService.setLoadingLayerInterraction(layer)
+        }
+        unsetLoadingLayerInterraction(layer) {
+          this.dataInteractionService.unsetLoadingLayerInterraction(layer)
+          
+        } */
     // interface for export data service
     InteractionService.prototype.displayButtonExportStats = function (value) {
         this.exportDataService.displayButtonExportStats(value);
@@ -9826,6 +12416,12 @@ var InteractionService = (function () {
     InteractionService.prototype.getHeatLoad = function (payload, type_api_ref, isHectare) {
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     };
+    InteractionService.prototype.getHeatLoadData = function () {
+        return this.heatLoadAggregateService.getHeatLoadData();
+    };
+    InteractionService.prototype.setHeatLoadData = function (data) {
+        return this.heatLoadAggregateService.setHeatLoadData(data);
+    };
     InteractionService.prototype.formatHeatLoadForChartjs = function (data, api_ref) {
         return this.heatLoadAggregateService.formatHeatLoadForChartjs(data, api_ref);
     };
@@ -9835,14 +12431,17 @@ var InteractionService = (function () {
     InteractionService.prototype.transformDurationCurveData = function (data) {
         return this.durationCurveService.transformData(data);
     };
+    InteractionService.prototype.getDefaultDatasetDurationCurve = function () {
+        return this.durationCurveService.getDefaultDatasetDurationCurve();
+    };
     InteractionService.prototype.getSplittedResults = function (results) {
         return this.dataInteractionService.getSplittedResults(results);
     };
     InteractionService.prototype.getChien = function (r) {
         return this.dataInteractionService.getSplittedResults(r);
     };
-    InteractionService.prototype.getElectricityMixFromNuts0 = function (payload) {
-        return this.electricityMixService.getElectricityMixFromNuts0(payload);
+    InteractionService.prototype.getElectricityMix = function (payload) {
+        return this.electricityMixService.getElectricityMix(payload);
     };
     InteractionService.prototype.enableOpenStateWithId = function (id) {
         this.navigationBarService.enableOpenStateWithId(id);
@@ -9853,17 +12452,77 @@ var InteractionService = (function () {
     InteractionService.prototype.getCMResult = function (summaryResult, cm) {
         return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm);
     };
+    InteractionService.prototype.setCMResult = function (summaryResult, cm) {
+        return this.calculationHeatLoadDividedService.getCMResult(summaryResult, cm);
+    };
+    InteractionService.prototype.getCMInformations = function (payload) {
+        return this.calculationModuleService.getCMInformations(payload);
+    };
+    InteractionService.prototype.getStatusAndCMResult = function (id) {
+        return this.calculationModuleService.getStatusOfCM(id);
+    };
     InteractionService.prototype.getCMRunned = function () {
         return this.calculationModuleStatusService.getCmRunned();
+    };
+    InteractionService.prototype.setStatusCMPanel = function (value) {
+        return this.calculationModuleStatusService.setStatusCMPanel(value);
+    };
+    InteractionService.prototype.setCMAnimationStatus = function (value) {
+        this.calculationModuleStatusService.setCmAnimationStatus(value);
+    };
+    InteractionService.prototype.getCMAnimationStatus = function () {
+        this.calculationModuleStatusService.getCmAnimationStatus();
+    };
+    InteractionService.prototype.undefinedCmRunned = function () {
+        this.calculationModuleStatusService.undefinedCmRunned();
+    };
+    InteractionService.prototype.deleteCM = function (id) {
+        return this.calculationModuleService.deleteCM(id);
+    };
+    InteractionService.prototype.getCmRunning = function () {
+        return this.cmRunning;
+    };
+    InteractionService.prototype.setCmRunning = function (cmRunning) {
+        this.cmRunning = cmRunning;
+    };
+    InteractionService.prototype.getCurrentIdCM = function () {
+        return this.currentCMiD;
+    };
+    InteractionService.prototype.setCurrentIdCM = function (currentCMiD) {
+        this.currentCMiD = currentCMiD;
+    };
+    InteractionService.prototype.getcmRunningProgess = function () {
+        return this.cmRunningProgess;
+    };
+    InteractionService.prototype.setCmRunningProgess = function (cmRunningProgess) {
+        this.cmRunningProgess = cmRunningProgess;
+    };
+    InteractionService.prototype.getStatusCMPanel = function () {
+        return this.calculationModuleStatusService.getStatusCMPanel();
+    };
+    InteractionService.prototype.deleteCMTask = function () {
+        var _this = this;
+        if (this.getcmRunningProgess() > 0 && this.currentCMiD != null) {
+            var currentCMiD = this.currentCMiD;
+            this.setCurrentIdCM(null);
+            return this.calculationModuleService.deleteCM(currentCMiD).toPromise().then(function (response) {
+                _this.logger.log('CMMMMM REMOVEEEED');
+                _this.currentCMiD = null;
+            })
+                .catch({});
+        }
+        if (this.getStatusCMPanel().value == true) {
+            this.setStatusCMPanel(false);
+        }
     };
     return InteractionService;
 }());
 InteractionService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_features_layers__["LayersService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__features_export_data_service_export_data_service__["a" /* ExportDataService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_13_app_features_calculation_module_service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_13_app_features_calculation_module_service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_12__features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_12__features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_11__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */]) === "function" && _o || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__logger_service__["a" /* Logger */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__features_side_panel_side_panel_service__["a" /* SidePanelService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__features_side_panel_side_panel_service__["a" /* SidePanelService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__toaster_service__["a" /* ToasterService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__pages_nav_service_navigation_bar_service__["a" /* NavigationBarService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__features_summary_result_summary_result_service__["a" /* SummaryResultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__features_summary_result_summary_result_service__["a" /* SummaryResultService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7_app_features_layers__["LayersService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_app_features_layers__["LayersService"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_9__features_export_data_service_export_data_service__["a" /* ExportDataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__features_export_data_service_export_data_service__["a" /* ExportDataService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__features_graph_heat_load_heat_load_service__["a" /* HeatLoadAggregateService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_10__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__features_graph_duration_curve_duration_curve_service__["a" /* DurationCurveService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_11__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__features_layers_interaction_layers_interaction_service__["a" /* DataInteractionService */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_12__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_12__features_graph_electricity_mix_service_electricity_mix_service__["a" /* ElectricityMixService */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_15_app_features_calculation_module_service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_15_app_features_calculation_module_service_calcultation_module_status_service__["a" /* CalculationModuleStatusService */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_14__features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_14__features_calculation_module_service_calculation_module_service__["a" /* CalculationModuleService */]) === "function" && _o || Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_13__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_13__features_calculation_module_service_calculation_test_service__["a" /* CalculationHeatLoadDividedService */]) === "function" && _p || Object, typeof (_q = typeof __WEBPACK_IMPORTED_MODULE_0_app_features_selection_scale__["a" /* SelectionScaleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_app_features_selection_scale__["a" /* SelectionScaleService */]) === "function" && _q || Object])
 ], InteractionService);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
 //# sourceMappingURL=interaction.service.js.map
 
 /***/ }),
@@ -9991,7 +12650,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 
 
@@ -10002,7 +12661,7 @@ var ToasterService = (function () {
     }
     ToasterService.prototype.showToaster = function (msg) {
         __WEBPACK_IMPORTED_MODULE_1_uikit__["notification"].closeAll();
-        __WEBPACK_IMPORTED_MODULE_1_uikit__["notification"]({ message: msg, pos: 'bottom-center', timeout: 2000 });
+        __WEBPACK_IMPORTED_MODULE_1_uikit__["notification"]({ message: msg, pos: 'bottom-center', timeout: 3000 });
     };
     return ToasterService;
 }());
@@ -10012,6 +12671,248 @@ ToasterService = __decorate([
 ], ToasterService);
 
 //# sourceMappingURL=toaster.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/services/upload.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_features_user_management_service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__ = __webpack_require__("../../../../../src/app/features/selection-tools/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_pages_map__ = __webpack_require__("../../../../../src/app/pages/map/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toaster_service__ = __webpack_require__("../../../../../src/app/shared/services/toaster.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_util__ = __webpack_require__("../../../../util/util.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_service__ = __webpack_require__("../../../../../src/app/shared/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__logger_service__ = __webpack_require__("../../../../../src/app/shared/services/logger.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__loader_service__ = __webpack_require__("../../../../../src/app/shared/services/loader.service.ts");
+/* unused harmony export uploadUrl */
+/* unused harmony export LayersExportInfo */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+var uploadUrl = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["a" /* apiUrl */] + '/upload/';
+// To integrate in DataInteractionArray?
+// datatype is needed, schema (temporary) too
+// Data Given
+var LayersExportInfo = { "default": { "schema": "", "data_type": "raster" }, "heat_tot_curr_density": { "schema": "geo", "data_type": "raster" }, "heat_res_curr_density": { "schema": "geo", "data_type": "raster" }, "heat_nonres_curr_density": { "schema": "geo", "data_type": "raster" }, "gfa_tot_curr_density": { "schema": "geo", "data_type": "raster" }, "gfa_res_curr_density": { "schema": "geo", "data_type": "raster" }, "gfa_nonres_curr_density": { "schema": "geo", "data_type": "raster" }, "vol_tot_curr_density": { "schema": "geo", "data_type": "raster" }, "vol_res_curr_density": { "schema": "geo", "data_type": "raster" }, "vol_nonres_curr_density": { "schema": "geo", "data_type": "raster" }, "industrial_database_emissions": { "schema": "public", "data_type": "csv" }, "industrial_database_excess_heat": { "schema": "public", "data_type": "csv" }, "industrial_database_companyname": { "schema": "public", "data_type": "csv" }, "industrial_database_subsector": { "schema": "public", "data_type": "csv" }, "pop_tot_curr_density": { "schema": "geo", "data_type": "raster" }, "wwtp_power": { "schema": "public", "data_type": "csv" }, "wwtp_capacity": { "schema": "public", "data_type": "csv" }, "agricultural_residues_view": { "schema": "geo", "data_type": "csv" }, "livestock_effluents_view": { "schema": "geo", "data_type": "csv" }, "potential_forest": { "schema": "geo", "data_type": "raster" }, "potential_municipal_solid_waste": { "schema": "public", "data_type": "csv" }, "wind_50m": { "schema": "geo", "data_type": "raster" }, "solar_optimal_total": { "schema": "geo", "data_type": "raster" }, "shallow_geothermal_potential": { "schema": "geo", "data_type": "csv" }, "land_surface_temperature": { "schema": "geo", "data_type": "raster" }, "cdd_curr": { "schema": "geo", "data_type": "raster" }, "hdd_curr": { "schema": "geo", "data_type": "raster" }, "solar_radiation": { "schema": "geo", "data_type": "raster" }, "output_wind_speed": { "schema": "geo", "data_type": "raster" }, "yearly_co2_emission": { "schema": "public", "data_type": "csv" } };
+var UploadService = (function (_super) {
+    __extends(UploadService, _super);
+    function UploadService(userStatus, slcToolsService, helper, mapService, http, logger, loaderService, toasterService) {
+        var _this = _super.call(this, http, logger, loaderService, toasterService) || this;
+        _this.userStatus = userStatus;
+        _this.slcToolsService = slcToolsService;
+        _this.helper = helper;
+        _this.mapService = mapService;
+        _this.http = http;
+        _this.logger = logger;
+        _this.loaderService = loaderService;
+        _this.toasterService = toasterService;
+        // For Show and Remove
+        _this.activeLayers = {};
+        _this.uploadedFiles = new __WEBPACK_IMPORTED_MODULE_9_rxjs__["BehaviorSubject"]([]);
+        _this.userStatus.getUserToken().subscribe(function (value) { return _this.userToken = value; });
+        return _this;
+    }
+    /**
+     * To refresh the list automatically
+     */
+    UploadService.prototype.getUploadedFiles = function () {
+        return this.uploadedFiles;
+    };
+    /**
+     * Use toaster to show message of success and error
+     * @param res Response of the api
+     * @param success true from then, false from catch
+     */
+    UploadService.prototype.showMsg = function (res, success) {
+        this.list();
+        this.toasterService.showToaster(res["message"]);
+        return success;
+    };
+    /**
+     * Add a file to the uploaded files
+     * @param file file to add
+     * @param layer layer of the file
+     * @returns Promise with success of the procedure
+     */
+    UploadService.prototype.add = function (file, layer) {
+        var _this = this;
+        var form = new FormData();
+        form.append('token', this.userToken);
+        form.append('name', file.name);
+        form.append('file', file, file.name);
+        form.append('layer', layer);
+        return _super.prototype.POSTunStringify.call(this, form, uploadUrl + 'add', { headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]() })
+            .then(function (response) { return _this.showMsg(response, true); })
+            .catch(function (response) { return _this.showMsg(response, false); });
+    };
+    /**
+     * Delete an uploaded file
+     * @param id id of the file to delete
+     * @returns Promise with success of the procedure
+     */
+    UploadService.prototype.delete = function (id) {
+        var _this = this;
+        this.remove(id); // remove first
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_util__["isNumber"])(id))
+            id = id.id;
+        return _super.prototype.DELETE.call(this, uploadUrl + 'delete', {
+            body: { token: this.userToken, id: id }
+        }).toPromise()
+            .then(function (response) { return _this.showMsg(response.json(), true); })
+            .catch(function (response) { return _this.showMsg(response.json(), false); });
+    };
+    /**
+     * Create an url to download a uploaded file
+     * @param id
+     * @param filename name of the file to download
+     * @returns Promise with the url to download
+     */
+    UploadService.prototype.download = function (id) {
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_util__["isNumber"])(id))
+            id = id.id;
+        return _super.prototype.POSTunStringify.call(this, {
+            token: this.userToken, id: id
+        }, uploadUrl + 'download', { responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* ResponseContentType */].Blob, headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]() }).then(function (data) { return URL.createObjectURL(data); }).catch(function (err) {
+            return ""; // If file dont exist
+        });
+    };
+    /**
+     * Get the list of the uploaded files
+     * @returns Promise with the files
+     */
+    UploadService.prototype.list = function () {
+        var _this = this;
+        return _super.prototype.POSTunStringify.call(this, { token: this.userToken }, uploadUrl + 'list')
+            .then(function (response) {
+            _this.uploadedFiles.next(response["uploads"]);
+            return _this.getUploadedFiles().getValue();
+        });
+    };
+    /**
+     * Show the layer on the map
+     * @param id
+     */
+    UploadService.prototype.show = function (id) {
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_util__["isNumber"])(id))
+            id = id.id;
+        if (id in this.activeLayers) {
+            this.toasterService.showToaster('Layer already active');
+            return;
+        }
+        this.activeLayers[id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
+            token: this.userToken,
+            upload_id: id,
+            tms: true,
+            maxNativeZoom: 11
+        }).addTo(this.mapService.getMap());
+    };
+    /**
+     * Remove the layer from the map
+     * @param id
+     */
+    UploadService.prototype.remove = function (id) {
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_util__["isNumber"])(id))
+            id = id.id;
+        if (!(id in this.activeLayers))
+            return; // if the layer wasn't active
+        this.activeLayers[id].removeFrom(this.mapService.getMap());
+        delete this.activeLayers[id];
+    };
+    /**
+     * Remove all active layers
+     */
+    UploadService.prototype.removeAll = function () {
+        for (var i in this.activeLayers)
+            this.remove(parseInt(i));
+    };
+    /**
+     * Export a file from selected area of the map
+     * @param layer chosen layer
+     * @param schema the schema to export (for later)
+     * @param year the year to export
+     * @returns Promise with the url to download and a filename
+     */
+    UploadService.prototype.export = function (layer, schema, year) {
+        var _this = this;
+        var scale = this.slcToolsService.getScaleValue();
+        var layerExportInfo = LayersExportInfo[layer] != null ? LayersExportInfo[layer] : LayersExportInfo["default"];
+        var nutsOrAreas;
+        var isNuts = true;
+        if (year == null)
+            year = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["b" /* constant_year */];
+        if (schema == null)
+            schema = layerExportInfo.schema;
+        if (scale === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["c" /* lau2 */] || scale === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["d" /* nuts3 */]) {
+            layer += '_' + scale.toLowerCase().replace(' ', ''); // To change in API ?
+            nutsOrAreas = this.slcToolsService.nutsIdsSubject.getValue();
+        }
+        else if (scale === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["e" /* hectare */]) {
+            layer += '_ha';
+            nutsOrAreas = this.helper.getAreasForPayload(this.slcToolsService.areasSubject.getValue());
+            isNuts = false;
+        }
+        return _super.prototype.POSTunStringify.call(this, (_a = {
+                layers: layer
+            },
+            _a[isNuts ? 'nuts' : 'areas'] = nutsOrAreas,
+            _a.schema = schema,
+            _a.year = year.toString(),
+            _a), uploadUrl + ("export/" + layerExportInfo.data_type + "/" + (isNuts ? 'nuts' : 'hectare')), { responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* ResponseContentType */].Blob }, false).then(function (data) {
+            return { url: URL.createObjectURL(data.blob()), filename: layer + ("." + (layerExportInfo.data_type != 'csv' ? 'tif' : 'csv')) };
+        }).catch(function () {
+            _this.toasterService.showToaster("Sorry, We can't export this layer yet");
+            return { url: '', filename: '' };
+        });
+        var _a;
+    };
+    return UploadService;
+}(__WEBPACK_IMPORTED_MODULE_10__api_service__["a" /* APIService */]));
+UploadService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_features_user_management_service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_features_user_management_service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__["a" /* SelectionToolService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_app_features_selection_tools__["a" /* SelectionToolService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__helper__["a" /* Helper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__helper__["a" /* Helper */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_app_pages_map__["b" /* MapService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_pages_map__["b" /* MapService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_11__logger_service__["a" /* Logger */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__logger_service__["a" /* Logger */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_12__loader_service__["a" /* LoaderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_12__loader_service__["a" /* LoaderService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__toaster_service__["a" /* ToasterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__toaster_service__["a" /* ToasterService */]) === "function" && _h || Object])
+], UploadService);
+
+var _a, _b, _c, _d, _e, _f, _g, _h;
+//# sourceMappingURL=upload.service.js.map
 
 /***/ }),
 
@@ -10141,6 +13042,8 @@ var map = {
 	"./be.js": "../../../../moment/locale/be.js",
 	"./bg": "../../../../moment/locale/bg.js",
 	"./bg.js": "../../../../moment/locale/bg.js",
+	"./bm": "../../../../moment/locale/bm.js",
+	"./bm.js": "../../../../moment/locale/bm.js",
 	"./bn": "../../../../moment/locale/bn.js",
 	"./bn.js": "../../../../moment/locale/bn.js",
 	"./bo": "../../../../moment/locale/bo.js",
@@ -10177,6 +13080,8 @@ var map = {
 	"./en-gb.js": "../../../../moment/locale/en-gb.js",
 	"./en-ie": "../../../../moment/locale/en-ie.js",
 	"./en-ie.js": "../../../../moment/locale/en-ie.js",
+	"./en-il": "../../../../moment/locale/en-il.js",
+	"./en-il.js": "../../../../moment/locale/en-il.js",
 	"./en-nz": "../../../../moment/locale/en-nz.js",
 	"./en-nz.js": "../../../../moment/locale/en-nz.js",
 	"./eo": "../../../../moment/locale/eo.js",
@@ -10184,6 +13089,8 @@ var map = {
 	"./es": "../../../../moment/locale/es.js",
 	"./es-do": "../../../../moment/locale/es-do.js",
 	"./es-do.js": "../../../../moment/locale/es-do.js",
+	"./es-us": "../../../../moment/locale/es-us.js",
+	"./es-us.js": "../../../../moment/locale/es-us.js",
 	"./es.js": "../../../../moment/locale/es.js",
 	"./et": "../../../../moment/locale/et.js",
 	"./et.js": "../../../../moment/locale/et.js",
@@ -10209,6 +13116,8 @@ var map = {
 	"./gl.js": "../../../../moment/locale/gl.js",
 	"./gom-latn": "../../../../moment/locale/gom-latn.js",
 	"./gom-latn.js": "../../../../moment/locale/gom-latn.js",
+	"./gu": "../../../../moment/locale/gu.js",
+	"./gu.js": "../../../../moment/locale/gu.js",
 	"./he": "../../../../moment/locale/he.js",
 	"./he.js": "../../../../moment/locale/he.js",
 	"./hi": "../../../../moment/locale/hi.js",
@@ -10257,12 +13166,16 @@ var map = {
 	"./mk.js": "../../../../moment/locale/mk.js",
 	"./ml": "../../../../moment/locale/ml.js",
 	"./ml.js": "../../../../moment/locale/ml.js",
+	"./mn": "../../../../moment/locale/mn.js",
+	"./mn.js": "../../../../moment/locale/mn.js",
 	"./mr": "../../../../moment/locale/mr.js",
 	"./mr.js": "../../../../moment/locale/mr.js",
 	"./ms": "../../../../moment/locale/ms.js",
 	"./ms-my": "../../../../moment/locale/ms-my.js",
 	"./ms-my.js": "../../../../moment/locale/ms-my.js",
 	"./ms.js": "../../../../moment/locale/ms.js",
+	"./mt": "../../../../moment/locale/mt.js",
+	"./mt.js": "../../../../moment/locale/mt.js",
 	"./my": "../../../../moment/locale/my.js",
 	"./my.js": "../../../../moment/locale/my.js",
 	"./nb": "../../../../moment/locale/nb.js",
@@ -10315,6 +13228,8 @@ var map = {
 	"./te.js": "../../../../moment/locale/te.js",
 	"./tet": "../../../../moment/locale/tet.js",
 	"./tet.js": "../../../../moment/locale/tet.js",
+	"./tg": "../../../../moment/locale/tg.js",
+	"./tg.js": "../../../../moment/locale/tg.js",
 	"./th": "../../../../moment/locale/th.js",
 	"./th.js": "../../../../moment/locale/th.js",
 	"./tl-ph": "../../../../moment/locale/tl-ph.js",
@@ -10329,6 +13244,8 @@ var map = {
 	"./tzm-latn": "../../../../moment/locale/tzm-latn.js",
 	"./tzm-latn.js": "../../../../moment/locale/tzm-latn.js",
 	"./tzm.js": "../../../../moment/locale/tzm.js",
+	"./ug-cn": "../../../../moment/locale/ug-cn.js",
+	"./ug-cn.js": "../../../../moment/locale/ug-cn.js",
 	"./uk": "../../../../moment/locale/uk.js",
 	"./uk.js": "../../../../moment/locale/uk.js",
 	"./ur": "../../../../moment/locale/ur.js",
@@ -10368,7 +13285,14 @@ webpackContext.id = "../../../../moment/locale recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
@@ -10376,5 +13300,5 @@ module.exports = __webpack_require__("../../../../../src/main.ts");
 
 /***/ })
 
-},[2]);
+},[3]);
 //# sourceMappingURL=main.bundle.js.map
