@@ -40,10 +40,10 @@ export class HeatLoadAggregateService extends APIService {
 
   getHeatLoad(payload, type_api_ref, isHectare) {
     if (isHectare === false) {
-      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref)
+      this.logger.log('postHeatLoadProfileNutsLau ' + apiUrl + postHeatLoadProfileNutsLau +'/'+ type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       return super.POST(payload, apiUrl + postHeatLoadProfileNutsLau);
     }else {
-      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref)
+      this.logger.log('postHeatLoadProfileHectares ' + apiUrl + postHeatLoadProfileHectares + type_api_ref + ' ; payload:'+ JSON.stringify(payload))
       this.logger.log(apiUrl + postHeatLoadProfileHectares)
       return super.POST(payload, apiUrl + postHeatLoadProfileHectares);
     }
@@ -51,15 +51,15 @@ export class HeatLoadAggregateService extends APIService {
 
   heatLoadMultiDataset(data) {
     data.values.map((value) => {
-      this.multiDatasets[0].data.push(Math.round(value.min));
-      this.multiDatasets[1].data.push(Math.round(value.max));
-      this.multiDatasets[2].data.push(Math.round(value.average));
+      this.multiDatasets[0].data.push(value.min);
+      this.multiDatasets[1].data.push(value.max);
+      this.multiDatasets[2].data.push(value.average);
     });
     this.formattedValues.push(this.multiDatasets);
   }
   heatLoadSingleDataset(data) {
     data.values.map((value) => {
-      this.singleDataset[0].data.push(Math.round(value.value));
+      this.singleDataset[0].data.push(value.value);
     });
     this.formattedValues.push(this.singleDataset);
   }

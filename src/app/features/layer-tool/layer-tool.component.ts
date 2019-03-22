@@ -26,10 +26,12 @@ export class LayerToolComponent implements OnInit {
 
   constructor(private mapService: MapService, private uploadService: UploadService) { }
 
-  ngOnInit() { 
-    this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value 
-      && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
-    );
+  ngOnInit() {
+    if (this.mapService.getLoadResultbuttonState()) {
+      this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value
+        && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+      );
+    }
   }
 
   toggleLegend() {
@@ -49,7 +51,7 @@ export class LayerToolComponent implements OnInit {
     this.uploadService.export(this.dataInteraction.workspaceName)
       .then(data => {
         if (data.url != "") {
-          //window.open(data.url); //POPUP blocker          
+          //window.open(data.url); //POPUP blocker
           const a = document.createElement('a');
           a.href = data.url;
           a.download = data.filename;

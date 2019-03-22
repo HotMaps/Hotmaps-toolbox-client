@@ -16,7 +16,6 @@ import { LeftSideComponent } from './left-side-panel.component';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { Logger } from './../../../shared/services/logger.service';
 import { LoaderService } from './../../../shared/services/loader.service';
-import { Helper } from './../../../shared/helper';
 import { ToasterService } from './../../../shared/services/toaster.service';
 import { BusinessInterfaceRenderService } from '../../../shared/business/business.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
@@ -26,7 +25,6 @@ import { LayersService } from 'app/features/layers';
 import { HeatLoadAggregateService } from '../../graph/heat-load/heat-load.service';
 import { ExportDataService } from '../../export-data/service/export-data.service';
 import { DurationCurveService } from '../../graph/duration-curve/duration-curve.service';
-import { DurationCurveComponent } from '../../graph/duration-curve/duration-curve.component';
 import { ElectricityMixService } from '../../graph/electricity-mix/service/electricity-mix.service';
 import { SelectionScaleService } from 'app/features/selection-scale';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
@@ -37,9 +35,13 @@ import { SelectionToolUtils } from 'app/features/selection-tools/service/selecti
 import { SelectionToolService } from 'app/features/selection-tools';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
-import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 import { CMLayersService } from '../../calculation-module/cm-layers.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PersonnalLayersComponent } from './personnal-layers/personnal-layers.component';
+import { UserManagementStatusService } from 'app/features/user-management';
+import { Helper } from 'app/shared';
+import { DecimalPipe } from '@angular/common';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -51,15 +53,14 @@ describe('LeftSideComponent', () => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent ],
+      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent ],
       providers: [
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);
           }, deps: [MockBackend, BaseRequestOptions]
         },
-        { provide: Helper, useClass: Helper },
-        { provide: DecimalPipe, useClass: DecimalPipe },
+        Helper, DecimalPipe,
         { provide: InteractionService, useClass: InteractionService },
         { provide: ExportDataService, useClass: ExportDataService },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
@@ -86,6 +87,7 @@ describe('LeftSideComponent', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: UserManagementStatusService, useClass: UserManagementStatusService },
       ],
       imports: [
         BrowserAnimationsModule,

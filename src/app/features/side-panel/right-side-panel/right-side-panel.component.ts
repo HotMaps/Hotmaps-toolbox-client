@@ -46,8 +46,8 @@ import { timer } from 'rxjs/observable/timer';
   animations: [
 
     trigger('panelWidthTrigger', [
-      state('expanded', style({ width: rightPanelSize + 'px' })),
-      state('collapsed', style({ width: '0px' })),
+      state('expanded', style({ width: rightPanelSize + 'px', display:'block' })),
+      state('collapsed', style({ width: '0px', display:'none' })),
       transition('collapsed => expanded', animate('200ms ease-in')),
       transition('expanded => collapsed', animate('200ms 200ms ease-out'))
     ]),
@@ -137,7 +137,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.durationCurvePayload = null;
   }
   setSatusResults() {
-    if ((this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+    if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
       this.heatloadStatus = true;
       this.durationCurveStatus = true;
     } else {
@@ -196,15 +196,22 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   // Create payloads
   setCMPayload() {
     let payloadTmp;
+    let cm_name='';
     if (this.scaleLevel !== '-1') {
-      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
+      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
+      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
     } else if (this.scaleLevel === '-1') {
-      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed};
+      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
+      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
     }
+    if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
+      cm_name+=this.cmRunned.cm.cm_prefix + ' - '
+    }
+    cm_name += this.cmRunned.cm.cm_name
     this.cmPayload = Object.assign(
       {
         url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name
       },
       { payload: payloadTmp }
     )
@@ -234,16 +241,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.energyMixPayload = { nuts: this.nutsIds }
   }
   setHeatloadPayloadAreas() {
-    this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas)}
+    this.heatLoadPayload = { areas: this.helper.getAreasForPayload(this.areas), scale_level: this.interactionService.getScaleLevel()}
   }
   setHeatloadPayloadIds() {
-    this.heatLoadPayload = { nuts: this.nutsIds }
+    this.heatLoadPayload = { nuts: this.nutsIds, scale_level: this.interactionService.getScaleLevel() }
   }
   setDurationCurveIds() {
-    this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve }
+    this.durationCurvePayload = { nuts: this.nutsIds, year: constant_year_duration_curve, scale_level: this.interactionService.getScaleLevel() }
   }
   setDurationCurveAreas() {
-    this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: constant_year_duration_curve}
+    this.durationCurvePayload = { areas: this.helper.getAreasForPayload(this.areas), year: constant_year_duration_curve, }
   }
 
 

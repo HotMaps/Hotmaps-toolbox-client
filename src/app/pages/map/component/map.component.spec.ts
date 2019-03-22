@@ -10,8 +10,8 @@ import { fakeAsync } from '@angular/core/testing';
 
 import { MockMapService } from '../../../shared/services/mock/map.service';
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataInteractionCellComponent } from '../../../features/layers-interaction/layers-interaction-cell/layers-interaction-cell.component';
 import { SearchBarComponent } from '../../searchbar/searchbar.component';
@@ -42,27 +42,27 @@ import { DataInteractionService } from '../../../features/layers-interaction/lay
 import { DecimalPipe, APP_BASE_HREF } from '@angular/common';
 import { Helper } from './../../../shared/helper';
 import { MailService } from './../../../features/feedback/mail.service';
-import {SelectionScaleService} from '../../../features/selection-scale/selection-scale.service';
+import { SelectionScaleService } from '../../../features/selection-scale/selection-scale.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { SelectionToolService } from '../../../features/selection-tools/service/selection-tool.service';
 import { SummaryResultService } from 'app/features/summary-result';
 import { LayersService } from 'app/features/layers';
-import {TopSideComponent} from '../../../features/side-panel/top-side-panel/top-side-panel.component';
-import {FeedbackComponent} from '../../../features/feedback/component/feedback.component';
-import {RecaptchaModule} from 'ng-recaptcha';
-import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-import {HeatLoadAggregateService} from '../../../features/graph/heat-load/heat-load.service';
+import { TopSideComponent } from '../../../features/side-panel/top-side-panel/top-side-panel.component';
+import { FeedbackComponent } from '../../../features/feedback/component/feedback.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { HeatLoadAggregateService } from '../../../features/graph/heat-load/heat-load.service';
 import { SelectionToolComponent } from '../../../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/graph/heat-load/component';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import { MockSelectionScaleService } from 'app/shared/services/mock/selection-scale.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
-import {ExportDataComponent} from '../../../features/export-data/component/export-data.component';
-import {ExportDataService} from '../../../features/export-data/service/export-data.service';
+import { ExportDataComponent } from '../../../features/export-data/component/export-data.component';
+import { ExportDataService } from '../../../features/export-data/service/export-data.service';
 import { DurationCurveService } from '../../../features/graph/duration-curve/duration-curve.service';
 import { DurationCurveComponent } from '../../../features/graph/duration-curve/duration-curve.component';
-import {ElectricityMixService} from '../../../features/graph/electricity-mix/service/electricity-mix.service';
-import {ElectricityMixComponent} from '../../../features/graph/electricity-mix/component/electricity-mix.component';
+import { ElectricityMixService } from '../../../features/graph/electricity-mix/service/electricity-mix.service';
+import { ElectricityMixComponent } from '../../../features/graph/electricity-mix/component/electricity-mix.component';
 import { CalculationModuleComponent } from 'app/features/calculation-module/component/calculation-module.component';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
@@ -74,6 +74,10 @@ import {
 import { ResultManagerComponent } from './../../../features/result-manager/component/result-manager.component';
 import { RouterModule } from '@angular/router';
 import { routes } from 'app/routes';
+import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
+import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
+import { NumberFormatPipe } from 'app/shared';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -100,7 +104,7 @@ describe('MapComponent', () => {
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,LayerToolComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent, LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe
       ],
       providers: [
         {

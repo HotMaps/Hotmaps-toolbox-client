@@ -12,7 +12,7 @@ import { NavigationBarService } from './../../pages/nav/service/navigation-bar.s
 import { Logger } from './logger.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
 import { SelectionToolButtonStateService } from 'app/features/selection-tools';
-import { Dictionary } from 'app/shared';
+import {APIService, Dictionary} from 'app/shared';
 import { LayersService } from 'app/features/layers';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -27,10 +27,14 @@ import { CalculationModuleService } from './../../features/calculation-module/se
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
 
 @Injectable()
-export class InteractionService {
+export class InteractionService  {
     private summaryResultState = false;
     private electricityGenerationResultState = false;
 
+    private currentCMiD = null;
+    private cmRunning = false;
+
+    private cmRunningProgess = 0;
     constructor(private logger: Logger,
         private sidePanelService: SidePanelService,
         private toasterService: ToasterService,
@@ -55,6 +59,13 @@ export class InteractionService {
     getLayerArray(): Dictionary {
         return this.layerService.getLayerArray()
     }
+/*     setLoadingLayerInterraction(layer) {
+      this.dataInteractionService.setLoadingLayerInterraction(layer)
+    }
+    unsetLoadingLayerInterraction(layer) {
+      this.dataInteractionService.unsetLoadingLayerInterraction(layer)
+      
+    } */
     // interface for export data service
 
     displayButtonExportStats(value: boolean) {
@@ -216,12 +227,15 @@ export class InteractionService {
     }
     getStatusAndCMResult(id): Promise<any> {
 
+
       return this.calculationModuleService.getStatusOfCM(id)
     }
     /* getCMResultMockData() {
       return this.calculationModuleService.getCMResultMockData()
 
     } */
+
+    get
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
@@ -231,10 +245,62 @@ export class InteractionService {
     setCMAnimationStatus(value) {
       this.calculationModuleStatusService.setCmAnimationStatus(value);
     }
+
+    getCMAnimationStatus() {
+      this.calculationModuleStatusService.getCmAnimationStatus();
+    }
     undefinedCmRunned() {
       this.calculationModuleStatusService.undefinedCmRunned()
     }
     deleteCM(id) {
       return this.calculationModuleService.deleteCM(id)
+    }
+
+    getCmRunning() {
+      return this.cmRunning
+    }
+    setCmRunning(cmRunning) {
+      this.cmRunning = cmRunning
+    }
+
+    getCurrentIdCM() {
+      return this.currentCMiD
+    }
+    setCurrentIdCM(currentCMiD) {
+      this.currentCMiD = currentCMiD
+    }
+    getcmRunningProgess() {
+      return this.cmRunningProgess
+    }
+    setCmRunningProgess(cmRunningProgess) {
+      this.cmRunningProgess = cmRunningProgess
+    }
+
+
+  getStatusCMPanel(){
+    return this.calculationModuleStatusService.getStatusCMPanel();
+
+  }
+  deleteCMTask() {
+
+
+      if (this.getcmRunningProgess() >0 && this.currentCMiD != null){
+
+        const currentCMiD = this.currentCMiD
+        this.setCurrentIdCM (null)
+        return this.calculationModuleService.deleteCM(currentCMiD).toPromise().then( response => {
+          this.logger.log('CMMMMM REMOVEEEED')
+          this.currentCMiD = null
+          })
+          .catch({});
+
+
+      }
+
+      if (this.getStatusCMPanel().value == true){
+
+        this.setStatusCMPanel(false)
+
+      }
     }
 }

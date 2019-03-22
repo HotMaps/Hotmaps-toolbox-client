@@ -76,13 +76,14 @@ import { AccountComponent } from './features/user-management/account/account.com
 import { ActivateComponent } from './features/user-management/activate/activate.component';
 import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
+import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 
 import { UploadService } from './shared/services/upload.service';
-import { SnapshotService } from './shared/services/snapshot.service';
+import { SnapshotService } from "./shared/services/snapshot.service";
 
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
 import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
-
+import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology/custom-symbology.component';
 import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
 import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
 
@@ -131,10 +132,12 @@ import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.
     AccountComponent,
     ActivateComponent,
     LayerToolComponent,
+    WelcomePageComponent,
     UploadComponent,
-    FolderPanelComponent,
+    PersonnalLayersComponent,
+    CustomSymbologyComponent,
     SavePanelComponent,
-    PersonnalLayersComponent
+    FolderPanelComponent,
   ],
   providers: [
     DataInteractionService,

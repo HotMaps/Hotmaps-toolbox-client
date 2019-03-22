@@ -1,3 +1,4 @@
+import { WelcomePageComponent } from './../features/welcome-page/welcome-page.component';
 import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
 /* tslint:disable:no-unused-variable */
 /**
@@ -80,6 +81,9 @@ import { AccountComponent } from './../features/user-management/account/account.
 import { LoginComponent } from './../features/user-management/login/login.component';
 import { UserManagementComponent } from './../features/user-management/component/user-management.component';
 import { CMLayersService } from './../features/calculation-module/cm-layers.service';
+import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
+import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
+import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 
 describe('AppComponent: Router', () => {
 
@@ -100,7 +104,8 @@ describe('AppComponent: Router', () => {
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent
+        UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
+        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

@@ -139,9 +139,10 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   update() {
+
     this.interactionService.setHeatLoadData(null)
     this.interactionService.setDataStats(null);
-
+    this.datasets=null;
 
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;
@@ -155,6 +156,7 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         }else { // updating chart with data by nuts
           payload = this.helper.createHLPayloadNuts(this.selectedButton.api_ref, this.buttons_date_type, this.heatLoadPayload.nuts);
         }
+        payload['scale_level'] = this.heatLoadPayload.scale_level
       }
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
         this.loadProfileData = [];

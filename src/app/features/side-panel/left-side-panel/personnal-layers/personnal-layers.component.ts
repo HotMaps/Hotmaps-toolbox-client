@@ -17,9 +17,10 @@ export class PersonnalLayersComponent implements OnInit {
   layers: UploadedLayer[] = [];
 
   ngOnInit() {
-    this.uploadService.getUploadedFiles().subscribe(files => {
-      this.layers = files.filter(file => file.name.split('.').reverse()[0] != 'csv');
-    });
+    if (this.uploadService.getUploadedFiles)
+      this.uploadService.getUploadedFiles().subscribe(files => {
+        this.layers = files.filter(file => file.name.split('.').reverse()[0] != 'csv');
+      });
   }
 
   actionLayer(layer: UploadedLayer) {

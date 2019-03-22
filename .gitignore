@@ -44,3 +44,5 @@ testem.log
 Thumbs.db
 .package-lock.json
 venv
+
+package-lock.json

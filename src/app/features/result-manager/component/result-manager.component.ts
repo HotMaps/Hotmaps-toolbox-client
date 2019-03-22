@@ -63,11 +63,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() { }
   ngOnChanges() {
     this.resetResult();
-    if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
-    if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
-    if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
-    if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
+    if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
+    if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
+    if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
+    if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     /* this.interactionService.getCMRunned().subscribe((data) => {
       if (this.helper.isNullOrUndefined(data)) {
         this.stopAnimation()
@@ -80,9 +80,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
+      self.interactionService.setCurrentIdCM(self.status_id )
       self.getStatusOfCM()
     }).catch((err) => {
       this.stopAnimation()
+      //this.interactionService.setCurrentIdCM(null)
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
@@ -90,30 +92,34 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   killAnimation() {
     this.progressCmAnimation = 0;
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    this.interactionService.setCmRunningProgess(this.progressCmAnimation)
   }
   updateSummaryResult() {
     const self = this;
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
-
+        this.resetIndicators();
         self.setSummaryResult(result);
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
+        this.resetIndicators();
         self.indicatorLoading = false
         self.logger.log(JSON.stringify(e));
         self.displayExportDataStatus = false;
       });
     } else {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
-
+        this.resetIndicators();
         self.setSummaryResult(result)
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
         self.displayExportDataStatus = true;
       }).catch((e) => {
+        this.resetIndicators();
+
         self.indicatorLoading = false
         self.logger.log(JSON.stringify(e));
         self.displayExportDataStatus = false;
@@ -179,66 +185,122 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
 
+  processAndShowCmResult(data){
+    const response = JSON.parse(data["_body"])
+    if (response["state"] === 'SUCCESS' ){
+      this.stopAnimation()
+      this.logger.log('status' + response["status"])
+      const name_of_result = this.cmPayload.cm_name;
+      if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
+        response.status.result.raster_layers.map((raster) => {
+          let symb;
+          if(raster.type === 'custom') {
+            symb = raster.symbology;
+          }
+          this.dataInteractionService.addNewLayer(name_of_result, raster.path, raster_type_name, symb)
+          this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
+        })
+      }
+
+      if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
+        response.status.result.vector_layers.map((vector) => {
+          // console.log(vector)
+          let symb;
+          if(vector.type == 'custom') {
+            symb = vector.symbology;
+          }
+          this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name,symb)
+
+          this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
+        })
+      }
+      if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
+
+        this.result.indicators.layers.push({
+          name: name_of_result, values: response.status.result.indicator, category: ['overall', calculation_module_category]
+        })
+        this.displayExportDataStatus = true;
+
+      }
+      this.indicatorLoading = false
+      if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
+        response.status.result.graphics.map((graphic) => {
+          const option_calculation_module = { scales: {
+              yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel },ticks: {min:0} }],
+              xAxes: [{ scaleLabel: { display: true, labelString: graphic.xLabel },ticks: {autoSkip: false, min:0} }]
+            }
+          }
+          const graph = this.addGraphic(name_of_result, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
+        })
+        this.displayExportDataStatus = true;
+
+      }
+      this.getIndicatorsCatergories()
+    } else{
+
+      this.logger.log('animationTimeout')
+      this.animationTimeout = setTimeout(() => {
+        this.getStatusOfCM();
+        this.runAnimation();
+
+      }, 1000);
+    }
+
+  }
+
   getStatusOfCM() {
     const self = this;
     this.indicatorLoading = true
+    this.logger.log('this.interactionService.getCurrentIdCM()' + this.interactionService.getCurrentIdCM())
+    if (this.interactionService.getCurrentIdCM() != null){
+      this.interactionService.getStatusAndCMResult( this.interactionService.getCurrentIdCM()).then((data) => {
+        this.processAndShowCmResult(data)
 
-    this.interactionService.getStatusAndCMResult(this.status_id).then((data) => {
-      // this.interactionService.getCMResultMockData(status_id).then((data) => {
-      const response = JSON.parse(data["_body"])
-      if (response["state"] === 'SUCCESS') {
-        this.stopAnimation()
-        this.logger.log('status' + response["status"])
+      }).catch((err) => {
 
-        if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
-          response.status.result.raster_layers.map((raster) => {
-            this.dataInteractionService.addNewLayer(response.status.result.name, raster.path, raster_type_name)
-            this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
-          })
-        }
-        if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
-          response.status.result.vector_layers.map((vector) => {
-            this.dataInteractionService.addNewLayer(response.status.result.name, vector.path, vector_type_name)
-            this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name);
-          })
-        }
-        if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
-          this.result.indicators.layers.push({
-            name: response.status.result.name, values: response.status.result.indicator, category: ['overall', calculation_module_category]
-          })
-          this.displayExportDataStatus = true;
-
-        }
-        this.indicatorLoading = false
-        if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
-          response.status.result.graphics.map((graphic) => {
-            const option_calculation_module = { scales: {
-                yAxes: [{ scaleLabel: { display: true, labelString: graphic.yLabel } }],
-                xAxes: [{ scaleLabel : { display: true, labelString: graphic.xLabel } }]
-              }
-            }
-            const graph = this.addGraphic(response.status.result.name, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
-          })
-          this.displayExportDataStatus = true;
-
-        }
-        this.getIndicatorsCatergories()
-      } else {
         this.animationTimeout = setTimeout(() => {
-          this.getStatusOfCM();
-          this.runAnimation();
+          this.stopAnimation()
 
         }, 1000);
-      }
-    }).catch((err) => {
-      this.stopAnimation()
+
+        this.indicatorLoading = false
+        this.displayExportDataStatus = false;
+        this.interactionService.setCMAnimationStatus(null)
+        this.logger.log('there is an error ')
+        this.logger.log(err);
+
+      })
+    }
+    else {
+
+      this.logger.log('EVERYTHING SHOULD HAVE STOP')
+      this.animationTimeout = setTimeout(() => {
+        this.stopAnimation()
+
+      }, 1000);
+
       this.indicatorLoading = false
       this.displayExportDataStatus = false;
+      this.interactionService.setCMAnimationStatus(null)
+      this.interactionService.setStatusCMPanel(false)
 
-      this.logger.log('there is an error ')
-      this.logger.log(err);
+    }
 
-    });
+  }
+
+  StopIfRunning(){
+
+  }
+  stopAllAnimation() {
+    this.interactionService.setCMAnimationStatus(0)
+    if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
+      clearTimeout(this.animationTimeout)
+    }
+    if (!this.helper.isNullOrUndefined(this.status_id)) {
+      this.interactionService.deleteCM(this.status_id)
+    }
+    this.killAnimation()
+
   }
   runAnimation() {
     if (this.progressCmAnimation === 100) {
@@ -247,7 +309,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.progressCmAnimation += 10;
     }
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
+    this.interactionService.setCmRunningProgess(this.progressCmAnimation)
+
   }
+
+
   stopAnimation() {
     if (!this.helper.isNullOrUndefined(this.animationTimeout)) {
       clearTimeout(this.animationTimeout)
@@ -265,8 +331,15 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     } else {
       this.result.indicators.layers.map((layer) => {
         if (!this.helper.isNullOrUndefined(layer.name)) {
-          const refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
-          layer.category = refToDisplay
+          let refToDisplay=[];
+          if(this.helper.isNullOrUndefined(layer.category)){
+            refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
+            layer.category = refToDisplay
+          } else {
+            refToDisplay = layer.category
+          }
+          this.logger.log("refToDisplay:" +refToDisplay)
+
           refToDisplay.map(ref => {
             this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
           })
@@ -293,10 +366,13 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   resetResult() {
     this.displayExportDataStatus = false;
-    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
+    this.resetIndicators();
     this.result.graphics = [];
     this.result.raster_layers = [];
     this.result.vector_layers = [];
+  }
+  resetIndicators() {
+    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
   }
   tabSwitch(tabName) {
     this.tabSelected = tabName

@@ -3,7 +3,9 @@ import { map_options } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
+import {Geocoder} from 'leaflet-control-geocoder'
 declare const L: any;
+
 
 
 import { basemap } from '../basemap'
@@ -29,7 +31,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   folderPanelShow = false;
   savePanelShow = false;
-
+  
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -136,7 +138,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       this.openLeftSidebar = val;
       this.leftPanelComponent.display(val);
     });
-
     this.panelService.folderPanelStatus.subscribe((val: boolean) => {
       this.folderPanelShow = val;
     });
@@ -179,6 +180,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         });
       }
     });
+
+
+
     L.Control = L.Control.extend({
       delete: function(popup) {
         this._popup = popup;

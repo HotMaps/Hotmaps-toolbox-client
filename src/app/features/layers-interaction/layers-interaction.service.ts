@@ -36,13 +36,15 @@ export class DataInteractionService extends APIService {
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
   }
-  addNewLayer(name, id, type) {
+  addNewLayer(name, id, type, symb?) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
-    DataInteractionArray[newLayerAdded - 1].name = name + ' - ' + id.substring(0, 5);
+    DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
     DataInteractionArray[newLayerAdded - 1].cm_id = id;
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
-    // console.log(DataInteractionArray[newLayerAdded - 1])
+    if(symb) {
+      DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    }
   }
   getReadableName(layerName: string): string {
 
@@ -75,9 +77,10 @@ export class DataInteractionService extends APIService {
   }
 
   getRefFromLayerName(name: string): any[]{
+    this.logger.log('getRefFromLayerName/name:' + name)
     const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
 
-    if (this.helper.isNullOrUndefined(layer)) {return ["no layer with this name"]}
+    if (this.helper.isNullOrUndefined(layer)) {return ["overall"]}
     return layer.ref;
   }
 
@@ -122,6 +125,16 @@ export class DataInteractionService extends APIService {
   getLayersFromType(layer) {
     return this.getDataInteractionServices().then((data) => {
       return data.filter(x => x.layer_type === layer)
+    })
+  }
+  setLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = true
+    })
+  }
+  unsetLoadingLayerInterraction(layer) {
+    this.getDataInteractionServices().then((data) => {
+      data.filter(x => x.workspaceName === layer)[0].isLoading = false
     })
   }
 }

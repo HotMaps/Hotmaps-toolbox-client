@@ -22,9 +22,11 @@ export class UploadComponent implements OnInit {
   constructor(private upService: UploadService, private layerService: DataInteractionService) { }
 
   ngOnInit() {
-    this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
+    if (this.layerService.getDataInteractionServices) // == isNUllorUndefined
+      this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
     this.getFiles();
-    this.upService.getUploadedFiles().subscribe(files => this.uploadedFiles = files);
+    if (this.upService.getUploadedFiles)
+      this.upService.getUploadedFiles().subscribe(files => this.uploadedFiles = files);
   }
 
   /**
@@ -40,7 +42,8 @@ export class UploadComponent implements OnInit {
   }
 
   getFiles() {
-    this.upService.list();
+    if (this.upService.list)
+      this.upService.list();
   }
 
   delete(id: number|UploadedFile) {

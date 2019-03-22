@@ -24,6 +24,7 @@ import { calculationModuleClassArray } from '../service/calculation-module.data'
 import * as uikit from 'uikit';
 import { Logger, ToasterService } from "../../../shared/services";
 import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
+import {InteractionService} from "../../../shared/services/interaction.service";
 
 @Component({
   selector: 'htm-cms',
@@ -39,7 +40,7 @@ import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/l
     ]),
   ]
 })
-export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges {
+export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,OnDestroy {
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
@@ -58,9 +59,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   private cmSelected;
   private cmRunning;
   private layersFromType = [];
+  private prefix_cm='';
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
+    private interactionService: InteractionService,
     private dataInteractionService: DataInteractionService,
     private helper: Helper, private logger: Logger,
     private toasterService: ToasterService) { }
@@ -68,11 +71,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs();
+    this.logger.log('ngOnInit called')
 
   }
-  ngOnChanges(changes: SimpleChanges): void { }
-  ngOnDestroy() { }
+  ngOnChanges(changes: SimpleChanges): void {
 
+    this.logger.log('ngOnChanges called')
+  }
+  ngOnDestroy() {
+
+    this.logger.log('ngOnDestroy called')
+
+  }
   subscribeEvents() {
     const self = this;
     this.calculationModuleStatusService.getWaitingSatus().subscribe((value) => {
@@ -81,14 +91,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.getCmAnimationStatus().subscribe((data) => {
       this.progress = data;
       if (this.progress !== 0) {
+
         this.cmRunning = true;
+        this.interactionService.setCmRunning(this.cmRunning)
       } else {
         /* if (!this.helper.isNullOrUndefined(this.cmSelected)) {
           this.calculationModuleStatusService.undefinedCmRunned();
         } */
         this.cmRunning = false;
+        this.interactionService.setCmRunning(this.cmRunning)
       }
       this.logger.log('CM progress:' + this.progress)
+      this.logger.log('CM getCurrentIdCM:' + this.interactionService.getCurrentIdCM())
     })
     this.calculationModuleStatusService.getStatusCMPanel().subscribe((value) => {
       if (value === true) {
@@ -114,6 +128,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     this.calculationModuleStatusService.undefinedCmRunned();
   }
   updateCMs() {
+    this.interactionService.deleteCMTask();
     this.calculationModuleService.getCalculationModuleServices().then((result) => {
       this.calculationModules = []
       this.calculationModules = result;
@@ -139,12 +154,15 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     }
   }
   runCM() {
+    this.cmSelected['cm_prefix'] = this.prefix_cm;
+    this.prefix_cm='';
     this.components.forEach(comp => {
       if(!this.helper.isNullOrUndefined(comp.selected_value)){
         comp.input_value = comp.selected_value
       }
     });
     this.cmRunning = true;
+    this.interactionService.setCmRunning( this.cmRunning)
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
   }
   setWaiting(val) {
@@ -162,13 +180,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
     return this.components.filter(x => x.input_priority === id)
   }
   validateAuthorizedScale(cm) {
-    if(!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) { 
-      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) { 
-        return true 
-      } else { 
-        return false 
-      } 
-    } else { 
+    if(!this.helper.isNullOrUndefined(cm.authorized_scale) && cm.authorized_scale.length >= 1) {
+      if (cm.authorized_scale.filter(x => x === this.scaleLevel).length >= 1) {
+        return true
+      } else {
+        return false
+      }
+    } else {
       return true;
     }
   }
@@ -181,14 +199,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
           this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-            this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName })
+            if(data.length >=1) {
+              this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName })
+            } else {
+              this.layersFromType.push({ layerType: layerType, layers: [{workspaceName:layerType, name:layerType}], layerSelected: layerType })
+            }
           }).then(() => {
             this.setLayerNeeded()
           })
         })
       }
 
-      
+
       this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
         this.components = values;
         this.components.forEach(comp => {
@@ -210,7 +232,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
   cmHidePanel() {
     this.setWaiting(true);
     this.calculationModuleStatusService.undefinedCmRunned()
-    this.cmRunning = false
+
+    this.cmRunning = false;
+    this.interactionService.setCmRunning( this.cmRunning)
     this.cmSelected = undefined;
     this.components = undefined;
     this.logger.log('cm box is hided')
@@ -229,4 +253,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges 
       this.cmSelected.layers_needed.push(layer.layerSelected)
     })
   }
+
+
 }

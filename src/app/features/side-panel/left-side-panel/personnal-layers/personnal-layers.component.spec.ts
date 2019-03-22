@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonnalLayersComponent } from './personnal-layers.component';
+import { UploadService } from 'app/shared/services/upload.service';
 
 describe('PersonnalLayersComponent', () => {
   let component: PersonnalLayersComponent;
@@ -8,7 +9,10 @@ describe('PersonnalLayersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PersonnalLayersComponent ]
+      declarations: [ PersonnalLayersComponent ],
+      providers: [ 
+        { provide: UploadService, useValue: UploadService },
+      ]
     })
     .compileComponents();
   }));

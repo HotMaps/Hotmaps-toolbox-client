@@ -47,7 +47,6 @@ export class SnapshotService {
     private layersService: LayersService) {
     this.userStatus.getUserToken().subscribe(value => {
       this.userToken = value
-      console.log(value);
     });
   }
 
@@ -65,13 +64,13 @@ export class SnapshotService {
 
   /**
    * Add a new snapshot
-   * @param name 
-   * @param description 
+   * @param name
+   * @param description
    * @returns Promise with success of the procedure
    */
   add(name: string, description: string = ""): Promise<boolean> {
     const scale = this.slcToolsService.getScaleValue();
-        
+
     let config: SnapshotConfig = {
       name: name,
       description: description,
@@ -171,13 +170,13 @@ export class SnapshotService {
   }
 
   /**
-   * Delete a snapshot 
+   * Delete a snapshot
    * @param id id of the snapshot to delete
    * @returns Promise with success of the procedure
    */
   delete(id: number|SnapshotConfig): Promise<boolean> {
     if (!isNumber(id)) id = (id as SnapshotConfig).id;
-    
+
     return this.http.delete(snapshotUrl + 'delete', {
       body : { token: this.userToken, id: id }
     }).toPromise()

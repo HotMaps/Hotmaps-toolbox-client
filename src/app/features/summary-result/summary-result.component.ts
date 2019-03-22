@@ -55,9 +55,12 @@ export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
 
   ngOnInit() {
     this.logger.log('SummaryResultComponent/ngOnInit');
+    this.logger.log('SummaryResult '+ JSON.stringify(this.summaryResult) );
+
   }
   ngOnChanges(changes: SimpleChanges) {
     this.logger.log('SummaryResultComponent/ngOnChanges');
+    this.logger.log('SummaryResult '+ JSON.stringify(this.summaryResult) );
   }
 
   ngOnDestroy() {

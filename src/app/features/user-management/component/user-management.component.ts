@@ -32,20 +32,20 @@ export class UserManagementComponent implements OnInit {
         uikit.modal('#modal-recover').show();
       }
     });
-    this.userManagementStatusService.getIsUserLogged().subscribe((data) => {
-      this.isLoggedIn=data;
-      if(this.isLoggedIn) {
-        this.closeLogin()
-      } else {
-        this.closeAccount()
-      }
-    })
-    this.userManagementStatusService.getUserToken().subscribe((data) => {
-      this.token=data;
-    })
-    this.userManagementStatusService.getUsername().subscribe((data) => {
-      this.username = data;
-    })
+
+    if (this.userManagementStatusService.getIsUserLogged) {
+      this.userManagementStatusService.getIsUserLogged().subscribe((data) => {
+        this.isLoggedIn=data;
+        if (this.isLoggedIn) this.closeLogin();
+        else this.closeAccount();
+      });
+    }
+
+    if (this.userManagementStatusService.getUserToken)
+      this.userManagementStatusService.getUserToken().subscribe((data) => this.token = data);
+      
+    if (this.userManagementStatusService.getUsername)
+      this.userManagementStatusService.getUsername().subscribe((data) =>this.username = data);
   }
 
   closeAccount() {

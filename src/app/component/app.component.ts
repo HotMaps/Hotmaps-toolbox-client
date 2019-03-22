@@ -18,6 +18,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
    * AppComponent own general loading
    */
   private showLoader: boolean;
+  private isMap: boolean = false;
 
   constructor(
     private loaderService: LoaderService, private logger: Logger, private router: Router) {
@@ -40,16 +41,14 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
   ngOnDestroy() {
     this.logger.log('AppComponent/ngOnDestroy');
   }
+
   ngOnInit() {
-    /* this.router.events.subscribe((val) => {
-      console.log(val)
-    }) */
-/*     console.log(this.route.snapshot.paramMap.get('id'))
- */
+     this.router.events.subscribe(val =>
+      this.isMap = (val as any).url === '/'
+    );
+
     if(this.router.url === '/register') {
-      console.log('isRegisterRoute')
+      // console.log('isRegisterRoute')
     }
   }
-
-
 }
