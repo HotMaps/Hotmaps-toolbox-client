@@ -6,7 +6,7 @@ import { SnapshotService } from 'app/shared/services/snapshot.service';
 @Component({
   selector: 'htm-save-panel',
   templateUrl: './save-panel.component.html',
-  styleUrls: ['./save-panel.component.css']
+  styleUrls: ['./save-panel.component.less']
 })
 export class SavePanelComponent implements OnInit {
 
@@ -26,5 +26,9 @@ export class SavePanelComponent implements OnInit {
         this.interactionService.closeSavePanel();
       }
     });
+  }
+
+  close() {
+    this.interactionService.closeSavePanel();
   }
 }

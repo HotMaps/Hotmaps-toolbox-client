@@ -1,0 +1,75 @@
+:host {
+  z-index: 1025;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+div.uk-container {
+  /*padding-top: 5px;
+  padding-bottom: 10px;*/
+  padding: 7px;
+}
+
+div.title-panel {
+  background-color: #333333;
+  position: relative;
+  padding: 5px 15px;
+
+  h2 {
+    margin: 0;
+    color: white;
+  }
+
+  i {
+    line-height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+
+    cursor: pointer;
+    color: #1e87f0;
+    &:hover {
+      color: #0f6ecd;
+    }
+  }
+}
+
+i.iButton {
+  cursor: pointer;
+  margin-left: 0;
+
+  &:hover {
+    color: black;
+  }
+
+  &::before {
+    margin-left: 0;
+  }
+}
+table {
+  margin: 0;
+  table-layout: fixed;
+}
+
+td p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 30%;
+}
+th:nth-child(2), td:nth-child(2) {
+  width: 30%;
+}
+td:nth-child(3), th:nth-child(3) {
+  width: 20%;
+}
+th:nth-child(4) {
+  width: 20%;
+}
+td:nth-child(4), td:nth-child(5) {
+  width: 10%;
+}

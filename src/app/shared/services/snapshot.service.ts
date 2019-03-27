@@ -8,12 +8,13 @@ import { ToasterService } from './toaster.service';
 
 import { Helper } from '../helper';
 
-import { apiUrl, hectare } from '../data.service';
+import {apiUrl, geoserverUrl, hectare, lau2name} from '../data.service';
 import { LatLng } from 'leaflet';
 import { isNumber } from 'util';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { SelectionScaleService } from 'app/features/selection-scale';
-import { LayersService } from 'app/features/layers';
+import {GeojsonClass, LayersService} from 'app/features/layers';
+import {NutsRenderArray} from "../business";
 
 
 
@@ -42,9 +43,7 @@ export class SnapshotService {
 
   constructor(private http: Http, private userStatus: UserManagementStatusService,
     private mapService: MapService, private slcToolsService : SelectionToolService,
-    private helper: Helper, private toasterService: ToasterService,
-    private dataInteractionService: DataInteractionService, private slcScaleService: SelectionScaleService,
-    private layersService: LayersService) {
+    private helper: Helper, private toasterService: ToasterService) {
     this.userStatus.getUserToken().subscribe(value => {
       this.userToken = value
     });
@@ -78,12 +77,12 @@ export class SnapshotService {
 
       scale: scale,
       zones: scale !== hectare ? this.slcToolsService.nutsIdsSubject.getValue()
-        : this.helper.getAreasForPayload(this.slcToolsService.areasSubject.getValue()),
+        : this.slcToolsService.areasSubject.getValue().map(area => (area as L.Polygon).toGeoJSON()),
       layers : this.mapService.getLayerArray().getValue(),
 
       center: this.mapService.getMap().getCenter(),
       zoom: this.mapService.getZoomLevel().getValue()
-    }
+    };
 
     return this.http.post(snapshotUrl + 'add', {
       token: this.userToken, config: JSON.stringify(config)
@@ -94,13 +93,37 @@ export class SnapshotService {
 
 
   apply(snapshot: SnapshotConfig) {
+    //console.log(snapshot);
 
+    const nutLvl = NutsRenderArray.find(nut => nut.business_name == snapshot.scale);
+    const control = (this.mapService.getMap() as any).scaleControl as L.Control;
+    control.getContainer().getElementsByTagName('input')[nutLvl.id].click();
+
+
+    this.mapService.clearAll(this.mapService.getMap());
+    if (nutLvl) {
+      if (nutLvl.business_name != hectare) {
+        // Working but a little slow
+        const isLau2: boolean = nutLvl.business_name == lau2name;
+        let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature&typeNames=hotmaps:population&count=3&outputFormat=application/json' +
+          `&cql_filter=date=\'2013-01-01\'`; // AND (${nuts_ids})`;
+        if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
+
+        snapshot.zones.forEach((zone) => {
+          this.http.get(url + ` AND (${isLau2 ? 'comm_id' : 'nuts_id' }='${zone}')`).map((res: Response) => res.json() as GeojsonClass)
+            .subscribe(res => this.mapService.selectAreaWithNuts(res), err => console.error(err));
+        });
+
+      } else this.mapService.selectAreaWithNuts(snapshot.zones); // Not working with circle
+    }
+
+    // active layers
     const layers2Toggle: Array<string> = [];
     {
       const lay: Array<string> = snapshot.layers.concat(this.mapService.getLayerArray().getValue());
-      
+
       for (var i = 0; i < lay.length; i++) {
-        var add = true;      
+        var add = true;
         for (var j = 0;j < lay.length; j++) {
           if (j == i) continue;
           if (lay[i] == lay[j]) {
@@ -114,36 +137,6 @@ export class SnapshotService {
     }
     layers2Toggle.forEach(layer => this.mapService.showOrRemoveLayer(layer, 0));
 
-    this.dataInteractionService.getDataArrayServices().forEach(val => {
-      val.isSelected = snapshot.layers.includes(val.workspaceName);
-    }); 
-    
-    /*
-    this.mapService.clearAll(this.mapService.getMap())
-
-    this.slcToolsService.clearAll(this.mapService.getMap());
-  
-    this.slcToolsService.setScaleValue(snapshot.scale);
-    this.slcScaleService.setScaleValue(snapshot.scale);
-    this.layersService.setCurrentNutsLevel(snapshot.scale);
-    this.slcScaleService.changeScale();
-
-    console.log(this.mapService.getMap)
-
-    this.mapService.getMap().eachLayer(layer => {
-      console.log(layer)
-    })    
-    
-    if (snapshot.scale === hectare) {
-      this.mapService.selectAreaWithHectare(snapshot.zones)
-      this.slcToolsService.areasSubject.next(snapshot.zones)
-    } else {
-      this.mapService.selectAreaWithNuts(snapshot.zones)
-      this.slcToolsService.nutsIdsSubject.next(snapshot.zones)
-      console.log(this.slcToolsService.getDrawer())
-    }*/
-    
-    
     this.mapService.getMap().flyTo(snapshot.center, snapshot.zoom);
   }
 
