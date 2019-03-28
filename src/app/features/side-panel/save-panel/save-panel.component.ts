@@ -15,8 +15,7 @@ export class SavePanelComponent implements OnInit {
 
   constructor(private snapshotService: SnapshotService, private interactionService: InteractionService) { }
 
-  ngOnInit() {   
-  }
+  ngOnInit() { }
 
   save() {
     this.snapshotService.add(this.name, this.description).then(success => {

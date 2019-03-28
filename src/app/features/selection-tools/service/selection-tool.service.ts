@@ -94,9 +94,10 @@ export class SelectionToolService extends APIService {
         location = this.helper.convertPostGisLatLongToLocationString(this.helper.getLocationsFromLayer(layer))
         this.drawHectaresLoadingResult(map, layer);
       }
-    }else {
+    } else {
       location = this.helper.convertLatLongToLocationString(this.helper.getLocationsFromLayer(layer))
     }
+
     if (nuts_lvl === 4) { // lau2 lvl
       this.getNutID(location, map, nuts_lvl, lau2name)
     } else if (nuts_lvl === 5) {} else {

@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { LatLng } from 'leaflet';
+import { isNumber } from 'util';
+
 import { UserManagementStatusService } from 'app/features/user-management';
 import { MapService } from 'app/pages/map';
 import { SelectionToolService } from 'app/features/selection-tools';
 import { ToasterService } from './toaster.service';
 
 import { Helper } from '../helper';
-
-import {apiUrl, geoserverUrl, hectare, lau2name} from '../data.service';
-import { LatLng } from 'leaflet';
-import { isNumber } from 'util';
-import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
-import { SelectionScaleService } from 'app/features/selection-scale';
-import {GeojsonClass, LayersService} from 'app/features/layers';
-import {NutsRenderArray} from "../business";
-
-
+import { apiUrl, geoserverUrl, hectare, lau2name } from '../data.service';
+import { GeojsonClass } from 'app/features/layers';
+import { NutsRenderArray } from "../business";
 
 
 export const snapshotUrl: string = apiUrl + '/snapshot/';
@@ -37,7 +33,6 @@ export interface SnapshotConfig {
 
 @Injectable()
 export class SnapshotService {
-
 
   private userToken: string;
 
@@ -91,36 +86,16 @@ export class SnapshotService {
       .catch(response => this.showMsg(response, false));
   }
 
+  apply(snapshot: SnapshotConfig, callback?: () => void) {
+    const mapService = this.mapService;
+    const map = mapService.getMap();
 
-  apply(snapshot: SnapshotConfig) {
-    //console.log(snapshot);
+    mapService.clearAll(map);
 
-    const nutLvl = NutsRenderArray.find(nut => nut.business_name == snapshot.scale);
-    const control = (this.mapService.getMap() as any).scaleControl as L.Control;
-    control.getContainer().getElementsByTagName('input')[nutLvl.id].click();
-
-
-    this.mapService.clearAll(this.mapService.getMap());
-    if (nutLvl) {
-      if (nutLvl.business_name != hectare) {
-        // Working but a little slow
-        const isLau2: boolean = nutLvl.business_name == lau2name;
-        let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature&typeNames=hotmaps:population&count=3&outputFormat=application/json' +
-          `&cql_filter=date=\'2013-01-01\'`; // AND (${nuts_ids})`;
-        if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
-
-        snapshot.zones.forEach((zone) => {
-          this.http.get(url + ` AND (${isLau2 ? 'comm_id' : 'nuts_id' }='${zone}')`).map((res: Response) => res.json() as GeojsonClass)
-            .subscribe(res => this.mapService.selectAreaWithNuts(res), err => console.error(err));
-        });
-
-      } else this.mapService.selectAreaWithNuts(snapshot.zones); // Not working with circle
-    }
-
-    // active layers
+    // de/enable layers
     const layers2Toggle: Array<string> = [];
     {
-      const lay: Array<string> = snapshot.layers.concat(this.mapService.getLayerArray().getValue());
+      const lay: Array<string> = snapshot.layers.concat(mapService.getLayerArray().getValue());
 
       for (var i = 0; i < lay.length; i++) {
         var add = true;
@@ -135,9 +110,39 @@ export class SnapshotService {
           layers2Toggle.push(lay[i]);
       }
     }
-    layers2Toggle.forEach(layer => this.mapService.showOrRemoveLayer(layer, 0));
+    layers2Toggle.forEach(layer => mapService.showOrRemoveLayer(layer, 0));
 
-    this.mapService.getMap().flyTo(snapshot.center, snapshot.zoom);
+    const nutLvl = NutsRenderArray.find(nut => nut.business_name == snapshot.scale);
+    // To change scale
+    const control = (map as any).scaleControl as L.Control;
+    control.getContainer().getElementsByTagName('input')[nutLvl.id].click();
+
+    map.flyTo(snapshot.center, snapshot.zoom);
+
+    if (nutLvl) {
+      if (nutLvl.business_name != hectare) {
+        // Working but a little slow
+        const isLau2: boolean = nutLvl.business_name == lau2name;
+        const nameId = isLau2 ? 'comm_id' : 'nuts_id';
+
+        let nuts_ids = `${nameId}='${snapshot.zones.join(`' OR ${nameId}='`)}'`;
+
+        let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature&typeNames=hotmaps:population&outputFormat=application/json' +
+          `&cql_filter=date=\'2013-01-01\' AND (${nuts_ids})`;
+
+        if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
+
+        this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+          .subscribe(res => {
+            res.features.forEach(geo => mapService.selectAreaWithNuts(geo));
+            if (callback) callback();
+          }, err => console.error(err));
+
+      } else { // Not working with circle
+        mapService.selectAreaWithNuts(snapshot.zones);
+        if (callback) callback();
+      }
+    }
   }
 
   /**
@@ -158,9 +163,10 @@ export class SnapshotService {
       });
   }
 
+  /* TODO
   update() {
 
-  }
+  }*/
 
   /**
    * Delete a snapshot
@@ -176,5 +182,4 @@ export class SnapshotService {
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
   }
-
 }
