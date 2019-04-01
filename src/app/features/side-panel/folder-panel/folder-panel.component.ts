@@ -21,7 +21,8 @@ export class FolderPanelComponent implements OnInit {
   }
 
   refresh() {
-    this.snapshotService.list().then(snapshots => this.snapshots = snapshots);
+    if (this.snapshotService.list)
+      this.snapshotService.list().then(snapshots => this.snapshots = snapshots);
   }
 
   apply(snapshot: SnapshotConfig) {
@@ -41,5 +42,4 @@ export class FolderPanelComponent implements OnInit {
   close() {
     this.interactionService.closeFolderPanel();
   }
-
 }

@@ -135,6 +135,7 @@ export class InteractionService  {
 
     // Folder Panel
     actionFolderPanel(toOpen: boolean = false) {
+      if (toOpen) this.closeSavePanel();
       this.sidePanelService.setFolderPanelStatus(toOpen);
       this.navigationBarService.getButtonWithId('folder').stateOpen = toOpen;
     }
@@ -147,6 +148,7 @@ export class InteractionService  {
 
     // Save Panel
     actionSavePanel(toOpen: boolean = false) {
+      if (toOpen) this.closeFolderPanel();
       this.sidePanelService.setSavePanelStatus(toOpen);
       this.navigationBarService.getButtonWithId('save').stateOpen = toOpen;
     }

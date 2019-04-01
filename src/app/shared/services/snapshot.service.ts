@@ -72,7 +72,15 @@ export class SnapshotService {
 
       scale: scale,
       zones: scale !== hectare ? this.slcToolsService.nutsIdsSubject.getValue()
-        : this.slcToolsService.areasSubject.getValue().map(area => (area as L.Polygon).toGeoJSON()),
+        : this.slcToolsService.areasSubject.getValue().map(area => {
+          if (area instanceof L.Circle) {
+            let circle: any = (area as L.Circle);
+            let radius = circle.getRadius();
+            circle = circle.toGeoJSON();
+            circle.properties.radius = radius;
+            return circle;
+          } else return (area as L.Polygon).toGeoJSON();
+        }),
       layers : this.mapService.getLayerArray().getValue(),
 
       center: this.mapService.getMap().getCenter(),
@@ -136,10 +144,18 @@ export class SnapshotService {
           .subscribe(res => {
             res.features.forEach(geo => mapService.selectAreaWithNuts(geo));
             if (callback) callback();
-          }, err => console.error(err));
+          }, err => {
+            console.error(err);
+            if (callback) callback();
+          });
 
-      } else { // Not working with circle
-        mapService.selectAreaWithNuts(snapshot.zones);
+      } else {
+        this.slcToolsService.addToMultiSelectionLayers(L.geoJSON(snapshot.zones as any, {
+          pointToLayer: (feature: any, latlng: L.LatLng) => {
+            if (feature.properties.radius) return new L.Circle(latlng, feature.properties.radius);
+            else return new L.Marker(latlng);
+          }
+        }));
         if (callback) callback();
       }
     }

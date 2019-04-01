@@ -78,6 +78,8 @@ import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-pane
 import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 import { NumberFormatPipe } from 'app/shared';
+import { SavePanelComponent } from "../../../features/side-panel/save-panel/save-panel.component";
+import { FolderPanelComponent } from "../../../features/side-panel/folder-panel/folder-panel.component";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -104,7 +106,9 @@ describe('MapComponent', () => {
         LayerNamePipe, BusinessNamePipe,
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
-        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent, LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe
+        UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
+        LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
+        SavePanelComponent, FolderPanelComponent
       ],
       providers: [
         {

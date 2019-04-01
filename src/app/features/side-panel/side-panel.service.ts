@@ -50,21 +50,9 @@ export class SidePanelService {
     setFolderPanelStatus(toOpen: boolean = false) {
       this.folderPanelStatus.next(toOpen);
     }
-    openFolderPanel() {
-      this.setFolderPanelStatus(true);
-    }
-    closeFolderPanel() {
-      this.setFolderPanelStatus(false);
-    }
 
     setSavePanelStatus(toOpen: boolean = false) {
       this.savePanelStatus.next(toOpen);
-    }
-    openSavePanel() {
-      this.setSavePanelStatus(true);
-    }
-    closeSavePanel() {
-      this.setSavePanelStatus(false);
     }
 }
 
