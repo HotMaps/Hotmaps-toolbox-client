@@ -212,7 +212,7 @@ export class Helper {
 
   getLocationsFromPolygon(layer): Location[] {
     const rectangle: any = <any>layer;
-    const latlng = rectangle.getLatLngs()[0];
+    const latlng = rectangle.latLngs ? rectangle.latLngs : rectangle.getLatLngs()[0];
     const locations: Location[] = this.convertLatLongToLocation(latlng);
     this.logger.log('locations [] ' + locations );
     return locations
@@ -279,8 +279,8 @@ export class Helper {
   }
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
-    const origin = circle.getLatLng(); // center of drawn circle
-    const radius = circle.getRadius(); // radius of drawn circle
+    const origin = circle.latLng ? circle.latLng : circle.getLatLng(); // center of drawn circle
+    const radius = circle.radius ? circle.radius : circle.getRadius(); // radius of drawn circle
     const polys = this.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
     const locations = [];
     for (let i = 0; i < polys.length; i++) {
@@ -296,7 +296,7 @@ export class Helper {
     const ar = [];
     areas.map((layer: Layer) => {
       const points = [];
-      if (layer instanceof L.Circle) {
+      if (layer instanceof L.Circle || (layer as any).radius) { // From snapshot
         ar.push({ points: this.getLocationsFromCicle(layer) })
       } else {
         ar.push({ points: this.getLocationsFromPolygon(layer) })
