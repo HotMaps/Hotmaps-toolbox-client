@@ -130,9 +130,7 @@ export class SnapshotService {
     if (nutLvl) {
       if (nutLvl.business_name != hectare) {
         // Working but a little slow
-        console.log(nutLvl);
         const isLau2: boolean = nutLvl.business_name == lau2;
-        console.log(isLau2);
         const nameId = isLau2 ? 'comm_id' : 'nuts_id';
         const layer = isLau2 ? lau2name : 'population';
         const date_filter = isLau2 ? '' : 'date=\'2013-01-01\' AND ';
@@ -143,8 +141,6 @@ export class SnapshotService {
         let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature' +
           `&typeNames=hotmaps:${layer}&outputFormat=application/json` +
           `&cql_filter=${date_filter}(${nuts_ids})${stat_level_filter}`;
-        console.log(url);
-        //if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
 
         this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
           .subscribe(res => {
