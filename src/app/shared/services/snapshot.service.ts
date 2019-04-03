@@ -10,7 +10,7 @@ import { SelectionToolService } from 'app/features/selection-tools';
 import { ToasterService } from './toaster.service';
 
 import { Helper } from '../helper';
-import { apiUrl, geoserverUrl, hectare, lau2name } from '../data.service';
+import { apiUrl, geoserverUrl, hectare, lau2name, lau2 } from '../data.service';
 import { GeojsonClass } from 'app/features/layers';
 import { NutsRenderArray } from "../business";
 
@@ -130,15 +130,21 @@ export class SnapshotService {
     if (nutLvl) {
       if (nutLvl.business_name != hectare) {
         // Working but a little slow
-        const isLau2: boolean = nutLvl.business_name == lau2name;
+        console.log(nutLvl);
+        const isLau2: boolean = nutLvl.business_name == lau2;
+        console.log(isLau2);
         const nameId = isLau2 ? 'comm_id' : 'nuts_id';
-
+        const layer = isLau2 ? lau2name : 'population';
+        const date_filter = isLau2 ? '' : 'date=\'2013-01-01\' AND ';
+        const stat_level_filter = isLau2 ? '' : ' AND stat_levl_=' + nutLvl.api_name;
+        
         let nuts_ids = `${nameId}='${snapshot.zones.join(`' OR ${nameId}='`)}'`;
 
-        let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature&typeNames=hotmaps:population&outputFormat=application/json' +
-          `&cql_filter=date=\'2013-01-01\' AND (${nuts_ids})`;
-
-        if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
+        let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature' +
+          `&typeNames=hotmaps:${layer}&outputFormat=application/json` +
+          `&cql_filter=${date_filter}(${nuts_ids})${stat_level_filter}`;
+        console.log(url);
+        //if (!isLau2) url+= ' AND stat_levl_=' + nutLvl.api_name;
 
         this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
           .subscribe(res => {
