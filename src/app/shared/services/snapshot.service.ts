@@ -13,6 +13,8 @@ import { Helper } from '../helper';
 import { apiUrl, geoserverUrl, hectare, lau2name, lau2 } from '../data.service';
 import { GeojsonClass } from 'app/features/layers';
 import { NutsRenderArray } from "../business";
+import { DataInteractionArray } from "../../features/layers-interaction/layers-interaction.data";
+import { DataInteractionClass } from "../../features/layers-interaction/layers-interaction.class";
 
 
 export const snapshotUrl: string = apiUrl + '/snapshot/';
@@ -98,10 +100,11 @@ export class SnapshotService {
     const mapService = this.mapService;
     const map = mapService.getMap();
 
+    // remove all
     mapService.clearAll(map);
 
     // de/enable layers
-    const layers2Toggle: Array<string> = [];
+    const layers2Toggle: Array<DataInteractionClass> = [];
     {
       const lay: Array<string> = snapshot.layers.concat(mapService.getLayerArray().getValue());
 
@@ -114,11 +117,23 @@ export class SnapshotService {
             break;
           }
         }
-        if (add)
-          layers2Toggle.push(lay[i]);
+        if (add) {
+          DataInteractionArray.forEach(dataInteraction => {
+            if (dataInteraction.workspaceName === lay[i])
+              layers2Toggle.push(dataInteraction);
+          });
+        }
       }
     }
-    layers2Toggle.forEach(layer => mapService.showOrRemoveLayer(layer, 0));
+    layers2Toggle.forEach(layer => mapService.showOrRemoveLayer(layer.workspaceName, layer.order));
+
+    DataInteractionArray.forEach(dataInteraction => {
+      dataInteraction.isSelected = false;
+      snapshot.layers.forEach(layer => {
+        if (dataInteraction.workspaceName === layer)
+          dataInteraction.isSelected = true;
+      });
+    });
 
     const nutLvl = NutsRenderArray.find(nut => nut.business_name == snapshot.scale);
     // To change scale
