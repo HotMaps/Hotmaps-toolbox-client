@@ -883,7 +883,7 @@ var cms = [
         category: "Buildings",
         cm_id: 1,
         layers_needed: "[u'heat_tot_curr_density']",
-        type_layer_needed: ["heat", __WEBPACK_IMPORTED_MODULE_0_app_features_layers_interaction_layers_interaction_data__["a" /* gfa_type */]],
+        type_layer_needed: ["heat", __WEBPACK_IMPORTED_MODULE_0_app_features_layers_interaction_layers_interaction_data__["b" /* gfa_type */]],
         authorized_scale: ["NUTS 3", "Hectare"],
         cm_description: "this computation module allows to divide the HDM",
         cm_name: "calculation_module_test",
@@ -3005,7 +3005,7 @@ var DataInteractionCellComponent = (function () {
         this.mapService = mapService;
         this.interactionService = interactionService;
         this.loading = true;
-        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */];
+        this.cm_cat = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */];
     }
     DataInteractionCellComponent.prototype.ngOnInit = function () {
     };
@@ -3015,7 +3015,7 @@ var DataInteractionCellComponent = (function () {
     DataInteractionCellComponent.prototype.showRemoveLayer = function (e) {
         if (this.interactionService.getSummaryResultState() === false) {
             this.dataInteraction.isSelected = !this.dataInteraction.isSelected;
-            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */]) {
+            if (this.dataInteraction.category === __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */]) {
                 this.mapService.displayCustomLayerFromCM(this.dataInteraction.cm_id, this.dataInteraction.type_of_layer);
             }
             else {
@@ -3096,12 +3096,12 @@ var DataInteractionClass = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* unused harmony export potential_type */
 /* unused harmony export wwtp_type */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return gfa_type; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return gfa_type; });
 /* unused harmony export industry_type */
 /* unused harmony export population_type */
 /* unused harmony export building_volume_type */
 /* unused harmony export gitlabUrl */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DataInteractionArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return cm_default_layer; });
 
 
@@ -3114,16 +3114,16 @@ var building_volume_type = 'building_volumes';
 var gitlabUrl = 'https://gitlab.com/hotmaps/';
 var DataInteractionArray = [
     // Buildings
-    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["H" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
-        workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["I" /* defaultLayerType */],
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["q" /* idDefaultLayer */], name: 'Heat density total', category: 'Buildings', isSelected: true,
+        workspaceName: 'heat_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_tot_curr_density/raw/master/data/heat_tot_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_tot_curr_density/blob/master/README.md', isLoading: false },
     { id: 15, name: 'Heat density residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["I" /* defaultLayerType */],
+        workspaceName: 'heat_res_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_res_curr_density/raw/master/data/heat_res_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_res_curr_density/blob/master/README.md', isLoading: false },
     { id: 16, name: 'Heat density non-residential sector', category: 'Buildings', isSelected: false,
-        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["I" /* defaultLayerType */],
+        workspaceName: 'heat_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'heat_tot_curr_density', layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* defaultLayerType */],
         download_url: gitlabUrl + '/heat/heat_nonres_curr_density/raw/master/data/heat_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/heat/heat_nonres_curr_density/blob/master/README.md', isLoading: false },
     { id: 16, name: 'Cooling density total', category: 'Buildings', isSelected: false,
@@ -3156,19 +3156,19 @@ var DataInteractionArray = [
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_nonres_curr_density/blob/master/README.md', isLoading: false },
     // Industry
     { id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* industry_layer_order */],
+        workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["s" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Excess Heat', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* industry_layer_order */],
+        workspaceName: 'industrial_database_excess_heat', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_excess_heat', layer_type: 'industrial_database_excess_heat', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["s" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 45345, name: 'Industrial Sites Company Name', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* industry_layer_order */],
+        workspaceName: 'industrial_database_compagnyname', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_compagny_name', layer_type: 'industrial_database_compagnyname', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["s" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     { id: 20, name: 'Industrial Sites Subsector', category: 'Industry', isSelected: false,
-        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["J" /* industry_layer_order */],
+        workspaceName: 'industrial_database_subsector', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_subsector', layer_type: 'industrial_database_subsector', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["s" /* industry_layer_order */],
         download_url: gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/data/Industrial_Database.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading: false },
     // Population
@@ -3178,11 +3178,11 @@ var DataInteractionArray = [
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/pop_tot_curr_density/blob/master/README.md', isLoading: false },
     // Potentials
     { id: 12, name: 'Waste Water Treatment Plants - Power', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["K" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'default', layer_type: 'wwtp_power',
+        workspaceName: 'wwtp_power', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["t" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'default', layer_type: 'wwtp_power',
         download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
     { id: 12, name: 'Waste Water Treatment Plants - Capacity', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["K" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: 'wwtp_capacity',
+        workspaceName: 'wwtp_capacity', zoomLevel: __WEBPACK_IMPORTED_MODULE_1__shared_data_service__["t" /* zoomLevelDetectChange */], ref: ['overall', 'potential'], styleName: 'wwtp_capacity', layer_type: 'wwtp_capacity',
         download_url: gitlabUrl + '/potential/WWTP/blob/master/data/2015/WWTP_2015.csv',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/WWTP/blob/master/README.md', isLoading: false },
     { id: 18, name: 'Agricultural residues', category: 'R.E.S. Potential', isSelected: false,
@@ -3246,12 +3246,12 @@ var DataInteractionArray = [
 ];
 var cm_default_layer = {
     id: 21, name: '',
-    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */],
+    category: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */],
     isSelected: true,
     workspaceName: '',
-    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */]],
+    zoomLevel: 0, ref: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */]],
     styleName: '',
-    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */],
+    layer_type: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */],
     cm_id: '',
     isLoading: false
 };
@@ -3324,19 +3324,19 @@ var DataInteractionService = (function (_super) {
         .catch(this.handleError);
     }*/
     DataInteractionService.prototype.getDataInteractionServices = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */]);
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */]);
     };
     DataInteractionService.prototype.getDataArrayServices = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
     };
     DataInteractionService.prototype.addNewLayer = function (name, id, type, symb) {
-        var newLayerAdded = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */].push(Object.assign({}, __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["c" /* cm_default_layer */]));
-        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].name = name;
-        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].workspaceName = name;
-        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].cm_id = id;
-        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].type_of_layer = type;
+        var newLayerAdded = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */].push(Object.assign({}, __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["c" /* cm_default_layer */]));
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */][newLayerAdded - 1].name = name;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */][newLayerAdded - 1].workspaceName = name;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */][newLayerAdded - 1].cm_id = id;
+        __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */][newLayerAdded - 1].type_of_layer = type;
         if (symb) {
-            __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */][newLayerAdded - 1].custom_symbology = symb;
+            __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */][newLayerAdded - 1].custom_symbology = symb;
         }
     };
     DataInteractionService.prototype.getReadableName = function (layerName) {
@@ -3354,7 +3354,7 @@ var DataInteractionService = (function (_super) {
         return layer.name;
     };
     DataInteractionService.prototype.getModulesServicesWithNewService = function (newService) {
-        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
+        var servicesArray = __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
         servicesArray.push(newService);
         return Promise.resolve(servicesArray);
     };
@@ -3374,7 +3374,7 @@ var DataInteractionService = (function (_super) {
         return layer.ref;
     };
     DataInteractionService.prototype.getLayersTabs = function () {
-        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["b" /* DataInteractionArray */];
+        return __WEBPACK_IMPORTED_MODULE_3__layers_interaction_data__["a" /* DataInteractionArray */];
     };
     DataInteractionService.prototype.getSplittedResults = function (results) {
         this.logger.log('go inside  getSplittedResults+ ' + results);
@@ -4701,7 +4701,7 @@ var LayersService = (function (_super) {
         else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["Z" /* wwtpLayerName */]) {
             this.addPopupWWTP(map, res, latlng);
         }
-        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_0" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* constant_year */]) {
+        else if (action === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["_0" /* populationLayerName */] + '_' + __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* constant_year */]) {
             this.addPopupHectare(map, res, latlng);
         }
     };
@@ -5030,7 +5030,7 @@ var ResultManagerComponent = (function () {
         this.indicatorLoading = true;
         this.tab1 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["Q" /* tab1_datapanel */];
         this.tab2 = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_32" /* tab2_datapanel */];
-        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */];
+        this.cm_catedory = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */];
         this.tabSelected = this.tab1;
         this.dropdown_btns = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["h" /* summay_drop_down_buttons */];
         this.selectedButton = this.dropdown_btns[0];
@@ -5206,8 +5206,8 @@ var ResultManagerComponent = (function () {
                     if (raster.type === 'custom') {
                         symb = raster.symbology;
                     }
-                    _this.dataInteractionService.addNewLayer(name_of_result_1, raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* raster_type_name */], symb);
-                    _this.mapService.displayCustomLayerFromCM(raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["F" /* raster_type_name */]);
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["K" /* raster_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(raster.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["K" /* raster_type_name */]);
                 });
             }
             if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
@@ -5217,13 +5217,13 @@ var ResultManagerComponent = (function () {
                     if (vector.type == 'custom') {
                         symb = vector.symbology;
                     }
-                    _this.dataInteractionService.addNewLayer(name_of_result_1, vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* vector_type_name */], symb);
-                    _this.mapService.displayCustomLayerFromCM(vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["G" /* vector_type_name */]);
+                    _this.dataInteractionService.addNewLayer(name_of_result_1, vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* vector_type_name */], symb);
+                    _this.mapService.displayCustomLayerFromCM(vector.path, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* vector_type_name */]);
                 });
             }
             if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
                 this.result.indicators.layers.push({
-                    name: name_of_result_1, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */]]
+                    name: name_of_result_1, values: response.status.result.indicator, category: ['overall', __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */]]
                 });
                 this.displayExportDataStatus = true;
             }
@@ -5235,7 +5235,7 @@ var ResultManagerComponent = (function () {
                             xAxes: [{ scaleLabel: { display: true, labelString: graphic.xLabel }, ticks: { autoSkip: false, min: 0 } }]
                         }
                     };
-                    var graph = _this.addGraphic(name_of_result_1, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */], false);
+                    var graph = _this.addGraphic(name_of_result_1, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */], false);
                 });
                 this.displayExportDataStatus = true;
             }
@@ -6681,7 +6681,7 @@ var LeftSideComponent = (function (_super) {
         this.layers = layers;
         this.category = layers.map(function (item) { return item.category; })
             .filter(function (value, index, self) { return self.indexOf(value) === index; });
-        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["L" /* calculation_module_category */]);
+        this.category.push(__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["u" /* calculation_module_category */]);
     };
     LeftSideComponent.prototype.ngOnDestroy = function () {
     };
@@ -7024,7 +7024,7 @@ var RightSideComponent = (function (_super) {
         }, { payload: payloadTmp });
     };
     RightSideComponent.prototype.setSummaryPayloadIds = function () {
-        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["q" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds };
+        var payload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["v" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds };
         if (this.helper.isPayloadIncomplete(payload)) {
             this.interactionService.closeRightPanel();
             return;
@@ -7039,7 +7039,7 @@ var RightSideComponent = (function (_super) {
           this.setIsDataRunning(false);
           return
         }; */
-        this.summaryPayload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["q" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), areas: areas };
+        this.summaryPayload = { layers: this.layers, year: __WEBPACK_IMPORTED_MODULE_6__shared_data_service__["v" /* constant_year */], scale_level: this.interactionService.getScaleLevel(), areas: areas };
     };
     RightSideComponent.prototype.setElectricityMixPayload = function () {
         this.energyMixPayload = { nuts: this.nutsIds };
@@ -8844,34 +8844,34 @@ var UserManagementService = (function (_super) {
         return _super.call(this, http, logger, loaderService, toasterService) || this;
     }
     UserManagementService.prototype.userRegister = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["r" /* post_user_register */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["w" /* post_user_register */]);
     };
     UserManagementService.prototype.userRegisterActivate = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["s" /* post_user_register_activate */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["x" /* post_user_register_activate */]);
     };
     UserManagementService.prototype.userLogin = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["t" /* post_user_login */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["y" /* post_user_login */]);
     };
     UserManagementService.prototype.userLogout = function (token) {
-        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["u" /* post_user_logout */]);
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["z" /* post_user_logout */]);
     };
     UserManagementService.prototype.userRecover = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["v" /* post_user_recovery */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["A" /* post_user_recovery */]);
     };
     UserManagementService.prototype.userRecoverAsk = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["w" /* post_user_recovery_ask */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_3__shared_data_service__["B" /* post_user_recovery_ask */]);
     };
     UserManagementService.prototype.getDiskSpace = function (token) {
-        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["x" /* get_diskspace_endpoint */]);
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["C" /* get_diskspace_endpoint */]);
     };
     UserManagementService.prototype.getAcountFileList = function (token) {
-        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["y" /* get_filelist_endpoint */]);
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["D" /* get_filelist_endpoint */]);
     };
     UserManagementService.prototype.getUserInformations = function (token) {
-        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["z" /* get_userinformation_endpoint */]);
+        return _super.prototype.POST.call(this, this.getTokenPayload(token), __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["E" /* get_userinformation_endpoint */]);
     };
     UserManagementService.prototype.userUpdateProfile = function (payload) {
-        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["A" /* get_userupdateprofile_endpoint */]);
+        return _super.prototype.POST.call(this, payload, __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["a" /* apiUrl */] + __WEBPACK_IMPORTED_MODULE_2_app_shared_data_service__["F" /* get_userupdateprofile_endpoint */]);
     };
     UserManagementService.prototype.getTokenPayload = function (token) {
         return { token: token };
@@ -10809,8 +10809,8 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return defaultLayer; });
 /* unused harmony export styleNameHeat */
 /* unused harmony export heat_type */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return defaultLayerType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return idDefaultLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return defaultLayerType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return idDefaultLayer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return wwtpLayerName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_41", function() { return urlTaigaFeedback; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_25", function() { return urlLegend; });
@@ -10829,16 +10829,16 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "N", function() { return getElectricityMixFromNuts0; });
 /* unused harmony export user_endpoint */
 /* unused harmony export upload_endpoint */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return post_user_register; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return post_user_register_activate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return post_user_recovery_ask; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return post_user_recovery; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return post_user_logout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return post_user_login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return get_userinformation_endpoint; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return get_userupdateprofile_endpoint; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return get_diskspace_endpoint; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return get_filelist_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return post_user_register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return post_user_register_activate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return post_user_recovery_ask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return post_user_recovery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return post_user_logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return post_user_login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return get_userinformation_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return get_userupdateprofile_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return get_diskspace_endpoint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return get_filelist_endpoint; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_36", function() { return heatloadprofile; });
 /* unused harmony export Durationcurve */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_43", function() { return energy_mix_title; });
@@ -10850,19 +10850,19 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_39", function() { return heat_load_api_month; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_37", function() { return buttons_heat_load; });
 /* unused harmony export default_drop_down_button */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return calculation_module_category; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return raster_type_name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return vector_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return calculation_module_category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return raster_type_name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return vector_type_name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return summay_drop_down_buttons; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return industry_layer_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return industry_layer_order; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return scale_layer_order; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return cm_layers_order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return cm_layers_order; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return layers_order; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_22", function() { return maps_order; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return timeOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_20", function() { return clickAccuracy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return zoomLevelDetectChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return constant_year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return zoomLevelDetectChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return constant_year; });
 /* unused harmony export constant_year_sp_wwtp */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_33", function() { return constant_year_duration_curve; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_3", function() { return business_name_wwtp; });
@@ -10908,9 +10908,9 @@ WaitingStatusComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_44", function() { return energy_mix_graph_category; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_31", function() { return energy_mix_options; });
 /* unused harmony export clculation_module_graph_options */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return default_color_shpfile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return default_fillColor_shpfile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return default_fillOpacity_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return default_color_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return default_fillColor_shpfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return default_fillOpacity_shpfile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_28", function() { return color_usedspace; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_29", function() { return color_unusedspace; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_26", function() { return labels_diskspacechart; });
@@ -11838,12 +11838,12 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "APIService", function() { return __WEBPACK_IMPORTED_MODULE_3__services__["f"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["B"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["C"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["D"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["E"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["F"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["G"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "cm_layers_order", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["G"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_color_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["H"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillColor_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["I"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "default_fillOpacity_shpfile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["J"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "raster_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["K"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "vector_type_name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["L"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "tab1_datapanel", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["Q"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["d"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["e"]; });
@@ -12882,6 +12882,7 @@ Logger = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__helper__ = __webpack_require__("../../../../../src/app/shared/helper.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__business__ = __webpack_require__("../../../../../src/app/shared/business/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__features_layers_interaction_layers_interaction_data__ = __webpack_require__("../../../../../src/app/features/layers-interaction/layers-interaction.data.ts");
 /* unused harmony export snapshotUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SnapshotService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12893,6 +12894,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -12967,26 +12969,38 @@ var SnapshotService = (function () {
         var _this = this;
         var mapService = this.mapService;
         var map = mapService.getMap();
+        // remove all
         mapService.clearAll(map);
         // de/enable layers
         var layers2Toggle = [];
         {
-            var lay = snapshot.layers.concat(mapService.getLayerArray().getValue());
-            for (var i = 0; i < lay.length; i++) {
+            var lay_1 = snapshot.layers.concat(mapService.getLayerArray().getValue());
+            for (var i = 0; i < lay_1.length; i++) {
                 var add = true;
-                for (var j = 0; j < lay.length; j++) {
+                for (var j = 0; j < lay_1.length; j++) {
                     if (j == i)
                         continue;
-                    if (lay[i] == lay[j]) {
+                    if (lay_1[i] == lay_1[j]) {
                         add = false;
                         break;
                     }
                 }
-                if (add)
-                    layers2Toggle.push(lay[i]);
+                if (add) {
+                    __WEBPACK_IMPORTED_MODULE_10__features_layers_interaction_layers_interaction_data__["a" /* DataInteractionArray */].forEach(function (dataInteraction) {
+                        if (dataInteraction.workspaceName === lay_1[i])
+                            layers2Toggle.push(dataInteraction);
+                    });
+                }
             }
         }
-        layers2Toggle.forEach(function (layer) { return mapService.showOrRemoveLayer(layer, 0); });
+        layers2Toggle.forEach(function (layer) { return mapService.showOrRemoveLayer(layer.workspaceName, layer.order); });
+        __WEBPACK_IMPORTED_MODULE_10__features_layers_interaction_layers_interaction_data__["a" /* DataInteractionArray */].forEach(function (dataInteraction) {
+            dataInteraction.isSelected = false;
+            snapshot.layers.forEach(function (layer) {
+                if (dataInteraction.workspaceName === layer)
+                    dataInteraction.isSelected = true;
+            });
+        });
         var nutLvl = __WEBPACK_IMPORTED_MODULE_9__business__["a" /* NutsRenderArray */].find(function (nut) { return nut.business_name == snapshot.scale; });
         // To change scale
         var control = map.scaleControl;
@@ -13332,7 +13346,7 @@ var UploadService = (function (_super) {
         var nutsOrAreas;
         var isNuts = true;
         if (year == null)
-            year = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["q" /* constant_year */];
+            year = __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["v" /* constant_year */];
         if (schema == null)
             schema = layerExportInfo.schema;
         if (scale === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["c" /* lau2 */] || scale === __WEBPACK_IMPORTED_MODULE_8__shared_data_service__["p" /* nuts3 */]) {
