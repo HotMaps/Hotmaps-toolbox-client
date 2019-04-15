@@ -3,8 +3,7 @@
     border-right: 1px solid #000000;
     width: 400px;
     position: absolute;
-    left: 600px;
-    top: 6vh;
+    left: calc(50% - 200px);
     background: white;
     z-index: 4001;
 }

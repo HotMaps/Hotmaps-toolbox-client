@@ -83,6 +83,7 @@ import { UploadService } from './shared/services/upload.service';
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
 import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology/custom-symbology.component';
+import { FeedbackService } from './features/feedback/feedback.service';
 
 @NgModule({
   imports: [
@@ -166,7 +167,8 @@ import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology
     CMLayersService,
     UserManagementService,
     UserManagementStatusService,
-    UploadService
+    UploadService,
+    FeedbackService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
