@@ -44,7 +44,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
 
   ngOnInit() {
      this.router.events.subscribe(val =>
-      this.isMap = (val as any).url === '/'
+      this.isMap = ((val as any).url === '/' || (val as any).url === '/map')
     );
 
     if(this.router.url === '/register') {
