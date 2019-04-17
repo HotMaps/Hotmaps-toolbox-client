@@ -42,8 +42,8 @@
   </li>
 </ul>
 <div>
-  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators" [tabSelected]="tabSelected" [displayExportDataStatus]="displayExportDataStatus"></htm-export-data>
-<!--   <htm-export-data [updateStatus]="displayExportDataStatus" [indicators]="result.indicators" [graphics]="result.graphics" [tab]="tabSelected" [heatLoadData]="heatLoadData"></htm-export-data>
- -->
+  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators.layers" 
+      [graphState]="graphicsExportButtonState" [indicatorState]="indicatorExportButtonState" [tabSelected]="tabSelected"></htm-export-data>
+
 </div>
 
