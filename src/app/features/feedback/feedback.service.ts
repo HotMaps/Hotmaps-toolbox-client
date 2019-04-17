@@ -2,7 +2,7 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
@@ -17,6 +17,7 @@ export class FeedbackService extends APIService {
     super(http, logger, loaderService, toasterService);
   }
   sendFeedback(data){
-    return this.http.post(apiUrl+user_endpoint+'feedback', data);
+    return super.POSTunStringify(data,apiUrl+user_endpoint+'feedback', {headers: new Headers() })
+    //return this.http.post(, data);
   }
 }

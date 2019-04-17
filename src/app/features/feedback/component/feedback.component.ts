@@ -93,11 +93,13 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         fd.append('feedback_priority',f.value['level'].name)
         fd.append('title',f.value['title'])
         fd.append('description',f.value['description'])
-        this.feedbackService.sendFeedback(fd).subscribe((val)=>{
-          this.feedbackLoader = false
-          this.resetForm(f)
-          this.close()
-          this.interactionService.showToaster(JSON.parse(val['_body']).message)
+        this.feedbackService.sendFeedback(fd).then((val)=>{
+            this.feedbackLoader = false
+            this.resetForm(f)
+            this.close()
+            this.interactionService.showToaster(val.message)
+        }).catch((e)=>{
+            this.feedbackLoader = false
         })
     }
 }

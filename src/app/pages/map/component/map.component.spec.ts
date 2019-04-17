@@ -78,12 +78,9 @@ import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-pane
 import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 import { NumberFormatPipe } from 'app/shared';
-<<<<<<< HEAD
 import { SavePanelComponent } from "../../../features/side-panel/save-panel/save-panel.component";
 import { FolderPanelComponent } from "../../../features/side-panel/folder-panel/folder-panel.component";
-=======
 import { FeedbackService } from 'app/features/feedback/feedback.service';
->>>>>>> hotfix-feedback
 
 describe('MapComponent', () => {
   let component: MapComponent;
