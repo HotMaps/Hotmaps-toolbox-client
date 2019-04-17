@@ -86,8 +86,7 @@ import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/
 import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology/custom-symbology.component';
 import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
 import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
-import { ExportDataService2 } from './features/export-data/new/export-data.service';
-import { ExportDataComponent2 } from './features/export-data/new/export-data.component';
+import { FeedbackService } from './features/feedback/feedback.service';
 
 @NgModule({
   imports: [
@@ -174,7 +173,7 @@ import { ExportDataComponent2 } from './features/export-data/new/export-data.com
     UserManagementService,
     UserManagementStatusService,
     UploadService,
-    SnapshotService
+    FeedbackService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -9,18 +9,18 @@
                 <label><input class='uk-radio' type='radio' name='categorie' value='Improvement' ngModel #categorie='ngModel'> Improvement</label>
             </div> -->
             <div class='uk-margin-small'>
-                <select class='uk-select uk-form-small' name="type" ngModel #type='ngModel' required>
-                    <option value="">Select feedback type...</option>                        
-                    <option *ngFor="let type of issue_type" [ngValue]="type.id">
-                        {{type.name}}
+                <select class='uk-select uk-form-small' name="type" [(ngModel)]="type" required>
+                    <option [ngValue]="null" >Select feedback type...</option>
+                    <option *ngFor="let issue_type of issue_type" [ngValue]="issue_type">
+                        {{issue_type.name}}
                     </option>
                 </select>
             </div>
             <div class='uk-margin-small'>
-                <select class='uk-select uk-form-small' name="level" ngModel #level='ngModel' required>
-                    <option value="">Select feedback priority...</option>                        
-                    <option *ngFor="let level of issue_levels" [ngValue]="level.id">
-                        {{level.name}}
+                <select class='uk-select uk-form-small' name="level" [(ngModel)]="level" required>
+                    <option [ngValue]="null">Select feedback level...</option>
+                    <option *ngFor="let issue_level of issue_levels" [ngValue]="issue_level">
+                        {{issue_level.name}}
                     </option>
                 </select>
             </div>
@@ -28,8 +28,8 @@
             <div class='uk-margin-small'><textarea name='description' class='uk-textarea uk-form-small' rows='3' placeholder='Description' ngModel #description='ngModel' required></textarea></div>
             <div class='uk-margin-small'>
                 <div class="uk-width-1-1 uk-inline" uk-form-custom="target: true">
-                    <input type="file" name="picture" #file (change)="onUploadFile(file.files)" accept="image/*">
-                    <input class="uk-input input-file  uk-form-small" type="text" placeholder="Select / drag&drop file" disabled>
+                    <input type="file" name="picture" #file_input (change)="onUploadFile(file_input.files)" accept="image/*">
+                    <input #file_string class="uk-input input-file  uk-form-small" type="text" placeholder="Select / drag&drop file" disabled>
                     <span class="uk-form-icon" uk-icon="icon: upload"></span>
                 </div>
             </div>

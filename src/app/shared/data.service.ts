@@ -27,7 +27,7 @@ export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';   
 export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = prodUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
