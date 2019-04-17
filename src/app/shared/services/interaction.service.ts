@@ -68,18 +68,6 @@ export class InteractionService  {
     } */
     // interface for export data service
 
-    displayButtonExportStats(value: boolean) {
-      this.exportDataService.displayButtonExportStats(value);
-    }
-    setDataStats(data: any) {
-      this.exportDataService.setDataStats(data);
-    }
-    setTabsSelectedName(data: string) {
-      this.exportDataService.setTabsSelectedName(data);
-    }
-    displayButtonExport(val: boolean) {
-      this.exportDataService.displayButtonExport(val);
-    }
     setSummaryResultState(val: boolean) {
       this.summaryResultState = val;
     }
@@ -91,9 +79,6 @@ export class InteractionService  {
     }
     getSummaryResultState() {
       return this.summaryResultState;
-    }
-    setSummaryData(val: any) {
-        this.exportDataService.setDataSummary(val);
     }
 
     enableStateOpenWithFunction(functionString: string) {

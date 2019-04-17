@@ -11,6 +11,7 @@ import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
 import { summay_drop_down_buttons } from './data.service';
 import { Layer } from 'leaflet';
+import { forEach } from '@angular/router/src/utils/collection';
 
 const proj4 = (proj4x as any).default;
 
@@ -37,7 +38,7 @@ export class Helper {
     }
     return result;
   }
-
+  
   // convert getlatLong() form path leaflet to array of location[]
   convertLatLongToLocation(latlng): Location[] {
     let n = 0;
@@ -449,20 +450,41 @@ export class Helper {
       }
     }
   }
+  chartsToCSV(graphs) {
+    var arraytmp = []
 
+    const header = {
+      "1": "serie",
+      "2": "label",
+      "3": "value",
+    }
+    arraytmp.push(header)
+    graphs.map((graph)=>{
+      arraytmp.push({name:graph.name});
+      const labels = graph.labels;
+      graph.data.map((data)=> {
+        data.data.map((d,currIndex)=>{ 
+          arraytmp.push({serie:data.label,label:graph.labels[currIndex],value:d})
+        })
+      })
+    })
+    return arraytmp
+  }
   summaryResultToCSV(input): any {
     let array = [];
     const header = {
-      "1": "unit",
-      "2": "indicator",
-      "3": "value",
-      }
+      "1": "indicator",
+      "2": "value",
+      "3": "unit",
+
+    }
     array.push(header);
     for (const entry of input)
     {
+      array.push({name:entry.name})
       for (const entry_in_entry of entry.values)
       {
-        array.push(entry_in_entry);
+        array.push({indicator:entry_in_entry.name,value:entry_in_entry.value,unit:entry_in_entry.unit});
       }
     }
     return array

@@ -1,3 +1,7 @@
-<div *ngIf="(tabSelected === 'charts' && isChartValue) || (tabSelected === 'indicator' && indicators.layers.length >= 1)" style="padding: 10px;">
-  <button id="exportBtn" class="uk-button uk-button-secondary" (click)="export()">Export</button>
+<div *ngIf="tabSelected === 'indicator'" style="padding: 10px;">
+  <button id="exportBtnIndicator" class="uk-button uk-button-secondary" [disabled]="!indicatorState" (click)="exportIndicators()">Export indicator</button>
+</div>
+
+<div *ngIf="tabSelected === 'charts'" style="padding: 10px;">
+  <button id="exportBtnGraph" class="uk-button uk-button-secondary" [disabled]="!graphState" (click)="exportGraphic()">Export graphs</button>
 </div>
