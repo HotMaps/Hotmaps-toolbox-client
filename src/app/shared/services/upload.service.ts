@@ -141,21 +141,40 @@ export class UploadService extends APIService {
 
   /**
    * Show the layer on the map
-   * @param id 
+   * @param id
    */
-  show(id: number|UploadedFile): void {
-    if (!isNumber(id)) id = (id as UploadedFile).id;
-    if ((id as number) in this.activeLayers) {
+  show(id: UploadedFile|number): void {
+    const upFile: UploadedFile = isNumber(id)
+      ? this.getUploadedFiles().getValue().filter(upload => upload.id == id)[0] : id as UploadedFile;
+
+    if (upFile.id in this.activeLayers) {
       this.toasterService.showToaster('Layer already active');
       return;
     }
 
-    this.activeLayers[id as number] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
-      token: this.userToken,
-      upload_id: id,
-      tms: true,
-      maxNativeZoom: 11
-    }).addTo(this.mapService.getMap());
+    if (upFile.name.endsWith('.tif')) {
+      this.activeLayers[upFile.id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
+        token: this.userToken,
+        upload_id: upFile.id,
+        tms: true,
+        maxNativeZoom: 11
+      }).addTo(this.mapService.getMap());
+    } else if (upFile.name.endsWith('.csv')) {
+      this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
+
+        /* With the SLD
+          var geo = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/rest';
+          console.log(geo + '/styles/'+ upFile.layer + '.sld');
+          console.log(geo + '/workspaces/hotmaps/styles/'+ upFile.layer + '.sld');
+          console.log(d.json());
+
+          this.http.get(geo + '/styles/'+ upFile.layer + '.sld').subscribe(e => {
+        });*/
+
+        this.activeLayers[upFile.id] = L.geoJson(geoData.json()).addTo(this.mapService.getMap());
+      });
+
+    }
   }
 
   /**
