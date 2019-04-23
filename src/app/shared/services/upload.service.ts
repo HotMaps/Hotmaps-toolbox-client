@@ -162,16 +162,17 @@ export class UploadService extends APIService {
     } else if (upFile.name.endsWith('.csv')) {
       this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
 
-        /* With the SLD
-          var geo = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/rest';
-          console.log(geo + '/styles/'+ upFile.layer + '.sld');
-          console.log(geo + '/workspaces/hotmaps/styles/'+ upFile.layer + '.sld');
-          console.log(d.json());
-
-          this.http.get(geo + '/styles/'+ upFile.layer + '.sld').subscribe(e => {
-        });*/
-
-        this.activeLayers[upFile.id] = L.geoJson(geoData.json()).addTo(this.mapService.getMap());
+        this.activeLayers[upFile.id] = L.geoJson(geoData.json(), {
+          style: (feature) => {
+            return {
+              color: feature.style.fill
+            };
+          },
+          pointToLayer: (feature, latlng) => {
+            if (feature.geometry.type == "Point") return new L.Circle(latlng, feature.style.size);
+          }
+        })
+          .addTo(this.mapService.getMap());
       });
 
     }
