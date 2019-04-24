@@ -163,18 +163,17 @@ export class UploadService extends APIService {
       this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
 
         this.activeLayers[upFile.id] = L.geoJson(geoData.json(), {
-          style: (feature) => {
-            return {
-              color: feature.style.fill
-            };
-          },
-          pointToLayer: (feature, latlng) => {
-            if (feature.geometry.type == "Point") return new L.Circle(latlng, feature.style.size);
+          pointToLayer: (feature: any, latlng: L.LatLng) => {
+            if (feature.geometry.type == "Point") return new L.CircleMarker(latlng, {
+              fillColor: feature.style.fill,
+              color: feature.style.stroke,
+              fillOpacity: 1,
+              weight: 1,
+              radius: feature.style.size
+            });
           }
-        })
-          .addTo(this.mapService.getMap());
+        }).addTo(this.mapService.getMap());
       });
-
     }
   }
 
