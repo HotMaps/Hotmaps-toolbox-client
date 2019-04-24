@@ -24,10 +24,10 @@ export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/h
 
 export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
 
-export const geoserverUrl = geoserverProdUrl;
+export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = localApiUrl;
+export const apiUrl = devUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
