@@ -18,6 +18,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
 
 import {geoserverUrl} from '../../../shared/data.service';
+import { UploadService } from 'app/shared/services/upload.service';
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -39,6 +40,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private layers;
   private scaleLevel;
   private cmRunned;
+  private personnalLayers;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -53,7 +55,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
-    private panelService: SidePanelService,
+    private panelService: SidePanelService, private uploadService: UploadService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private selectionToolService: SelectionToolService,
     private interactionService: InteractionService
@@ -71,7 +73,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
-
+    this.uploadService.getActivePersonalLayers().subscribe((lay) => {
+      this.personnalLayers = Object.assign({},lay);
+    });
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);

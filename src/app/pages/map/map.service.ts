@@ -32,6 +32,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
+import { UploadService } from 'app/shared/services/upload.service';
 
 
 @Injectable()

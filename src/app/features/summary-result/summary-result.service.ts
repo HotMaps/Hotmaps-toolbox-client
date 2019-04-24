@@ -8,7 +8,7 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares } from './../../shared/data.service';
+import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares, postStatsPersonalLayer } from './../../shared/data.service';
 
 
 
@@ -29,5 +29,10 @@ export class SummaryResultService extends APIService {
     this.logger.log('SummaryResultService/getSummaryResultWithMultiAreas = ' + JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsLayersHectares);
   }
+  getSummaryResultPersonnalLayers(payload) {
+    this.logger.log('SummaryResultService/getSummaryResultPersonnalLayers = ' + JSON.stringify(payload));
+    return super.POST(payload, apiUrl + postStatsPersonalLayer);
 
+
+  }
 }

@@ -21,6 +21,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() energyMixPayload;
   @Input() heatLoadPayload;
   @Input() durationCurvePayload;
+  @Input() personnalLayerPayload;
 
   @Input() scaleLevel;
   private graphicsExportButtonState=false;
@@ -66,6 +67,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
+    if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() }
+    
 
   }
   updateCMResult() {
@@ -81,6 +84,20 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
+  }
+  updatePersonnalLayersResult() {
+    if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
+    const self = this;
+    self.indicatorLoading = true
+    self.interactionService.getSummaryPersonnalLayers(self.personnalLayerPayload).then(result => {
+      self.setSummaryResult(result);
+      self.getIndicatorsCatergories()
+      self.indicatorLoading = false
+    }).catch((e)=>{
+      // self.indicatorExportButtonState = false
+      self.indicatorLoading = false
+      self.logger.log(JSON.stringify(e));
+    })
   }
   killAnimation() {
     this.progressCmAnimation = 0;
@@ -199,7 +216,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
-          // console.log(vector)
           let symb;
           if(vector.type == 'custom') {
             symb = vector.symbology;

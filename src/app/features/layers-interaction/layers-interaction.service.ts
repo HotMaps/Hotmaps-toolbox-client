@@ -79,7 +79,6 @@ export class DataInteractionService extends APIService {
   getRefFromLayerName(name: string): any[]{
     this.logger.log('getRefFromLayerName/name:' + name)
     const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
-
     if (this.helper.isNullOrUndefined(layer)) {return ["overall"]}
     return layer.ref;
   }

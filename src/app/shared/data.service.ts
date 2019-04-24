@@ -24,7 +24,7 @@ export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/h
 
 export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
 
-export const geoserverUrl = geoserverProdUrl;
+export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = localApiUrl;
@@ -48,6 +48,8 @@ export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
 export const nuts_level   = '3';
 export const populationLayerName = 'pop_tot_curr_density'
 export const postStatsLayersHectares = '/stats/layers/hectares';
+export const postStatsPersonalLayer = '/stats/personal-layers';
+
 export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
 export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
 export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';
