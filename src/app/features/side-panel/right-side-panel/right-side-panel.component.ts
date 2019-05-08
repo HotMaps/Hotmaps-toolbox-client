@@ -221,7 +221,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     )
   }
   setPersonnalLayerPayload(){
-    this.personnalLayerPayload = this.personnalLayers;
+    this.personnalLayerPayload={'layers':[]}
+    for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
   }
 
   setSummaryPayloadIds() {

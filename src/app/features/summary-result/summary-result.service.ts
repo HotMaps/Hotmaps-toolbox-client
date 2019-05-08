@@ -32,7 +32,5 @@ export class SummaryResultService extends APIService {
   getSummaryResultPersonnalLayers(payload) {
     this.logger.log('SummaryResultService/getSummaryResultPersonnalLayers = ' + JSON.stringify(payload));
     return super.POST(payload, apiUrl + postStatsPersonalLayer);
-
-
   }
 }
