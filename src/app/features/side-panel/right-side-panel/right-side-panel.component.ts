@@ -83,7 +83,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() locationsSelection;
   @Input() areas;
   @Input() cmRunned;
-
+  @Input() personnalLayers;
   private cmTimeout;
 
 
@@ -101,7 +101,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private energyMixPayload;
   private heatLoadPayload;
   private durationCurvePayload;
-
+  private personnalLayerPayload;
 
 
   private loadingData = false;
@@ -183,7 +183,11 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     } else {
       this.energyMixPayload = null
     }
-
+    if(Object.keys(this.personnalLayers).length >= 1) {
+      this.setPersonnalLayerPayload()
+    } else {
+      this.personnalLayerPayload = null
+    }
 
 
     if (this.cmRunned) {
@@ -215,6 +219,10 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       },
       { payload: payloadTmp }
     )
+  }
+  setPersonnalLayerPayload(){
+    this.personnalLayerPayload={'layers':[]}
+    for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
   }
 
   setSummaryPayloadIds() {

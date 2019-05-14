@@ -164,6 +164,9 @@ export class InteractionService  {
     getSummaryResultWithMultiAreas(payload: any): Promise<any> {
       return this.summaryResultService.getSummaryResultWithMultiAreas(payload);
     }
+    getSummaryPersonnalLayers(payload) {
+      return this.summaryResultService.getSummaryResultPersonnalLayers(payload)
+    }
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
     }
@@ -221,8 +224,6 @@ export class InteractionService  {
       return this.calculationModuleService.getCMResultMockData()
 
     } */
-
-    get
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
@@ -256,6 +257,7 @@ export class InteractionService  {
     setCurrentIdCM(currentCMiD) {
       this.currentCMiD = currentCMiD
     }
+    
     getcmRunningProgess() {
       return this.cmRunningProgess
     }

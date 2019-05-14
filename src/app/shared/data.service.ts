@@ -48,6 +48,8 @@ export const geoserverGetFeatureInfoUrl = geoserverUrl + '?' +
 export const nuts_level   = '3';
 export const populationLayerName = 'pop_tot_curr_density'
 export const postStatsLayersHectares = '/stats/layers/hectares';
+export const postStatsPersonalLayer = '/stats/personnal-layers';
+
 export const postStatsLayersNutsLau = '/stats/layers/nuts-lau';
 export const postHeatLoadProfileHectares = '/heat-load-profile/hectares';
 export const postHeatLoadProfileNutsLau = '/heat-load-profile/nuts-lau';

@@ -49,7 +49,7 @@ export class UploadService extends APIService {
   // For Show and Remove
   private activeLayers: Object = {};
   private uploadedFiles: BehaviorSubject<UploadedFile[]> = new BehaviorSubject<UploadedFile[]>([]);
-
+  private activePersonalLayers: BehaviorSubject<Object> = new BehaviorSubject<Object>({});
 
   /**
    * To refresh the list automatically
@@ -57,7 +57,9 @@ export class UploadService extends APIService {
   getUploadedFiles(): BehaviorSubject<UploadedFile[]> {
     return this.uploadedFiles;
   }
-
+  getActivePersonalLayers():BehaviorSubject<Object> {
+    return this.activePersonalLayers;
+  }
   constructor(
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
     private helper: Helper, private mapService: MapService,
@@ -144,18 +146,24 @@ export class UploadService extends APIService {
    * @param id 
    */
   show(id: number|UploadedFile): void {
-    if (!isNumber(id)) id = (id as UploadedFile).id;
+    var curr_layer;
+    if (!isNumber(id)) {
+      curr_layer = (id as UploadedFile)
+      id = curr_layer.id
+    }
+    const payload = {id:id,user_token:this.userToken, layer_id:curr_layer.layer, layer_name:curr_layer.name}
+    this.activePersonalLayers.value[id as number] = payload
     if ((id as number) in this.activeLayers) {
       this.toasterService.showToaster('Layer already active');
       return;
     }
-
     this.activeLayers[id as number] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
       token: this.userToken,
       upload_id: id,
       tms: true,
       maxNativeZoom: 11
     }).addTo(this.mapService.getMap());
+    this.activePersonalLayers.next(this.activePersonalLayers.value)
   }
 
   /**
@@ -168,6 +176,8 @@ export class UploadService extends APIService {
 
     (this.activeLayers[id as number] as TileLayer).removeFrom(this.mapService.getMap());
     delete this.activeLayers[id as number];
+    delete this.activePersonalLayers.value[id as number];
+    this.activePersonalLayers.next(this.activePersonalLayers.value)
   }
 
   /**
@@ -176,6 +186,7 @@ export class UploadService extends APIService {
   removeAll(): void {
     for (let i in this.activeLayers)
       this.remove(parseInt(i));
+    this.activePersonalLayers.next({})
   }
 
   /**

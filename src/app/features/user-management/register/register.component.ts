@@ -43,7 +43,6 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
       email: this.reactiveForm.get('email').value, password: this.reactiveForm.get('password').value,
       first_name: this.reactiveForm.get('firstname').value, last_name: this.reactiveForm.get('lastname').value
     };
-    console.log(payload)
     this.userManagementService.userRegister(payload).then((data) => {
       this.toasterService.showToaster(data.message + '. <br />An email has been sent to your mail address (' + this.email + '). <br />Please press the link in the mail to activate your account.')
       this.closePanel()
@@ -72,6 +71,5 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
   resetRegisterForm() {
     this.reactiveForm.reset();
     this.reactiveForm.controls.recaptchaReactive.reset();
-    console.log(this.reactiveForm.get('recaptchaReactive'));
   }
 }
