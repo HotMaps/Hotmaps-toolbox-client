@@ -28,6 +28,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private indicatorExportButtonState=false;
 
   private indicatorLoading=false;
+  private indicatorPersoLoading=false;
   private animationTimeout;
   private status_id;
   private progressCmAnimation = 0;
@@ -42,7 +43,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private selectedButton = this.dropdown_btns[0];
   private heatloadGraph;
   private result: ResultManagerPayload = {
-    indicators: { layers: null, no_data_layers: null, no_table_layers: null },
+    indicators: { summaryResult: null, personnalLayerResult: null, cmResult: null },
     graphics: null, raster_layers: null, vector_layers: null
   };
 
@@ -88,14 +89,14 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   updatePersonnalLayersResult() {
     if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
     const self = this;
-    self.indicatorLoading = true
+    self.indicatorPersoLoading = true
     self.interactionService.getSummaryPersonnalLayers(self.personnalLayerPayload).then(result => {
-      self.setSummaryResult(result);
+      self.setSummaryResult(result,'personnalLayerResult');
       self.getIndicatorsCatergories()
-      self.indicatorLoading = false
+      self.indicatorPersoLoading = false
     }).catch((e)=>{
       // self.indicatorExportButtonState = false
-      self.indicatorLoading = false
+      self.indicatorPersoLoading = false
       self.logger.log(JSON.stringify(e));
     })
   }
@@ -109,13 +110,13 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
-        this.resetIndicators();
-        self.setSummaryResult(result);
+        // this.resetIndicators();
+        self.setSummaryResult(result, 'summaryResult');
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
 
       }).catch((e) => {
-        this.resetIndicators();
+        // this.resetIndicators();
         self.indicatorExportButtonState = false
         self.indicatorLoading = false
 
@@ -123,8 +124,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       });
     } else {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
-        this.resetIndicators();
-        self.setSummaryResult(result)
+        //this.resetIndicators();
+        self.setSummaryResult(result,'summaryResult')
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
 
@@ -139,14 +140,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  setSummaryResult(result) {
-    if (result.layers.length !== 0) {
-      result.layers.map((layer) => {
-        this.result.indicators.layers.push(layer);
-      })
-    }
-    if (result.no_data_layers.length !== 0) { this.result.indicators.no_data_layers.push(result.no_data_layers) }
-    if (result.no_table_layers.length !== 0) { this.result.indicators.no_table_layers.push(result.no_table_layers) }
+  setSummaryResult(result, type) {
+    this.result.indicators[type] = result
     this.indicatorExportButtonState=true;
   }
 
@@ -226,10 +221,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
-
-        this.result.indicators.layers.push({
+        this.result.indicators.cmResult = {'layers':[{
           name: name_of_result, values: response.status.result.indicator, category: ['overall', calculation_module_category]
-        })
+        }]}
         this.indicatorExportButtonState=true
       }
       this.indicatorLoading = false
@@ -333,29 +327,34 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
-    if (this.result.indicators.layers.length === 0) {
-      this.noIndicator = true
-    } else {
-      this.result.indicators.layers.map((layer) => {
-        if (!this.helper.isNullOrUndefined(layer.name)) {
-          let refToDisplay=[];
-          if(this.helper.isNullOrUndefined(layer.category)){
-            refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
-            layer.category = refToDisplay
-          } else {
-            refToDisplay = layer.category
-          }
-          this.logger.log("refToDisplay:" +refToDisplay)
+    for(let key of Object.keys(this.result.indicators)) {
+      if(this.helper.isNullOrUndefined(this.result.indicators[key])){continue}
+      const lay = this.result.indicators[key].layers
+      if (lay.length === 0) {
+        this.noIndicator = true
+      } else {
+        lay.map((layer) => {
+          if (!this.helper.isNullOrUndefined(layer.name)) {
+            let refToDisplay=[];
+            if(this.helper.isNullOrUndefined(layer.category)){
+              refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
+              layer.category = refToDisplay
+            } else {
+              refToDisplay = layer.category
+            }
+            this.logger.log("refToDisplay:" +refToDisplay)
 
-          refToDisplay.map(ref => {
-            this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
-          })
-        }
-      })
-      this.noIndicator = false
+            refToDisplay.map(ref => {
+              this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
+            })
+          }
+        })
+        this.noIndicator = false
+      }
     }
-    this.selectedButton = this.dropdown_btns[0]
-    this.selectedButton.selected = true
+      this.selectedButton = this.dropdown_btns[0]
+      this.selectedButton.selected = true 
+   
   }
 
   addGraphic(name, type, data, labels, options, category, isLoading) {
@@ -382,7 +381,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   resetIndicators() {
     this.indicatorExportButtonState=false;
-    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
+    this.result.indicators = { personnalLayerResult: null, summaryResult: null, cmResult: null }
   }
   tabSwitch(tabName) {
     this.tabSelected = tabName

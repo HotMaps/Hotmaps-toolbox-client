@@ -87,6 +87,7 @@ import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology
 import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
 import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
 import { FeedbackService } from './features/feedback/feedback.service';
+import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
 
 @NgModule({
   imports: [
@@ -138,7 +139,8 @@ import { FeedbackService } from './features/feedback/feedback.service';
     PersonnalLayersComponent,
     CustomSymbologyComponent,
     SavePanelComponent,
-    FolderPanelComponent
+    FolderPanelComponent,
+    SummaryResultContainerComponent,
   ],
   providers: [
     DataInteractionService,

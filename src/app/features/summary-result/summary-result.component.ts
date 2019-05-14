@@ -26,25 +26,12 @@ import { InteractionService } from '../../shared/services/interaction.service';
   selector: 'htm-summary-result',
   templateUrl: 'summary-result.component.html',
   styleUrls: ['summary-result.component.css'],
-
   providers: [SummaryResultService],
-  animations: [
-    trigger('tableOpacityTrigger', [
-      state('in', style({ opacity: '1' })),
-      transition('void => *', [style({ opacity: '0' }),
-        animate('100ms 300ms')
-      ]),
-      transition('* => void', [
-        animate('50ms', style({ opacity: '0' }))
-      ])
-    ]),
-  ]
 })
 export class SummaryResultComponent  implements OnInit, OnDestroy, OnChanges  {
   // @Input() expanded: boolean;
   @Input() summaryResult;
   @Input() refSelected;
-
   // @Input() loadingData;
   // private buttonRef = default_drop_down_button;
 
