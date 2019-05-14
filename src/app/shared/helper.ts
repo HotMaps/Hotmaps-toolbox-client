@@ -480,7 +480,6 @@ export class Helper {
     }
     array.push(header);
     for (const res of Object.keys(input)) {
-      console.log(res,input[res])
       if(this.isNullOrUndefined(input[res])) {continue}
       for (const entry of input[res].layers) {
 
