@@ -81,6 +81,7 @@ import { NumberFormatPipe } from 'app/shared';
 import { SavePanelComponent } from "../../../features/side-panel/save-panel/save-panel.component";
 import { FolderPanelComponent } from "../../../features/side-panel/folder-panel/folder-panel.component";
 import { FeedbackService } from 'app/features/feedback/feedback.service';
+import { SummaryResultContainerComponent } from 'app/features/summary-result/summary-result-container/summary-result-container.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -108,7 +109,7 @@ describe('MapComponent', () => {
         HeatLoadChartComponent, ChartComponent, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
-        LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
+        LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,SummaryResultContainerComponent,
         SavePanelComponent, FolderPanelComponent
       ],
       providers: [

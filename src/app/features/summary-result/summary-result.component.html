@@ -7,17 +7,17 @@
           <th class="uk-table-shrink">Value</th>
         </tr>
       </thead>
-<!--       <tbody> -->
+      <tbody>
         <ng-container *ngIf="summaryResult.summaryResult">
-          <tbody htm-summary-result-container [results]="summaryResult.summaryResult" [refSelected]="refSelected"></tbody>
+          <htm-summary-result-container [results]="summaryResult.summaryResult" [refSelected]="refSelected"></htm-summary-result-container>
         </ng-container>
         <ng-container *ngIf="summaryResult.cmResult">
-          <tbody htm-summary-result-container [results]="summaryResult.cmResult" [refSelected]="refSelected"></tbody>
+          <htm-summary-result-container [results]="summaryResult.cmResult" [refSelected]="refSelected"></htm-summary-result-container>
         </ng-container>
         <ng-container *ngIf="summaryResult.personnalLayerResult">
-          <tbody htm-summary-result-container [results]="summaryResult.personnalLayerResult" [refSelected]="refSelected"></tbody>
+          <htm-summary-result-container [results]="summaryResult.personnalLayerResult" [refSelected]="refSelected"></htm-summary-result-container>
         </ng-container>
-<!--       </tbody> -->
+      </tbody>
     </table>
   </div>
 </span>

@@ -62,6 +62,9 @@ i {
   background:#333333;
 
 }
+htm-summary-result-container{ 
+  display:contents;
+}
 .header-summary > th{
   color:white;
   border-right: 1px solid #f5f5f5;

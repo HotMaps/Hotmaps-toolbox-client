@@ -4,7 +4,7 @@ import {
 
 @Component({
 
-  selector: '[htm-summary-result-container]',
+  selector: 'htm-summary-result-container',
   templateUrl: 'summary-result-container.component.html',
   styleUrls: ['summary-result-container.component.css']
 })
