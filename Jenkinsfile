@@ -22,6 +22,7 @@ node {
     sh 'ng test --watch=false'
   }
   
+  
   stage('Deploy') {
     if (env.BRANCH_NAME == 'develop') {
       echo "Deploying to DEV platform"  
