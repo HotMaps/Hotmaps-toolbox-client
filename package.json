@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json"
-  },
+  }, 
   "private": true,
   "dependencies": {
     "@angular/animations": "4.1.0",
