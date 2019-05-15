@@ -223,12 +223,13 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setPersonnalLayerPayload(){
     this.personnalLayerPayload={'layers':[]}
     for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
+    console.log(this.personnalLayerPayload)
   }
 
   setSummaryPayloadIds() {
     const payload = { layers: this.layers, year: constant_year, scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds }
-    if (this.helper.isPayloadIncomplete(payload)) {
-      this.interactionService.closeRightPanel();
+    if (this.helper.isPayloadIncomplete(payload) && Object.keys(this.personnalLayers).length == 0) {
+      this.interactionService.disableRightPanel();
       return;
     }
     this.summaryPayload = payload

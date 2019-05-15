@@ -111,10 +111,12 @@ export class InteractionService  {
       this.sidePanelService.topPanelexpandedCollapsed();
     }
     closeRightPanel() {
-        this.sidePanelService.closeRightPanel();
+      this.sidePanelService.closeRightPanel();
     }
     disableRightPanel() {
-        this.sidePanelService.closeRightPanel();
+      this.sidePanelService.closeRightPanel();
+      this.disableButtonWithId('load_result');
+      this.disableStateOpenWithFunction('right');
     }
 
 

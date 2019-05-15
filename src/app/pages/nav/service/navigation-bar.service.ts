@@ -22,7 +22,7 @@ export class NavigationBarService {
       return this.getButtons().filter(x => x.id === id)[0];
     }
     getButtonWithFunction(functionString) {
-      return this.getButtons().filter(x => x.buttonFunction === functionString).filter(x => x.enable === true);
+      return this.getButtons().filter(x => x.buttonFunction == functionString);
     }
     enableOpenStateWithId(buttonid) {
       const button: NavigationButton =  this.getButtonWithId(buttonid);
