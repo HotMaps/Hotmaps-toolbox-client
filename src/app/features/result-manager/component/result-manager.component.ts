@@ -72,7 +72,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     
 
   }
-  updateCMResult() {
+   updateCMResult() {
     const self = this;
     if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
@@ -86,7 +86,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.logger.log(err);
     });
   }
-  updatePersonnalLayersResult() {
+   updatePersonnalLayersResult() {
+    
     if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
     const self = this;
     self.indicatorPersoLoading = true
@@ -105,7 +106,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
     this.interactionService.setCmRunningProgess(this.progressCmAnimation)
   }
-  updateSummaryResult() {
+   updateSummaryResult() {
     const self = this;
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
@@ -145,7 +146,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     this.indicatorExportButtonState=true;
   }
 
-  updateEnergyMixResult() {
+   updateEnergyMixResult() {
     const self = this;
     const graphic = self.addGraphic(energy_mix_title, 'pie', [], [], energy_mix_options, energy_mix_graph_category, true);
 
@@ -160,10 +161,10 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.logger.log(JSON.stringify(e));
     });
   }
-  updateHeatLoadResult() {
+   updateHeatLoadResult() {
     this.heatloadGraph = this.addGraphic(heatloadprofile, 'line', [], [], heat_load_graph_options, 'heatload', true)
   }
-  updateDurationCurveResult() {
+   updateDurationCurveResult() {
     const self = this;
     const graphic = self.addGraphic(duration_curve_graph_title, 'line', [], [], duration_curve_graph_options, duration_curve_graph_category, true);
 

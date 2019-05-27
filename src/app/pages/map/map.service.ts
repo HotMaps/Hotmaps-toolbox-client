@@ -215,7 +215,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }
 
   deleteSelectedAreas() {
-    this.selectionToolService.deleteSelectedAreas()
+    this.selectionToolService.deleteSelectedAreas();
   }
   toggleDrawControls() {
     this.selectionToolService.toggleControl(this.map);

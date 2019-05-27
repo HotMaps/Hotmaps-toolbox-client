@@ -135,6 +135,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.energyMixPayload = null;
     this.heatLoadPayload = null;
     this.durationCurvePayload = null;
+    this.personnalLayerPayload = null;
   }
   setSatusResults() {
     if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
@@ -221,7 +222,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     )
   }
   setPersonnalLayerPayload(){
-    this.personnalLayerPayload={'layers':[]}
+    this.personnalLayerPayload={'layers':[],scale_level: this.helper.getScaleLevelPay(this.scaleLevel), areas: (this.scaleLevel==='-1') ? this.helper.getAreasForPayload(this.areas) : this.nutsIds }
     for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
     console.log(this.personnalLayerPayload)
   }
