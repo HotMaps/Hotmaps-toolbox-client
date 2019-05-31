@@ -10,7 +10,7 @@ import { Helper } from '../helper';
 import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
-import { nuts3, lau2, hectare, constant_year, apiUrl } from '../../shared/data.service';
+import { nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
 import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
 import { Logger } from './logger.service';
@@ -143,27 +143,52 @@ export class UploadService extends APIService {
 
   /**
    * Show the layer on the map
-   * @param id 
+   * @param id
    */
   show(id: number|UploadedFile): void {
-    var curr_layer;
-    if (!isNumber(id)) {
-      curr_layer = (id as UploadedFile)
-      id = curr_layer.id
-    }
-    const payload = {id:id,user_token:this.userToken, layer_id:curr_layer.layer, layer_name:curr_layer.name}
-    this.activePersonalLayers.value[id as number] = payload
-    if ((id as number) in this.activeLayers) {
+    const upFile: UploadedFile = isNumber(id)
+      ? this.getUploadedFiles().getValue().filter(upload => upload.id == id)[0] : id as UploadedFile;
+
+    if (upFile.id in this.activeLayers) {
       this.toasterService.showToaster('Layer already active');
       return;
     }
-    /*this.activeLayers[id as number] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
-      token: this.userToken,
-      upload_id: id,
-      tms: true,
-      maxNativeZoom: 11
-    }).addTo(this.mapService.getMap());*/
-    this.activePersonalLayers.next(this.activePersonalLayers.value)
+
+    const payload = {
+      id: upFile.id,
+      user_token: this.userToken,
+      layer_id: upFile.layer,
+      layer_name:upFile.name
+    };
+
+    if (upFile.name.endsWith('.tif')) {
+      // TODO: move these 2  out of 'if' when csv summary result is implemented
+      this.activePersonalLayers.value[id as number] = payload;
+      this.activePersonalLayers.next(this.activePersonalLayers.value);
+
+      this.activeLayers[upFile.id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
+        token: this.userToken,
+        upload_id: upFile.id,
+        tms: true,
+        maxNativeZoom: 11
+      }).addTo(this.mapService.getMap());
+    } else if (upFile.name.endsWith('.csv')) {
+      this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
+
+        this.activeLayers[upFile.id] = L.geoJson(geoData.json(), {
+          pointToLayer: (feature: any, latlng: L.LatLng) => {
+            if (feature.geometry.type == "Point") return new L.CircleMarker(latlng, {
+              fillColor: feature.style.fill,
+              color: feature.style.stroke,
+              fillOpacity: 1,
+              weight: 1,
+              // https://github.com/Leaflet/Leaflet/issues/2824
+              radius: +feature.style.size
+            });
+          }
+        }).addTo(this.mapService.getMap());
+      });
+    }
   }
 
   /**
