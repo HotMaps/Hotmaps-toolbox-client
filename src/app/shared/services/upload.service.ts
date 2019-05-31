@@ -10,7 +10,7 @@ import { Helper } from '../helper';
 import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
-import { nuts3, lau2, hectare, constant_year, apiUrl } from '../../shared/data.service';
+import { nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
 import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
 import { Logger } from './logger.service';
@@ -169,7 +169,8 @@ export class UploadService extends APIService {
               color: feature.style.stroke,
               fillOpacity: 1,
               weight: 1,
-              radius: feature.style.size
+              // https://github.com/Leaflet/Leaflet/issues/2824
+              radius: +feature.style.size
             });
           }
         }).addTo(this.mapService.getMap());
