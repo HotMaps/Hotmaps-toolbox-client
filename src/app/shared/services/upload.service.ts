@@ -62,7 +62,7 @@ export class UploadService extends APIService {
   }
   constructor(
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
-    private helper: Helper, /*private mapService: MapService,*/
+    private helper: Helper, private mapService: MapService,
     protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) { 
       super(http, logger, loaderService, toasterService);
       this.userStatus.getUserToken().subscribe(value => this.userToken = value);
@@ -199,7 +199,7 @@ export class UploadService extends APIService {
     if (!isNumber(id)) id = (id as UploadedFile).id;
     if (!((id as number) in this.activeLayers)) return; // if the layer wasn't active
 
-   /* (this.activeLayers[id as number] as TileLayer).removeFrom(this.mapService.getMap());*/
+    (this.activeLayers[id as number] as TileLayer).removeFrom(this.mapService.getMap());
     delete this.activeLayers[id as number];
     delete this.activePersonalLayers.value[id as number];
     this.activePersonalLayers.next(this.activePersonalLayers.value)

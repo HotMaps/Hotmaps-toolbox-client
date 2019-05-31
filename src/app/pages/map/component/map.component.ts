@@ -73,9 +73,11 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
-    this.uploadService.getActivePersonalLayers().subscribe((lay) => {
-      this.personnalLayers = Object.assign({},lay);
-    });
+    if (this.uploadService.getActivePersonalLayers) {
+      this.uploadService.getActivePersonalLayers().subscribe((lay) => {
+        this.personnalLayers = Object.assign({}, lay);
+      });
+    }
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
