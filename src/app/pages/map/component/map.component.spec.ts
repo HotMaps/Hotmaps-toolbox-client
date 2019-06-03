@@ -81,6 +81,8 @@ import { NumberFormatPipe } from 'app/shared';
 import { SavePanelComponent } from "../../../features/side-panel/save-panel/save-panel.component";
 import { FolderPanelComponent } from "../../../features/side-panel/folder-panel/folder-panel.component";
 import { FeedbackService } from 'app/features/feedback/feedback.service';
+import { SummaryResultContainerComponent } from "../../../features/summary-result/summary-result-container/summary-result-container.component";
+import { UploadService } from "../../../shared/services/upload.service";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -109,7 +111,7 @@ describe('MapComponent', () => {
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
         LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
-        SavePanelComponent, FolderPanelComponent
+        SavePanelComponent, FolderPanelComponent, SummaryResultContainerComponent
       ],
       providers: [
         {
@@ -149,8 +151,8 @@ describe('MapComponent', () => {
         {provide: UserManagementStatusService, useClass: UserManagementStatusService},
         {provide: UserManagementService, useClass: UserManagementService},
         {provide: FeedbackService, useClass: FeedbackService},
-        {provide: APP_BASE_HREF, useValue: '/'}
-
+        {provide: APP_BASE_HREF, useValue: '/'},
+        {provide: UploadService, useValue: UploadService}
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
