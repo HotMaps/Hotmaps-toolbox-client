@@ -2,6 +2,11 @@
   <htm-user-management></htm-user-management>
   <hmt-search-bar></hmt-search-bar>
   <htm-nav-bar [leftPanel]="leftPanelComponent" [rightPanel]="rightPanelComponent"></htm-nav-bar>
+  <div class="hotmaps-logo">
+    <a href="https://www.hotmaps-project.eu/" target="_blank">
+      <img src="../../../assets/first-page/hotmaps_logo_oneline.svg" />
+    </a>
+  </div>
   <!-- <i  (click)="toggleLeftExpandedState('Layers')"></i>
   <i class="icon-nav flaticon-vector"></i>
   <i class="icon-nav flaticon-folder-2"></i>
@@ -17,9 +22,9 @@
   <htm-folder-panel *ngIf="folderPanelShow"></htm-folder-panel>
   <htm-save-panel *ngIf="savePanelShow"></htm-save-panel>
 
-    <htm-left-side-panel [hidden]="!openLeftSidebar"></htm-left-side-panel>
+  <htm-left-side-panel [hidden]="!openLeftSidebar"></htm-left-side-panel>
 
-    <div id="map" [style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
+  <div id="map" [style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
     <htm-selection-tool *ngIf="selectionToolShow" onclick="event.stopPropagation();"></htm-selection-tool>
 
     <!--<hmt-toolbar></hmt-toolbar> -->
@@ -28,14 +33,8 @@
      </div> -->
   </div>
 
-  <htm-right-side-panel
-    [hidden]="!openRightSidebar"
-    [nutsIds]="nutsIds"
-    [layers]="layers"
-    [personnalLayers]="personnalLayers"
-    [scaleLevel]="scaleLevel"
-    [locationsSelection]="locationsSelection"
-    [areas]="areas"
-    [cmRunned]="cmRunned">
+  <htm-right-side-panel [hidden]="!openRightSidebar" [nutsIds]="nutsIds" [layers]="layers"
+    [personnalLayers]="personnalLayers" [scaleLevel]="scaleLevel" [locationsSelection]="locationsSelection"
+    [areas]="areas" [cmRunned]="cmRunned">
   </htm-right-side-panel>
 </div>
