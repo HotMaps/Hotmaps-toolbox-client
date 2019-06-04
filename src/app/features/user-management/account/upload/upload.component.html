@@ -1,21 +1,27 @@
 <div class="uk-card uk-card-default uk-overflow-container">
   <table class="uk-table" [style.width.px]="tblBody.offsetWidth">
-    <thead><tr>
-      <th>Filename</th>
-      <th>Layer</th>
-      <th class="uk-text-right">Size (kB)</th>
-      <th class="uk-text-center" colspan="2">
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Layer</th>
+        <th class="uk-text-right">Size (kB)</th>
+        <th class="uk-text-center" colspan="2">
           <i class="iButton" (click)="getFiles()">&#8635;</i>
-      </th>
-    </tr></thead>
+        </th>
+      </tr>
+    </thead>
   </table>
 
   <div class="uk-overflow-auto uk-height-small">
     <table class="uk-table uk-table-hover uk-table-striped" #tblBody>
       <tbody>
         <tr *ngFor="let upFile of uploadedFiles">
-          <td><p title="{{ upFile.name }}">{{ upFile.name }}</p></td>
-          <td><p title="{{ getLayerName(upFile.layer) }}">{{ getLayerName(upFile.layer) }}</p></td>
+          <td>
+            <p title="{{ upFile.name }}">{{ upFile.name }}</p>
+          </td>
+          <td>
+            <p title="{{ getLayerName(upFile.layer) }}">{{ getLayerName(upFile.layer) }}</p>
+          </td>
           <td class="uk-text-right">{{ upFile.size * 1000 | number:'1.1-1' }}</td>
           <td class="uk-text-center"><i class="flaticon-import iButton" (click)="download(upFile)"></i></td>
           <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(upFile)"></i></td>
@@ -23,25 +29,45 @@
       </tbody>
     </table>
   </div>
+  <div class="uk-grid-small uk-margin-small" uk-grid>
+    <!--     <p *ngIf="isFileOk" title="{{ file2Up.name }}">{{ file2Up.name }}</p>
+ -->
+    <div class="uk-width-1-2@s">
+      <select class="uk-select" [(ngModel)]="selectedLayer">
+        <option *ngFor="let layer of layers" value="{{ layer.workspaceName }}">[{{ layer.category }}] {{ layer.name }}
+        </option>
+      </select>
 
-  <table id="tblFoot" class="uk-table" [style.width.px]="tblBody.offsetWidth">
-    <tfoot>
-      <tr>
-        <td><p *ngIf="isFileOk" title="{{ file2Up.name }}">{{ file2Up.name }}</p></td>
-        <td>
-          <select class="uk-select" style="width: 100%;" [(ngModel)]="selectedLayer">
-            <option *ngFor="let layer of layers" value="{{ layer.workspaceName }}">[{{ layer.category }}] {{ layer.name }}</option>
-          </select>
-        </td>
-        <td class="uk-text-right">
-          <span *ngIf="isFileOk">{{ file2Up.size / 1000 | number:'1.1-1' }}</span>
-        </td>
-        <td class="uk-text-center">
-          <i class="flaticon-export iButton" (click)="inputFile.click()"></i>
-          <input type="file" accept=".tif,.csv" (change)="onFileChange($event)" style="display:none" #inputFile>
-        </td>
-        <td class="uk-text-center"><i class="iButton" [class.flaticon-plus]="!isUploading" [class.active]="isFileOk && selectedLayer" id="uploadBtn" (click)="fileUpload()"><div *ngIf="isUploading" uk-spinner></div></i></td>
-      </tr>
-    </tfoot>
-  </table>
+    </div>
+    <div class="uk-width-1-2@s">
+      <div class="uk-width-1-1@s" uk-form-custom="target: true">
+        <input type="file" accept=".tif,.csv" (change)="onFileChange($event)" #inputFile>
+        <input class="uk-input" type="text" placeholder="Select file" #inputFile2>
+      </div>
+
+    </div>
+    <div class="uk-width-1-2@s info-box">
+      <!-- <p *ngIf="isFileOk" title="{{ file2Up.name }}">Name:</p>
+      <p *ngIf="isFileOk" title="{{ file2Up.name }}">{{ file2Up.name }}</p> -->
+      <p *ngIf="isFileOk">Size: {{ file2Up.size / 1000 | number:'1.1-1' }} KB</p>
+    </div>
+    <div class="uk-width-1-2@s">
+      <button class="uk-button uk-button-primary uk-width-1-1@s" [disabled]="!isFileOk || !selectedLayer"
+        (click)="fileUpload()" uk-icon="upload">
+<!--         <span *ngIf="!isUploading" uk-icon="upload"></span>
+ -->        <span *ngIf="!isUploading" >Upload layer</span>
+
+        <span *ngIf="isUploading" uk-spinner></span>
+      </button>
+    </div>
+    <!-- <i class="flaticon-export iButton" (click)="inputFile.click()"></i> -->
+
+    <!--     <input type="file" accept=".tif,.csv" (change)="onFileChange($event)" style="display:none" #inputFile>
+ -->
+    <!--  <i class="iButton" [class.flaticon-plus]="!isUploading" [class.active]="isFileOk && selectedLayer" id="uploadBtn"
+      (click)="fileUpload()">
+      <div *ngIf="isUploading" uk-spinner></div>
+    </i> -->
+
+  </div>
 </div>

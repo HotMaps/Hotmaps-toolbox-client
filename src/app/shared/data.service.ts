@@ -178,6 +178,8 @@ export const default_tab_datapanel = 'indicator';
 export const tab1_datapanel = default_tab_datapanel;
 export const tab2_datapanel = 'charts';
 
+export const eu_logo_path = '/assets/first-page/co-funded-h2020-horiz_en.png'
+export const eu_logo_height = 50
 
 // Duration curve graph data
 export const duration_curve_graph_title = 'Duration curve';
