@@ -1,5 +1,5 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
-import { map_options } from './../../../shared/data.service';
+import { map_options, eu_logo_path, eu_logo_height } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
@@ -168,7 +168,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // setup  the map from leaflet
     const self = this;
     this.map = L.map('map', map_options);
-    L.control.zoom({ position: 'topright' }).addTo(this.map);
+    L.control.zoom({ position: 'topright' });
+    var eu_logo = L.control({ position: 'bottomright' });
+
+    eu_logo.onAdd = function(){
+        var div = L.DomUtil.create('div', 'eu_logo');
+        div.innerHTML= "<img src='"+eu_logo_path+"' style='height:"+eu_logo_height+"px' />";
+        return div;
+    }
+    this.map.addControl(eu_logo)
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
