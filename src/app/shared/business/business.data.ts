@@ -134,7 +134,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: solar_optimal_total + '_min', business_name: 'Minimum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells'},
-  {id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate'},
+  {id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate (5%)'},
 
   {id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed'},
   {id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed'},
