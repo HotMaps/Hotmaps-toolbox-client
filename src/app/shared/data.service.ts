@@ -27,7 +27,7 @@ export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';   
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
+export const apiUrl = localApiUrl;
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -179,7 +179,7 @@ export const tab1_datapanel = default_tab_datapanel;
 export const tab2_datapanel = 'charts';
 
 export const eu_logo_path = '/assets/first-page/co-funded-h2020-horiz_en.png'
-export const eu_logo_height = 50
+export const eu_logo_height = 70
 
 // Duration curve graph data
 export const duration_curve_graph_title = 'Duration curve';
