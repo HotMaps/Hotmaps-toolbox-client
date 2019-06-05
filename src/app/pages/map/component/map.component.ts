@@ -170,15 +170,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // setup  the map from leaflet
     const self = this;
     this.map = L.map('map', map_options);
-    L.control.zoom({ position: 'topright' });
-    var eu_logo = L.control({ position: 'bottomright' });
-
+    var eu_logo = L.control({ position: 'bottomright', onAdd:()=>{ } });
     eu_logo.onAdd = function(){
         var div = L.DomUtil.create('div', 'eu_logo');
-        div.innerHTML= "<img src='"+eu_logo_path+"' style='height:"+eu_logo_height+"px' />";
+        div.style = 'background:rgba(255, 255, 255, 0.7); padding:5px'
+        div.innerHTML= "<div style='float: right;height: "+eu_logo_height+"px;'><img src='"+eu_logo_path+"' style='height:100%' /></div><div style='float:right; width:200px'><span style='font-size: 10px;'> This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 723677.</span> </div>";
         return div;
     }
     this.map.addControl(eu_logo)
+    L.control.zoom({ position: 'topright' });
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
