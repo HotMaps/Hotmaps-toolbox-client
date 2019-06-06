@@ -160,10 +160,9 @@ export class UploadService extends APIService {
       layer_id: upFile.layer,
       layer_name:upFile.name
     };
-
     if (upFile.name.endsWith('.tif')) {
       // TODO: move these 2  out of 'if' when csv summary result is implemented
-      this.activePersonalLayers.value[id as number] = payload;
+      this.activePersonalLayers.value[upFile.id as number] = payload;
       this.activePersonalLayers.next(this.activePersonalLayers.value);
 
       this.activeLayers[upFile.id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
