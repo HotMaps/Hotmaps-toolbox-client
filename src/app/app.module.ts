@@ -175,6 +175,7 @@ import { SummaryResultContainerComponent } from './features/summary-result/summa
     UserManagementService,
     UserManagementStatusService,
     UploadService,
+    SnapshotService,
     FeedbackService
   ],
   schemas: [
