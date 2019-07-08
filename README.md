@@ -6,7 +6,34 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Download the git repository
+First, you need to clone the repository on your machine
+
+```bash
+git clone https://github.com/HotMaps/Hotmaps-toolbox-client.git
+```
+
+#### Install all the necessary packages
+Go inside your folder and run the following command:
+
+```bash
+npm install
+```
+
+*If any, solve all your installation problems before going any further*
+
+As you will run the server locally, you will need to change some constants in *src/app/shared/data.service.ts*:
+
+```bash
+export const apiUrl = localApiUrl;
+```
+
+#### Run the server
+```bash
+ng serve -poll 1000
+```
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 
 ## Code scaffolding
 
