@@ -144,7 +144,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/climate/HDD_ha_curr/blob/master/data/HDD_curr.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/HDD_ha_curr/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Solar radiation', category: 'Climate', isSelected: false,
-    workspaceName: 'solar_radiation', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'solar_optimal_total', layer_type: 'solar_radiation',
+    workspaceName: 'solar_radiation', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'solar_optimal_total', layer_type: 'solar_optimal_total',
     download_url: gitlabUrl + '/climate/climate_solar_radiation/blob/master/data/output_solar_radiation.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_solar_radiation/blob/master/README.md', isLoading:false},
   {id: 20, name: 'Wind speed', category: 'Climate', isSelected: false,
