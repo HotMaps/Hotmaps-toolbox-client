@@ -30,7 +30,7 @@ export const apiUrl = localApiUrl;
 
 #### Run the server
 ```bash
-ng serve -poll 1000
+ng serve --poll 1000
 ```
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
