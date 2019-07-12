@@ -22,7 +22,7 @@
       <htm-custom-symbology [symbolgies]="dataInteraction.custom_symbology"></htm-custom-symbology>
     </ng-container>
     <ng-container *ngIf="!dataInteraction.custom_symbology">
-      <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.workspaceName}}" (load)="endLoadLegend()" />
+      <img [hidden]="!displayLegend" src="{{imageUrl}}{{dataInteraction.layer_type}}" (load)="endLoadLegend()" />
       <div *ngIf="!displayLegend" class="loader" uk-spinner></div>
     </ng-container>
   </div>

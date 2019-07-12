@@ -205,7 +205,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(raster.type === 'custom') {
             symb = raster.symbology;
           }
-          this.dataInteractionService.addNewLayer(raster.name, raster.path, raster_type_name, symb)
+          this.dataInteractionService.addNewLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
