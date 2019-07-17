@@ -161,7 +161,7 @@ export class UploadService extends APIService {
       layer_name:upFile.name
     };
     this.activePersonalLayers.value[upFile.id as number] = payload;
-      this.activePersonalLayers.next(this.activePersonalLayers.value);
+    this.activePersonalLayers.next(this.activePersonalLayers.value);
     if (upFile.name.endsWith('.tif')) {
       this.activeLayers[upFile.id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
         token: this.userToken,
