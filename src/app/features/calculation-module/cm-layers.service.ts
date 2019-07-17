@@ -72,6 +72,7 @@ export class CMLayersService extends APIService {
 
         }
       })
+
       layer.addTo(self.layersCM)
       self.cmLayersArray.add(directory, layer)
 
@@ -98,7 +99,6 @@ export class CMLayersService extends APIService {
 
   }
   removelayer(id, type) {
-
     // we get the layer we want to remove
     const layer = this.cmLayersArray.value(id);
     if (type === vector_type_name) {

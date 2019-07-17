@@ -216,7 +216,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(vector.type == 'custom') {
             symb = vector.symbology;
           }
-          this.dataInteractionService.addNewLayer(vector.name, vector.path, vector_type_name,symb)
+          this.dataInteractionService.addNewLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
 
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })

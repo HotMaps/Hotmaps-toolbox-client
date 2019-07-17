@@ -198,6 +198,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
 
   }
+
   // Create payloads
   setCMPayload() {
     let payloadTmp;
@@ -224,15 +225,14 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setPersonnalLayerPayload(){
     this.personnalLayerPayload={'layers':[],scale_level: this.helper.getScaleLevelPay(this.scaleLevel), areas: (this.scaleLevel==='-1') ? this.helper.getAreasForPayload(this.areas) : this.nutsIds }
     for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
-    console.log(this.personnalLayerPayload)
   }
 
   setSummaryPayloadIds() {
     const payload = { layers: this.layers, year: constant_year, scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds }
-    if (this.helper.isPayloadIncomplete(payload) && Object.keys(this.personnalLayers).length == 0) {
+    /* if (this.helper.isPayloadIncomplete(payload) && Object.keys(this.personnalLayers).length == 0) {
       this.interactionService.disableRightPanel();
       return;
-    }
+    } */
     this.summaryPayload = payload
   }
 

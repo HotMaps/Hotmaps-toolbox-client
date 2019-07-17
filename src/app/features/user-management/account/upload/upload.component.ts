@@ -81,7 +81,6 @@ export class UploadComponent implements OnInit {
         this.file2Up = null;
         this.isFileOk = false;
         this.selectedLayer = null;
-        console.log(this.inputFile2);
         this.inputFile2.nativeElement.value = "";
         this.inputFile.nativeElement.value = "";
 
