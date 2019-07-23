@@ -1,0 +1,26 @@
+<!-- <div *ngIf="sessions">
+    <div *ngFor="let cm of cm_list" >
+        {{cm}}
+        <div *ngFor="let session of sessions[cm]">
+            {{session.session_name}}
+        </div>
+    </div>
+
+
+</div> -->
+<div *ngIf="sessions">
+    <ul uk-accordion *ngFor="let cm of cm_list">
+        <li class="uk-open">
+            <a class="uk-accordion-title" href="#">
+                {{cm}}
+            </a>
+            <div class="uk-accordion-content">
+                <ng-container *ngFor="let session of sessions[cm]">
+                    <htm-scenario-assessment-cell [session]="session"></htm-scenario-assessment-cell>
+                </ng-container>
+            </div>
+
+        </li>
+    </ul>
+
+</div>

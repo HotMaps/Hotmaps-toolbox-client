@@ -88,6 +88,9 @@ import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-
 import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
 import { FeedbackService } from './features/feedback/feedback.service';
 import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
+import { ScenarioAssessmentComponent } from './features/scenario-assessment/component/scenario-assessment.component';
+import { ScenarioAssessmentService } from './features/scenario-assessment/service/scenario-assessment.service';
+import { ScenarioAssessmentCellComponent } from './features/scenario-assessment/cell/scenario-assessment-cell.component';
 
 @NgModule({
   imports: [
@@ -141,6 +144,9 @@ import { SummaryResultContainerComponent } from './features/summary-result/summa
     SavePanelComponent,
     FolderPanelComponent,
     SummaryResultContainerComponent,
+    ScenarioAssessmentComponent,
+    ScenarioAssessmentCellComponent
+
   ],
   providers: [
     DataInteractionService,
@@ -176,7 +182,8 @@ import { SummaryResultContainerComponent } from './features/summary-result/summa
     UserManagementStatusService,
     UploadService,
     SnapshotService,
-    FeedbackService
+    FeedbackService,
+    ScenarioAssessmentService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

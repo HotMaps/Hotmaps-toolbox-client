@@ -84,6 +84,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() areas;
   @Input() cmRunned;
   @Input() personnalLayers;
+  @Input() savedSession;
   private cmTimeout;
 
 
@@ -102,6 +103,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private heatLoadPayload;
   private durationCurvePayload;
   private personnalLayerPayload;
+  private scenarioPayload;
 
 
   private loadingData = false;
@@ -118,7 +120,9 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
 
-  ngOnInit() { }
+  ngOnInit() { 
+    console.log(this.savedSession)
+  }
   ngOnDestroy() { }
   ngOnChanges() {
     this.logger.log('RightSidePanelComponent/ngOnChanges')
@@ -136,6 +140,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.heatLoadPayload = null;
     this.durationCurvePayload = null;
     this.personnalLayerPayload = null;
+    this.scenarioPayload = null;
   }
   setSatusResults() {
     if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
@@ -203,21 +208,25 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setCMPayload() {
     let payloadTmp;
     let cm_name='';
+    let session_name='';
+    
     if (this.scaleLevel !== '-1') {
       payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
-      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
+      this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed)
     } else if (this.scaleLevel === '-1') {
       payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
       this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
     }
     if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
-      cm_name+=this.cmRunned.cm.cm_prefix + ' - '
+      // cm_name+=this.cmRunned.cm.cm_prefix + ' - '
+      session_name = this.cmRunned.cm.cm_prefix
     }
-    cm_name += this.cmRunned.cm.cm_name
+    cm_name = this.cmRunned.cm.cm_name
     this.cmPayload = Object.assign(
       {
         url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name,
+        session_name: session_name, save: this.cmRunned.cm.save
       },
       { payload: payloadTmp }
     )

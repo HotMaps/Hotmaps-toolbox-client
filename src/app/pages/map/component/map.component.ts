@@ -41,6 +41,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private scaleLevel;
   private cmRunned;
   private personnalLayers;
+  private savedSession;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -73,6 +74,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
+    if (this.interactionService.getSavedSession() !== null) {
+      this.interactionService.getSavedSession().subscribe((savedSess) => {
+        console.log(savedSess)
+        this.savedSession=savedSess;
+      });
+    }
     if (this.uploadService.getActivePersonalLayers) {
       this.uploadService.getActivePersonalLayers().subscribe((lay) => {
         this.personnalLayers = Object.assign({}, lay);

@@ -25,6 +25,7 @@ import {ElectricityMixService} from '../../features/graph/electricity-mix/servic
 import { CalculationHeatLoadDividedService } from './../../features/calculation-module/service/calculation-test.service';
 import { CalculationModuleService } from './../../features/calculation-module/service/calculation-module.service';
 import { CalculationModuleStatusService } from 'app/features/calculation-module/service/calcultation-module-status.service';
+import { ScenarioAssessmentService } from 'app/features/scenario-assessment/service/scenario-assessment.service';
 
 @Injectable()
 export class InteractionService  {
@@ -47,7 +48,8 @@ export class InteractionService  {
         private calculationModuleStatusService: CalculationModuleStatusService,
         private calculationModuleService: CalculationModuleService,
         private calculationHeatLoadDividedService: CalculationHeatLoadDividedService,
-        private selectionScaleService:SelectionScaleService
+        private selectionScaleService:SelectionScaleService,
+        private scenarioAssessmentService:ScenarioAssessmentService
 
     ) { }
     getScaleLevel() {
@@ -293,5 +295,9 @@ export class InteractionService  {
         this.setStatusCMPanel(false)
 
       }
+    }
+    getSavedSession(){
+      return this.scenarioAssessmentService.getSelectedSavedSession()
+  
     }
 }

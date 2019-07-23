@@ -60,6 +60,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   private cmRunning;
   private layersFromType = [];
   private prefix_cm='';
+  private save_session = true;
+
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
@@ -123,6 +125,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     }
   }
   resetCM() {
+    this.save_session=false
     this.cmSelected.status_id = '';
     this.cmSelected.isApiRequestInTreatment = false;
     this.calculationModuleStatusService.undefinedCmRunned();
@@ -145,6 +148,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   changeValueFromInputArray(event, component) {
     component.input_value = event.target.value
   }
+  changeSaveSession() {
+    this.save_session = !this.save_session;
+  }
   changeValueFromInput(event, component) {
     const newValue = event.target.value
     if ((newValue >= +component.input_min) && (newValue <= +component.input_max)) {
@@ -156,6 +162,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   runCM() {
     this.cmSelected['cm_prefix'] = this.prefix_cm;
     this.prefix_cm='';
+    this.cmSelected['save'] = this.save_session
     this.components.forEach(comp => {
       if(!this.helper.isNullOrUndefined(comp.selected_value)){
         comp.input_value = comp.selected_value

@@ -1,0 +1,19 @@
+<!-- <div *ngIf="sessions">
+    <div *ngFor="let cm of cm_list" >
+        {{cm}}
+        <div *ngFor="let session of sessions[cm]">
+            {{session.session_name}}
+        </div>
+    </div>
+
+
+</div> -->
+<div class="uk-margin-small">
+    <button type="button" name="{{session.session_id}}" (click)="changeSelected()" class="uk-button uk-button-default uk-width-1-1 button-layer" [class.uk-button-secondary]="selected">
+        <input class="uk-checkbox" type="checkbox" [checked]="selected">
+        {{session.session_name}} - {{session.session_datetime}}
+      </button>
+    <div *ngIf="selected">
+        <input class="uk-input uk-margin-small" type="text" placeholder="Scenario tag" [value]="tag_name" />
+    </div>
+</div>

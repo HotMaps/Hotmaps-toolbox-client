@@ -9,6 +9,7 @@
   <div class="notifications">
     <ul class="uk-flex-center" uk-tab id="uk-tab-left-panel">
       <li class="uk-active layers-tab"><a href="">layers</a></li>
+      <li><a href="" (click)="updateCmss()">Scenarios</a></li>
       <li [class.uk-disabled]="!isZoneSelected"><a href="" (click)="updateCmss()">Calculation modules</a></li>
     </ul>
     <ul id="my-id3" class="uk-switcher">
@@ -31,6 +32,9 @@
                   </li>
               </ul>
             </span>
+      </li>
+      <li>
+        <htm-scenario-assessment></htm-scenario-assessment>
       </li>
       <li [hidden]="!isZoneSelected">
           <htm-cms [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected" [scaleLevel]="scaleLevel"></htm-cms>
