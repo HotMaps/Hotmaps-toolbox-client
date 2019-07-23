@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UploadService, UploadedFile } from 'app/shared/services/upload.service';
 
 
@@ -15,8 +15,9 @@ export class PersonnalLayersComponent implements OnInit {
 
   constructor(private uploadService: UploadService) { }
   layers: UploadedLayer[] = [];
-
+ 
   ngOnInit() {
+
     if (this.uploadService.getUploadedFiles) {
       this.uploadService.getUploadedFiles().subscribe(files => {
         this.layers = files.map(file => {

@@ -205,7 +205,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(raster.type === 'custom') {
             symb = raster.symbology;
           }
-          this.dataInteractionService.addNewLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
+          this.dataInteractionService.addNewCMLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
@@ -216,7 +216,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(vector.type == 'custom') {
             symb = vector.symbology;
           }
-          this.dataInteractionService.addNewLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
+          this.dataInteractionService.addNewCMLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
 
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })

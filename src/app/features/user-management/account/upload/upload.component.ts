@@ -19,7 +19,8 @@ export class UploadComponent implements OnInit {
   @ViewChild('inputFile') inputFile;
 
   layers: DataInteractionClass[] = [];
-  selectedLayer: string = null;
+  //selectedLayer: string = null;
+  selectedLayer = null;
 
   constructor(private upService: UploadService, private layerService: DataInteractionService) { }
 
@@ -76,7 +77,7 @@ export class UploadComponent implements OnInit {
     if (!(this.isFileOk && this.selectedLayer))
       return;
     this.isUploading = true;
-    this.upService.add(this.file2Up, this.selectedLayer).then((success) => {      
+    this.upService.add(this.file2Up, this.selectedLayer.workspaceName).then((success) => {      
       if (success) {
         this.file2Up = null;
         this.isFileOk = false;

@@ -15,6 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
 import { Logger } from './logger.service';
 import { LoaderService } from './loader.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 
 
 interface LayerInfo {
@@ -62,7 +63,7 @@ export class UploadService extends APIService {
   }
   constructor(
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
-    private helper: Helper, private mapService: MapService,
+    private helper: Helper, private mapService: MapService, private dataInsteractionService: DataInteractionService,
     protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) { 
       super(http, logger, loaderService, toasterService);
       this.userStatus.getUserToken().subscribe(value => this.userToken = value);
@@ -85,12 +86,13 @@ export class UploadService extends APIService {
    * @param layer layer of the file
    * @returns Promise with success of the procedure
    */
-  add(file: File, layer?: string): Promise<boolean> {
+  add(file: File, layer?): Promise<boolean> {
     let form = new FormData();
     form.append('token', this.userToken);
     form.append('name', file.name);
     form.append('file', file, file.name);
     form.append('layer', layer);
+    /* form.append('layer_type', layer.layer_type); */
     return super.POSTunStringify(form, uploadUrl + 'add', {headers: new Headers() })
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
@@ -103,6 +105,7 @@ export class UploadService extends APIService {
    */
   delete(id: number|UploadedFile): Promise<boolean> {
     this.remove(id); // remove first
+    this.dataInsteractionService.removeLayer(id)
     if (!isNumber(id)) id = (id as UploadedFile).id;
 
     return super.DELETE(uploadUrl + 'delete', {
@@ -136,11 +139,20 @@ export class UploadService extends APIService {
   list(): Promise<UploadedFile[]> {
     return super.POSTunStringify({ token: this.userToken }, uploadUrl + 'list')
       .then(response => {
+        this.addLayersToDatainteraction(response["uploads"]);
         this.uploadedFiles.next(response["uploads"]);
         return this.getUploadedFiles().getValue();
       });
   }
+  addLayersToDatainteraction(uploads) {
+    uploads.map(upload => {
+      if(!this.dataInsteractionService.layerExists(upload)){
+        console.log(upload, 'Layer added to LayerInteractionData')
 
+        this.dataInsteractionService.addNewLayer(upload.name,upload.id,'heat') //remplacer par upload.layer_type   
+      }
+    })
+  }
   /**
    * Show the layer on the map
    * @param id
@@ -206,9 +218,14 @@ export class UploadService extends APIService {
    * Remove all active layers
    */
   removeAll(): void {
-    for (let i in this.activeLayers)
-      this.remove(parseInt(i));
+    console.log(this.uploadedFiles.value)
+    for (let up in this.uploadedFiles.value) {
+     this.dataInsteractionService.removeLayer(this.uploadedFiles.value[up].id)
+      // this.remove(parseInt(i));
+    }
+    
     this.activePersonalLayers.next({})
+    this.uploadedFiles.next([])
   }
 
   /**

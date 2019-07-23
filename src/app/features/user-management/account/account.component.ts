@@ -5,6 +5,7 @@ import { UserManagementService } from '../service/user-management.service';
 import { WaitingStatusComponent } from 'app/shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import { UploadService } from 'app/shared/services/upload.service';
 
 @Component({
   selector: 'htm-account',
@@ -23,7 +24,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   private diskspaceDataset;
   private diskspaceOptions = diskspacechart_options;
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
-    private toasterService: ToasterService, private interactionService: InteractionService) {
+    private toasterService: ToasterService, private interactionService: InteractionService,private uploadService:UploadService) {
     super()
   }
 
@@ -38,7 +39,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
       this.userManagementStatusService.setUsername(null);
       this.userManagementStatusService.setUserIsLoggedOut();
       this.userManagementStatusService.setUserToken(null);
-
+      this.uploadService.removeAll()
       this.interactionService.disableButtonWithId('save');
       this.interactionService.disableButtonWithId('folder');
 

@@ -13,7 +13,7 @@ import 'proj4';
 
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
-  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year, idDefaultLayer,
+  nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year,
   unit_population, zoomLevelDetectChange, formatImage, layers_order
 } from '../../../shared/data.service'
 

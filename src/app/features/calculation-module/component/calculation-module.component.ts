@@ -198,9 +198,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       this.layersFromType = [];
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
+          console.log(layerType)
           this.dataInteractionService.getLayersFromType(layerType).then((data) => {
+            console.log(data)
             if(data.length >=1) {
-              this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName })
+              this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0] })
             } else {
               this.layersFromType.push({ layerType: layerType, layers: [{workspaceName:layerType, name:layerType}], layerSelected: layerType })
             }
@@ -249,8 +251,10 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
 
   setLayerNeeded() {
     this.cmSelected.layers_needed = []
+    console.log(this.layersFromType)
+    console.log(this.cmSelected)
     this.layersFromType.map((layer) => {
-      this.cmSelected.layers_needed.push(layer.layerSelected)
+      this.cmSelected.layers_needed.push({id:layer.layerSelected.id, name:layer.layerSelected.name, workspaceName:layer.layerSelected.workspaceName, layer_type:layer.layerSelected.layer_type})
     })
   }
 

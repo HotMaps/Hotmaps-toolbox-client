@@ -36,7 +36,36 @@ export class DataInteractionService extends APIService {
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
   }
-  addNewLayer(name, id, symbology_layer_type, type_of_layer, symb?) {
+  layerExists(layer) {
+    const arr_size = DataInteractionArray.filter(x => x.id ===layer.id).length 
+    if(arr_size === 0) {
+      return false
+    } else {
+      return true
+    }
+  }
+  removeLayer(id) {
+    console.log(this.getDataArrayServices())
+    DataInteractionArray.splice(DataInteractionArray.findIndex(x => x.id === id),1) ;
+    console.log(this.getDataArrayServices())
+
+  }
+  addNewLayer(name, id, layer_type) {
+    console.log(this.getDataArrayServices())
+
+    const newLayerAdded = DataInteractionArray.push(Object.assign({}, DataInteractionArray[0]))
+    DataInteractionArray[newLayerAdded - 1].name = name;
+    DataInteractionArray[newLayerAdded - 1].id = id;
+    DataInteractionArray[newLayerAdded - 1].layer_type = layer_type;
+    DataInteractionArray[newLayerAdded - 1].ref = ['overall'];
+    DataInteractionArray[newLayerAdded - 1].category = '';
+    DataInteractionArray[newLayerAdded - 1].isSelected = false;
+    DataInteractionArray[newLayerAdded - 1].download_url = '';
+    DataInteractionArray[newLayerAdded - 1].description = '';
+    console.log(this.getDataArrayServices())
+
+  }
+  addNewCMLayer(name, id, symbology_layer_type, type_of_layer, symb?, layer_id = 0) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
@@ -44,6 +73,7 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type_of_layer;
     DataInteractionArray[newLayerAdded - 1].layer_type = symbology_layer_type;
     DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    DataInteractionArray[newLayerAdded - 1].id = layer_id;
   }
   getReadableName(layerName: string): string {
 
@@ -122,6 +152,7 @@ export class DataInteractionService extends APIService {
   }
   getLayersFromType(layer) {
     return this.getDataInteractionServices().then((data) => {
+      console.log(layer, data)
       return data.filter(x => x.layer_type === layer)
     })
   }
