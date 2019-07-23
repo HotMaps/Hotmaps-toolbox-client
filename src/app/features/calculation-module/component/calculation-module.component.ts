@@ -198,9 +198,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       this.layersFromType = [];
       if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
         cm.type_layer_needed.map((layerType) => {
-          console.log(layerType)
           this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-            console.log(data)
             if(data.length >=1) {
               this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0] })
             } else {

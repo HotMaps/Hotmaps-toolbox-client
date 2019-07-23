@@ -91,8 +91,8 @@ export class UploadService extends APIService {
     form.append('token', this.userToken);
     form.append('name', file.name);
     form.append('file', file, file.name);
-    form.append('layer', layer);
-    /* form.append('layer_type', layer.layer_type); */
+    form.append('layer', layer.workspaceName);
+    form.append('layer_type', layer.layer_type);
     return super.POSTunStringify(form, uploadUrl + 'add', {headers: new Headers() })
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
