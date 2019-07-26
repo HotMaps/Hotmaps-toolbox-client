@@ -83,6 +83,7 @@ import { FolderPanelComponent } from "../../../features/side-panel/folder-panel/
 import { FeedbackService } from 'app/features/feedback/feedback.service';
 import { SummaryResultContainerComponent } from "../../../features/summary-result/summary-result-container/summary-result-container.component";
 import { UploadService } from "../../../shared/services/upload.service";
+import { GdprComponent } from '../../../features/gdpr/gdpr.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -111,7 +112,7 @@ describe('MapComponent', () => {
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
         LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
-        SavePanelComponent, FolderPanelComponent, SummaryResultContainerComponent
+        SavePanelComponent, FolderPanelComponent, GdprComponent, SummaryResultContainerComponent
       ],
       providers: [
         {

@@ -15,12 +15,19 @@
     <input class="uk-input" id="form-horizontal-text4" type="password" placeholder="Password" formControlName="password"
            required/>
   </p>
+
+  <p style="padding-left: 25px;">
+    <label>
+      <input class="uk-checkbox" type="checkbox" [checked]="gdpr" (change)="gdpr = !gdpr" /> I have read and understood the <a href="#modal-gdpr" uk-toggle>privacy information</a> and do accept that my personal data is stored and processed
+    </label>
+  </p>
+
   <div class='uk-margin-small'>
     <re-captcha siteKey="6Ldb7zcUAAAAADpGmUYGHKDq4HnQ-WqzfqissGje" formControlName="recaptchaReactive"></re-captcha>
   </div>
   <p>
     <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-    <button class="uk-button uk-button-primary" type="button" [disabled]="reactiveForm.invalid" (click)="!waitingStatus ? createAccount() : null">
+    <button class="uk-button uk-button-primary" type="button" [disabled]="reactiveForm.invalid || !gdpr" (click)="!waitingStatus ? createAccount() : null">
       <span *ngIf="!waitingStatus">Create account</span>
       <span *ngIf="waitingStatus" uk-spinner></span>
     </button>
