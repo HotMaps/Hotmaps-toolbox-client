@@ -85,7 +85,7 @@ export class APIService {
       .catch(this.handleError.bind(this));
   }
 
-  POSTunStringify(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {    
+  POSTunStringify(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {
     if (!request.headers)
       request.headers = this.headers;
     return this.http
@@ -95,13 +95,15 @@ export class APIService {
       .then( response => toJson ? response.json() as any : response)
       .catch(this.handleError.bind(this));
   }
+
   GET(url, request:RequestOptionsArgs = {}): any {
     return this.http.get(url, request)
   }
-  DELETE(url, request:RequestOptionsArgs = {}): any {
-    return this.http.delete(url, request);
 
+  DELETE(url, request:RequestOptionsArgs = {}) {
+    return this.http.delete(url, request);
   }
+
   async pGET(url, request:RequestOptionsArgs = {}): Promise<any>  {
     return await this.http
       .get(url, request)
