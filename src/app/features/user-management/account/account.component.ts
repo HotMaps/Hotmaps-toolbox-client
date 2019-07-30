@@ -44,7 +44,11 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
       "     All your data will be lost!"
     )) {
       this.setWaitingStatus(true);
-      this.userManagementService.userDelete(this.token).then((res) => this.setUserIsLoggedOut(res.message))
+      this.userManagementService.userDelete(this.token)
+        .then((res) => {
+          this.toasterService.showToaster("Your account and data have been successfully deleted");
+          this.setUserIsLoggedOut(res.message);
+        })
         .catch(() => {
           this.toasterService.showToaster("The deletion failed");
           this.setWaitingStatus(false);
