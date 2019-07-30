@@ -12,12 +12,13 @@ import { RecoveryComponent } from '..';
 import { RegisterComponent } from '..';
 import { UserManagementStatusService } from '..';
 import { Logger, LoaderService, ToasterService } from 'app/shared';
-import { ActivateComponent } from './../activate/activate.component';
+import { ActivateComponent } from '../activate';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
 import { AccountComponent } from '..';
 import { UploadComponent } from '../account/upload/upload.component';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { GdprComponent } from '../../gdpr/gdpr.component';
 
 describe('UserManagementComponent', () => {
   let component: UserManagementComponent;
@@ -28,7 +29,7 @@ describe('UserManagementComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ UserManagementComponent, LoginComponent, RegisterComponent,
-        RecoveryComponent, AccountComponent, ChartComponent, ActivateComponent, UploadComponent ],
+        RecoveryComponent, AccountComponent, ChartComponent, ActivateComponent, UploadComponent, GdprComponent ],
       imports: [
         // RouterModule.forRoot(routes),
         FormsModule,

@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-
-import { apiUrl, post_user_register, get_diskspace_endpoint, upload_endpoint, get_filelist_endpoint, get_userinformation_endpoint, get_userupdateprofile_endpoint } from 'app/shared/data.service';
+import {
+  apiUrl,
+  post_user_register,
+  get_diskspace_endpoint,
+  get_filelist_endpoint,
+  get_userinformation_endpoint,
+  get_userupdateprofile_endpoint
+} from 'app/shared/data.service';
 import {
   post_user_register_activate, post_user_login,
   post_user_logout, post_user_recovery, post_user_recovery_ask
@@ -30,6 +36,13 @@ export class UserManagementService extends APIService {
   userLogout(token): Promise<any> {
     return super.POST(this.getTokenPayload(token), apiUrl + post_user_logout )
   }
+
+  userDelete(token: string): Promise<any> {
+    return super.DELETE(apiUrl + "/users", {
+      body: { token: token }
+    }).toPromise();
+  }
+
   userRecover(payload): Promise<any> {
     return super.POST(payload, apiUrl + post_user_recovery)
   }

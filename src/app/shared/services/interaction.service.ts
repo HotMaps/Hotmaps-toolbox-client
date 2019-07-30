@@ -64,7 +64,7 @@ export class InteractionService  {
     }
     unsetLoadingLayerInterraction(layer) {
       this.dataInteractionService.unsetLoadingLayerInterraction(layer)
-      
+
     } */
     // interface for export data service
 
@@ -127,10 +127,10 @@ export class InteractionService  {
       this.navigationBarService.getButtonWithId('folder').stateOpen = toOpen;
     }
     openFolderPanel() {
-      this.actionFolderPanel(true);      
+      this.actionFolderPanel(true);
     }
     closeFolderPanel() {
-      this.actionFolderPanel(false);      
+      this.actionFolderPanel(false);
     }
 
     // Save Panel
@@ -259,7 +259,7 @@ export class InteractionService  {
     setCurrentIdCM(currentCMiD) {
       this.currentCMiD = currentCMiD
     }
-    
+
     getcmRunningProgess() {
       return this.cmRunningProgess
     }
@@ -283,7 +283,7 @@ export class InteractionService  {
           this.logger.log('CMMMMM REMOVEEEED')
           this.currentCMiD = null
           })
-          .catch({});
+          .catch(() => {});
 
 
       }

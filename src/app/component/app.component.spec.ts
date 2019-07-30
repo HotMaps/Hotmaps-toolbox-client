@@ -84,6 +84,7 @@ import { UploadComponent } from 'app/features/user-management/account/upload/upl
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
 import { FolderPanelComponent } from "../features/side-panel/folder-panel/folder-panel.component";
 import { SavePanelComponent } from "../features/side-panel/save-panel/save-panel.component";
+import { GdprComponent } from "../features/gdpr/gdpr.component";
 import { SummaryResultContainerComponent } from "../features/summary-result/summary-result-container/summary-result-container.component";
 
 describe('AppComponent: Router', () => {
@@ -106,7 +107,7 @@ describe('AppComponent: Router', () => {
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
-        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, SummaryResultContainerComponent
+        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, GdprComponent, SummaryResultContainerComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
