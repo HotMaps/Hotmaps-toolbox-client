@@ -142,9 +142,8 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/potential/potential_solar/blob/master/data/solar_opt.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solar/blob/master/README.md', isLoading:false},
 
-// shallow geothermal vector layer
-  {id: 20, name: 'Geothermal potential heat conductivity ', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_shallowgeothermal', zoomLevel: 0, ref: ['overall','potential'], styleName: 'shallow_geothermal_potential', layer_type:  'potential',
+  {id: 20, name: 'Geothermal potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall','potential'], styleName: 'shallow_geothermal_potential', layer_type:  'shallow_geothermal_potential',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading:false},
 
 
