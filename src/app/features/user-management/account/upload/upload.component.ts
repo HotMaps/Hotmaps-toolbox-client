@@ -19,7 +19,8 @@ export class UploadComponent implements OnInit {
   @ViewChild('inputFile') inputFile;
 
   layers: DataInteractionClass[] = [];
-  selectedLayer: string = null;
+  //selectedLayer: string = null;
+  selectedLayer = null;
 
   constructor(private upService: UploadService, private layerService: DataInteractionService) { }
 

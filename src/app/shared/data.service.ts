@@ -33,7 +33,7 @@ export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
 export const defaultLayerType = heat_type;
 
-export const idDefaultLayer = 1;
+export const idDefaultLayer = 0;
 export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';

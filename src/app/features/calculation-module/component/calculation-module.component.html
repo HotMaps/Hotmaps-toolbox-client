@@ -95,8 +95,8 @@
                 <h4 class="uk-heading-bullet main_title input_title">Input type selection</h4>
                 <span>Type: {{layersTable.layerType}}</span>
                 <select class="uk-select" [(ngModel)]="layersTable.layerSelected" (change)="setLayerNeeded()">
-                  <ng-container *ngFor="let layer of layersTable.layers;">
-                    <option [ngValue]="layer.workspaceName">
+                  <ng-container *ngFor="let layer of layersTable.layers">
+                    <option *ngIf="!layer.name.includes('layers of')" [ngValue]="layer"> <!-- TODO: to be modified when generated layers will be handled -->
                       {{layer.name}}
                     </option>
                   </ng-container>

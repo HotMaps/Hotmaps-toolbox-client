@@ -34,7 +34,7 @@
  -->
     <div class="uk-width-1-2@s">
       <select class="uk-select" [(ngModel)]="selectedLayer">
-        <option *ngFor="let layer of layers" value="{{ layer.workspaceName }}">[{{ layer.category }}] {{ layer.name }}
+        <option *ngFor="let layer of layers" [ngValue]="layer" >[{{ layer.category }}] {{ layer.name }}
         </option>
       </select>
 

@@ -15,6 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
 import { Logger } from './logger.service';
 import { LoaderService } from './loader.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 
 
 interface LayerInfo {
@@ -44,7 +45,7 @@ export const LayersExportInfo = {"default":{"schema":"","data_type":"raster"},"h
 @Injectable()
 export class UploadService extends APIService {
 
-  private userToken: string;  
+  private userToken: string;
 
   // For Show and Remove
   private activeLayers: Object = {};
@@ -62,8 +63,8 @@ export class UploadService extends APIService {
   }
   constructor(
     private userStatus: UserManagementStatusService, private slcToolsService : SelectionToolService,
-    private helper: Helper, private mapService: MapService,
-    protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) { 
+    private helper: Helper, private mapService: MapService, private dataInsteractionService: DataInteractionService,
+    protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) {
       super(http, logger, loaderService, toasterService);
       this.userStatus.getUserToken().subscribe(value => this.userToken = value);
     }
@@ -85,24 +86,26 @@ export class UploadService extends APIService {
    * @param layer layer of the file
    * @returns Promise with success of the procedure
    */
-  add(file: File, layer?: string): Promise<boolean> {
+  add(file: File, layer?): Promise<boolean> {
     let form = new FormData();
     form.append('token', this.userToken);
     form.append('name', file.name);
     form.append('file', file, file.name);
-    form.append('layer', layer);
+    form.append('layer', layer.workspaceName);
+    form.append('layer_type', layer.layer_type);
     return super.POSTunStringify(form, uploadUrl + 'add', {headers: new Headers() })
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
   }
 
   /**
-   * Delete an uploaded file 
+   * Delete an uploaded file
    * @param id id of the file to delete
    * @returns Promise with success of the procedure
    */
   delete(id: number|UploadedFile): Promise<boolean> {
     this.remove(id); // remove first
+    this.dataInsteractionService.removeLayer(id)
     if (!isNumber(id)) id = (id as UploadedFile).id;
 
     return super.DELETE(uploadUrl + 'delete', {
@@ -111,7 +114,7 @@ export class UploadService extends APIService {
       .then(response => this.showMsg(response.json(), true))
       .catch(response => this.showMsg(response.json(), false));
   }
-  
+
   /**
    * Create an url to download a uploaded file
    * @param id
@@ -124,7 +127,7 @@ export class UploadService extends APIService {
     return super.POSTunStringify({
       token: this.userToken, id: id
     }, uploadUrl + 'download', { responseType : ResponseContentType.Blob, headers: new Headers() }).then(data => URL.createObjectURL(data) as string
-    ).catch(err => {      
+    ).catch(err => {
       return ""; // If file dont exist
     });
   }
@@ -136,11 +139,20 @@ export class UploadService extends APIService {
   list(): Promise<UploadedFile[]> {
     return super.POSTunStringify({ token: this.userToken }, uploadUrl + 'list')
       .then(response => {
+        this.addLayersToDatainteraction(response["uploads"]);
         this.uploadedFiles.next(response["uploads"]);
         return this.getUploadedFiles().getValue();
       });
   }
+  addLayersToDatainteraction(uploads) {
+    uploads.map(upload => {
+      if(!this.dataInsteractionService.layerExists(upload)){
+        console.log(upload, 'Layer added to LayerInteractionData')
 
+        this.dataInsteractionService.addNewLayer(upload.name,upload.id, upload.layer_type)
+      }
+    })
+  }
   /**
    * Show the layer on the map
    * @param id
@@ -190,7 +202,7 @@ export class UploadService extends APIService {
 
   /**
    * Remove the layer from the map
-   * @param id 
+   * @param id
    */
   remove(id: number|UploadedFile): void {
     if (!isNumber(id)) id = (id as UploadedFile).id;
@@ -206,9 +218,14 @@ export class UploadService extends APIService {
    * Remove all active layers
    */
   removeAll(): void {
-    for (let i in this.activeLayers)
-      this.remove(parseInt(i));
+    console.log(this.uploadedFiles.value)
+    for (let up in this.uploadedFiles.value) {
+     this.dataInsteractionService.removeLayer(this.uploadedFiles.value[up].id)
+      // this.remove(parseInt(i));
+    }
+
     this.activePersonalLayers.next({})
+    this.uploadedFiles.next([])
   }
 
   /**
@@ -220,7 +237,7 @@ export class UploadService extends APIService {
    */
   export(layer: string, schema?: string, year?: number): Promise<BlobUrl> {
     const scale = this.slcToolsService.getScaleValue();
-    const layerExportInfo: LayerInfo = LayersExportInfo[layer] != null ? LayersExportInfo[layer] : LayersExportInfo["default"];    
+    const layerExportInfo: LayerInfo = LayersExportInfo[layer] != null ? LayersExportInfo[layer] : LayersExportInfo["default"];
     let nutsOrAreas: Array<string|any>;
     let isNuts : boolean = true;
 
@@ -229,7 +246,7 @@ export class UploadService extends APIService {
 
     if (scale === lau2 || scale === nuts3) {
       layer += '_' + scale.toLowerCase().replace(' ', ''); // To change in API ?
-      nutsOrAreas = this.slcToolsService.nutsIdsSubject.getValue()      
+      nutsOrAreas = this.slcToolsService.nutsIdsSubject.getValue()
     } else if (scale === hectare) {
       layer += '_ha';
       nutsOrAreas = this.helper.getAreasForPayload(this.slcToolsService.areasSubject.getValue());
