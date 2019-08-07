@@ -64,23 +64,23 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: 20, name: 'Share of gross floor area - constructions before 1975', category: 'Buildings', isSelected: false,
     workspaceName: 'ghs_built_1975_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
-    download_url: gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/data/GHS_BUILT_1975_100_share.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/README.md', isLoading:false},
+    download_url: gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/data/GHS_BUILT_1975_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/README.md', isLoading:false},
 
   {id: 20, name: 'Share of gross floor area - constructions between 1975 and 1990', category: 'Buildings', isSelected: false,
     workspaceName: 'ghs_built_1990_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
-    download_url: gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/data/GHS_BUILT_1990_100_share.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/README.md', isLoading:false},
+    download_url: gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/data/GHS_BUILT_1990_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/README.md', isLoading:false},
 
   {id: 20, name: 'Share of gross floor area - constructions between 1990 and 2000', category: 'Buildings', isSelected: false,
     workspaceName: 'ghs_built_2000_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
-    download_url: gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/data/GHS_BUILT_2000_100_share.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/README.md', isLoading:false},
+    download_url: gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/data/GHS_BUILT_2000_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/README.md', isLoading:false},
 
   {id: 20, name: 'Share of gross floor area - constructions between 2000 and 2014', category: 'Buildings', isSelected: false,
     workspaceName: 'ghs_built_2014_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
-    download_url: gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/data/GHS_BUILT_2014_100_share.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/share_gfa_per_construction_period/blob/master/README.md', isLoading:false},
+    download_url: gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/data/GHS_BUILT_2014_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/README.md', isLoading:false},
 
   // Industry
   {id: 45345, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
