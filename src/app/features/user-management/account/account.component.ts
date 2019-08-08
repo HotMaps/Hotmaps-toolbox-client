@@ -1,11 +1,10 @@
-import { color_usedspace, color_unusedspace, labels_diskspacechart, diskspacechart_options } from './../../../shared/data.service';
+import { color_usedspace, color_unusedspace, labels_diskspacechart, diskspacechart_options } from '../../../shared';
 import { UserManagementStatusService } from './../service/user-management-status.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
 import { WaitingStatusComponent } from 'app/shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { UploadService } from 'app/shared/services/upload.service';
 
 @Component({
   selector: 'htm-account',
@@ -24,7 +23,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   private diskspaceDataset;
   private diskspaceOptions = diskspacechart_options;
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
-    private toasterService: ToasterService, private interactionService: InteractionService,private uploadService:UploadService) {
+    private toasterService: ToasterService, private interactionService: InteractionService) {
     super()
   }
 
@@ -33,24 +32,38 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   }
 
   logout() {
-    this.setWaitingStatus(true)
-    this.userManagementService.userLogout(this.token).then((data) => {
-      this.toasterService.showToaster(data.message)
-      this.userManagementStatusService.setUsername(null);
-      this.userManagementStatusService.setUserIsLoggedOut();
-      this.userManagementStatusService.setUserToken(null);
-      this.uploadService.removeAll()
-      this.interactionService.disableButtonWithId('save');
-      this.interactionService.disableButtonWithId('folder');
+    this.setWaitingStatus(true);
+    this.userManagementService.userLogout(this.token)
+      .then((res) => this.setUserIsLoggedOut(res.message))
+      .catch(() => this.setWaitingStatus(false));
+  }
 
-    }).catch(() => {
-      this.setWaitingStatus(false)
-    })
+  delete(): void {
+    if (confirm(
+      "Are sure you want to delete your account?\n" +
+      "     All your data will be lost!"
+    )) {
+      this.setWaitingStatus(true);
+      this.userManagementService.userDelete(this.token).then((res) => this.setUserIsLoggedOut(res.message))
+        .catch(() => {
+          this.toasterService.showToaster("The deletion failed");
+          this.setWaitingStatus(false);
+        })
+      ;
+    }
   }
-  setUserIsLoggedOut() {
-    this.setWaitingStatus(false)
-    this.userManagementStatusService.setUserIsLoggedOut()
+
+  private setUserIsLoggedOut(msg?: string): void {
+    this.userManagementStatusService.setUsername(null);
+    this.userManagementStatusService.setUserIsLoggedOut();
+    this.userManagementStatusService.setUserToken(null);
+
+    this.interactionService.disableButtonWithId('save');
+    this.interactionService.disableButtonWithId('folder');
+
+    if (msg) this.toasterService.showToaster(msg);
   }
+
   getAcountInformation() {
     this.getUserInformations()
     if (this.userManagementService.getDiskSpace)

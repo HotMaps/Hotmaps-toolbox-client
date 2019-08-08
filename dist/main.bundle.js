@@ -7954,14 +7954,13 @@ module.exports = "<h2 class=\"uk-modal-title\">Welcome {{username}}</h2>\n\n<div
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_data_service__ = __webpack_require__("../../../../../src/app/shared/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management-status.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__ = __webpack_require__("../../../../../src/app/features/user-management/service/user-management.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_shared_component_waiting_status__ = __webpack_require__("../../../../../src/app/shared/component/waiting-status.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__ = __webpack_require__("../../../../../src/app/shared/services/interaction.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_app_shared_services_upload_service__ = __webpack_require__("../../../../../src/app/shared/services/upload.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -7989,21 +7988,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var AccountComponent = (function (_super) {
     __extends(AccountComponent, _super);
-    function AccountComponent(userManagementService, userManagementStatusService, toasterService, interactionService, uploadService) {
+    function AccountComponent(userManagementService, userManagementStatusService, toasterService, interactionService) {
         var _this = _super.call(this) || this;
         _this.userManagementService = userManagementService;
         _this.userManagementStatusService = userManagementStatusService;
         _this.toasterService = toasterService;
         _this.interactionService = interactionService;
-        _this.uploadService = uploadService;
         _this.firstname = '';
         _this.lastname = '';
         _this.isEditable = false;
-        _this.diskspaceLabels = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_29" /* labels_diskspacechart */];
-        _this.diskspaceOptions = __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_30" /* diskspacechart_options */];
+        _this.diskspaceLabels = __WEBPACK_IMPORTED_MODULE_0__shared__["labels_diskspacechart"];
+        _this.diskspaceOptions = __WEBPACK_IMPORTED_MODULE_0__shared__["diskspacechart_options"];
         return _this;
     }
     AccountComponent.prototype.ngOnInit = function () {
@@ -8012,21 +8009,30 @@ var AccountComponent = (function (_super) {
     AccountComponent.prototype.logout = function () {
         var _this = this;
         this.setWaitingStatus(true);
-        this.userManagementService.userLogout(this.token).then(function (data) {
-            _this.toasterService.showToaster(data.message);
-            _this.userManagementStatusService.setUsername(null);
-            _this.userManagementStatusService.setUserIsLoggedOut();
-            _this.userManagementStatusService.setUserToken(null);
-            _this.uploadService.removeAll();
-            _this.interactionService.disableButtonWithId('save');
-            _this.interactionService.disableButtonWithId('folder');
-        }).catch(function () {
-            _this.setWaitingStatus(false);
-        });
+        this.userManagementService.userLogout(this.token)
+            .then(function (res) { return _this.setUserIsLoggedOut(res.message); })
+            .catch(function () { return _this.setWaitingStatus(false); });
     };
-    AccountComponent.prototype.setUserIsLoggedOut = function () {
-        this.setWaitingStatus(false);
+    AccountComponent.prototype.delete = function () {
+        var _this = this;
+        if (confirm("Are sure you want to delete your account?\n" +
+            "     All your data will be lost!")) {
+            this.setWaitingStatus(true);
+            this.userManagementService.userDelete(this.token).then(function (res) { return _this.setUserIsLoggedOut(res.message); })
+                .catch(function () {
+                _this.toasterService.showToaster("The deletion failed");
+                _this.setWaitingStatus(false);
+            });
+        }
+    };
+    AccountComponent.prototype.setUserIsLoggedOut = function (msg) {
+        this.userManagementStatusService.setUsername(null);
         this.userManagementStatusService.setUserIsLoggedOut();
+        this.userManagementStatusService.setUserToken(null);
+        this.interactionService.disableButtonWithId('save');
+        this.interactionService.disableButtonWithId('folder');
+        if (msg)
+            this.toasterService.showToaster(msg);
     };
     AccountComponent.prototype.getAcountInformation = function () {
         var _this = this;
@@ -8037,7 +8043,7 @@ var AccountComponent = (function (_super) {
                 _this.diskspaceUsed = data.used_size;
                 _this.diskspaceDataset = [{
                         label: 'Account disk',
-                        backgroundColor: [__WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_31" /* color_usedspace */], __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["_32" /* color_unusedspace */]],
+                        backgroundColor: [__WEBPACK_IMPORTED_MODULE_0__shared__["color_usedspace"], __WEBPACK_IMPORTED_MODULE_0__shared__["color_unusedspace"]],
                         data: [_this.diskspaceUsed, _this.diskspaceMax - _this.diskspaceUsed]
                     }];
             });
@@ -8086,10 +8092,10 @@ AccountComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/features/user-management/account/account.component.html"),
         styles: [__webpack_require__("../../../../../src/app/features/user-management/account/account.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7_app_shared_services_upload_service__["a" /* UploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_app_shared_services_upload_service__["a" /* UploadService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_user_management_service__["a" /* UserManagementService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_user_management_status_service__["a" /* UserManagementStatusService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_app_shared__["ToasterService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_shared_services_interaction_service__["a" /* InteractionService */]) === "function" && _d || Object])
 ], AccountComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 //# sourceMappingURL=account.component.js.map
 
 /***/ }),
@@ -10826,6 +10832,10 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["proj3035"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "labels_diskspacechart")) __webpack_require__.d(__webpack_exports__, "labels_diskspacechart", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["labels_diskspacechart"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "diskspacechart_options")) __webpack_require__.d(__webpack_exports__, "diskspacechart_options", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["diskspacechart_options"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "color_usedspace")) __webpack_require__.d(__webpack_exports__, "color_usedspace", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["color_usedspace"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "color_unusedspace")) __webpack_require__.d(__webpack_exports__, "color_unusedspace", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["color_unusedspace"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__location__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__location__["buttons_heat_load"]; });
@@ -10870,6 +10880,10 @@ var Dictionary = (function () {
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["proj3035"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "labels_diskspacechart")) __webpack_require__.d(__webpack_exports__, "labels_diskspacechart", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["labels_diskspacechart"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "diskspacechart_options")) __webpack_require__.d(__webpack_exports__, "diskspacechart_options", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["diskspacechart_options"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "color_usedspace")) __webpack_require__.d(__webpack_exports__, "color_usedspace", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["color_usedspace"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "color_unusedspace")) __webpack_require__.d(__webpack_exports__, "color_unusedspace", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["color_unusedspace"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__latLng_interface__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_0__latLng_interface__["buttons_heat_load"]; });
@@ -12039,6 +12053,10 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "lau2name")) __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["lau2name"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "geoserverUrl")) __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["geoserverUrl"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "proj3035")) __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["proj3035"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "labels_diskspacechart")) __webpack_require__.d(__webpack_exports__, "labels_diskspacechart", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["labels_diskspacechart"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "diskspacechart_options")) __webpack_require__.d(__webpack_exports__, "diskspacechart_options", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["diskspacechart_options"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "color_usedspace")) __webpack_require__.d(__webpack_exports__, "color_usedspace", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["color_usedspace"]; });
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "color_unusedspace")) __webpack_require__.d(__webpack_exports__, "color_unusedspace", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["color_unusedspace"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "hectare")) __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["hectare"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "heatloadprofile")) __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["heatloadprofile"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__class__, "buttons_heat_load")) __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_1__class__["buttons_heat_load"]; });
@@ -12070,6 +12088,10 @@ var _a, _b;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "lau2name", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["f"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "geoserverUrl", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["g"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "proj3035", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "labels_diskspacechart", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_29"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "diskspacechart_options", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_30"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "color_usedspace", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_31"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "color_unusedspace", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_32"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "hectare", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["d"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "heatloadprofile", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_38"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "buttons_heat_load", function() { return __WEBPACK_IMPORTED_MODULE_4__data_service__["_39"]; });
