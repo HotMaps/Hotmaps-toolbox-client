@@ -127,8 +127,11 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }
+  setValueConnected(){}
   updateCmss() {
-    this.calculationModuleComponent.updateCMs()
+    if(this.isConnected){
+      this.calculationModuleComponent.updateCMs()
+    }
   }
   getLayerAndCategory(layers: any) {
     this.logger.log(' layerr = ' + JSON.stringify(layers))

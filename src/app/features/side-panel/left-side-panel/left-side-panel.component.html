@@ -33,7 +33,10 @@
             </span>
       </li>
       <li [hidden]="!isZoneSelected">
-          <htm-cms [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected" [scaleLevel]="scaleLevel" [userToken]="userToken"></htm-cms>
+        <span *ngIf="!isConnected" [class.warning]="!isConnected">
+          You need to be connected to use calculation modules
+        </span>
+        <htm-cms *ngIf="isConnected" [expandedState]="expandedState" [expanded]="expanded" [layersSelected]="layersSelected" [scaleLevel]="scaleLevel" [userToken]="userToken"></htm-cms>
       </li>
     </ul>
   </div>
