@@ -83,6 +83,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   layers: DataInteractionClass[];
   category = [];
   private isZoneSelected = false;
+  private userToken = null;
   private isConnected = false;
 
   expanded = false;
@@ -122,6 +123,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     }
 
     this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
+    this.userStatusService.getUserToken().subscribe(value => this.userToken = value);
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }

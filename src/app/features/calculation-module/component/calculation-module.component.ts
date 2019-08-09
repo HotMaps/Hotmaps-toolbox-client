@@ -44,8 +44,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
-  private inputs_categories = inputs_categories;
   @Input() scaleLevel;
+  @Input() userToken;
+  private inputs_categories = inputs_categories;
   private type_select = 'select';
   private type_input = 'input';
   private type_radio = 'radio';
@@ -75,13 +76,10 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-
     this.logger.log('ngOnChanges called')
   }
   ngOnDestroy() {
-
     this.logger.log('ngOnDestroy called')
-
   }
   subscribeEvents() {
     const self = this;
@@ -155,6 +153,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   }
   runCM() {
     this.cmSelected['cm_prefix'] = this.prefix_cm;
+    this.cmSelected['token'] = this.userToken;
     this.prefix_cm='';
     this.components.forEach(comp => {
       if(!this.helper.isNullOrUndefined(comp.selected_value)){
@@ -249,8 +248,6 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
 
   setLayerNeeded() {
     this.cmSelected.layers_needed = []
-    console.log(this.layersFromType)
-    console.log(this.cmSelected)
     this.layersFromType.map((layer) => {
       this.cmSelected.layers_needed.push({id:layer.layerSelected.id, name:layer.layerSelected.name, workspaceName:layer.layerSelected.workspaceName, layer_type:layer.layerSelected.layer_type})
     })

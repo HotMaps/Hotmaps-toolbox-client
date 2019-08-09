@@ -45,13 +45,10 @@ export class DataInteractionService extends APIService {
     }
   }
   removeLayer(id) {
-    console.log(this.getDataArrayServices())
     DataInteractionArray.splice(DataInteractionArray.findIndex(x => x.id === id),1) ;
-    console.log(this.getDataArrayServices())
 
   }
   addNewLayer(name, id, layer_type) {
-    console.log(this.getDataArrayServices())
 
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, DataInteractionArray[0]))
     DataInteractionArray[newLayerAdded - 1].name = name;
@@ -62,7 +59,6 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].isSelected = false;
     DataInteractionArray[newLayerAdded - 1].download_url = '';
     DataInteractionArray[newLayerAdded - 1].description = '';
-    console.log(this.getDataArrayServices())
 
   }
   addNewCMLayer(name, id, symbology_layer_type, type_of_layer, symb?, layer_id = 0) {
@@ -152,7 +148,6 @@ export class DataInteractionService extends APIService {
   }
   getLayersFromType(layer) {
     return this.getDataInteractionServices().then((data) => {
-      console.log(layer, data)
       return data.filter(x => x.layer_type === layer)
     })
   }
