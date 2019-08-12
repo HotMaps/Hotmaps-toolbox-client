@@ -1,5 +1,5 @@
 // TODO: LAYER INTERACTION SERVICE
-// Default layer id are defined to 0 by default 
+// Default layer id are defined to 0 by default
 // In this dictionnary, We can have calculation module
 
 // Improvement of coding style :
@@ -11,6 +11,7 @@ import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.servic
 export const potential_type = 'potential';
 export const wwtp_type = 'wwtp';
 export const gfa_type = 'gross_floor_area';
+export const cp_type = 'contrcution_period';
 export const industry_type = 'industy';
 export const population_type = 'population';
 export const building_volume_type = 'building_volumes';
@@ -62,6 +63,28 @@ export const DataInteractionArray: DataInteractionClass[] = [
     workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
     download_url: gitlabUrl + '/vol_nonres_curr_density/blob/master/data/vol_nonres_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_nonres_curr_density/blob/master/README.md', isLoading:false},
+
+
+
+  {id: idDefaultLayer, name: 'Share of gross floor area - constructions before 1975', category: 'Buildings', isSelected: false,
+    workspaceName: 'ghs_built_1975_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+    download_url: gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/data/GHS_BUILT_1975_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/README.md', isLoading:false},
+
+  {id: idDefaultLayer, name: 'Share of gross floor area - constructions between 1975 and 1990', category: 'Buildings', isSelected: false,
+    workspaceName: 'ghs_built_1990_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+    download_url: gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/data/GHS_BUILT_1990_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/README.md', isLoading:false},
+
+  {id: idDefaultLayer, name: 'Share of gross floor area - constructions between 1990 and 2000', category: 'Buildings', isSelected: false,
+    workspaceName: 'ghs_built_2000_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+    download_url: gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/data/GHS_BUILT_2000_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/README.md', isLoading:false},
+
+  {id: idDefaultLayer, name: 'Share of gross floor area - constructions between 2000 and 2014', category: 'Buildings', isSelected: false,
+    workspaceName: 'ghs_built_2014_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+    download_url: gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/data/GHS_BUILT_2014_100_share.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/README.md', isLoading:false},
 
   // Industry
   {id: idDefaultLayer, name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
@@ -127,6 +150,18 @@ export const DataInteractionArray: DataInteractionClass[] = [
   {id: idDefaultLayer, name: 'Geothermal potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
     workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall','potential']/*['no_showed']*/, styleName: 'shallow_geothermal_potential', layer_type:  'shallow_geothermal_potential',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading:false},
+
+
+  {id: idDefaultLayer, name: 'Potential solarthermal collectors - rooftop', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+    download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/data/potential_solarthermal_collectors_rooftop.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/README.md', isLoading:false},
+
+  {id: idDefaultLayer, name: 'Potential solarthermal collectors - open field', category: 'R.E.S. Potential', isSelected: false,
+    workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+    download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/data/potential_solarthermal_collectors_open_field.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/README.md', isLoading:false},
+
 
 // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
   /*  {id: idDefaultLayer, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,

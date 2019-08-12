@@ -3129,6 +3129,7 @@ var DataInteractionClass = (function () {
 /* unused harmony export potential_type */
 /* unused harmony export wwtp_type */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return gfa_type; });
+/* unused harmony export cp_type */
 /* unused harmony export industry_type */
 /* unused harmony export population_type */
 /* unused harmony export building_volume_type */
@@ -3136,13 +3137,14 @@ var DataInteractionClass = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return cm_default_layer; });
 // TODO: LAYER INTERACTION SERVICE
-// Default layer id are defined to 0 by default 
+// Default layer id are defined to 0 by default
 // In this dictionnary, We can have calculation module
 
 
 var potential_type = 'potential';
 var wwtp_type = 'wwtp';
 var gfa_type = 'gross_floor_area';
+var cp_type = 'contrcution_period';
 var industry_type = 'industy';
 var population_type = 'population';
 var building_volume_type = 'building_volumes';
@@ -3189,6 +3191,22 @@ var DataInteractionArray = [
         workspaceName: 'vol_nonres_curr_density', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'vol_tot_curr_density', layer_type: building_volume_type,
         download_url: gitlabUrl + '/vol_nonres_curr_density/blob/master/data/vol_nonres_curr_density.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/vol_nonres_curr_density/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Share of gross floor area - constructions before 1975', category: 'Buildings', isSelected: false,
+        workspaceName: 'ghs_built_1975_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+        download_url: gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/data/GHS_BUILT_1975_100_share.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1975_100_share/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Share of gross floor area - constructions between 1975 and 1990', category: 'Buildings', isSelected: false,
+        workspaceName: 'ghs_built_1990_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+        download_url: gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/data/GHS_BUILT_1990_100_share.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_1990_100_share/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Share of gross floor area - constructions between 1990 and 2000', category: 'Buildings', isSelected: false,
+        workspaceName: 'ghs_built_2000_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+        download_url: gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/data/GHS_BUILT_2000_100_share.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2000_100_share/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Share of gross floor area - constructions between 2000 and 2014', category: 'Buildings', isSelected: false,
+        workspaceName: 'ghs_built_2014_100_share', zoomLevel: 0, ref: ['overall', 'buildings'], styleName: 'construction_periods', layer_type: cp_type,
+        download_url: gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/data/GHS_BUILT_2014_100_share.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/construction_periods/ghs_built_2014_100_share/blob/master/README.md', isLoading: false },
     // Industry
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Industrial Sites Emissions', category: 'Industry', isSelected: false,
         workspaceName: 'industrial_database_emissions', zoomLevel: 0, ref: ['overall', 'industry'], styleName: 'industrial_emissions', layer_type: 'industrial_database_emissions', order: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["t" /* industry_layer_order */],
@@ -3248,6 +3266,14 @@ var DataInteractionArray = [
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Geothermal potential Heat Conductivity ', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall', 'potential'] /*['no_showed']*/, styleName: 'shallow_geothermal_potential', layer_type: 'shallow_geothermal_potential',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Potential solarthermal collectors - rooftop', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+        download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/data/potential_solarthermal_collectors_rooftop.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/README.md', isLoading: false },
+    { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Potential solarthermal collectors - open field', category: 'R.E.S. Potential', isSelected: false,
+        workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+        download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/data/potential_solarthermal_collectors_open_field.tif',
+        description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/README.md', isLoading: false },
     // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
     /*  {id: idDefaultLayer, name: 'Geothermal Potential Hc Class ', category: 'R.E.S. Potential', isSelected: false,
         workspaceName: 'potential_shallowgeothermal_hc_class', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'potential_shallowgeothermal_hc_class', layer_type: defaultLayerType,
@@ -10514,6 +10540,12 @@ var heat_tot_curr_density = 'heat_tot_curr_density';
 var gfa_tot_curr_density = 'gfa_tot_curr_density';
 var gfa_res_curr_density = 'gfa_res_curr_density';
 var gfa_nonres_curr_density = 'gfa_nonres_curr_density';
+var ghs_built_1975_100_share = 'ghs_built_1975_100_share';
+var ghs_built_1990_100_share = 'ghs_built_1990_100_share';
+var ghs_built_2000_100_share = 'ghs_built_2000_100_share';
+var ghs_built_2014_100_share = 'ghs_built_2014_100_share';
+var potential_solarthermal_collectors_rooftop = 'potential_solarthermal_collectors_rooftop';
+var potential_solarthermal_collectors_open_field = 'potential_solarthermal_collectors_open_field';
 var heat_res_curr_density = 'heat_res_curr_density';
 var heat_nonres_curr_density = 'heat_nonres_curr_density';
 var solar_optimal_total = 'solar_optimal_total';
@@ -10573,6 +10605,16 @@ var BusinessInterfaceRenderArray = [
     { id: 177, api_name: gfa_nonres_curr_density + '_count_cell', business_name: 'Counted cells' },
     { id: 17, api_name: gfa_nonres_curr_density + '_' + gfa_nonres_curr_density + '_per_' + pop_tot_curr_density, business_name: 'GFA per person' },
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Construction periods
+    { id: 176, api_name: ghs_built_1975_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+    { id: 177, api_name: ghs_built_1975_100_share + '_count_cell', business_name: 'Counted cells' },
+    { id: 176, api_name: ghs_built_1990_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+    { id: 177, api_name: ghs_built_1990_100_share + '_count_cell', business_name: 'Counted cells' },
+    { id: 176, api_name: ghs_built_2000_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+    { id: 177, api_name: ghs_built_2000_100_share + '_count_cell', business_name: 'Counted cells' },
+    { id: 176, api_name: ghs_built_2014_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+    { id: 177, api_name: ghs_built_2014_100_share + '_count_cell', business_name: 'Counted cells' },
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Building volume
     { id: 175, api_name: vol_tot_curr_density + '_total', business_name: 'Building volume' },
     { id: 176, api_name: vol_tot_curr_density + '_density', business_name: 'Building volume density' },
@@ -10607,6 +10649,16 @@ var BusinessInterfaceRenderArray = [
     { id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation' },
     { id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells' },
     { id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate (5%)' },
+    { id: 176, api_name: potential_solarthermal_collectors_rooftop + '_average', business_name: 'Average solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_rooftop + '_min', business_name: 'Minimum solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_rooftop + '_max', business_name: 'Maximum solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_rooftop + '_cells', business_name: 'Counted cells' },
+    { id: 176, api_name: potential_solarthermal_collectors_rooftop + '_total', business_name: 'Restricted solar thermal potential - rooftop' },
+    { id: 176, api_name: potential_solarthermal_collectors_open_field + '_average', business_name: 'Average solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_open_field + '_min', business_name: 'Minimum solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_open_field + '_max', business_name: 'Maximum solar radiation' },
+    { id: 176, api_name: potential_solarthermal_collectors_open_field + '_cells', business_name: 'Counted cells' },
+    { id: 176, api_name: potential_solarthermal_collectors_open_field + '_total', business_name: 'Restricted solar thermal potential - open field' },
     { id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed' },
     { id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed' },
     { id: 176, api_name: wind_50m + '_max', business_name: 'Maximum wind speed' },
