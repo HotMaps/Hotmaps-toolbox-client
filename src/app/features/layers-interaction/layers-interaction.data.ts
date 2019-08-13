@@ -11,7 +11,7 @@ import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.servic
 export const potential_type = 'potential';
 export const wwtp_type = 'wwtp';
 export const gfa_type = 'gross_floor_area';
-export const cp_type = 'contrcution_periods';
+export const cp_type = 'construction_periods';
 export const industry_type = 'industy';
 export const population_type = 'population';
 export const solar_potential_fields_type = 'solar_potential_fields';
