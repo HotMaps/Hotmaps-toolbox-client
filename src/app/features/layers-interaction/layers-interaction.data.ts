@@ -11,9 +11,11 @@ import { zoomLevelDetectChange, styleNameHeat } from './../../shared/data.servic
 export const potential_type = 'potential';
 export const wwtp_type = 'wwtp';
 export const gfa_type = 'gross_floor_area';
-export const cp_type = 'contrcution_period';
+export const cp_type = 'contrcution_periods';
 export const industry_type = 'industy';
 export const population_type = 'population';
+export const solar_potential_fields_type = 'solar_potential_fields';
+
 export const building_volume_type = 'building_volumes';
 export const gitlabUrl = 'https://gitlab.com/hotmaps/';
 
@@ -153,12 +155,12 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
 
   {id: idDefaultLayer, name: 'Potential solarthermal collectors - rooftop', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+    workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: solar_potential_fields_type,
     download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/data/potential_solarthermal_collectors_rooftop.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/README.md', isLoading:false},
 
   {id: idDefaultLayer, name: 'Potential solarthermal collectors - open field', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+    workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: solar_potential_fields_type,
     download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/data/potential_solarthermal_collectors_open_field.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/README.md', isLoading:false},
 

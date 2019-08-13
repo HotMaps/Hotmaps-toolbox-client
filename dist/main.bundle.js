@@ -3132,6 +3132,7 @@ var DataInteractionClass = (function () {
 /* unused harmony export cp_type */
 /* unused harmony export industry_type */
 /* unused harmony export population_type */
+/* unused harmony export solar_potential_fields_type */
 /* unused harmony export building_volume_type */
 /* unused harmony export gitlabUrl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataInteractionArray; });
@@ -3144,9 +3145,10 @@ var DataInteractionClass = (function () {
 var potential_type = 'potential';
 var wwtp_type = 'wwtp';
 var gfa_type = 'gross_floor_area';
-var cp_type = 'contrcution_period';
+var cp_type = 'contrcution_periods';
 var industry_type = 'industy';
 var population_type = 'population';
+var solar_potential_fields_type = 'solar_potential_fields';
 var building_volume_type = 'building_volumes';
 var gitlabUrl = 'https://gitlab.com/hotmaps/';
 var DataInteractionArray = [
@@ -3267,11 +3269,11 @@ var DataInteractionArray = [
         workspaceName: 'shallow_geothermal_potential', zoomLevel: 0, ref: ['overall', 'potential'] /*['no_showed']*/, styleName: 'shallow_geothermal_potential', layer_type: 'shallow_geothermal_potential',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_shallowgeothermal/blob/master/README.md', isLoading: false },
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Potential solarthermal collectors - rooftop', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+        workspaceName: 'potential_solarthermal_collectors_rooftop', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: solar_potential_fields_type,
         download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/data/potential_solarthermal_collectors_rooftop.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_rooftop/blob/master/README.md', isLoading: false },
     { id: __WEBPACK_IMPORTED_MODULE_0__shared_data_service__["r" /* idDefaultLayer */], name: 'Potential solarthermal collectors - open field', category: 'R.E.S. Potential', isSelected: false,
-        workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: 'solar_optimal_total',
+        workspaceName: 'potential_solarthermal_collectors_open_field', zoomLevel: 0, ref: ['overall', 'potential'], styleName: 'solar_potential_fields', layer_type: solar_potential_fields_type,
         download_url: gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/data/potential_solarthermal_collectors_open_field.tif',
         description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_solarthermal_collectors_open_field/blob/master/README.md', isLoading: false },
     // I would suggest to only show on of the geothermal layers - in DB integrated as vector and raster - which one do we need for the indicator?
