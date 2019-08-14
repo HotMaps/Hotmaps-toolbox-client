@@ -26,7 +26,9 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     if (this.layerService.getDataInteractionServices) // == isNUllorUndefined
-      this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
+      this.layerService.getDataInteractionServices().then(layers => {
+        this.layers = layers.map(layer => layer); // seems to remove personnal and cm layer
+      });
     this.getFiles();
     if (this.upService.getUploadedFiles)
       this.upService.getUploadedFiles().subscribe(files => this.uploadedFiles = files);

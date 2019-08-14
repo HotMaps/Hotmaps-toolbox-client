@@ -37,12 +37,8 @@ export class DataInteractionService extends APIService {
     return DataInteractionArray;
   }
   layerExists(layer) {
-    const arr_size = DataInteractionArray.filter(x => x.id ===layer.id).length 
-    if(arr_size === 0) {
-      return false
-    } else {
-      return true
-    }
+    const arr_size = DataInteractionArray.filter(x => x.id ===layer.id).length;
+    return arr_size !== 0;
   }
   removeLayer(id) {
     console.log(this.getDataArrayServices())
@@ -62,9 +58,8 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].isSelected = false;
     DataInteractionArray[newLayerAdded - 1].download_url = '';
     DataInteractionArray[newLayerAdded - 1].description = '';
-    console.log(this.getDataArrayServices())
-
   }
+  
   addNewCMLayer(name, id, symbology_layer_type, type_of_layer, symb?, layer_id = 0) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;

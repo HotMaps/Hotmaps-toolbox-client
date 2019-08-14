@@ -144,15 +144,16 @@ export class UploadService extends APIService {
         return this.getUploadedFiles().getValue();
       });
   }
+
   addLayersToDatainteraction(uploads) {
     uploads.map(upload => {
       if(!this.dataInsteractionService.layerExists(upload)){
-        console.log(upload, 'Layer added to LayerInteractionData')
-
         this.dataInsteractionService.addNewLayer(upload.name,upload.id, upload.layer_type)
       }
     })
   }
+  
+
   /**
    * Show the layer on the map
    * @param id
@@ -218,10 +219,8 @@ export class UploadService extends APIService {
    * Remove all active layers
    */
   removeAll(): void {
-    console.log(this.uploadedFiles.value)
     for (let up in this.uploadedFiles.value) {
      this.dataInsteractionService.removeLayer(this.uploadedFiles.value[up].id)
-      // this.remove(parseInt(i));
     }
 
     this.activePersonalLayers.next({})
