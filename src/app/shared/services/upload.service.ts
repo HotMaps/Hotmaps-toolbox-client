@@ -234,14 +234,11 @@ export class UploadService extends APIService {
    * @param year the year to export
    * @returns Promise with the url to download and a filename
    */
-  export(layer: string, schema?: string, year?: number): Promise<BlobUrl> {
+  export(layer: string, uuid?: string, schema?: string, year?: number): Promise<BlobUrl> {
     const scale = this.slcToolsService.getScaleValue();
     const layerExportInfo: LayerInfo = LayersExportInfo[layer] != null ? LayersExportInfo[layer] : LayersExportInfo["default"];
     let nutsOrAreas: Array<string|any>;
     let isNuts : boolean = true;
-
-    if (year == null) year = constant_year;
-    if (schema == null) schema = layerExportInfo.schema;
 
     if (scale === lau2 || scale === nuts3) {
       layer += '_' + scale.toLowerCase().replace(' ', ''); // To change in API ?
@@ -252,15 +249,32 @@ export class UploadService extends APIService {
       isNuts = false;
     }
 
-    return super.POSTunStringify({
-      layers: layer, [isNuts ? 'nuts': 'areas' ] : nutsOrAreas,
-      schema: schema, year : year.toString()
-    }, uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`,
-    { responseType : ResponseContentType.Blob }, false).then(data => {
-        return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
-    }).catch(() => {
-      this.toasterService.showToaster("Sorry, We can't export this layer yet");
-      return {url: '', filename: ''} as BlobUrl;
-    });
+    if (uuid == null) {
+      if (year == null) year = constant_year;
+      if (schema == null) schema = layerExportInfo.schema;
+      return super.POSTunStringify({
+        layers: layer, [isNuts ? 'nuts': 'areas' ] : nutsOrAreas,
+        schema: schema, year : year.toString()
+      }, uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`,
+      { responseType : ResponseContentType.Blob }, false).then(data => {
+          return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
+      }).catch(() => {
+        this.toasterService.showToaster("Sorry, We can't export this layer");
+        return {url: '', filename: ''} as BlobUrl;
+      });
+    }
+    else { // if the layer is a cm layer
+      let type : string = 'raster';
+      if (layer.includes('shapefile')) type = 'vector'
+      return super.POSTunStringify({
+        uuid: uuid, type: type
+      }, uploadUrl + 'export/cmLayer',
+      { responseType : ResponseContentType.Blob }, false).then(data => {
+          return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `${type == 'raster'? '.tif' : '.zip'}` } as BlobUrl //TODO: correct
+      }).catch(() => {
+        this.toasterService.showToaster("Sorry, We can't export this layer");
+        return {url: '', filename: ''} as BlobUrl;
+      });
+    }
   }
 }

@@ -48,7 +48,7 @@ export class LayerToolComponent implements OnInit {
 
   export() {
     this.loading = true;
-    this.uploadService.export(this.dataInteraction.workspaceName)
+    this.uploadService.export(this.dataInteraction.workspaceName, this.dataInteraction.cm_id)
       .then(data => {
         if (data.url != "") {
           //window.open(data.url); //POPUP blocker
