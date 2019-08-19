@@ -64,7 +64,7 @@ export class DataInteractionService extends APIService {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
-    DataInteractionArray[newLayerAdded - 1].cm_id = id;
+    DataInteractionArray[newLayerAdded - 1].cm_id = id; // TODO: replace name
     DataInteractionArray[newLayerAdded - 1].type_of_layer = type_of_layer;
     DataInteractionArray[newLayerAdded - 1].layer_type = symbology_layer_type;
     DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
