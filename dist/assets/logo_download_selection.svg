@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 159" xmlns:xlink="http://www.w3.org/1999/xlink" height="159" width="114">
-    <defs/>
-    <g transform="translate(-354,-135)">
-        <path d="M0,0L104,0L104,91L0,91L0,0z" stroke-width="5" id="shape1" transform="translate(359,140)" fill="#83b3e3" stroke="#0070c0" stroke-dasharray="6,4"/>
-        <path d="M0,23.6L23.6,0L23.6,14.2L88.6,14.2C93.8,14.2,98,18.4,98,23.6C98,28.8,93.8,33.1,88.6,33.1L23.6,33.1L23.6,47.2L0,23.6z" stroke-width="3.33333" id="shape2" transform="matrix(0,-1,1,0,387.4,279)" fill="#191919" stroke="#ffffff"/>
-        <path stroke-width="4" d="M0,0L62,0" id="shape3" transform="translate(382,283)" fill="none" stroke="#000000"/>
-    </g>
-</svg>
