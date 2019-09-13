@@ -41,14 +41,10 @@ export class DataInteractionService extends APIService {
     return arr_size !== 0;
   }
   removeLayer(id) {
-    console.log(this.getDataArrayServices())
     DataInteractionArray.splice(DataInteractionArray.findIndex(x => x.id === id),1) ;
-    console.log(this.getDataArrayServices())
 
   }
   addNewLayer(name, id, layer_type) {
-    console.log(this.getDataArrayServices())
-
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, DataInteractionArray[0]))
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].id = id;
@@ -147,7 +143,6 @@ export class DataInteractionService extends APIService {
   }
   getLayersFromType(layer) {
     return this.getDataInteractionServices().then((data) => {
-      console.log(layer, data)
       return data.filter(x => x.layer_type === layer)
     })
   }
