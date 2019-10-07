@@ -93,7 +93,8 @@
             <div *ngIf="layersFromType.length >= 1" class="uk-margin">
               <div *ngFor="let layersTable of layersFromType">
                 <h4 class="uk-heading-bullet main_title input_title">Input type selection</h4>
-                <span>Type: {{layersTable.layerType}}</span>
+                <h5>Type: {{layersTable.layerType}}</h5>
+                <h5>Description: {{layersTable.type_description}}</h5>
                 <select class="uk-select" [(ngModel)]="layersTable.layerSelected" (change)="setLayerNeeded()">
                   <ng-container *ngFor="let layer of layersTable.layers">
                     <option *ngIf="layer.category != 'Calculation module'" [ngValue]="layer"> <!-- TODO: to be modified when generated layers will be handled -->

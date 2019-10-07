@@ -71,3 +71,6 @@ option {
 .input-prefix input {
   height:30px;
 }
+h5, p {
+  margin:0;
+}
