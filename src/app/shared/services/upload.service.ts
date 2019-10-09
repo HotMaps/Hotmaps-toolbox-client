@@ -10,6 +10,9 @@ import { Helper } from '../helper';
 import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
+declare const L: any;
+import 'leaflet-dvf';
+
 import { nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
 import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
@@ -152,7 +155,7 @@ export class UploadService extends APIService {
       }
     })
   }
-  
+
 
   /**
    * Show the layer on the map
@@ -187,14 +190,64 @@ export class UploadService extends APIService {
 
         this.activeLayers[upFile.id] = L.geoJson(geoData.json(), {
           pointToLayer: (feature: any, latlng: L.LatLng) => {
-            if (feature.geometry.type == "Point") return new L.CircleMarker(latlng, {
-              fillColor: feature.style.fill,
-              color: feature.style.stroke,
-              fillOpacity: 1,
-              weight: 1,
-              // https://github.com/Leaflet/Leaflet/issues/2824
-              radius: +feature.style.size
-            });
+            if (feature.geometry.type == "Point" && feature.style.name) { // filter out elements without any style.name
+              if (feature.style.name == 'circle') {
+                // circle marker
+                return new L.CircleMarker(latlng, {
+                  fillColor: feature.style.fill,
+                  color: feature.style.stroke,
+                  fillOpacity: 1,
+                  weight: 1,
+                  // https://github.com/Leaflet/Leaflet/issues/2824
+                  radius: +feature.style.size
+                });
+              } else if (feature.style.name == 'chart') {
+                // chart marker
+                feature.style.weight = 1;
+                feature.style.fillOpacity = 1;
+                feature.style.radius = feature.style.size / 2.0;
+                feature.style.name = '';
+                for (let key in feature.style.chartOptions) {
+                  feature.style.chartOptions[key].displayName = ' ';
+                  feature.style.chartOptions[key].displayText = function(value) {
+                    let v = Math.round(value * 100) / 100;
+                    return v + ' %';
+                  };
+                }
+                return new L.PieChartMarker(latlng, feature.style);
+              } else {
+                // polygon marker
+
+                // define shape from style name
+                let nb_sides = 4;
+                switch (feature.style.name) {
+                  case 'triangle':
+                    nb_sides = 3;
+                    break;
+                  case 'square':
+                    nb_sides = 4;
+                    break;
+                  case 'pentagon':
+                    nb_sides = 5;
+                    break;
+                  case 'hexagon':
+                    nb_sides = 6;
+                    break;
+                  case 'octogon':
+                    nb_sides = 8;
+                    break;
+                }
+                return new L.RegularPolygonMarker(latlng, {
+                  numberOfSides: nb_sides,
+                  rotation: -90.0,
+                  fillColor: feature.style.fill,
+                  color: feature.style.stroke,
+                  fillOpacity: 1,
+                  weight: 1,
+                  radius: +feature.style.size
+                });
+              }
+            }
           }
         }).addTo(this.mapService.getMap());
       });
