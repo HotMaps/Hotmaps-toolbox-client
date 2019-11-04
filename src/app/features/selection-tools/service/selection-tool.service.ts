@@ -385,12 +385,18 @@ export class SelectionToolService extends APIService {
         this.updateSelectionToolAction();
       }
     }
+    console.log("addToMultiSelectionLayers / console")
+    var width = this.multiSelectionLayers.getBounds().getEast() - this.multiSelectionLayers.getBounds().getWest();
+    var height = this.multiSelectionLayers.getBounds().getNorth() - this.multiSelectionLayers.getBounds().getSouth();
+    console.log("bounds width:" + width + "; bounds height:" + height);
+
   }
 
   addHectareToMultiSelectionLayers(layer: any) {
     if (this.helper.isNullOrUndefined(layer) === false) {
       this.multiSelectionLayers.addLayer(layer);
     }
+    
   }
 
   deleteSelectedAreas() {
