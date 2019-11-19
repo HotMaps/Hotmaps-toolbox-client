@@ -31,10 +31,10 @@
   <htm-folder-panel *ngIf="folderPanelShow"></htm-folder-panel>
   <htm-save-panel *ngIf="savePanelShow"></htm-save-panel>
 
-  <htm-left-side-panel [hidden]="!openLeftSidebar"></htm-left-side-panel>
+  <htm-left-side-panel [hidden]="!openLeftSidebar" [selectionSurface]="selectionSurface"></htm-left-side-panel>
 
   <div id="map" [style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
-    <htm-selection-tool *ngIf="selectionToolShow" onclick="event.stopPropagation();"></htm-selection-tool>
+    <htm-selection-tool *ngIf="selectionToolShow" [selectionSurface]="selectionSurface" onclick="event.stopPropagation();"></htm-selection-tool>
 
     <!--<hmt-toolbar></hmt-toolbar> -->
     <!-- <div class="zoom-level-box">

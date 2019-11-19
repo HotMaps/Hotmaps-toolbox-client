@@ -13,7 +13,7 @@
                 <div class="uk-container">
                   <div class="uk-offcanvas-content">
   
-                    <button class="uk-button uk-button-default uk-margin-small-right" [class.api-inprogress]="cm.isApiRequestInTreatment"
+                    <button class="uk-button uk-button-default uk-margin-small-right" [class.button-disabled]="selectionSurface >= maxSurfaceValueCM" [class.api-inprogress]="cm.isApiRequestInTreatment"
                       type="button" (click)="selectCM(cm)">
                       <ng-container *ngIf="cm.isApiRequestInTreatment">Refresh</ng-container> {{cm.cm_name}}
                     </button>

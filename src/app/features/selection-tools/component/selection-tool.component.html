@@ -9,6 +9,7 @@
       <div class="uk-container uk-padding-remove">
         <div>
           <p [@elementsTrigger]="'in'">{{elementSelected}}<span>{{nbElementsSelected}}</span></p>
+          <p [@elementsTrigger]="'in'">Bounding box<span>{{selectionSurface | number: '1.0-2' | numberformat}} km<sup>2</sup></span> </p>
           <p [@elementsTrigger]="'in'">Scale<span>{{scaleSelected}}</span></p>
         </div>
         <div class="divButtons">
