@@ -273,7 +273,7 @@ export class InteractionService  {
 
   }
   deleteCMTask() {
-
+    
 
       if (this.getcmRunningProgess() >0 && this.currentCMiD != null){
 

@@ -78,3 +78,9 @@ h5, p {
   color:rgba(214, 56, 56, 0.32);
   border: 1px solid #e5e5e5;
 }
+.spinner-stop {
+  float: left;
+    line-height: 38px;
+    position: absolute;
+    left: 43px;
+}

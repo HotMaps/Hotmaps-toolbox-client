@@ -192,6 +192,10 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       return true;
     }
   }
+  stopCM() {
+    this.interactionService.setCurrentIdCM(null);
+  }
+
   selectCM(cm) {
     if(this.selectionSurface > this.maxSurfaceValueCM) {
       this.toasterService.showToasterSurfaceCalculDisabled()

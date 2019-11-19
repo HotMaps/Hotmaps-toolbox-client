@@ -284,7 +284,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       }, 1000);
       this.indicatorLoading = false
       this.interactionService.setCMAnimationStatus(null)
-      this.interactionService.setStatusCMPanel(false)
+      // this.interactionService.setStatusCMPanel(false)
 
     }
 
