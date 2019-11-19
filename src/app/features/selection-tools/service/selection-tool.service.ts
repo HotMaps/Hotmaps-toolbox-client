@@ -15,7 +15,8 @@ import { PayloadStat, PlayloadStatNuts } from '../../summary-result/class/payloa
 import {
   apiUrl,
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3,
-  wwtpLayerName
+  wwtpLayerName,
+  maxSurfaceValueCM
 } from '../../../shared/data.service';
 import { GeojsonClass } from '../../layers/class/geojson.class';
 import { BusinessInterfaceRenderService } from '../../../shared/business/business.service';
@@ -42,6 +43,7 @@ export class SelectionToolService extends APIService {
   private isDrawer = false;
   private isPolygonDrawer = false;
   private nbNutsSelectedSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private surfaceSubject: BehaviorSubject<number> = new BehaviorSubject(0)
   buttonLoadResultStatus = new BehaviorSubject<boolean>(false);
   buttonClearAll = new BehaviorSubject<boolean>(false);
 
@@ -62,6 +64,9 @@ export class SelectionToolService extends APIService {
   }
   getNutsSelectedSubject(): Subject<number> {
     return this.nbNutsSelectedSubject;
+  }
+  getSelectionSurface():BehaviorSubject<number> {
+    return this.surfaceSubject;
   }
   getMultiSelectionLayers(): any {
     return this.multiSelectionLayers;
@@ -177,6 +182,7 @@ export class SelectionToolService extends APIService {
     // remove all layers selected
     this.multiSelectionLayers.clearLayers();
     this.controlMultiLayer.clearLayers();
+    this.surfaceSubject.next(0)
     // remove all nutsID selected
     this.nutsIds.clear();
     this.updateSelectionToolAction();
@@ -188,14 +194,23 @@ export class SelectionToolService extends APIService {
   // Summary result show result
   getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
     const self = this;
-    self.locationsSubject.next(locations);
-    self.getStatistics();
+      self.locationsSubject.next(locations);
+      self.getStatistics();
+    
+      
+    
   }
 
   getStatistics() {
-    this.interactionService.openRightPanel();
-    this.interactionService.enableButtonWithId('load_result');
-    this.interactionService.enableStateOpenWithFunction('right');
+    console.log(this.surfaceSubject.value, this.scaleValue, (this.surfaceSubject.value > maxSurfaceValueCM && this.scaleValue == hectare))
+    if(!(this.surfaceSubject.value > maxSurfaceValueCM && this.scaleValue == hectare)) {
+      this.interactionService.openRightPanel();
+      this.interactionService.enableButtonWithId('load_result');
+      this.interactionService.enableStateOpenWithFunction('right');
+    } else {
+      this.toasterService.showToasterSurfaceCalculDisabled()
+    }
+    
   }
 
   toggleControl(map: any) {
@@ -275,12 +290,17 @@ export class SelectionToolService extends APIService {
   updateSelectionToolAction() {
     if (this.nutsIds.size > 0) {
       this.setButtonsSelectionToolState(true);
+      this.defineSurface(this.multiSelectionLayers)
     } else {
       // disable buttons after clear
       this.setButtonsSelectionToolState(false);
     }
     this.nbNutsSelectedSubject.next(this.nutsIds.size);
     this.nutsIdsSubject.next(Array.from(this.nutsIds));
+
+
+
+    
   }
 
   setButtonsSelectionToolState(value) {
@@ -291,13 +311,35 @@ export class SelectionToolService extends APIService {
   updateSelectionToolActionHectare() {
     if (this.areasSubject.getValue().length > 0) {
       this.setButtonsSelectionToolState(true);
+      this.defineSurface(this.controlMultiLayer)
     } else {
       // disable buttons after clear
       this.setButtonsSelectionToolState(false);
-
     }
-  }
 
+  }
+  defineSurface(layergroup) {
+    var surface=0
+    if (this.nutsIds.size > 0 || this.areasSubject.getValue().length > 0) {
+      var bounds = layergroup.getBounds()
+      var width = bounds.getNorthWest().distanceTo(bounds.getNorthEast())/1000
+      var height = bounds.getSouthEast().distanceTo(bounds.getNorthEast())/1000
+      var surface = Math.round(width*height);
+      console.log("bounds width:" + width + "; bounds height:" + height);
+      console.log("surface:" + surface + "m2");
+    }
+    if(surface >= maxSurfaceValueCM) {
+      this.interactionService.setStatusCMPanel(false)
+      if (this.scaleValue == hectare) {
+        this.interactionService.disableStateOpenWithFunction('right');
+        this.interactionService.disableButtonWithId('load_result');
+        this.interactionService.closeRightPanel();
+      }
+      this.toasterService.showToasterSurfaceCalculDisabled()
+    }
+    this.surfaceSubject.next(surface);
+
+  }
   setAreas() {
     this.areasSubject.next(this.multiSelectionLayers.getLayers());
   }
@@ -385,12 +427,15 @@ export class SelectionToolService extends APIService {
         this.updateSelectionToolAction();
       }
     }
-  }
+    console.log("addToMultiSelectionLayers / console")
 
+  }
+  
   addHectareToMultiSelectionLayers(layer: any) {
     if (this.helper.isNullOrUndefined(layer) === false) {
       this.multiSelectionLayers.addLayer(layer);
     }
+    
   }
 
   deleteSelectedAreas() {
@@ -403,6 +448,7 @@ export class SelectionToolService extends APIService {
     this.nbOfLayersSelected.next(0);
     this.setAreas();
     this.nbNutsSelectedSubject.next(this.areasSubject.getValue().length);
+    this.defineSurface(this.controlMultiLayer)
   }
 
 }

@@ -46,7 +46,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private stButtons = stButtons;
   private layerSelected;
   private elementSelected = defaultElementSelected;
-
+  @Input() selectionSurface;
   constructor(private mapService: MapService, private logger: Logger, private helper: Helper) {}
 
   ngOnInit() {

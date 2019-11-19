@@ -74,3 +74,7 @@ option {
 h5, p {
   margin:0;
 }
+.button-disabled, .button-disabled:hover {
+  color:rgba(214, 56, 56, 0.32);
+  border: 1px solid #e5e5e5;
+}

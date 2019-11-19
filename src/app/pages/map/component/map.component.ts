@@ -41,6 +41,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private scaleLevel;
   private cmRunned;
   private personnalLayers;
+  private selectionSurface=0;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -78,6 +79,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.personnalLayers = Object.assign({}, lay);
       });
     }
+    this.selectionToolService.getSelectionSurface().subscribe(surface => {
+      this.selectionSurface = surface;
+    })
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);

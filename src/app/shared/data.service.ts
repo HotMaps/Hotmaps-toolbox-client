@@ -34,6 +34,7 @@ export const heat_type = 'heat';
 export const defaultLayerType = heat_type;
 
 export const idDefaultLayer = 0;
+export const maxSurfaceValueCM = 640000;
 export const wwtpLayerName   = 'wwtp';
 
 export const urlTaigaFeedback = 'http://hotmaps.hevs.ch:8585/feedback-taiga/send-taiga-issue.php';
