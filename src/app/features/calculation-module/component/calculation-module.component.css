@@ -74,3 +74,9 @@ option {
 h5, p {
   margin:0;
 }
+.spinner-stop {
+  float: left;
+    line-height: 38px;
+    position: absolute;
+    left: 43px;
+}

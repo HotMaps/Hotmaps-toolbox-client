@@ -190,6 +190,10 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       return true;
     }
   }
+  stopCM() {
+    this.interactionService.setCurrentIdCM(null);
+  }
+
   selectCM(cm) {
     if (this.validateAuthorizedScale(cm)) {
       this.toggleCMPanel(true)
