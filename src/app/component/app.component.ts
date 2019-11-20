@@ -3,6 +3,7 @@ import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angula
 
 import { LoaderService } from '../shared/services/loader.service';
 import {Logger} from '../shared/services/logger.service';
+import { isNavigationCancelingError } from '@angular/router/src/shared';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
    */
   private showLoader: boolean;
   private isMap: boolean = false;
+  private isIE: boolean = false;
 
   constructor(
     private loaderService: LoaderService, private logger: Logger, private router: Router) {
@@ -43,7 +45,9 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
   }
 
   ngOnInit() {
-     this.router.events.subscribe(val =>
+    this.isIE = /msie\s|trident\//i.test(window.navigator.userAgent)
+
+    this.router.events.subscribe(val =>
       this.isMap = ((val as any).url === '/' || (val as any).url === '/map')
     );
 
