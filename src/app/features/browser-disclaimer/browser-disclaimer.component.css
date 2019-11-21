@@ -1,0 +1,19 @@
+#disclaimer-header {
+    height: 64px;
+    padding: 15px 20%;
+    background-color: #333;
+    color: #fff;
+}
+
+#disclaimer-header .disclaimer-logo {
+    display: block;
+    height: 34px;
+}
+
+#disclaimer-full {
+    padding: 3em 20%;
+}
+
+#disclaimer-full h1 {
+    color: #444;
+}

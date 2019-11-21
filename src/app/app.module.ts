@@ -16,7 +16,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent } from './';
 import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 
-
+import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
 import { MapService, MapComponent } from './pages/map';
@@ -105,6 +105,7 @@ import { GdprComponent } from './features/gdpr/gdpr.component';
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
+    BrowserDisclaimerComponent,
     SearchBarComponent,
     ToolbarComponent,
     MapComponent,

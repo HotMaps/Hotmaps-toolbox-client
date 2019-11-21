@@ -1,5 +1,6 @@
 import { WelcomePageComponent } from './../features/welcome-page/welcome-page.component';
 import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
+import { BrowserDisclaimerComponent } from './../features/browser-disclaimer/browser-disclaimer.component';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -107,7 +108,7 @@ describe('AppComponent: Router', () => {
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
-        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, GdprComponent, SummaryResultContainerComponent
+        WelcomePageComponent, BrowserDisclaimerComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, GdprComponent, SummaryResultContainerComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },
