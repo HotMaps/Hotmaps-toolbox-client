@@ -46,6 +46,9 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
 
   ngOnInit() {
     this.isIE = /msie\s|trident\//i.test(window.navigator.userAgent)
+    if (this.isIE) {
+      this.router.navigate(['disclaimer_browser'])
+    }
 
     this.router.events.subscribe(val =>
       this.isMap = ((val as any).url === '/' || (val as any).url === '/map')

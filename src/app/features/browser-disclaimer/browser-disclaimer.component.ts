@@ -11,7 +11,7 @@ export class BrowserDisclaimerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    uikit.modal('#modal-full').show()
+
   }
 
 }

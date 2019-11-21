@@ -1,11 +1,6 @@
 <router-outlet>
-  <div *ngIf="isIE">
-    <app-browser-disclaimer *ngIf="isIE"></app-browser-disclaimer>
-  </div>
-  <div *ngIf="!isIE">
-    <htm-welcome-page *ngIf="isMap"></htm-welcome-page>
-    <span *ngIf="showLoader" class="loader-app">
-      <div uk-spinner="ratio:4"></div>
-    </span>
-  </div>
+  <htm-welcome-page *ngIf="isMap"></htm-welcome-page>
+  <span *ngIf="showLoader" class="loader-app">
+    <div uk-spinner="ratio:4"></div>
+  </span>
 </router-outlet>

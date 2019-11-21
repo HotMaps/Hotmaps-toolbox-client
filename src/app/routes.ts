@@ -9,6 +9,7 @@ import { RecoveryComponent } from './features/user-management/recovery/recovery.
 import { Routes } from '@angular/router';
 import { MapComponent } from './pages/map/component/map.component';
 import { ActivateComponent } from './features/user-management/activate/activate.component';
+import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 
 
 export const routes: Routes = [
@@ -20,4 +21,5 @@ export const routes: Routes = [
   { path: 'recover' , component: MapComponent, children:[
     { path: ':token_recover' , component: RecoveryComponent },
   ]},
+  { path: 'disclaimer_browser', component: BrowserDisclaimerComponent },
 ];
