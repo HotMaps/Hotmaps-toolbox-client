@@ -5,7 +5,7 @@
 import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
 
 import { MapService } from '../../../pages/map/map.service';
-import { hectare, Helper } from 'app/shared';
+import { hectare, Helper, maxSurfaceValueCM } from 'app/shared';
 import { stButtons, defaultElementSelected } from 'app/features/selection-tools/component/selection-button.data';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
@@ -46,6 +46,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private stButtons = stButtons;
   private layerSelected;
   private elementSelected = defaultElementSelected;
+  private maxSurfaceValueCM = maxSurfaceValueCM
   @Input() selectionSurface;
   constructor(private mapService: MapService, private logger: Logger, private helper: Helper) {}
 
