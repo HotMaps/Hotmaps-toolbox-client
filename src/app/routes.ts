@@ -8,8 +8,8 @@ import { RecoveryComponent } from './features/user-management/recovery/recovery.
 // listing import lines alphabetized by the module
 import { Routes } from '@angular/router';
 import { MapComponent } from './pages/map/component/map.component';
-import { ActivateComponent } from './features/user-management/activate/activate.component';
 import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
+import { ActivateComponent } from './features/user-management/activate/activate.component';
 
 
 export const routes: Routes = [

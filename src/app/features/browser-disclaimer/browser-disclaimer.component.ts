@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as uikit from 'uikit';
 
 @Component({
   selector: 'app-browser-disclaimer',

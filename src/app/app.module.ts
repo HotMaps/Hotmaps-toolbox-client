@@ -16,7 +16,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent } from './';
 import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 
-
+import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
 import { MapService, MapComponent } from './pages/map';
@@ -89,7 +89,6 @@ import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.
 import { FeedbackService } from './features/feedback/feedback.service';
 import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
 import { GdprComponent } from './features/gdpr/gdpr.component';
-import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 
 @NgModule({
   imports: [
@@ -106,6 +105,7 @@ import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browse
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
+    BrowserDisclaimerComponent,
     SearchBarComponent,
     ToolbarComponent,
     MapComponent,
@@ -144,7 +144,6 @@ import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browse
     FolderPanelComponent,
     SummaryResultContainerComponent,
     GdprComponent,
-    BrowserDisclaimerComponent,
   ],
   providers: [
     DataInteractionService,
