@@ -156,15 +156,17 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells'},
 
-  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_average', business_name: 'Average solar-thermal potential'},
-  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_min', business_name: 'Minimum solar-thermal potential'},
-  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_max', business_name: 'Maximum solar-thermal potential'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_average', business_name: 'Average solar thermal potential - rooftop'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_min', business_name: 'Min solar thermal potential - rooftop'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_max', business_name: 'Max solar thermal potential - rooftop'},
   {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_cells', business_name: 'Counted cells'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_total', business_name: 'Total solar thermal potential - rooftop'},
 
-  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_average', business_name: 'Average solar-thermal potential'},
-  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_min', business_name: 'Minimum solar-thermal potential'},
-  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_max', business_name: 'Maximum solar-thermal potential'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_average', business_name: 'Average solar thermal potential - open field'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_min', business_name: 'Min solar thermal potential - open field'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_max', business_name: 'Max solar thermal potential - open field'},
   {id: 176, api_name: potential_solarthermal_collectors_open_field + '_cells', business_name: 'Counted cells'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_total', business_name: 'Total solar thermal potential - open field'},
 
   {id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed'},
   {id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed'},
