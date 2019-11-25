@@ -32,7 +32,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   folderPanelShow = false;
   savePanelShow = false;
-  
+
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -182,7 +182,6 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         return div;
     }
     this.map.addControl(eu_logo)
-    L.control.zoom({ position: 'topright' });
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
@@ -214,6 +213,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
+    L.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
     return this.map;
   }
