@@ -20,6 +20,6 @@ export class ToasterService {
     uikit.notification({message: msg, pos: 'bottom-center', timeout: 3000 })
   }
   showToasterSurfaceCalculDisabled() {
-    this.showToaster("You have exceeded the AREA SELECTION LIMIT for the free selection (hectare level) as well as for running calculation modules! Please select a smaller area.");
+    this.showToaster("You have exceeded the AREA SELECTION LIMIT for the free selection as well as for running calculation modules! Please select a smaller area.");
   }
 }
