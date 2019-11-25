@@ -393,6 +393,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // this.cmLayerService.clearAll();
   }
 
+
+  getSelectionSurface(): BehaviorSubject<number> {
+    return this.selectionToolService.getSelectionSurface()
+  }
   /**
    * Get the nutsSelected Subject of SelectionToolService
    */
