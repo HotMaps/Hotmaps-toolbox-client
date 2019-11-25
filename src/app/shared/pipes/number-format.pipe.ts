@@ -7,6 +7,7 @@ This pipe is used to format number with the correct format
 */
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { Helper } from '../helper';
 
 @Pipe({
     name: 'numberformat'
@@ -14,8 +15,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class NumberFormatPipe  implements PipeTransform {
 
-    transform(value: string, args: any[]): any {
-      const val_trans = value.split(',').join(' ').split('.').join('.');
-      return val_trans;
+  constructor(private helper:Helper) {}
+  transform(value: string, args: any[]): any {
+    var val_trans=''
+    if(!this.helper.isNullOrUndefined(value)){
+      val_trans = value.split(',').join(' ').split('.').join('.');
     }
+    return val_trans;
+  }
 }
