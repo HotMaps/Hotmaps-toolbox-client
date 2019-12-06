@@ -21,14 +21,19 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() energyMixPayload;
   @Input() heatLoadPayload;
   @Input() durationCurvePayload;
+  @Input() personnalLayerPayload;
 
   @Input() scaleLevel;
+  private graphicsExportButtonState=false;
+  private indicatorExportButtonState=false;
+
+  private indicatorLoading=false;
+  private indicatorPersoLoading=false;
   private animationTimeout;
   private status_id;
   private progressCmAnimation = 0;
   private updateExportButton = false;
   private noIndicator = true
-  private indicatorLoading = true
   private tab1=tab1_datapanel;
   private tab2=tab2_datapanel;
   private cm_catedory = calculation_module_category;
@@ -38,12 +43,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private selectedButton = this.dropdown_btns[0];
   private heatloadGraph;
   private result: ResultManagerPayload = {
-    indicators: { layers: null, no_data_layers: null, no_table_layers: null },
+    indicators: { summaryResult: null, personnalLayerResult: null, cmResult: null },
     graphics: null, raster_layers: null, vector_layers: null
   };
 
   private heatLoadData;
-  private displayExportDataStatus;
   constructor(private helper: Helper, private interactionService: InteractionService, private logger: Logger,
     private dataInteractionService: DataInteractionService, private mapService: MapService) { }
 
@@ -53,10 +57,6 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.heatLoadData = heatload;
         this.heatloadGraph.data = this.heatLoadData.dataset
         this.heatloadGraph.labels = this.heatLoadData.labels
-        this.displayExportDataStatus = Object.assign({}, true);
-      } else {
-        this.displayExportDataStatus = false;
-
       }
     })
   }
@@ -68,13 +68,11 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
-    /* this.interactionService.getCMRunned().subscribe((data) => {
-      if (this.helper.isNullOrUndefined(data)) {
-        this.stopAnimation()
-      }
-    }) */
+    if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() }
+    
+
   }
-  updateCMResult() {
+   updateCMResult() {
     const self = this;
     if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
@@ -84,82 +82,92 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       self.getStatusOfCM()
     }).catch((err) => {
       this.stopAnimation()
-      //this.interactionService.setCurrentIdCM(null)
       self.logger.log('there is an error ')
       self.logger.log(err);
     });
+  }
+   updatePersonnalLayersResult() {
+    
+    if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
+    const self = this;
+    self.indicatorPersoLoading = true
+    self.interactionService.getSummaryPersonnalLayers(self.personnalLayerPayload).then(result => {
+      self.setSummaryResult(result,'personnalLayerResult');
+      self.getIndicatorsCatergories()
+      self.indicatorPersoLoading = false
+    }).catch((e)=>{
+      // self.indicatorExportButtonState = false
+      self.indicatorPersoLoading = false
+      self.logger.log(JSON.stringify(e));
+    })
   }
   killAnimation() {
     this.progressCmAnimation = 0;
     this.interactionService.setCMAnimationStatus(this.progressCmAnimation);
     this.interactionService.setCmRunningProgess(this.progressCmAnimation)
   }
-  updateSummaryResult() {
+   updateSummaryResult() {
     const self = this;
     self.indicatorLoading = true
     if (this.scaleLevel === '-1') {
       self.interactionService.getSummaryResultWithMultiAreas(self.summaryPayload).then(result => {
-        this.resetIndicators();
-        self.setSummaryResult(result);
+        // this.resetIndicators();
+        self.setSummaryResult(result, 'summaryResult');
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
-        self.displayExportDataStatus = true;
+
       }).catch((e) => {
-        this.resetIndicators();
+        // this.resetIndicators();
+        self.indicatorExportButtonState = false
         self.indicatorLoading = false
+
         self.logger.log(JSON.stringify(e));
-        self.displayExportDataStatus = false;
       });
     } else {
       self.interactionService.getSummaryResultWithIds(self.summaryPayload).then(result => {
-        this.resetIndicators();
-        self.setSummaryResult(result)
+        //this.resetIndicators();
+        self.setSummaryResult(result,'summaryResult')
         self.getIndicatorsCatergories()
         self.indicatorLoading = false
-        self.displayExportDataStatus = true;
+
       }).catch((e) => {
         this.resetIndicators();
-
+        self.indicatorExportButtonState = false
         self.indicatorLoading = false
+
         self.logger.log(JSON.stringify(e));
-        self.displayExportDataStatus = false;
 
       })
     }
   }
 
-  setSummaryResult(result) {
-    if (result.layers.length !== 0) {
-      result.layers.map((layer) => {
-        this.result.indicators.layers.push(layer);
-      })
-    }
-    if (result.no_data_layers.length !== 0) { this.result.indicators.no_data_layers.push(result.no_data_layers) }
-    if (result.no_table_layers.length !== 0) { this.result.indicators.no_table_layers.push(result.no_table_layers) }
+  setSummaryResult(result, type) {
+    this.result.indicators[type] = result
+    this.indicatorExportButtonState=true;
   }
 
-  updateEnergyMixResult() {
+   updateEnergyMixResult() {
     const self = this;
     const graphic = self.addGraphic(energy_mix_title, 'pie', [], [], energy_mix_options, energy_mix_graph_category, true);
-    self.interactionService.getElectricityMix(self.energyMixPayload).then(result => {
 
+    self.interactionService.getElectricityMix(self.energyMixPayload).then(result => {
       graphic.isLoading = false;
       graphic.data = result.datasets;
       graphic.labels = result.labels;
-      self.displayExportDataStatus = true;
-
+      self.graphicsExportButtonState = true;
     }).catch((e) => {
-      self.displayExportDataStatus = false;
+      self.graphicsExportButtonState = false;
       self.logger.log('error')
       self.logger.log(JSON.stringify(e));
     });
   }
-  updateHeatLoadResult() {
+   updateHeatLoadResult() {
     this.heatloadGraph = this.addGraphic(heatloadprofile, 'line', [], [], heat_load_graph_options, 'heatload', true)
   }
-  updateDurationCurveResult() {
+   updateDurationCurveResult() {
     const self = this;
     const graphic = self.addGraphic(duration_curve_graph_title, 'line', [], [], duration_curve_graph_options, duration_curve_graph_category, true);
+
     let isHectare;
     if (this.scaleLevel === '-1') {
       isHectare = true
@@ -177,9 +185,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       graphic.isLoading = false;
       graphic.data = [dataset];
       graphic.labels = labels;
-      self.displayExportDataStatus = true;
+      self.graphicsExportButtonState = true;    
     }).catch(e => {
-      self.displayExportDataStatus = false;
+      self.graphicsExportButtonState = false;
       self.logger.log('error')
       self.logger.log(JSON.stringify(e));
     })
@@ -197,30 +205,27 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(raster.type === 'custom') {
             symb = raster.symbology;
           }
-          this.dataInteractionService.addNewLayer(name_of_result, raster.path, raster_type_name, symb)
+          this.dataInteractionService.addNewCMLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
 
       if (!this.helper.isNullOrUndefined(response.status.result.vector_layers)) {
         response.status.result.vector_layers.map((vector) => {
-          // console.log(vector)
           let symb;
           if(vector.type == 'custom') {
             symb = vector.symbology;
           }
-          this.dataInteractionService.addNewLayer(name_of_result, vector.path, vector_type_name,symb)
+          this.dataInteractionService.addNewCMLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
 
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })
       }
       if (!this.helper.isNullOrUndefined(response.status.result.indicator) && response.status.result.indicator.length >= 1) {
-
-        this.result.indicators.layers.push({
+        this.result.indicators.cmResult = {'layers':[{
           name: name_of_result, values: response.status.result.indicator, category: ['overall', calculation_module_category]
-        })
-        this.displayExportDataStatus = true;
-
+        }]}
+        this.indicatorExportButtonState=true
       }
       this.indicatorLoading = false
       if (!this.helper.isNullOrUndefined(response.status.result.graphics) && response.status.result.graphics.length >= 1) {
@@ -232,8 +237,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           }
           const graph = this.addGraphic(name_of_result, graphic.type, graphic.data.datasets, graphic.data.labels, option_calculation_module, calculation_module_category, false)
         })
-        this.displayExportDataStatus = true;
-
+        this.graphicsExportButtonState = true;
       }
       this.getIndicatorsCatergories()
     } else{
@@ -251,6 +255,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   getStatusOfCM() {
     const self = this;
     this.indicatorLoading = true
+
     this.logger.log('this.interactionService.getCurrentIdCM()' + this.interactionService.getCurrentIdCM())
     if (this.interactionService.getCurrentIdCM() != null){
       this.interactionService.getStatusAndCMResult( this.interactionService.getCurrentIdCM()).then((data) => {
@@ -262,9 +267,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           this.stopAnimation()
 
         }, 1000);
-
         this.indicatorLoading = false
-        this.displayExportDataStatus = false;
+
         this.interactionService.setCMAnimationStatus(null)
         this.logger.log('there is an error ')
         this.logger.log(err);
@@ -278,11 +282,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
         this.stopAnimation()
 
       }, 1000);
-
       this.indicatorLoading = false
-      this.displayExportDataStatus = false;
       this.interactionService.setCMAnimationStatus(null)
-      this.interactionService.setStatusCMPanel(false)
+      // this.interactionService.setStatusCMPanel(false)
 
     }
 
@@ -326,29 +328,34 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
-    if (this.result.indicators.layers.length === 0) {
-      this.noIndicator = true
-    } else {
-      this.result.indicators.layers.map((layer) => {
-        if (!this.helper.isNullOrUndefined(layer.name)) {
-          let refToDisplay=[];
-          if(this.helper.isNullOrUndefined(layer.category)){
-            refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
-            layer.category = refToDisplay
-          } else {
-            refToDisplay = layer.category
-          }
-          this.logger.log("refToDisplay:" +refToDisplay)
+    for(let key of Object.keys(this.result.indicators)) {
+      if(this.helper.isNullOrUndefined(this.result.indicators[key])){continue}
+      const lay = this.result.indicators[key].layers
+      if (lay.length === 0) {
+        this.noIndicator = true
+      } else {
+        lay.map((layer) => {
+          if (!this.helper.isNullOrUndefined(layer.name)) {
+            let refToDisplay=[];
+            if(this.helper.isNullOrUndefined(layer.category)){
+              refToDisplay = this.dataInteractionService.getRefFromLayerName(layer.name)
+              layer.category = refToDisplay
+            } else {
+              refToDisplay = layer.category
+            }
+            this.logger.log("refToDisplay:" +refToDisplay)
 
-          refToDisplay.map(ref => {
-            this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
-          })
-        }
-      })
-      this.noIndicator = false
+            refToDisplay.map(ref => {
+              this.dropdown_btns.filter(x => x.ref === ref)[0].display = true
+            })
+          }
+        })
+        this.noIndicator = false
+      }
     }
-    this.selectedButton = this.dropdown_btns[0]
-    this.selectedButton.selected = true
+      this.selectedButton = this.dropdown_btns[0]
+      this.selectedButton.selected = true 
+   
   }
 
   addGraphic(name, type, data, labels, options, category, isLoading) {
@@ -365,14 +372,17 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
   resetResult() {
-    this.displayExportDataStatus = false;
+    this.graphicsExportButtonState=false;
+    this.indicatorExportButtonState=false;
+
     this.resetIndicators();
     this.result.graphics = [];
     this.result.raster_layers = [];
     this.result.vector_layers = [];
   }
   resetIndicators() {
-    this.result.indicators = { layers: [], no_data_layers: [], no_table_layers: [] }
+    this.indicatorExportButtonState=false;
+    this.result.indicators = { personnalLayerResult: null, summaryResult: null, cmResult: null }
   }
   tabSwitch(tabName) {
     this.tabSelected = tabName

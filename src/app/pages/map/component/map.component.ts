@@ -1,5 +1,5 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
-import { map_options } from './../../../shared/data.service';
+import { map_options, eu_logo_path, eu_logo_height } from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
@@ -18,6 +18,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
 
 import {geoserverUrl} from '../../../shared/data.service';
+import { UploadService } from 'app/shared/services/upload.service';
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -29,6 +30,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   isSelectionToolVisible = false;
   selectionToolShow = false;
 
+  folderPanelShow = false;
+  savePanelShow = false;
+
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -36,6 +40,8 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private layers;
   private scaleLevel;
   private cmRunned;
+  private personnalLayers;
+  private selectionSurface=0;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -50,7 +56,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,
-    private panelService: SidePanelService,
+    private panelService: SidePanelService, private uploadService: UploadService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private selectionToolService: SelectionToolService,
     private interactionService: InteractionService
@@ -68,7 +74,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.map.remove();
   }
   notifySubscription() {
-
+    if (this.uploadService.getActivePersonalLayers) {
+      this.uploadService.getActivePersonalLayers().subscribe((lay) => {
+        this.personnalLayers = Object.assign({}, lay);
+      });
+    }
+    this.selectionToolService.getSelectionSurface().subscribe(surface => {
+      this.selectionSurface = surface;
+    })
     if (this.mapService.getScaleValueSubject() !== null) {
       this.mapService.getScaleValueSubject().subscribe((scaleLevel) => {
         this.scaleLevel = this.mapService.getNutsBusiness(scaleLevel);
@@ -135,6 +148,13 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
       this.openLeftSidebar = val;
       this.leftPanelComponent.display(val);
     });
+    this.panelService.folderPanelStatus.subscribe((val: boolean) => {
+      this.folderPanelShow = val;
+    });
+
+    this.panelService.savePanelStatus.subscribe((val: boolean) => {
+      this.savePanelShow = val;
+    });
   }
   ngOnInit() {
 
@@ -154,7 +174,14 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     // setup  the map from leaflet
     const self = this;
     this.map = L.map('map', map_options);
-    L.control.zoom({ position: 'topright' }).addTo(this.map);
+    var eu_logo = L.control({ position: 'bottomright', onAdd:()=>{ } });
+    eu_logo.onAdd = function(){
+        var div = L.DomUtil.create('div', 'eu_logo');
+        div.style = 'background:rgba(255, 255, 255, 0.7); padding:5px'
+        div.innerHTML= "<div style='float: right;height: "+eu_logo_height+"px;'><img src='"+eu_logo_path+"' style='height:100%' /></div><div style='float:right; width:200px'><span style='font-size: 10px;'> This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 723677.</span> </div>";
+        return div;
+    }
+    this.map.addControl(eu_logo)
     const measureOption = { localization: 'en', position: 'topleft', primaryLengthUnit: 'kilometers', secondaryLengthUnit: 'miles' ,
       activeColor: '#ABE67E', primaryAreaUnit: 'hectares', completedColor: '#C8F2BE',
       popupOptions: { className: 'leaflet-measure-resultpopup', autoPanPadding: [10, 10] }}
@@ -186,6 +213,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
     // L.control.measure(measureOption).addTo(this.map);
     // this.mapService.addDrawerControl(this.map);
+    L.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
     return this.map;
   }

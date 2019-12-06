@@ -8,6 +8,12 @@ export interface ResultManagerPayload {
   graphics: Graphics[]
 }
 export interface IndicatorResult {
+  summaryResult:LayersResult;
+  cmResult:LayersResult;
+  personnalLayerResult:LayersResult;
+
+}
+export interface LayersResult {
   layers: Layer[],
   no_data_layers?: Value [],
   no_table_layers?: Value []

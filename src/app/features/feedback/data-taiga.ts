@@ -1,11 +1,11 @@
 export const issue_levels = [
-    { name: 'low', id: 486542 },
-    { name: 'normal', id: 486543 },
-    { name: 'high', id: 486544 }
+    { name: 'low', id: 1 },
+    { name: 'normal', id: 2 },
+    { name: 'high', id: 3 }
 ];
 export const issue_type = [
-    { name: 'Bug', id: 489107 },
-    { name: 'Question', id: 489108 },
-    { name: 'Enhancement', id: 489109 }
+    { name: 'Bug', id: 1 },
+    { name: 'Question', id: 2 },
+    { name: 'Enhancement', id: 3 }
 ];
 

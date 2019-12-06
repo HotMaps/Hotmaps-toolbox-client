@@ -16,7 +16,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent } from './';
 import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 
-
+import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
 import { MapService, MapComponent } from './pages/map';
@@ -79,10 +79,16 @@ import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 
 import { UploadService } from './shared/services/upload.service';
+import { SnapshotService } from "./shared/services/snapshot.service";
 
 import { UploadComponent } from './features/user-management/account/upload/upload.component';
 import { PersonnalLayersComponent } from './features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology/custom-symbology.component';
+import { FolderPanelComponent } from './features/side-panel/folder-panel/folder-panel.component';
+import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.component';
+import { FeedbackService } from './features/feedback/feedback.service';
+import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
+import { GdprComponent } from './features/gdpr/gdpr.component';
 
 @NgModule({
   imports: [
@@ -99,6 +105,7 @@ import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
+    BrowserDisclaimerComponent,
     SearchBarComponent,
     ToolbarComponent,
     MapComponent,
@@ -132,7 +139,11 @@ import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology
     WelcomePageComponent,
     UploadComponent,
     PersonnalLayersComponent,
-    CustomSymbologyComponent
+    CustomSymbologyComponent,
+    SavePanelComponent,
+    FolderPanelComponent,
+    SummaryResultContainerComponent,
+    GdprComponent,
   ],
   providers: [
     DataInteractionService,
@@ -166,7 +177,9 @@ import { CustomSymbologyComponent } from './features/layer-tool/custom-symbology
     CMLayersService,
     UserManagementService,
     UserManagementStatusService,
-    UploadService
+    UploadService,
+    SnapshotService,
+    FeedbackService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

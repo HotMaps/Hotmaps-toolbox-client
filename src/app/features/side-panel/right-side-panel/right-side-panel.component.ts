@@ -83,7 +83,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() locationsSelection;
   @Input() areas;
   @Input() cmRunned;
-
+  @Input() personnalLayers;
   private cmTimeout;
 
 
@@ -101,7 +101,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private energyMixPayload;
   private heatLoadPayload;
   private durationCurvePayload;
-
+  private personnalLayerPayload;
 
 
   private loadingData = false;
@@ -135,6 +135,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.energyMixPayload = null;
     this.heatLoadPayload = null;
     this.durationCurvePayload = null;
+    this.personnalLayerPayload = null;
   }
   setSatusResults() {
     if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
@@ -183,7 +184,11 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     } else {
       this.energyMixPayload = null
     }
-
+    if(Object.keys(this.personnalLayers).length >= 1) {
+      this.setPersonnalLayerPayload()
+    } else {
+      this.personnalLayerPayload = null
+    }
 
 
     if (this.cmRunned) {
@@ -193,6 +198,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
 
   }
+
   // Create payloads
   setCMPayload() {
     let payloadTmp;
@@ -216,13 +222,17 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       { payload: payloadTmp }
     )
   }
+  setPersonnalLayerPayload(){
+    this.personnalLayerPayload={'layers':[],scale_level: this.helper.getScaleLevelPay(this.scaleLevel), areas: (this.scaleLevel==='-1') ? this.helper.getAreasForPayload(this.areas) : this.nutsIds }
+    for(let key in this.personnalLayers) { this.personnalLayerPayload['layers'].push(this.personnalLayers[key]) }
+  }
 
   setSummaryPayloadIds() {
     const payload = { layers: this.layers, year: constant_year, scale_level: this.interactionService.getScaleLevel(), nuts: this.nutsIds }
-    if (this.helper.isPayloadIncomplete(payload)) {
-      this.interactionService.closeRightPanel();
+    /* if (this.helper.isPayloadIncomplete(payload) && Object.keys(this.personnalLayers).length == 0) {
+      this.interactionService.disableRightPanel();
       return;
-    }
+    } */
     this.summaryPayload = payload
   }
 

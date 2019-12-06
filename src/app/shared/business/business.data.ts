@@ -5,6 +5,12 @@ const heat_tot_curr_density  =  'heat_tot_curr_density';
 const gfa_tot_curr_density  =  'gfa_tot_curr_density';
 const gfa_res_curr_density  =  'gfa_res_curr_density';
 const gfa_nonres_curr_density  =  'gfa_nonres_curr_density';
+const ghs_built_1975_100_share  =  'ghs_built_1975_100_share';
+const ghs_built_1990_100_share  =  'ghs_built_1990_100_share';
+const ghs_built_2000_100_share  =  'ghs_built_2000_100_share';
+const ghs_built_2014_100_share  =  'ghs_built_2014_100_share';
+const potential_solarthermal_collectors_rooftop  =  'potential_solarthermal_collectors_rooftop';
+const potential_solarthermal_collectors_open_field  =  'potential_solarthermal_collectors_open_field';
 const heat_res_curr_density  =  'heat_res_curr_density';
 const heat_nonres_curr_density  =  'heat_nonres_curr_density';
 const solar_optimal_total  =  'solar_optimal_total';
@@ -88,6 +94,21 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	// Construction periods
+  {id: 176, api_name: ghs_built_1975_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+  {id: 177, api_name: ghs_built_1975_100_share + '_count_cell', business_name:  'Counted cells'},
+
+  {id: 176, api_name: ghs_built_1990_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+  {id: 177, api_name: ghs_built_1990_100_share + '_count_cell', business_name:  'Counted cells'},
+
+  {id: 176, api_name: ghs_built_2000_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+  {id: 177, api_name: ghs_built_2000_100_share + '_count_cell', business_name:  'Counted cells'},
+
+  {id: 176, api_name: ghs_built_2014_100_share + '_density', business_name: 'Average share of GFA in the construction period' },
+  {id: 177, api_name: ghs_built_2014_100_share + '_count_cell', business_name:  'Counted cells'},
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	// Building volume
   {id: 175, api_name: vol_tot_curr_density + '_total', business_name: 'Building volume'},
   {id: 176, api_name: vol_tot_curr_density + '_density', business_name: 'Building volume density' },
@@ -134,7 +155,18 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
   {id: 176, api_name: solar_optimal_total + '_min', business_name: 'Minimum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_max', business_name: 'Maximum solar radiation'},
   {id: 176, api_name: solar_optimal_total + '_cells', business_name: 'Counted cells'},
-  {id: 176, api_name: solar_optimal_total + '_potential_5_percent', business_name: 'Restricted solar thermal potential estimate'},
+
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_average', business_name: 'Average solar thermal potential - rooftop'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_min', business_name: 'Min solar thermal potential - rooftop'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_max', business_name: 'Max solar thermal potential - rooftop'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_cells', business_name: 'Counted cells'},
+  {id: 176, api_name: potential_solarthermal_collectors_rooftop + '_total', business_name: 'Total solar thermal potential - rooftop'},
+
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_average', business_name: 'Average solar thermal potential - open field'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_min', business_name: 'Min solar thermal potential - open field'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_max', business_name: 'Max solar thermal potential - open field'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_cells', business_name: 'Counted cells'},
+  {id: 176, api_name: potential_solarthermal_collectors_open_field + '_total', business_name: 'Total solar thermal potential - open field'},
 
   {id: 176, api_name: wind_50m + '_average', business_name: 'Average wind speed'},
   {id: 176, api_name: wind_50m + '_min', business_name: 'Minimum wind speed'},

@@ -18,9 +18,7 @@
   background-color: rgba(71, 71, 71, 0.3);
   position: relative;
 } */
-.warning > th {
-  color: red
-}
+
 .spinner {
   position: absolute;
   left: 50%;
@@ -94,20 +92,7 @@ a:hover {
   padding: 10px;
 }
 
-.table-level-one>th{
-  text-align: center;
-}
-.table-level-one{
-  background-color: #f5f5f5;
-}
-.table-level-two>td{
-  border-right: 1px solid #f5f5f5;
-}
-.table-level-two-nodata{
-  border-right: 1px solid #f5f5f5;
-  text-align: center;
-  font-style: italic;
-}
+
 .date-visu{
     text-align: center;
     margin-bottom: 10px;

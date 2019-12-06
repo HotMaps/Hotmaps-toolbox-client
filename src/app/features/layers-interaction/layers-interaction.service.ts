@@ -36,15 +36,35 @@ export class DataInteractionService extends APIService {
   getDataArrayServices(): DataInteractionClass[] {
     return DataInteractionArray;
   }
-  addNewLayer(name, id, type, symb?) {
+  layerExists(layer) {
+    const arr_size = DataInteractionArray.filter(x => x.id ===layer.id).length;
+    return arr_size !== 0;
+  }
+  removeLayer(id) {
+    DataInteractionArray.splice(DataInteractionArray.findIndex(x => x.id === id),1) ;
+
+  }
+  addNewLayer(name, id, layer_type) {
+    const newLayerAdded = DataInteractionArray.push(Object.assign({}, DataInteractionArray[0]))
+    DataInteractionArray[newLayerAdded - 1].name = name;
+    DataInteractionArray[newLayerAdded - 1].id = id;
+    DataInteractionArray[newLayerAdded - 1].layer_type = layer_type;
+    DataInteractionArray[newLayerAdded - 1].ref = ['overall'];
+    DataInteractionArray[newLayerAdded - 1].category = '';
+    DataInteractionArray[newLayerAdded - 1].isSelected = false;
+    DataInteractionArray[newLayerAdded - 1].download_url = '';
+    DataInteractionArray[newLayerAdded - 1].description = '';
+  }
+  
+  addNewCMLayer(name, id, symbology_layer_type, type_of_layer, symb?, layer_id = 0) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].workspaceName = name;
-    DataInteractionArray[newLayerAdded - 1].cm_id = id;
-    DataInteractionArray[newLayerAdded - 1].type_of_layer = type;
-    if(symb) {
-      DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
-    }
+    DataInteractionArray[newLayerAdded - 1].cm_id = id; // TODO: replace name
+    DataInteractionArray[newLayerAdded - 1].type_of_layer = type_of_layer;
+    DataInteractionArray[newLayerAdded - 1].layer_type = symbology_layer_type;
+    DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
+    DataInteractionArray[newLayerAdded - 1].id = layer_id;
   }
   getReadableName(layerName: string): string {
 
@@ -79,7 +99,6 @@ export class DataInteractionService extends APIService {
   getRefFromLayerName(name: string): any[]{
     this.logger.log('getRefFromLayerName/name:' + name)
     const layer  =  this.getLayersTabs().filter(x => x.workspaceName === name)[0];
-
     if (this.helper.isNullOrUndefined(layer)) {return ["overall"]}
     return layer.ref;
   }

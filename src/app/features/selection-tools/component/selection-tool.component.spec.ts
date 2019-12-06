@@ -53,7 +53,7 @@ describe('SelectionToolComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule, BrowserAnimationsModule, NoopAnimationsModule],
-      declarations: [SelectionToolComponent],
+      declarations: [SelectionToolComponent, NumberFormatPipe],
       providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },

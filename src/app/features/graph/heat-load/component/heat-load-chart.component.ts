@@ -141,13 +141,11 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   update() {
 
     this.interactionService.setHeatLoadData(null)
-    this.interactionService.setDataStats(null);
     this.datasets=null;
 
     if (this.buttons_date_type !== undefined) {
       let isHectare = false;
       this.isLoading = true;
-      this.interactionService.displayButtonExportStats(!this.isLoading);
       let payload: any;
       if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) {
         if (!this.helper.isNullOrUndefined(this.heatLoadPayload.areas)) { // updating chart with data by hectare
@@ -160,7 +158,6 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
       }
       this.interactionService.getHeatLoad(payload, this.selectedButton.api_ref, isHectare).then((result) => {
         this.loadProfileData = [];
-        this.interactionService.setDataStats(result);
         this.loadProfileData = this.interactionService.formatHeatLoadForChartjs(result, this.selectedButton.api_ref);
         this.datasets = this.loadProfileData[0];
         this.labels = this.loadProfileData[1];
@@ -168,11 +165,9 @@ export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
         this.interactionService.setHeatLoadData({dataset: this.datasets, labels: this.labels})
       }).then(() => {
         this.isLoading = false;
-        this.interactionService.displayButtonExportStats(!this.isLoading);
       }).catch((e) => {
         this.logger.log(JSON.stringify(e))
         this.isLoading = false;
-        this.interactionService.displayButtonExportStats(!this.isLoading)
       });
     }
   }

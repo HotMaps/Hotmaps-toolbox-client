@@ -17,3 +17,10 @@
 
 }
 
+.icon-download {
+  height: 20px;
+}
+
+button {
+  cursor: pointer;
+}

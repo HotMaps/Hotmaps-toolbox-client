@@ -1,0 +1,36 @@
+<div style="height: 100%;" #mainDiv>
+  <div class="uk-container uk-card-default">
+
+    <div class="uk-card-default">
+      <div class="title-panel">
+        <h2 class="uk-modal-title">Snapshots</h2>
+        <i class="flaticon-cross" (click)="close()"></i>
+      </div>
+        <table class="uk-table" [style.width.px]="tblBody.offsetWidth">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th class="uk-text-right">Last date</th>
+                    <th class="uk-text-center">
+                        <i class="iButton" (click)="refresh()">&#8635;</i>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="uk-overflow-auto" [style.max-height.px]="mainDiv.offsetHeight/2">
+            <table class="uk-table uk-table-hover uk-table-striped" #tblBody>
+                <tbody>
+                    <tr *ngFor="let snapshot of snapshots">
+                        <td>{{ snapshot.name }}</td>
+                        <td>{{ snapshot.description }}</td>
+                        <td class="uk-text-right">{{ snapshot.date | date:'yyyy/MM/dd' }}</td>
+                        <td class="uk-text-center"><i class="flaticon-success iButton" (click)="apply(snapshot)"></i></td>
+                        <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(snapshot)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>

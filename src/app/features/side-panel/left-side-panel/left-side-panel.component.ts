@@ -76,6 +76,7 @@ import { UserManagementStatusService } from 'app/features/user-management';
 })
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
   @Input() areas;
+  @Input() selectionSurface;
   @ViewChild(CalculationModuleComponent) calculationModuleComponent: CalculationModuleComponent;
   private layersSelected = [];
   private nbElementsSelected = 0;
@@ -95,7 +96,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   }
 
   ngOnInit() {
-
+    
     if (this.mapService.getNutsSelectedSubject()) {
       this.mapService.getNutsSelectedSubject().subscribe((value) => {
         this.scaleLevel = this.mapService.getScaleValue();
@@ -120,6 +121,8 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
 
       this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
     }
+
+    this.userStatusService.getIsUserLogged().subscribe(value => this.isConnected = value);
 
     this.dataInteractionService.getDataInteractionServices().then(layers => this.getLayerAndCategory(layers));
   }

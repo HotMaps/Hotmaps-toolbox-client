@@ -20,6 +20,7 @@ import { APIService } from './../../shared/services/api.service';
 import { SummaryResultClass } from './summary-result.class';
 import { Helper } from './../../shared/helper';
 import {MockPopulation} from '../population/services/mock/population.data.mock';
+import { UploadService } from "../../shared/services/upload.service";
 
 describe('SummaryResultService', () => {
     let loggerStub: Logger;
@@ -40,7 +41,8 @@ describe('SummaryResultService', () => {
                 {provide: SummaryResultService, useClass: SummaryResultService},
                 {provide: MockBackend, useClass: MockBackend},
                 {provide: Logger, useValue: loggerStub},
-                {provide: BaseRequestOptions, useClass: BaseRequestOptions}
+                {provide: BaseRequestOptions, useClass: BaseRequestOptions},
+                {provide: UploadService, useValue: UploadService},
             ],
           imports: [
             HttpModule

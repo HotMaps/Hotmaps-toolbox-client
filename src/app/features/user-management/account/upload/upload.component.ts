@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { UploadService, UploadedFile } from '../../../../shared/services/upload.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
@@ -15,15 +15,20 @@ export class UploadComponent implements OnInit {
   isFileOk: boolean = false;
   isUploading: boolean = false; // Temporary until api do this async
   uploadedFiles: UploadedFile[] = [];
-  
+  @ViewChild('inputFile2') inputFile2;
+  @ViewChild('inputFile') inputFile;
+
   layers: DataInteractionClass[] = [];
-  selectedLayer: string = null;
+  //selectedLayer: string = null;
+  selectedLayer = null;
 
   constructor(private upService: UploadService, private layerService: DataInteractionService) { }
 
   ngOnInit() {
     if (this.layerService.getDataInteractionServices) // == isNUllorUndefined
-      this.layerService.getDataInteractionServices().then(layers => this.layers = layers);
+      this.layerService.getDataInteractionServices().then(layers => {
+        this.layers = layers.map(layer => layer); // seems to remove personnal and cm layer
+      });
     this.getFiles();
     if (this.upService.getUploadedFiles)
       this.upService.getUploadedFiles().subscribe(files => this.uploadedFiles = files);
@@ -79,6 +84,9 @@ export class UploadComponent implements OnInit {
         this.file2Up = null;
         this.isFileOk = false;
         this.selectedLayer = null;
+        this.inputFile2.nativeElement.value = "";
+        this.inputFile.nativeElement.value = "";
+
       } else this.isFileOk = true;
       this.isUploading = false;
     });

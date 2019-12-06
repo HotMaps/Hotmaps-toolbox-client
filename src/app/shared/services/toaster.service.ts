@@ -6,8 +6,9 @@
 // leaving one empty line between third party imports and application imports
 import { Injectable } from '@angular/core';
 import * as uikit from 'uikit'
-/* import { MdSnackBar } from '@angular/material';
- */
+import { maxSurfaceValueCM } from '../data.service';
+
+
 @Injectable()
 export class ToasterService {
 
@@ -17,5 +18,8 @@ export class ToasterService {
   showToaster(msg: string) {
     uikit.notification.closeAll();
     uikit.notification({message: msg, pos: 'bottom-center', timeout: 3000 })
+  }
+  showToasterSurfaceCalculDisabled() {
+    this.showToaster("You have exceeded the AREA SELECTION LIMIT for the free selection as well as for running calculation modules! Please select a smaller area.");
   }
 }

@@ -1,5 +1,6 @@
 import { WelcomePageComponent } from './../features/welcome-page/welcome-page.component';
 import { LayerToolComponent } from './../features/layer-tool/layer-tool.component';
+import { BrowserDisclaimerComponent } from './../features/browser-disclaimer/browser-disclaimer.component';
 /* tslint:disable:no-unused-variable */
 /**
  * Created by lesly on 28.06.17.
@@ -14,7 +15,6 @@ import { AppComponent } from './app.component';
 import { MapComponent } from '../pages/map/component/map.component';
 import { SearchBarComponent } from '../pages/searchbar/searchbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 import { MockLoaderService } from '../shared/services/mock/loader.service';
 import { LoaderService } from '../shared/services/loader.service'
 import {Router} from '@angular/router';
@@ -25,48 +25,47 @@ import {RightSideComponent} from '../features/side-panel/right-side-panel/right-
 import {LeftSideComponent} from '../features/side-panel/left-side-panel/left-side-panel.component';
 import {NavigationBarComponent} from '../pages/nav/component/navigation-bar.component';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SummaryResultComponent} from '../features/summary-result/summary-result.component';
-import {UppercaseFirstLetterPipe} from '../shared/pipes/uppercase-first-letter.pipe';
-import {NumberFormatPipe} from '../shared/pipes/number-format.pipe';
-import {LayerNamePipe} from '../shared/pipes/layer-name.pipe';
-import {BusinessNamePipe} from '../shared/pipes/business-name.pipe';
-import {MapService} from '../pages/map/map.service';
-import {Logger} from '../shared/services/logger.service';
-import {SelectionToolButtonStateService} from '../features/selection-tools/service/selection-tool-button-state.service';
-import {SelectionToolService} from '../features/selection-tools/service/selection-tool.service';
-import {Helper} from '../shared/helper';
-import {SidePanelService} from '../features/side-panel/side-panel.service';
-import {NavigationBarService} from '../pages/nav/service/navigation-bar.service';
-import {MailService} from '../features/feedback/mail.service';
-import {SummaryResultService} from '../features/summary-result/summary-result.service';
-import {BaseRequestOptions, ConnectionBackend, Http} from '@angular/http';
-import {MockBackend} from '@angular/http/testing';
-import {ToasterService} from '../shared/services/toaster.service';
-import {LayersService} from '../features/layers/services/layers.service';
-import {PopulationService} from '../features/population/services/population.service';
-import {GeocodingService} from '../shared/services/geocoding.service';
-import {DataInteractionService} from '../features/layers-interaction/layers-interaction.service';
-import {BusinessInterfaceRenderService} from '../shared/business/business.service';
-import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {SelectionScaleService} from '../features/selection-scale/selection-scale.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SummaryResultComponent } from '../features/summary-result/summary-result.component';
+import { UppercaseFirstLetterPipe } from '../shared/pipes/uppercase-first-letter.pipe';
+import { NumberFormatPipe } from '../shared/pipes/number-format.pipe';
+import { LayerNamePipe } from '../shared/pipes/layer-name.pipe';
+import { BusinessNamePipe } from '../shared/pipes/business-name.pipe';
+import { MapService } from '../pages/map/map.service';
+import { Logger } from '../shared/services/logger.service';
+import { SelectionToolButtonStateService } from '../features/selection-tools/service/selection-tool-button-state.service';
+import { SelectionToolService } from '../features/selection-tools/service/selection-tool.service';
+import { Helper } from '../shared/helper';
+import { SidePanelService } from '../features/side-panel/side-panel.service';
+import { NavigationBarService } from '../pages/nav/service/navigation-bar.service';
+import { MailService } from '../features/feedback/mail.service';
+import { SummaryResultService } from '../features/summary-result/summary-result.service';
+import { BaseRequestOptions, ConnectionBackend, Http } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { ToasterService } from '../shared/services/toaster.service';
+import { LayersService } from '../features/layers/services/layers.service';
+import { PopulationService } from '../features/population/services/population.service';
+import { GeocodingService } from '../shared/services/geocoding.service';
+import { DataInteractionService } from '../features/layers-interaction/layers-interaction.service';
+import { BusinessInterfaceRenderService } from '../shared/business/business.service';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectionScaleService } from '../features/selection-scale/selection-scale.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import {TopSideComponent} from '../features/side-panel/top-side-panel/top-side-panel.component';
-import {FeedbackComponent} from '../features/feedback/component/feedback.component';
-import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-import {RecaptchaModule} from 'ng-recaptcha';
-import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import {HeatLoadAggregateService} from '../features/graph/heat-load/heat-load.service';
+import { TopSideComponent } from '../features/side-panel/top-side-panel/top-side-panel.component';
+import { FeedbackComponent } from '../features/feedback/component/feedback.component';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { HeatLoadAggregateService } from '../features/graph/heat-load/heat-load.service';
 import { SelectionToolComponent } from '../features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from 'app/features/graph/heat-load/component';
 import { ChartComponent } from 'app/features/graph/chart/chart.component';
-import {ExportDataComponent} from '../features/export-data/component/export-data.component';
-import {ExportDataService} from '../features/export-data/service/export-data.service';
+import { ExportDataComponent } from '../features/export-data/component/export-data.component';
+import { ExportDataService } from '../features/export-data/service/export-data.service';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import { DurationCurveComponent } from '../features/graph/duration-curve/duration-curve.component';
 import { DurationCurveService } from '../features/graph/duration-curve/duration-curve.service';
-import {ElectricityMixComponent} from '../features/graph/electricity-mix/component/electricity-mix.component';
-import {ElectricityMixService} from '../features/graph/electricity-mix/service/electricity-mix.service';
+import { ElectricityMixComponent } from '../features/graph/electricity-mix/component/electricity-mix.component';
+import { ElectricityMixService } from '../features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationModuleService } from './../features/calculation-module/service/calculation-module.service';
 import { CalculationModuleComponent } from './../features/calculation-module/component/calculation-module.component';
 import { CalculationModuleStatusService } from './../features/calculation-module/service/calcultation-module-status.service';
@@ -84,6 +83,10 @@ import { CMLayersService } from './../features/calculation-module/cm-layers.serv
 import { PersonnalLayersComponent } from 'app/features/side-panel/left-side-panel/personnal-layers/personnal-layers.component';
 import { UploadComponent } from 'app/features/user-management/account/upload/upload.component';
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
+import { FolderPanelComponent } from "../features/side-panel/folder-panel/folder-panel.component";
+import { SavePanelComponent } from "../features/side-panel/save-panel/save-panel.component";
+import { GdprComponent } from "../features/gdpr/gdpr.component";
+import { SummaryResultContainerComponent } from "../features/summary-result/summary-result-container/summary-result-container.component";
 
 describe('AppComponent: Router', () => {
 
@@ -105,7 +108,7 @@ describe('AppComponent: Router', () => {
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
-        WelcomePageComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent
+        WelcomePageComponent, BrowserDisclaimerComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, GdprComponent, SummaryResultContainerComponent
        ],
       providers: [
         {provide: LoaderService, useValue: loaderServiceStub },

@@ -1,16 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Logger} from './services';
-import {Location} from './class';
+import { Injectable } from '@angular/core';
+import { Logger } from './services';
+import { Location } from './class';
 import { DecimalPipe } from '@angular/common';
-import {proj3035, round_value} from './data.service';
+import { proj3035, round_value } from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
-import {GeojsonClass} from '../features/layers/class/geojson.class';
+import { GeojsonClass } from '../features/layers/class/geojson.class';
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import * as proj4x from 'proj4';
 import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
 import { summay_drop_down_buttons } from './data.service';
 import { Layer } from 'leaflet';
+import { forEach } from '@angular/router/src/utils/collection';
 
 const proj4 = (proj4x as any).default;
 
@@ -58,11 +59,11 @@ export class Helper {
     const locations = [];
     const latlng = latlngArray[0][0];
     for (let i = 0; i < latlng.length; i++) {
-        const loc: Location = {
-          lat: latlng[i][1],
-          lng: latlng[i][0]
-        };
-        locations.push(loc);
+      const loc: Location = {
+        lat: latlng[i][1],
+        lng: latlng[i][0]
+      };
+      locations.push(loc);
     }
     return locations;
   }
@@ -71,12 +72,12 @@ export class Helper {
     let n = 0;
     let locations = '';
     do {
-      const loc =  latlng[n].lat + ' ' + latlng[n].lng + ','
+      const loc = latlng[n].lat + ' ' + latlng[n].lng + ','
       locations = locations + loc;
       n++;
     } while (!this.isNullOrUndefined(latlng[n]));
 
-    const loc =  latlng[0].lat + ' ' + latlng[0].lng
+    const loc = latlng[0].lat + ' ' + latlng[0].lng
     locations = locations + loc;
     return locations;
   }
@@ -85,12 +86,12 @@ export class Helper {
     let n = 0;
     let locations = '';
     do {
-      const loc =  latlng[n].lng + ' ' + latlng[n].lat + ','
+      const loc = latlng[n].lng + ' ' + latlng[n].lat + ','
       locations = locations + loc;
       n++;
     } while (!this.isNullOrUndefined(latlng[n]));
 
-    const loc =  latlng[0].lng + ' ' + latlng[0].lat
+    const loc = latlng[0].lng + ' ' + latlng[0].lat
     locations = locations + loc;
     return locations;
   }
@@ -178,18 +179,18 @@ export class Helper {
   latLngsToCoords(arrLatlng) {
     const self = this;
     const coords = [];
-    arrLatlng.forEach(function(latlng) {
-        coords.push( [latlng.lng, latlng.lat]);
-      },
+    arrLatlng.forEach(function (latlng) {
+      coords.push([latlng.lng, latlng.lat]);
+    },
       this);
     return coords;
   }
 
   round(num: string): string {
-    if (this.isNullOrUndefined(num) === true) { return num};
-    return this.decimalPipe.transform(num, round_value );
+    if (this.isNullOrUndefined(num) === true) { return num };
+    return this.decimalPipe.transform(num, round_value);
   }
-   formatDataLoadProfil(data) {
+  formatDataLoadProfil(data) {
     const formattedValues = [];
     const labels = [];
     const DataValues = [];
@@ -212,20 +213,20 @@ export class Helper {
 
   getLocationsFromPolygon(layer): Location[] {
     const rectangle: any = <any>layer;
-    const latlng = rectangle.getLatLngs()[0];
+    const latlng = rectangle.latLngs ? rectangle.latLngs : rectangle.getLatLngs()[0];
     const locations: Location[] = this.convertLatLongToLocation(latlng);
-    this.logger.log('locations [] ' + locations );
+    this.logger.log('locations [] ' + locations);
     return locations
   }
 
   getLocationsFromGeoJsonLayer(layer): Location[] {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    this.logger.log('geoJson latlng ' +  geoJson.features[0].geometry.coordinates );
+    this.logger.log('geoJson latlng ' + geoJson.features[0].geometry.coordinates);
     const latlng: number[] = geoJson.features[0].geometry.coordinates;
 
     const locations: Location[] = this.convertListLatLongToLocation(latlng);
-    this.logger.log('locations [] ' + locations );
+    this.logger.log('locations [] ' + locations);
     return locations
   }
 
@@ -240,7 +241,7 @@ export class Helper {
     const coordinate = [];
     const bound = map.getBounds();
     const northEastTransformed = this.transformLatLngToEpsg(bound.getNorthEast(), epsgString);
-    const southWestTransformed  = this.transformLatLngToEpsg(bound.getSouthWest(), epsgString);
+    const southWestTransformed = this.transformLatLngToEpsg(bound.getSouthWest(), epsgString);
     coordinate.push(southWestTransformed[1], southWestTransformed[0]);
     coordinate.push(northEastTransformed[1], northEastTransformed[0]);
     return coordinate;
@@ -249,20 +250,20 @@ export class Helper {
   getNUTSIDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    if (!this.isNullOrUndefined(geoJson.features[0])){
+    if (!this.isNullOrUndefined(geoJson.features[0])) {
       const nuts_id: string = geoJson.features[0].properties.nuts_id;
       return nuts_id;
-    }else{
+    } else {
       return null;
     }
   }
   getLAU2IDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
-    if (!this.isNullOrUndefined(geoJson.features[0])){
+    if (!this.isNullOrUndefined(geoJson.features[0])) {
       const lau2_id: string = geoJson.features[0].properties.comm_id;
       return lau2_id;
-    }else{
+    } else {
       return null;
     }
   }
@@ -279,8 +280,8 @@ export class Helper {
   }
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
-    const origin = circle.getLatLng(); // center of drawn circle
-    const radius = circle.getRadius(); // radius of drawn circle
+    const origin = circle.latLng ? circle.latLng : circle.getLatLng(); // center of drawn circle
+    const radius = circle.radius ? circle.radius : circle.getRadius(); // radius of drawn circle
     const polys = this.createGeodesicPolygon(origin, radius, 60, 360); // these are the points that make up the circle
     const locations = [];
     for (let i = 0; i < polys.length; i++) {
@@ -292,11 +293,11 @@ export class Helper {
     }
     return locations
   }
-  getAreasForPayload(areas){
+  getAreasForPayload(areas) {
     const ar = [];
     areas.map((layer: Layer) => {
       const points = [];
-      if (layer instanceof L.Circle) {
+      if (layer instanceof L.Circle || (layer as any).radius) { // From snapshot
         ar.push({ points: this.getLocationsFromCicle(layer) })
       } else {
         ar.push({ points: this.getLocationsFromPolygon(layer) })
@@ -307,97 +308,97 @@ export class Helper {
   checkIntersect(l1, l2) {
     var intersects = false;
     for (var i = 0; i <= l1.coordinates.length - 2; ++i) {
-        for (var j = 0; j <= l2.coordinates.length - 2; ++j) {
-            var a1Latlon = L.latLng(l1.coordinates[i][1], l1.coordinates[i][0]),
-                a2Latlon = L.latLng(l1.coordinates[i + 1][1], l1.coordinates[i + 1][0]),
-                b1Latlon = L.latLng(l2.coordinates[j][1], l2.coordinates[j][0]),
-                b2Latlon = L.latLng(l2.coordinates[j + 1][1], l2.coordinates[j + 1][0]),
-                a1 = L.Projection.SphericalMercator.project(a1Latlon),
-                a2 = L.Projection.SphericalMercator.project(a2Latlon),
-                b1 = L.Projection.SphericalMercator.project(b1Latlon),
-                b2 = L.Projection.SphericalMercator.project(b2Latlon),
-                ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x),
-                ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x),
-                u_b = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
-            if (u_b != 0) {
-                var ua = ua_t / u_b,
-                    ub = ub_t / u_b;
-                if (0 <= ua && ua <= 1 && 0 <= ub && ub <= 1) {
-                    intersects=true;
-                }
-            }
+      for (var j = 0; j <= l2.coordinates.length - 2; ++j) {
+        var a1Latlon = L.latLng(l1.coordinates[i][1], l1.coordinates[i][0]),
+          a2Latlon = L.latLng(l1.coordinates[i + 1][1], l1.coordinates[i + 1][0]),
+          b1Latlon = L.latLng(l2.coordinates[j][1], l2.coordinates[j][0]),
+          b2Latlon = L.latLng(l2.coordinates[j + 1][1], l2.coordinates[j + 1][0]),
+          a1 = L.Projection.SphericalMercator.project(a1Latlon),
+          a2 = L.Projection.SphericalMercator.project(a2Latlon),
+          b1 = L.Projection.SphericalMercator.project(b1Latlon),
+          b2 = L.Projection.SphericalMercator.project(b2Latlon),
+          ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x),
+          ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x),
+          u_b = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
+        if (u_b != 0) {
+          var ua = ua_t / u_b,
+            ub = ub_t / u_b;
+          if (0 <= ua && ua <= 1 && 0 <= ub && ub <= 1) {
+            intersects = true;
+          }
         }
+      }
     }
 
     return intersects;
   }
   lineify(inputGeom) {
     var outputLines = {
-        "type": "GeometryCollection",
-            "geometries": []
+      "type": "GeometryCollection",
+      "geometries": []
     }
     switch (inputGeom.type) {
-        case "GeometryCollection":
-            for (var i in inputGeom.geometries) {
-                var geomLines = this.lineify(inputGeom.geometries[i]);
-                if (geomLines) {
-                    for (var j in geomLines.geometries) {
-                        outputLines.geometries.push(geomLines.geometries[j]);
-                    }
-                } else {
-                    outputLines = null;
-                }
+      case "GeometryCollection":
+        for (var i in inputGeom.geometries) {
+          var geomLines = this.lineify(inputGeom.geometries[i]);
+          if (geomLines) {
+            for (var j in geomLines.geometries) {
+              outputLines.geometries.push(geomLines.geometries[j]);
             }
-            break;
-        case "Feature":
-            var geomLines = this.lineify(inputGeom.geometry);
-            if (geomLines) {
-                for (var j in geomLines.geometries) {
-                    outputLines.geometries.push(geomLines.geometries[j]);
-                }
-            } else {
-                outputLines = null;
-            }
-            break;
-        case "FeatureCollection":
-            for (var i in inputGeom.features) {
-                var geomLines = this.lineify(inputGeom.features[i].geometry);
-                if (geomLines) {
-                    for (var j in geomLines.geometries) {
-                        outputLines.geometries.push(geomLines.geometries[j]);
-                    }
-                } else {
-                    outputLines = null;
-                }
-            }
-            break;
-        case "LineString":
-            outputLines.geometries.push(inputGeom);
-            break;
-        case "MultiLineString":
-        case "Polygon":
-            for (var i in inputGeom.coordinates) {
-                outputLines.geometries.push({
-                    "type": "LineString",
-                        "coordinates": inputGeom.coordinates[i]
-                });
-            }
-            break;
-        case "MultiPolygon":
-            for (var i in inputGeom.coordinates) {
-                for (var j in inputGeom.coordinates[i]) {
-                    outputLines.geometries.push({
-                        "type": "LineString",
-                            "coordinates": inputGeom.coordinates[i][j]
-                    });
-                }
-            }
-            break;
-        default:
+          } else {
             outputLines = null;
+          }
+        }
+        break;
+      case "Feature":
+        var geomLines = this.lineify(inputGeom.geometry);
+        if (geomLines) {
+          for (var j in geomLines.geometries) {
+            outputLines.geometries.push(geomLines.geometries[j]);
+          }
+        } else {
+          outputLines = null;
+        }
+        break;
+      case "FeatureCollection":
+        for (var i in inputGeom.features) {
+          var geomLines = this.lineify(inputGeom.features[i].geometry);
+          if (geomLines) {
+            for (var j in geomLines.geometries) {
+              outputLines.geometries.push(geomLines.geometries[j]);
+            }
+          } else {
+            outputLines = null;
+          }
+        }
+        break;
+      case "LineString":
+        outputLines.geometries.push(inputGeom);
+        break;
+      case "MultiLineString":
+      case "Polygon":
+        for (var i in inputGeom.coordinates) {
+          outputLines.geometries.push({
+            "type": "LineString",
+            "coordinates": inputGeom.coordinates[i]
+          });
+        }
+        break;
+      case "MultiPolygon":
+        for (var i in inputGeom.coordinates) {
+          for (var j in inputGeom.coordinates[i]) {
+            outputLines.geometries.push({
+              "type": "LineString",
+              "coordinates": inputGeom.coordinates[i][j]
+            });
+          }
+        }
+        break;
+      default:
+        outputLines = null;
     }
     return outputLines;
-}
+  }
   controlDrawedLayer(baseLayer, drawLayer) {
     let drawJson;
     if (drawLayer instanceof L.Circle) {
@@ -406,36 +407,36 @@ export class Helper {
       drawJson = drawLayer.toGeoJSON()
     }
     var baseJson = baseLayer.toGeoJSON(),
-    baseLines = this.lineify(baseJson),
-    drawLines = this.lineify(drawJson),
-    pointCrossed = false;
+      baseLines = this.lineify(baseJson),
+      drawLines = this.lineify(drawJson),
+      pointCrossed = false;
     baseJson.features.map((feature) => {
       if (this.testSpatial(feature, drawJson) === true) {
         pointCrossed = true;
       }
     })
     if (baseLines && drawLines) {
-        for (var i in drawLines.geometries) {
-            for (var j in baseLines.geometries) {
-              if (pointCrossed === true) { return pointCrossed };
-              pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
-            }
+      for (var i in drawLines.geometries) {
+        for (var j in baseLines.geometries) {
+          if (pointCrossed === true) { return pointCrossed };
+          pointCrossed = this.checkIntersect(drawLines.geometries[i], baseLines.geometries[j]);
         }
+      }
     }
     return pointCrossed;
   }
   getScaleLevelPay(scaleLevel): string {
     let payloadScale = ''
 
-    if (scaleLevel === '2' || scaleLevel === '3' || scaleLevel === '0' || scaleLevel === '1'){
+    if (scaleLevel === '2' || scaleLevel === '3' || scaleLevel === '0' || scaleLevel === '1') {
       payloadScale = 'nuts'
-    }else if (scaleLevel === '4'){
+    } else if (scaleLevel === '4') {
       payloadScale = 'lau'
-    }else {
+    } else {
       payloadScale = 'hectare'
     }
-      return payloadScale
-    }
+    return payloadScale
+  }
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }
@@ -444,39 +445,62 @@ export class Helper {
       "type": "Feature",
       "properties": {},
       "geometry": {
-          "type": "Polygon",
-          "coordinates": [this.latLngsToCoords(this.getLocationsFromCicle(layer))]
+        "type": "Polygon",
+        "coordinates": [this.latLngsToCoords(this.getLocationsFromCicle(layer))]
       }
     }
   }
+  chartsToCSV(graphs) {
+    var arraytmp = []
 
+    const header = {
+      "1": "serie",
+      "2": "label",
+      "3": "value",
+    }
+    arraytmp.push(header)
+    graphs.map((graph) => {
+      arraytmp.push({ name: graph.name });
+      const labels = graph.labels;
+      graph.data.map((data) => {
+        data.data.map((d, currIndex) => {
+          arraytmp.push({ serie: data.label, label: graph.labels[currIndex], value: d })
+        })
+      })
+    })
+    return arraytmp
+  }
   summaryResultToCSV(input): any {
     let array = [];
     const header = {
-      "1": "unit",
-      "2": "indicator",
-      "3": "value",
-      }
+      "1": "indicator",
+      "2": "value",
+      "3": "unit",
+
+    }
     array.push(header);
-    for (const entry of input)
-    {
-      for (const entry_in_entry of entry.values)
-      {
-        array.push(entry_in_entry);
+    for (const res of Object.keys(input)) {
+      if(this.isNullOrUndefined(input[res])) {continue}
+      for (const entry of input[res].layers) {
+
+        array.push({ name: entry.name })
+        for (const entry_in_entry of entry.values) {
+          array.push({ indicator: entry_in_entry.name, value: entry_in_entry.value, unit: entry_in_entry.unit });
+        }
       }
     }
     return array
   }
 
   keysFromJson(jsonData): any {
-      const val = jsonData[0];
-      let header = {}
-      for(const j in val) {
-        const sub_key = j;
-        const sub_val = val[j];
-        header[j] = j
-      }
-      return header;
+    const val = jsonData[0];
+    let header = {}
+    for (const j in val) {
+      const sub_key = j;
+      const sub_val = val[j];
+      header[j] = j
+    }
+    return header;
 
   }
   resultToCSV(input): any {
@@ -485,34 +509,33 @@ export class Helper {
     const header = this.keysFromJson(input);
     let array = [];
     array.push(header);
-    for (const entry of input)
-    {
+    for (const entry of input) {
       array.push(entry);
     }
     return array;
   }
   generateRandomName(): string {
-      // Math.random should be unique because of its seeding algorithm.
-      // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-      // after the decimal.
-      return '_' + Math.random().toString(36).substr(2, 9);
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return '_' + Math.random().toString(36).substr(2, 9);
   }
 
   createDurationCurveLabels(array) {
     for (let i = 0; i <= 8760; ++i) {
-        array[i] = i;
+      array[i] = i;
     }
     return array;
   }
 
-  createSplittedResultsModel(){
-    let splittedResultsArray = [] ;
+  createSplittedResultsModel() {
+    let splittedResultsArray = [];
 
-    for (let j = 0; j<summay_drop_down_buttons.length; j++){
+    for (let j = 0; j < summay_drop_down_buttons.length; j++) {
       const refName = summay_drop_down_buttons[j]["ref"];
       const p = {
-          "layers": [],
-          "no_data_layers": []
+        "layers": [],
+        "no_data_layers": []
       }
 
       splittedResultsArray[refName] = [];
@@ -522,33 +545,33 @@ export class Helper {
     return splittedResultsArray;
   }
 
-  isResultEmpty(result){
-    if (result.layers == 0 && result.no_data_layers == 0){
+  isResultEmpty(result) {
+    if (result.layers == 0 && result.no_data_layers == 0) {
       return true;
     }
-    else{ return false; }
+    else { return false; }
   }
 
-  isResultDataEmpty(result){
-    if (result.layers == 0){
+  isResultDataEmpty(result) {
+    if (result.layers == 0) {
       return true;
     }
-    else{ return false; }
+    else { return false; }
   }
 
-  isPayloadIncomplete(payload){
+  isPayloadIncomplete(payload) {
 
-    for (let key in payload){
-      if (payload[key] == 0){
+    for (let key in payload) {
+      if (payload[key] == 0) {
         return true;
       }
     }
     return false;
   }
 
-  createHLPayloadHectares(type, buttonArray, areas){
+  createHLPayloadHectares(type, buttonArray, areas) {
     let payload;
-    if(type === 'day'){
+    if (type === 'day') {
       payload = {
         'year': buttonArray[0].date,
         'month': buttonArray[1].date,
@@ -556,14 +579,14 @@ export class Helper {
         'areas': areas
       }
     }
-    if(type === 'month'){
+    if (type === 'month') {
       payload = {
         'year': buttonArray[0].date,
         'month': buttonArray[1].date,
         'areas': areas
       }
     }
-    if(type === 'year'){
+    if (type === 'year') {
       payload = {
         'year': buttonArray[0].date,
         'areas': areas
@@ -572,9 +595,9 @@ export class Helper {
     return payload;
   }
 
-  createHLPayloadNuts(type, buttonArray, nuts){
+  createHLPayloadNuts(type, buttonArray, nuts) {
     let payload;
-    if(type == 'day'){
+    if (type == 'day') {
       payload = {
         'year': buttonArray[0].date,
         'month': buttonArray[1].date,
@@ -598,7 +621,7 @@ export class Helper {
     return payload;
   }
 
-  createDCPayloadHectares(year, areas){
+  createDCPayloadHectares(year, areas) {
     const payload = {
       'year': year,
       'areas': areas
@@ -618,15 +641,15 @@ export class Helper {
   getScaleLevelPaylaod(scaleLevel): string {
     let payloadScale = ''
 
-    if (scaleLevel.startsWith('NUTS')){
+    if (scaleLevel.startsWith('NUTS')) {
       payloadScale = 'nuts'
-    }else if (scaleLevel.startsWith('LAU')){
+    } else if (scaleLevel.startsWith('LAU')) {
       payloadScale = 'lau'
-    }else {
+    } else {
       payloadScale = 'hectare'
     }
-      return payloadScale
-    }
+    return payloadScale
+  }
 
 }
 

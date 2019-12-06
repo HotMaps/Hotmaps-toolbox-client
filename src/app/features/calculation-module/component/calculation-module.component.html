@@ -13,7 +13,7 @@
                 <div class="uk-container">
                   <div class="uk-offcanvas-content">
   
-                    <button class="uk-button uk-button-default uk-margin-small-right" [class.api-inprogress]="cm.isApiRequestInTreatment"
+                    <button class="uk-button uk-button-default uk-margin-small-right" [class.button-disabled]="selectionSurface >= maxSurfaceValueCM" [class.api-inprogress]="cm.isApiRequestInTreatment"
                       type="button" (click)="selectCM(cm)">
                       <ng-container *ngIf="cm.isApiRequestInTreatment">Refresh</ng-container> {{cm.cm_name}}
                     </button>
@@ -93,21 +93,24 @@
             <div *ngIf="layersFromType.length >= 1" class="uk-margin">
               <div *ngFor="let layersTable of layersFromType">
                 <h4 class="uk-heading-bullet main_title input_title">Input type selection</h4>
-                <span>Type: {{layersTable.layerType}}</span>
+                <h5 >Type: {{layersTable.layerType}}</h5>
+                <h5 *ngIf="layersTable.type_description">Description: {{layersTable.type_description}}</h5>
                 <select class="uk-select" [(ngModel)]="layersTable.layerSelected" (change)="setLayerNeeded()">
-                  <ng-container *ngFor="let layer of layersTable.layers;">
-                    <option [ngValue]="layer.workspaceName">
+                  <ng-container *ngFor="let layer of layersTable.layers">
+                    <option *ngIf="layer.category != 'Calculation module'" [ngValue]="layer"> <!-- TODO: to be modified when generated layers will be handled -->
                       {{layer.name}}
                     </option>
                   </ng-container>
                 </select>
               </div>
             </div>
-            <button class="uk-button uk-button-primary" [class.unclickable]="cmRunning" (click)="!cmRunning ? runCM() : null">
+            <button class="uk-button" [class.uk-button-primary]="!cmRunning" [class.uk-button-danger]="cmRunning"(click)="!cmRunning ? runCM() : stopCM()">
               <span *ngIf="!cmRunning">Run CM</span>
-              <span *ngIf="cmRunning" uk-spinner></span>
+              <span *ngIf="cmRunning"><span class="spinner-stop" uk-spinner="ratio: 1"></span>STOP CM</span>
             </button>
-  
+            <!-- <button *ngIf="cmRunning" class="uk-button uk-button-danger" (click)="stopCM()">
+              STOP CM
+            </button> -->
             <div class="uk-margin"></div>
             <progress id="js-progressbar" class="uk-progress" value="{{progress}}" max="100"></progress>
   

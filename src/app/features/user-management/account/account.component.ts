@@ -1,4 +1,4 @@
-import { color_usedspace, color_unusedspace, labels_diskspacechart, diskspacechart_options } from './../../../shared/data.service';
+import { color_usedspace, color_unusedspace, labels_diskspacechart, diskspacechart_options } from '../../../shared';
 import { UserManagementStatusService } from './../service/user-management-status.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
@@ -32,24 +32,42 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   }
 
   logout() {
-    this.setWaitingStatus(true)
-    this.userManagementService.userLogout(this.token).then((data) => {
-      this.toasterService.showToaster(data.message)
-      this.userManagementStatusService.setUsername(null);
-      this.userManagementStatusService.setUserIsLoggedOut();
-      this.userManagementStatusService.setUserToken(null);
-
-      this.interactionService.disableButtonWithId('save');
-      this.interactionService.disableButtonWithId('folder');
-
-    }).catch(() => {
-      this.setWaitingStatus(false)
-    })
+    this.setWaitingStatus(true);
+    this.userManagementService.userLogout(this.token)
+      .then((res) => this.setUserIsLoggedOut(res.message))
+      .catch(() => this.setWaitingStatus(false));
   }
-  setUserIsLoggedOut() {
-    this.setWaitingStatus(false)
-    this.userManagementStatusService.setUserIsLoggedOut()
+
+  delete(): void {
+    if (confirm(
+      "Are sure you want to delete your account?\n" +
+      "     All your data will be lost!"
+    )) {
+      this.setWaitingStatus(true);
+      this.userManagementService.userDelete(this.token)
+        .then((res) => {
+          this.toasterService.showToaster("Your account and data have been successfully deleted");
+          this.setUserIsLoggedOut(res.message);
+        })
+        .catch(() => {
+          this.toasterService.showToaster("The deletion failed");
+          this.setWaitingStatus(false);
+        })
+      ;
+    }
   }
+
+  private setUserIsLoggedOut(msg?: string): void {
+    this.userManagementStatusService.setUsername(null);
+    this.userManagementStatusService.setUserIsLoggedOut();
+    this.userManagementStatusService.setUserToken(null);
+
+    this.interactionService.disableButtonWithId('save');
+    this.interactionService.disableButtonWithId('folder');
+
+    if (msg) this.toasterService.showToaster(msg);
+  }
+
   getAcountInformation() {
     this.getUserInformations()
     if (this.userManagementService.getDiskSpace)

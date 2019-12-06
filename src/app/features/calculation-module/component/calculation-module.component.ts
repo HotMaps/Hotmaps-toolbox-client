@@ -1,4 +1,4 @@
-import { defaultLayerType, inputs_categories } from './../../../shared/data.service';
+import { defaultLayerType, inputs_categories, maxSurfaceValueCM } from './../../../shared/data.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
@@ -44,7 +44,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   @Input() layersSelected;
   @Input() expanded;
   @Input() expandedState;
+  @Input() selectionSurface;
   private inputs_categories = inputs_categories;
+  private maxSurfaceValueCM = maxSurfaceValueCM;
   @Input() scaleLevel;
   private type_select = 'select';
   private type_input = 'input';
@@ -72,7 +74,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     this.subscribeEvents()
     this.updateCMs();
     this.logger.log('ngOnInit called')
-
+    
   }
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -190,44 +192,54 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       return true;
     }
   }
+  stopCM() {
+    this.interactionService.setCurrentIdCM(null);
+  }
+
   selectCM(cm) {
-    if (this.validateAuthorizedScale(cm)) {
-      this.toggleCMPanel(true)
-      this.setWaiting(true)
-      this.cmSelected = cm;
-      this.layersFromType = [];
-      if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
-        cm.type_layer_needed.map((layerType) => {
-          this.dataInteractionService.getLayersFromType(layerType).then((data) => {
-            if(data.length >=1) {
-              this.layersFromType.push({ layerType: layerType, layers: data, layerSelected: data[0].workspaceName })
-            } else {
-              this.layersFromType.push({ layerType: layerType, layers: [{workspaceName:layerType, name:layerType}], layerSelected: layerType })
-            }
-          }).then(() => {
-            this.setLayerNeeded()
-          })
-        })
-      }
-
-
-      this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
-        this.components = values;
-        this.components.forEach(comp => {
-          comp['input_default_value'] = comp.input_value
-          if(typeof comp.input_value == 'object') {
-            comp.input_value = comp.input_value[0]
-          }
-        });
-      }).then(() => {
-        this.setComponentCategory();
-      }).then(()=>{
-        this.setWaiting(false)
-      })
+    if(this.selectionSurface > this.maxSurfaceValueCM) {
+      this.toasterService.showToasterSurfaceCalculDisabled()
     } else {
-      const scale_authorized = cm.authorized_scale.toString().replace(/,/g, ', ');
-      this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen')
+      if (this.validateAuthorizedScale(cm)) {
+        this.toggleCMPanel(true)
+        this.setWaiting(true)
+        this.cmSelected = cm;
+        this.layersFromType = [];
+        if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
+          cm.type_layer_needed.map((layerType) => {
+            this.dataInteractionService.getLayersFromType(layerType.type).then((data) => {
+              if(data.length >=1) {
+                this.layersFromType.push({ layerType: layerType.type, layers: data, layerSelected: data[0],type_description:layerType.description })
+              } else {
+                const layers = [{workspaceName:layerType.type, name:layerType.type}]
+                this.layersFromType.push({ layerType: layerType.type, layers: layers, layerSelected: layers[0] })
+              }
+            }).then(() => {
+              this.setLayerNeeded()
+            })
+          })
+        }
+  
+  
+        this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
+          this.components = values;
+          this.components.forEach(comp => {
+            comp['input_default_value'] = comp.input_value
+            if(typeof comp.input_value == 'object') {
+              comp.input_value = comp.input_value[0]
+            }
+          });
+        }).then(() => {
+          this.setComponentCategory();
+        }).then(()=>{
+          this.setWaiting(false)
+        })
+      } else {
+        const scale_authorized = cm.authorized_scale.toString().replace(/,/g, ', ');
+        this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen')
+      }
     }
+    
   }
   cmHidePanel() {
     this.setWaiting(true);
@@ -250,7 +262,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   setLayerNeeded() {
     this.cmSelected.layers_needed = []
     this.layersFromType.map((layer) => {
-      this.cmSelected.layers_needed.push(layer.layerSelected)
+      this.cmSelected.layers_needed.push({id:layer.layerSelected.id, name:layer.layerSelected.name, workspaceName:layer.layerSelected.workspaceName, layer_type:layer.layerSelected.layer_type})
     })
   }
 

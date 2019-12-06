@@ -64,22 +64,10 @@ export class InteractionService  {
     }
     unsetLoadingLayerInterraction(layer) {
       this.dataInteractionService.unsetLoadingLayerInterraction(layer)
-      
+
     } */
     // interface for export data service
 
-    displayButtonExportStats(value: boolean) {
-      this.exportDataService.displayButtonExportStats(value);
-    }
-    setDataStats(data: any) {
-      this.exportDataService.setDataStats(data);
-    }
-    setTabsSelectedName(data: string) {
-      this.exportDataService.setTabsSelectedName(data);
-    }
-    displayButtonExport(val: boolean) {
-      this.exportDataService.displayButtonExport(val);
-    }
     setSummaryResultState(val: boolean) {
       this.summaryResultState = val;
     }
@@ -91,9 +79,6 @@ export class InteractionService  {
     }
     getSummaryResultState() {
       return this.summaryResultState;
-    }
-    setSummaryData(val: any) {
-        this.exportDataService.setDataSummary(val);
     }
 
     enableStateOpenWithFunction(functionString: string) {
@@ -126,10 +111,39 @@ export class InteractionService  {
       this.sidePanelService.topPanelexpandedCollapsed();
     }
     closeRightPanel() {
-        this.sidePanelService.closeRightPanel();
+      this.sidePanelService.closeRightPanel();
     }
     disableRightPanel() {
-        this.sidePanelService.closeRightPanel();
+      this.sidePanelService.closeRightPanel();
+      this.disableButtonWithId('load_result');
+      this.disableStateOpenWithFunction('right');
+    }
+
+
+    // Folder Panel
+    actionFolderPanel(toOpen: boolean = false) {
+      if (toOpen) this.closeSavePanel();
+      this.sidePanelService.setFolderPanelStatus(toOpen);
+      this.navigationBarService.getButtonWithId('folder').stateOpen = toOpen;
+    }
+    openFolderPanel() {
+      this.actionFolderPanel(true);
+    }
+    closeFolderPanel() {
+      this.actionFolderPanel(false);
+    }
+
+    // Save Panel
+    actionSavePanel(toOpen: boolean = false) {
+      if (toOpen) this.closeFolderPanel();
+      this.sidePanelService.setSavePanelStatus(toOpen);
+      this.navigationBarService.getButtonWithId('save').stateOpen = toOpen;
+    }
+    openSavePanel() {
+      this.actionSavePanel(true);
+    }
+    closeSavePanel() {
+      this.actionSavePanel(false);
     }
 
     // LEFT PANEL
@@ -151,6 +165,9 @@ export class InteractionService  {
     }
     getSummaryResultWithMultiAreas(payload: any): Promise<any> {
       return this.summaryResultService.getSummaryResultWithMultiAreas(payload);
+    }
+    getSummaryPersonnalLayers(payload) {
+      return this.summaryResultService.getSummaryResultPersonnalLayers(payload)
     }
     getHeatLoad(payload, type_api_ref, isHectare): Promise<any>{
         return this.heatLoadAggregateService.getHeatLoad(payload, type_api_ref, isHectare);
@@ -209,8 +226,6 @@ export class InteractionService  {
       return this.calculationModuleService.getCMResultMockData()
 
     } */
-
-    get
     getCMRunned() {
       return this.calculationModuleStatusService.getCmRunned()
     }
@@ -244,6 +259,7 @@ export class InteractionService  {
     setCurrentIdCM(currentCMiD) {
       this.currentCMiD = currentCMiD
     }
+
     getcmRunningProgess() {
       return this.cmRunningProgess
     }
@@ -257,7 +273,7 @@ export class InteractionService  {
 
   }
   deleteCMTask() {
-
+    
 
       if (this.getcmRunningProgess() >0 && this.currentCMiD != null){
 
@@ -267,7 +283,7 @@ export class InteractionService  {
           this.logger.log('CMMMMM REMOVEEEED')
           this.currentCMiD = null
           })
-          .catch({});
+          .catch(() => {});
 
 
       }

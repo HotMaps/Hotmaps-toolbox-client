@@ -1,0 +1,31 @@
+<div class="title-panel">
+  <h2 class="uk-modal-title">Save</h2>
+  <i class="flaticon-cross" (click)="close()"></i>
+</div>
+<div class="uk-container uk-card-default">
+  <form (ngSubmit)="save()" #saveForm="ngForm">
+    <table class="uk-table">
+      <tr>
+        <td class="uk-text-right">
+          <label>Name: </label>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="name" name="name" class="uk-input" required />
+        </td>
+      </tr>
+      <tr>
+        <td class="uk-text-right">
+          <label>Description: </label>
+        </td>
+        <td>
+          <textarea id="description" [(ngModel)]="description" name="description" class="uk-textarea"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="uk-text-center">
+            <button type="submit" [disabled]="!saveForm.form.valid" class="uk-button uk-button-default">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

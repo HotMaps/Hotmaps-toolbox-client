@@ -1,6 +1,3 @@
-import { ToasterService } from './../../../shared/services/toaster.service';
-declare var jQuery: any;
-
 import {
     Component,
     OnInit,
@@ -11,14 +8,13 @@ import {
     transition,
     animate,
     Input,
-    ViewChild
+    ViewChild,
+    ElementRef
 } from '@angular/core';
-import { Validators, NgForm } from '@angular/forms';
-import {  timeOutAjaxRequest } from 'app/shared';
 import { InteractionService } from '../../../shared/services/interaction.service';
-import { Http } from '@angular/http';
 import { issue_levels, issue_type } from 'app/features/feedback/data-taiga';
-import {urlTaigaFeedback} from '../../../shared/data.service';
+import { FeedbackService } from '../feedback.service';
+import { Helper } from 'app/shared';
 
 @Component({
     selector: 'htm-feedback',
@@ -35,36 +31,46 @@ import {urlTaigaFeedback} from '../../../shared/data.service';
     ]
 })
 export class FeedbackComponent implements OnInit, OnDestroy {
+  @Input() expandedState;
     private issue_levels = issue_levels;
     private issue_type = issue_type;
-
-    @Input() expandedState;
+    private type=null;
+    private level=null;
     private files;
+    @ViewChild('file_input') file_input:ElementRef;
+    @ViewChild('file_string') file_string:ElementRef;
     private submited = false;
     private feedbackLoader = false;
-    constructor(private interactionService: InteractionService) {
+    constructor(private interactionService: InteractionService,
+      private feedbackService:FeedbackService, private helper:Helper
+      ) {
 
     }
     ngOnInit() {
+      this.type=null;
+      this.level=null;
     }
     ngOnDestroy() {
     }
     resetForm(f) {
-        f.reset()
+      this.file_input.nativeElement.value = "";
+      this.file_string.nativeElement.value = "";
+      f.reset()
     }
     makeNewRequest() {
         this.submited = false;
     }
     submit(f) {
-        this.feedbackLoader = true;
-        if (f.valid) {
-            this.sendRequest(f);
-        } else {
-            this.feedbackLoader = false;
-            this.submited = false;
-        }
+      // this.feedbackLoader = true;
+      if (f.valid) {
+          this.sendRequest(f);
+      } else {
+          this.feedbackLoader = false;
+          this.submited = false;
+      }
     }
-    close(f) {
+
+    close() {
         this.interactionService.closeTopPanel();
         this.interactionService.disableStateOpenWithFunction('send_mail');
     }
@@ -75,34 +81,25 @@ export class FeedbackComponent implements OnInit, OnDestroy {
         this.interactionService.showToaster('Unable to send the issue! Please, try later or send a mail to administrator');
     }
     sendRequest(f) {
+        this.feedbackLoader = true;
         const fd = new FormData();
-
-        if (this.files) {
+        if (!this.helper.isNullOrUndefined(this.files)) {
             fd.append('file', this.files, this.files.name);
         }
-        fd.append('formValues', JSON.stringify(f.value))
-        jQuery.ajax({
-            url: urlTaigaFeedback,
-            type: 'POST',
-            data: fd,
-            processData: false,
-            contentType: false,
-            success: (data, status) => {
-                if ((data === '1') || (data === 1)) {
-                    f.reset();
-                    this.submited = true;
-                    this.feedbackLoader = false;
-                } else {
-                    this.showError();
-                    this.feedbackLoader = false;
-                }
-
-            },
-            error: (e) => {
-                this.showError();
-                this.feedbackLoader = false;
-            },
-            timeout: timeOutAjaxRequest
-        });
+        fd.append('firstname',f.value['name'])
+        fd.append('email',f.value['mail'])
+        fd.append('company',f.value['company'])
+        fd.append('feedback_type',f.value['type'].name)
+        fd.append('feedback_priority',f.value['level'].name)
+        fd.append('title',f.value['title'])
+        fd.append('description',f.value['description'])
+        this.feedbackService.sendFeedback(fd).then((val)=>{
+            this.feedbackLoader = false
+            this.resetForm(f)
+            this.close()
+            this.interactionService.showToaster(val.message)
+        }).catch((e)=>{
+            this.feedbackLoader = false
+        })
     }
 }

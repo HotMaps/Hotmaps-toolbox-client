@@ -32,6 +32,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
+import { UploadService } from 'app/shared/services/upload.service';
 
 
 @Injectable()
@@ -214,7 +215,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }
 
   deleteSelectedAreas() {
-    this.selectionToolService.deleteSelectedAreas()
+    this.selectionToolService.deleteSelectedAreas();
   }
   toggleDrawControls() {
     this.selectionToolService.toggleControl(this.map);
@@ -223,7 +224,6 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   // NUTS management
   getNutsGeometryFromNuts(latlng: LatLng, nuts_level): any {
     this.logger.log('MapService/getNutsGeometryFromNuts()/');
-
     const current_nuts_level = this.businessInterfaceRenderService.convertNutsToApiName(nuts_level);
     let bbox = latlng.toBounds(clickAccuracy).toBBoxString();
     bbox = bbox + '&CQL_FILTER=' + 'stat_levl_=' + current_nuts_level + ' AND ' + 'date=' + '2015' + '-01-01Z';
@@ -231,7 +231,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     const url = geoserverGetFeatureInfoUrl
       + action + '&STYLES&LAYERS=hotmaps:' + action + '&INFO_FORMAT=application/json&FEATURE_COUNT=50' +
       '&X=50&Y=50&SRS=EPSG:4326&WIDTH=101&HEIGHT=101&BBOX=' + bbox;
-    this.logger.log('url' + url);
+    this.logger.log('url ' + url);
     return this.getAreaFromScale(url);
   }
   // LAU management;
@@ -393,6 +393,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // this.cmLayerService.clearAll();
   }
 
+
+  getSelectionSurface(): BehaviorSubject<number> {
+    return this.selectionToolService.getSelectionSurface()
+  }
   /**
    * Get the nutsSelected Subject of SelectionToolService
    */
