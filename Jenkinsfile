@@ -32,7 +32,10 @@ node {
       }
     } else if (env.BRANCH_NAME == 'master') {
       echo "Deploying to PROD platform"
-      echo "Deployment to PROD is currently disabled"
+      sshPublisher(publishers: [sshPublisherDesc(configName: 'hotmapsdev', transfers: [sshTransfer(cleanRemote: true, excludes: '', execCommand: '', execTimeout: 900000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/hotmaps/toolbox-client/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'dist/**,Dockerfile,nginx.conf')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+      sshagent(['sshhotmapsdev']) {
+        sh 'ssh -o StrictHostKeyChecking=no -l iig hotmaps.hevs.ch "/var/hotmaps/deploy_frontend.sh"'
+      }
     } else {
       echo "${env.BRANCH_NAME}: not deploying"
     }
