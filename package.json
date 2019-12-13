@@ -42,7 +42,7 @@
     "node-sass": "^4.11.0",
     "nodemailer": "^4.2.0",
     "normalize.css": "6.0.0",
-    "npm": "^6.5.0",
+    "npm": "^6.13.4",
     "proj4leaflet": "^1.0.2",
     "reflect-metadata": "0.1.10",
     "reproject": "1.1.1",
