@@ -97,7 +97,9 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
     this.userManagementService.getUserInformations(this.token).then((data) => {
       this.firstname = data.first_name;
       this.lastname = data.last_name;
-    })
+    }).catch(() => {
+      this.setUserIsLoggedOut();
+    });
   }
   updateProfile() {
     const payload = {token:this.token, last_name:this.lastname, first_name: this.firstname};
