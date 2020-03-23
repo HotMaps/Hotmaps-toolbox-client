@@ -228,7 +228,7 @@ export const heat_load_graph_options = {
             }]
       }
   };
-export const energy_mix_graph_category = 'duration_curve';
+export const energy_mix_graph_category = 'energy_mix';
 export const energy_mix_options = {
   position : 'right',
   responsive: true,

@@ -92,15 +92,19 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   // Components status
   private heatloadStatus = false;
-  private electricityMixStatus = false;
   private durationCurveStatus = false;
+  private electricityMixStatus = false;
   private summaryResultStatus = false
 
   private cmPayload;
   private summaryPayload;
   private energyMixPayload;
+
+
   private heatLoadPayload;
   private durationCurvePayload;
+
+
   private personnalLayerPayload;
 
 
@@ -133,18 +137,18 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.cmPayload = null;
     this.summaryPayload = null;
     this.energyMixPayload = null;
-    this.heatLoadPayload = null;
-    this.durationCurvePayload = null;
+    // this.heatLoadPayload = null;
+    //this.durationCurvePayload = null;
     this.personnalLayerPayload = null;
   }
   setSatusResults() {
-    if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+    /* if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
       this.heatloadStatus = true;
       this.durationCurveStatus = true;
     } else {
       this.heatloadStatus = false;
       this.durationCurveStatus = false;
-    }
+    } */
 
     if (this.scaleLevel === '0') {
       this.electricityMixStatus = true;
@@ -163,20 +167,20 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.summaryPayload = null
     }
 
-    if (this.heatloadStatus && this.scaleLevel !== '-1') {
+    /* if (this.heatloadStatus && this.scaleLevel !== '-1') {
       this.setHeatloadPayloadIds()
     } else if (this.heatloadStatus && this.scaleLevel === '-1') {
       this.setHeatloadPayloadAreas()
     } else {
       this.heatLoadPayload = null
-    }
-    if (this.durationCurveStatus && this.scaleLevel !== '-1') {
+    } */
+    /* if (this.durationCurveStatus && this.scaleLevel !== '-1') {
       this.setDurationCurveIds()
     } else if (this.durationCurveStatus && this.scaleLevel === '-1') {
       this.setDurationCurveAreas()
     } else {
       this.durationCurvePayload = null;
-    }
+    } */
 
 
     if (this.electricityMixStatus) {
