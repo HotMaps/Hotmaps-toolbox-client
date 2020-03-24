@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Logger } from './services';
 import { Location } from './class';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { proj3035, round_value } from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import { GeojsonClass } from '../features/layers/class/geojson.class';
@@ -518,7 +518,11 @@ export class Helper {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return Math.random().toString(36).substr(2, 9);
+  }
+
+  generateTimestamp(): string {
+    return new DatePipe('en-UK').transform(Date.now(), "dd.MM.yyyy_HH\'h\'MM:ss");
   }
 
   createDurationCurveLabels(array) {
