@@ -202,7 +202,6 @@ export class SelectionToolService extends APIService {
   }
 
   getStatistics() {
-    console.log(this.surfaceSubject.value, this.scaleValue, (this.surfaceSubject.value > maxSurfaceValueCM && this.scaleValue == hectare))
     if(!(this.surfaceSubject.value > maxSurfaceValueCM && this.scaleValue == hectare)) {
       this.interactionService.openRightPanel();
       this.interactionService.enableButtonWithId('load_result');
@@ -325,8 +324,6 @@ export class SelectionToolService extends APIService {
       var width = bounds.getNorthWest().distanceTo(bounds.getNorthEast())/1000
       var height = bounds.getSouthEast().distanceTo(bounds.getNorthEast())/1000
       var surface = Math.round(width*height);
-      console.log("bounds width:" + width + "; bounds height:" + height);
-      console.log("surface:" + surface + "m2");
     }
     if(surface >= maxSurfaceValueCM) {
       this.interactionService.setStatusCMPanel(false)
@@ -427,8 +424,6 @@ export class SelectionToolService extends APIService {
         this.updateSelectionToolAction();
       }
     }
-    console.log("addToMultiSelectionLayers / console")
-
   }
   
   addHectareToMultiSelectionLayers(layer: any) {
