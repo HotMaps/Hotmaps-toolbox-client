@@ -5,7 +5,7 @@
   <button [hidden]="!hasZoneSelected" class="uk-icon-button uk-button-default" (click)="export()" uk-tooltip="title: Download layer selection; pos: bottom">
     <img class="icon-download" src="../../../assets/logo_download_selection.svg" />
   </button>
-  <a *ngIf="dataInteraction.download_url" href="{{ dataInteraction.download_url }}">
+  <a *ngIf="dataInteraction.download_url" href="{{ dataInteraction.download_url }}" target="_blank">
     <button  class="uk-icon-button uk-button-default" uk-tooltip="title: Download default dataset; pos: bottom">
     <img class="icon-download" src="../../../assets/logo_download_all.svg" />
   </button></a>  
