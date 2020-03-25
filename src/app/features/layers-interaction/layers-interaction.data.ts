@@ -175,8 +175,8 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
   {id: idDefaultLayer, name: 'Average temperature', category: 'Climate', isSelected: false,
     workspaceName: 'land_surface_temperature', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'temp_v2', layer_type: 'land_surface_temperature',
-    download_url: gitlabUrl + '/climate/climate_land_surface_temperature/raw/master/data/eurolst_mean.tif',
-    description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/climate_land_surface_temperature/blob/master/README.md', isLoading:false},
+    download_url: gitlabUrl + '/climate/land_surface_temperature/raw/master/data/land_surface_temperature.tif',
+    description: 'Information on the layer can be found here: ' + gitlabUrl + '/climate/land_surface_temperature/blob/master/README.md', isLoading:false},
   {id: idDefaultLayer, name: 'Cooling degree days', category: 'Climate', isSelected: false,
     workspaceName: 'cdd_curr', zoomLevel: 0, ref: ['overall', 'climate'], styleName: 'cdd_curr_tif', layer_type: 'cdd_curr',
     download_url: gitlabUrl + '/climate/CDD_ha_curr/raw/master/data/CDD_curr.tif',
