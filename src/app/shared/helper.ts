@@ -483,7 +483,7 @@ export class Helper {
       if(this.isNullOrUndefined(input[res])) {continue}
       for (const entry of input[res].layers) {
 
-        array.push({ name: entry.name })
+        array.push({ indicator: entry.name })
         for (const entry_in_entry of entry.values) {
           array.push({ indicator: entry_in_entry.name, value: entry_in_entry.value, unit: entry_in_entry.unit });
         }
