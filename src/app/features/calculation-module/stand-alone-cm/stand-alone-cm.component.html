@@ -1,0 +1,22 @@
+  <ul uk-accordion>
+    <li class="uk-open">
+      <h3 class="uk-accordion-title">
+        STAND-ALONE CMs
+      </h3>
+      <div class="uk-accordion-content">
+        <ng-container *ngFor="let cm of standaloneCMs">
+            <div class="uk-container">
+              <div class="uk-offcanvas-content">
+                <button class="uk-button uk-button-default uk-margin-small-right" style="cursor:auto;">
+                  <span class="cm-name">{{cm.name}}</span>
+                  <div class="cm-toolbox">
+                      <a href="{{cm.wiki_url}}" target="_blank" class="uk-icon-link" uk-icon="icon:info; ratio: 1.5" uk-tooltip="title:Wiki URL;pos: bottom"></a>
+                      <a href="{{cm.repository_url}}" target="_blank" class="uk-icon-link" uk-icon="icon:github; ratio: 1.5" uk-tooltip="title:Repository URL;pos: bottom"></a>
+                  </div>
+                </button>
+              </div>
+            </div>
+        </ng-container>
+      </div>
+    </li>
+  </ul>

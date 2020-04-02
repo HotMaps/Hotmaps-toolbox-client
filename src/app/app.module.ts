@@ -89,6 +89,7 @@ import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.
 import { FeedbackService } from './features/feedback/feedback.service';
 import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
 import { GdprComponent } from './features/gdpr/gdpr.component';
+import { StandAloneCmComponent } from './features/calculation-module/stand-alone-cm/stand-alone-cm.component';
 
 @NgModule({
   imports: [
@@ -144,6 +145,7 @@ import { GdprComponent } from './features/gdpr/gdpr.component';
     FolderPanelComponent,
     SummaryResultContainerComponent,
     GdprComponent,
+    StandAloneCmComponent,
   ],
   providers: [
     DataInteractionService,

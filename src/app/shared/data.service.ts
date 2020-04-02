@@ -21,13 +21,16 @@ export const geoserverProdUrl = 'https://geoserver.hotmaps.hevs.ch/geoserver/hot
 export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
 
 
-
 export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
 
 export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
 export const apiUrl = devUrl;
+
+export const hotmaps_wiki = "http://wiki.hotmaps.hevs.ch"
+
+
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';

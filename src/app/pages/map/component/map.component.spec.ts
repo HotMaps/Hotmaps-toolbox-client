@@ -85,6 +85,7 @@ import { SummaryResultContainerComponent } from "../../../features/summary-resul
 import { UploadService } from "../../../shared/services/upload.service";
 import { GdprComponent } from '../../../features/gdpr/gdpr.component';
 import { BrowserDisclaimerComponent } from '../../../features/browser-disclaimer/browser-disclaimer.component';
+import { StandAloneCmComponent } from 'app/features/calculation-module/stand-alone-cm/stand-alone-cm.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -113,7 +114,7 @@ describe('MapComponent', () => {
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
         LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
-        SavePanelComponent, FolderPanelComponent, GdprComponent, SummaryResultContainerComponent, BrowserDisclaimerComponent
+        SavePanelComponent, FolderPanelComponent, GdprComponent, SummaryResultContainerComponent, BrowserDisclaimerComponent, StandAloneCmComponent
       ],
       providers: [
         {
