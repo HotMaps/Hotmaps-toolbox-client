@@ -23,3 +23,6 @@
 .cm-toolbox .git-link {
     position: absolute;
 }
+.git-link {
+    margin-left: 10px;
+}
