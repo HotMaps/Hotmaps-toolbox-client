@@ -42,8 +42,8 @@
               <input class="uk-input" maxlength="15" type="text" placeholder="Name of calculation module session" [(ngModel)]="prefix_cm" />
             </span><br />
           <span class="uk-margin description">{{cmSelected.cm_description}}</span><br />
-          <span class="uk-margin description-link" *ngIf="cmSelected.description_link">
-              <a class="uk-link-heading" href="{{cmSelected.description_link}}" target="_blank">More description...</a>
+          <span class="uk-margin description-link" *ngIf="cmSelected.wiki_url">
+              <a class="uk-link-heading" href="{{cmSelected.wiki_url}}" target="_blank">More description...</a>
           </span><br />
           <span class="uk-margin" *ngIf="cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
           <div *ngIf="waitingCM" class="waitingboxcomponents">
