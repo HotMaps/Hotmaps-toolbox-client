@@ -2,12 +2,13 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { Injectable } from '@angular/core';
 import {Helper} from '../../../shared/helper';
 import {Logger} from '../../../shared/services/logger.service';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 
 
 @Injectable()
 export class ExportDataService {
 
-  constructor(private helper: Helper, private logger: Logger) {}
+  constructor(private helper: Helper, private logger: Logger, private dataInteractionService: DataInteractionService) {}
   exportData(data, tabSelectedName: string, cmSessionName, refSelected){
     const options = {
       fieldSeparator: ',',
@@ -30,6 +31,14 @@ export class ExportDataService {
       file_name = 'report_' + tabSelectedName + '_' + cmSessionName;
     }
     // TODO take into account the dropdown!
+    data.map((d) => {
+      try {
+        d["indicator"] = this.dataInteractionService.getReadableName(d["indicator"])
+      } catch(e) {
+        d = d
+      }
+      
+    })
     new Angular2Csv(data, file_name, options);
   }
 }

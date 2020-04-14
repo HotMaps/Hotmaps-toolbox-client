@@ -12,6 +12,8 @@ import {Logger} from '../../../shared/services/logger.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
 import {LoaderService} from '../../../shared/services/loader.service';
 import {Helper} from '../../../shared/helper';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import { BusinessInterfaceRenderService } from 'app/shared';
 
 
 
@@ -36,6 +38,9 @@ describe('ExportDataComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
+        { provide: DataInteractionService, useClass: DataInteractionService},
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
           return new Http(backend, defaultOptions);
