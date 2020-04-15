@@ -24,6 +24,7 @@ import LatLng = L.LatLng;
 
 import * as proj4x from 'proj4';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 const proj4 = (proj4x as any).default;
 
 
@@ -63,7 +64,8 @@ export class LayersService extends APIService {
               // private populationService: PopulationService,
               private dataInteractionService: DataInteractionService,
               private helper: Helper,
-              private businessInterfaceRenderService: BusinessInterfaceRenderService
+              private businessInterfaceRenderService: BusinessInterfaceRenderService,
+              private googleAnalyticsService:GoogleAnalyticsService
             ) {
     super(http, logger, loaderService, toasterService);
   }
@@ -105,6 +107,9 @@ export class LayersService extends APIService {
     this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
       this.addLayerWithAction(action, map, order);
+
+      this.googleAnalyticsService
+        .eventEmitter("map_show_layer", "map", "show_layer", "click");
     } else {
       this.removelayer(action, map);
     }

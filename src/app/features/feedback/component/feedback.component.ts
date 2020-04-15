@@ -15,6 +15,7 @@ import { InteractionService } from '../../../shared/services/interaction.service
 import { issue_levels, issue_type } from 'app/features/feedback/data-taiga';
 import { FeedbackService } from '../feedback.service';
 import { Helper } from 'app/shared';
+import{GoogleAnalyticsService} from '../../../google-analytics.service';
 
 @Component({
     selector: 'htm-feedback',
@@ -42,7 +43,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     private submited = false;
     private feedbackLoader = false;
     constructor(private interactionService: InteractionService,
-      private feedbackService:FeedbackService, private helper:Helper
+      private feedbackService:FeedbackService, private helper:Helper, private googleAnalyticsService:GoogleAnalyticsService
       ) {
 
     }
@@ -64,6 +65,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       // this.feedbackLoader = true;
       if (f.valid) {
           this.sendRequest(f);
+          this.googleAnalyticsService
+            .eventEmitter("send_feedback", "feedback", "send", "click");
       } else {
           this.feedbackLoader = false;
           this.submited = false;

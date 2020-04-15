@@ -1,9 +1,11 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angular/core';
 
 import { LoaderService } from '../shared/services/loader.service';
 import {Logger} from '../shared/services/logger.service';
 import { isNavigationCancelingError } from '@angular/router/src/shared';
+
+declare let gtag: Function;
 
 
 @Component({
@@ -24,6 +26,16 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
 
   constructor(
     private loaderService: LoaderService, private logger: Logger, private router: Router) {
+
+    this.router.events.subscribe(event => {
+        if(event instanceof NavigationEnd){
+          gtag('config', 'UA-163693658-1',
+            {
+              'page_path': event.urlAfterRedirects
+            }
+          );
+        }
+      })
   }
 
   ngAfterContentInit(): void {

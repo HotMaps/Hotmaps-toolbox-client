@@ -15,6 +15,7 @@ import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
 import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} from '../../shared/data.service';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 import { Subject } from 'rxjs/Subject';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -28,7 +29,7 @@ export class SelectionScaleService extends APIService implements OnInit {
   scaleValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>(nuts3);
 
   private wms_request;
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private googleAnalyticsService:GoogleAnalyticsService) {
     super(http, logger, loaderService, toasterService);
   }
   ngOnInit() {
@@ -82,6 +83,10 @@ export class SelectionScaleService extends APIService implements OnInit {
      // loader.display(false)
     });
     wms_request.on('loading', function() {  });
+
+    this.googleAnalyticsService
+      .eventEmitter("map_switch_nuts_scale", "map", "switch_nuts_scale", "click");
+
     return wms_request;
   }
   getSelectionScaleMenu(map: any, loader) {

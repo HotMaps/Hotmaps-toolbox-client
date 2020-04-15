@@ -3,6 +3,7 @@ import { DataInteractionService } from 'app/features/layers-interaction/layers-i
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { Helper } from './../../../shared/helper';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 import {
   Component,
@@ -68,13 +69,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     private interactionService: InteractionService,
     private dataInteractionService: DataInteractionService,
     private helper: Helper, private logger: Logger,
-    private toasterService: ToasterService) { }
+    private toasterService: ToasterService,
+    private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs();
     this.logger.log('ngOnInit called')
-    
+
   }
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -164,8 +166,11 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
       }
     });
     this.cmRunning = true;
-    this.interactionService.setCmRunning( this.cmRunning)
+    this.interactionService.setCmRunning(this.cmRunning)
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
+
+    this.googleAnalyticsService
+      .eventEmitter("cm_run_" + this.cmSelected['cm_name'], "cm", "run_" + this.cmSelected['cm_name'], "click");
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
@@ -219,8 +224,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
             })
           })
         }
-  
-  
+
+
         this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
           this.components = values;
           this.components.forEach(comp => {
@@ -239,7 +244,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen')
       }
     }
-    
+
   }
   cmHidePanel() {
     this.setWaiting(true);

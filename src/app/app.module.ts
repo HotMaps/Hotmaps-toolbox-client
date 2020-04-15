@@ -89,6 +89,7 @@ import { SavePanelComponent } from './features/side-panel/save-panel/save-panel.
 import { FeedbackService } from './features/feedback/feedback.service';
 import { SummaryResultContainerComponent } from './features/summary-result/summary-result-container/summary-result-container.component';
 import { GdprComponent } from './features/gdpr/gdpr.component';
+import {GoogleAnalyticsService} from './google-analytics.service';
 
 @NgModule({
   imports: [
@@ -179,7 +180,8 @@ import { GdprComponent } from './features/gdpr/gdpr.component';
     UserManagementStatusService,
     UploadService,
     SnapshotService,
-    FeedbackService
+    FeedbackService,
+    GoogleAnalyticsService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -6,6 +6,7 @@ import { MapService } from 'app/pages/map';
 import { UploadService } from 'app/shared/services/upload.service';
 
 import { nuts3, lau2, hectare, urlLegend } from '../../shared/data.service';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 @Component({
   selector: 'htm-layer-tool',
@@ -24,7 +25,7 @@ export class LayerToolComponent implements OnInit {
   private hasZoneSelected: boolean = false;
 
 
-  constructor(private mapService: MapService, private uploadService: UploadService) { }
+  constructor(private mapService: MapService, private uploadService: UploadService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     if (this.mapService.getLoadResultbuttonState()) {
@@ -59,8 +60,16 @@ export class LayerToolComponent implements OnInit {
           a.click();
           document.body.removeChild(a);
           URL.revokeObjectURL(data.url);
+
+          this.googleAnalyticsService
+            .eventEmitter("map_layers_export_selection", "map", "layers_export_selection", "click");
         }
         this.loading = false;
       });
+  }
+
+  gaOpenRepo(){
+    this.googleAnalyticsService
+      .eventEmitter("map_layers_open_repo", "map", "layers_open_repo", "click");
   }
 }

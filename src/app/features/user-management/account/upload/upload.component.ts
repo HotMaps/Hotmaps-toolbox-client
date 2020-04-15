@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UploadService, UploadedFile } from '../../../../shared/services/upload.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { DataInteractionClass } from 'app/features/layers-interaction/layers-interaction.class';
+import {GoogleAnalyticsService} from "../../../../google-analytics.service";
 
 @Component({
   selector: 'app-upload',
@@ -10,7 +11,7 @@ import { DataInteractionClass } from 'app/features/layers-interaction/layers-int
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-    
+
   file2Up : File;
   isFileOk: boolean = false;
   isUploading: boolean = false; // Temporary until api do this async
@@ -22,7 +23,7 @@ export class UploadComponent implements OnInit {
   //selectedLayer: string = null;
   selectedLayer = null;
 
-  constructor(private upService: UploadService, private layerService: DataInteractionService) { }
+  constructor(private upService: UploadService, private layerService: DataInteractionService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     if (this.layerService.getDataInteractionServices) // == isNUllorUndefined
@@ -36,7 +37,7 @@ export class UploadComponent implements OnInit {
 
   /**
    * Get the layer name from the layer workspacename
-   * @param layer 
+   * @param layer
    * @returns
    */
   getLayerName(layer: string): string {
@@ -52,7 +53,7 @@ export class UploadComponent implements OnInit {
   }
 
   delete(id: number|UploadedFile) {
-    this.upService.delete(id);    
+    this.upService.delete(id);
   }
 
   download(upFile: UploadedFile) {
@@ -61,7 +62,7 @@ export class UploadComponent implements OnInit {
       const a = document.createElement('a');
       a.href = url;
       a.download = upFile.name;
-      document.body.appendChild(a);      
+      document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
@@ -79,13 +80,16 @@ export class UploadComponent implements OnInit {
     if (!(this.isFileOk && this.selectedLayer))
       return;
     this.isUploading = true;
-    this.upService.add(this.file2Up, this.selectedLayer).then((success) => {      
+    this.upService.add(this.file2Up, this.selectedLayer).then((success) => {
       if (success) {
         this.file2Up = null;
         this.isFileOk = false;
         this.selectedLayer = null;
         this.inputFile2.nativeElement.value = "";
         this.inputFile.nativeElement.value = "";
+
+        this.googleAnalyticsService
+          .eventEmitter("user_upload", "user", "upload", "click");
 
       } else this.isFileOk = true;
       this.isUploading = false;

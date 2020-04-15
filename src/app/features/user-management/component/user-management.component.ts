@@ -4,6 +4,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { subscribeOn } from 'rxjs/operator/subscribeOn';
 import * as uikit from 'uikit';
 import { ActivatedRoute } from '@angular/router';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   selector: 'htm-user-management',
@@ -17,7 +18,8 @@ export class UserManagementComponent implements OnInit {
   private token_activation = '';
   private token_recover = '';
   private submitedRecover = false;
-  constructor(private userManagementStatusService: UserManagementStatusService, private interactionService: InteractionService, private route: ActivatedRoute) { }
+  constructor(private userManagementStatusService: UserManagementStatusService, private interactionService: InteractionService, private route: ActivatedRoute, private googleAnalyticsService:GoogleAnalyticsService
+  ) { }
 
   ngOnInit() {
     this.subscribe();
@@ -58,5 +60,10 @@ export class UserManagementComponent implements OnInit {
   }
   closeLogin() {
     uikit.modal('#modal-login').hide()
+  }
+
+  gaAccount() {
+    this.googleAnalyticsService
+      .eventEmitter("user_account", "user", "account", "click");
   }
 }

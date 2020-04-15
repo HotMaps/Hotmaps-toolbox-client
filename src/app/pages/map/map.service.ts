@@ -32,6 +32,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 import { UploadService } from 'app/shared/services/upload.service';
 
 
@@ -58,7 +59,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private cmLayerService: CMLayersService,
     private selectionToolService: SelectionToolService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
-    private selectionToolButtonStateService: SelectionToolButtonStateService) {
+    private selectionToolButtonStateService: SelectionToolButtonStateService,
+    private googleAnalyticsService:GoogleAnalyticsService) {
     super(http, logger, loaderService, toasterService);
     this.baseMaps = basemap;
   }
@@ -383,6 +385,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
    */
   loadResultNuts(map: Map) {
     this.selectionToolService.loadResultNuts(map);
+
+    this.googleAnalyticsService
+      .eventEmitter("map_summary_result", "map", "summary_result", "click");
   }
 
   /**
