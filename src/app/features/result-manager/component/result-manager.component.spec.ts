@@ -34,6 +34,7 @@ import { SelectionToolService } from 'app/features/selection-tools';
 import { MapService } from '../../../pages/map/map.service';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('ResultManagerComponent', () => {
   /* let component: LeftSideComponent;
@@ -77,6 +78,7 @@ describe('ResultManagerComponent', () => {
                 { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
                 { provide: CalculationModuleService, useClass: CalculationModuleService },
                 { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+                { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
             ],
             imports: [
               BrowserAnimationsModule,

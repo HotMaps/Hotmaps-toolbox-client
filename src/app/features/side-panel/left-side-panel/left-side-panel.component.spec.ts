@@ -42,6 +42,7 @@ import { UserManagementStatusService } from 'app/features/user-management';
 import { Helper } from 'app/shared';
 import { DecimalPipe } from '@angular/common';
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -87,6 +88,7 @@ describe('LeftSideComponent', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         { provide: UserManagementStatusService, useClass: UserManagementStatusService },
       ],
       imports: [

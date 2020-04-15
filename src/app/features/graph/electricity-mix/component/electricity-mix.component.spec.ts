@@ -27,6 +27,7 @@ import {ElectricityMixService} from "../service/electricity-mix.service";
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import {GoogleAnalyticsService} from "../../../../google-analytics.service";
 
 
 
@@ -69,6 +70,7 @@ describe('ElectricityMixComponent', () => {
         {provide: ElectricityMixService, useClass: ElectricityMixService},
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

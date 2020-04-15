@@ -25,6 +25,7 @@ import {NavigationBarService} from '../../../pages/nav/service/navigation-bar.se
 import {SelectionToolButtonStateService} from '../../selection-tools/service/selection-tool-button-state.service';
 import {MailService} from '../../feedback/mail.service';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 
 describe('LayersService', () => {
@@ -54,6 +55,7 @@ describe('LayersService', () => {
         {provide: LayersService, useClass: LayersService},
         {provide: MockBackend, useClass: MockBackend},
         {provide: Logger, useValue: loggerStub},
+        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions}
       ],
       imports: [

@@ -24,6 +24,7 @@ import { CalculationModuleService } from "app/features/calculation-module/servic
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { SelectionScaleService } from 'app/features/selection-scale';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 
 describe('InteractionService', () => {
@@ -61,6 +62,7 @@ describe('InteractionService', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         { provide: SelectionScaleService, useClass: SelectionScaleService }
       ],
       imports: []

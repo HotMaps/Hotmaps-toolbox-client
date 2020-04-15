@@ -4,6 +4,7 @@ import { UploadComponent } from './upload.component';
 import { FormsModule } from '@angular/forms';
 import { UploadService } from 'app/shared/services/upload.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import {GoogleAnalyticsService} from "../../../../google-analytics.service";
 
 describe('UploadComponent', () => {
   let component: UploadComponent;
@@ -16,6 +17,7 @@ describe('UploadComponent', () => {
       providers: [
         { provide: UploadService, useValue: UploadService },
         { provide: DataInteractionService, useValue: DataInteractionService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
       ]
     })
     .compileComponents();

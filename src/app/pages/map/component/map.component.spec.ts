@@ -85,6 +85,7 @@ import { SummaryResultContainerComponent } from "../../../features/summary-resul
 import { UploadService } from "../../../shared/services/upload.service";
 import { GdprComponent } from '../../../features/gdpr/gdpr.component';
 import { BrowserDisclaimerComponent } from '../../../features/browser-disclaimer/browser-disclaimer.component';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -154,7 +155,8 @@ describe('MapComponent', () => {
         {provide: UserManagementService, useClass: UserManagementService},
         {provide: FeedbackService, useClass: FeedbackService},
         {provide: APP_BASE_HREF, useValue: '/'},
-        {provide: UploadService, useValue: UploadService}
+        {provide: UploadService, useValue: UploadService},
+        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService}
       ],
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
