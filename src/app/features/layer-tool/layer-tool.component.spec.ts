@@ -13,6 +13,7 @@ import { LayersService } from '../layers';
 import { SelectionScaleService } from '../selection-scale';
 import { CMLayersService } from '../calculation-module/cm-layers.service';
 import { CustomSymbologyComponent } from './custom-symbology/custom-symbology.component';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 describe('LayerToolComponent', () => {
   let component: LayerToolComponent;
@@ -36,6 +37,7 @@ describe('LayerToolComponent', () => {
         { provide: CMLayersService, useValue: CMLayersService },
         { provide: SelectionToolService, useValue: SelectionToolService },
         { provide: LayersService, useValue: LayersService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
             return new Http(backend, defaultOptions);

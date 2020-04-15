@@ -19,6 +19,7 @@ import { UploadComponent } from '../account/upload/upload.component';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { GdprComponent } from '../../gdpr/gdpr.component';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('UserManagementComponent', () => {
   let component: UserManagementComponent;
@@ -53,6 +54,7 @@ describe('UserManagementComponent', () => {
         MockBackend, BaseRequestOptions,
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
         { provide: InteractionService, useValue: InteractionService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
       ]
     })
     .compileComponents();

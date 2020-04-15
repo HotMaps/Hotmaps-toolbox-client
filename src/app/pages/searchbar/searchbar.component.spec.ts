@@ -1,4 +1,4 @@
-// Improvement of coding style : 
+// Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { MockMapService } from '../../shared/services/mock/map.service';
@@ -15,6 +15,7 @@ import { MapService} from '../map/map.service';
 import { MockLoggerService } from '../../shared/services/mock/logger.service';
 import { MockLoaderService } from '../../shared/services/mock/loader.service';
 import { SidePanelService } from '../../features/side-panel/side-panel.service';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 
 describe('SearchBarComponent', () => {
@@ -40,6 +41,7 @@ describe('SearchBarComponent', () => {
         {provide: GeocodingService, useValue: mockGeocodeService },
         {provide: LoaderService, useValue: mockLoaderService },
         {provide: SidePanelService, useValue: mockLoaderService },
+        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
       ],
       imports: [FormsModule]
     }).compileComponents();
