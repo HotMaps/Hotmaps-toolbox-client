@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
 import { ResultManagerPayload } from '../service/result-manager';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { MapService } from '../../../pages/map';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   moduleId: module.id,
@@ -49,7 +50,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
   private heatLoadData;
   constructor(private helper: Helper, private interactionService: InteractionService, private logger: Logger,
-    private dataInteractionService: DataInteractionService, private mapService: MapService) { }
+    private dataInteractionService: DataInteractionService, private mapService: MapService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.interactionService.getHeatLoadData().subscribe((heatload) => {
@@ -69,7 +70,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     /* if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
     if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() } */
-    
+
 
   }
    updateCMResult() {
@@ -87,7 +88,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
    updatePersonnalLayersResult() {
-    
+
     if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
     const self = this;
     self.indicatorPersoLoading = true
@@ -185,7 +186,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       graphic.isLoading = false;
       graphic.data = [dataset];
       graphic.labels = labels;
-      self.graphicsExportButtonState = true;    
+      self.graphicsExportButtonState = true;
     }).catch(e => {
       self.graphicsExportButtonState = false;
       self.logger.log('error')
@@ -354,8 +355,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       }
     }
       this.selectedButton = this.dropdown_btns[0]
-      this.selectedButton.selected = true 
-   
+      this.selectedButton.selected = true
+
   }
 
   addGraphic(name, type, data, labels, options, category, isLoading) {
@@ -365,6 +366,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   changeResultsDisplay(button) {
     this.selectedButton = button;
+
+    this.googleAnalyticsService
+      .eventEmitter("map_summary_filter", "map", "summary_filter", "click");
   }
   resetButtonsDiplay() {
     this.dropdown_btns.map((btn) => {

@@ -2,7 +2,7 @@
  * Created by lesly on 31.05.17.
  */
 
- // Improvement of coding style : 
+ // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import {Component, OnInit} from '@angular/core';
@@ -11,6 +11,7 @@ import {MapService} from '../map/map.service';
 import {Logger} from '../../shared/services/logger.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {Map} from 'leaflet';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 @Component({
   selector: 'hmt-search-bar',
@@ -24,12 +25,12 @@ export class SearchBarComponent implements OnInit {
   private map: Map;
 
   constructor(private geocoder: GeocodingService, private mapService: MapService,
-              private logger: Logger, private loaderService: LoaderService) {
+              private logger: Logger, private loaderService: LoaderService, private googleAnalyticsService:GoogleAnalyticsService) {
     this.address = '';
   }
 
-  // Improvement of coding style : 
-  // use lower camel case to name methods 
+  // Improvement of coding style :
+  // use lower camel case to name methods
   // this method doesn't do anything, we can delete it
   Initialize() {
   }
@@ -51,6 +52,8 @@ export class SearchBarComponent implements OnInit {
         this.map.fitBounds(location.viewBounds, {});
         this.address = location.address;
         this.loaderService.display(false);
+        this.googleAnalyticsService
+          .eventEmitter("searchbar_goto", "searchbar", "goto", "enter");
       }, error => this.loaderService.display(false));
   }
 
