@@ -45,7 +45,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   public layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   private tempAreaSelected;
-
+  private cmRunning = false;
 
   // TODO: A modifier
   private clickEventSubject = new Subject<any>(); // Observable source for click
@@ -94,6 +94,16 @@ export class MapService extends APIService implements OnInit, OnDestroy {
 
   getMap(): Map {
     return this.map;
+  }
+  setCMRunning(val) {
+    if(val) {
+      this.map.tap.disable()
+
+      // this.map.off(MAPCLICK, ()=> {console.log('off click')});
+    } else {
+      //this.map.on(MAPCLICK, (event: MouseEvent) => { this.onClickEvent(this, event) });
+      this.map.tap.enable()
+    }
   }
   // Retrive all map events
   retriveMapEvent(): void {
@@ -182,6 +192,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.selectionScaleService.changeScale();
   }
   onClickEvent(self, e: MouseEvent) {
+    console.log(self.cmRunning)
     if (self.getScaleValue() === hectare) { return; }
     if (self.selectionToolService.getPolygonDrawerState()) { return; }
 

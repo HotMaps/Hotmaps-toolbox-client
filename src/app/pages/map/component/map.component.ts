@@ -43,6 +43,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private cmRunned;
   private personnalLayers;
   private selectionSurface=0;
+  private isCMRunning = false;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -89,6 +90,12 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.mapService.setLayersSubject();
       });
     }
+    this.interactionService.getCmRunning().subscribe((value) => {
+      this.isCMRunning = value;
+      this.mapService.setCMRunning(value)
+      console.log("this.isCMRunning", this.isCMRunning)
+
+    })
     this.interactionService.getCMRunned().subscribe((value) => {
       this.cmRunned = value
       if (value !== null) {

@@ -199,6 +199,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   }
   stopCM() {
     this.interactionService.setCurrentIdCM(null);
+    this.cmRunning = false;
+    this.interactionService.setCmRunning(this.cmRunning)
   }
 
   selectCM(cm) {
