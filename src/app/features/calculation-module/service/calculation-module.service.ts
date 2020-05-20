@@ -75,4 +75,5 @@ export class CalculationModuleService extends APIService {
     return super.DELETE(apiUrl + '/cm/delete/' + id)
 
   }
+  
 }

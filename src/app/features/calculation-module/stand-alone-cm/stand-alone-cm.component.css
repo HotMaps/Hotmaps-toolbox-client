@@ -17,12 +17,14 @@
 
 .cm-toolbox {
     position: relative;
+    height: 35px;
 }
 
 
 .cm-toolbox .git-link {
     position: absolute;
 }
-.git-link {
-    margin-left: 10px;
+
+.icon-wiki {
+    margin-right: 10px;
 }

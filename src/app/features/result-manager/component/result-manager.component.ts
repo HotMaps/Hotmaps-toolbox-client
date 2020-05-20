@@ -3,7 +3,7 @@ import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Graphics, IndicatorResult } from './../service/result-manager';
 import { Helper } from 'app/shared';
-import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ResultManagerPayload } from '../service/result-manager';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { MapService } from '../../../pages/map';
@@ -43,6 +43,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private dropdown_btns = summay_drop_down_buttons;
   private selectedButton = this.dropdown_btns[0];
   private heatloadGraph;
+  private isCMRunning;
   private result: ResultManagerPayload = {
     indicators: { summaryResult: null, personnalLayerResult: null, cmResult: null },
     graphics: null, raster_layers: null, vector_layers: null
@@ -62,9 +63,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
   ngOnDestroy() { }
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.resetResult();
-    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
+    if (!this.helper.isNullOrUndefined(this.cmPayload) && !this.helper.isNullOrUndefined(changes.cmPayload)) { this.updateCMResult() }
     if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
     /* if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() } */
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
@@ -77,6 +78,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     const self = this;
     if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
+      //this.interactionService.setCmRunning(true)
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
       self.interactionService.setCurrentIdCM(self.status_id )
@@ -199,7 +201,10 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
-      const name_of_result = this.cmPayload.cm_name;
+      let name_of_result = ""
+      if(!this.helper.isNullOrUndefined(this.cmPayload)){
+        name_of_result = this.cmPayload.cm_name;
+      }
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
           let symb;
@@ -325,7 +330,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.interactionService.deleteCM(this.status_id)
     }
     this.killAnimation()
-
+    this.interactionService.setCmRunning(false)
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()

@@ -8,6 +8,14 @@ export class CalculationModuleStatusService {
   private cmRunned: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private panelIsOpen: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private cmAnimationStatus: BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  private cmRunning: BehaviorSubject<any> = new BehaviorSubject<any>(false);
+
+  getRuningState() {
+    return this.cmRunning
+  }
+  setRuningState(val) {
+    this.cmRunning.next(val)
+  }
   getWaitingSatus() {
     return this.waitingCM;
   }

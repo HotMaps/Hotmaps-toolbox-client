@@ -165,9 +165,9 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         comp.input_value = comp.selected_value
       }
     });
+    this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
     this.cmRunning = true;
     this.interactionService.setCmRunning(this.cmRunning)
-    this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
 
     this.googleAnalyticsService
       .eventEmitter("cm_run_" + this.cmSelected['cm_name'], "cm", "run_" + this.cmSelected['cm_name'], "click");
@@ -199,6 +199,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   }
   stopCM() {
     this.interactionService.setCurrentIdCM(null);
+    this.cmRunning = false;
+    this.interactionService.setCmRunning(this.cmRunning)
   }
 
   selectCM(cm) {

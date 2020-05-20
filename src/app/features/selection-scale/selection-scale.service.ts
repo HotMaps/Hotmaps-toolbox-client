@@ -66,7 +66,7 @@ export class SelectionScaleService extends APIService implements OnInit {
   getModulesServicesSlowly(): Promise<SelectionScaleClass[]> {
     return new Promise(resolve => {
       // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getDataInteractionServices()), 2000);
+      setTimeout(() => resolve(this.getDataInteractionServices()), 1000);
     });
   }
   getTilayer(option: any, loader): any {
