@@ -96,19 +96,12 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     return this.map;
   }
   setCMRunning(val) {
-    if(val) {
-      this.map.tap.disable()
-
-      // this.map.off(MAPCLICK, ()=> {console.log('off click')});
-    } else {
-      //this.map.on(MAPCLICK, (event: MouseEvent) => { this.onClickEvent(this, event) });
-      this.map.tap.enable()
-    }
+    this.cmRunning = val;
   }
   // Retrive all map events
   retriveMapEvent(): void {
     const self = this;
-    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });
+    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });  
     this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
     this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
     this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
@@ -192,7 +185,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.selectionScaleService.changeScale();
   }
   onClickEvent(self, e: MouseEvent) {
-    console.log(self.cmRunning)
+    if (self.cmRunning) { self.toasterService.showDangerToaster("To run the calculation module (CM) for your new selection, STOP CM and RUN it again.") }
     if (self.getScaleValue() === hectare) { return; }
     if (self.selectionToolService.getPolygonDrawerState()) { return; }
 

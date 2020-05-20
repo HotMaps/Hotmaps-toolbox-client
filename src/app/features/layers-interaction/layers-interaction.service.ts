@@ -92,7 +92,7 @@ export class DataInteractionService extends APIService {
   getModulesServicesSlowly(): Promise<DataInteractionClass[]> {
     return new Promise(resolve => {
       // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getDataInteractionServices()), 2000);
+      setTimeout(() => resolve(this.getDataInteractionServices()), 1000);
     });
   }
 

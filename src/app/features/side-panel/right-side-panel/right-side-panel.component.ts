@@ -82,7 +82,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() scaleLevel;
   @Input() locationsSelection;
   @Input() areas;
-  @Input() cmRunned;
   @Input() personnalLayers;
   private cmTimeout;
 
@@ -113,8 +112,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private splittedResults;
   private summaryResult;
 
-
-
+  private aCMisCurrentlyRunning
+  private cmRunned;
 
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private dataInteractionService: DataInteractionService) {
@@ -122,7 +121,18 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.interactionService.getCMRunned().subscribe((val)=> {
+      this.cmRunned = val;
+      if (!this.helper.isNullOrUndefined(this.cmRunned)) {
+        this.setSatusResults()
+        this.updateAll()
+        this.setCMPayload()
+      } else {
+        this.cmPayload = null
+      }
+    })
+  }
   ngOnDestroy() { }
   ngOnChanges() {
     this.logger.log('RightSidePanelComponent/ngOnChanges')
@@ -159,6 +169,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   }
   updateAll() {
+    
+
     if (this.summaryResultStatus && this.scaleLevel !== '-1') {
       this.setSummaryPayloadIds()
     } else if (this.summaryResultStatus && this.scaleLevel === '-1') {
@@ -195,11 +207,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
 
 
-    if (this.cmRunned) {
-      this.setCMPayload()
-    } else {
-      this.cmPayload = null
-    }
+    // test if calulation are running
+    // if(this.aCMisCurrentlyRunning) {
+    //   this.interactionService.showToaster("A CM is currently running. Please change configuration when the CM is finished or stop CM")
+    //   return
+    // }
+    // if (this.cmRunned) {
+    //   this.setCMPayload()
+    // } else {
+    //   this.cmPayload = null
+    // }
 
   }
 
