@@ -1,5 +1,5 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
-import { map_options, eu_logo_path, eu_logo_height } from './../../../shared/data.service';
+import {map_options, eu_logo_path, eu_logo_height, hotmaps_wiki} from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
@@ -33,7 +33,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   folderPanelShow = false;
   savePanelShow = false;
-
+  private hotmaps_wiki = hotmaps_wiki;
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
@@ -98,7 +98,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
       this.mapService.setCMRunning(value)
     })
-    
+
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {
         this.layers = data;
