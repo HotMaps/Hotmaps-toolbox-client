@@ -121,7 +121,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
 
-  ngOnInit() { 
+  ngOnInit() {
     this.interactionService.getCMRunned().subscribe((val)=> {
       this.cmRunned = val;
       if (!this.helper.isNullOrUndefined(this.cmRunned)) {
@@ -169,7 +169,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   }
   updateAll() {
-    
+
 
     if (this.summaryResultStatus && this.scaleLevel !== '-1') {
       this.setSummaryPayloadIds()
@@ -238,7 +238,7 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.cmPayload = Object.assign(
       {
         url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name
+        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name, cm_prefix:this.cmRunned.cm.cm_prefix
       },
       { payload: payloadTmp }
     )
