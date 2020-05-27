@@ -55,7 +55,7 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].download_url = '';
     DataInteractionArray[newLayerAdded - 1].description = '';
   }
-  
+
   addNewCMLayer(name, id, symbology_layer_type, type_of_layer, symb?, layer_id = 0) {
     const newLayerAdded = DataInteractionArray.push(Object.assign({}, cm_default_layer))
     DataInteractionArray[newLayerAdded - 1].name = name;
@@ -65,6 +65,7 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].layer_type = symbology_layer_type;
     DataInteractionArray[newLayerAdded - 1].custom_symbology = symb;
     DataInteractionArray[newLayerAdded - 1].id = layer_id;
+    console.log(DataInteractionArray[newLayerAdded - 1])
   }
   getReadableName(layerName: string): string {
 

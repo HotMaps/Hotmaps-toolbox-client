@@ -70,7 +70,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     /* if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() } */
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
     /* if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }*/
-    if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() } 
+    if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() }
 
 
   }
@@ -205,13 +205,18 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       if(!this.helper.isNullOrUndefined(this.cmPayload)){
         name_of_result = this.cmPayload.cm_name;
       }
+      let prefix_name = ""
+      if(this.cmPayload.cm_prefix != "") {
+        prefix_name = this.cmPayload.cm_prefix + " - "
+      }
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
           let symb;
           if(raster.type === 'custom') {
             symb = raster.symbology;
           }
-          this.dataInteractionService.addNewCMLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
+
+          this.dataInteractionService.addNewCMLayer( prefix_name + raster.name, raster.path, raster.type, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
@@ -222,7 +227,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(vector.type == 'custom') {
             symb = vector.symbology;
           }
-          this.dataInteractionService.addNewCMLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
+          this.dataInteractionService.addNewCMLayer(prefix_name + vector.name, vector.path,vector.type, vector_type_name,symb)
 
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })
