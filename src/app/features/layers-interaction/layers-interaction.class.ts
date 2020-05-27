@@ -15,4 +15,7 @@ export class DataInteractionClass {
   custom_symbology?: any;
   isLoading:boolean;
   order?:number;
+  year?:number;
+  schema?:string;
+  layerName?:string;
 }

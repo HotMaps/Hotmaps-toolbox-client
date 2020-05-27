@@ -5,7 +5,7 @@ import { DataInteractionClass } from '../layers-interaction/layers-interaction.c
 import { MapService } from 'app/pages/map';
 import { UploadService } from 'app/shared/services/upload.service';
 
-import {nuts3, lau2, hectare, urlLegend, nuts2, calculation_module_category} from '../../shared/data.service';
+import { nuts0, nuts3, lau2, hectare, urlLegend, nuts2, nuts1, calculation_module_category } from '../../shared/data.service';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 @Component({
@@ -32,7 +32,9 @@ export class LayerToolComponent implements OnInit {
     console.log(this.dataInteraction);
     if (this.mapService.getLoadResultbuttonState()) {
       this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value
-        && [nuts3,nuts2, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+        // exception for yearly_co2_emission_factors dataset (display button only at nuts0 level)
+        && ([nuts3, nuts2, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1 && this.dataInteraction.layerName !== 'yearly_co2_emission_factors_view'
+          || ([nuts0].indexOf(this.mapService.getScaleValue()) > -1 && this.dataInteraction.layerName === 'yearly_co2_emission_factors_view'))
         && this.dataInteraction.category !== calculation_module_category
       );
     }
@@ -52,7 +54,7 @@ export class LayerToolComponent implements OnInit {
 
   export() {
     this.loading = true;
-    this.uploadService.export(this.dataInteraction.workspaceName, this.dataInteraction.cm_id)
+    this.uploadService.export(this.dataInteraction.workspaceName, this.dataInteraction.cm_id, this.dataInteraction.schema, this.dataInteraction.layerName, this.dataInteraction.year)
       .then(data => {
         if (data.url != "") {
           //window.open(data.url); //POPUP blocker

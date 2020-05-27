@@ -113,8 +113,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         uikit.offcanvas('#box-components').show()
         this.logger.log('cm box is shown')
       } else if (value === false) {
-        uikit.offcanvas('#box-components').hide()
-        this.cmHidePanel()
+        try {
+          uikit.offcanvas('#box-components').hide();
+        } catch (error) {
+
+        }
+        this.cmHidePanel();
       }
     })
   }
