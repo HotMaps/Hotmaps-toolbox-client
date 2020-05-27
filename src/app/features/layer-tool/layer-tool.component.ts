@@ -5,7 +5,7 @@ import { DataInteractionClass } from '../layers-interaction/layers-interaction.c
 import { MapService } from 'app/pages/map';
 import { UploadService } from 'app/shared/services/upload.service';
 
-import { nuts3, lau2, hectare, urlLegend } from '../../shared/data.service';
+import {nuts3, lau2, hectare, urlLegend, nuts2, calculation_module_category} from '../../shared/data.service';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 @Component({
@@ -23,14 +23,17 @@ export class LayerToolComponent implements OnInit {
 
   private loading: boolean = false;
   private hasZoneSelected: boolean = false;
+  private calculation_module_name = calculation_module_category;
 
 
   constructor(private mapService: MapService, private uploadService: UploadService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
+    console.log(this.dataInteraction);
     if (this.mapService.getLoadResultbuttonState()) {
       this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value
-        && [nuts3, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+        && [nuts3,nuts2, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1
+        && this.dataInteraction.category !== calculation_module_category
       );
     }
   }
