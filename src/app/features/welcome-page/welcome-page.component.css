@@ -42,6 +42,18 @@
 }
 
 .supported-browser {
-  height: 41px;
+  width: 41px;
   margin-left: 9px;
+}
+
+.nolist {
+  list-style-type: none;
+}
+
+.nolist li {
+  margin-top: 6px;
+}
+
+.browser-label {
+  margin-left: 12px;
 }
