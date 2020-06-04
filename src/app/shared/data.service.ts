@@ -1,4 +1,5 @@
 import { basemap } from './../pages/map/basemap';
+import { environment } from './../../environments/environment';
 
 import 'leaflet-draw';
 
@@ -9,27 +10,13 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'https://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
-const devUrl    = 'https://api.hotmapsdev.hevs.ch/api'  // 'https://hotmapsdev.hevs.ch:9006/api';
-const localApiUrl    = 'http://localhost:5000/api';
-
-
-
-export const geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserverProdUrl_old2 = 'http://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
-export const geoserverProdUrl = 'https://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
-
+export const apiUrl = environment.apiUrl;
+export const geoserverUrl = environment.geoserverUrl;
+export const hotmaps_wiki = environment.wikiUrl;
 
 export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
-
-export const geoserverUrl = geoserverDevUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = devUrl;
-
-export const hotmaps_wiki = "http://wiki.hotmaps.hevs.ch"
-
 
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
