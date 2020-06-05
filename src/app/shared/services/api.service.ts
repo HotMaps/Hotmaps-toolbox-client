@@ -37,10 +37,7 @@ export class APIService {
     this.toasterService = toasterService;
   }
   handleError(error: any) {
-
-
     this.loaderService.display(false);
-
     let message;
     if (this.isNullOrUndefined(error.json().message)) {
        message = 'An internal error occured';

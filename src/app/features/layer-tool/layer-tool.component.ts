@@ -29,14 +29,27 @@ export class LayerToolComponent implements OnInit {
   constructor(private mapService: MapService, private uploadService: UploadService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
-    console.log(this.dataInteraction);
+    // display download button according to the following rules
     if (this.mapService.getLoadResultbuttonState()) {
-      this.mapService.getLoadResultbuttonState().subscribe(value => this.hasZoneSelected = value
-        // exception for yearly_co2_emission_factors dataset (display button only at nuts0 level)
-        && ([nuts3, nuts2, lau2, hectare].indexOf(this.mapService.getScaleValue()) > -1 && this.dataInteraction.layerName !== 'yearly_co2_emission_factors_view'
-          || ([nuts0].indexOf(this.mapService.getScaleValue()) > -1 && this.dataInteraction.layerName === 'yearly_co2_emission_factors_view'))
-        && this.dataInteraction.category !== calculation_module_category
-      );
+      this.mapService.getLoadResultbuttonState().subscribe(value => {
+        let availableScales = [];
+        if (this.dataInteraction.category === calculation_module_category) {
+          availableScales = [nuts0, nuts1, nuts2, nuts3, lau2, hectare];
+        } else if (this.dataInteraction.dataType) {
+          if (this.dataInteraction.dataType === 'raster')
+            availableScales = [nuts3, lau2, hectare];
+          else if (this.dataInteraction.dataType === 'shp')
+            availableScales = [nuts2, nuts3, lau2, hectare];
+          else if (this.dataInteraction.dataType === 'csv')
+            availableScales = this.dataInteraction.scales ? this.dataInteraction.scales : [nuts2, nuts3, lau2, hectare];
+          else
+            throw Error("This dataType is not supported.")
+        } else {
+          console.log("This layer (" + this.dataInteraction.name + ") can't be downloaded.");
+        }
+
+        this.hasZoneSelected = value && availableScales.indexOf(this.mapService.getScaleValue()) > -1;
+      })
     }
   }
 

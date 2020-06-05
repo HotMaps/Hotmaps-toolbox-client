@@ -17,5 +17,7 @@ export class DataInteractionClass {
   order?:number;
   year?:number;
   schema?:string;
+  dataType?:string;
   layerName?:string;
+  scales?:string[];
 }

@@ -13,7 +13,7 @@ import { TileLayer } from 'leaflet';
 declare const L: any;
 import 'leaflet-dvf';
 
-import { nuts0, nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
+import { nuts0, nuts1, nuts2, nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
 import { BehaviorSubject } from 'rxjs';
 import { APIService } from './api.service';
 import { Logger } from './logger.service';
@@ -295,14 +295,15 @@ export class UploadService extends APIService {
 
             if (layerName != null) layer = layerName; // override layer with layerName if a value is set in layers-interaction.data.ts
 
-            if (scale === lau2 || scale === nuts3 || scale === nuts0) {
+            if ([lau2, nuts3, nuts2, nuts1, nuts0].indexOf(scale) > -1) {
                 layer += '_' + scale.toLowerCase().replace(' ', ''); // To change in API ?
                 nutsOrAreas = this.slcToolsService.nutsIdsSubject.getValue()
             } else if (scale === hectare) {
                 layer += '_ha';
                 nutsOrAreas = this.helper.getAreasForPayload(this.slcToolsService.areasSubject.getValue());
                 isNuts = false;
-            }
+            } else
+              console.log('Unsupported scale');
 
             if (uuid == null) { // if the layer is not a CM layer
                 if (year == null) year = constant_year;
