@@ -62,12 +62,14 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   private cmSelected;
   private cmRunning;
   private layersFromType = [];
+  private layersFromTypeVector = [];
   private prefix_cm='';
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
     private interactionService: InteractionService,
     private dataInteractionService: DataInteractionService,
+
     private helper: Helper, private logger: Logger,
     private toasterService: ToasterService,
     private googleAnalyticsService:GoogleAnalyticsService) { }
@@ -217,17 +219,13 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         this.cmSelected = cm;
         this.layersFromType = [];
         if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
-          cm.type_layer_needed.map((layerType) => {
-            this.dataInteractionService.getLayersFromType(layerType.type).then((data) => {
-              if(data.length >=1) {
-                this.layersFromType.push({ layerType: layerType.type, layers: data, layerSelected: data[0],type_description:layerType.description })
-              } else {
-                const layers = [{workspaceName:layerType.type, name:layerType.type}]
-                this.layersFromType.push({ layerType: layerType.type, layers: layers, layerSelected: layers[0] })
-              }
-            }).then(() => {
-              this.setLayerNeeded()
-            })
+          cm.type_layer_needed.map((layer) => {
+            this.setLayerFromType(layer, 'raster')
+          })
+        }
+        if (!this.helper.isNullOrUndefined(cm.type_vectors_needed)) {
+          cm.type_vectors_needed.map((layer) => {
+            this.setLayerFromType(layer, 'vector')
           })
         }
 
@@ -252,6 +250,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
     }
 
   }
+  setLayerFromType(layer, data_type) {
+    this.dataInteractionService.getLayersFromType(layer.type).then((data) => {
+      if(data.length >=1) {
+        this.layersFromType.push({ layerType: layer.type, layers: data, layerSelected: data[0],type_description:layer.description, data_type: data_type })
+      } else {
+        const layers = [{workspaceName:layer.type, name:layer.type}]
+        this.layersFromType.push({ layerType: layer.type, layers: layers, layerSelected: layers[0], type_description:layer.description, data_type: data_type })
+      }
+    }).then(() => {
+      this.setLayerNeeded()
+    })
+  }
   cmHidePanel() {
     this.setWaiting(true);
     this.calculationModuleStatusService.undefinedCmRunned()
@@ -272,9 +282,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
 
   setLayerNeeded() {
     this.cmSelected.layers_needed = []
+    console.log(this.layersFromType)
     this.layersFromType.map((layer) => {
-      this.cmSelected.layers_needed.push({id:layer.layerSelected.id, name:layer.layerSelected.name, workspaceName:layer.layerSelected.workspaceName, layer_type:layer.layerSelected.layer_type})
+      console.log(layer)
+      this.cmSelected.layers_needed.push({
+        id:layer.layerSelected.id, 
+        name:layer.layerSelected.name,
+        workspaceName:layer.layerSelected.workspaceName, 
+        layer_type:layer.layerSelected.layer_type, 
+        data_type:layer.data_type
+      })
     })
+    
   }
 
 

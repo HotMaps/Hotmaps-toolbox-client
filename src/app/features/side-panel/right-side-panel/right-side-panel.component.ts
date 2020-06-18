@@ -224,24 +224,42 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setCMPayload() {
     let payloadTmp;
     let cm_name='';
+    let areas;
     if (this.scaleLevel !== '-1') {
-      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
-      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
+      areas=this.summaryPayload.nuts
+      // this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed)
     } else if (this.scaleLevel === '-1') {
-      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
-      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
+      areas=this.summaryPayload.areas
+      // this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed)
     }
+    // payloadTmp = {
+    //   areas: areas, 
+    //   year: this.summaryPayload.year, 
+    //   layers_needed: this.cmRunned.cm.layers_needed, 
+    //   type_layer_needed: this.cmRunned.cm.type_layer_needed, 
+    //   vectors_needed: this.cmRunned.cm.vectors_needed
+    // };
     if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
       cm_name+=this.cmRunned.cm.cm_prefix + ' - '
     }
     cm_name += this.cmRunned.cm.cm_name
     this.cmPayload = Object.assign(
       {
-        url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name, cm_prefix:this.cmRunned.cm.cm_prefix
-      },
-      { payload: payloadTmp }
+        url_file: 0, scalevalue: this.interactionService.getScaleLevel().replace(" ", "").toLocaleLowerCase(),
+        inputs: this.cmRunned.component, 
+        cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name, 
+        cm_prefix:this.cmRunned.cm.cm_prefix
+      }, { 
+        payload: {
+          areas: areas, 
+          year: this.summaryPayload.year, 
+          layers_needed: this.cmRunned.cm.layers_needed, 
+          type_layer_needed: this.cmRunned.cm.type_layer_needed, 
+          vectors_needed: this.cmRunned.cm.vectors_needed
+      } 
+    }
     )
+    console.log(this.cmPayload)
   }
   setPersonnalLayerPayload(){
     this.personnalLayerPayload={'layers':[],scale_level: this.helper.getScaleLevelPay(this.scaleLevel), areas: (this.scaleLevel==='-1') ? this.helper.getAreasForPayload(this.areas) : this.nutsIds }

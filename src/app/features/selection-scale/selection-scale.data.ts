@@ -59,7 +59,7 @@ export const nuts3LayerOption = {
   format: formatImage,
   transparent: true,
   version: '1.3.0',
-  cql_filter : 'stat_levl_ =' + 3+date_filter,
+  cql_filter : 'stat_levl_ =' + 3+ date_filter,
   srs: 'EPSG:4326',
   zIndex: scale_layer_order
 }

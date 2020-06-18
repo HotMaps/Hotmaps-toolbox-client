@@ -70,7 +70,6 @@ export class SelectionScaleService extends APIService implements OnInit {
     });
   }
   getTilayer(option: any, loader): any {
-
     const wms_request = L.tileLayer.wms(geoserverUrl, option);
     wms_request.on('load', function() {
       // loader.display(false)

@@ -437,6 +437,20 @@ export class Helper {
     }
     return payloadScale
   }
+  getScaleLevel(scaleLevel) {
+    switch(scaleLevel) {
+      case "0":
+        return 'nuts0'
+      case "1":
+        return 'nuts1'
+      case "2":
+        return 'nuts2'
+      case "3":
+        return 'nuts3'
+      case "4":
+        return 'lau2'
+    }
+  }
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }

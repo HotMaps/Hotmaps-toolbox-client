@@ -49,6 +49,7 @@ export class DataInteractionService extends APIService {
     DataInteractionArray[newLayerAdded - 1].name = name;
     DataInteractionArray[newLayerAdded - 1].id = id;
     DataInteractionArray[newLayerAdded - 1].layer_type = layer_type;
+    DataInteractionArray[newLayerAdded - 1].workspaceName = layer_type;
     DataInteractionArray[newLayerAdded - 1].ref = ['overall'];
     DataInteractionArray[newLayerAdded - 1].category = '';
     DataInteractionArray[newLayerAdded - 1].isSelected = false;
