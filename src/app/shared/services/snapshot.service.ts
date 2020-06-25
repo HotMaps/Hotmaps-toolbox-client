@@ -150,9 +150,9 @@ export class SnapshotService {
         const layer = isLau2 ? lau2name : 'population';
         const date_filter = isLau2 ? '' : 'date=\'2013-01-01\' AND ';
         const stat_level_filter = isLau2 ? '' : ' AND stat_levl_=' + nutLvl.api_name;
-        
+        console.log(nameId, isLau2);
         let nuts_ids = `${nameId}='${snapshot.zones.join(`' OR ${nameId}='`)}'`;
-
+        console.log(nuts_ids);
         let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature' +
           `&typeNames=hotmaps:${layer}&outputFormat=application/json` +
           `&cql_filter=${date_filter}(${nuts_ids})${stat_level_filter}`;

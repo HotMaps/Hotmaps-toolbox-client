@@ -14,7 +14,7 @@ import 'proj4';
 import {
   geoserverUrl, clickAccuracy, defaultLayer, unit_capacity, unit_heat_density, populationLayerName,
   nuts_level, geoserverGetFeatureInfoUrl, wwtpLayerName, business_name_wwtp, constant_year,
-  unit_population, zoomLevelDetectChange, formatImage, layers_order
+  unit_population, zoomLevelDetectChange, formatImage, layers_order, apiUrl, getFeaturesFromSelection
 } from '../../../shared/data.service'
 
 import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';

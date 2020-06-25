@@ -48,6 +48,8 @@ export const postDurationCurveHectares = '/heat-load-profile/duration-curve/hect
 export const postDurationCurveNutsLau = '/heat-load-profile/duration-curve/nuts-lau';
 export const getElectricityMixFromNuts0 = '/stats/energy-mix/nuts-lau';
 
+export const getFeaturesFromSelection = '/features/select'
+
 
 // User management endpoints
 export const user_endpoint = '/users/';
@@ -134,7 +136,8 @@ export const map_options =  {
   zoomAnimationThreshold: 3,
   layers: [basemap.Esri ]
 }
-export const lau2name = 'tbl_lau1_2';
+export const lau2name = 'lau';
+export const lau2nameGeoserverWfs = 'tbl_lau1_2'
 
 // Scale Value
 export const nuts0  = 'NUTS 0';

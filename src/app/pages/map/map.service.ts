@@ -101,7 +101,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   // Retrive all map events
   retriveMapEvent(): void {
     const self = this;
-    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });  
+    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });
     this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
     this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
     this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
@@ -201,7 +201,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
       self.clickCursorUpdate(); // automatic cursor tool selection
     }
     // check if the selection toul is activate
-    self.logger.log('MapService/Scale' + self.selectionScaleService.getScaleValue());
+    self.logger.log('MapService/Scale ' + self.selectionScaleService.getScaleValue());
     if (self.selectionScaleService.getScaleValue() === hectare) {
       if (self.layersService.getIsReadyToShowFeatureInfo() === true) {
         self.getHectareGeometryFromClick(e.latlng, self.selectionScaleService.getScaleValue());

@@ -9,13 +9,13 @@ export class SelectionToolUtils {
         return this.helper.getLocationsFromCicle(layer);
     }
 
-    getIdSelectionFromLayer(layer: any): any {        
+    getIdSelectionFromLayer(layer: any): any {
         return this.getSelectionIdFromLayer(layer);
     }
-    getSelectionIdFromLayer(layer): any {
-        let id_selection = this.helper.getNUTSIDFromGeoJsonLayer(layer);
+    getSelectionIdFromLayer(layer): any { // TODO: this is the hotfix!!! (switch line 16 and 17 because lau2 have nuts_id too while nuts don't)
+        let id_selection = this.helper.getLAU2IDFromGeoJsonLayer(layer);
         if (this.helper.isNullOrUndefined(id_selection) === true) {
-            id_selection = this.helper.getLAU2IDFromGeoJsonLayer(layer);
+            id_selection = this.helper.getNUTSIDFromGeoJsonLayer(layer);
             if (this.helper.isNullOrUndefined(id_selection) === true){
                 return null;
             }

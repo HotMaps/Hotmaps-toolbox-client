@@ -16,14 +16,15 @@ import {
   apiUrl,
   constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3,
   wwtpLayerName,
-  maxSurfaceValueCM
+  maxSurfaceValueCM,
+  getFeaturesFromSelection
 } from '../../../shared/data.service';
 import { GeojsonClass } from '../../layers/class/geojson.class';
 import { BusinessInterfaceRenderService } from '../../../shared/business/business.service';
 import { SummaryResultClass } from '../../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Subject } from 'rxjs/Subject';
-import { geoserverUrl, lau2name } from '../../../shared';
+import { geoserverUrl, lau2name, lau2nameGeoserverWfs } from '../../../shared';
 import { APIService, ToasterService } from '../../../shared/services';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -196,9 +197,9 @@ export class SelectionToolService extends APIService {
     const self = this;
       self.locationsSubject.next(locations);
       self.getStatistics();
-    
-      
-    
+
+
+
   }
 
   getStatistics() {
@@ -207,9 +208,11 @@ export class SelectionToolService extends APIService {
       this.interactionService.enableButtonWithId('load_result');
       this.interactionService.enableStateOpenWithFunction('right');
     } else {
+      console.log('getStatistics/surface-too-big', this.surfaceSubject.value);
+
       this.toasterService.showToasterSurfaceCalculDisabled()
     }
-    
+
   }
 
   toggleControl(map: any) {
@@ -269,14 +272,18 @@ export class SelectionToolService extends APIService {
     this.logger.log('getNutID');
     const epsg = '4326';
     const coordinate = location;
-    let url = geoserverUrl + '?service=wfs' +
-      '&version=2.0.0' +
-      '&request=GetFeature' +
-      '&srsName=EPSG:' + epsg +
-      '&typeNames=hotmaps:' + stringLayerType +
-      '&outputFormat=application/json' +
-      '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))'
-      ;
+    // let url = geoserverUrl + '?service=wfs' +
+    //   '&version=2.0.0' +
+    //   '&request=GetFeature' +
+    //   '&srsName=EPSG:' + epsg +
+    //   '&typeNames=hotmaps:' + stringLayerType +
+    //   '&outputFormat=application/json' +
+    //   '&CQL_FILTER= (WITHIN(geom,polygon((' + coordinate.toString() + '))))'
+      // ;
+    let url = apiUrl + getFeaturesFromSelection +
+      '/' + stringLayerType +
+      '/Polygon((' + coordinate.toString() + '))';
+
       if (nuts_lvl === 4) {} else {
         url += 'AND stat_levl_=' + nuts_lvl + 'AND date=2015-01-01Z'
       }
@@ -299,7 +306,7 @@ export class SelectionToolService extends APIService {
 
 
 
-    
+
   }
 
   setButtonsSelectionToolState(value) {
@@ -320,6 +327,7 @@ export class SelectionToolService extends APIService {
   defineSurface(layergroup) {
     var surface=0
     if (this.nutsIds.size > 0 || this.areasSubject.getValue().length > 0) {
+      console.log(layergroup);
       var bounds = layergroup.getBounds()
       var width = bounds.getNorthWest().distanceTo(bounds.getNorthEast())/1000
       var height = bounds.getSouthEast().distanceTo(bounds.getNorthEast())/1000
@@ -332,6 +340,7 @@ export class SelectionToolService extends APIService {
         this.interactionService.disableButtonWithId('load_result');
         this.interactionService.closeRightPanel();
       }
+      console.log('defineSurface/surface-too-big', surface);
       this.toasterService.showToasterSurfaceCalculDisabled()
     }
     this.surfaceSubject.next(surface);
@@ -398,11 +407,8 @@ export class SelectionToolService extends APIService {
     if (this.helper.isNullOrUndefined(result) === false) {
       for (const feature of result.features) {
         let selection_id;
-        if (this.helper.isNullOrUndefined(feature.properties.nuts_id) === false) {
-          selection_id = feature.properties.nuts_id
-        } else {
-          selection_id = feature.properties.comm_id
-        }
+        selection_id = feature.properties.comm_id ? feature.properties.comm_id : feature.properties.nuts_id;
+        console.log('selection_id', selection_id);
         if (this.nutsIds.has(selection_id) === false) {
           this.nutsIds.add(selection_id)
           const areaNutsSelectedLayer = L.geoJson(feature);
@@ -425,12 +431,12 @@ export class SelectionToolService extends APIService {
       }
     }
   }
-  
+
   addHectareToMultiSelectionLayers(layer: any) {
     if (this.helper.isNullOrUndefined(layer) === false) {
       this.multiSelectionLayers.addLayer(layer);
     }
-    
+
   }
 
   deleteSelectedAreas() {
