@@ -71,7 +71,6 @@ export class SnapshotService {
       name: name,
       description: description,
       date: new Date(),
-
       scale: scale,
       zones: scale !== hectare ? this.slcToolsService.nutsIdsSubject.getValue()
         : this.slcToolsService.areasSubject.getValue().map(area => {
@@ -167,20 +166,34 @@ export class SnapshotService {
           });
 
       } else {
+        console.log(snapshot.zones);
         snapshot.zones.forEach(zone => {
           let shape: any = L.geoJSON(zone as any, {
             pointToLayer: (feature: any, latlng: L.LatLng) => {
               if (feature.properties.radius) return new L.Circle(latlng, feature.properties.radius);
             }
           });
+          console.log(zone);
 
-          if (zone.properties.radius) {
+          // if("type" in zone) {
+          //   if(zone.type == "FeatureCollection") {
+          //     zone = zone.features;
+          //   } else {
+
+          //   } 
+          // } else {
+          //   console.log("erreur avec geojson ----------------");
+          // }
+          // if (zone instanceof Array) {
+
+          // }
+          
+          if (zone.properties && zone.properties.radius) {
             shape.radius = zone.properties.radius;
             shape.latLng = L.GeoJSON.coordsToLatLng(zone.geometry.coordinates);
           } else
             shape.latLngs = L.GeoJSON.coordsToLatLngs(zone.geometry.coordinates[0]);
-
-          this.slcToolsService.drawHectaresLoadingResult(map, shape);
+            this.slcToolsService.drawHectaresLoadingResult(map, shape);
         });
         if (callback) callback();
       }
