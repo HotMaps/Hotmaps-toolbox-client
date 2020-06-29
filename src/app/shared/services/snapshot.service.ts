@@ -74,13 +74,28 @@ export class SnapshotService {
       scale: scale,
       zones: scale !== hectare ? this.slcToolsService.nutsIdsSubject.getValue()
         : this.slcToolsService.areasSubject.getValue().map(area => {
+          console.log('area');
+          console.log(area);
           if (area instanceof L.Circle) {
             let circle: any = (area as L.Circle);
             let radius = circle.getRadius();
             circle = circle.toGeoJSON();
             circle.properties.radius = radius;
             return circle;
-          } else return (area as L.Polygon).toGeoJSON();
+          } else {
+            const geoJson: any = (area as L.Polygon).toGeoJSON();
+            let features = [];
+            if ("features" in geoJson) {
+              console.log('features');
+              features = geoJson.features[0];
+              console.log(features);
+            } else {
+              console.log('no feature');
+              features = geoJson;
+              console.log(features);
+            }
+            return features; // TODO: !!! THIS RETURNS AN ARRAY OF FEATURES IN ANOTHER ARRAY !!! SKIP ONE LEVEL
+          }
         }),
       layers : this.mapService.getLayerArray().getValue(),
 
@@ -149,7 +164,7 @@ export class SnapshotService {
         const layer = isLau2 ? lau2name : 'population';
         const date_filter = isLau2 ? '' : 'date=\'2013-01-01\' AND ';
         const stat_level_filter = isLau2 ? '' : ' AND stat_levl_=' + nutLvl.api_name;
-        
+
         let nuts_ids = `${nameId}='${snapshot.zones.join(`' OR ${nameId}='`)}'`;
 
         let url = geoserverUrl + '?service=WFS&version=2.0.0&request=GetFeature' +
@@ -180,14 +195,14 @@ export class SnapshotService {
           //     zone = zone.features;
           //   } else {
 
-          //   } 
+          //   }
           // } else {
           //   console.log("erreur avec geojson ----------------");
           // }
           // if (zone instanceof Array) {
 
           // }
-          
+
           if (zone.properties && zone.properties.radius) {
             shape.radius = zone.properties.radius;
             shape.latLng = L.GeoJSON.coordsToLatLng(zone.geometry.coordinates);

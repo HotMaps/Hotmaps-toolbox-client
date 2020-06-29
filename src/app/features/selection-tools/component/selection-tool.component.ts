@@ -53,7 +53,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   private maxSurfaceValueCM = maxSurfaceValueCM;
   @Input() selectionSurface;
   constructor(private mapService: MapService, private logger: Logger, private helper: Helper, private slcToolsService : SelectionToolService) {}
-  
+
   ngOnInit() {
     this.subscribeMapService();
     this.scaleSelected = this.mapService.getScaleValue();
@@ -63,10 +63,10 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     this.logger.log('SelectionToolComponent/ngOnDestroy');
     this.subscription.unsubscribe();
     this.subscriptionNbNutsSelected.unsubscribe();
-    
+
   }
   subscribeMapService() {
-    
+
     if (!this.helper.isNullOrUndefined(this.mapService.getNutsSelectedSubject())) {
       this.subscriptionNbNutsSelected = this.mapService.getNutsSelectedSubject().subscribe((value) => {
         this.nbElementsSelected = value;
@@ -95,7 +95,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
         this.logger.log('nbElementsSelected =' + value )
         this.nbElementsSelected = value;
       })
-      
+
     }
     // subscribing to click event subject of MapService
     if (!this.helper.isNullOrUndefined(this.mapService.clickEventSubjectObs)) {
@@ -103,7 +103,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
         this.cursorClick(); // call cursor click method when we click anywhere in the map
       });
     }
-    
+
     if (!this.helper.isNullOrUndefined(this.mapService.drawCreatedSubjectObs)) {
       this.mapService.drawCreatedSubjectObs.subscribe(() => {
         this.cursorClick();
@@ -114,20 +114,20 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
         this.isClearBtnDisabled = !value;
       })
     }
-    
+
     if (!this.helper.isNullOrUndefined(this.mapService.getLoadResultbuttonState())) {
       this.mapService.getLoadResultbuttonState().subscribe((value) => {
         this.isLoaBtnDisabled = !value;
       })
     }
   }
-  
+
   cursorClick() {
     const map = this.mapService.getMap();
     this.mapService.clickSelection(map);
     this.stButtons[0].isChecked = true;
   }
-  
+
   /**
   * Draw method of the activated selection tool
   */
@@ -140,13 +140,13 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       this.stButtons[0].isChecked = false;
     }
   }
-  
+
   /**
   *  Draw method when someone upload a Shapes file
   */
   uploadShapes(files: FileList) {
     this.fileToUpload = files.item(0);
-    
+
     // Read file
     const fileReader = new FileReader();
     let fileContent: any;
@@ -164,6 +164,9 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
             const poly = L.polygon(L.GeoJSON.coordsToLatLngs(coord[0]));
             featuresPoly.push(poly.toGeoJSON());
           });
+        } else if (geom.type == 'Polygon') {
+          const poly = L.polygon(L.GeoJSON.coordsToLatLngs(geom.coordinates[0]));
+          featuresPoly.push(poly.toGeoJSON());
         }
       });
       this.slcToolsService.drawShapeFromFile(map, featuresPoly);
@@ -172,7 +175,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
       console.log(error);
     }
   }
-  
+
   /**
   * Load the results of the selection
   */
@@ -180,7 +183,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     const map = this.mapService.getMap();
     this.mapService.loadResultNuts(map);
   }
-  
+
   /**
   * Clear all informations in the info box
   */
@@ -189,9 +192,9 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
     this.mapService.clearAll(map);
     this.cursorClick();
   }
-  
+
   setClearButtonText() {
-    
+
     let zoneString = ' zones';
     if (this.layerSelected === 1 || this.nbElementsSelected === 1) {
       zoneString = ' zone';
