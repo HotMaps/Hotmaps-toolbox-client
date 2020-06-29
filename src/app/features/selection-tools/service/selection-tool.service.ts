@@ -345,6 +345,7 @@ export class SelectionToolService extends APIService {
     }
 
     drawHectaresLoadingResult(map: Map, layer: any) {
+      console.log("drawHectaresLoadingResult");
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         const layerTemp = this.setLayerDependingCircleForControl(layer)
         this.controlMultiLayer.addLayer(layerTemp);
@@ -437,15 +438,20 @@ export class SelectionToolService extends APIService {
       this.defineSurface(this.controlMultiLayer)
     }
 
-    drawShapeFromFile(map: Map, features: any) {
-      features.forEach(feature => {
-        let shape: any = L.geoJSON(feature as any, {
-          // pointToLayer: (feature: any, latlng: L.LatLng) => {
-          //   if (feature.properties.radius) return new L.Circle(latlng, feature.properties.radius);
-          // }
-        });
-        shape.latLngs = L.GeoJSON.coordsToLatLngs(feature.geometry.coordinates[0]);
-        this.drawHectaresLoadingResult(map, shape);
+    drawShapeFromFile(map: Map, geoJson: any) {
+      geoJson.features.forEach(feature => {
+        const geom = feature.geometry;
+        if (geom.type == 'MultiPolygon') {
+          geom.coordinates.forEach(coord => {
+            const poly = L.polygon(L.GeoJSON.coordsToLatLngs(coord[0]));
+            this.drawHectaresLoadingResult(map, poly);
+          });
+        } else if (geom.type == 'Polygon') {
+          const poly = L.polygon(L.GeoJSON.coordsToLatLngs(geom.coordinates[0]));
+          this.drawHectaresLoadingResult(map, poly);
+        } else {
+          console.log('shape not supported');
+        }
       });
     }
   }

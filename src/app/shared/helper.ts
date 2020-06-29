@@ -333,6 +333,7 @@ export class Helper {
     return intersects;
   }
   lineify(inputGeom) {
+    console.log("lineify");
     var outputLines = {
       "type": "GeometryCollection",
       "geometries": []
@@ -400,12 +401,16 @@ export class Helper {
     return outputLines;
   }
   controlDrawedLayer(baseLayer, drawLayer) {
+    console.log("controlDrawedLayer");
     let drawJson;
-    if (drawLayer instanceof L.Circle) {
+    if ("type" in drawLayer && drawLayer.type === 'LineString') {
+      drawJson = drawLayer;
+    } else if (drawLayer instanceof L.Circle) {
       drawJson = this.circleToGeoJSON(drawLayer)
     } else {
       drawJson = drawLayer.toGeoJSON()
     }
+    console.log(drawJson);
     var baseJson = baseLayer.toGeoJSON(),
       baseLines = this.lineify(baseJson),
       drawLines = this.lineify(drawJson),
@@ -415,6 +420,7 @@ export class Helper {
         pointCrossed = true;
       }
     })
+    console.log(baseJson);
     if (baseLines && drawLines) {
       for (var i in drawLines.geometries) {
         for (var j in baseLines.geometries) {

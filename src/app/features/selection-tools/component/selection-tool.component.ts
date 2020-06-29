@@ -149,27 +149,16 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
 
     // Read file
     const fileReader = new FileReader();
-    let fileContent: any;
+    let geoJson: any;
     let featuresPoly = [];
 
     fileReader.readAsText(this.fileToUpload, 'UTF-8');
     fileReader.onload = () => {
-      fileContent = JSON.parse(<string> fileReader.result);
+      geoJson = JSON.parse(<string> fileReader.result);
       const map = this.mapService.getMap();
-      const features = fileContent.features;
-      features.forEach(feature => {
-        const geom = feature.geometry;
-        if (geom.type == "MultiPolygon") {
-          geom.coordinates.forEach(coord => {
-            const poly = L.polygon(L.GeoJSON.coordsToLatLngs(coord[0]));
-            featuresPoly.push(poly.toGeoJSON());
-          });
-        } else if (geom.type == 'Polygon') {
-          const poly = L.polygon(L.GeoJSON.coordsToLatLngs(geom.coordinates[0]));
-          featuresPoly.push(poly.toGeoJSON());
-        }
-      });
-      this.slcToolsService.drawShapeFromFile(map, featuresPoly);
+      const features = geoJson.features;
+      const geometries = this.helper.lineify(geoJson);
+      this.slcToolsService.drawShapeFromFile(map, geoJson);
     }
     fileReader.onerror = (error) => {
       console.log(error);

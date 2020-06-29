@@ -84,6 +84,7 @@ export class SnapshotService {
             return circle;
           } else {
             const geoJson: any = (area as L.Polygon).toGeoJSON();
+            console.log(geoJson);
             let features = [];
             if ("features" in geoJson) {
               console.log('features');
@@ -181,34 +182,21 @@ export class SnapshotService {
           });
 
       } else {
-        console.log(snapshot.zones);
         snapshot.zones.forEach(zone => {
-          let shape: any = L.geoJSON(zone as any, {
-            pointToLayer: (feature: any, latlng: L.LatLng) => {
-              if (feature.properties.radius) return new L.Circle(latlng, feature.properties.radius);
-            }
-          });
           console.log(zone);
-
-          // if("type" in zone) {
-          //   if(zone.type == "FeatureCollection") {
-          //     zone = zone.features;
-          //   } else {
-
-          //   }
-          // } else {
-          //   console.log("erreur avec geojson ----------------");
-          // }
-          // if (zone instanceof Array) {
-
-          // }
-
+          let shape: any;
           if (zone.properties && zone.properties.radius) {
+            shape = L.geoJSON(zone as any, {
+              pointToLayer: (feature: any, latlng: L.LatLng) => {
+                return new L.Circle(latlng, feature.properties.radius);
+              }
+            });
             shape.radius = zone.properties.radius;
             shape.latLng = L.GeoJSON.coordsToLatLng(zone.geometry.coordinates);
-          } else
-            shape.latLngs = L.GeoJSON.coordsToLatLngs(zone.geometry.coordinates[0]);
-            this.slcToolsService.drawHectaresLoadingResult(map, shape);
+          } else {
+            shape = L.polygon(L.GeoJSON.coordsToLatLngs(zone.geometry.coordinates[0]));
+          }
+          this.slcToolsService.drawHectaresLoadingResult(map, shape);
         });
         if (callback) callback();
       }
