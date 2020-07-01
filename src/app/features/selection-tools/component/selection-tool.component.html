@@ -1,24 +1,27 @@
 <div class="containers" [@containerTrigger]>
-    <div id="selection-tools-box">
-      <div *ngFor="let button of stButtons">
-          <input id="radio-{{button.id}}" class="radio-custom" name="radio-group" type="radio" [checked]="button.isChecked" (click)="drawTool(button)">
-          <label [@elementsTrigger]="'in'" id="{{button.type}}" for="radio-{{button.id}}" class="radio-custom-label"></label>
-      </div>
+  <div id="selection-tools-box">
+    <div *ngFor="let button of stButtons">
+      <input id="radio-{{button.id}}" class="radio-custom" name="radio-group" type="radio" [checked]="button.isChecked" (click)="drawTool(button)">
+      <label [@elementsTrigger]="'in'" id="{{button.type}}" for="radio-{{button.id}}" class="radio-custom-label"></label>
     </div>
-    <div id="info-box">
-      <div class="uk-container uk-padding-remove">
-        <div>
-          <p [@elementsTrigger]="'in'">{{elementSelected}}<span>{{nbElementsSelected}}</span></p>
-          <p [class.color-red]="selectionSurface > maxSurfaceValueCM" [@elementsTrigger]="'in'">Bounding box<span>{{selectionSurface | number: '1.0-2' | numberformat}} km<sup>2</sup></span> </p>
-          <p [@elementsTrigger]="'in'">Scale<span>{{scaleSelected}}</span></p>
-        </div>
-        <div class="divButtons">
-          <button id="loadBtn" class="uk-button uk-button-primary uk-button-small" [disabled]="isLoaBtnDisabled" 
-          [@elementsTrigger]="'in'" (click)="loadResultsButton()">Load results</button>
-          <button id="clearBtn" class="uk-button uk-button-danger uk-button-small" [disabled]="isClearBtnDisabled" 
-          [@elementsTrigger]="'in'" (click)="clearLayers()">{{setClearButtonText()}}</button>
-        </div>
-      </div>
+    <div id="upload" [class.disabled]="!isHectarSelected" class="upload-custom-label">
+      <label id="upload" class="radio-custom-label"></label>
+      <input id="fileInput" class="radio-custom" name="radio-group" [disabled]="!isHectarSelected" title="Upload GeoJSON selection (Hectare only)" type="file" (change)="uploadShapes($event.target.files)">
     </div>
-
   </div>
+  <div id="info-box">
+    <div class="uk-container uk-padding-remove">
+      <div>
+        <p [@elementsTrigger]="'in'">{{elementSelected}}<span>{{nbElementsSelected}}</span></p>
+        <p [class.color-red]="selectionSurface > maxSurfaceValueCM" [@elementsTrigger]="'in'">Bounding box<span>{{selectionSurface | number: '1.0-2' | numberformat}} km<sup>2</sup></span> </p>
+        <p [@elementsTrigger]="'in'">Scale<span>{{scaleSelected}}</span></p>
+      </div>
+      <div class="divButtons">
+        <button id="loadBtn" class="uk-button uk-button-primary uk-button-small" [disabled]="isLoaBtnDisabled" 
+        [@elementsTrigger]="'in'" (click)="loadResultsButton()">Load results</button>
+        <button id="clearBtn" class="uk-button uk-button-danger uk-button-small" [disabled]="isClearBtnDisabled" 
+        [@elementsTrigger]="'in'" (click)="clearLayers()">{{setClearButtonText()}}</button>
+      </div>
+    </div>
+  </div>
+</div>
