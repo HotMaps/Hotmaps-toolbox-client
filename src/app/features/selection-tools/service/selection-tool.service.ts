@@ -345,7 +345,6 @@ export class SelectionToolService extends APIService {
     }
 
     drawHectaresLoadingResult(map: Map, layer: any) {
-      console.log("drawHectaresLoadingResult");
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         const layerTemp = this.setLayerDependingCircleForControl(layer)
         this.controlMultiLayer.addLayer(layerTemp);

@@ -147,7 +147,7 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   uploadShapes(files: FileList) {
     this.fileToUpload = files.item(0);
 
-    // Read file
+    // Read file and insert data in geoJson variable.
     const fileReader = new FileReader();
     let geoJson: any;
     let featuresPoly = [];

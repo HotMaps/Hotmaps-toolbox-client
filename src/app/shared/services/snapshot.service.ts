@@ -74,8 +74,6 @@ export class SnapshotService {
       scale: scale,
       zones: scale !== hectare ? this.slcToolsService.nutsIdsSubject.getValue()
         : this.slcToolsService.areasSubject.getValue().map(area => {
-          console.log('area');
-          console.log(area);
           if (area instanceof L.Circle) {
             let circle: any = (area as L.Circle);
             let radius = circle.getRadius();
@@ -84,18 +82,13 @@ export class SnapshotService {
             return circle;
           } else {
             const geoJson: any = (area as L.Polygon).toGeoJSON();
-            console.log(geoJson);
             let features = [];
             if ("features" in geoJson) {
-              console.log('features');
               features = geoJson.features[0];
-              console.log(features);
             } else {
-              console.log('no feature');
               features = geoJson;
-              console.log(features);
             }
-            return features; // TODO: !!! THIS RETURNS AN ARRAY OF FEATURES IN ANOTHER ARRAY !!! SKIP ONE LEVEL
+            return features;
           }
         }),
       layers : this.mapService.getLayerArray().getValue(),
@@ -183,7 +176,6 @@ export class SnapshotService {
 
       } else {
         snapshot.zones.forEach(zone => {
-          console.log(zone);
           let shape: any;
           if (zone.properties && zone.properties.radius) {
             shape = L.geoJSON(zone as any, {
