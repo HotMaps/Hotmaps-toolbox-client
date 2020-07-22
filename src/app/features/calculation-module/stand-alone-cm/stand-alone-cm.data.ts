@@ -7,7 +7,7 @@ export const standaloneCMs = [
         repository_url: "https://github.com/HotMaps/customized_h_fa_dm"
     },
     {
-        name: "CM - USER-DEFINED EXCESS HEAT POTENTIALS", 
+        name: "CM - ADD INDUSTRY PLANT", 
         wiki_url: hotmaps_wiki + "/en/CM-Add-industry-plant",
         repository_url: "https://github.com/HotMaps/add_industry_plant_cm"
     },
