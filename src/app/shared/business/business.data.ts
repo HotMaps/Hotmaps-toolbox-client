@@ -179,10 +179,10 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
 
   {id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues - maximum resolution: NUTS3'},
-  {id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
+  //{id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
 
   {id: 176, api_name: livestock_effluents_view + '_NUTS_potential', business_name: 'Potential from livestock effluents - maximum resolution: NUTS3'},
-  {id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita'},
+  //{id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita'},
 
   {id: 176, api_name: potential_forest + '_average', business_name: 'Average potential from forest resdiues'},
   {id: 176, api_name: potential_forest + '_value', business_name: 'Potential from forest resdiues'},
