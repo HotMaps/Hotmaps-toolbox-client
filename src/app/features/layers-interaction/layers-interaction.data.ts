@@ -15,7 +15,7 @@ export const wwtp_type = 'wwtp';
 export const gfa_type = 'gross_floor_area';
 export const cp_type = 'construction_periods';
 export const industry_type = 'industry';
-export const population_type = 'population';
+export const population_type = 'pop_tot_curr_density';
 export const solar_potential_fields_type = 'solar_potential_fields';
 
 export const building_volume_type = 'building_volumes';
@@ -110,7 +110,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
 
 // Population
   {id: 14, name: 'Population total', category: 'Population', isSelected: false,
-    workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density', layer_type: 'pop_tot_curr_density',
+    workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density', layer_type: population_type,
     download_url: gitlabUrl + '/pop_tot_curr_density/raw/master/data/pop_tot_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/pop_tot_curr_density/blob/master/README.md', isLoading:false, dataType:'raster'},
 
