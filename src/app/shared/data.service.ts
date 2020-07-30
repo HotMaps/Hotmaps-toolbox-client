@@ -143,7 +143,7 @@ export const nuts2  = 'NUTS 2';
 export const nuts3  = 'NUTS 3';
 export const lau2   = 'LAU 2';
 export const hectare= 'Hectare';
-export const initial_scale_value = nuts3;
+export const initial_scale_value = nuts2;
 
 // Event variable
 export const MAPDRAWEDITED = L.Draw.Event.EDITED;

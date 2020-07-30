@@ -136,7 +136,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     download_url: gitlabUrl + '/potential/potential_biomass/raw/master/data/forest_residues.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential_biomass/blob/master/README.md', isLoading:false, dataType:'csv'},
   {id: idDefaultLayer, name: 'Municipal solid waste', category: 'R.E.S. Potential', isSelected: false,
-    workspaceName: 'solid_waste_view', zoomLevel: 0, ref: ['overall','potential'], styleName: 'municipal_waste', layer_type: 'solid_waste_view',
+    workspaceName: 'potential_municipal_solid_waste', zoomLevel: 0, ref: ['overall','potential'], styleName: 'municipal_waste', layer_type: 'potential_municipal_solid_waste',
     download_url: gitlabUrl + '/potential/potential_municipal_solid_waste/raw/master/data/solid_waste.csv',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/potential/potential_municipal_solid_waste/blob/master/README.md', isLoading:false, year:2011, schema:'geo', dataType:'csv'},
   {id: idDefaultLayer, name: 'Wind potential at 50 meters', category: 'R.E.S. Potential', isSelected: false,

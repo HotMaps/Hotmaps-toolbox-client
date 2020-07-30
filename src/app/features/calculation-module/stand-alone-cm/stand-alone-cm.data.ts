@@ -13,7 +13,7 @@ export const standaloneCMs = [
     },
     {
         name: "CM - DISTRICT HEATING SUPPLY DISPATCH - EXTENDED", 
-        wiki_url: hotmaps_wiki + "/en/CM-District-heating-supply-dispatch",
+        wiki_url: "https://hotmapsdispatch.readthedocs.io/en/latest",
         repository_url: "https://github.com/tuw-eeg/hotmapsDispatch"
     },
     {
