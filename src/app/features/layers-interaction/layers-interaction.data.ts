@@ -109,7 +109,7 @@ export const DataInteractionArray: DataInteractionClass[] = [
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/industrial_sites/industrial_sites_Industrial_Database/blob/master/README.md', isLoading:false, year:2014, schema:'public', dataType:'csv'},
 
 // Population
-  {id: 14, name: 'Population total', category: 'Population', isSelected: false,
+  {id: idDefaultLayer, name: 'Population total', category: 'Population', isSelected: false,
     workspaceName: 'pop_tot_curr_density', zoomLevel: 0, ref: ['overall', 'demand'], styleName: 'pop_tot_curr_density', layer_type: population_type,
     download_url: gitlabUrl + '/pop_tot_curr_density/raw/master/data/pop_tot_curr_density.tif',
     description: 'Information on the layer can be found here: ' + gitlabUrl + '/pop_tot_curr_density/blob/master/README.md', isLoading:false, dataType:'raster'},
