@@ -175,7 +175,7 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'Average heat conductivity'},
 
-  {id: 176, api_name: solid_waste + '_val', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
+  {id: 176, api_name: solid_waste + '_value', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
 
 
   {id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues - maximum resolution: NUTS3'},

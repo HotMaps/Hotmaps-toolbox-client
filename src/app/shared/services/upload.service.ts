@@ -289,7 +289,7 @@ export class UploadService extends APIService {
         */
         export(layer: string, uuid?: string, schema?: string, layerName?: string, year?: number): Promise<BlobUrl> {
             const scale = this.slcToolsService.getScaleValue();
-            const layerExportInfo: LayerInfo = LayersExportInfo[layer] != null ? LayersExportInfo[layer] : LayersExportInfo["default"];
+            const layerExportInfo: LayerInfo = LayersExportInfo[layer] || LayersExportInfo.default;
             let nutsOrAreas: Array<string|any>;
             let isNuts : boolean = true;
 
@@ -310,27 +310,27 @@ export class UploadService extends APIService {
                 if (schema == null) schema = layerExportInfo.schema;
 
                 return super.POSTunStringify({
-                    layers: layer, [isNuts ? 'nuts': 'areas' ] : nutsOrAreas,
-                    schema: schema, year : year.toString()
+                    layers: layer, [isNuts ? 'nuts': 'areas' ]: nutsOrAreas,
+                    schema: schema, year: year.toString()
                 }, uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`, {
                     responseType : ResponseContentType.Blob
                 }, false)
-                .then(data => {
-                    return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
-                })
-                .catch(err => {
-                    let errMsg = '';
-                    if (['UNKNOWN ERROR', 'INTERNAL SERVER ERROR', 'UNKNOWN'].indexOf(err.statusText.toUpperCase()) > -1) {
-                        errMsg = 'An internal error occured.';
-                    } else if (['Failed retrieving year in database'.toUpperCase()].indexOf(err.statusText.toUpperCase()) > -1) {
-                        errMsg = err.statusText;
-                    } else {
-                        errMsg = "This layer cannot be exported.";
-                    }
-                    this.toasterService.showToaster(errMsg);
-                    // this.toasterService.showToaster("Sorry, We can't export this layer");
-                    return {url: '', filename: ''} as BlobUrl;
-                });
+                    .then(data => {
+                        return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
+                    })
+                    .catch(err => {
+                        let errMsg = '';
+                        if (['UNKNOWN ERROR', 'INTERNAL SERVER ERROR', 'UNKNOWN'].indexOf(err.statusText.toUpperCase()) > -1) {
+                            errMsg = 'An internal error occured.';
+                        } else if (['Failed retrieving year in database'.toUpperCase()].indexOf(err.statusText.toUpperCase()) > -1) {
+                            errMsg = err.statusText;
+                        } else {
+                            errMsg = "This layer cannot be exported.";
+                        }
+                        this.toasterService.showToaster(errMsg);
+                        // this.toasterService.showToaster("Sorry, We can't export this layer");
+                        return {url: '', filename: ''} as BlobUrl;
+                    });
             }
             else { // if the layer is a cm layer
                 let type : string = 'raster';
