@@ -27,7 +27,7 @@
     "i": "^0.3.6",
     "ie-shim": "0.1.0",
     "intl": "1.2.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "leaflet": "1.0.3",
     "leaflet-circle-to-polygon": "1.0.0",
     "leaflet-control-geocoder": "^1.6.0",
