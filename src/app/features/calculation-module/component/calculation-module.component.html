@@ -25,6 +25,7 @@
         </li>
       </ul>
     </span>
+    <app-stand-alone-cm></app-stand-alone-cm>
   </div>
   <div *ngIf="waitingCM" class="waitingbox">
     <div class="spinner" uk-spinner></div>
@@ -41,8 +42,8 @@
               <input class="uk-input" maxlength="15" type="text" placeholder="Name of calculation module session" [(ngModel)]="prefix_cm" />
             </span><br />
           <span class="uk-margin description">{{cmSelected.cm_description}}</span><br />
-          <span class="uk-margin description-link" *ngIf="cmSelected.description_link">
-              <a class="uk-link-heading" href="{{cmSelected.description_link}}" target="_blank">More description...</a>
+          <span class="uk-margin description-link" *ngIf="cmSelected.wiki_url">
+              <a class="uk-link-heading" href="{{cmSelected.wiki_url}}" target="_blank">More description...</a>
           </span><br />
           <span class="uk-margin" *ngIf="cmSelected.status_id">id of request: {{cmSelected.status_id}}</span>
           <div *ngIf="waitingCM" class="waitingboxcomponents">
@@ -93,7 +94,7 @@
             <div *ngIf="layersFromType.length >= 1" class="uk-margin">
               <div *ngFor="let layersTable of layersFromType">
                 <h4 class="uk-heading-bullet main_title input_title">Input type selection</h4>
-                <h5 >Type: {{layersTable.layerType}}</h5>
+                <h5 >Type: {{layersTable.data_type}} - {{layersTable.layerType}}</h5>
                 <h5 *ngIf="layersTable.type_description">Description: {{layersTable.type_description}}</h5>
                 <select class="uk-select" [(ngModel)]="layersTable.layerSelected" (change)="setLayerNeeded()">
                   <ng-container *ngFor="let layer of layersTable.layers">

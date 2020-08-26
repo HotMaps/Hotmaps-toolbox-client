@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Logger } from './services';
 import { Location } from './class';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { proj3035, round_value } from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import { GeojsonClass } from '../features/layers/class/geojson.class';
@@ -95,6 +95,7 @@ export class Helper {
     locations = locations + loc;
     return locations;
   }
+  
   convertPointToGeoJSONFormat(latlng) {
     let n = 0;
     const locations = [];
@@ -109,7 +110,6 @@ export class Helper {
   }
 
   createGeodesicPolygon(origin, radius, sides, rotation) {
-
     var latlon = origin; //leaflet equivalent
     var angle;
     var new_lonlat, geom_point;
@@ -190,6 +190,7 @@ export class Helper {
     if (this.isNullOrUndefined(num) === true) { return num };
     return this.decimalPipe.transform(num, round_value);
   }
+
   formatDataLoadProfil(data) {
     const formattedValues = [];
     const labels = [];
@@ -206,6 +207,7 @@ export class Helper {
     return date;
 
   }
+
   getMonthString(numberOfMonth, index) {
     const month = MONTHNAME.filter(m => m.id === numberOfMonth + index)[0];
     return month.month;
@@ -257,6 +259,7 @@ export class Helper {
       return null;
     }
   }
+
   getLAU2IDFromGeoJsonLayer(layer): string {
     const geojsonLayer: any = <any>layer;
     const geoJson: GeojsonClass = geojsonLayer.toGeoJSON();
@@ -267,6 +270,7 @@ export class Helper {
       return null;
     }
   }
+
   getLocationsFromLayer(layer) {
     if (layer instanceof L.Circle) {
       return this.getLocationsFromCicle(layer)
@@ -278,6 +282,7 @@ export class Helper {
       return this.getLocationsFromGeoJsonLayer(layer)
     }
   }
+
   getLocationsFromCicle(layer): Location[] {
     const circle: any = <any>layer;
     const origin = circle.latLng ? circle.latLng : circle.getLatLng(); // center of drawn circle
@@ -293,6 +298,7 @@ export class Helper {
     }
     return locations
   }
+
   getAreasForPayload(areas) {
     const ar = [];
     areas.map((layer: Layer) => {
@@ -305,6 +311,7 @@ export class Helper {
     });
     return ar
   }
+
   checkIntersect(l1, l2) {
     var intersects = false;
     for (var i = 0; i <= l1.coordinates.length - 2; ++i) {
@@ -332,6 +339,7 @@ export class Helper {
 
     return intersects;
   }
+
   lineify(inputGeom) {
     var outputLines = {
       "type": "GeometryCollection",
@@ -399,9 +407,12 @@ export class Helper {
     }
     return outputLines;
   }
+
   controlDrawedLayer(baseLayer, drawLayer) {
     let drawJson;
-    if (drawLayer instanceof L.Circle) {
+    if ("type" in drawLayer && drawLayer.type === 'LineString') {
+      drawJson = drawLayer;
+    } else if (drawLayer instanceof L.Circle) {
       drawJson = this.circleToGeoJSON(drawLayer)
     } else {
       drawJson = drawLayer.toGeoJSON()
@@ -425,6 +436,7 @@ export class Helper {
     }
     return pointCrossed;
   }
+
   getScaleLevelPay(scaleLevel): string {
     let payloadScale = ''
 
@@ -437,9 +449,26 @@ export class Helper {
     }
     return payloadScale
   }
+
+  getScaleLevel(scaleLevel) {
+    switch(scaleLevel) {
+      case "0":
+        return 'nuts0'
+      case "1":
+        return 'nuts1'
+      case "2":
+        return 'nuts2'
+      case "3":
+        return 'nuts3'
+      case "4":
+        return 'lau2'
+    }
+  }
+
   testSpatial(baseJson, drawJson) {
     return contain.default(drawJson, baseJson)
   }
+
   circleToGeoJSON(layer) {
     return {
       "type": "Feature",
@@ -450,6 +479,7 @@ export class Helper {
       }
     }
   }
+
   chartsToCSV(graphs) {
     var arraytmp = []
 
@@ -470,6 +500,7 @@ export class Helper {
     })
     return arraytmp
   }
+
   summaryResultToCSV(input): any {
     let array = [];
     const header = {
@@ -483,7 +514,7 @@ export class Helper {
       if(this.isNullOrUndefined(input[res])) {continue}
       for (const entry of input[res].layers) {
 
-        array.push({ name: entry.name })
+        array.push({ indicator: entry.name })
         for (const entry_in_entry of entry.values) {
           array.push({ indicator: entry_in_entry.name, value: entry_in_entry.value, unit: entry_in_entry.unit });
         }
@@ -503,6 +534,7 @@ export class Helper {
     return header;
 
   }
+  
   resultToCSV(input): any {
     this.logger.log('Helper/resultToCSV');
     const csvResult = input;
@@ -514,11 +546,16 @@ export class Helper {
     }
     return array;
   }
+
   generateRandomName(): string {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return Math.random().toString(36).substr(2, 9);
+  }
+
+  generateTimestamp(): string {
+    return new DatePipe('en-UK').transform(Date.now(), "dd.MM.yyyy_HH\'h\'MM:ss");
   }
 
   createDurationCurveLabels(array) {

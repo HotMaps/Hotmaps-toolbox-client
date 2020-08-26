@@ -24,7 +24,7 @@ const wwtp_power = 'wwtp_power'
 
 const potential_forest = 'potential_forest'
 const livestock_effluents_view = 'livestock_effluents_view'
-const potential_municipal_solid_waste = 'potential_municipal_solid_waste'
+const solid_waste = 'solid_waste_view'
 const output_wind_speed = 'output_wind_speed'
 const wind_50m = 'wind_50m'
 const potential_potential_shallowgeothermal = 'shallow_geothermal_potential'
@@ -175,14 +175,14 @@ export const BusinessInterfaceRenderArray: BusinessInterfaceRenderClass[] = [
 
   {id: 175, api_name: potential_potential_shallowgeothermal + '_value', business_name: 'Average heat conductivity'},
 
-  {id: 176, api_name: potential_municipal_solid_waste + '_val', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
+  {id: 176, api_name: solid_waste + '_value', business_name: 'Potential from Waste - maximum resolution: NUTS3'},
 
 
   {id: 176, api_name: agricultural_residues_view + '_NUTS_potential', business_name: 'Potential from agricultural residues - maximum resolution: NUTS3'},
-  {id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
+  //{id: 176, api_name: agricultural_residues_view + '_agriculture_pp', business_name: 'Potential from agricultural residues per capita'},
 
   {id: 176, api_name: livestock_effluents_view + '_NUTS_potential', business_name: 'Potential from livestock effluents - maximum resolution: NUTS3'},
-  {id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita'},
+  //{id: 176, api_name: livestock_effluents_view + '_livestock_effluents_pp', business_name: 'Potential from livestock_effluents_view per capita'},
 
   {id: 176, api_name: potential_forest + '_average', business_name: 'Average potential from forest resdiues'},
   {id: 176, api_name: potential_forest + '_value', business_name: 'Potential from forest resdiues'},

@@ -21,23 +21,4 @@ node {
   stage('Test') {
     sh 'ng test --watch=false'
   }
-
-
-  stage('Deploy') {
-    if (env.BRANCH_NAME == 'develop') {
-      echo "Deploying to DEV platform"
-      sshPublisher(publishers: [sshPublisherDesc(configName: 'hotmapsdev', transfers: [sshTransfer(cleanRemote: true, excludes: '', execCommand: '', execTimeout: 900000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/hotmaps/toolbox-client/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'dist/**,Dockerfile,nginx.conf')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
-      sshagent(['sshhotmapsdev']) {
-        sh 'ssh -o StrictHostKeyChecking=no -l iig hotmapsdev.hevs.ch "/var/hotmaps/deploy_frontend.sh"'
-      }
-    } else if (env.BRANCH_NAME == 'master') {
-      echo "Deploying to PROD platform"
-      sshPublisher(publishers: [sshPublisherDesc(configName: 'hotmaps', transfers: [sshTransfer(cleanRemote: true, excludes: '', execCommand: '', execTimeout: 900000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/hotmaps/toolbox-client/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'dist/**,Dockerfile,nginx.conf')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
-      sshagent(['sshhotmapsdev']) {
-        sh 'ssh -o StrictHostKeyChecking=no -l iig hotmaps.hevs.ch "/var/hotmaps/deploy_frontend.sh"'
-      }
-    } else {
-      echo "${env.BRANCH_NAME}: not deploying"
-    }
-  }
 }

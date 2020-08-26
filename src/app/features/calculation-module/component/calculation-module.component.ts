@@ -3,6 +3,7 @@ import { DataInteractionService } from 'app/features/layers-interaction/layers-i
 import { MapService } from './../../../pages/map/map.service';
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { Helper } from './../../../shared/helper';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 import {
   Component,
@@ -61,20 +62,23 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   private cmSelected;
   private cmRunning;
   private layersFromType = [];
+  private layersFromTypeVector = [];
   private prefix_cm='';
   constructor(
     private calculationModuleService: CalculationModuleService,
     private calculationModuleStatusService: CalculationModuleStatusService,
     private interactionService: InteractionService,
     private dataInteractionService: DataInteractionService,
+
     private helper: Helper, private logger: Logger,
-    private toasterService: ToasterService) { }
+    private toasterService: ToasterService,
+    private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.subscribeEvents()
     this.updateCMs();
     this.logger.log('ngOnInit called')
-    
+
   }
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -111,8 +115,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         uikit.offcanvas('#box-components').show()
         this.logger.log('cm box is shown')
       } else if (value === false) {
-        uikit.offcanvas('#box-components').hide()
-        this.cmHidePanel()
+        try {
+          uikit.offcanvas('#box-components').hide();
+        } catch (error) {
+
+        }
+        this.cmHidePanel();
       }
     })
   }
@@ -163,9 +171,12 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         comp.input_value = comp.selected_value
       }
     });
-    this.cmRunning = true;
-    this.interactionService.setCmRunning( this.cmRunning)
     this.calculationModuleStatusService.setCmRunned(this.cmSelected, this.components);
+    this.cmRunning = true;
+    this.interactionService.setCmRunning(this.cmRunning)
+
+    this.googleAnalyticsService
+      .eventEmitter("cm_run_" + this.cmSelected['cm_name'], "cm", "run_" + this.cmSelected['cm_name'], "click");
   }
   setWaiting(val) {
     this.calculationModuleStatusService.setWaitingStatus(val)
@@ -194,6 +205,8 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   }
   stopCM() {
     this.interactionService.setCurrentIdCM(null);
+    this.cmRunning = false;
+    this.interactionService.setCmRunning(this.cmRunning)
   }
 
   selectCM(cm) {
@@ -206,21 +219,17 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         this.cmSelected = cm;
         this.layersFromType = [];
         if (!this.helper.isNullOrUndefined(cm.type_layer_needed)) {
-          cm.type_layer_needed.map((layerType) => {
-            this.dataInteractionService.getLayersFromType(layerType.type).then((data) => {
-              if(data.length >=1) {
-                this.layersFromType.push({ layerType: layerType.type, layers: data, layerSelected: data[0],type_description:layerType.description })
-              } else {
-                const layers = [{workspaceName:layerType.type, name:layerType.type}]
-                this.layersFromType.push({ layerType: layerType.type, layers: layers, layerSelected: layers[0] })
-              }
-            }).then(() => {
-              this.setLayerNeeded()
-            })
+          cm.type_layer_needed.map((layer) => {
+            this.setLayerFromType(layer, 'raster')
           })
         }
-  
-  
+        if (!this.helper.isNullOrUndefined(cm.type_vectors_needed)) {
+          cm.type_vectors_needed.map((layer) => {
+            this.setLayerFromType(layer, 'vector')
+          })
+        }
+
+
         this.calculationModuleService.getCalculationModuleComponents(cm.cm_id).then((values) => {
           this.components = values;
           this.components.forEach(comp => {
@@ -239,7 +248,19 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
         this.toasterService.showToaster('Invalid scale level selected. <br/> Only <strong>' + scale_authorized + '</strong> can be choosen')
       }
     }
-    
+
+  }
+  setLayerFromType(layer, data_type) {
+    this.dataInteractionService.getLayersFromType(layer.type).then((data) => {
+      if(data.length >=1) {
+        this.layersFromType.push({ layerType: layer.type, layers: data, layerSelected: data[0],type_description:layer.description, data_type: data_type })
+      } else {
+        const layers = [{workspaceName:layer.type, name:layer.type}]
+        this.layersFromType.push({ layerType: layer.type, layers: layers, layerSelected: layers[0], type_description:layer.description, data_type: data_type })
+      }
+    }).then(() => {
+      this.setLayerNeeded()
+    })
   }
   cmHidePanel() {
     this.setWaiting(true);
@@ -261,9 +282,18 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
 
   setLayerNeeded() {
     this.cmSelected.layers_needed = []
+    console.log(this.layersFromType)
     this.layersFromType.map((layer) => {
-      this.cmSelected.layers_needed.push({id:layer.layerSelected.id, name:layer.layerSelected.name, workspaceName:layer.layerSelected.workspaceName, layer_type:layer.layerSelected.layer_type})
+      console.log(layer)
+      this.cmSelected.layers_needed.push({
+        id:layer.layerSelected.id, 
+        name:layer.layerSelected.name,
+        workspaceName:layer.layerSelected.workspaceName, 
+        layer_type:layer.layerSelected.layer_type, 
+        data_type:layer.data_type
+      })
     })
+    
   }
 
 

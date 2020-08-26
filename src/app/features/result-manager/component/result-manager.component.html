@@ -27,13 +27,13 @@
 
     <div *ngIf="result.graphics">
       <div *ngFor="let graphic of result.graphics">
-        <ng-container *ngIf="graphic.category == 'heatload'">
+        <!-- <ng-container *ngIf="graphic.category == 'heatload'">
           <htm-heat-load-chart [heatLoadPayload]="heatLoadPayload"></htm-heat-load-chart>
-        </ng-container>
+        </ng-container> -->
         <ng-container *ngIf="graphic.category == 'energy_mix'">
-          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.labels"></htm-electricity-mix>
+          <htm-electricity-mix [datasets]="graphic.data" [labels]="graphic.labels" [isLoading]="graphic.isLoading"></htm-electricity-mix>
         </ng-container>
-        <ng-container *ngIf="graphic.category == cm_catedory || graphic.category == 'duration_curve'">
+        <ng-container *ngIf="graphic.category == cm_catedory">
           <htm-chart [datasets]="graphic.data" [type]="graphic.type" [title]="graphic.name" [labels]="graphic.labels" [options]="graphic.options" [isLoading]="graphic.isLoading"></htm-chart>
         </ng-container>
       </div>
@@ -42,7 +42,7 @@
   </li>
 </ul>
 <div>
-  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators" 
+  <htm-export-data [graphics]="result.graphics" [indicators]="result.indicators" [refSelected]="selectedButton.ref"
       [graphState]="graphicsExportButtonState" [indicatorState]="indicatorExportButtonState" [tabSelected]="tabSelected"></htm-export-data>
 
 </div>

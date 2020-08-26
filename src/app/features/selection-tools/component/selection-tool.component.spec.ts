@@ -44,6 +44,7 @@ import { CalculationModuleService } from "app/features/calculation-module/servic
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
 import { CMLayersService } from '../../calculation-module/cm-layers.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('SelectionToolComponent', () => {
   let component: SelectionToolComponent;
@@ -65,7 +66,8 @@ describe('SelectionToolComponent', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
-        { provide: CMLayersService, useClass: CMLayersService}
+        { provide: CMLayersService, useClass: CMLayersService},
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService}
       ]
     })
     .compileComponents();

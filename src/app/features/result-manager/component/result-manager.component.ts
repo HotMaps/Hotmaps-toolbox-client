@@ -3,10 +3,11 @@ import { Logger } from 'app/shared/services/logger.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Graphics, IndicatorResult } from './../service/result-manager';
 import { Helper } from 'app/shared';
-import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ResultManagerPayload } from '../service/result-manager';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { MapService } from '../../../pages/map';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   moduleId: module.id,
@@ -42,6 +43,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   private dropdown_btns = summay_drop_down_buttons;
   private selectedButton = this.dropdown_btns[0];
   private heatloadGraph;
+  private isCMRunning;
   private result: ResultManagerPayload = {
     indicators: { summaryResult: null, personnalLayerResult: null, cmResult: null },
     graphics: null, raster_layers: null, vector_layers: null
@@ -49,7 +51,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
 
   private heatLoadData;
   constructor(private helper: Helper, private interactionService: InteractionService, private logger: Logger,
-    private dataInteractionService: DataInteractionService, private mapService: MapService) { }
+    private dataInteractionService: DataInteractionService, private mapService: MapService, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.interactionService.getHeatLoadData().subscribe((heatload) => {
@@ -61,21 +63,22 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
   ngOnDestroy() { }
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.resetResult();
-    if (!this.helper.isNullOrUndefined(this.cmPayload)) { this.updateCMResult() }
+    if (!this.helper.isNullOrUndefined(this.cmPayload) && !this.helper.isNullOrUndefined(changes.cmPayload)) { this.updateCMResult() }
     if (!this.helper.isNullOrUndefined(this.summaryPayload)) { this.updateSummaryResult() }
-    if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() }
+    /* if (!this.helper.isNullOrUndefined(this.heatLoadPayload)) { this.updateHeatLoadResult() } */
     if (!this.helper.isNullOrUndefined(this.energyMixPayload)) { this.updateEnergyMixResult() }
-    if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }
+    /* if (!this.helper.isNullOrUndefined(this.durationCurvePayload)) { this.updateDurationCurveResult() }*/
     if (!this.helper.isNullOrUndefined(this.personnalLayerPayload)) { this.updatePersonnalLayersResult() }
-    
+
 
   }
    updateCMResult() {
     const self = this;
     if (!this.helper.isNullOrUndefined(this.status_id)) { self.interactionService.deleteCM(this.status_id); }
     self.interactionService.getCMInformations(this.cmPayload).then((data) => {
+      //this.interactionService.setCmRunning(true)
       self.logger.log('data.status_id ' + data.status_id)
       self.status_id = data.status_id
       self.interactionService.setCurrentIdCM(self.status_id )
@@ -87,7 +90,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
    updatePersonnalLayersResult() {
-    
+
     if (this.helper.isNullOrUndefined(this.personnalLayerPayload)) { return }
     const self = this;
     self.indicatorPersoLoading = true
@@ -185,7 +188,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       graphic.isLoading = false;
       graphic.data = [dataset];
       graphic.labels = labels;
-      self.graphicsExportButtonState = true;    
+      self.graphicsExportButtonState = true;
     }).catch(e => {
       self.graphicsExportButtonState = false;
       self.logger.log('error')
@@ -198,14 +201,22 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
-      const name_of_result = this.cmPayload.cm_name;
+      let name_of_result = ""
+      if(!this.helper.isNullOrUndefined(this.cmPayload)){
+        name_of_result = this.cmPayload.cm_name;
+      }
+      let prefix_name = ""
+      if(this.cmPayload.cm_prefix != "") {
+        prefix_name = this.cmPayload.cm_prefix + " - "
+      }
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {
           let symb;
           if(raster.type === 'custom') {
             symb = raster.symbology;
           }
-          this.dataInteractionService.addNewCMLayer(raster.name, raster.path, raster.type, raster_type_name, symb)
+
+          this.dataInteractionService.addNewCMLayer( prefix_name + raster.name, raster.path, raster.type, raster_type_name, symb)
           this.mapService.displayCustomLayerFromCM(raster.path, raster_type_name);
         })
       }
@@ -216,7 +227,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
           if(vector.type == 'custom') {
             symb = vector.symbology;
           }
-          this.dataInteractionService.addNewCMLayer(vector.name, vector.path,vector.type, vector_type_name,symb)
+          this.dataInteractionService.addNewCMLayer(prefix_name + vector.name, vector.path,vector.type, vector_type_name,symb)
 
           this.mapService.displayCustomLayerFromCM(vector.path, vector_type_name );
         })
@@ -324,7 +335,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       this.interactionService.deleteCM(this.status_id)
     }
     this.killAnimation()
-
+    this.interactionService.setCmRunning(false)
   }
   getIndicatorsCatergories() {
     this.resetButtonsDiplay()
@@ -354,8 +365,8 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       }
     }
       this.selectedButton = this.dropdown_btns[0]
-      this.selectedButton.selected = true 
-   
+      this.selectedButton.selected = true
+
   }
 
   addGraphic(name, type, data, labels, options, category, isLoading) {
@@ -365,6 +376,9 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
   changeResultsDisplay(button) {
     this.selectedButton = button;
+
+    this.googleAnalyticsService
+      .eventEmitter("map_summary_filter", "map", "summary_filter", "click");
   }
   resetButtonsDiplay() {
     this.dropdown_btns.map((btn) => {

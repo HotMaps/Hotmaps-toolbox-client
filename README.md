@@ -22,11 +22,12 @@ npm install
 
 *If any, solve all your installation problems before going any further*
 
-As you will run the server locally, you will need to change some constants in *src/app/shared/data.service.ts*:
+Edit *.env* configuration to match your needs (if running using Docker/docker-compose) or directly in */src/assets/env.js* (if you are not using system environment variables):
+- api url
+- geoserver url
+- wiki url
 
-```bash
-export const apiUrl = localApiUrl;
-```
+[In case you need to make further configuration, refer to the constants declared in *src/app/shared/data.service.ts*.]
 
 #### Run the server
 ```bash

@@ -82,7 +82,6 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   @Input() scaleLevel;
   @Input() locationsSelection;
   @Input() areas;
-  @Input() cmRunned;
   @Input() personnalLayers;
   private cmTimeout;
 
@@ -92,15 +91,19 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   // Components status
   private heatloadStatus = false;
-  private electricityMixStatus = false;
   private durationCurveStatus = false;
+  private electricityMixStatus = false;
   private summaryResultStatus = false
 
   private cmPayload;
   private summaryPayload;
   private energyMixPayload;
+
+
   private heatLoadPayload;
   private durationCurvePayload;
+
+
   private personnalLayerPayload;
 
 
@@ -109,8 +112,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private splittedResults;
   private summaryResult;
 
-
-
+  private aCMisCurrentlyRunning
+  private cmRunned;
 
   constructor(protected interactionService: InteractionService, private helper: Helper, private logger: Logger,
     private dataInteractionService: DataInteractionService) {
@@ -118,7 +121,18 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   }
 
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.interactionService.getCMRunned().subscribe((val)=> {
+      this.cmRunned = val;
+      if (!this.helper.isNullOrUndefined(this.cmRunned)) {
+        this.setSatusResults()
+        this.updateAll()
+        this.setCMPayload()
+      } else {
+        this.cmPayload = null
+      }
+    })
+  }
   ngOnDestroy() { }
   ngOnChanges() {
     this.logger.log('RightSidePanelComponent/ngOnChanges')
@@ -133,18 +147,18 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     this.cmPayload = null;
     this.summaryPayload = null;
     this.energyMixPayload = null;
-    this.heatLoadPayload = null;
-    this.durationCurvePayload = null;
+    // this.heatLoadPayload = null;
+    //this.durationCurvePayload = null;
     this.personnalLayerPayload = null;
   }
   setSatusResults() {
-    if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
+    /* if ((this.scaleLevel === '4') || (this.scaleLevel === '3') || (this.scaleLevel === '2') || (this.scaleLevel === '-1')) {
       this.heatloadStatus = true;
       this.durationCurveStatus = true;
     } else {
       this.heatloadStatus = false;
       this.durationCurveStatus = false;
-    }
+    } */
 
     if (this.scaleLevel === '0') {
       this.electricityMixStatus = true;
@@ -155,6 +169,8 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
 
   }
   updateAll() {
+
+
     if (this.summaryResultStatus && this.scaleLevel !== '-1') {
       this.setSummaryPayloadIds()
     } else if (this.summaryResultStatus && this.scaleLevel === '-1') {
@@ -163,20 +179,20 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
       this.summaryPayload = null
     }
 
-    if (this.heatloadStatus && this.scaleLevel !== '-1') {
+    /* if (this.heatloadStatus && this.scaleLevel !== '-1') {
       this.setHeatloadPayloadIds()
     } else if (this.heatloadStatus && this.scaleLevel === '-1') {
       this.setHeatloadPayloadAreas()
     } else {
       this.heatLoadPayload = null
-    }
-    if (this.durationCurveStatus && this.scaleLevel !== '-1') {
+    } */
+    /* if (this.durationCurveStatus && this.scaleLevel !== '-1') {
       this.setDurationCurveIds()
     } else if (this.durationCurveStatus && this.scaleLevel === '-1') {
       this.setDurationCurveAreas()
     } else {
       this.durationCurvePayload = null;
-    }
+    } */
 
 
     if (this.electricityMixStatus) {
@@ -191,11 +207,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
     }
 
 
-    if (this.cmRunned) {
-      this.setCMPayload()
-    } else {
-      this.cmPayload = null
-    }
+    // test if calulation are running
+    // if(this.aCMisCurrentlyRunning) {
+    //   this.interactionService.showToaster("A CM is currently running. Please change configuration when the CM is finished or stop CM")
+    //   return
+    // }
+    // if (this.cmRunned) {
+    //   this.setCMPayload()
+    // } else {
+    //   this.cmPayload = null
+    // }
 
   }
 
@@ -203,24 +224,42 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   setCMPayload() {
     let payloadTmp;
     let cm_name='';
+    let areas;
     if (this.scaleLevel !== '-1') {
-      payloadTmp = { nuts: this.summaryPayload.nuts, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
-      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
+      areas=this.summaryPayload.nuts
+      // this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed)
     } else if (this.scaleLevel === '-1') {
-      payloadTmp = { areas: this.summaryPayload.areas, year: this.summaryPayload.year, layers_needed: this.cmRunned.cm.layers_needed, type_layer_needed: this.cmRunned.cm.type_layer_needed, vectors_needed: this.cmRunned.cm.vectors_needed};
-      this.logger.log('this.cmRunned.cm.type_layer_needed ' +this.cmRunned.cm.type_layer_needed)
+      areas=this.summaryPayload.areas
+      // this.logger.log('this.cmRunned.cm.type_layer_needed ' + this.cmRunned.cm.type_layer_needed)
     }
+    // payloadTmp = {
+    //   areas: areas, 
+    //   year: this.summaryPayload.year, 
+    //   layers_needed: this.cmRunned.cm.layers_needed, 
+    //   type_layer_needed: this.cmRunned.cm.type_layer_needed, 
+    //   vectors_needed: this.cmRunned.cm.vectors_needed
+    // };
     if(!this.helper.isNullOrUndefined(this.cmRunned.cm.cm_prefix)  && this.cmRunned.cm.cm_prefix!='') {
       cm_name+=this.cmRunned.cm.cm_prefix + ' - '
     }
     cm_name += this.cmRunned.cm.cm_name
     this.cmPayload = Object.assign(
       {
-        url_file: 0, scalevalue: this.helper.getScaleLevelPay(this.scaleLevel),
-        inputs: this.cmRunned.component, cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name
-      },
-      { payload: payloadTmp }
+        url_file: 0, scalevalue: this.interactionService.getScaleLevel().replace(" ", "").toLocaleLowerCase(),
+        inputs: this.cmRunned.component, 
+        cm_id: '' + this.cmRunned.cm.cm_id, cm_name:cm_name, 
+        cm_prefix:this.cmRunned.cm.cm_prefix
+      }, { 
+        payload: {
+          areas: areas, 
+          year: this.summaryPayload.year, 
+          layers_needed: this.cmRunned.cm.layers_needed, 
+          type_layer_needed: this.cmRunned.cm.type_layer_needed, 
+          vectors_needed: this.cmRunned.cm.vectors_needed
+      } 
+    }
     )
+    console.log(this.cmPayload)
   }
   setPersonnalLayerPayload(){
     this.personnalLayerPayload={'layers':[],scale_level: this.helper.getScaleLevelPay(this.scaleLevel), areas: (this.scaleLevel==='-1') ? this.helper.getAreasForPayload(this.areas) : this.nutsIds }

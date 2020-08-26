@@ -37,13 +37,10 @@ export class APIService {
     this.toasterService = toasterService;
   }
   handleError(error: any) {
-
-
     this.loaderService.display(false);
-
     let message;
     if (this.isNullOrUndefined(error.json().message)) {
-       message = 'UNKNOWN ERROR';
+       message = 'An internal error occured';
     } else {
       this.logger.log('APIService/handleError nnn'+ error.json().message);
       message = error.json().message

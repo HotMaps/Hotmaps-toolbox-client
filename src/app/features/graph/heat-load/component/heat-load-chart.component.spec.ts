@@ -25,6 +25,7 @@ import {ElectricityMixService} from "../../electricity-mix/service/electricity-m
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
 import { CalculationHeatLoadDividedService } from "app/features/calculation-module/service/calculation-test.service";
+import {GoogleAnalyticsService} from "../../../../google-analytics.service";
 
 
 describe('HeatLoadChartComponent', () => {
@@ -67,6 +68,7 @@ describe('HeatLoadChartComponent', () => {
         { provide: MockBackend, useClass: MockBackend },
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

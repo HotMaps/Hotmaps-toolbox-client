@@ -42,6 +42,8 @@ import { UserManagementStatusService } from 'app/features/user-management';
 import { Helper } from 'app/shared';
 import { DecimalPipe } from '@angular/common';
 import { CustomSymbologyComponent } from 'app/features/layer-tool/custom-symbology/custom-symbology.component';
+import { StandAloneCmComponent } from 'app/features/calculation-module/stand-alone-cm/stand-alone-cm.component';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('LeftSideComponent', () => {
   let component: LeftSideComponent;
@@ -53,7 +55,8 @@ describe('LeftSideComponent', () => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent ],
+      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, 
+        LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent, StandAloneCmComponent ],
       providers: [
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
@@ -87,6 +90,7 @@ describe('LeftSideComponent', () => {
         { provide: CalculationModuleService, useClass: CalculationModuleService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         { provide: UserManagementStatusService, useClass: UserManagementStatusService },
       ],
       imports: [

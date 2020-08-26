@@ -247,10 +247,10 @@ export class InteractionService  {
     }
 
     getCmRunning() {
-      return this.cmRunning
+      return this.calculationModuleStatusService.getRuningState()
     }
     setCmRunning(cmRunning) {
-      this.cmRunning = cmRunning
+      this.calculationModuleStatusService.setRuningState(cmRunning)
     }
 
     getCurrentIdCM() {

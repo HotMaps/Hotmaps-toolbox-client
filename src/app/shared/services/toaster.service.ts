@@ -19,6 +19,10 @@ export class ToasterService {
     uikit.notification.closeAll();
     uikit.notification({message: msg, pos: 'bottom-center', timeout: 3000 })
   }
+  showDangerToaster(msg: string) {
+    uikit.notification.closeAll();
+    uikit.notification({message:"<span uk-icon='icon: warning'></span> " + msg, pos: 'bottom-center', timeout: 3000, status: 'danger' })
+  }
   showToasterSurfaceCalculDisabled() {
     this.showToaster("You have exceeded the AREA SELECTION LIMIT for the free selection as well as for running calculation modules! Please select a smaller area.");
   }

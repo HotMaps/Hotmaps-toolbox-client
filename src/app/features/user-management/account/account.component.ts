@@ -5,6 +5,7 @@ import { UserManagementService } from '../service/user-management.service';
 import { WaitingStatusComponent } from 'app/shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   selector: 'htm-account',
@@ -23,7 +24,7 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
   private diskspaceDataset;
   private diskspaceOptions = diskspacechart_options;
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
-    private toasterService: ToasterService, private interactionService: InteractionService) {
+    private toasterService: ToasterService, private interactionService: InteractionService, private googleAnalyticsService:GoogleAnalyticsService) {
     super()
   }
 
@@ -36,6 +37,9 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
     this.userManagementService.userLogout(this.token)
       .then((res) => this.setUserIsLoggedOut(res.message))
       .catch(() => this.setWaitingStatus(false));
+
+    this.googleAnalyticsService
+      .eventEmitter("user_logout", "user", "logout", "click");
   }
 
   delete(): void {
@@ -48,6 +52,9 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
         .then((res) => {
           this.toasterService.showToaster("Your account and data have been successfully deleted");
           this.setUserIsLoggedOut(res.message);
+
+          this.googleAnalyticsService
+            .eventEmitter("user_delete", "user", "delete", "click");
         })
         .catch(() => {
           this.toasterService.showToaster("The deletion failed");
@@ -97,7 +104,9 @@ export class AccountComponent extends WaitingStatusComponent implements OnInit {
     this.userManagementService.getUserInformations(this.token).then((data) => {
       this.firstname = data.first_name;
       this.lastname = data.last_name;
-    })
+    }).catch(() => {
+      this.setUserIsLoggedOut();
+    });
   }
   updateProfile() {
     const payload = {token:this.token, last_name:this.lastname, first_name: this.firstname};

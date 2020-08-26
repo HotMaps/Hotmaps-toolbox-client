@@ -1,0 +1,30 @@
+.cm-name {
+    color: #333;
+}
+
+.icon-wiki {
+
+    background: #999;
+    -webkit-mask-image: url(../../../../assets/first-page/logo_wiki.svg);
+    mask-image: url(../../../../assets/first-page/logo_wiki.svg);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    -webkit-mask-size: cover;
+    mask-size  : cover;
+
+}
+
+.cm-toolbox {
+    position: relative;
+    height: 35px;
+}
+
+
+.cm-toolbox .git-link {
+    position: absolute;
+}
+
+.icon-wiki {
+    margin-right: 10px;
+}

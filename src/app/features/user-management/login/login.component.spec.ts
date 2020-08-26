@@ -7,6 +7,7 @@ import { UserManagementService } from '..';
 import { Logger, LoaderService, ToasterService } from 'app/shared';
 import { UserManagementStatusService } from '../service/user-management-status.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -25,7 +26,8 @@ describe('LoginComponent', () => {
             return new Http(backend, defaultOptions);
           }, deps: [MockBackend, BaseRequestOptions]
         },
-        { provide: InteractionService, useValue: InteractionService }
+        { provide: InteractionService, useValue: InteractionService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService }
       ]
     })
     .compileComponents();

@@ -1,4 +1,5 @@
 import { basemap } from './../pages/map/basemap';
+import { environment } from './../../environments/environment';
 
 import 'leaflet-draw';
 
@@ -9,24 +10,14 @@ import 'leaflet-draw';
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-const prodUrl    = 'https://api.hotmaps.hevs.ch/api'; // 'https://hotmaps.hevs.ch:9006/api';
-const devUrl    = 'https://api.hotmapsdev.hevs.ch/api'  // 'https://hotmapsdev.hevs.ch:9006/api';
-const localApiUrl    = 'http://localhost:5000/api';
-
-
-
-export const geoserverProdUrl_old = 'http://hotmaps.hevs.ch:9009/geoserver/hotmaps/wms';
-export const geoserverProdUrl = 'https://geoserver.hotmaps.hevs.ch/geoserver/hotmaps/wms';
-export const geoserverDevUrl = 'https://geoserver.hotmapsdev.hevs.ch/geoserver/hotmaps/wms';
-
-
+export const apiUrl = environment.apiUrl;
+export const geoserverUrl = environment.geoserverUrl;
+export const hotmaps_wiki = environment.wikiUrl;
 
 export const geocodeUrl    = 'https://nominatim.openstreetmap.org/search?q=';    // prefer
-
-export const geoserverUrl = geoserverProdUrl;
 export const getIpUrl    = 'https://ipv4.myexternalip.com/json';    // prefer
 export const getLocationFromIp    = 'http://hotmaps.hevs.ch:9005/api/';
-export const apiUrl = prodUrl;
+
 export const defaultLayer = 'heat_tot_curr_density';
 export const styleNameHeat = 'heat_tot_curr_density';
 export const heat_type = 'heat';
@@ -152,7 +143,7 @@ export const nuts2  = 'NUTS 2';
 export const nuts3  = 'NUTS 3';
 export const lau2   = 'LAU 2';
 export const hectare= 'Hectare';
-export const initial_scale_value = nuts3;
+export const initial_scale_value = nuts2;
 
 // Event variable
 export const MAPDRAWEDITED = L.Draw.Event.EDITED;
@@ -227,7 +218,7 @@ export const heat_load_graph_options = {
             }]
       }
   };
-export const energy_mix_graph_category = 'duration_curve';
+export const energy_mix_graph_category = 'energy_mix';
 export const energy_mix_options = {
   position : 'right',
   responsive: true,

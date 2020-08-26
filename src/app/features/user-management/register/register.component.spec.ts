@@ -9,6 +9,7 @@ import { ToasterService, Logger, LoaderService } from 'app/shared';
 import { BrowserModule } from '@angular/platform-browser';
 import { RecaptchaModule, RecaptchaLoaderService } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -37,7 +38,7 @@ describe('RegisterComponent', () => {
         {provide: ToasterService, useClass: ToasterService},
         {provide: MockBackend, useClass: MockBackend},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-
+        {provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
       ]
     })
     .compileComponents();

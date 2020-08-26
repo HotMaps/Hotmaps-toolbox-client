@@ -84,3 +84,6 @@ h5, p {
     position: absolute;
     left: 43px;
 }
+.uk-button {
+  text-align: left;
+}

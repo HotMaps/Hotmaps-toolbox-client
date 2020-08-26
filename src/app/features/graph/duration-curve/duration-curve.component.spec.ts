@@ -25,6 +25,7 @@ import { HeatLoadAggregateService } from '../heat-load/heat-load.service';
 import { ExportDataService } from "../../export-data/service/export-data.service";
 import {ElectricityMixService} from "../electricity-mix/service/electricity-mix.service";
 import { CalculationModuleStatusService } from "app/features/calculation-module/service/calcultation-module-status.service";
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 
 describe('DurationCurveComponent', () => {
@@ -63,6 +64,7 @@ describe('DurationCurveComponent', () => {
         { provide: MockBackend, useClass: MockBackend },
         { provide: CalculationModuleService, useClass: CalculationModuleService},
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
         {
           provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {

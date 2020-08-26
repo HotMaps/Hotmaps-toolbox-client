@@ -10,7 +10,7 @@
   </div>
 
   <div class="wiki-logo">
-    <a href="https://github.com/HotMaps/hotmaps_wiki/wiki" target="_blank">
+    <a href="{{hotmaps_wiki}}" (click)="gaWiki" target="_blank">
       <img src="../../../assets/first-page/logo_wiki.svg"/>
       <span>WIKI</span>
     </a>
@@ -33,8 +33,8 @@
 
   <htm-left-side-panel [hidden]="!openLeftSidebar" [selectionSurface]="selectionSurface"></htm-left-side-panel>
 
-  <div id="map" [style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
-    <htm-selection-tool *ngIf="selectionToolShow" [selectionSurface]="selectionSurface" onclick="event.stopPropagation();"></htm-selection-tool>
+  <div id="map" [class.click-disable]="isCMRunning"[style.pointer-events]="folderPanelShow || savePanelShow ? 'none' : 'all'">
+    <htm-selection-tool *ngIf="selectionToolShow" [selectionSurface]="selectionSurface"onclick="event.stopPropagation();"></htm-selection-tool>
 
     <!--<hmt-toolbar></hmt-toolbar> -->
     <!-- <div class="zoom-level-box">
@@ -44,6 +44,6 @@
 
   <htm-right-side-panel [hidden]="!openRightSidebar" [nutsIds]="nutsIds" [layers]="layers"
     [personnalLayers]="personnalLayers" [scaleLevel]="scaleLevel" [locationsSelection]="locationsSelection"
-    [areas]="areas" [cmRunned]="cmRunned">
+    [areas]="areas">
   </htm-right-side-panel>
 </div>

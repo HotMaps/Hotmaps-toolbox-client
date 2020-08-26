@@ -3,6 +3,7 @@ import { UserManagementService } from './../service/user-management.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ToasterService } from 'app/shared';
 import * as uikit from 'uikit';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   selector: 'htm-recovery',
@@ -15,13 +16,13 @@ export class RecoveryComponent extends WaitingStatusComponent implements OnInit 
   private new_password = '';
   @Input() token_recover;
 
-  constructor(private toasterService: ToasterService, private userManagementService:UserManagementService) {
+  constructor(private toasterService: ToasterService, private userManagementService:UserManagementService, private googleAnalyticsService:GoogleAnalyticsService) {
     super()
    }
 
   ngOnInit() {}
   recoverAccountAsk() {
-    
+
     this.setWaitingStatus(true)
     const payload = {email:this.email};
     this.userManagementService.userRecoverAsk(payload).then(()=> {
@@ -29,6 +30,10 @@ export class RecoveryComponent extends WaitingStatusComponent implements OnInit 
       this.resetRecoverComponent()
       this.toasterService.showToaster('Check your email address ('+this.email+') to change your password!')
       uikit.modal('#modal-recover').hide()
+
+      this.googleAnalyticsService
+        .eventEmitter("user_recover_ask", "user", "recover_ask", "click");
+
     }).catch(()=>{
       this.setWaitingStatus(false);
       this.submitedRecover = false;
@@ -43,6 +48,10 @@ export class RecoveryComponent extends WaitingStatusComponent implements OnInit 
       this.setWaitingStatus(false);
       this.submitedRecover = false;
       window.location.href = '';
+
+      this.googleAnalyticsService
+        .eventEmitter("user_recover", "user", "recover", "click");
+
     }).catch(()=>{
       this.setWaitingStatus(false);
     })

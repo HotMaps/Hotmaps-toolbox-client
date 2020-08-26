@@ -32,6 +32,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 import { UploadService } from 'app/shared/services/upload.service';
 
 
@@ -44,7 +45,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   public layerArray: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   private tempAreaSelected;
-
+  private cmRunning = false;
 
   // TODO: A modifier
   private clickEventSubject = new Subject<any>(); // Observable source for click
@@ -58,7 +59,8 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     private cmLayerService: CMLayersService,
     private selectionToolService: SelectionToolService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
-    private selectionToolButtonStateService: SelectionToolButtonStateService) {
+    private selectionToolButtonStateService: SelectionToolButtonStateService,
+    private googleAnalyticsService:GoogleAnalyticsService) {
     super(http, logger, loaderService, toasterService);
     this.baseMaps = basemap;
   }
@@ -93,10 +95,13 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   getMap(): Map {
     return this.map;
   }
+  setCMRunning(val) {
+    this.cmRunning = val;
+  }
   // Retrive all map events
   retriveMapEvent(): void {
     const self = this;
-    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });
+    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });  
     this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
     this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
     this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
@@ -180,6 +185,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.selectionScaleService.changeScale();
   }
   onClickEvent(self, e: MouseEvent) {
+    if (self.cmRunning) { self.toasterService.showDangerToaster("To run the calculation module (CM) for your new selection, STOP CM and RUN it again.") }
     if (self.getScaleValue() === hectare) { return; }
     if (self.selectionToolService.getPolygonDrawerState()) { return; }
 
@@ -383,6 +389,9 @@ export class MapService extends APIService implements OnInit, OnDestroy {
    */
   loadResultNuts(map: Map) {
     this.selectionToolService.loadResultNuts(map);
+
+    this.googleAnalyticsService
+      .eventEmitter("map_summary_result", "map", "summary_result", "click");
   }
 
   /**

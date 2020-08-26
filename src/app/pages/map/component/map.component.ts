@@ -1,16 +1,15 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
-import { map_options, eu_logo_path, eu_logo_height } from './../../../shared/data.service';
+import {map_options, eu_logo_path, eu_logo_height, hotmaps_wiki} from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
 import {Geocoder} from 'leaflet-control-geocoder'
+
 declare const L: any;
-
-
 
 import { basemap } from '../basemap'
 import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
-import { Logger } from '../../../shared';
+import {Helper, Logger} from '../../../shared';
 import { MapService } from '../map.service';
 import { SearchBarComponent } from '../../searchbar';
 import { SelectionToolButtonStateService, SelectionToolService } from 'app/features/selection-tools';
@@ -19,6 +18,8 @@ import { Location } from '../../../shared/class/location/location';
 
 import {geoserverUrl} from '../../../shared/data.service';
 import { UploadService } from 'app/shared/services/upload.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
+
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
@@ -32,16 +33,17 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   folderPanelShow = false;
   savePanelShow = false;
-
+  private hotmaps_wiki = hotmaps_wiki;
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
   private map: Map;
   private layers;
   private scaleLevel;
-  private cmRunned;
+  // private cmRunned;
   private personnalLayers;
   private selectionSurface=0;
+  private isCMRunning = false;
   @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
@@ -59,7 +61,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     private panelService: SidePanelService, private uploadService: UploadService,
     private selectionToolButtonStateService: SelectionToolButtonStateService,
     private selectionToolService: SelectionToolService,
-    private interactionService: InteractionService
+    private interactionService: InteractionService, private googleAnalyticsService:GoogleAnalyticsService
   ) {
   }
 
@@ -88,13 +90,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
         this.mapService.setLayersSubject();
       });
     }
-    this.interactionService.getCMRunned().subscribe((value) => {
-      this.cmRunned = value
-      if (value !== null) {
+    this.interactionService.getCmRunning().subscribe((value) => {
+      this.isCMRunning = value;
+      if (value == true) {
         this.interactionService.openRightPanel()
       }
 
+      this.mapService.setCMRunning(value)
     })
+
     if (this.mapService.getLayerArray() !== null) {
       this.mapService.getLayerArray().subscribe((data) => {
         this.layers = data;
@@ -218,11 +222,15 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     return this.map;
   }
 
-
   /*showControls() {
     this.mapService.addDrawControls();
   }*/
   getMap(): Map {
     return this.map;
+  }
+
+  gaWiki() {
+    this.googleAnalyticsService
+      .eventEmitter("open_wiki", "wiki", "open", "click");
   }
 }

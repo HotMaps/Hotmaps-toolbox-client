@@ -16,6 +16,8 @@ import { Location } from '../../../shared/class/location/location';
 
 import { APIService } from '../../../shared/services/api.service';
 import { Helper } from '../../../shared/helper';
+import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import { BusinessInterfaceRenderService } from 'app/shared';
 
 
 describe('ExportDataService', () => {
@@ -31,6 +33,10 @@ describe('ExportDataService', () => {
         { provide: ToasterService },
         { provide: LoaderService, useValue: loaderServiceStub },
         { provide: ExportDataService, useClass: ExportDataService },
+        { provide: DataInteractionService, useClass: DataInteractionService},
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
+        
+
         { provide: MockBackend, useClass: MockBackend },
         { provide: Logger, useValue: loggerStub },
       ],

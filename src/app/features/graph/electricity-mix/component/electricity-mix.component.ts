@@ -15,6 +15,7 @@ export class ElectricityMixComponent implements OnInit, OnChanges {
   private type = 'pie';
   @Input() labels
   @Input() datasets;
+  @Input() isLoading;
   private options: any;
 
   constructor( private logger: Logger, private interactionService: InteractionService ) {

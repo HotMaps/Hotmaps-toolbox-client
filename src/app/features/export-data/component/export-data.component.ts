@@ -4,6 +4,7 @@ import { Component, OnInit, Input, OnDestroy, OnChanges, DoCheck } from '@angula
 import {Logger} from '../../../shared/services/logger.service';
 import { tab1_datapanel, tab2_datapanel} from '../../../shared/data.service';
 import { ExportDataService } from '../service/export-data.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   selector: 'htm-export-data',
@@ -16,27 +17,40 @@ export class ExportDataComponent implements OnInit, OnDestroy, OnChanges {
   @Input() indicatorState;
   @Input() graphState;
   @Input() tabSelected;
+  @Input() refSelected;
+
   private displayButton = false;
-  constructor(private exportDataService: ExportDataService, private logger: Logger, private helper: Helper) { }
+  constructor(private exportDataService: ExportDataService, private logger: Logger, private helper: Helper, private googleAnalyticsService:GoogleAnalyticsService) { }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes) {
   }
-  
+
   ngOnDestroy() {
     this.logger.log('ExportDataComponent/ngOnDestroy')
   }
   exportIndicators() {
-    const arraytmp = this.helper.summaryResultToCSV(this.indicators)
-    this.exportData(arraytmp);
+    const arrayTmp = this.helper.summaryResultToCSV(this.indicators)
+    // get name of CM session to append to file name of exported CSV
+    let cmSessionName;
+    try {
+      cmSessionName = this.indicators.cmResult.layers[0].name;
+      cmSessionName = /.*(?=\s-\sCM\s-\s.*$)/g.exec(cmSessionName);
+    } catch(e) {
+      cmSessionName = undefined;
+    }
+    this.exportData(arrayTmp, cmSessionName);
   }
   exportGraphic() {
-    const arraytmp = this.helper.chartsToCSV(this.graphics)
-    this.exportData(arraytmp);
+    const arrayTmp = this.helper.chartsToCSV(this.graphics)
+    this.exportData(arrayTmp);
   }
-  exportData(result) {
-    this.exportDataService.exportData(result,this.tabSelected);
+  exportData(result, cmSessionName=undefined) {
+    this.exportDataService.exportData(result, this.tabSelected, cmSessionName, this.refSelected);
+
+    this.googleAnalyticsService
+      .eventEmitter("map_export_indicators", "map", "export_indicators", "click");
   }
 }

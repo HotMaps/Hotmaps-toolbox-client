@@ -3,6 +3,7 @@ import {WaitingStatusComponent} from './../../../shared/component/waiting-status
 import {ToasterService} from './../../../shared/services/toaster.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {UserManagementService} from './../service/user-management.service';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 import * as uikit from 'uikit';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -24,7 +25,7 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
 
   reactiveForm: FormGroup;
 
-  constructor(private userManagementService: UserManagementService, private toasterService: ToasterService) {
+  constructor(private userManagementService: UserManagementService, private toasterService: ToasterService, private googleAnalyticsService:GoogleAnalyticsService) {
     super()
   }
 
@@ -49,6 +50,10 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
       this.toasterService.showToaster(data.message + '. <br />An email has been sent to your mail address (' + this.email + '). <br />Please press the link in the mail to activate your account.')
       this.closePanel()
       this.resetProcess();
+
+      this.googleAnalyticsService
+        .eventEmitter("user_register", "user", "register", "click");
+
     }).catch(()=>{
       this.resetProcess()
     });

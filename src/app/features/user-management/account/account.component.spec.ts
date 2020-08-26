@@ -13,6 +13,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { UploadService } from 'app/shared/services/upload.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import { DecimalPipe } from '@angular/common';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -38,6 +39,7 @@ describe('AccountComponent', () => {
         DataInteractionService,
         BusinessInterfaceRenderService,
         { provide: UploadService, useValue: UploadService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
         { provide: InteractionService, useValue: InteractionService }
       ]
     })

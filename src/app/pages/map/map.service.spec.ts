@@ -36,6 +36,7 @@ import { CalculationModuleStatusService } from "app/features/calculation-module/
 import { CalculationModuleService } from "app/features/calculation-module/service/calculation-module.service";
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { CMLayersService } from '../../features/calculation-module/cm-layers.service';
+import {GoogleAnalyticsService} from "../../google-analytics.service";
 
 
 
@@ -83,6 +84,7 @@ describe('mapService', () => {
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CMLayersService, useClass: CMLayersService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
       ],
     })
   });

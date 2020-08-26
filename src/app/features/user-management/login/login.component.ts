@@ -3,7 +3,8 @@ import { UserManagementService } from '../service/user-management.service';
 import { UserManagementStatusService } from '../service/user-management-status.service';
 import { WaitingStatusComponent } from '../../../shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
-import { InteractionService } from 'app/shared/services/interaction.service';
+import {InteractionService} from "../../../shared/services/interaction.service";
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({
   moduleId: module.id,
@@ -16,13 +17,13 @@ export class LoginComponent extends WaitingStatusComponent implements OnInit  {
   private password='';
   private token='';
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
-    private toasterService: ToasterService, private interactionService: InteractionService) {
+    private toasterService: ToasterService, private googleAnalyticsService:GoogleAnalyticsService) {
     super();
   }
 
   ngOnInit() {
   }
-  
+
   connect() {
     this.setWaitingStatus(true)
     const payload = { password: this.password, email: this.username };
@@ -30,8 +31,12 @@ export class LoginComponent extends WaitingStatusComponent implements OnInit  {
       this.token = data.token;
       this.toasterService.showToaster(data.message);
       this.setUserIsLoggedIn()
+
+      this.googleAnalyticsService
+        .eventEmitter("user_connect", "user", "connect", "click");
     }).catch(() => {
-      this.setWaitingStatus(false)
+      this.setWaitingStatus(false);
+      this.userManagementStatusService.setUserIsLoggedOut();
     })
   }
 
@@ -40,8 +45,6 @@ export class LoginComponent extends WaitingStatusComponent implements OnInit  {
     this.userManagementStatusService.setUserIsLoggedIn();
     this.userManagementStatusService.setUsername(this.username);
 
-    this.interactionService.enableButtonWithId('save');
-    this.interactionService.enableButtonWithId('folder');
     this.setWaitingStatus(false)
   }
 

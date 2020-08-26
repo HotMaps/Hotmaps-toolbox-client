@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RecoveryComponent } from './recovery.component';
 import { Logger, LoaderService, ToasterService } from 'app/shared';
 import { UserManagementService } from '..';
+import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('RecoveryComponent', () => {
   let component: RecoveryComponent;
@@ -29,7 +30,7 @@ describe('RecoveryComponent', () => {
         {provide: ToasterService, useClass: ToasterService},
         {provide: MockBackend, useClass: MockBackend},
         {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-
+        {provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
       ]
     })
     .compileComponents();
