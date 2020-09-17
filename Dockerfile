@@ -2,7 +2,7 @@ FROM node:10 AS builder
 COPY package.json package-lock.json ./
 RUN npm install 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD false
 RUN npm i && mkdir /ng-app && mv ./node_modules ./ng-app
 WORKDIR /ng-app
 COPY ./ ./
