@@ -248,8 +248,8 @@ export const default_color_shpfile = '#FFA500'
 export const default_fillColor_shpfile = '#FFA500'
 export const default_fillOpacity_shpfile = 0.5
 
-export const color_usedspace = '#123';
-export const color_unusedspace = '#321';
+export const color_usedspace = '#bf2630';
+export const color_unusedspace = '#26bf3d';
 export const labels_diskspacechart = ['Used space', 'Unused space'];
 export const diskspacechart_options = {
   responsive: true,
