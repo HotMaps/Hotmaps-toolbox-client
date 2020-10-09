@@ -187,8 +187,15 @@ export class UploadService extends APIService {
                 }).addTo(this.mapService.getMap());
             } else if (upFile.name.endsWith('.csv')) {
                 this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
+                    geoData = geoData.json();
 
-                    this.activeLayers[upFile.id] = L.geoJson(geoData.json(), {
+                    for (const feature of (geoData as any).features)
+                        if (feature.geometry.type === "MultiPolygon")
+                            feature.style.color = feature.style.fill;
+                            // feature.style.fillOpacity = feature.style.size;
+
+                    this.activeLayers[upFile.id] = new L.geoJson(geoData, {
+                        style: feature => feature.style, // Seems it need to force style for polygons
                         pointToLayer: (feature: any, latlng: L.LatLng) => {
                             if (feature.geometry.type == "Point" && feature.style.name) { // filter out elements without any style.name
                                 if (feature.style.name == 'circle') {
