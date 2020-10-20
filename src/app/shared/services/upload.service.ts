@@ -57,6 +57,7 @@ export class UploadService extends APIService {
 
     /**
     * To refresh the list automatically
+    * @author HESSO Daniel Hunacek
     */
     getUploadedFiles(): BehaviorSubject<UploadedFile[]> {
         return this.uploadedFiles;
