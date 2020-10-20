@@ -6,6 +6,7 @@ interface UploadedLayer extends UploadedFile {
   checked?: boolean;
 }
 
+// Author CREM Albain Dufils and HESSO Daniel Hunacek
 @Component({
   selector: 'htm-personnal-layers',
   templateUrl: './personnal-layers.component.html',
@@ -30,7 +31,7 @@ export class PersonnalLayersComponent implements OnInit {
       });
     }
   }
-
+  
   actionLayer(layer: UploadedLayer) {
     if (layer.checked) {
       this.uploadService.remove(layer);
