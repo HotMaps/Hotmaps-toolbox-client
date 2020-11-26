@@ -14,6 +14,7 @@ export class UploadComponent implements OnInit {
 
   file2Up : File;
   isFileOk: boolean = false;
+  shared: boolean = false;
   isUploading: boolean = false; // Temporary until api do this async
   uploadedFiles: UploadedFile[] = [];
   @ViewChild('inputFile2') inputFile2;
@@ -50,6 +51,9 @@ export class UploadComponent implements OnInit {
   getFiles() {
     if (this.upService.list)
       this.upService.list();
+
+    if (this.upService.listShare)
+      this.upService.listShare();
   }
 
   delete(id: number|UploadedFile) {
@@ -80,7 +84,7 @@ export class UploadComponent implements OnInit {
     if (!(this.isFileOk && this.selectedLayer))
       return;
     this.isUploading = true;
-    this.upService.add(this.file2Up, this.selectedLayer).then((success) => {
+    this.upService.add(this.file2Up, String(this.shared), this.selectedLayer).then((success) => {
       if (success) {
         this.file2Up = null;
         this.isFileOk = false;
@@ -90,7 +94,6 @@ export class UploadComponent implements OnInit {
 
         this.googleAnalyticsService
           .eventEmitter("user_upload", "user", "upload", "click");
-
       } else this.isFileOk = true;
       this.isUploading = false;
     });

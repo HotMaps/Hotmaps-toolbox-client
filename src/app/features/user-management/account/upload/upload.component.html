@@ -2,9 +2,11 @@
   <table class="uk-table" [style.width.px]="tblBody.offsetWidth">
     <thead>
       <tr>
+        <th>Share</th>
         <th>Filename</th>
         <th>Layer</th>
         <th class="uk-text-right">Size (kB)</th>
+        <th></th>
         <th class="uk-text-center" colspan="2">
           <i class="iButton" (click)="getFiles()">&#8635;</i>
         </th>
@@ -16,6 +18,10 @@
     <table class="uk-table uk-table-hover uk-table-striped" #tblBody>
       <tbody>
         <tr *ngFor="let upFile of uploadedFiles">
+          <td *ngIf="upFile.shared == 'true'; else elseBlock">
+            <p>Shared</p>
+          </td>
+          <ng-template #elseBlock><td><p>Private</p></td></ng-template>
           <td>
             <p title="{{ upFile.name }}">{{ upFile.name }}</p>
           </td>
@@ -37,20 +43,24 @@
         <option *ngFor="let layer of layers" [ngValue]="layer" >[{{ layer.category }}] {{ layer.name }}
         </option>
       </select>
-
     </div>
+
     <div class="uk-width-1-2@s">
       <div class="uk-width-1-1@s" uk-form-custom="target: true">
         <input type="file" accept=".tif,.csv" (change)="onFileChange($event)" #inputFile>
         <input class="uk-input" type="text" placeholder="Select file" #inputFile2>
       </div>
-
     </div>
+
     <div class="uk-width-1-2@s info-box">
+      <div class="uk-width-1-1@s">
+        <input type="checkbox" class="checkbox" [(ngModel)]="shared"/> Click here to share your layer
+      </div>
       <!-- <p *ngIf="isFileOk" title="{{ file2Up.name }}">Name:</p>
       <p *ngIf="isFileOk" title="{{ file2Up.name }}">{{ file2Up.name }}</p> -->
       <p *ngIf="isFileOk">Size: {{ file2Up.size / 1000 | number:'1.1-1' }} KB</p>
     </div>
+
     <div class="uk-width-1-2@s">
       <button class="uk-button uk-button-primary uk-width-1-1@s" [disabled]="!isFileOk || !selectedLayer"
         (click)="fileUpload()" uk-icon="upload">
