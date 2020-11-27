@@ -85,6 +85,7 @@ export class UploadService extends APIService {
     */
     private showMsg(res: any, success: boolean) {
         this.list();
+        this.listShare();
         this.toasterService.showToaster(res["message"]);
         return success;
     }
