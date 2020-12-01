@@ -4,9 +4,14 @@
         <div class="uk-accordion-content" style="position: relative; width: 100%;">
             <ng-container *ngFor="let layer of layers">
                 <div class="layers" (click)="actionLayer(layer)">
-                    <button type="button" class="uk-button uk-button-default uk-width-1-1" [class.button-secondary]="layer.checked">
-                        <input class="uk-checkbox" type="checkbox" [checked]="layer.checked"><span>{{ layer.name }}</span>
+                    <button *ngIf="layer.shared == 'true'; else elseBlock" type="button" class="uk-button uk-button-default uk-width-1-1" [class.button-secondary]="layer.checked">
+                        <input class="uk-checkbox" type="checkbox" [checked]="layer.checked"><span>[S] {{ layer.name }}</span>
                     </button>
+                    <ng-template #elseBlock>
+                        <button type="button" class="uk-button uk-button-default uk-width-1-1" [class.button-secondary]="layer.checked">
+                            <input class="uk-checkbox" type="checkbox" [checked]="layer.checked"><span>[P] {{ layer.name }}</span>
+                        </button>
+                    </ng-template>
                 </div>
             </ng-container>
         </div>

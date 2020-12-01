@@ -5,9 +5,8 @@
         <th>Share</th>
         <th>Filename</th>
         <th>Layer</th>
-        <th class="uk-text-right">Size (kB)</th>
-        <th></th>
-        <th class="uk-text-center" colspan="2">
+        <th>Size (kB)</th>
+        <th class="uk-text-center" colspan="3">
           <i class="iButton" (click)="getFiles()">&#8635;</i>
         </th>
       </tr>
@@ -31,6 +30,13 @@
           <td class="uk-text-right">{{ upFile.size * 1000 | number:'1.1-1' }}</td>
           <td class="uk-text-center"><i class="flaticon-import iButton" (click)="download(upFile)"></i></td>
           <td class="uk-text-center"><i class="flaticon-trash iButton" (click)="delete(upFile)"></i></td>
+          
+          <!-- TODO: Add method to share or unshare a personal layer
+          <td *ngIf="upFile.shared == 'true'; else elseBlockButton" class="uk-text-center">
+            <i class="flaticon-export iButton" style="color:green" (click)="sharedUnshare(upFile)"></i>
+          </td>
+          <ng-template #elseBlockButton><td><i class="flaticon-import iButton" style="color:red" (click)="sharedUnshare(upFile)"></i></td></ng-template>
+          -->
         </tr>
       </tbody>
     </table>
