@@ -40,7 +40,7 @@
     "mdn-polyfills": "^5.2.0",
     "ng-recaptcha": "^3.0.2",
     "node-sass": "^4.13.1",
-    "nodemailer": "^4.2.0",
+    "nodemailer": "^6.4.16",
     "normalize.css": "6.0.0",
     "npm": "^6.14.3",
     "proj4leaflet": "^1.0.2",
