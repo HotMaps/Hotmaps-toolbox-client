@@ -21,13 +21,13 @@
     "angular2-csv": "0.2.5",
     "animate.css": "3.5.2",
     "brfs": "1.4.3",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "classlist.js": "1.1.20150312",
     "core-js": "2.4.1",
     "i": "^0.3.6",
     "ie-shim": "0.1.0",
     "intl": "1.2.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.6.0",
     "leaflet": "1.0.3",
     "leaflet-circle-to-polygon": "1.0.0",
     "leaflet-control-geocoder": "^1.6.0",
@@ -42,7 +42,7 @@
     "node-sass": "^4.13.1",
     "nodemailer": "^4.2.0",
     "normalize.css": "6.0.0",
-    "npm": "^6.14.3",
+    "npm": "^6.14.15",
     "proj4leaflet": "^1.0.2",
     "reflect-metadata": "0.1.10",
     "reproject": "1.1.1",
@@ -84,7 +84,7 @@
     "puppeteer": "1.15.0",
     "ts-loader": "2.0.3",
     "ts-node": "3.0.4",
-    "tslint": "5.3.2",
+    "tslint": "^5.20.1",
     "typescript": "2.3.3"
   }
 }
