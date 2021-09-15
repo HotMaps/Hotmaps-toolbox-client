@@ -1,7 +1,7 @@
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import { NavigationBarService } from '../service';
+import { NavigationBarService } from '../service/navigation-bar.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { RightSideComponent, LeftSideComponent} from '../../../features/side-panel';

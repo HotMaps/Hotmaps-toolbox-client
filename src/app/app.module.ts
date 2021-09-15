@@ -19,7 +19,8 @@ import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms
 import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
 import { ToolbarComponent } from './pages/toolbar/toolbar.component';
-import { MapService, MapComponent } from './pages/map';
+import { MapService } from './pages/map';
+import { MapComponent } from './pages/map/component/map.component';
 import {
   GeocodingService, Logger, LoaderService, ToasterService,
   GlobalErrorHandler, Helper, BusinessNamePipe, BusinessInterfaceRenderService,
@@ -148,7 +149,7 @@ import {GoogleAnalyticsService} from './google-analytics.service';
     FolderPanelComponent,
     SummaryResultContainerComponent,
     GdprComponent,
-    StandAloneCmComponent,
+    StandAloneCmComponent
   ],
   providers: [
     DataInteractionService,
