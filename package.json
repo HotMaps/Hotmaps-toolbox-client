@@ -7,16 +7,17 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "4.1.0",
+    "@angular/animations": "^5.2.0",
     "@angular/cdk": "2.0.0-beta.8",
-    "@angular/common": "4.1.0",
-    "@angular/compiler": "4.1.0",
-    "@angular/core": "4.1.0",
-    "@angular/forms": "4.1.0",
-    "@angular/http": "4.1.0",
-    "@angular/platform-browser": "4.1.0",
-    "@angular/platform-browser-dynamic": "4.1.0",
-    "@angular/router": "4.1.0",
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "@angular/core": "^5.2.0",
+    "@angular/forms": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/platform-server": "^5.2.0",
+    "@angular/router": "^5.2.0",
     "@turf/boolean-contains": "^5.1.5",
     "angular2-csv": "0.2.5",
     "animate.css": "3.5.2",
@@ -47,7 +48,7 @@
     "reflect-metadata": "0.1.10",
     "reproject": "1.1.1",
     "roboto-fontface": "0.7.0",
-    "rxjs": "5.1.0",
+    "rxjs": "^5.5.2",
     "shpjs": "^3.4.2",
     "stacktrace-js": "2.0.0",
     "uikit": "^3.0.0-beta.30",
@@ -55,8 +56,9 @@
     "zone.js": "0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.7.4",
-    "@angular/compiler-cli": "4.1.0",
+    "@angular-devkit/build-angular": "~0.8.0",
+    "@angular/cli": "6.2.9",
+    "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "4.1.0",
     "@types/geojson": "1.0.1",
     "@types/jasmine": "2.5.45",
@@ -85,6 +87,6 @@
     "ts-loader": "2.0.3",
     "ts-node": "3.0.4",
     "tslint": "^5.20.1",
-    "typescript": "2.3.3"
+    "typescript": "^2.4.2"
   }
 }

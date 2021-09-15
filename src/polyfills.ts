@@ -76,3 +76,6 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  You can import the Object.assign polyfill by MDN with npm. (mdn-polyfills)
  */
 import 'mdn-polyfills/Object.assign';
+
+// Add global to window, assigning the value of window itself.
+(window as any).global = window;
