@@ -10,9 +10,7 @@ import { stButtons, defaultElementSelected } from 'app/features/selection-tools/
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
 import {Logger} from '../../../shared/services/logger.service';
-import { ok } from 'assert';
 import { SelectionToolService } from '../service/selection-tool.service';
-import { map } from 'jquery';
 
 @Component({
   selector: 'htm-selection-tool',

@@ -3,7 +3,6 @@
 // listing import lines alphabetized by the module
 import { SelectionScaleClass  } from './class/selection-scale.class';
 import {
-  business_name_wwtp, defaultLayer, geoserverUrl, populationLayerName, nuts1, nuts2, nuts3, hectare,
   lau2name, formatImage, scale_layer_order
 } from '../../shared/data.service';
 export const SelectionScaleClassArray: SelectionScaleClass[] = [

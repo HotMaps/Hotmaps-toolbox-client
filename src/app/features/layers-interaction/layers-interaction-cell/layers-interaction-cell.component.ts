@@ -2,7 +2,6 @@ import { calculation_module_category, layers_order } from './../../../shared/dat
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import { LayersService } from './../../layers/services/layers.service';
 import {
   Component,
   OnInit,
@@ -16,9 +15,7 @@ import {
 
 import { MapService } from '../../../pages/map/map.service'
 import { DataInteractionClass } from '../layers-interaction.class';
-import { LoaderService } from '../../../shared/services/loader.service';
 import { InteractionService } from '../../../shared/services/interaction.service';
-import { geoserverUrl, urlLegend } from "../../../shared/data.service";
 @Component({
   moduleId: module.id,
   selector: 'layers-interaction-cell',

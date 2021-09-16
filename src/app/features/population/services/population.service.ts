@@ -6,17 +6,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 
-import {
-  apiUrl, business_name_population, unit_population,
-  unit_shape_area
+import { business_name_population, unit_population
 } from '../../../shared/data.service'
 
 import {LoaderService } from '../../../shared/services/loader.service';
 
-import {Location} from '../../../shared/class/location/location';
 import {Logger} from '../../../shared/services/logger.service';
-import {Payload} from '../payload.class'
-import {Population} from '../population.class';
 
 import {ToasterService} from '../../../shared/services/toaster.service';
 

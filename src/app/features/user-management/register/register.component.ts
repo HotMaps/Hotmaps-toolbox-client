@@ -1,4 +1,3 @@
-import {Location} from '@angular/common';
 import {WaitingStatusComponent} from './../../../shared/component/waiting-status';
 import {ToasterService} from './../../../shared/services/toaster.service';
 import {Component, Input, OnInit} from '@angular/core';

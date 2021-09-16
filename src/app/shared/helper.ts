@@ -5,13 +5,10 @@ import { DecimalPipe, DatePipe } from '@angular/common';
 import { proj3035, round_value } from './data.service';
 import { MONTHNAME } from 'app/shared/class/month.data';
 import { GeojsonClass } from '../features/layers/class/geojson.class';
-import { DatasetChart } from 'app/features/graph/chart/chart';
 import * as proj4x from 'proj4';
-import { Point, toPoint } from 'proj4';
 import * as contain from '@turf/boolean-contains';
 import { summay_drop_down_buttons } from './data.service';
 import { Layer } from 'leaflet';
-import { forEach } from '@angular/router/src/utils/collection';
 
 const proj4 = (proj4x as any).default;
 

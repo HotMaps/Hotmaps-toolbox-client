@@ -1,9 +1,6 @@
 // Improvement of coding style : 
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import { MailService } from './../../feedback/mail.service';
-
-import { GeojsonClass } from './../../layers/class/geojson.class';
 import {
     Component,
     OnInit,
@@ -12,14 +9,9 @@ import {
     state,
     style,
     transition,
-    animate,
-    Input
+    animate
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
-import { SummaryResultClass } from './../../summary-result/summary-result.class';
-import { NavigationBarService } from './../../../pages/nav/service/navigation-bar.service';
-import { BusinessInterfaceRenderArray } from './../../../shared/business/business.data';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({

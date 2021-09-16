@@ -3,7 +3,6 @@
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Injectable()
 export class SidePanelService {

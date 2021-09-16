@@ -2,7 +2,6 @@ import { WaitingStatusComponent } from '../../../shared/component/waiting-status
 import { ToasterService } from '../../../shared/services/toaster.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserManagementService } from '../service/user-management.service';
-import * as uikit from 'uikit';
 
 @Component({
   selector: 'htm-activate',

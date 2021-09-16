@@ -1,22 +1,13 @@
-import { GeojsonClass } from './../layers/class/geojson.class';
 import {
   Component,
   OnInit,
-  OnDestroy,
-  trigger,
-  state,
-  style,
-  transition,
-  animate, Input, AfterViewInit, OnChanges
+  OnDestroy, Input, OnChanges
 } from '@angular/core';
 
 import {SummaryResultService} from './summary-result.service';
-import {SummaryResultClass, Layer} from './summary-result.class';
-import {hectare, round_value, constant_year} from '../../shared/data.service';
 import {Logger} from '../../shared/services/logger.service';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
-import { PlayloadStatNuts, PayloadStat, PayloadStatHectar, Area } from 'app/features/summary-result/class/payload.class';
-import { Helper, summay_drop_down_buttons, default_drop_down_button } from 'app/shared';
+import { Helper } from 'app/shared';
 import { InteractionService } from '../../shared/services/interaction.service';
 
 

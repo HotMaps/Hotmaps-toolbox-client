@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Logger, energy_mix_options } from 'app/shared';
+import { Logger } from 'app/shared';
 
 @Component({
   selector: 'htm-chart',

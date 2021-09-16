@@ -4,7 +4,7 @@ import {Logger} from 'app/shared/services/logger.service';
 import { LoaderService } from 'app/shared/services/loader.service';
 import {ToasterService} from 'app/shared/services/toaster.service';
 import { Helper } from 'app/shared';
-import {apiUrl, heat_load_api_year, getElectricityMixFromNuts0, postHeatLoadProfileHectares} from 'app/shared/data.service';
+import {apiUrl, getElectricityMixFromNuts0, postHeatLoadProfileHectares} from 'app/shared/data.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

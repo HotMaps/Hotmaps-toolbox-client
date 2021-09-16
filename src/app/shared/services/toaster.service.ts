@@ -6,8 +6,6 @@
 // leaving one empty line between third party imports and application imports
 import { Injectable } from '@angular/core';
 import * as uikit from 'uikit'
-import { maxSurfaceValueCM } from '../data.service';
-
 
 @Injectable()
 export class ToasterService {

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 
 import { NavigationButton } from '../class';
 import { navigationButtons } from './';
-import { SidePanelService } from '../../../features/side-panel';
 import { Properties, Platform, MailService} from '../../../features/feedback';
 import { Logger} from '../../../shared';
 

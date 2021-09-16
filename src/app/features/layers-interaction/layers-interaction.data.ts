@@ -5,9 +5,8 @@
 // Improvement of coding style :
 // listing import lines alphabetized by the module
 import { DataInteractionClass } from './layers-interaction.class';
-import { business_name_wwtp, defaultLayer, populationLayerName,
-         idDefaultLayer, calculation_module_category, defaultLayerType,
-         industry_layer_order, zoomLevelDetectChange, styleNameHeat,
+import { idDefaultLayer, calculation_module_category, defaultLayerType,
+         industry_layer_order, zoomLevelDetectChange,
          nuts0 } from '../../shared/data.service';
 
 export const potential_type = 'potential';

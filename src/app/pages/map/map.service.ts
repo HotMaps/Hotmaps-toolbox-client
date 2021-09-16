@@ -22,7 +22,6 @@ import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
 import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-import { nuts2DataResult } from './component/mockdata';
 
 import LatLng = L.LatLng;
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -31,7 +30,6 @@ import { Subject } from 'rxjs/Subject';
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
-import { UploadService } from 'app/shared/services/upload.service';
 import { HttpClient } from '@angular/common/http';
 
 

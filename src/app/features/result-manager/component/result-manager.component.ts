@@ -1,13 +1,12 @@
-import { energy_mix_options, summay_drop_down_buttons, energy_mix_title, duration_curve_graph_options, heat_load_graph_options, duration_curve_graph_title, duration_curve_graph_category, energy_mix_graph_category, heatloadprofile, calculation_module_category, tab2_datapanel, tab1_datapanel, raster_type_name, vector_type_name } from './../../../shared/data.service';
-import { Logger } from 'app/shared/services/logger.service';
-import { InteractionService } from 'app/shared/services/interaction.service';
-import { Graphics, IndicatorResult } from './../service/result-manager';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Helper } from 'app/shared';
-import { Component, OnDestroy, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ResultManagerPayload } from '../service/result-manager';
-import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
+import { InteractionService } from 'app/shared/services/interaction.service';
+import { Logger } from 'app/shared/services/logger.service';
+import { GoogleAnalyticsService } from "../../../google-analytics.service";
 import { MapService } from '../../../pages/map';
-import {GoogleAnalyticsService} from "../../../google-analytics.service";
+import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
+import { ResultManagerPayload } from '../service/result-manager';
+import { calculation_module_category, duration_curve_graph_category, duration_curve_graph_options, duration_curve_graph_title, energy_mix_graph_category, energy_mix_options, energy_mix_title, heatloadprofile, heat_load_graph_options, raster_type_name, summay_drop_down_buttons, tab1_datapanel, tab2_datapanel, vector_type_name } from './../../../shared/data.service';
 
 @Component({
   moduleId: module.id,

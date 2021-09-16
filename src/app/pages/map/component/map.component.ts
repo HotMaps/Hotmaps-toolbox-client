@@ -3,7 +3,6 @@ import {map_options, eu_logo_path, eu_logo_height, hotmaps_wiki} from './../../.
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
 import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
-import {Geocoder} from 'leaflet-control-geocoder'
 
 declare const L: any;
 
@@ -16,7 +15,6 @@ import { SelectionToolButtonStateService, SelectionToolService } from 'app/featu
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Location } from '../../../shared/class/location/location';
 
-import {geoserverUrl} from '../../../shared/data.service';
 import { UploadService } from 'app/shared/services/upload.service';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 

@@ -1,4 +1,3 @@
-import {Map, map, tileLayer, featureGroup, control as Lcontrol, marker as Lmarker} from 'leaflet';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { SelectionScaleClass } from './class/selection-scale.class';
@@ -12,10 +11,9 @@ import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
-import {geoserverUrl, hectare, initial_scale_value, nuts0, nuts1, nuts2, nuts3} from '../../shared/data.service';
+import {geoserverUrl, initial_scale_value, nuts3} from '../../shared/data.service';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
 
-import { Subject } from 'rxjs/Subject';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

@@ -7,7 +7,6 @@
 // listing import lines alphabetized by the module
 import {Component, OnInit} from '@angular/core';
 import {MapService} from '../map/map.service';
-import { MouseEvent} from 'leaflet';
 
 import { Logger} from '../../shared/services/logger.service';
 

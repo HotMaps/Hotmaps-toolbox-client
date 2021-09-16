@@ -3,7 +3,6 @@ import { UserManagementService } from '../service/user-management.service';
 import { UserManagementStatusService } from '../service/user-management-status.service';
 import { WaitingStatusComponent } from '../../../shared/component/waiting-status';
 import { ToasterService } from 'app/shared';
-import {InteractionService} from "../../../shared/services/interaction.service";
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 @Component({

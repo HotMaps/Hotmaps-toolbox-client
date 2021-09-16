@@ -1,5 +1,5 @@
 import {
-  Component,Input, OnInit, style, trigger, state, transition, animate
+  Component,Input, OnInit
 } from '@angular/core';
 
 @Component({

@@ -5,18 +5,15 @@
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import 'rxjs/add/operator/timeout'
 
 
-import {apiUrl, timeOut} from '../data.service'
-import {GlobalErrorHandler} from './error-handler';
+import {timeOut} from '../data.service'
 import {LoaderService } from './loader.service';
 
 

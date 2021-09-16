@@ -1,13 +1,7 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, ViewChild, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
-import { Stocks, load_profile_data, load_profile_data2 } from '../shared/data';
-import { Stock } from '../shared/data';
-import { SummaryResultClass } from '../../../summary-result/summary-result.class';
 import { Logger } from '../../../../shared/services/logger.service';
-import { HeatLoadClass, Value } from '../heat-load.class';
-import { LoadProfile, Stock2 } from 'app/features/graph/heat-load/shared';
 import {
-  rightPanelSize,
   Helper,
   buttons_heat_load,
   heat_load_api_year,
@@ -16,10 +10,8 @@ import {
   heatloadprofile
 } from 'app/shared';
 import { heat_load_graph_options } from '../../../../shared/data.service';
-import { Chart } from 'chart.js';
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { Layer} from '../../../summary-result/summary-result.class';
 
 
 

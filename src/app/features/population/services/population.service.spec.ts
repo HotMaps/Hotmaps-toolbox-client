@@ -1,18 +1,13 @@
 // Improvement of coding style : 
 // listing import lines alphabetized by the module
-import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
-import {TestBed, inject, tick, fakeAsync, async, getTestBed} from '@angular/core/testing';
+import {BaseRequestOptions, Http, ConnectionBackend, HttpModule} from '@angular/http';
+import {MockBackend} from '@angular/http/testing';
+import {TestBed, inject, async} from '@angular/core/testing';
 
-import {apiUrl} from '../../../shared/data.service';
-import {Location} from '../../../shared/class/location/location';
 import {Logger } from '../../../shared/services/logger.service';
 import {LoaderService } from '../../../shared/services/loader.service';
 import {Helper } from '../../../shared/helper';
-import {MockPopulation } from './mock/population.data.mock';
-import {Payload} from '../payload.class'
 import {PopulationService } from './population.service';
-import {Population } from '../population.class';
 import {ToasterService} from '../../../shared/services/toaster.service';
 describe('PopulationService', () => {
 

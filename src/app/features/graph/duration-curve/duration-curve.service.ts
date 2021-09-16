@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DatasetChart } from '../chart/chart';
 import { Logger } from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';

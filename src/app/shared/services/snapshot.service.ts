@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 
 import { LatLng } from 'leaflet';
 import { isNumber } from 'util';

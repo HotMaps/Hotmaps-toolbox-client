@@ -1,6 +1,3 @@
-import {ComponentClass} from '../component/component.class';
-
-
 
 export class CalculationModuleClass {
   id: string;

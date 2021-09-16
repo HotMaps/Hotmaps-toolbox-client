@@ -1,4 +1,3 @@
-import { Payload } from './../../population/payload.class';
 // TODO: Improvement of coding style :
 // TODO: leaving one empty line between third party imports and application imports
 // TODO: listing import lines alphabetized by the module
@@ -16,24 +15,16 @@ import {
   OnChanges
 } from '@angular/core';
 import { SideComponent } from '../side-panel.component';
-import { Layer } from './../../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize } from 'app/shared';
 import { Logger } from '../../../shared/services/logger.service';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 
 import { Helper } from 'app/shared';
-import { PlayloadStatNuts, PayloadStatHectar } from 'app/features/summary-result/class/payload.class';
 import {
-  hectare,
   constant_year,
-  default_drop_down_button,
-  summay_drop_down_buttons,
-  apiUrl,
   constant_year_duration_curve
 } from '../../../shared/data.service';
-import { Observable } from 'rxjs';
-import { timer } from 'rxjs/observable/timer';
 
 
 

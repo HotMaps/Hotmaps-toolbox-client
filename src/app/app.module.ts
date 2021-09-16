@@ -7,13 +7,13 @@ import 'jquery';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AppComponent } from './';
-import { FormsModule, ReactiveFormsModule, EmailValidator } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserDisclaimerComponent } from './features/browser-disclaimer/browser-disclaimer.component';
 import { SearchBarComponent } from './pages/searchbar/searchbar.component';
@@ -74,7 +74,6 @@ import { UserManagementService } from './features/user-management/service/user-m
 import { UserManagementStatusService } from './features/user-management/service/user-management-status.service';
 import { AccountComponent } from './features/user-management/account/account.component';
 import { ActivateComponent } from './features/user-management/activate/activate.component';
-import { RouterModule } from '@angular/router';
 import { LayerToolComponent } from './features/layer-tool/layer-tool.component';
 import { WelcomePageComponent } from './features/welcome-page/welcome-page.component';
 

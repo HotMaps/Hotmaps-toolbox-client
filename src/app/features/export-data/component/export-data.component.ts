@@ -1,8 +1,7 @@
 import { Helper } from './../../../shared/helper';
-import { Component, OnInit, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 
 import {Logger} from '../../../shared/services/logger.service';
-import { tab1_datapanel, tab2_datapanel} from '../../../shared/data.service';
 import { ExportDataService } from '../service/export-data.service';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 

@@ -1,11 +1,10 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, ViewChild, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import { Logger } from '../../../shared/services/logger.service';
 import { Helper } from 'app/shared';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { constant_year_duration_curve, duration_curve_graph_options } from '../../../shared/data.service';
-import { PlayloadStatNuts, PayloadStat, Area } from 'app/features/summary-result/class/payload.class';
 import { Layer} from '../../summary-result/summary-result.class';
 
 

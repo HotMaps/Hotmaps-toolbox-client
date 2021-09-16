@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManagementStatusService } from '../service/user-management-status.service';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { subscribeOn } from 'rxjs/operator/subscribeOn';
 import * as uikit from 'uikit';
 import { ActivatedRoute } from '@angular/router';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";

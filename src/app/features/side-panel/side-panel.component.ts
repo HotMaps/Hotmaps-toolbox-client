@@ -4,16 +4,9 @@
 import {
     Component,
     OnInit,
-    OnDestroy,
-    trigger,
-    state,
-    style,
-    transition,
-    animate,
-    ViewChild
+    OnDestroy
 } from '@angular/core';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { SummaryResultComponent } from 'app/features/summary-result';
 
 
 @Component({

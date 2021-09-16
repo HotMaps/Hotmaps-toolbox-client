@@ -1,7 +1,5 @@
-import { defaultLayerType, inputs_categories, maxSurfaceValueCM } from './../../../shared/data.service';
+import { inputs_categories, maxSurfaceValueCM } from './../../../shared/data.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
-import { MapService } from './../../../pages/map/map.service';
-import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { Helper } from './../../../shared/helper';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 

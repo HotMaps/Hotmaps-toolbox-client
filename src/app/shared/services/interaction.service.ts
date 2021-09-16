@@ -5,18 +5,12 @@ import { ToasterService } from './toaster.service';
 // TODO: listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
 
-import { LoaderService } from './loader.service';
-import { MailService } from './../../features/feedback/mail.service';
 import { SummaryResultService } from './../../features/summary-result/summary-result.service';
 import { NavigationBarService } from './../../pages/nav/service/navigation-bar.service';
 import { Logger } from './logger.service';
 import { SidePanelService } from './../../features/side-panel/side-panel.service';
-import { SelectionToolButtonStateService } from 'app/features/selection-tools';
-import {APIService, Dictionary} from 'app/shared';
+import { Dictionary} from 'app/shared';
 import { LayersService } from 'app/features/layers';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
 import { HeatLoadAggregateService } from '../../features/graph/heat-load/heat-load.service';
 import {ExportDataService} from '../../features/export-data/service/export-data.service';
 import { DurationCurveService } from '../../features/graph/duration-curve/duration-curve.service';

@@ -1,8 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {DatasetChart} from '../../chart/chart';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { Logger } from '../../../../shared/services/logger.service';
-import {chartJsEx, energy_mix_data} from '../mock/enery-mix.data';
 import {energy_mix_options} from '../../../../shared/data.service';
 @Component({
   selector: 'htm-electricity-mix',

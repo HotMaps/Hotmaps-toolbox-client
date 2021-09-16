@@ -1,4 +1,3 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
@@ -8,8 +7,6 @@ import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
 import {APIService} from '../../../shared/services/api.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
-import {Helper} from '../../../shared/helper';
-import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
 import { HttpClient } from '@angular/common/http';
 
 
