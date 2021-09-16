@@ -5,7 +5,6 @@
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import {Http, Headers, RequestOptionsArgs} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -25,11 +24,12 @@ import {Logger} from './logger.service';
 
 
 import {ToasterService} from './toaster.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class APIService {
-  public headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+  public headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
-  constructor(protected http: Http, protected logger: Logger, protected  loaderService: LoaderService,
+  constructor(protected http: HttpClient, protected logger: Logger, protected  loaderService: LoaderService,
               protected  toasterService: ToasterService) {
     this.http = http;
     this.logger = logger;
@@ -39,14 +39,14 @@ export class APIService {
   handleError(error: any) {
     this.loaderService.display(false);
     let message;
-    if (this.isNullOrUndefined(error.json().message)) {
+    if (this.isNullOrUndefined(error.message)) {
        message = 'An internal error occured';
     } else {
-      this.logger.log('APIService/handleError nnn'+ error.json().message);
-      message = error.json().message
+      this.logger.log('APIService/handleError nnn'+ error.message);
+      message = error.message
       message = ', ' + message;
-      const status = error.json().error.status;
-      const statusText = error.json().error.statusText;
+      const status = error.status;
+      const statusText = error.statusText;
       message = statusText + ' ' + message
     }
 
@@ -71,39 +71,46 @@ export class APIService {
     return result;
   }
 
-  POST(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {
-    if (!request.headers)
-      request.headers = this.headers;
+  POST(payload, url): Promise<any> {
+    let options = {
+      headers: this.headers
+    }
     return this.http
-      .post(url, JSON.stringify(payload), request)
+      .post(url, JSON.stringify(payload), options)
       .timeout(timeOut)
       .toPromise()
-      .then( response => toJson ? response.json() as any : response)
+      .then( response => response)
       .catch(this.handleError.bind(this));
   }
 
-  POSTunStringify(payload, url, request:RequestOptionsArgs = {}, toJson: Boolean = true): Promise<any> {
-    if (!request.headers)
-      request.headers = this.headers;
+  POSTunStringify(payload, url, options?): Promise<any> {
+    if(!options){
+      options = {
+        headers: this.headers
+      }
+    } 
     return this.http
-      .post(url, payload, request)
+      .post(url, payload, options)
       .timeout(timeOut)
       .toPromise()
-      .then( response => toJson ? response.json() as any : response)
+      .then( response => response)
       .catch(this.handleError.bind(this));
   }
 
-  GET(url, request:RequestOptionsArgs = {}): any {
-    return this.http.get(url, request)
+  GET(url): any {
+    return this.http.get(url)
   }
 
-  DELETE(url, request:RequestOptionsArgs = {}) {
-    return this.http.delete(url, request);
+  DELETE(url, options?) {
+    if(!options){
+      options = {}
+    }
+    return this.http.delete(url, options);
   }
 
-  async pGET(url, request:RequestOptionsArgs = {}): Promise<any>  {
+  async pGET(url): Promise<any>  {
     return await this.http
-      .get(url, request)
+      .get(url)
       .toPromise()
       .then( response => response  )
 
@@ -113,7 +120,7 @@ export class APIService {
   public async getJSONFromFille(url: string): Promise<any> {
     return this.http.get(url)
       .toPromise()
-      .then( response => response.json() as any)
+      .then( response => response)
   }
 
 }

@@ -2,7 +2,6 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CalculationModuleClass } from './calculation-module.class';
 import { Logger } from '../../../shared/services/logger.service';
@@ -12,13 +11,14 @@ import { apiUrl } from 'app/shared/data.service';
 import { ToasterService } from '../../../shared/services/toaster.service';
 import { cms, mockComponents } from './../component/mock-calculation.data';
 import {Helper} from "../../../shared";
+import { HttpClient } from '@angular/common/http';
 
 
 
 @Injectable()
 export class CalculationModuleService extends APIService {
   categories = new Set();
-  constructor(http: Http,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService,private helper: Helper) {
+  constructor(http: HttpClient,  logger: Logger, loaderService: LoaderService, toasterService: ToasterService,private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 

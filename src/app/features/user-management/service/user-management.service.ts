@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import {
   apiUrl,
@@ -15,11 +14,12 @@ import {
 } from './../../../shared/data.service';
 import { APIService } from './../../../shared/services/api.service';
 import { Logger, LoaderService, ToasterService } from 'app/shared';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserManagementService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 

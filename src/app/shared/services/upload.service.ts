@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, ResponseContentType, Headers } from '@angular/http';
 
 import { UserManagementStatusService } from 'app/features/user-management/service/user-management-status.service';
 import { SelectionToolService } from 'app/features/selection-tools';
@@ -19,6 +18,7 @@ import { APIService } from './api.service';
 import { Logger } from './logger.service';
 import { LoaderService } from './loader.service';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 interface LayerInfo {
@@ -73,7 +73,7 @@ export class UploadService extends APIService {
     constructor(
         private userStatus: UserManagementStatusService, private slcToolsService: SelectionToolService,
         private helper: Helper, private mapService: MapService, private dataInsteractionService: DataInteractionService,
-        protected http: Http, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) {
+        protected http: HttpClient, protected logger: Logger, protected loaderService: LoaderService, protected toasterService: ToasterService) {
         super(http, logger, loaderService, toasterService);
         this.userStatus.getUserToken().subscribe(value => this.userToken = value);
     }
@@ -104,7 +104,7 @@ export class UploadService extends APIService {
         form.append('shared', shared);
         form.append('layer', layer.workspaceName);
         form.append('layer_type', layer.layer_type);
-        return super.POSTunStringify(form, uploadUrl + 'add', { headers: new Headers() })
+        return super.POSTunStringify(form, uploadUrl + 'add', { headers: new HttpHeaders() })
             .then(response => this.showMsg(response, true))
             .catch(response => this.showMsg(response, false));
     }
@@ -122,8 +122,8 @@ export class UploadService extends APIService {
         return super.DELETE(uploadUrl + 'delete', {
             body: { token: this.userToken, id: id }
         }).toPromise()
-            .then(response => this.showMsg(response.json(), true))
-            .catch(response => this.showMsg(response.json(), false));
+            .then(response => this.showMsg(response, true))
+            .catch(response => this.showMsg(response, false));
     }
 
     /**
@@ -137,7 +137,7 @@ export class UploadService extends APIService {
 
         return super.POSTunStringify({
             token: this.userToken, id: id
-        }, uploadUrl + 'download', { responseType: ResponseContentType.Blob, headers: new Headers() }).then(data => URL.createObjectURL(data) as string
+        }, uploadUrl + 'download', { responseType: 'blob', headers: new HttpHeaders() }).then(data => URL.createObjectURL(data) as string
         ).catch(err => {
             return ""; // If file dont exist
         });
@@ -207,7 +207,7 @@ export class UploadService extends APIService {
             }).addTo(this.mapService.getMap());
         } else if (upFile.name.endsWith('.csv')) {
             this.http.get(uploadUrl + 'csv/' + this.userToken + '/' + upFile.id).subscribe(geoData => {
-                geoData = geoData.json();
+                geoData = geoData;
 
                 for (const feature of (geoData as any).features)
                     if (feature.geometry.type === "MultiPolygon")
@@ -340,8 +340,8 @@ export class UploadService extends APIService {
                 layers: layer, [isNuts ? 'nuts' : 'areas']: nutsOrAreas,
                 schema: schema, year: year.toString()
             }, uploadUrl + `export/${layerExportInfo.data_type}/${isNuts ? 'nuts' : 'hectare'}`, {
-                responseType: ResponseContentType.Blob
-            }, false)
+                responseType: 'blob'
+            })
                 .then(data => {
                     return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
                 })
@@ -365,7 +365,7 @@ export class UploadService extends APIService {
             return super.POSTunStringify({
                 uuid: uuid, type: type
             }, uploadUrl + 'export/cmLayer',
-                { responseType: ResponseContentType.Blob }, false).then(data => {
+                { responseType: 'blob' }).then(data => {
                     return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `${type == 'raster' ? '.tif' : '.zip'}` } as BlobUrl //TODO: correct
                 }).catch(() => {
                     this.toasterService.showToaster("Sorry, We can't export this layer");

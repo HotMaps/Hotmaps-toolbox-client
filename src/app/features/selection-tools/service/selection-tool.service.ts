@@ -25,10 +25,10 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 import { Subject } from 'rxjs/Subject';
 import { geoserverUrl, lau2name } from '../../../shared';
 import { APIService, ToasterService } from '../../../shared/services';
-import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Area } from 'app/features/selection-tools/service/multiple-selection';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -52,7 +52,7 @@ export class SelectionToolService extends APIService {
   areasSubject = new BehaviorSubject<L.Layer[]>([]);
   nbOfLayersSelected: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
     private businessInterfaceRenderService: BusinessInterfaceRenderService,
     private interactionService: InteractionService, private selectionToolUtils: SelectionToolUtils
     ) {
@@ -276,7 +276,7 @@ export class SelectionToolService extends APIService {
       }
 
       this.logger.log(url)
-      this.GET(url).map((res: Response) => res.json() as any)
+      this.GET(url).map((res: Response) => res as any)
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
     }
 

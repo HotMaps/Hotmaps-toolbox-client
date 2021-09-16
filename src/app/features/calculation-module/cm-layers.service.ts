@@ -1,5 +1,4 @@
 import {apiUrl, Helper, vector_type_name, raster_type_name, cm_layers_order, default_fillOpacity_shpfile, default_fillColor_shpfile, default_color_shpfile} from 'app/shared';
-import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 
 import { LoaderService, Logger, APIService, ToasterService, Dictionary } from '../../shared';
@@ -7,6 +6,7 @@ import { CalculationModuleService } from 'app/features/calculation-module/servic
 import Layer = L.Layer;
 import * as shpjs from 'shpjs';
 import { feature } from '@turf/helpers';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -19,7 +19,7 @@ export class CMLayersService extends APIService {
   private cmLayersArray: Dictionary;
   // private layerAdded;
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
     private helper: Helper,
     private calculationModuleService: CalculationModuleService) {
     super(http, logger, loaderService, toasterService);

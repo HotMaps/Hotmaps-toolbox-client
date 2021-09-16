@@ -1,7 +1,6 @@
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -25,11 +24,12 @@ import {APIService} from '../../../shared/services/api.service';
 import LatLng = L.LatLng;
 import Popup = L.Popup;
 import {Helper} from '../../../shared/helper';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PopulationService extends APIService {
   private populationSelectedLayer: any;
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 

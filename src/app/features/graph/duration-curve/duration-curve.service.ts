@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DatasetChart } from '../chart/chart';
@@ -9,6 +8,7 @@ import { APIService } from '../../../shared/services/api.service';
 import { ToasterService } from '../../../shared/services/toaster.service';
 import { Helper } from '../../../shared';
 import { apiUrl, postDurationCurveNutsLau, postDurationCurveHectares } from '../../../shared/data.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class DurationCurveService extends APIService {
 
   private formattedValues = [];
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
 

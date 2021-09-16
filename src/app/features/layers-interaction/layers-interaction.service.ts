@@ -2,7 +2,6 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { DataInteractionClass } from './layers-interaction.class';
 import { DataInteractionArray, cm_default_layer } from './layers-interaction.data';
@@ -13,12 +12,13 @@ import {ToasterService} from '../../shared/services/toaster.service';
 import {Helper} from '../../shared/helper';
 import {BusinessInterfaceRenderService} from '../../shared/business/business.service';
 import { summay_drop_down_buttons } from '../../shared/data.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 export class DataInteractionService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
     private helper: Helper, private business: BusinessInterfaceRenderService) {
     super(http, logger, loaderService, toasterService);
   }

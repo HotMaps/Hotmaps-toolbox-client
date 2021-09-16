@@ -4,7 +4,6 @@
 import { wwtp_data } from './../mock/wwtp.data';
 import { Dictionary } from './../../../shared/class/dictionary.class';
 
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -25,6 +24,7 @@ import LatLng = L.LatLng;
 import * as proj4x from 'proj4';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
+import { HttpClient } from '@angular/common/http';
 const proj4 = (proj4x as any).default;
 
 
@@ -59,7 +59,7 @@ export class LayersService extends APIService {
     return this.layers;
   }
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
               // private interactionService: InteractionService,
               // private populationService: PopulationService,
               private dataInteractionService: DataInteractionService,

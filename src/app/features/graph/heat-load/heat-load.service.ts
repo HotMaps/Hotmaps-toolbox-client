@@ -2,7 +2,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
@@ -11,6 +10,7 @@ import {ToasterService} from '../../../shared/services/toaster.service';
 import {apiUrl, postHeatLoadProfileNutsLau, postHeatLoadProfileHectares} from '../../../shared/data.service';
 import { DatasetChart } from 'app/features/graph/chart/chart';
 import { Helper } from 'app/shared';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -28,7 +28,7 @@ export class HeatLoadAggregateService extends APIService {
   private heatLoadData = new BehaviorSubject<any>(null);
 
   private labels = [];
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper) {
     super(http, logger, loaderService, toasterService);
   }
   setHeatLoadData(data) {

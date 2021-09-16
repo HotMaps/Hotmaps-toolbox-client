@@ -1,7 +1,5 @@
 import { CMLayersService } from './../../features/calculation-module/cm-layers.service';
 
-import { Http, Response } from '@angular/http';
-
 /**
  * Created by lesly on 27.05.17.
  */
@@ -34,6 +32,7 @@ import { SelectionToolButtonStateService } from '../../features/selection-tools/
 import { Helper } from '../../shared/helper';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
 import { UploadService } from 'app/shared/services/upload.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -54,7 +53,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   private drawCreatedSubject = new Subject<any>();
   drawCreatedSubjectObs = this.drawCreatedSubject.asObservable();
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService,
     private layersService: LayersService, private selectionScaleService: SelectionScaleService,
     private cmLayerService: CMLayersService,
     private selectionToolService: SelectionToolService, private helper: Helper,
@@ -256,7 +255,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }*/
 
   getAreaFromScale(url): any {
-    return this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+    return this.http.get(url).map((res) => res as GeojsonClass)
       .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
   }
   getNutsBusiness(scaleLevel) {

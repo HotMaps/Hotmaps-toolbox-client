@@ -2,7 +2,6 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { MailService } from './../../feedback/mail.service';
-import { Http } from '@angular/http';
 
 import { GeojsonClass } from './../../layers/class/geojson.class';
 import {

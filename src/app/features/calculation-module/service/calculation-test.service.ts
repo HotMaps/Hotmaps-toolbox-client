@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
@@ -11,12 +10,13 @@ import {APIService} from '../../../shared/services/api.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
 import {Helper} from '../../../shared/helper';
 import {BusinessInterfaceRenderService} from '../../../shared/business/business.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
 @Injectable()
 export class CalculationHeatLoadDividedService extends APIService {
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 

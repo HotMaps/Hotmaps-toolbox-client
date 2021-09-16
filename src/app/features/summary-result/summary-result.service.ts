@@ -2,13 +2,13 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Logger} from '../../shared/services/logger.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares, postStatsPersonalLayer } from './../../shared/data.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -16,7 +16,7 @@ import { apiUrl, postStatsLayersNutsLau, postStatsLayersHectares, postStatsPerso
 
 export class SummaryResultService extends APIService {
 
-  constructor(http: Http, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
+  constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService) {
     super(http, logger, loaderService, toasterService);
   }
 

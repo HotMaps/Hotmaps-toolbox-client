@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 
 import { LatLng } from 'leaflet';
 import { isNumber } from 'util';
@@ -15,6 +15,7 @@ import { GeojsonClass } from 'app/features/layers';
 import { NutsRenderArray } from "../business";
 import { DataInteractionArray } from "../../features/layers-interaction/layers-interaction.data";
 import { DataInteractionClass } from "../../features/layers-interaction/layers-interaction.class";
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 export const snapshotUrl: string = apiUrl + '/snapshot/';
@@ -38,7 +39,7 @@ export class SnapshotService {
 
   private userToken: string;
 
-  constructor(private http: Http, private userStatus: UserManagementStatusService,
+  constructor(private http: HttpClient, private userStatus: UserManagementStatusService,
     private mapService: MapService, private slcToolsService : SelectionToolService,
     private helper: Helper, private toasterService: ToasterService) {
     this.userStatus.getUserToken().subscribe(value => {
@@ -52,8 +53,8 @@ export class SnapshotService {
    * @param res Response of the api
    * @param success true from then, false from catch
    */
-  private showMsg(res: Response, success: boolean) {
-    this.toasterService.showToaster(res.json()["message"]);
+  private showMsg(res, success: boolean) {
+    this.toasterService.showToaster(res["message"]);
     return success;
   }
 
@@ -165,7 +166,7 @@ export class SnapshotService {
           `&typeNames=hotmaps:${layer}&outputFormat=application/json` +
           `&cql_filter=${date_filter}(${nuts_ids})${stat_level_filter}`;
 
-        this.http.get(url).map((res: Response) => res.json() as GeojsonClass)
+        this.http.get(url).map((res) => res as GeojsonClass)
           .subscribe(res => {
             res.features.forEach(geo => mapService.selectAreaWithNuts(geo));
             if (callback) callback();
@@ -202,7 +203,7 @@ export class SnapshotService {
   list(): Promise<SnapshotConfig[]> {
     return this.http.post(snapshotUrl + 'list', { token: this.userToken })
       .toPromise().then(response => {
-        const snaps: Array<any> = response.json()["snapshots"];
+        const snaps: Array<any> = response["snapshots"];
         const snapshots: SnapshotConfig[] = [];
         for (var i in snaps) {
           const snap: SnapshotConfig = JSON.parse(snaps[i]["config"]);
@@ -226,8 +227,12 @@ export class SnapshotService {
   delete(id: number|SnapshotConfig): Promise<boolean> {
     if (!isNumber(id)) id = (id as SnapshotConfig).id;
 
+    let httpParams = new HttpParams()
+      .set('token', this.userToken)
+      .set('id', id.toString())
+
     return this.http.delete(snapshotUrl + 'delete', {
-      body : { token: this.userToken, id: id }
+      params : httpParams
     }).toPromise()
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));

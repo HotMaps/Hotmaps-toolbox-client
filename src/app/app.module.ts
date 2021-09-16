@@ -8,7 +8,6 @@ import 'jquery';
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, ApplicationRef } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -93,10 +92,11 @@ import { SummaryResultContainerComponent } from './features/summary-result/summa
 import { GdprComponent } from './features/gdpr/gdpr.component';
 import { StandAloneCmComponent } from './features/calculation-module/stand-alone-cm/stand-alone-cm.component';
 import {GoogleAnalyticsService} from './google-analytics.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

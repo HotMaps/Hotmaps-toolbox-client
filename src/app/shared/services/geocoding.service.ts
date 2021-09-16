@@ -4,7 +4,6 @@
 
  // Improvement of coding style : 
 // listing import lines alphabetized by the module
-import {Http, Headers, Response} from '@angular/http';
 import {LocationClass} from '../class/location/location.class';
 import {Injectable} from '@angular/core';
 
@@ -16,11 +15,12 @@ import {Logger} from './logger.service';
 import {geocodeUrl} from '../data.service'
 import {getIpUrl} from '../data.service'
 import {getLocationFromIp} from '../data.service'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class GeocodingService {
-  http: Http;
-  constructor(http: Http, private logger: Logger, private loaderService: LoaderService) {
+  http: HttpClient;
+  constructor(http: HttpClient, private logger: Logger, private loaderService: LoaderService) {
     this.http = http;
     this.logger = logger;
   }
@@ -30,7 +30,7 @@ export class GeocodingService {
     this.loaderService.display(true);
     return this.http
       .get(geocodeUrl + encodeURIComponent(address)+"&format=json&polygon=1&addressdetails=1")
-      .map(res => res.json())
+      .map(res => res)
       .map(result => {
 
     //if (result.status !== 'OK') { throw new Error('unable to geocode address'); }
@@ -60,15 +60,15 @@ export class GeocodingService {
     // this.loaderService.display(true);
     return this.http
       .get(getIpUrl)
-      .map(res => res.json().ip)
+      .map(res => res['ip'])
       .flatMap(ip => this.http.get(getLocationFromIp + ip))
-      .map((res: Response) => res.json())
+      .map((res) => res)
       .map(result => {
         const location = new LocationClass();
 
-        location.address = result.city + ', ' + result.region_code + ' ' + result.zip_code + ', ' + result.country_code;
-        location.latitude = result.latitude;
-        location.longitude = result.longitude;
+        location.address = result['city'] + ', ' + result['region_code'] + ' ' + result['zip_code'] + ', ' + result['country_code'];
+        location.latitude = result['latitude'];
+        location.longitude = result['longitude'];
        //   this.loaderService.display(false);
         return location;
       });
