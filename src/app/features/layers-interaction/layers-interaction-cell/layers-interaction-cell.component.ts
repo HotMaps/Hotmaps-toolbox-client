@@ -1,21 +1,16 @@
-import { calculation_module_category, layers_order } from './../../../shared/data.service';
-// Improvement of coding style :
-// leaving one empty line between third party imports and application imports
-// listing import lines alphabetized by the module
 import {
-  Component,
-  OnInit,
-  Input,
-  trigger,
-  state,
+  animate, state,
   style,
-  transition,
-  animate
+  transition, trigger
+} from '@angular/animations';
+declare let module;
+import {
+  Component, Input, OnInit
 } from '@angular/core';
-
-import { MapService } from '../../../pages/map/map.service'
-import { DataInteractionClass } from '../layers-interaction.class';
+import { MapService } from '../../../pages/map/map.service';
 import { InteractionService } from '../../../shared/services/interaction.service';
+import { DataInteractionClass } from '../layers-interaction.class';
+import { calculation_module_category, layers_order } from './../../../shared/data.service';
 @Component({
   moduleId: module.id,
   selector: 'layers-interaction-cell',

@@ -6,12 +6,13 @@ import {Logger} from '../shared/services/logger.service';
 import { isNavigationCancelingError } from '@angular/router/src/shared';
 
 declare let gtag: Function;
+declare let require;
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [ require<any>('./app.component.css')],
+  styles: [ require('./app.component.css')],
 
 })
 

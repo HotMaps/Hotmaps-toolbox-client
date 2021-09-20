@@ -11,6 +11,7 @@ import { TileLayer } from 'leaflet';
 
 declare const L: any;
 import 'leaflet-dvf';
+import * as Leaflet from 'leaflet';
 
 import { nuts0, nuts1, nuts2, nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
 import { BehaviorSubject } from 'rxjs';
@@ -98,6 +99,7 @@ export class UploadService extends APIService {
     */
     add(file: File, shared: string, layer?): Promise<boolean> {
         let form = new FormData();
+        console.log("LOL " + this.userToken);
         form.append('token', this.userToken);
         form.append('name', file.name);
         form.append('file', file, file.name);
@@ -199,9 +201,9 @@ export class UploadService extends APIService {
         this.activePersonalLayers.value[upFile.id as number] = payload;
         this.activePersonalLayers.next(this.activePersonalLayers.value);
         if (upFile.name.endsWith('.tif')) {
-            this.activeLayers[upFile.id] = L.tileLayer(uploadUrl + 'tiles/{token}/{upload_id}/{z}/{x}/{y}', {
-                token: this.userToken,
-                upload_id: upFile.id,
+            this.activeLayers[upFile.id] = Leaflet.tileLayer(uploadUrl + 'tiles/{accessToken}/{id}/{z}/{x}/{y}', {
+                accessToken: this.userToken,
+                id: upFile.id.toString(),
                 tms: true,
                 maxNativeZoom: 11
             }).addTo(this.mapService.getMap());
@@ -216,7 +218,7 @@ export class UploadService extends APIService {
 
                 this.activeLayers[upFile.id] = new L.geoJson(geoData, {
                     style: feature => feature.style, // Seems it need to force style for polygons
-                    pointToLayer: (feature: any, latlng: L.LatLng) => {
+                    pointToLayer: (feature: any, latlng: Leaflet.LatLng) => {
                         if (feature.geometry.type == "Point" && feature.style.name) { // filter out elements without any style.name
                             if (feature.style.name == 'circle') {
                                 // circle marker

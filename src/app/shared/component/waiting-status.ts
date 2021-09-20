@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare let module;
+
 @Component({
   moduleId:module.id
 })

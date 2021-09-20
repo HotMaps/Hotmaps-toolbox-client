@@ -2,7 +2,7 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+
 import { DataInteractionClass } from './layers-interaction.class';
 import { DataInteractionArray, cm_default_layer } from './layers-interaction.data';
 import {Logger} from '../../shared/services/logger.service';

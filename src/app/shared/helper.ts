@@ -8,7 +8,7 @@ import { GeojsonClass } from '../features/layers/class/geojson.class';
 import * as proj4x from 'proj4';
 import * as contain from '@turf/boolean-contains';
 import { summay_drop_down_buttons } from './data.service';
-import { Layer } from 'leaflet';
+import * as L from 'leaflet';
 
 const proj4 = (proj4x as any).default;
 
@@ -298,7 +298,7 @@ export class Helper {
 
   getAreasForPayload(areas) {
     const ar = [];
-    areas.map((layer: Layer) => {
+    areas.map((layer: L.Layer) => {
       const points = [];
       if (layer instanceof L.Circle || (layer as any).radius) { // From snapshot
         ar.push({ points: this.getLocationsFromCicle(layer) })

@@ -1,4 +1,4 @@
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import { AngularCsv as Angular2Csv } from 'angular-csv-ext/dist/Angular-csv';
 import { Injectable } from '@angular/core';
 import {Helper} from '../../../shared/helper';
 import {Logger} from '../../../shared/services/logger.service';

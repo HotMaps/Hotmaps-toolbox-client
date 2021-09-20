@@ -4,8 +4,10 @@ interface NodeModule {
   id: string;
 }
 
+import * as Leaflet from 'leaflet';
+
 declare namespace L {
-  export class CanvasGeojsonLayer extends L.Class{
+  export class CanvasGeojsonLayer extends Leaflet.Class{
     /**
      * Sets the given path options to each layer of the group that has a setStyle method.
      */
@@ -20,7 +22,7 @@ declare namespace L {
     /**
      * Brings the layer group to the top [sic] of all other layers
      */
-    addTo( map: Map): this;
+    addTo( map: Leaflet.Map): this;
 
     /**
      * Returns the LatLngBounds of the Feature Group (created from

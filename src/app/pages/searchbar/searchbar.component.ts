@@ -10,19 +10,21 @@ import {GeocodingService} from '../../shared/services/geocoding.service';
 import {MapService} from '../map/map.service';
 import {Logger} from '../../shared/services/logger.service';
 import {LoaderService} from '../../shared/services/loader.service';
-import {Map} from 'leaflet';
+import * as L from 'leaflet';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
+
+declare let require;
 
 @Component({
   selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
-  styles: [ require<any>('./searchbar.component.scss') ],
+  styles: [ require('./searchbar.component.scss') ],
   providers: []
 })
 export class SearchBarComponent implements OnInit {
   address: string;
 
-  private map: Map;
+  private map: L.Map;
 
   constructor(private geocoder: GeocodingService, private mapService: MapService,
               private logger: Logger, private loaderService: LoaderService, private googleAnalyticsService:GoogleAnalyticsService) {

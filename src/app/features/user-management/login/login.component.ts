@@ -5,6 +5,8 @@ import { WaitingStatusComponent } from '../../../shared/component/waiting-status
 import { ToasterService } from 'app/shared';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
+declare let module;
+
 @Component({
   moduleId: module.id,
   selector: 'htm-login',

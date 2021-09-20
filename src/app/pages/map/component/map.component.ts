@@ -5,10 +5,11 @@ import { Map, Layer } from 'leaflet';
 import 'leaflet-draw'
 
 declare const L: any;
+declare let require;
 
 import { basemap } from '../basemap'
 import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
-import {Helper, Logger} from '../../../shared';
+import { Logger} from '../../../shared';
 import { MapService } from '../map.service';
 import { SearchBarComponent } from '../../searchbar';
 import { SelectionToolButtonStateService, SelectionToolService } from 'app/features/selection-tools';
@@ -21,7 +22,7 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
-  styles: [ require<any>('./map.component.less') ],
+  styles: [ require('./map.component.less') ],
 
 })
 

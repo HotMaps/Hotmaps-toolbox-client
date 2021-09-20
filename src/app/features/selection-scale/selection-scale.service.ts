@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+
 import { SelectionScaleClass } from './class/selection-scale.class';
 import {
   hectareOption,
@@ -13,7 +13,7 @@ import {APIService} from '../../shared/services/api.service';
 import {ToasterService} from '../../shared/services/toaster.service';
 import {geoserverUrl, initial_scale_value, nuts3} from '../../shared/data.service';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
-
+import * as L from 'leaflet';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

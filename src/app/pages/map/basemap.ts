@@ -1,7 +1,7 @@
 /**
  * Created by lesly on 14.06.17.
  */
-
+import * as L from 'leaflet';
 
 export const basemap: any = {
   OSM: L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {

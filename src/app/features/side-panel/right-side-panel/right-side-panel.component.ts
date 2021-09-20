@@ -6,14 +6,16 @@ import {
   Component,
   OnInit,
   OnDestroy,
+  Input,
+  OnChanges
+} from '@angular/core';
+import {  
   trigger,
   state,
   style,
   transition,
-  animate,
-  Input,
-  OnChanges
-} from '@angular/core';
+  animate
+} from '@angular/animations'
 import { SideComponent } from '../side-panel.component';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { rightPanelSize } from 'app/shared';
@@ -26,8 +28,7 @@ import {
   constant_year_duration_curve
 } from '../../../shared/data.service';
 
-
-
+declare let module;
 
 @Component({
   moduleId: module.id,

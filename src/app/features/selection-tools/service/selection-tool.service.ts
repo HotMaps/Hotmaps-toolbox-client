@@ -3,30 +3,20 @@
 * Created by lesly on 27.05.17.
 */
 import { Injectable } from '@angular/core';
-import { Map, Layer } from 'leaflet';
+import { Map } from 'leaflet';
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
 import { Logger, LoaderService, Helper } from '../../../shared';
 import { Location } from '../../../shared/class/location/location';
-import Created = L.DrawEvents.Created;
+import * as Leaflet from 'leaflet';
 declare const L: any;
 
-import { PayloadStat, PlayloadStatNuts } from '../../summary-result/class/payload.class';
-import {
-  apiUrl,
-  constant_year, constant_year_sp_wwtp, hectare, initial_scale_value, lau2, nuts2, nuts3,
-  wwtpLayerName,
-  maxSurfaceValueCM
-} from '../../../shared/data.service';
-import { GeojsonClass } from '../../layers/class/geojson.class';
+import { hectare, initial_scale_value, maxSurfaceValueCM } from '../../../shared/data.service';
 import { BusinessInterfaceRenderService } from '../../../shared/business/business.service';
-import { SummaryResultClass } from '../../summary-result/summary-result.class';
 import { InteractionService } from 'app/shared/services/interaction.service';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  BehaviorSubject } from 'rxjs';
 import { geoserverUrl, lau2name } from '../../../shared';
 import { APIService, ToasterService } from '../../../shared/services';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Area } from 'app/features/selection-tools/service/multiple-selection';
 import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -35,8 +25,8 @@ import { HttpClient } from '@angular/common/http';
 export class SelectionToolService extends APIService {
   private nutsIds = new Set;
   private isActivate: boolean;
-  private multiSelectionLayers: L.FeatureGroup = new L.FeatureGroup();
-  private controlMultiLayer: L.FeatureGroup = new L.FeatureGroup();
+  private multiSelectionLayers: Leaflet.FeatureGroup = new L.FeatureGroup();
+  private controlMultiLayer: Leaflet.FeatureGroup = new L.FeatureGroup();
   private currentLayer;
   private scaleValue = initial_scale_value;
   private theDrawer;
@@ -49,7 +39,7 @@ export class SelectionToolService extends APIService {
 
   nutsIdsSubject = new BehaviorSubject<string[]>([]);
   locationsSubject = new BehaviorSubject<Location[]>([]);
-  areasSubject = new BehaviorSubject<L.Layer[]>([]);
+  areasSubject = new BehaviorSubject<Leaflet.Layer[]>([]);
   nbOfLayersSelected: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(http: HttpClient, logger: Logger, loaderService: LoaderService, toasterService: ToasterService, private helper: Helper,
@@ -83,7 +73,7 @@ export class SelectionToolService extends APIService {
     }
 
     drawCreated(e, map, nuts_lvl) {
-      const event: Created = <Created>e;
+      const event: Leaflet.DrawEvents.Created = <Leaflet.DrawEvents.Created>e;
       const type = event.layerType,
       layer: any = event.layer;
       let controlIntersectContainsHectar = false;

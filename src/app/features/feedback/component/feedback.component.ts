@@ -2,15 +2,17 @@ import {
     Component,
     OnInit,
     OnDestroy,
-    trigger,
-    state,
-    style,
-    transition,
-    animate,
     Input,
     ViewChild,
     ElementRef
 } from '@angular/core';
+import {  
+    trigger,
+    state,
+    style,
+    transition,
+    animate
+  } from '@angular/animations'
 import { InteractionService } from '../../../shared/services/interaction.service';
 import { issue_levels, issue_type } from 'app/features/feedback/data-taiga';
 import { FeedbackService } from '../feedback.service';

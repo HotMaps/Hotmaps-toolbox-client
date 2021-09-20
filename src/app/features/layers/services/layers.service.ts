@@ -5,8 +5,8 @@ import { wwtp_data } from './../mock/wwtp.data';
 import { Dictionary } from './../../../shared/class/dictionary.class';
 
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+
+
 import 'proj4leaflet';
 import 'proj4';
 
@@ -18,8 +18,7 @@ import {
 
 import {Helper, LoaderService, Logger, APIService, proj3035, ToasterService, BusinessInterfaceRenderService  } from '../../../shared';
 import {GeojsonClass} from '../class/geojson.class'
-import Layer = L.Layer;
-import LatLng = L.LatLng;
+import * as L from 'leaflet';
 
 import * as proj4x from 'proj4';
 import { DataInteractionService } from 'app/features/layers-interaction/layers-interaction.service';
@@ -98,7 +97,7 @@ export class LayersService extends APIService {
     return readyToShow;
   }
   addLayerWithOrder(map: any, layer: any) {
-    this.layers.addLayer(<Layer> layer);
+    this.layers.addLayer(<L.Layer> layer);
     this.logger.log(layer);
     this.logger.log(this.layers.getLayers().toString())
   }
@@ -171,7 +170,7 @@ export class LayersService extends APIService {
     console.error('An error occurred', error); // for demo purposes only
 
   }
-  choosePopup(map, res: GeojsonClass, latlng: LatLng, action) {
+  choosePopup(map, res: GeojsonClass, latlng: L.LatLng, action) {
     if (this.layersArray.containsKey(defaultLayer)) {
 
       this.addPopupHeatmap(map, res, latlng);
@@ -193,7 +192,7 @@ export class LayersService extends APIService {
     this.loaderService.display(false);
   } */
 
-  addPopupHectare(map, data: GeojsonClass, latlng: LatLng)  {
+  addPopupHectare(map, data: GeojsonClass, latlng: L.LatLng)  {
     this.loaderService.display(false);
     const population_density = data.features[0].properties.population_density;
     this.logger.log('LayersService/addPopupHectare/population_density  ' + population_density);
@@ -204,7 +203,7 @@ export class LayersService extends APIService {
       .openOn(map);
   }
 
-  addPopupHeatmap(map, data: GeojsonClass, latlng: LatLng) {
+  addPopupHeatmap(map, data: GeojsonClass, latlng: L.LatLng) {
     this.loaderService.display(false);
     const heat_density = data.features[0].properties.heat_density;
     this.popup.setLatLng(latlng)
@@ -214,7 +213,7 @@ export class LayersService extends APIService {
       .openOn(map);
   }
 
-  addPopupWWTP(map, data: any, latlng: LatLng) {
+  addPopupWWTP(map, data: any, latlng: L.LatLng) {
     this.loaderService.display(false);
     const capacity = data.features[0].properties.capacity;
     const power = data.features[0].properties.power;

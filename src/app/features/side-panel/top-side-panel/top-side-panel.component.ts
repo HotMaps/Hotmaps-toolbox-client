@@ -4,15 +4,19 @@
 import {
     Component,
     OnInit,
-    OnDestroy,
+    OnDestroy
+} from '@angular/core';
+import {  
     trigger,
     state,
     style,
     transition,
     animate
-} from '@angular/core';
+  } from '@angular/animations'
 import { SideComponent } from '../side-panel.component';
 import { InteractionService } from 'app/shared/services/interaction.service';
+
+declare let module;
 
 @Component({
     moduleId: module.id,

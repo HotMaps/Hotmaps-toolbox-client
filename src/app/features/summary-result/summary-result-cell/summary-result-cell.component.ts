@@ -4,16 +4,20 @@
 import {
     Component,
     OnInit,
-    Input,
+    Input
+} from '@angular/core';
+import {  
     trigger,
     state,
     style,
     transition,
     animate
-} from '@angular/core';
-
+  } from '@angular/animations'
 import {MapService} from '../../../pages/map/map.service'
 import { SummaryResultClass } from '../summary-result.class';
+
+declare let module;
+
 @Component({
     moduleId: module.id,
     selector: 'htm-summary-result-cell',

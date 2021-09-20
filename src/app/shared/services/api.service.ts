@@ -1,3 +1,5 @@
+
+import {timeout} from 'rxjs/operators';
 /**
  * Created by lesly on 19.07.17.
  */
@@ -5,12 +7,12 @@
  // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
-import 'rxjs/add/operator/timeout'
+
+
+
+
+
 
 
 import {timeOut} from '../data.service'
@@ -73,8 +75,8 @@ export class APIService {
       headers: this.headers
     }
     return this.http
-      .post(url, JSON.stringify(payload), options)
-      .timeout(timeOut)
+      .post(url, JSON.stringify(payload), options).pipe(
+      timeout(timeOut))
       .toPromise()
       .then( response => response)
       .catch(this.handleError.bind(this));
@@ -87,8 +89,8 @@ export class APIService {
       }
     } 
     return this.http
-      .post(url, payload, options)
-      .timeout(timeOut)
+      .post(url, payload, options).pipe(
+      timeout(timeOut))
       .toPromise()
       .then( response => response)
       .catch(this.handleError.bind(this));

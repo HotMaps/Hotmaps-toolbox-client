@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { InteractionService } from 'app/shared/services/interaction.service';
 
+declare let module;
 
 @Component({
     moduleId: module.id,

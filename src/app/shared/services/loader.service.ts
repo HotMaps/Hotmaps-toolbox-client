@@ -2,7 +2,7 @@
  * Created by lesly on 19.06.17.
  */
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoaderService {

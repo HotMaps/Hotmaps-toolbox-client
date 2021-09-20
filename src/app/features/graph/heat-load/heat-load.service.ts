@@ -1,8 +1,8 @@
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+
 import {Logger} from '../../../shared/services/logger.service';
 import { LoaderService } from '../../../shared/services/loader.service';
 import {APIService} from '../../../shared/services/api.service';

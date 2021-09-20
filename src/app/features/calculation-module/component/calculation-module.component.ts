@@ -7,22 +7,21 @@ import {
   Component,
   OnInit,
   OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
+import {  
   trigger,
   state,
   style,
   transition,
-  animate,
-  Input,
-  ViewChild,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+  animate
+} from '@angular/animations'
 import { CalculationModuleService } from '../service/calculation-module.service';
 import { CalculationModuleStatusService } from '../service/calcultation-module-status.service';
-import { calculationModuleClassArray } from '../service/calculation-module.data';
 import * as uikit from 'uikit';
 import { Logger, ToasterService } from "../../../shared/services";
-import { population_type, wwtp_type, gfa_type } from '../../layers-interaction/layers-interaction.data';
 import {InteractionService} from "../../../shared/services/interaction.service";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LatLng } from 'leaflet';
+import * as L from 'leaflet';
 import { isNumber } from 'util';
 
 import { UserManagementStatusService } from 'app/features/user-management';
@@ -16,6 +16,7 @@ import { DataInteractionArray } from "../../features/layers-interaction/layers-i
 import { DataInteractionClass } from "../../features/layers-interaction/layers-interaction.class";
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+import { map } from 'rxjs/operators';
 
 export const snapshotUrl: string = apiUrl + '/snapshot/';
 
@@ -29,7 +30,7 @@ export interface SnapshotConfig {
   zones: Array<string|any>, // nuts or areas
   layers: string[],
 
-  center: LatLng,
+  center: L.LatLng,
   zoom: number
 }
 
@@ -106,10 +107,10 @@ export class SnapshotService {
 
   apply(snapshot: SnapshotConfig, callback?: () => void) {
     const mapService = this.mapService;
-    const map = mapService.getMap();
+    const myMap = mapService.getMap();
 
     // remove all
-    mapService.clearAll(map);
+    mapService.clearAll(myMap);
 
     // de/enable layers
     const layers2Toggle: Array<DataInteractionClass> = [];
@@ -145,10 +146,10 @@ export class SnapshotService {
 
     const nutLvl = NutsRenderArray.find(nut => nut.business_name == snapshot.scale);
     // To change scale
-    const control = (map as any).scaleControl as L.Control;
+    const control = (myMap as any).scaleControl as L.Control;
     control.getContainer().getElementsByTagName('input')[nutLvl.id].click();
 
-    map.flyTo(snapshot.center, snapshot.zoom);
+    myMap.flyTo(snapshot.center, snapshot.zoom);
 
     if (nutLvl) {
       if (nutLvl.business_name != hectare) {
@@ -165,7 +166,7 @@ export class SnapshotService {
           `&typeNames=hotmaps:${layer}&outputFormat=application/json` +
           `&cql_filter=${date_filter}(${nuts_ids})${stat_level_filter}`;
 
-        this.http.get(url).map((res) => res as GeojsonClass)
+        this.http.get(url).pipe(map((res) => res as GeojsonClass))
           .subscribe(res => {
             res.features.forEach(geo => mapService.selectAreaWithNuts(geo));
             if (callback) callback();
@@ -188,7 +189,7 @@ export class SnapshotService {
           } else {
             shape = L.polygon(L.GeoJSON.coordsToLatLngs(zone.geometry.coordinates[0]));
           }
-          this.slcToolsService.drawHectaresLoadingResult(map, shape);
+          this.slcToolsService.drawHectaresLoadingResult(myMap, shape);
         });
         if (callback) callback();
       }

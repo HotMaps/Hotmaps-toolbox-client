@@ -3,9 +3,8 @@ import {Injectable} from '@angular/core';
 
 import { LoaderService, Logger, APIService, ToasterService, Dictionary } from '../../shared';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
-import Layer = L.Layer;
+import * as L from 'leaflet';
 import * as shpjs from 'shpjs';
-import { feature } from '@turf/helpers';
 import { HttpClient } from '@angular/common/http';
 
 

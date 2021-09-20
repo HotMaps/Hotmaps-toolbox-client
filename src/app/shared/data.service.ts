@@ -2,6 +2,7 @@ import { basemap } from './../pages/map/basemap';
 import { environment } from './../../environments/environment';
 
 import 'leaflet-draw';
+import * as L from 'leaflet';
 
 /**
  * Created by lesly on 07.07.17.

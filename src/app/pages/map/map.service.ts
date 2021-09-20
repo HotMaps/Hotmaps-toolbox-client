@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { CMLayersService } from './../../features/calculation-module/cm-layers.service';
 
 /**
@@ -21,11 +23,9 @@ import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
 import { Logger } from './../../shared/services/logger.service';
 import { APIService } from '../../shared/services/api.service';
-import { MouseEvent, Map, LayersControlEvent } from 'leaflet';
-
+import * as L from 'leaflet';
 import LatLng = L.LatLng;
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject ,  Subject } from 'rxjs';
 
 import { SelectionToolButtonStateService } from '../../features/selection-tools/service/selection-tool-button-state.service';
 import { Helper } from '../../shared/helper';
@@ -35,7 +35,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MapService extends APIService implements OnInit, OnDestroy {
-  private map: Map;
+  private map: L.Map;
   private baseMaps: any;
   private areaNutsSelectedLayer: any;
   private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
@@ -89,7 +89,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.drawCreatedSubject.next();
   }
 
-  getMap(): Map {
+  getMap(): L.Map {
     return this.map;
   }
   setCMRunning(val) {
@@ -98,7 +98,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   // Retrive all map events
   retriveMapEvent(): void {
     const self = this;
-    this.map.on(MAPCLICK, (event: MouseEvent) => { self.onClickEvent(self, event) });  
+    this.map.on(MAPCLICK, (event: L.LeafletMouseEvent) => { self.onClickEvent(self, event) });  
     this.map.on(MAPLAYERCHANCE, (event: L.LayersControlEvent) => { self.onBaselayerChange(self, event) });
     this.map.on(MAPZOOMSTART, () => { self.onZoomStart(self) });
     this.map.on(MAPZOOMEND, () => { self.onZoomEnd(self) });
@@ -166,7 +166,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   onDidUpdateLayers(self, e) {
     self.logger.log('MapService/onDidUpdateLayers-----' + e);
   }
-  onBaselayerChange(self, e: LayersControlEvent) {
+  onBaselayerChange(self, e: L.LayersControlEvent) {
     self.logger.log('baselayerchange');
     // in this part we manage the selection scale then we refresh the layers
     const scaleLevel = e.name;
@@ -181,7 +181,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     // changes the actual scale
     this.selectionScaleService.changeScale();
   }
-  onClickEvent(self, e: MouseEvent) {
+  onClickEvent(self, e: L.LeafletMouseEvent) {
     if (self.cmRunning) { self.toasterService.showDangerToaster("To run the calculation module (CM) for your new selection, STOP CM and RUN it again.") }
     if (self.getScaleValue() === hectare) { return; }
     if (self.selectionToolService.getPolygonDrawerState()) { return; }
@@ -253,7 +253,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   }*/
 
   getAreaFromScale(url): any {
-    return this.http.get(url).map((res) => res as GeojsonClass)
+    return this.http.get(url).pipe(map((res) => res as GeojsonClass))
       .subscribe(res => this.selectAreaWithNuts(res), err => super.handleError(err));
   }
   getNutsBusiness(scaleLevel) {
@@ -327,7 +327,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
 
-  setupMapservice(map: Map) {
+  setupMapservice(map: L.Map) {
     this.logger.log('MapService/setupMapservice');
     // set the map to the services that needs to get an instance
     this.map = map;
@@ -370,21 +370,21 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   /**
    * Activate the drawing tool
    */
-  activateDrawTool(map: Map, tool: string) {
+  activateDrawTool(map: L.Map, tool: string) {
     this.selectionToolService.activateDrawTool(map, tool);
   }
 
   /**
    * Activate the selection tool
    */
-  clickSelection(map: Map) {
+  clickSelection(map: L.Map) {
     this.selectionToolService.activateClickSelectionTool();
   }
 
   /**
    * Load the nuts selection results
    */
-  loadResultNuts(map: Map) {
+  loadResultNuts(map: L.Map) {
     this.selectionToolService.loadResultNuts(map);
 
     this.googleAnalyticsService
@@ -394,7 +394,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   /**
    * Clear the selection(s)
    */
-  clearAll(map: Map) {
+  clearAll(map: L.Map) {
     this.selectionToolService.clearAll(map);
     // this.cmLayerService.clearAll();
   }

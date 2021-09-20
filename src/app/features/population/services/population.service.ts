@@ -2,9 +2,9 @@
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 
+
+declare let L;
 
 import { business_name_population, unit_population
 } from '../../../shared/data.service'
@@ -16,8 +16,7 @@ import {Logger} from '../../../shared/services/logger.service';
 import {ToasterService} from '../../../shared/services/toaster.service';
 
 import {APIService} from '../../../shared/services/api.service';
-import LatLng = L.LatLng;
-import Popup = L.Popup;
+import * as Leaflet from 'leaflet';
 import {Helper} from '../../../shared/helper';
 import { HttpClient } from '@angular/common/http';
 
@@ -38,7 +37,7 @@ export class PopulationService extends APIService {
   /**
   * Show the population selected layer
   */
-  showPopulationSelectedLayer(populationSelected: any, map: any, latlng: LatLng, popup: Popup) {
+  showPopulationSelectedLayer(populationSelected: any, map: any, latlng: Leaflet.LatLng, popup: Leaflet.Popup) {
     this.logger.log('PopulationService/showPopulationSelectedLayer');
     const geometrie = populationSelected.features[0].geometry
     // remove the layer if there is one
@@ -55,7 +54,7 @@ export class PopulationService extends APIService {
   /**
   * Add the Nuts popup
   */
-  addPopupNuts(data: any, map: any, latlng: LatLng, popup: Popup) {
+  addPopupNuts(data: any, map: any, latlng: Leaflet.LatLng, popup: Leaflet.Popup) {
     const stat_levl_ = data.features[0].properties.stat_levl_;
     const nuts_id = data.features[0].properties.nuts_id;
     const name = data.features[0].properties.name;

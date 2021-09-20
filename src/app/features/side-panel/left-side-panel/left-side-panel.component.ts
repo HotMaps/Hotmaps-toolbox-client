@@ -4,16 +4,16 @@ import {
   Component,
   OnInit,
   OnDestroy,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import {  
   trigger,
   state,
   style,
   transition,
-  animate,
-  Input,
-  ViewChild,
-
-} from '@angular/core';
-
+  animate
+} from '@angular/animations'
 import { SideComponent } from '../side-panel.component';
 import { DataInteractionService } from '../../layers-interaction/layers-interaction.service';
 import { DataInteractionClass } from '../../layers-interaction/layers-interaction.class';
@@ -24,6 +24,8 @@ import { MapService } from "../../../pages/map/map.service";
 import * as uikit from 'uikit';
 import {hectare} from "../../../shared/data.service";
 import { UserManagementStatusService } from 'app/features/user-management';
+
+declare let module;
 
 @Component({
   moduleId: module.id,
