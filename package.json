@@ -38,7 +38,7 @@
     "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
     "mdn-polyfills": "^5.2.0",
-    "ng-recaptcha": "^3.0.2",
+    "ng-recaptcha": "^4.3.0",
     "node-sass": "^4.13.1",
     "nodemailer": "^4.2.0",
     "normalize.css": "6.0.0",

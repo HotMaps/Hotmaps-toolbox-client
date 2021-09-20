@@ -23,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class SelectionToolService extends APIService {
-  private nutsIds = new Set;
+  private nutsIds: Set<string> = new Set;
   private isActivate: boolean;
   private multiSelectionLayers: Leaflet.FeatureGroup = new L.FeatureGroup();
   private controlMultiLayer: Leaflet.FeatureGroup = new L.FeatureGroup();
