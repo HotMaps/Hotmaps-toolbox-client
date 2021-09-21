@@ -16,11 +16,9 @@ import {
 import { SideComponent } from '../side-panel.component';
 import { InteractionService } from 'app/shared/services/interaction.service';
 
-declare let module;
-export let moduleId = module.id;
 
 @Component({
-    moduleId: moduleId,
+    moduleId: module.id,
     selector: 'htm-top-side-panel',
     templateUrl: 'top-side-panel.component.html',
     styleUrls: ['top-side-panel.component.css'],

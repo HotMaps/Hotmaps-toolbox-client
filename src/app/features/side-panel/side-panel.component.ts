@@ -8,10 +8,8 @@ import {
 } from '@angular/core';
 import { InteractionService } from 'app/shared/services/interaction.service';
 
-declare let module;
-export let moduleId = module.id;
 @Component({
-    moduleId: moduleId,
+    moduleId: module.id,
 
 })
 export class SideComponent implements OnInit, OnDestroy {

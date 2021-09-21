@@ -28,11 +28,8 @@ import {
   constant_year_duration_curve
 } from '../../../shared/data.service';
 
-declare let module;
-export let moduleId = module.id;
-
 @Component({
-  moduleId: moduleId,
+  moduleId: module.id,
   selector: 'htm-right-side-panel',
   templateUrl: 'right-side-panel.component.html',
   styleUrls: ['right-side-panel.component.css'],

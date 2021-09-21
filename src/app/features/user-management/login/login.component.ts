@@ -5,11 +5,9 @@ import { WaitingStatusComponent } from '../../../shared/component/waiting-status
 import { ToasterService } from 'app/shared';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
-declare let module;
-export let moduleId = module.id;
 
 @Component({
-  moduleId: moduleId,
+  moduleId: module.id,
   selector: 'htm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

@@ -25,11 +25,9 @@ import * as uikit from 'uikit';
 import {hectare} from "../../../shared/data.service";
 import { UserManagementStatusService } from 'app/features/user-management';
 
-declare let module;
-export let moduleId = module.id;
 
 @Component({
-  moduleId: moduleId,
+  moduleId: module.id,
   selector: 'htm-left-side-panel',
   templateUrl: 'left-side-panel.component.html',
   styleUrls: ['left-side-panel.component.css'],
