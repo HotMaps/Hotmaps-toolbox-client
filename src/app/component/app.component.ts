@@ -3,16 +3,14 @@ import {Component, AfterContentInit, OnInit, ViewChild, OnDestroy} from '@angula
 
 import { LoaderService } from '../shared/services/loader.service';
 import {Logger} from '../shared/services/logger.service';
-import { isNavigationCancelingError } from '@angular/router/src/shared';
 
 declare let gtag: Function;
-declare let require;
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [ require('./app.component.css')],
+  styles: [ './app.component.css'],
 
 })
 
