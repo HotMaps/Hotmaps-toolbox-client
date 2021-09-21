@@ -24,8 +24,7 @@ import {
   LayerNamePipe, UppercaseFirstLetterPipe, NumberFormatPipe, DateFormatPipe
 } from './shared';
 
-import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms'
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { LayersService } from './features/layers';
 import { PopulationService } from './features/population/services/population.service';
 import { SidePanelService } from './features/side-panel/side-panel.service';
@@ -101,7 +100,7 @@ const myTest = [
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot(),
+    RecaptchaModule,
     AppComponent,
     AppComponent,
     BrowserDisclaimerComponent,
@@ -198,7 +197,7 @@ for(var i = 0; i < myTest.length; i++){
     AppRoutingModule,
     ReactiveFormsModule,
     RecaptchaFormsModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule
   ],
   bootstrap: [AppComponent],
   declarations: [
