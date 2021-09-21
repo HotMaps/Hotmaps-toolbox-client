@@ -1,8 +1,4 @@
-/* SystemJS module definition */
-declare var module: NodeModule;
-interface NodeModule {
-  id: string;
-}
+
 
 import * as Leaflet from 'leaflet';
 
