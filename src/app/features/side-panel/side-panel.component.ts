@@ -10,7 +10,7 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 
 @Component({
     moduleId: module.id,
-
+    template: ''
 })
 export class SideComponent implements OnInit, OnDestroy {
 
