@@ -5,7 +5,6 @@ import { Map, Layer, DrawMap } from 'leaflet';
 import 'leaflet-draw'
 
 declare const L: any;
-export declare let require;
 
 import { basemap } from '../basemap'
 import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
@@ -22,7 +21,7 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
-  styles: [ require('./map.component.less') ],
+  styles: [ './map.component.less' ],
 
 })
 
