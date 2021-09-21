@@ -21,7 +21,7 @@ import { MapComponent } from './pages/map/component/map.component';
 import {
   GeocodingService, Logger, LoaderService, ToasterService,
   GlobalErrorHandler, Helper, BusinessNamePipe, BusinessInterfaceRenderService,
-  LayerNamePipe, UppercaseFirstLetterPipe, NumberFormatPipe
+  LayerNamePipe, UppercaseFirstLetterPipe, NumberFormatPipe, DateFormatPipe
 } from './shared';
 
 import { RecaptchaModule } from 'ng-recaptcha';
@@ -46,7 +46,7 @@ import { DataInteractionService } from './features/layers-interaction/layers-int
 
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { MailService } from './features/feedback/mail.service';
-import { TopSideComponent } from 'app/features/side-panel';
+import { SideComponent, TopSideComponent } from 'app/features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from './features/graph/heat-load/component/';
 import { HeatLoadAggregateService } from './features/graph/heat-load/heat-load.service';
@@ -90,6 +90,7 @@ import { GdprComponent } from './features/gdpr/gdpr.component';
 import { StandAloneCmComponent } from './features/calculation-module/stand-alone-cm/stand-alone-cm.component';
 import {GoogleAnalyticsService} from './google-analytics.service';
 import { HttpClientModule } from '@angular/common/http';
+import { WaitingStatusComponent } from './shared/component/waiting-status';
 
 const myTest = [
   HttpClientModule,
@@ -242,7 +243,10 @@ for(var i = 0; i < myTest.length; i++){
     FolderPanelComponent,
     SummaryResultContainerComponent,
     GdprComponent,
-    StandAloneCmComponent
+    StandAloneCmComponent,
+    DateFormatPipe,
+    SideComponent,
+    WaitingStatusComponent
   ],
   providers: [
     DataInteractionService,
