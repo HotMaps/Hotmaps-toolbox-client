@@ -4,7 +4,7 @@ import {
   transition, trigger
 } from '@angular/animations';
 declare let module;
-let moduleId = module.id;
+export let moduleId = module.id;
 import {
   Component, Input, OnInit
 } from '@angular/core';

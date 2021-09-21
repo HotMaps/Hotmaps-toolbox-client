@@ -9,7 +9,7 @@ import { ResultManagerPayload } from '../service/result-manager';
 import { calculation_module_category, duration_curve_graph_category, duration_curve_graph_options, duration_curve_graph_title, energy_mix_graph_category, energy_mix_options, energy_mix_title, heatloadprofile, heat_load_graph_options, raster_type_name, summay_drop_down_buttons, tab1_datapanel, tab2_datapanel, vector_type_name } from './../../../shared/data.service';
 
 declare let module;
-let moduleId = module.id;
+export let moduleId = module.id;
 
 @Component({
   moduleId: moduleId,

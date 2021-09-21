@@ -6,7 +6,7 @@ import { ToasterService } from 'app/shared';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 declare let module;
-let moduleId = module.id;
+export let moduleId = module.id;
 
 @Component({
   moduleId: moduleId,

@@ -29,7 +29,7 @@ import {
 } from '../../../shared/data.service';
 
 declare let module;
-let moduleId = module.id;
+export let moduleId = module.id;
 
 @Component({
   moduleId: moduleId,
