@@ -20,7 +20,7 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
    * AppComponent own general loading
    */
   private showLoader: boolean;
-  private isMap: boolean = false;
+  private isMap: boolean = true;
   private isIE: boolean = false;
 
   constructor(

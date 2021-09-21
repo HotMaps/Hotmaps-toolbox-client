@@ -44,9 +44,9 @@ import { SummaryResultService } from './features/summary-result/summary-result.s
 
 import { DataInteractionService } from './features/layers-interaction/layers-interaction.service';
 
-import { InteractionService } from 'app/shared/services/interaction.service';
+import { InteractionService } from './shared/services/interaction.service';
 import { MailService } from './features/feedback/mail.service';
-import { SideComponent, TopSideComponent } from 'app/features/side-panel';
+import { SideComponent, TopSideComponent } from './features/side-panel';
 import { SelectionToolComponent } from './features/selection-tools/component/selection-tool.component';
 import { HeatLoadChartComponent } from './features/graph/heat-load/component/';
 import { HeatLoadAggregateService } from './features/graph/heat-load/heat-load.service';
@@ -55,7 +55,7 @@ import { DurationCurveComponent } from './features/graph/duration-curve/duration
 import { DurationCurveService } from './features/graph/duration-curve/duration-curve.service'
 import { ExportDataComponent } from './features/export-data/component/export-data.component';
 import { ExportDataService } from './features/export-data/service/export-data.service';
-import { SelectionToolUtils } from 'app/features/selection-tools/service/selection-tool-utils.service';
+import { SelectionToolUtils } from './features/selection-tools/service/selection-tool-utils.service';
 import { ElectricityMixComponent } from './features/graph/electricity-mix/component/electricity-mix.component';
 import { ElectricityMixService } from './features/graph/electricity-mix/service/electricity-mix.service';
 import { CalculationModuleComponent } from './features/calculation-module/component/calculation-module.component';

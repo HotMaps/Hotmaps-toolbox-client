@@ -99,7 +99,6 @@ export class UploadService extends APIService {
     */
     add(file: File, shared: string, layer?): Promise<boolean> {
         let form = new FormData();
-        console.log("LOL " + this.userToken);
         form.append('token', this.userToken);
         form.append('name', file.name);
         form.append('file', file, file.name);
@@ -345,9 +344,6 @@ export class UploadService extends APIService {
                 responseType: 'blob'
             })
                 .then(data => {
-                    console.log("LOL2");
-                    console.log("data: ");
-                    console.log(data);
                     return { url: URL.createObjectURL(data) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
                 })
                 .catch(err => {
