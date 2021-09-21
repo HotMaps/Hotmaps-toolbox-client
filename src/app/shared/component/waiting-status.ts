@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  moduleId:module.id
+  moduleId:module.id,
+  template: ''
 })
 export class WaitingStatusComponent {
 
