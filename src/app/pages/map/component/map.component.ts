@@ -1,7 +1,7 @@
 import { TopSideComponent } from './../../../features/side-panel/top-side-panel/top-side-panel.component';
 import {map_options, eu_logo_path, eu_logo_height, hotmaps_wiki} from './../../../shared/data.service';
 import {Component, ViewChild, OnInit, AfterContentInit , OnDestroy} from '@angular/core';
-import { Map, Layer } from 'leaflet';
+import { Map, Layer, DrawMap } from 'leaflet';
 import 'leaflet-draw'
 
 declare const L: any;
@@ -36,7 +36,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private nutsIds: string[];
   private locationsSelection: Location[];
   private areas: Layer[];
-  private map: Map;
+  private map: DrawMap;
   private layers;
   private scaleLevel;
   // private cmRunned;
@@ -173,7 +173,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
     this.searchBarComponent.Initialize();
   }
   // main method create and display map (main purpose of this component)
-  createMap(basemap: any): Map {
+  createMap(basemap: any): DrawMap {
     // setup  the map from leaflet
     const self = this;
     this.map = L.map('map', map_options);

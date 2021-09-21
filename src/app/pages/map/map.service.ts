@@ -35,7 +35,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MapService extends APIService implements OnInit, OnDestroy {
-  private map: L.Map;
+  private map: L.DrawMap;
   private baseMaps: any;
   private areaNutsSelectedLayer: any;
   private zoomlevel: BehaviorSubject<number> = new BehaviorSubject<number>(defaultZoomLevel);
@@ -89,9 +89,10 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.drawCreatedSubject.next();
   }
 
-  getMap(): L.Map {
+  getMap(): L.DrawMap {
     return this.map;
   }
+
   setCMRunning(val) {
     this.cmRunning = val;
   }
@@ -327,7 +328,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
     this.layersService.showOrRemoveLayer(action, this.map, order);
   }
 
-  setupMapservice(map: L.Map) {
+  setupMapservice(map: L.DrawMap) {
     this.logger.log('MapService/setupMapservice');
     // set the map to the services that needs to get an instance
     this.map = map;
@@ -370,7 +371,7 @@ export class MapService extends APIService implements OnInit, OnDestroy {
   /**
    * Activate the drawing tool
    */
-  activateDrawTool(map: L.Map, tool: string) {
+  activateDrawTool(map: L.DrawMap, tool: string) {
     this.selectionToolService.activateDrawTool(map, tool);
   }
 

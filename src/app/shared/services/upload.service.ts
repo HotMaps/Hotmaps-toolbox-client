@@ -345,13 +345,16 @@ export class UploadService extends APIService {
                 responseType: 'blob'
             })
                 .then(data => {
-                    return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
+                    console.log("LOL2");
+                    console.log("data: ");
+                    console.log(data);
+                    return { url: URL.createObjectURL(data) as string, filename: layer + `.${layerExportInfo.data_type != 'csv' ? 'tif' : 'csv'}` } as BlobUrl
                 })
                 .catch(err => {
                     let errMsg = '';
-                    if (['UNKNOWN ERROR', 'INTERNAL SERVER ERROR', 'UNKNOWN'].indexOf(err.statusText.toUpperCase()) > -1) {
+                    if (['UNKNOWN ERROR', 'INTERNAL SERVER ERROR', 'UNKNOWN'].indexOf(err.toString().toUpperCase()) > -1) {
                         errMsg = 'An internal error occured.';
-                    } else if (['Failed retrieving year in database'.toUpperCase()].indexOf(err.statusText.toUpperCase()) > -1) {
+                    } else if (['Failed retrieving year in database'.toUpperCase()].indexOf(err.toString().toUpperCase()) > -1) {
                         errMsg = err.statusText;
                     } else {
                         errMsg = "This layer cannot be exported.";
@@ -368,7 +371,7 @@ export class UploadService extends APIService {
                 uuid: uuid, type: type
             }, uploadUrl + 'export/cmLayer',
                 { responseType: 'blob' }).then(data => {
-                    return { url: URL.createObjectURL(data.blob()) as string, filename: layer + `${type == 'raster' ? '.tif' : '.zip'}` } as BlobUrl //TODO: correct
+                    return { url: URL.createObjectURL(data) as string, filename: layer + `${type == 'raster' ? '.tif' : '.zip'}` } as BlobUrl //TODO: correct
                 }).catch(() => {
                     this.toasterService.showToaster("Sorry, We can't export this layer");
                     return { url: '', filename: '' } as BlobUrl;

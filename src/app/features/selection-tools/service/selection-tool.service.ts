@@ -3,12 +3,12 @@
 * Created by lesly on 27.05.17.
 */
 import { Injectable } from '@angular/core';
-import { Map } from 'leaflet';
 import * as proj4x from 'proj4';
 const proj4 = (proj4x as any).default;
 import { Logger, LoaderService, Helper } from '../../../shared';
 import { Location } from '../../../shared/class/location/location';
 import * as Leaflet from 'leaflet';
+import { map } from 'rxjs/operators';
 declare const L: any;
 
 import { hectare, initial_scale_value, maxSurfaceValueCM } from '../../../shared/data.service';
@@ -25,8 +25,8 @@ import { HttpClient } from '@angular/common/http';
 export class SelectionToolService extends APIService {
   private nutsIds: Set<string> = new Set;
   private isActivate: boolean;
-  private multiSelectionLayers: Leaflet.FeatureGroup = new L.FeatureGroup();
-  private controlMultiLayer: Leaflet.FeatureGroup = new L.FeatureGroup();
+  private multiSelectionLayers: Leaflet.FeatureGroup = new Leaflet.FeatureGroup();
+  private controlMultiLayer: Leaflet.FeatureGroup = new Leaflet.FeatureGroup();
   private currentLayer;
   private scaleValue = initial_scale_value;
   private theDrawer;
@@ -72,7 +72,7 @@ export class SelectionToolService extends APIService {
       this.buttonClearAll.next(value);
     }
 
-    drawCreated(e, map, nuts_lvl) {
+    drawCreated(e, myMap, nuts_lvl) {
       const event: Leaflet.DrawEvents.Created = <Leaflet.DrawEvents.Created>e;
       const type = event.layerType,
       layer: any = event.layer;
@@ -87,16 +87,16 @@ export class SelectionToolService extends APIService {
         controlIntersectContainsHectar = this.helper.controlDrawedLayer(this.multiSelectionLayers, layer);
         if (!controlIntersectContainsHectar) {
           location = this.helper.convertPostGisLatLongToLocationString(this.helper.getLocationsFromLayer(layer))
-          this.drawHectaresLoadingResult(map, layer);
+          this.drawHectaresLoadingResult(myMap, layer);
         }
       } else {
         location = this.helper.convertLatLongToLocationString(this.helper.getLocationsFromLayer(layer))
       }
 
       if (nuts_lvl === 4) { // lau2 lvl
-        this.getNutID(location, map, nuts_lvl, lau2name)
+        this.getNutID(location, myMap, nuts_lvl, lau2name)
       } else if (nuts_lvl === 5) {} else {
-        this.getNutID(location, map, nuts_lvl, 'population')
+        this.getNutID(location, myMap, nuts_lvl, 'population')
       }
     }
 
@@ -107,7 +107,7 @@ export class SelectionToolService extends APIService {
       return this.scaleValue;
     }
 
-    loadResultNuts(map) {
+    loadResultNuts(myMap) {
       const layerNameArray = []
       for (let i = 0; i < this.interactionService.getLayerArray().keys().length; i++) {
         layerNameArray.push(this.interactionService.getLayerArray().keys()[i] +
@@ -156,7 +156,7 @@ export class SelectionToolService extends APIService {
       this.isActivate = val;
     }
 
-    clearAll(map: any) {
+    clearAll(myMap: any) {
       this.logger.log('Clear all is called from selection tool')
       this.nbOfLayersSelected.next(0);
       // ================
@@ -180,7 +180,7 @@ export class SelectionToolService extends APIService {
     }
 
     // Summary result show result
-    getStatisticsFromLayer(locations: Location[], layers: string[], map: any) {
+    getStatisticsFromLayer(locations: Location[], layers: string[], myMap: any) {
       const self = this;
       self.locationsSubject.next(locations);
       self.getStatistics();
@@ -196,7 +196,7 @@ export class SelectionToolService extends APIService {
       }
     }
 
-    toggleControl(map: any) {
+    toggleControl(myMap: any) {
       if (this.isDrawer) {
         this.theDrawer.disable(); // Disable the actual drawer
       } else {
@@ -211,7 +211,7 @@ export class SelectionToolService extends APIService {
       this.isPolygonDrawer = false;
     }
 
-    activateDrawTool(map: Map, tool: string) {
+    activateDrawTool(myMap: Leaflet.DrawMap, tool: string) {
 
       if (this.isDrawer) {
         this.getDrawer().disable(); // disable the current drawer before creating a new one
@@ -219,16 +219,16 @@ export class SelectionToolService extends APIService {
       // TODO: Modifier et mettre dans tableau
       switch (tool) {
         case 'rectangle':
-        this.theDrawer = new L.Draw.Rectangle(map);
+        this.theDrawer = new Leaflet.Draw.Rectangle(myMap);
         this.isPolygonDrawer = false;
         break;
         case 'circle':
-        this.theDrawer = new L.Draw.Circle(map);
+        this.theDrawer = new Leaflet.Draw.Circle(myMap);
         this.isPolygonDrawer = false;
         break;
 
         case 'polygon':
-        this.theDrawer = new L.Draw.Polygon(map);
+        this.theDrawer = new Leaflet.Draw.Polygon(myMap);
         this.isPolygonDrawer = true;
         break;
         default:
@@ -248,7 +248,7 @@ export class SelectionToolService extends APIService {
       return this.isPolygonDrawer;
     }
 
-    getNutID(location, map, nuts_lvl, stringLayerType) {
+    getNutID(location, myMap, nuts_lvl, stringLayerType) {
       this.loaderService.display(true);
       this.logger.log('getNutID');
       const epsg = '4326';
@@ -266,7 +266,7 @@ export class SelectionToolService extends APIService {
       }
 
       this.logger.log(url)
-      this.GET(url).map((res: Response) => res as any)
+      this.GET(url).pipe(map((res: Response) => res as any))
       .subscribe(res => this.drawResultBeforeLoadingResult(res), err => super.handleError(err));
     }
 
@@ -324,8 +324,8 @@ export class SelectionToolService extends APIService {
 
     setLayerDependingCircleForControl(layer) {
       let layerInMultiSelection;
-      if (layer instanceof L.Circle) {
-        layerInMultiSelection = L.polygon([this.helper.getLocationsFromCicle(layer)]);
+      if (layer instanceof Leaflet.Circle) {
+        layerInMultiSelection = Leaflet.polygon([this.helper.getLocationsFromCicle(layer)]);
       } else {
         layerInMultiSelection = layer;
       }
@@ -334,7 +334,7 @@ export class SelectionToolService extends APIService {
       return layerInMultiSelection;
     }
 
-    drawHectaresLoadingResult(map: Map, layer: any) {
+    drawHectaresLoadingResult(myMap: Leaflet.Map, layer: any) {
       if (this.multiSelectionLayers.hasLayer(layer) === false) {
         const layerTemp = this.setLayerDependingCircleForControl(layer)
         this.controlMultiLayer.addLayer(layerTemp);
@@ -362,10 +362,10 @@ export class SelectionToolService extends APIService {
           if (layer.editing.enabled()) {
             layer.editing.disable();
             self.updateControlLayers(layer);
-            map.fire('draw:editstop');
+            myMap.fire('draw:editstop');
           } else {
             layer.editing.enable();
-            map.fire('draw:editstart');
+            myMap.fire('draw:editstart');
           } */
         });
       }
@@ -427,17 +427,17 @@ export class SelectionToolService extends APIService {
       this.defineSurface(this.controlMultiLayer)
     }
 
-    drawShapeFromFile(map: Map, geoJson: any) {
+    drawShapeFromFile(myMap: Leaflet.Map, geoJson: any) {
       geoJson.features.forEach(feature => {
         const geom = feature.geometry;
         if (geom.type == 'MultiPolygon') {
           geom.coordinates.forEach(coord => {
-            const poly = L.polygon(L.GeoJSON.coordsToLatLngs(coord[0]));
-            this.drawHectaresLoadingResult(map, poly);
+            const poly = Leaflet.polygon(Leaflet.GeoJSON.coordsToLatLngs(coord[0]));
+            this.drawHectaresLoadingResult(myMap, poly);
           });
         } else if (geom.type == 'Polygon') {
-          const poly = L.polygon(L.GeoJSON.coordsToLatLngs(geom.coordinates[0]));
-          this.drawHectaresLoadingResult(map, poly);
+          const poly = Leaflet.polygon(Leaflet.GeoJSON.coordsToLatLngs(geom.coordinates[0]));
+          this.drawHectaresLoadingResult(myMap, poly);
         } else {
           console.log('shape not supported');
         }

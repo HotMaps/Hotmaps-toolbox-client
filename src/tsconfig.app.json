@@ -5,7 +5,12 @@
     "module": "es2015",
     "baseUrl": "",
     "allowJs": true,
-    "types": []
+    "types": [],
+    "paths": {
+      "core-js/es7/reflect": [
+          "../node_modules/core-js/proposals/reflect-metadata"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
