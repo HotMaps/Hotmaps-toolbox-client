@@ -5,7 +5,7 @@ import { Map, Layer, DrawMap } from 'leaflet';
 import 'leaflet-draw'
 
 declare const L: any;
-declare let require;
+export declare let require;
 
 import { basemap } from '../basemap'
 import { LeftSideComponent, SidePanelService, RightSideComponent } from '../../../features/side-panel';
