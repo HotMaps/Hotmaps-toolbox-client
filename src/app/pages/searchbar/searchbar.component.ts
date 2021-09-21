@@ -13,12 +13,10 @@ import {LoaderService} from '../../shared/services/loader.service';
 import * as L from 'leaflet';
 import {GoogleAnalyticsService} from "../../google-analytics.service";
 
-declare let require;
-
 @Component({
   selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
-  styles: [ require('./searchbar.component.scss') ],
+  styles: [ './searchbar.component.scss' ],
   providers: []
 })
 export class SearchBarComponent implements OnInit {

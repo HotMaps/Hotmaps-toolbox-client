@@ -10,12 +10,10 @@ import {MapService} from '../map/map.service';
 
 import { Logger} from '../../shared/services/logger.service';
 
-declare let require;
-
 @Component({
   selector: 'hmt-toolbar',
-  template: require('./toolbar.component.html'),
-  styles: [ require('./toolbar.component.scss')],
+  template: './toolbar.component.html',
+  styles: [ './toolbar.component.scss' ],
   providers: []
 })
 export class ToolbarComponent implements OnInit {
