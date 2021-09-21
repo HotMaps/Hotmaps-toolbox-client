@@ -26,9 +26,10 @@ import {hectare} from "../../../shared/data.service";
 import { UserManagementStatusService } from 'app/features/user-management';
 
 declare let module;
+let moduleId = module.id;
 
 @Component({
-  moduleId: module.id,
+  moduleId: moduleId,
   selector: 'htm-left-side-panel',
   templateUrl: 'left-side-panel.component.html',
   styleUrls: ['left-side-panel.component.css'],

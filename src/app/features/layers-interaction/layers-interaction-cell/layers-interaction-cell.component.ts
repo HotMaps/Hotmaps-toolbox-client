@@ -4,6 +4,7 @@ import {
   transition, trigger
 } from '@angular/animations';
 declare let module;
+let moduleId = module.id;
 import {
   Component, Input, OnInit
 } from '@angular/core';
@@ -12,7 +13,7 @@ import { InteractionService } from '../../../shared/services/interaction.service
 import { DataInteractionClass } from '../layers-interaction.class';
 import { calculation_module_category, layers_order } from './../../../shared/data.service';
 @Component({
-  moduleId: module.id,
+  moduleId: moduleId,
   selector: 'layers-interaction-cell',
   templateUrl: 'layers-interaction-cell.component.html',
   styleUrls: ['layers-interaction-cell.component.css'],

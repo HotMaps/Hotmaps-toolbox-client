@@ -29,9 +29,10 @@ import {
 } from '../../../shared/data.service';
 
 declare let module;
+let moduleId = module.id;
 
 @Component({
-  moduleId: module.id,
+  moduleId: moduleId,
   selector: 'htm-right-side-panel',
   templateUrl: 'right-side-panel.component.html',
   styleUrls: ['right-side-panel.component.css'],

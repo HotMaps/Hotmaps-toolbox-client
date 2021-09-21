@@ -17,9 +17,10 @@ import {MapService} from '../../../pages/map/map.service'
 import { SummaryResultClass } from '../summary-result.class';
 
 declare let module;
+let moduleId = module.id;
 
 @Component({
-    moduleId: module.id,
+    moduleId: moduleId,
     selector: 'htm-summary-result-cell',
     templateUrl: 'summary-result-cell.component.html',
     styleUrls: ['summary-result-cell.component.css'],

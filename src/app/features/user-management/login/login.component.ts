@@ -6,9 +6,10 @@ import { ToasterService } from 'app/shared';
 import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 declare let module;
+let moduleId = module.id;
 
 @Component({
-  moduleId: module.id,
+  moduleId: moduleId,
   selector: 'htm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

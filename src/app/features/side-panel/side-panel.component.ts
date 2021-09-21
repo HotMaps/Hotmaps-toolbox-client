@@ -9,9 +9,9 @@ import {
 import { InteractionService } from 'app/shared/services/interaction.service';
 
 declare let module;
-
+let moduleId = module.id;
 @Component({
-    moduleId: module.id,
+    moduleId: moduleId,
 
 })
 export class SideComponent implements OnInit, OnDestroy {

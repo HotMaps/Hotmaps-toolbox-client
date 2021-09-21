@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 declare let module;
+let moduleId = module.id;
 
 @Component({
-  moduleId:module.id
+  moduleId:moduleId
 })
 export class WaitingStatusComponent {
 
