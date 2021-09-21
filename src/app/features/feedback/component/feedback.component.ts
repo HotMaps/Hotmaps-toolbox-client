@@ -40,8 +40,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     private type=null;
     private level=null;
     private files;
-    @ViewChild('file_input') file_input:ElementRef;
-    @ViewChild('file_string') file_string:ElementRef;
+    @ViewChild('file_input', { static: false }) file_input:ElementRef;
+    @ViewChild('file_string', { static: false }) file_string:ElementRef;
     private submited = false;
     private feedbackLoader = false;
     constructor(private interactionService: InteractionService,

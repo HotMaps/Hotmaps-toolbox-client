@@ -77,7 +77,7 @@ import { UserManagementStatusService } from 'app/features/user-management';
 export class LeftSideComponent extends SideComponent implements OnInit, OnDestroy {
   @Input() areas;
   @Input() selectionSurface;
-  @ViewChild(CalculationModuleComponent) calculationModuleComponent: CalculationModuleComponent;
+  @ViewChild(CalculationModuleComponent, { static: true }) calculationModuleComponent: CalculationModuleComponent;
   private layersSelected = [];
   private nbElementsSelected = 0;
   private scaleLevel;

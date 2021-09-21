@@ -1,12 +1,11 @@
 import {
   Component,
   OnInit,
-  OnDestroy, Input, OnChanges
+  OnDestroy, Input, OnChanges, SimpleChanges
 } from '@angular/core';
 
 import {SummaryResultService} from './summary-result.service';
 import {Logger} from '../../shared/services/logger.service';
-import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Helper } from 'app/shared';
 import { InteractionService } from '../../shared/services/interaction.service';
 

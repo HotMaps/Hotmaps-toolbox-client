@@ -219,7 +219,7 @@ export class SelectionToolService extends APIService {
       // TODO: Modifier et mettre dans tableau
       switch (tool) {
         case 'rectangle':
-        this.theDrawer = new Leaflet.Draw.Rectangle(myMap);
+        this.theDrawer = new Leaflet.Draw.Rectangle(myMap, <Leaflet.DrawOptions.RectangleOptions>{shapeOptions: {showArea: false}});
         this.isPolygonDrawer = false;
         break;
         case 'circle':

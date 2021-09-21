@@ -16,7 +16,7 @@ import {GoogleAnalyticsService} from "../../google-analytics.service";
 @Component({
   selector: 'hmt-search-bar',
   templateUrl: './searchbar.component.html',
-  styles: [ './searchbar.component.scss' ],
+  styleUrls: [ './searchbar.component.scss' ],
   providers: []
 })
 export class SearchBarComponent implements OnInit {

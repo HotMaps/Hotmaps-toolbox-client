@@ -17,8 +17,8 @@ export class UploadComponent implements OnInit {
   shared: boolean = false;
   isUploading: boolean = false; // Temporary until api do this async
   uploadedFiles: UploadedFile[] = [];
-  @ViewChild('inputFile2') inputFile2;
-  @ViewChild('inputFile') inputFile;
+  @ViewChild('inputFile2', { static: true }) inputFile2;
+  @ViewChild('inputFile', { static: true }) inputFile;
 
   layers: DataInteractionClass[] = [];
   //selectedLayer: string = null;

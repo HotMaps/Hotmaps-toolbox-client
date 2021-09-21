@@ -8,7 +8,7 @@ import { Logger } from 'app/shared';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('canvas') canvas;
+  @ViewChild('canvas', { static: true }) canvas;
   @Input() datasets;
   @Input() labels;
   @Input() type = 'line';

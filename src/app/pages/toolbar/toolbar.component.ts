@@ -13,7 +13,7 @@ import { Logger} from '../../shared/services/logger.service';
 @Component({
   selector: 'hmt-toolbar',
   template: './toolbar.component.html',
-  styles: [ './toolbar.component.scss' ],
+  styleUrls: [ './toolbar.component.scss' ],
   providers: []
 })
 export class ToolbarComponent implements OnInit {

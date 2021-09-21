@@ -2,7 +2,7 @@
 * Created by Dany on 20.12.17.
 */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import {  
   trigger,
   state,
@@ -13,11 +13,9 @@ import {
 import { MapService } from '../../../pages/map/map.service';
 import { hectare, Helper, maxSurfaceValueCM } from 'app/shared';
 import { stButtons, defaultElementSelected } from 'app/features/selection-tools/component/selection-button.data';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs';
 import {Logger} from '../../../shared/services/logger.service';
 import { SelectionToolService } from '../service/selection-tool.service';
-
 @Component({
   selector: 'htm-selection-tool',
   templateUrl: './selection-tool.component.html',

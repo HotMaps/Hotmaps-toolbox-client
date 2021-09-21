@@ -21,7 +21,7 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
 @Component({
   selector: 'htm-map',
   templateUrl: './map.component.html',
-  styles: [ './map.component.less' ],
+  styleUrls: [ './map.component.less' ],
 
 })
 
@@ -42,7 +42,7 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   private personnalLayers;
   private selectionSurface=0;
   private isCMRunning = false;
-  @ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent;
+  @ViewChild(SearchBarComponent, { static: true }) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar
   openRightSidebar = false;
@@ -50,9 +50,9 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
   openLeftSidebar = false;
   openTopSidebar = false;
   // declaration of the left and right sidebar
-  @ViewChild(RightSideComponent) rightPanelComponent: RightSideComponent;
-  @ViewChild(LeftSideComponent) leftPanelComponent: LeftSideComponent;
-  @ViewChild(TopSideComponent) topSideComponent: TopSideComponent;
+  @ViewChild(RightSideComponent, { static: true }) rightPanelComponent: RightSideComponent;
+  @ViewChild(LeftSideComponent, { static: true }) leftPanelComponent: LeftSideComponent;
+  @ViewChild(TopSideComponent, { static: true }) topSideComponent: TopSideComponent;
   private zoomlevel;
 
   constructor(private mapService: MapService, private logger: Logger,

@@ -10,7 +10,7 @@ declare let gtag: Function;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [ './app.component.css'],
+  styleUrls: [ './app.component.css'],
 
 })
 
