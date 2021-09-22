@@ -3,7 +3,7 @@
   <i class="flaticon-cross" (click)="close()"></i>
 </div>
 <div class="uk-container uk-card-default">
-  <form (ngSubmit)="save()" #saveForm="ng-form">
+  <form (ngSubmit)="save()" #form='ngForm' >
     <table class="uk-table">
       <tr>
         <td class="uk-text-right">
@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td colspan="2" class="uk-text-center">
-            <button type="submit" [disabled]="!saveForm.form.valid" class="uk-button uk-button-default">Submit</button>
+            <button type="submit" class="uk-button uk-button-default" [disabled]="!form.valid">Submit</button>
         </td>
       </tr>
     </table>

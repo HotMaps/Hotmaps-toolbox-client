@@ -1,5 +1,5 @@
 <div [@feedbackTrigger]="expandedState">
-    <form *ngIf='!submited' #form='ng-form' (ngSubmit)='submit(form)' enctype="multipart/form-data" method="post" novalidate>
+    <form *ngIf='!submited' #form='ngForm' (ngSubmit)='submit(form)' enctype="multipart/form-data" method="post" novalidate>
         <fieldset class='uk-fieldset'>
             <div class='uk-margin-small'><input name='name' class='uk-input uk-form-small' type='text' placeholder='Firstname / Lastname' ngModel #names='ngModel' required ></div>
             <div class='uk-margin-small'><input name='mail' class='uk-input uk-form-small' type='text' placeholder='Mail' required email ngModel #mail='ngModel'></div>
