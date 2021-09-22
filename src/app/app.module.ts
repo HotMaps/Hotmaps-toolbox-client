@@ -1,5 +1,4 @@
 
-import 'leaflet';
 import 'jquery';
 
 // Improvement of coding style :
@@ -91,101 +90,6 @@ import {GoogleAnalyticsService} from './google-analytics.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WaitingStatusComponent } from './shared/component/waiting-status';
 
-const myTest = [
-  HttpClientModule,
-    FormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    RecaptchaFormsModule,
-    RecaptchaModule,
-    AppComponent,
-    AppComponent,
-    BrowserDisclaimerComponent,
-    SearchBarComponent,
-    ToolbarComponent,
-    MapComponent,
-    RightSideComponent,
-    NavigationBarComponent,
-    SummaryResultComponent,
-    SummaryResultCellComponent,
-    DataInteractionCellComponent,
-    LeftSideComponent,
-    ResultManagerComponent,
-    TopSideComponent,
-    UppercaseFirstLetterPipe,
-    NumberFormatPipe,
-    LayerNamePipe,
-    BusinessNamePipe,
-    FeedbackComponent,
-    HeatLoadChartComponent,
-    SelectionToolComponent,
-    ChartComponent,
-    DurationCurveComponent,
-    ExportDataComponent,
-    ElectricityMixComponent,
-    CalculationModuleComponent,
-    UserManagementComponent,
-    LoginComponent,
-    RegisterComponent,
-    RecoveryComponent,
-    AccountComponent,
-    ActivateComponent,
-    LayerToolComponent,
-    WelcomePageComponent,
-    UploadComponent,
-    PersonnalLayersComponent,
-    ShareLayersComponent,
-    CustomSymbologyComponent,
-    SavePanelComponent,
-    FolderPanelComponent,
-    SummaryResultContainerComponent,
-    GdprComponent,
-    StandAloneCmComponent,
-    DataInteractionService,
-    PopulationService,
-    GeocodingService,
-    MapService,
-    Logger,
-    LoaderService,
-    ToasterService,
-    GlobalErrorHandler,
-    Helper,
-    SidePanelService,
-    NavigationBarService,
-    LayersService,
-    SelectionToolService,
-    SelectionToolButtonStateService,
-    BusinessInterfaceRenderService,
-    SummaryResultService,
-    DecimalPipe,
-    MailService,
-    SelectionScaleService,
-    InteractionService,
-    HeatLoadAggregateService,
-    SelectionToolUtils,
-    ExportDataService,
-    DurationCurveService,
-    ElectricityMixService,
-    CalculationModuleService,
-    CalculationModuleStatusService,
-    CalculationHeatLoadDividedService,
-    CMLayersService,
-    UserManagementService,
-    UserManagementStatusService,
-    UploadService,
-    SnapshotService,
-    FeedbackService,
-    GoogleAnalyticsService
-];
-console.log('JMTest');
-for(var i = 0; i < myTest.length; i++){
-  if(myTest[i] === undefined) {
-    console.log("MyComponent is undefined!" + i);
-  }
-}
 
 @NgModule({
   imports: [

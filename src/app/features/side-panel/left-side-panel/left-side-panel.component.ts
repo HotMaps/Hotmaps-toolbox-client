@@ -130,7 +130,7 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
     this.calculationModuleComponent.updateCMs()
   }
   getLayerAndCategory(layers: any) {
-    this.logger.log(' layerr = ' + JSON.stringify(layers))
+    //this.logger.log(' layerr = ' + JSON.stringify(layers))
     this.layers = layers
     this.category = layers.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);

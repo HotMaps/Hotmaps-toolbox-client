@@ -27,7 +27,6 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/uikit/dist/css/uikit.css",
               "src/assets/fonts/Roboto.css",
-              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
               "node_modules/leaflet-dvf/dist/css/dvf.css",
               "src/styles.css"
             ],
@@ -40,7 +39,6 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/uikit/dist/js/uikit.min.js",
               "node_modules/uikit/dist/js/uikit-icons.min.js",
-              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js",
               "node_modules/leaflet-dvf/dist/leaflet-dvf.min.js"
             ]
           },
@@ -114,7 +112,6 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/uikit/dist/js/uikit.min.js",
               "node_modules/uikit/dist/js/uikit-icons.min.js",
-              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js",
               "node_modules/leaflet-dvf/dist/leaflet-dvf.min.js"
             ],
             "styles": [
@@ -123,7 +120,6 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/uikit/dist/css/uikit.css",
               "src/assets/fonts/Roboto.css",
-              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
               "node_modules/leaflet-dvf/dist/css/dvf.css",
               "src/styles.css"
             ],

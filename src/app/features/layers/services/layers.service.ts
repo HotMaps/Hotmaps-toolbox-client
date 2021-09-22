@@ -103,7 +103,6 @@ export class LayersService extends APIService {
   }
 
   showOrRemoveLayer(action: string, map: any, order: number) {
-    this.logger.log('didUptateLayer');
     if (!this.layersArray.containsKey(action)) {
       this.addLayerWithAction(action, map, order);
 

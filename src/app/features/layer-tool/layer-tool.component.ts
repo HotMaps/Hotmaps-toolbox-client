@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { DataInteractionClass } from '../layers-interaction/layers-interaction.class';
 
@@ -36,8 +36,9 @@ export class LayerToolComponent implements OnInit {
         if (this.dataInteraction.category === calculation_module_category) {
           availableScales = [nuts0, nuts1, nuts2, nuts3, lau2, hectare];
         } else if (this.dataInteraction.dataType) {
-          if (this.dataInteraction.dataType === 'raster')
+          if (this.dataInteraction.dataType === 'raster'){
             availableScales = [nuts3, lau2, hectare];
+          }
           else if (this.dataInteraction.dataType === 'shp')
             availableScales = [nuts2, nuts3, lau2, hectare];
           else if (this.dataInteraction.dataType === 'csv')
