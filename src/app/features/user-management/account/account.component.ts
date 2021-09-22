@@ -15,14 +15,14 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
 export class AccountComponent extends WaitingStatusComponent implements OnInit {
   @Input() username;
   @Input() token;
-  private firstname='';
-  private lastname='';
-  private isEditable = false;
+  firstname='';
+  lastname='';
+  isEditable = false;
   private diskspaceUsed;
   private diskspaceMax;
-  private diskspaceLabels = labels_diskspacechart;
-  private diskspaceDataset;
-  private diskspaceOptions = diskspacechart_options;
+  diskspaceLabels = labels_diskspacechart;
+  diskspaceDataset;
+  diskspaceOptions = diskspacechart_options;
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
     private toasterService: ToasterService, private interactionService: InteractionService, private googleAnalyticsService:GoogleAnalyticsService) {
     super()

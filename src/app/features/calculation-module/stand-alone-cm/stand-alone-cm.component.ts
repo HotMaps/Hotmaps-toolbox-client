@@ -6,7 +6,7 @@ import { standaloneCMs } from './stand-alone-cm.data';
   styleUrls: ['./stand-alone-cm.component.css', '../component/calculation-module.component.css']
 })
 export class StandAloneCmComponent implements OnInit {
-  private standaloneCMs = standaloneCMs;
+  standaloneCMs = standaloneCMs;
   constructor() { }
 
   ngOnInit() {

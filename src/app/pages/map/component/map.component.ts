@@ -31,17 +31,17 @@ export class MapComponent implements OnInit , AfterContentInit , OnDestroy {
 
   folderPanelShow = false;
   savePanelShow = false;
-  private hotmaps_wiki = hotmaps_wiki;
-  private nutsIds: string[];
-  private locationsSelection: Location[];
-  private areas: Layer[];
+  hotmaps_wiki = hotmaps_wiki;
+  nutsIds: string[];
+  locationsSelection: Location[];
+  areas: Layer[];
   private map: DrawMap;
-  private layers;
-  private scaleLevel;
+  layers;
+  scaleLevel;
   // private cmRunned;
-  private personnalLayers;
-  private selectionSurface=0;
-  private isCMRunning = false;
+  personnalLayers;
+  selectionSurface=0;
+  isCMRunning = false;
   @ViewChild(SearchBarComponent, { static: true }) searchBarComponent: SearchBarComponent;
 
   // management of initial status of sidebar

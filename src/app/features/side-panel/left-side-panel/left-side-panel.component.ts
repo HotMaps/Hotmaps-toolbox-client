@@ -78,12 +78,12 @@ export class LeftSideComponent extends SideComponent implements OnInit, OnDestro
   @Input() areas;
   @Input() selectionSurface;
   @ViewChild(CalculationModuleComponent, { static: true }) calculationModuleComponent: CalculationModuleComponent;
-  private layersSelected = [];
+  layersSelected = [];
   private nbElementsSelected = 0;
-  private scaleLevel;
+  scaleLevel;
   layers: DataInteractionClass[];
   category = [];
-  private isZoneSelected = false;
+  isZoneSelected = false;
   private isConnected = false;
 
   expanded = false;

@@ -8,13 +8,13 @@ import {energy_mix_options} from '../../../../shared/data.service';
   styleUrls: ['./electricity-mix.component.css']
 })
 export class ElectricityMixComponent implements OnInit, OnChanges {
-  private subtitle = 'Electricity generation mix';
+  subtitle = 'Electricity generation mix'; 
 
-  private type = 'pie';
+  type = 'pie';
   @Input() labels
   @Input() datasets;
   @Input() isLoading;
-  private options: any;
+  options: any;
 
   constructor( private logger: Logger, private interactionService: InteractionService ) {
   }

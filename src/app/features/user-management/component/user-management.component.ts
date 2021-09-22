@@ -11,12 +11,12 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-  private isLoggedIn;
+  isLoggedIn;
   private username = '';
   private token = '';
-  private token_activation = '';
-  private token_recover = '';
-  private submitedRecover = false;
+  token_activation = '';
+  token_recover = '';
+  submitedRecover = false;
   constructor(private userManagementStatusService: UserManagementStatusService, private interactionService: InteractionService, private route: ActivatedRoute, private googleAnalyticsService:GoogleAnalyticsService
   ) { }
 

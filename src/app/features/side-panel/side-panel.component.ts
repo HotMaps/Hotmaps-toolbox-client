@@ -17,9 +17,9 @@ export class SideComponent implements OnInit, OnDestroy {
     // Improvement of coding style :
 
     // place private members after public members, alphabetized
-    protected expanded = false;
+    expanded = false;
     protected title = 'SideComponent title';
-    protected expandedState = 'collapsed';
+    expandedState = 'collapsed';
     constructor(protected interactionService: InteractionService) {
     }
 

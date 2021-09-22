@@ -23,17 +23,17 @@ import { InteractionService } from 'app/shared/services/interaction.service';
 export class HeatLoadChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() heatLoadPayload;
 
-  private isLoading = true;
+  isLoading = true;
   private dateHeatload = { year: 2010, month: 1, day: 1 }
-  private buttons_date_type;
+  buttons_date_type;
   // private chart: Chart;
-  private labels;
-  private options: any;
+  labels;
+  options: any;
   private loadProfileData: any;
-  private subtitle = heatloadprofile;
-  private datasets: DatasetChart;
-  private type = 'line';
-  private selectedButton;
+  subtitle = heatloadprofile;
+  datasets: DatasetChart;
+  type = 'line';
+  selectedButton;
   private titleDate;
   private default_year = 2010;
 

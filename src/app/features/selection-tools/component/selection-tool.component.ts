@@ -44,15 +44,15 @@ export class SelectionToolComponent implements OnInit, OnDestroy {
   nbElementsSelected = 0;
   fileToUpload: File = null;
   isHectarSelected = false;
-  private scaleSelected: any;
+  scaleSelected: any;
   private subscription: Subscription;
   private subscriptionNbNutsSelected: Subscription;
-  private isLoaBtnDisabled = true;
-  private isClearBtnDisabled = true;
-  private stButtons = stButtons;
+  isLoaBtnDisabled = true;
+  isClearBtnDisabled = true;
+  stButtons = stButtons;
   private layerSelected;
-  private elementSelected = defaultElementSelected;
-  private maxSurfaceValueCM = maxSurfaceValueCM;
+  elementSelected = defaultElementSelected;
+  maxSurfaceValueCM = maxSurfaceValueCM;
   @Input() selectionSurface;
   constructor(private mapService: MapService, private logger: Logger, private helper: Helper, private slcToolsService : SelectionToolService) {}
 

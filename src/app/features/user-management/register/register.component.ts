@@ -20,7 +20,7 @@ export class RegisterComponent extends WaitingStatusComponent implements OnInit 
   private firstname = '';
   private captcha;
 
-  private gdpr: boolean = false;
+  gdpr: boolean = false;
 
   reactiveForm: FormGroup;
 

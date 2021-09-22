@@ -25,26 +25,26 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() personnalLayerPayload;
 
   @Input() scaleLevel;
-  private graphicsExportButtonState=false;
-  private indicatorExportButtonState=false;
+  graphicsExportButtonState=false;
+  indicatorExportButtonState=false;
 
-  private indicatorLoading=false;
-  private indicatorPersoLoading=false;
+  indicatorLoading=false;
+  indicatorPersoLoading=false;
   private animationTimeout;
   private status_id;
   private progressCmAnimation = 0;
   private updateExportButton = false;
-  private noIndicator = true
-  private tab1=tab1_datapanel;
-  private tab2=tab2_datapanel;
+  noIndicator = true
+  tab1=tab1_datapanel;
+  tab2=tab2_datapanel;
   private cm_catedory = calculation_module_category;
-  private tabSelected = this.tab1;
+  tabSelected = this.tab1;
   private exportbuttonDisplay;
   private dropdown_btns = summay_drop_down_buttons;
-  private selectedButton = this.dropdown_btns[0];
+  selectedButton = this.dropdown_btns[0];
   private heatloadGraph;
   private isCMRunning;
-  private result: ResultManagerPayload = {
+  result: ResultManagerPayload = {
     indicators: { summaryResult: null, personnalLayerResult: null, cmResult: null },
     graphics: null, raster_layers: null, vector_layers: null
   };

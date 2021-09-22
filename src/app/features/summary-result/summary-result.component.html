@@ -1,5 +1,5 @@
 <span>
-  <div class="uk-card uk-card-body htm-card" [hidden]="loadingData">
+  <div class="uk-card uk-card-body htm-card" >
     <table class="uk-table uk-table-divider uk-table-small">
       <thead>
         <tr class="header-summary">
@@ -21,6 +21,3 @@
     </table>
   </div>
 </span>
-<div *ngIf="loadingData" class="waitingbox">
-  <div class="spinner" uk-spinner></div>
-</div>

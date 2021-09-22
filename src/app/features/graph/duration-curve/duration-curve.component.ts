@@ -23,8 +23,8 @@ export class DurationCurveComponent implements OnInit, OnChanges, OnDestroy {
   private datasets: DatasetChart[];
   private labels = [];
   private options: any;
-  private subtitle = 'Duration curve';
-  private loadingData = false;
+  subtitle = 'Duration curve';
+  loadingData = false;
 
 
   constructor(private logger: Logger, private helper: Helper, private interactionService: InteractionService) {

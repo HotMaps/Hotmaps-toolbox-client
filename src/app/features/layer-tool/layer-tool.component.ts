@@ -17,13 +17,13 @@ import {GoogleAnalyticsService} from "../../google-analytics.service";
 export class LayerToolComponent implements OnInit {
   @Input() dataInteraction: DataInteractionClass;
   private imageUrl = urlLegend;
-  private isLegendDisplayed = false;
-  private isInfoDisplayed = false;
+  isLegendDisplayed = false;
+  isInfoDisplayed = false;
   private displayLegend = false;
 
-  private loading: boolean = false;
-  private hasZoneSelected: boolean = false;
-  private calculation_module_name = calculation_module_category;
+  loading: boolean = false;
+  hasZoneSelected: boolean = false;
+  calculation_module_name = calculation_module_category;
 
 
   constructor(private mapService: MapService, private uploadService: UploadService, private googleAnalyticsService:GoogleAnalyticsService) { }

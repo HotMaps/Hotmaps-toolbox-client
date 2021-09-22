@@ -52,7 +52,7 @@ export class CalculationModuleComponent implements OnInit, OnDestroy, OnChanges,
   private type_range = 'range';
   private type_checkbox = 'checkbox';
   private progress = 0;
-  private calculationModules;
+  calculationModules;
   private categories;
   private components;
   private waitingCM = false;

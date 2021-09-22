@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class WaitingStatusComponent {
 
-  protected waitingStatus = false;
+  waitingStatus = false;
 
   setWaitingStatus(value) {
     this.waitingStatus=value;

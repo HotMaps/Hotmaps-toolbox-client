@@ -19,8 +19,8 @@ export class AppComponent implements OnInit , AfterContentInit, OnDestroy {
    * management of initial status of general loading
    * AppComponent own general loading
    */
-  private showLoader: boolean;
-  private isMap: boolean = true;
+  showLoader: boolean;
+  isMap: boolean = true;
   private isIE: boolean = false;
 
   constructor(

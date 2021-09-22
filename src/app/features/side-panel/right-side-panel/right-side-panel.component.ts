@@ -85,16 +85,16 @@ export class RightSideComponent extends SideComponent implements OnInit, OnDestr
   private electricityMixStatus = false;
   private summaryResultStatus = false
 
-  private cmPayload;
-  private summaryPayload;
-  private energyMixPayload;
+  cmPayload;
+  summaryPayload;
+  energyMixPayload;
 
 
-  private heatLoadPayload;
-  private durationCurvePayload;
+  heatLoadPayload;
+  durationCurvePayload;
 
 
-  private personnalLayerPayload;
+  personnalLayerPayload;
 
 
   private loadingData = false;

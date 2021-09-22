@@ -13,8 +13,8 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends WaitingStatusComponent implements OnInit  {
-  private username='';
-  private password='';
+  username='';
+  password='';
   private token='';
   constructor(private userManagementService: UserManagementService, private userManagementStatusService: UserManagementStatusService,
     private toasterService: ToasterService, private googleAnalyticsService:GoogleAnalyticsService) {

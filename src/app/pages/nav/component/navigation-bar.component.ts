@@ -19,7 +19,7 @@ import { NavigationButton } from '../class';
 export class NavigationBarComponent implements OnInit {
     @Input() leftPanel: LeftSideComponent;
     @Input() rightPanel: RightSideComponent;
-    private navButtons: NavigationButton[];
+    navButtons: NavigationButton[];
 
     constructor(
         private interactionService: InteractionService,
