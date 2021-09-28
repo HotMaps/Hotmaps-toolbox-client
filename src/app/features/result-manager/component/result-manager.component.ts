@@ -197,7 +197,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   processAndShowCmResult(data){
-    const response = JSON.parse(data["_body"])
+    const response = data
     if (response["state"] === 'SUCCESS' ){
       this.stopAnimation()
       this.logger.log('status' + response["status"])
@@ -207,7 +207,7 @@ export class ResultManagerComponent implements OnInit, OnDestroy, OnChanges {
       }
       let prefix_name = ""
       if(this.cmPayload.cm_prefix != "") {
-        prefix_name = this.cmPayload.cm_prefix + " - "
+        prefix_name = this.cmPayload.cm_prefix + " - ";
       }
       if (!this.helper.isNullOrUndefined(response.status.result.raster_layers)) {
         response.status.result.raster_layers.map((raster) => {

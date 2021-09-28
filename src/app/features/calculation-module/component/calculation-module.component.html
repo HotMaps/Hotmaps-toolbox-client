@@ -1,7 +1,7 @@
 <div *ngIf="calculationModules?.length >= 1">
 
   <div [@cmTrigger]="expandedState">
-    <span *ngIf="expanded && calculationModules" [@titleTextTrigger]="'in'">
+    <span *ngIf="expanded && calculationModules">
       <ul uk-accordion *ngFor="let i of categories">
         <li class="uk-open">
           <h3 class="uk-accordion-title">
