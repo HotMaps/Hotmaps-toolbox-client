@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ElectricityMixComponent } from './electricity-mix.component';
 import {MockLoggerService} from '../../../../shared/services/mock/logger.service';
@@ -35,7 +35,7 @@ describe('ElectricityMixComponent', () => {
   let component: ElectricityMixComponent;
   let fixture: ComponentFixture<ElectricityMixComponent>;
   let mockLoggerService: MockLoggerService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({
       declarations: [ElectricityMixComponent, ChartComponent],

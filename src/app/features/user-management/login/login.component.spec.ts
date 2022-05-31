@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { LoginComponent } from './login.component';
@@ -13,7 +13,7 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [ FormsModule ],

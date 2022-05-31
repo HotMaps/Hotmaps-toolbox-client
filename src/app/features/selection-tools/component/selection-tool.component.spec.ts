@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 import { Http, HttpModule, ConnectionBackend, BaseRequestOptions } from '@angular/http';
@@ -51,7 +51,7 @@ describe('SelectionToolComponent', () => {
   let fixture: ComponentFixture<SelectionToolComponent>;
   let debugEl: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule, BrowserAnimationsModule, NoopAnimationsModule],
       declarations: [SelectionToolComponent, NumberFormatPipe],

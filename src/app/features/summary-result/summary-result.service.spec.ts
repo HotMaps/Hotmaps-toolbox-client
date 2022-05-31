@@ -3,7 +3,7 @@
 // listing import lines alphabetized by the module
 import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, HttpModule } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { TestBed, fakeAsync, inject, tick, async } from '@angular/core/testing';
+import { TestBed, fakeAsync, inject, tick, waitForAsync } from '@angular/core/testing';
 
 import { ToasterService } from './../../shared/services/toaster.service';
 import { LoaderService } from './../../shared/services/loader.service';
@@ -25,7 +25,7 @@ import { UploadService } from "../../shared/services/upload.service";
 describe('SummaryResultService', () => {
     let loggerStub: Logger;
     let loaderServiceStub: LoaderService;
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         loaderServiceStub = new LoaderService();
         loggerStub = new Logger();
         TestBed.configureTestingModule({

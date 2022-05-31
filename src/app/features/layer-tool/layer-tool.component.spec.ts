@@ -1,5 +1,5 @@
 import { DataInteractionArray } from './../layers-interaction/layers-interaction.data';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LayerToolComponent } from './layer-tool.component';
 import { MapService } from 'app/pages/map';
@@ -22,7 +22,7 @@ describe('LayerToolComponent', () => {
   let loggerStub: Logger;
   let loaderServiceStub: LoaderService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
 

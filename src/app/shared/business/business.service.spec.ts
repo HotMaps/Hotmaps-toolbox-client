@@ -5,7 +5,7 @@ import { DecimalPipe } from '@angular/common';
 import { BusinessInterfaceRenderArray } from './business.data';
 import { MockLoaderService } from './../services/mock/loader.service';
 import { Logger } from './../services/logger.service';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { BusinessInterfaceRenderService } from './business.service';
 import { Helper } from './../helper';
 

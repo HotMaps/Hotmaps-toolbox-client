@@ -8,7 +8,7 @@ import { MockLoggerService } from 'app/shared/services/mock/logger.service';
 import { LayersService } from 'app/features/layers/services/layers.service';
 import { SummaryResultService } from 'app/features/summary-result/summary-result.service';
 import { NavigationBarService } from 'app/pages/nav/service/navigation-bar.service';
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { InteractionService } from 'app/shared/services/interaction.service';
 import { inject } from '@angular/core/testing';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
@@ -31,7 +31,7 @@ describe('InteractionService', () => {
     let mockLoggerService: MockLoggerService;
     let mockSidePanelService: SidePanelService;
     let service: InteractionService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockSidePanelService = new SidePanelService();
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({

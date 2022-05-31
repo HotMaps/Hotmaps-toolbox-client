@@ -10,7 +10,7 @@ import { BrowserDisclaimerComponent } from './../features/browser-disclaimer/bro
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
 import { DebugElement } from '@angular/core';
-import {ComponentFixture, TestBed, async, inject, tick, fakeAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject, tick, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MapComponent } from '../pages/map/component/map.component';
 import { SearchBarComponent } from '../pages/searchbar/searchbar.component';

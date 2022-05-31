@@ -163,7 +163,7 @@ describe('MapComponent', () => {
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
         RecaptchaModule.forRoot(),
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
       ]
     }).compileComponents();
   });

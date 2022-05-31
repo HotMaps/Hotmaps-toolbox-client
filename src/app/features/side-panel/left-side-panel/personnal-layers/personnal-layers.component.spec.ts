@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PersonnalLayersComponent } from './personnal-layers.component';
 import { UploadService } from 'app/shared/services/upload.service';
@@ -7,7 +7,7 @@ describe('PersonnalLayersComponent', () => {
   let component: PersonnalLayersComponent;
   let fixture: ComponentFixture<PersonnalLayersComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PersonnalLayersComponent ],
       providers: [ 

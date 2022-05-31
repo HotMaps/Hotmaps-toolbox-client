@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { APP_BASE_HREF, DecimalPipe } from '@angular/common';
 import { MockBackend } from '@angular/http/testing';
 import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
@@ -23,7 +23,7 @@ describe('ExportDataComponent', () => {
   let fixture: ComponentFixture<ExportDataComponent>;
   let mockLoggerService: MockLoggerService;
   let mockLoaderService: MockLoaderService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({

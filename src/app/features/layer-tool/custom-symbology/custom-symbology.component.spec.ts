@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CustomSymbologyComponent } from './custom-symbology.component';
 import { Helper, Logger } from 'app/shared';
@@ -8,7 +8,7 @@ describe('CustomSymbologyComponent', () => {
   let component: CustomSymbologyComponent;
   let fixture: ComponentFixture<CustomSymbologyComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CustomSymbologyComponent ],
       providers:[Helper, Logger, DecimalPipe]

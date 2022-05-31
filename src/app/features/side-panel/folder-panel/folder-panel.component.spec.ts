@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FolderPanelComponent } from "./folder-panel.component";
 import { FormsModule } from "@angular/forms";
 import { SnapshotService } from "../../../shared/services/snapshot.service";
@@ -11,7 +11,7 @@ describe('FolderPanelComponent', () => {
   let component: FolderPanelComponent;
   let fixture: ComponentFixture<FolderPanelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule ],
       declarations: [ FolderPanelComponent ],

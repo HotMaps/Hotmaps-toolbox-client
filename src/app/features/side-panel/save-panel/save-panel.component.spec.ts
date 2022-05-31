@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SavePanelComponent } from './save-panel.component';
 import { FormsModule } from "@angular/forms";
@@ -10,7 +10,7 @@ describe('SavePanelComponent', () => {
   let component: SavePanelComponent;
   let fixture: ComponentFixture<SavePanelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule ],
       declarations: [ SavePanelComponent ],

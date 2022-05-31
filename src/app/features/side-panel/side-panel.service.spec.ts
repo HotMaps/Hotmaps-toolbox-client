@@ -1,13 +1,13 @@
 // Improvement of coding style : 
 // leaving one empty line between third party imports and application imports
 // listing import lines alphabetized by the module
-import { inject, async, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { SidePanelService } from './side-panel.service';
 
 
 describe('SidePanelService', () => {
     let service: SidePanelService;
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             providers: [
                 {provide: SidePanelService, useClass: SidePanelService}

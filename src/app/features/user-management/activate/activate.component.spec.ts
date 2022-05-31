@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ describe('ActivateComponent', () => {
   let component: ActivateComponent;
   let fixture: ComponentFixture<ActivateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ActivateComponent ],
       imports: [

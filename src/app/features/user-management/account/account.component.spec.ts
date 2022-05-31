@@ -1,6 +1,6 @@
 import { UserManagementStatusService } from './../service/user-management-status.service';
 import { FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
@@ -19,7 +19,7 @@ describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AccountComponent, ChartComponent, UploadComponent ],
       imports: [

@@ -1,4 +1,4 @@
-import { inject, async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 import { Http, HttpModule, ConnectionBackend, BaseRequestOptions } from '@angular/http';
@@ -47,7 +47,7 @@ import {GoogleAnalyticsService} from "../../../google-analytics.service";
 
 describe('SelectionToolService', () => {
     let service: SelectionToolService;
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [ HttpModule],
             providers: [

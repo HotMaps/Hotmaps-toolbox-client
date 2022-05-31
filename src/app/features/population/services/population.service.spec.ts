@@ -2,7 +2,7 @@
 // listing import lines alphabetized by the module
 import {BaseRequestOptions, Http, ConnectionBackend, HttpModule} from '@angular/http';
 import {MockBackend} from '@angular/http/testing';
-import {TestBed, inject, async} from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 
 import {Logger } from '../../../shared/services/logger.service';
 import {LoaderService } from '../../../shared/services/loader.service';
@@ -13,7 +13,7 @@ describe('PopulationService', () => {
 
   let loaderServiceStub: LoaderService;
   let loggerStub: Logger;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger;
     TestBed.configureTestingModule({

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StandAloneCmComponent } from './stand-alone-cm.component';
 
@@ -6,7 +6,7 @@ describe('StandAloneCmComponent', () => {
   let component: StandAloneCmComponent;
   let fixture: ComponentFixture<StandAloneCmComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ StandAloneCmComponent ]
     })

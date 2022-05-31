@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BrowserDisclaimerComponent } from './browser-disclaimer.component';
 
@@ -6,7 +6,7 @@ describe('BrowserDisclaimerComponent', () => {
   let component: BrowserDisclaimerComponent;
   let fixture: ComponentFixture<BrowserDisclaimerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BrowserDisclaimerComponent ]
     })

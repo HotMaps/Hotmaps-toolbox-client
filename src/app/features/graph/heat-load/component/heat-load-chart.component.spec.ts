@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HeatLoadChartComponent } from './heat-load-chart.component';
 import { HeatLoadAggregateService } from '../heat-load.service';
@@ -32,7 +32,7 @@ describe('HeatLoadChartComponent', () => {
   let component: HeatLoadChartComponent;
   let fixture: ComponentFixture<HeatLoadChartComponent>;
   let mockLoggerService: MockLoggerService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({
       declarations: [HeatLoadChartComponent, ChartComponent],

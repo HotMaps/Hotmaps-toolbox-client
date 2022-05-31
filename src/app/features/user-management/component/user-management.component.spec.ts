@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionBackend, BaseRequestOptions, Http } from '@angular/http';
@@ -27,7 +27,7 @@ describe('UserManagementComponent', () => {
   const fakeActivatedRoute = {
     'params': Observable.from([{ token_activated:"token_of_test"}])
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UserManagementComponent, LoginComponent, RegisterComponent,
         RecoveryComponent, AccountComponent, ChartComponent, ActivateComponent, UploadComponent, GdprComponent ],

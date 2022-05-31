@@ -28,7 +28,7 @@ import { LayersService } from './features/layers';
 import { PopulationService } from './features/population/services/population.service';
 import { SidePanelService } from './features/side-panel/side-panel.service';
 import { SelectionToolService, SelectionToolButtonStateService } from './features/selection-tools';
-import { FeedbackComponent } from './features/feedback/';
+import { FeedbackComponent } from './features/feedback/component';
 
 import { SelectionScaleService } from './features/selection-scale';
 import { SummaryResultComponent } from './features/summary-result/summary-result.component';

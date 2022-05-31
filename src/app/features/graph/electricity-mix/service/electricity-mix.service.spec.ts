@@ -1,4 +1,4 @@
-import { TestBed, inject,async } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 
 import { ElectricityMixService } from './electricity-mix.service';
 import {LoaderService} from "../../../../shared/services/loader.service";
@@ -15,7 +15,7 @@ import {Helper} from "../../../../shared/helper";
 describe('ElectricityMixService', () => {
   let loggerStub: Logger;
   let loaderServiceStub: LoaderService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger();
     TestBed.configureTestingModule({

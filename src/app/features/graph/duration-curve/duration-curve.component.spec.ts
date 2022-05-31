@@ -1,6 +1,6 @@
 import { CalculationHeatLoadDividedService } from 'app/features/calculation-module/service/calculation-test.service';
 import { CalculationModuleService } from 'app/features/calculation-module/service/calculation-module.service';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DurationCurveComponent } from './duration-curve.component';
 import { DurationCurveService } from "./duration-curve.service";
@@ -34,7 +34,7 @@ describe('DurationCurveComponent', () => {
   let mockLoggerService: MockLoggerService;
   let mockLoaderService: MockLoaderService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({

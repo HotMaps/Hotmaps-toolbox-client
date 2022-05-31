@@ -4,7 +4,7 @@ import { LayerToolComponent } from './../../layer-tool/layer-tool.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Http, ConnectionBackend, BaseRequestOptions } from '@angular/http';
-import { TestBed, ComponentFixture, async, inject, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, ComponentFixture, inject, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { DebugElement } from '@angular/core';
 import { discardPeriodicTasks } from '@angular/core/testing';
@@ -51,7 +51,7 @@ describe('LeftSideComponent', () => {
   let debugEl: DebugElement;
   let loggerStub: Logger;
   let loaderServiceStub: LoaderService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({

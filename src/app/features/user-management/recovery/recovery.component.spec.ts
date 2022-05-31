@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions, Http, ConnectionBackend } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ describe('RecoveryComponent', () => {
   let component: RecoveryComponent;
   let fixture: ComponentFixture<RecoveryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RecoveryComponent ],
       imports: [
