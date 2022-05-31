@@ -11,6 +11,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "util",
+              "shpjs",
+              "proj4leaflet"
+            ],
             "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",

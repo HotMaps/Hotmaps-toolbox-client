@@ -1,5 +1,5 @@
 
-import 'jquery';
+//import 'jquery'; //NOTE: commenting this may have break somethink I'm unaware of.
 
 // Improvement of coding style :
 // leaving one empty line between third party imports and application imports
