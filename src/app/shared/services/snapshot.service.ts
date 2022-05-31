@@ -13,7 +13,7 @@ import { GeojsonClass } from 'app/features/layers';
 import { NutsRenderArray } from "../business";
 import { DataInteractionArray } from "../../features/layers-interaction/layers-interaction.data";
 import { DataInteractionClass } from "../../features/layers-interaction/layers-interaction.class";
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
@@ -226,9 +226,6 @@ export class SnapshotService {
   delete(id: number|SnapshotConfig): Promise<boolean> {
     if (typeof(id) !== 'number') id = (id as SnapshotConfig).id;
 
-    let httpParams = new HttpParams()
-      .set('token', this.userToken)
-      .set('id', id.toString())
     let jsonparams = {
       token: this.userToken,
       id: id.toString()
