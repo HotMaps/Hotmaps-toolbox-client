@@ -6,7 +6,6 @@ import { MapService } from 'app/pages/map';
 import { ToasterService } from './toaster.service';
 
 import { Helper } from '../helper';
-import { isNumber } from 'util';
 import { TileLayer } from 'leaflet';
 
 declare const L: any;
@@ -117,7 +116,7 @@ export class UploadService extends APIService {
     delete(id: number | UploadedFile): Promise<boolean> {
         this.remove(id); // remove first
         this.dataInsteractionService.removeLayer(id)
-        if (!isNumber(id)) id = (id as UploadedFile).id;
+        if (typeof(id) !== 'number') id = (id as UploadedFile).id;
 
         return super.DELETE(uploadUrl + 'delete', {
             body: { token: this.userToken, id: id }
@@ -133,7 +132,7 @@ export class UploadService extends APIService {
     * @returns Promise with the url to download
     */
     download(id: number | UploadedFile): Promise<string> {
-        if (!isNumber(id)) id = (id as UploadedFile).id;
+        if (typeof(id) !== 'number') id = (id as UploadedFile).id;
 
         return super.POSTunStringify({
             token: this.userToken, id: id
@@ -182,7 +181,7 @@ export class UploadService extends APIService {
     * @param id
     */
     show(id: number | UploadedFile): void {
-        const upFile: UploadedFile = isNumber(id)
+        const upFile: UploadedFile = typeof(id) === 'number'
             ? this.getUploadedFiles().getValue().filter(upload => upload.id == id)[0] : id as UploadedFile;
 
         if (upFile.id in this.activeLayers) {
@@ -286,7 +285,7 @@ export class UploadService extends APIService {
     * @param id
     */
     remove(id: number | UploadedFile): void {
-        if (!isNumber(id)) id = (id as UploadedFile).id;
+        if (typeof(id) !== 'number') id = (id as UploadedFile).id;
         if (!((id as number) in this.activeLayers)) return; // if the layer wasn't active
 
         (this.activeLayers[id as number] as TileLayer).removeFrom(this.mapService.getMap());

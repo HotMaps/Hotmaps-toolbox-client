@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import * as L from 'leaflet';
-import { isNumber } from 'util';
 
 import { UserManagementStatusService } from 'app/features/user-management';
 import { MapService } from 'app/pages/map';
@@ -225,15 +224,17 @@ export class SnapshotService {
    * @returns Promise with success of the procedure
    */
   delete(id: number|SnapshotConfig): Promise<boolean> {
-    if (!isNumber(id)) id = (id as SnapshotConfig).id;
+    if (typeof(id) !== 'number') id = (id as SnapshotConfig).id;
 
     let httpParams = new HttpParams()
       .set('token', this.userToken)
       .set('id', id.toString())
+    let jsonparams = {
+      token: this.userToken,
+      id: id.toString()
+    }
 
-    return this.http.delete(snapshotUrl + 'delete', {
-      params : httpParams
-    }).toPromise()
+    return this.http.delete(snapshotUrl + 'delete', {body: jsonparams}).toPromise()
       .then(response => this.showMsg(response, true))
       .catch(response => this.showMsg(response, false));
   }
