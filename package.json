@@ -33,7 +33,7 @@
     "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
     "mdn-polyfills": "^5.2.0",
-    "ng-recaptcha": "^6.1.0",
+    "ng-recaptcha": "^7.0.0",
     "normalize.css": "6.0.0",
     "proj4leaflet": "^1.0.2",
     "reflect-metadata": "0.1.10",
