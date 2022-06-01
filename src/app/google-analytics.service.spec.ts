@@ -5,8 +5,9 @@ import { GoogleAnalyticsService } from './google-analytics.service';
 describe('GoogleAnalyticsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GoogleAnalyticsService]
-    });
+    providers: [GoogleAnalyticsService],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   it('should be created', inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {

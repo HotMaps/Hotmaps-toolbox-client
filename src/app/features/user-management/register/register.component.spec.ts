@@ -17,30 +17,31 @@ describe('RegisterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
-      imports: [
+    declarations: [RegisterComponent],
+    imports: [
         FormsModule,
         BrowserModule,
         ReactiveFormsModule,
         RecaptchaModule,
         RecaptchaFormsModule
-      ],
-      providers:[
+    ],
+    providers: [
         UserManagementService,
         RecaptchaLoaderService,
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: Logger, useClass: Logger},
-        {provide: LoaderService, useValue: LoaderService },
-        {provide: ToasterService, useClass: ToasterService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-        {provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
-      ]
-    })
+        { provide: Logger, useClass: Logger },
+        { provide: LoaderService, useValue: LoaderService },
+        { provide: ToasterService, useClass: ToasterService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

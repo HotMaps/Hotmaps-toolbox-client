@@ -103,62 +103,62 @@ describe('AppComponent: Router', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
     TestBed.configureTestingModule({
-      declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
+    declarations: [AppComponent, MapComponent, SearchBarComponent, LeftSideComponent, RightSideComponent, TopSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, FeedbackComponent,
         SummaryResultComponent, SelectionToolComponent, UppercaseFirstLetterPipe, NumberFormatPipe, LayerNamePipe,
         HeatLoadChartComponent, ChartComponent, BusinessNamePipe, ExportDataComponent,
         DurationCurveComponent, ElectricityMixComponent, CalculationModuleComponent, ResultManagerComponent,
         UserManagementComponent, LoginComponent, AccountComponent, RecoveryComponent, RegisterComponent, ActivateComponent, LayerToolComponent,
         WelcomePageComponent, BrowserDisclaimerComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, FolderPanelComponent, SavePanelComponent, GdprComponent, SummaryResultContainerComponent, StandAloneCmComponent
-       ],
-      providers: [
-        {provide: LoaderService, useValue: loaderServiceStub },
-        {provide: MapService, useClass: MapService},
-        {provide: SidePanelService, useClass: SidePanelService},
-        {provide: SelectionToolUtils, useClass: SelectionToolUtils},
-        {provide: SelectionScaleService, useClass: SelectionScaleService},
-        {provide: ExportDataService, useClass: ExportDataService},
-        {provide: Logger, useClass: Logger},
-        {provide: SelectionToolService, useClass: SelectionToolService},
-        {provide: Helper, useClass: Helper},
-        {provide: DecimalPipe, useClass: DecimalPipe},
-        {provide: SidePanelService, useClass: SidePanelService},
-        {provide: NavigationBarService, useClass: NavigationBarService},
-        {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
-        {provide: MailService, useClass: MailService},
-        {provide: SummaryResultService, useClass: SummaryResultService},
-        {provide: InteractionService, useClass: InteractionService},
-        {provide: DurationCurveService, useClass: DurationCurveService},
-        {provide: ElectricityMixService, useClass: ElectricityMixService},
-        {provide: CalculationModuleService, useClass: CalculationModuleService},
-        {provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+    ],
+    providers: [
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: MapService, useClass: MapService },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+        { provide: SelectionScaleService, useClass: SelectionScaleService },
+        { provide: ExportDataService, useClass: ExportDataService },
+        { provide: Logger, useClass: Logger },
+        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: Helper, useClass: Helper },
+        { provide: DecimalPipe, useClass: DecimalPipe },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+        { provide: MailService, useClass: MailService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-        {provide: ToasterService, useClass: ToasterService},
-        {provide: LayersService, useClass: LayersService},
-        {provide: PopulationService, useClass: PopulationService},
-        {provide: GeocodingService, useClass: GeocodingService},
-        {provide: DataInteractionService, useClass: DataInteractionService},
-        {provide: CMLayersService, useClass: CMLayersService},
-
-        {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
-        {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
-        {provide: APP_BASE_HREF, useValue : '/' },
-        {provide: CMLayersService, useClass : CMLayersService },
-        {provide: UserManagementService, useClass : UserManagementService },
-        {provide: UserManagementStatusService, useClass : UserManagementStatusService },
-      ],
-      imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        { provide: ToasterService, useClass: ToasterService },
+        { provide: LayersService, useClass: LayersService },
+        { provide: PopulationService, useClass: PopulationService },
+        { provide: GeocodingService, useClass: GeocodingService },
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: CMLayersService, useClass: CMLayersService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: CMLayersService, useClass: CMLayersService },
+        { provide: UserManagementService, useClass: UserManagementService },
+        { provide: UserManagementStatusService, useClass: UserManagementStatusService },
+    ],
+    imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
         RecaptchaModule
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
 
   });
   beforeEach(inject([Router, Location], (_router: Router, _location: Location) => {

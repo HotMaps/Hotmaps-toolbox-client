@@ -8,8 +8,9 @@ describe('StandAloneCmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ StandAloneCmComponent ]
-    })
+    declarations: [StandAloneCmComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

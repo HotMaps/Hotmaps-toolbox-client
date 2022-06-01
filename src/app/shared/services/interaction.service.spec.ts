@@ -35,11 +35,11 @@ describe('InteractionService', () => {
     mockSidePanelService = new SidePanelService();
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({
-      declarations: [],
-      providers: [
+    declarations: [],
+    providers: [
         {
             provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
+                return new Http(backend, defaultOptions);
             }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: InteractionService, useClass: InteractionService },
@@ -64,9 +64,10 @@ describe('InteractionService', () => {
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         { provide: SelectionScaleService, useClass: SelectionScaleService }
-      ],
-      imports: []
-    }).compileComponents();
+    ],
+    imports: [],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   }));
     beforeEach(inject([InteractionService], (interactionService: InteractionService) => {
         service = interactionService;

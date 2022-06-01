@@ -55,13 +55,13 @@ describe('LeftSideComponent', () => {
     loggerStub = new Logger();
     loaderServiceStub = new LoaderService();
     TestBed.configureTestingModule({
-      declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent, 
-        LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent, StandAloneCmComponent ],
-      providers: [
+    declarations: [LeftSideComponent, DataInteractionCellComponent, CalculationModuleComponent,
+        LayerToolComponent, PersonnalLayersComponent, CustomSymbologyComponent, StandAloneCmComponent],
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         Helper, DecimalPipe,
         { provide: InteractionService, useClass: InteractionService },
@@ -92,14 +92,15 @@ describe('LeftSideComponent', () => {
         { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         { provide: UserManagementStatusService, useClass: UserManagementStatusService },
-      ],
-      imports: [
+    ],
+    imports: [
         BrowserAnimationsModule,
         NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
     fixture = TestBed.createComponent(LeftSideComponent);
     component = fixture.componentInstance;
     debugEl = fixture.debugElement;

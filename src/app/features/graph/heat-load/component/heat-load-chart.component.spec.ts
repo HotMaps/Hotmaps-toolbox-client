@@ -35,11 +35,10 @@ describe('HeatLoadChartComponent', () => {
   beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({
-      declarations: [HeatLoadChartComponent, ChartComponent],
-      providers: [
+    declarations: [HeatLoadChartComponent, ChartComponent],
+    providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-
         { provide: Logger, useClass: Logger },
         { provide: ToasterService, useClass: ToasterService },
         { provide: InteractionService, useClass: InteractionService },
@@ -49,16 +48,16 @@ describe('HeatLoadChartComponent', () => {
         { provide: LayersService, useClass: LayersService },
         { provide: ExportDataService, useClass: ExportDataService },
         { provide: LoaderService, useClass: LoaderService },
-        { provide: InteractionService, useClass: InteractionService},
-        { provide: SidePanelService, useClass: SidePanelService},
-        { provide: SelectionToolService, useClass: SelectionToolService},
-        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
-        { provide: SelectionScaleService, useClass: SelectionScaleService},
-        { provide: DataInteractionService, useClass: DataInteractionService},
-        { provide: DurationCurveService, useClass: DurationCurveService},
-        { provide: NavigationBarService, useClass: NavigationBarService},
-        { provide: SummaryResultService, useClass: SummaryResultService},
-        { provide: LayersService, useClass: LayersService},
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: SelectionScaleService, useClass: SelectionScaleService },
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: LayersService, useClass: LayersService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: ElectricityMixService },
         { provide: Helper, useClass: Helper },
@@ -66,18 +65,19 @@ describe('HeatLoadChartComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
-        { provide: CalculationModuleService, useClass: CalculationModuleService},
-        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-      ],
-      imports: [BrowserAnimationsModule, NoopAnimationsModule]
-    })
+    ],
+    imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    teardown: { destroyAfterEach: false }
+})
       .compileComponents();
   }));
 

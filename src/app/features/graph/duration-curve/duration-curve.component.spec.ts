@@ -38,8 +38,8 @@ describe('DurationCurveComponent', () => {
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({
-      declarations: [ DurationCurveComponent, ChartComponent ],
-      providers: [
+    declarations: [DurationCurveComponent, ChartComponent],
+    providers: [
         { provide: DurationCurveService, useClass: DurationCurveService },
         { provide: Logger, useClass: Logger },
         { provide: ToasterService, useClass: ToasterService },
@@ -62,18 +62,19 @@ describe('DurationCurveComponent', () => {
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: ElectricityMixService, useClass: ElectricityMixService },
         { provide: MockBackend, useClass: MockBackend },
-        { provide: CalculationModuleService, useClass: CalculationModuleService},
-        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-      ],
-      imports: [BrowserAnimationsModule, NoopAnimationsModule]
-    })
+    ],
+    imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

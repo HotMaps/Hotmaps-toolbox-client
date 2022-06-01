@@ -49,11 +49,11 @@ describe('mapService', () => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger;
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: InteractionService, useClass: InteractionService },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
@@ -85,8 +85,9 @@ describe('mapService', () => {
         { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
         { provide: CMLayersService, useClass: CMLayersService },
         { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
-      ],
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
   });
 
 

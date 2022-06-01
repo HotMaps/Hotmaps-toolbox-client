@@ -27,8 +27,8 @@ describe('ExportDataComponent', () => {
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({
-      declarations: [ExportDataComponent],
-      providers: [
+    declarations: [ExportDataComponent],
+    providers: [
         { provide: ExportDataService, useClass: ExportDataService },
         { provide: Logger, useClass: Logger },
         { provide: ToasterService, useClass: ToasterService },
@@ -39,18 +39,18 @@ describe('ExportDataComponent', () => {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
-        { provide: DataInteractionService, useClass: DataInteractionService},
-        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
-
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-      ],
-      imports: [BrowserAnimationsModule, NoopAnimationsModule]
-    })
+    ],
+    imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    teardown: { destroyAfterEach: false }
+})
       .compileComponents();
   }));
 

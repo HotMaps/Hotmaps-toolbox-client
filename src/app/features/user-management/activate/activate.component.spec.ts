@@ -13,25 +13,25 @@ describe('ActivateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivateComponent ],
-      imports: [
+    declarations: [ActivateComponent],
+    imports: [
         FormsModule
-      ],
-      providers:[
+    ],
+    providers: [
         UserManagementService,
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: Logger, useClass: Logger},
-        {provide: LoaderService, useValue: LoaderService },
-        {provide: ToasterService, useClass: ToasterService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-
-      ]
-    })
+        { provide: Logger, useClass: Logger },
+        { provide: LoaderService, useValue: LoaderService },
+        { provide: ToasterService, useClass: ToasterService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

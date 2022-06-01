@@ -10,9 +10,10 @@ describe('CustomSymbologyComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomSymbologyComponent ],
-      providers:[Helper, Logger, DecimalPipe]
-    })
+    declarations: [CustomSymbologyComponent],
+    providers: [Helper, Logger, DecimalPipe],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

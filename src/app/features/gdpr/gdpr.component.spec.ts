@@ -8,8 +8,9 @@ describe('GdprComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GdprComponent ]
-    })
+    declarations: [GdprComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

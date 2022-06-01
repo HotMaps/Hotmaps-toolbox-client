@@ -8,8 +8,9 @@ describe('WelcomePageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomePageComponent ]
-    })
+    declarations: [WelcomePageComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

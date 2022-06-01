@@ -21,17 +21,17 @@ describe('AccountComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountComponent, ChartComponent, UploadComponent ],
-      imports: [
+    declarations: [AccountComponent, ChartComponent, UploadComponent],
+    imports: [
         FormsModule
-      ],
-      providers:[
+    ],
+    providers: [
         UserManagementService,
         UserManagementStatusService,
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         MockBackend, BaseRequestOptions,
         Logger, LoaderService, ToasterService,
@@ -41,8 +41,9 @@ describe('AccountComponent', () => {
         { provide: UploadService, useValue: UploadService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
         { provide: InteractionService, useValue: InteractionService }
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

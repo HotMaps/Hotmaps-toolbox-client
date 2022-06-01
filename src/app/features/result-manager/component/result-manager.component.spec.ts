@@ -46,47 +46,47 @@ describe('ResultManagerComponent', () => {
       loggerStub = new Logger();
         loaderServiceStub = new LoaderService();
         TestBed.configureTestingModule({
-            declarations: [ DataInteractionCellComponent, CalculationModuleComponent ],
-            providers: [
-                {
-                  provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-                    return new Http(backend, defaultOptions);
-                    }, deps: [ MockBackend, BaseRequestOptions ]
-                },
-                { provide: Helper, useClass: Helper},
-                { provide: DecimalPipe, useClass: DecimalPipe },
-                { provide: InteractionService, useClass: InteractionService },
-                { provide: ExportDataService, useClass: ExportDataService },
-                { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
-                { provide: SummaryResultService, useClass: SummaryResultService },
-                { provide: LayersService, useClass: LayersService },
-                { provide: NavigationBarService, useClass: NavigationBarService },
-                { provide: DataInteractionService, useClass: DataInteractionService },
-                { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-                { provide: DurationCurveService, useClass: DurationCurveService },
-                { provide: ToasterService },
-                { provide: ElectricityMixService, useClass: ElectricityMixService },
-
-                { provide: MockBackend, useClass: MockBackend },
-                { provide: BaseRequestOptions, useClass: BaseRequestOptions },
-                { provide: Logger, useValue: loggerStub },
-                { provide: LoaderService, useValue: loaderServiceStub },
-                { provide: MapService, useClass: MapService },
-                { provide: SelectionScaleService, useClass: SelectionScaleService },
-                { provide: SelectionToolService, useClass: SelectionToolService },
-                { provide: SelectionToolUtils, useClass: SelectionToolUtils },
-                { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
-                { provide: CalculationModuleService, useClass: CalculationModuleService },
-                { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
-                { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
-            ],
-            imports: [
-              BrowserAnimationsModule,
-              NoopAnimationsModule,
-              FormsModule,
-              ReactiveFormsModule
-            ]
-        });
+    declarations: [DataInteractionCellComponent, CalculationModuleComponent],
+    providers: [
+        {
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
+        },
+        { provide: Helper, useClass: Helper },
+        { provide: DecimalPipe, useClass: DecimalPipe },
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: ExportDataService, useClass: ExportDataService },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: LayersService, useClass: LayersService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: ToasterService },
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        { provide: Logger, useValue: loggerStub },
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: MapService, useClass: MapService },
+        { provide: SelectionScaleService, useClass: SelectionScaleService },
+        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+        { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
+    ],
+    imports: [
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    teardown: { destroyAfterEach: false }
+});
     }));
     beforeEach(inject([MockBackend], (mockBackend: MockBackend) => {
         backend = mockBackend;

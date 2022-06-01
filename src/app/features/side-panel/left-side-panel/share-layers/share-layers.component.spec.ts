@@ -9,11 +9,12 @@ describe('PersonnalLayersComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PersonnalLayersComponent ],
-      providers: [ 
+    declarations: [PersonnalLayersComponent],
+    providers: [
         { provide: UploadService, useValue: UploadService },
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

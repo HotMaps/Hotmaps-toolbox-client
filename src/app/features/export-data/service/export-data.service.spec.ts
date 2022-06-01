@@ -28,22 +28,21 @@ describe('ExportDataService', () => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger();
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         { provide: Helper },
         { provide: ToasterService },
         { provide: LoaderService, useValue: loaderServiceStub },
         { provide: ExportDataService, useClass: ExportDataService },
-        { provide: DataInteractionService, useClass: DataInteractionService},
-        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
-        
-
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: MockBackend, useClass: MockBackend },
         { provide: Logger, useValue: loggerStub },
-      ],
-      imports: [
+    ],
+    imports: [
         HttpModule
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
   }));
 
   beforeEach(inject([ExportDataService], (exportDataService: ExportDataService) => {

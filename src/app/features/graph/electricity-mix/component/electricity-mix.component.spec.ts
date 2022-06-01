@@ -38,11 +38,10 @@ describe('ElectricityMixComponent', () => {
   beforeEach(waitForAsync(() => {
     mockLoggerService = new MockLoggerService();
     TestBed.configureTestingModule({
-      declarations: [ElectricityMixComponent, ChartComponent],
-      providers: [
+    declarations: [ElectricityMixComponent, ChartComponent],
+    providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
-
         { provide: Logger, useClass: Logger },
         { provide: ToasterService, useClass: ToasterService },
         { provide: InteractionService, useClass: InteractionService },
@@ -52,34 +51,35 @@ describe('ElectricityMixComponent', () => {
         { provide: LayersService, useClass: LayersService },
         { provide: ExportDataService, useClass: ExportDataService },
         { provide: LoaderService, useClass: LoaderService },
-        { provide: InteractionService, useClass: InteractionService},
-        { provide: SidePanelService, useClass: SidePanelService},
-        { provide: SelectionToolService, useClass: SelectionToolService},
-        { provide: SelectionScaleService, useClass: SelectionScaleService},
-        { provide: DataInteractionService, useClass: DataInteractionService},
-        { provide: DurationCurveService, useClass: DurationCurveService},
-        { provide: NavigationBarService, useClass: NavigationBarService},
-        { provide: SummaryResultService, useClass: SummaryResultService},
-        { provide: LayersService, useClass: LayersService},
+        { provide: InteractionService, useClass: InteractionService },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: SelectionScaleService, useClass: SelectionScaleService },
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: SummaryResultService, useClass: SummaryResultService },
+        { provide: LayersService, useClass: LayersService },
         { provide: Logger, useValue: mockLoggerService },
         { provide: Helper, useClass: Helper },
         { provide: DecimalPipe, useClass: DecimalPipe },
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions },
         { provide: MockBackend, useClass: MockBackend },
-        {provide: ElectricityMixService, useClass: ElectricityMixService},
-        { provide: CalculationModuleService, useClass: CalculationModuleService},
-        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService},
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
+        { provide: ElectricityMixService, useClass: ElectricityMixService },
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-      ],
-      imports: [BrowserAnimationsModule, NoopAnimationsModule]
-    })
+    ],
+    imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    teardown: { destroyAfterEach: false }
+})
       .compileComponents();
   }));
 

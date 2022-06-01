@@ -49,21 +49,22 @@ describe('SelectionToolService', () => {
     let service: SelectionToolService;
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [ HttpModule],
-            providers: [
-                {provide: SelectionToolService, useClass: SelectionToolService},
-                {provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService},
-                {provide: SelectionToolUtils, useClass: SelectionToolUtils},
-                SelectionScaleService, ElectricityMixService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
-                BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService,
-                LayersService, MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService,
-                DataInteractionService, ExportDataService, DurationCurveService,
-                { provide: CalculationModuleService, useClass: CalculationModuleService},
-                { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-                { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
-              { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService}
-            ]
-        })
+    imports: [HttpModule],
+    providers: [
+        { provide: SelectionToolService, useClass: SelectionToolService },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: SelectionToolUtils, useClass: SelectionToolUtils },
+        SelectionScaleService, ElectricityMixService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
+        BusinessInterfaceRenderService, SidePanelService, InteractionService, NavigationBarService, SummaryResultService,
+        LayersService, MapService, SelectionToolButtonStateService, MailService, PopulationService, GeocodingService,
+        DataInteractionService, ExportDataService, DurationCurveService,
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService }
+    ],
+    teardown: { destroyAfterEach: false }
+})
     }));
     beforeEach(inject([SelectionToolService], (selectionToolService: SelectionToolService) => {
         service = selectionToolService;

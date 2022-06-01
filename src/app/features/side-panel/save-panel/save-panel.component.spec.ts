@@ -12,14 +12,15 @@ describe('SavePanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ SavePanelComponent ],
-      providers: [
+    imports: [FormsModule],
+    declarations: [SavePanelComponent],
+    providers: [
         { provide: SnapshotService, useValue: SnapshotService },
         { provide: InteractionService, useValue: InteractionService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

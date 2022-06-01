@@ -9,10 +9,11 @@ describe('SidePanelService', () => {
     let service: SidePanelService;
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            providers: [
-                {provide: SidePanelService, useClass: SidePanelService}
-            ]
-        })
+    providers: [
+        { provide: SidePanelService, useClass: SidePanelService }
+    ],
+    teardown: { destroyAfterEach: false }
+})
     }));
     beforeEach(inject([SidePanelService], (sidePanelService: SidePanelService) => {
         service = sidePanelService;

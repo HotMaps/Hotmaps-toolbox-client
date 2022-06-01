@@ -35,33 +35,33 @@ describe('LayersService', () => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger();
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: Helper},
-        {provide: ToasterService},
-
-        {provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService},
-        {provide: DataInteractionService, useClass: DataInteractionService},
-        {provide: MailService, useClass: MailService},
-        {provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService},
-        {provide: NavigationBarService, useClass: NavigationBarService},
-        {provide: PopulationService, useClass: PopulationService},
-        {provide: SidePanelService, useClass: SidePanelService},
-        {provide: LoaderService, useValue: loaderServiceStub},
-        {provide: LayersService, useClass: LayersService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: Logger, useValue: loggerStub},
-        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions}
-      ],
-      imports: [
+        { provide: Helper },
+        { provide: ToasterService },
+        { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
+        { provide: DataInteractionService, useClass: DataInteractionService },
+        { provide: MailService, useClass: MailService },
+        { provide: SelectionToolButtonStateService, useClass: SelectionToolButtonStateService },
+        { provide: NavigationBarService, useClass: NavigationBarService },
+        { provide: PopulationService, useClass: PopulationService },
+        { provide: SidePanelService, useClass: SidePanelService },
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: LayersService, useClass: LayersService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: Logger, useValue: loggerStub },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions }
+    ],
+    imports: [
         HttpModule
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
   }));
   let subject: LayersService = null;
   let backend: MockBackend = null;

@@ -8,8 +8,9 @@ describe('BrowserDisclaimerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrowserDisclaimerComponent ]
-    })
+    declarations: [BrowserDisclaimerComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

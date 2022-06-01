@@ -27,8 +27,8 @@ describe('LayerToolComponent', () => {
     loaderServiceStub = new LoaderService();
 
     TestBed.configureTestingModule({
-      declarations: [ LayerToolComponent, CustomSymbologyComponent ],
-      providers: [
+    declarations: [LayerToolComponent, CustomSymbologyComponent],
+    providers: [
         MapService,
         ToasterService,
         SelectionScaleService,
@@ -39,16 +39,17 @@ describe('LayerToolComponent', () => {
         { provide: LayersService, useValue: LayersService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         MockBackend, BaseRequestOptions,
         Helper, DecimalPipe,
         Logger, LoaderService,
         BusinessInterfaceRenderService
-      ]
-    }).compileComponents();
+    ],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   }));
 
   beforeEach(() => {

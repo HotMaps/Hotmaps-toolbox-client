@@ -53,9 +53,9 @@ describe('SelectionToolComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule, BrowserAnimationsModule, NoopAnimationsModule],
-      declarations: [SelectionToolComponent, NumberFormatPipe],
-      providers: [
+    imports: [HttpModule, BrowserAnimationsModule, NoopAnimationsModule],
+    declarations: [SelectionToolComponent, NumberFormatPipe],
+    providers: [
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         SelectionScaleService, ElectricityMixService, Logger, LoaderService, ToasterService, SelectionToolService, Helper, DecimalPipe,
@@ -63,13 +63,14 @@ describe('SelectionToolComponent', () => {
         MapService, SelectionToolButtonStateService, MailService,
         PopulationService, GeocodingService, DataInteractionService, ExportDataService,
         DurationCurveService,
-        { provide: CalculationModuleService, useClass: CalculationModuleService},
-        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService},
-        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
-        { provide: CMLayersService, useClass: CMLayersService},
-        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService}
-      ]
-    })
+        { provide: CalculationModuleService, useClass: CalculationModuleService },
+        { provide: CalculationModuleStatusService, useClass: CalculationModuleStatusService },
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: CMLayersService, useClass: CMLayersService },
+        { provide: GoogleAnalyticsService, useClass: GoogleAnalyticsService }
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

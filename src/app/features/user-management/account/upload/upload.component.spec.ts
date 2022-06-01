@@ -12,14 +12,15 @@ describe('UploadComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ UploadComponent ],
-      providers: [
+    imports: [FormsModule],
+    declarations: [UploadComponent],
+    providers: [
         { provide: UploadService, useValue: UploadService },
         { provide: DataInteractionService, useValue: DataInteractionService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

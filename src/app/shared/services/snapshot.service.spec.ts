@@ -5,10 +5,11 @@ import { SnapshotService } from './snapshot.service';
 describe('SnapshotService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-          { provide: SnapshotService, useValue: SnapshotService }
-        ],
-    });
+    providers: [
+        { provide: SnapshotService, useValue: SnapshotService }
+    ],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   it('should be created', inject([SnapshotService], (service: SnapshotService) => {

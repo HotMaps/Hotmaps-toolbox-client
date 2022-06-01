@@ -29,25 +29,24 @@ describe('UserManagementComponent', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserManagementComponent, LoginComponent, RegisterComponent,
-        RecoveryComponent, AccountComponent, ChartComponent, ActivateComponent, UploadComponent, GdprComponent ],
-      imports: [
+    declarations: [UserManagementComponent, LoginComponent, RegisterComponent,
+        RecoveryComponent, AccountComponent, ChartComponent, ActivateComponent, UploadComponent, GdprComponent],
+    imports: [
         // RouterModule.forRoot(routes),
         FormsModule,
         BrowserModule,
         ReactiveFormsModule,
         RecaptchaModule,
         RecaptchaFormsModule
-      ],
-      providers:[
+    ],
+    providers: [
         UserManagementService,
         UserManagementStatusService,
         RecaptchaLoaderService,
-
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         Logger,
         LoaderService, ToasterService,
@@ -55,8 +54,9 @@ describe('UserManagementComponent', () => {
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
         { provide: InteractionService, useValue: InteractionService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

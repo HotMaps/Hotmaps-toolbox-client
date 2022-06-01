@@ -15,21 +15,22 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [ FormsModule ],
-      providers:[
+    declarations: [LoginComponent],
+    imports: [FormsModule],
+    providers: [
         UserManagementService, UserManagementStatusService,
         MockBackend, BaseRequestOptions,
         Logger, LoaderService, ToasterService,
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: InteractionService, useValue: InteractionService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService }
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

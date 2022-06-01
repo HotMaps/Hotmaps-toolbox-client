@@ -27,27 +27,27 @@ describe('DurationCurveService', () => {
         loaderServiceStub = new LoaderService();
         loggerStub = new Logger();
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backend, defaultOptions);
-                    }, deps: [MockBackend, BaseRequestOptions]
-                },
-                { provide: Helper },
-                { provide: ToasterService },
-                { provide: LoaderService, useValue: loaderServiceStub },
-                { provide: DurationCurveService, useClass: DurationCurveService },
-                { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
-                { provide: MockBackend, useClass: MockBackend },
-                { provide: Logger, useValue: loggerStub },
-                { provide: BaseRequestOptions, useClass: BaseRequestOptions },
-              { provide: ExportDataService, useClass: ExportDataService }
-
-            ],
-            imports: [
-                HttpModule
-            ]
-        });
+    providers: [
+        {
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
+        },
+        { provide: Helper },
+        { provide: ToasterService },
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: DurationCurveService, useClass: DurationCurveService },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: Logger, useValue: loggerStub },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions },
+        { provide: ExportDataService, useClass: ExportDataService }
+    ],
+    imports: [
+        HttpModule
+    ],
+    teardown: { destroyAfterEach: false }
+});
     }));
     let subject: DurationCurveService = null;
     let backend: MockBackend = null;

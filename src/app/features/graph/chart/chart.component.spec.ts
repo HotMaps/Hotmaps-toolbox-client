@@ -9,11 +9,12 @@ describe('ChartComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartComponent ],
-      providers: [
+    declarations: [ChartComponent],
+    providers: [
         { provide: Logger, useClass: Logger }
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

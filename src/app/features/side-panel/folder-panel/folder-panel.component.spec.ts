@@ -13,15 +13,16 @@ describe('FolderPanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ FolderPanelComponent ],
-      providers: [
+    imports: [FormsModule],
+    declarations: [FolderPanelComponent],
+    providers: [
         { provide: SnapshotService, useValue: SnapshotService },
         { provide: InteractionService, useValue: InteractionService },
         { provide: LoaderService, useValue: LoaderService },
         { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
-      ]
-    })
+    ],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

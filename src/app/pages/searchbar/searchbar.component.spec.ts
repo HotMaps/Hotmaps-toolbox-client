@@ -33,18 +33,19 @@ describe('SearchBarComponent', () => {
     mockLoggerService = new MockLoggerService();
     mockLoaderService = new MockLoaderService();
     TestBed.configureTestingModule({
-      declarations: [SearchBarComponent,
-      ],
-      providers: [
-        {provide: MapService, useValue: mockMapService},
-        {provide: Logger, useValue: mockLoggerService },
-        {provide: GeocodingService, useValue: mockGeocodeService },
-        {provide: LoaderService, useValue: mockLoaderService },
-        {provide: SidePanelService, useValue: mockLoaderService },
-        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
-      ],
-      imports: [FormsModule]
-    }).compileComponents();
+    declarations: [SearchBarComponent,
+    ],
+    providers: [
+        { provide: MapService, useValue: mockMapService },
+        { provide: Logger, useValue: mockLoggerService },
+        { provide: GeocodingService, useValue: mockGeocodeService },
+        { provide: LoaderService, useValue: mockLoaderService },
+        { provide: SidePanelService, useValue: mockLoaderService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService },
+    ],
+    imports: [FormsModule],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   });
 
   beforeEach(() => {

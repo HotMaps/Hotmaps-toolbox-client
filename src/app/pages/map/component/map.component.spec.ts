@@ -106,7 +106,7 @@ describe('MapComponent', () => {
     mockGeocodeService = new MockGeocodeService();
     mockSelectionScaleService = new MockSelectionScaleService();
     TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         MapComponent, LeftSideComponent, RightSideComponent,
         SearchBarComponent, DataInteractionCellComponent, NavigationBarComponent, SummaryResultComponent, TopSideComponent,
         FeedbackComponent, SelectionToolComponent,
@@ -116,12 +116,12 @@ describe('MapComponent', () => {
         UserManagementComponent, LoginComponent, AccountComponent, RegisterComponent, RecoveryComponent, ActivateComponent,
         LayerToolComponent, PersonnalLayersComponent, UploadComponent, CustomSymbologyComponent, NumberFormatPipe,
         SavePanelComponent, FolderPanelComponent, GdprComponent, SummaryResultContainerComponent, BrowserDisclaimerComponent, StandAloneCmComponent
-      ],
-      providers: [
+    ],
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: SelectionToolUtils, useClass: SelectionToolUtils },
         { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
@@ -151,21 +151,22 @@ describe('MapComponent', () => {
         { provide: DataInteractionService, useClass: DataInteractionService },
         { provide: BusinessInterfaceRenderService, useClass: BusinessInterfaceRenderService },
         { provide: DurationCurveService, useClass: DurationCurveService },
-        {provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService},
-        {provide: UserManagementStatusService, useClass: UserManagementStatusService},
-        {provide: UserManagementService, useClass: UserManagementService},
-        {provide: FeedbackService, useClass: FeedbackService},
-        {provide: APP_BASE_HREF, useValue: '/'},
-        {provide: UploadService, useValue: UploadService},
-        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService}
-      ],
-      imports: [
+        { provide: CalculationHeatLoadDividedService, useClass: CalculationHeatLoadDividedService },
+        { provide: UserManagementStatusService, useClass: UserManagementStatusService },
+        { provide: UserManagementService, useClass: UserManagementService },
+        { provide: FeedbackService, useClass: FeedbackService },
+        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: UploadService, useValue: UploadService },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsService }
+    ],
+    imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
         RecaptchaModule,
         RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
-      ]
-    }).compileComponents();
+    ],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   });
 
   beforeEach(() => {

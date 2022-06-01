@@ -19,11 +19,11 @@ describe('ElectricityMixService', () => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger();
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
         { provide: ElectricityMixService },
         { provide: Helper },
@@ -33,11 +33,12 @@ describe('ElectricityMixService', () => {
         { provide: MockBackend, useClass: MockBackend },
         { provide: Logger, useValue: loggerStub },
         { provide: BaseRequestOptions, useClass: BaseRequestOptions }
-      ],
-      imports: [
+    ],
+    imports: [
         HttpModule
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
   }));
   let subject: ElectricityMixService = null;
   let backend: MockBackend = null;

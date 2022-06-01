@@ -23,24 +23,25 @@ describe('HeatLoadAggregateService', () => {
         loaderServiceStub = new LoaderService();
         loggerStub = new Logger();
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backend, defaultOptions);
-                    }, deps: [MockBackend, BaseRequestOptions]
-                },
-                { provide: Helper },
-                { provide: ToasterService },
-                { provide: LoaderService, useValue: loaderServiceStub },
-                { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
-                { provide: MockBackend, useClass: MockBackend },
-                { provide: Logger, useValue: loggerStub },
-                { provide: BaseRequestOptions, useClass: BaseRequestOptions }
-            ],
-            imports: [
-                HttpModule
-            ]
-        });
+    providers: [
+        {
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
+        },
+        { provide: Helper },
+        { provide: ToasterService },
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: HeatLoadAggregateService, useClass: HeatLoadAggregateService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: Logger, useValue: loggerStub },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions }
+    ],
+    imports: [
+        HttpModule
+    ],
+    teardown: { destroyAfterEach: false }
+});
     }));
     let subject: HeatLoadAggregateService = null;
     let backend: MockBackend = null;

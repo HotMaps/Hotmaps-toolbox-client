@@ -14,16 +14,17 @@ describe('BusinessService', () => {
     let service: BusinessInterfaceRenderService;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: BusinessInterfaceRenderService,
-                    useClass: BusinessInterfaceRenderService
-                },
-                { provide: Helper, useClass: Helper },
-                { provide: Logger, useClass: Logger },
-                { provide: DecimalPipe, useClass: DecimalPipe },
-            ]
-        });
+    providers: [
+        {
+            provide: BusinessInterfaceRenderService,
+            useClass: BusinessInterfaceRenderService
+        },
+        { provide: Helper, useClass: Helper },
+        { provide: Logger, useClass: Logger },
+        { provide: DecimalPipe, useClass: DecimalPipe },
+    ],
+    teardown: { destroyAfterEach: false }
+});
 
     });
     beforeEach(inject([BusinessInterfaceRenderService], (businessService: BusinessInterfaceRenderService) => {

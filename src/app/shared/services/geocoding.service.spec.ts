@@ -21,19 +21,20 @@ describe('geocodingService', () => {
     loaderServiceStub = new LoaderService();
     loggerStub = new Logger;
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         {
-          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]
+            provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+                return new Http(backend, defaultOptions);
+            }, deps: [MockBackend, BaseRequestOptions]
         },
-        {provide: LoaderService, useValue: loaderServiceStub },
-        {provide: GeocodingService, useClass: GeocodingService},
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: Logger, useValue: loggerStub},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions}
-      ]
-    });
+        { provide: LoaderService, useValue: loaderServiceStub },
+        { provide: GeocodingService, useClass: GeocodingService },
+        { provide: MockBackend, useClass: MockBackend },
+        { provide: Logger, useValue: loggerStub },
+        { provide: BaseRequestOptions, useClass: BaseRequestOptions }
+    ],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   it('should getCurrentLocation() of ip 72.229.28.185 with result from',
