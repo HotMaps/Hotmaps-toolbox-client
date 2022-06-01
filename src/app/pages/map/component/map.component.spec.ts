@@ -162,7 +162,7 @@ describe('MapComponent', () => {
       imports: [
         FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot(),
+        RecaptchaModule,
         RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
       ]
     }).compileComponents();

@@ -156,7 +156,7 @@ describe('AppComponent: Router', () => {
       ],
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, BrowserAnimationsModule, NoopAnimationsModule, ReactiveFormsModule,
         RecaptchaFormsModule,
-        RecaptchaModule.forRoot()
+        RecaptchaModule
       ]
     })
 
