@@ -28,6 +28,7 @@
     "leaflet": "^1.7.1",
     "leaflet-circle-to-polygon": "1.0.0",
     "leaflet-draw": "git+https://github.com/JeanmarieAlder/leaflet-draw.git",
+    "leaflet-dvf": "^0.3.1",
     "leaflet-measure": "^3.1.0",
     "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
