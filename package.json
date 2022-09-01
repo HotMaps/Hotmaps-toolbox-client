@@ -29,6 +29,7 @@
     "leaflet-circle-to-polygon": "1.0.0",
     "leaflet-draw": "git+https://github.com/JeanmarieAlder/leaflet-draw.git",
     "leaflet-measure": "^3.1.0",
+    "leaflet-piechart": "github:JeanmarieAlder/leaflet-piechart",
     "leaflet-popup-angular": "^1.0.3",
     "leaflet-virtual-grid": "1.0.4",
     "mdn-polyfills": "^5.2.0",
