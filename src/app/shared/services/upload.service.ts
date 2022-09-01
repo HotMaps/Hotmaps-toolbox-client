@@ -9,6 +9,7 @@ import { Helper } from '../helper';
 import { TileLayer } from 'leaflet';
 
 declare const L: any;
+import 'leaflet-dvf';
 import * as Leaflet from 'leaflet';
 
 import { nuts0, nuts1, nuts2, nuts3, lau2, hectare, constant_year, apiUrl } from '../data.service';
