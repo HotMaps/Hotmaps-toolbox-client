@@ -25,9 +25,10 @@
     "ie-shim": "0.1.0",
     "intl": "1.2.5",
     "jquery": "^3.6.0",
-    "leaflet": "^1.7.1",
+    "leaflet": "1.7.1",
     "leaflet-circle-to-polygon": "1.0.0",
     "leaflet-draw": "git+https://github.com/JeanmarieAlder/leaflet-draw.git",
+    "leaflet-dvf": "^0.3.1",
     "leaflet-measure": "^3.1.0",
     "leaflet-piechart": "github:JeanmarieAlder/leaflet-piechart",
     "leaflet-popup-angular": "^1.0.3",
@@ -43,7 +44,7 @@
     "shpjs": "^3.4.2",
     "stacktrace-js": "2.0.0",
     "tslib": "^2.0.0",
-    "uikit": "^3.7.3",
+    "uikit": "3.7.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
